@@ -1,0 +1,143 @@
+{
+    "s1":
+    {
+        "name"          : "Earth charge",
+        "cost"          : 6,
+        "spritePath"    : "img/sorts/1.png",
+        "allowedTarget" : "aligned",
+        "abilities"     :
+        [
+            {
+                "trigger"   : "spellCast",
+                "target"    : "target",
+                "feature"   : "pv",
+                "value"     : -10,
+                "effect"    : ""
+            },
+            {
+                "trigger"   : "spellCast",
+                "target"    : "self",
+                "feature"   : "x",
+                "value"     : 0,
+                "effect"    : "stick_target"
+            },
+            {
+                "trigger"   : "spellCast",
+                "target"    : "self",
+                "feature"   : "y",
+                "value"     : 0,
+                "effect"    : "stick_target"
+            },
+            {
+                "trigger"   : "spellCast",
+                "target"    : "myPlayer",
+                "feature"   : "paStock",
+                "value"     : 1,
+                "effect"    : ""
+            },
+            {
+                "trigger"   : "spellCast",
+                "target"    : "myPlayer",
+                "feature"   : "earth",
+                "value"     : 1,
+                "effect"    : ""
+            }
+        ]
+    },
+    "s2":
+    {
+        "name"          : "Fire ball",
+        "cost"          : 2,
+        "allowedTarget" : "all",
+        "abilities"     :
+        [
+            {
+                "trigger"   : "spellCast",
+                "target"    : "target",
+                "feature"   : "ps",
+                "value"     : -5,
+                "effect"    : ""
+            }
+        ]
+    },
+    "s3":
+    {
+        "name"          : "Fire ball",
+        "cost"          : 2,
+        "allowedTarget" : "all",
+        "abilities"     :
+        [
+            {
+                "trigger"   : "spellCast",
+                "target"    : "target",
+                "feature"   : "ps",
+                "value"     : -5,
+                "effect"    : ""
+            }
+        ]
+    },
+    "s4":
+    {
+        "name"          : "Fire ball",
+        "cost"          : 2,
+        "allowedTarget" : "all",
+        "abilities"     :
+        [
+            {
+                "trigger"   : "spellCast",
+                "target"    : "target",
+                "feature"   : "ps",
+                "value"     : -5,
+                "effect"    : ""
+            }
+        ]
+    },
+    "s5":
+    {
+        "name"          : "Fire ball",
+        "cost"          : 2,
+        "allowedTarget" : "all",
+        "abilities"     :
+        [
+            {
+                "trigger"   : "spellCast",
+                "target"    : "target",
+                "feature"   : "ps",
+                "value"     : -5,
+                "effect"    : ""
+            }
+        ]
+    },
+    "s6":
+    {
+        "name"          : "Fire ball",
+        "cost"          : 2,
+        "allowedTarget" : "all",
+        "abilities"     :
+        [
+            {
+                "trigger"   : "spellCast",
+                "target"    : "target",
+                "feature"   : "ps",
+                "value"     : -5,
+                "effect"    : ""
+            }
+        ]
+    },
+    "s7":
+    {
+        "name"          : "Fire ball",
+        "cost"          : 2,
+        "allowedTarget" : "all",
+        "abilities"     :
+        [
+            {
+                "trigger"   : "spellCast",
+                "target"    : "target",
+                "feature"   : "ps",
+                "value"     : -5,
+                "effect"    : ""
+            }
+        ]
+    }
+}

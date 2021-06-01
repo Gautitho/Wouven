@@ -1,0 +1,14 @@
+{
+    "h1" :
+    {
+        "race"          : "Saber",
+        "spellId"       : "Tournoiment",
+        "entityDescId"  : "h1"
+    },
+    "h2" :
+    {
+        "race"          : "Archer",
+        "spellId"       : "GrosseFleche",
+        "entityDescId"  : "h2"
+    }
+}

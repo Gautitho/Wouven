@@ -1,0 +1,22 @@
+{
+    "c1" :
+    {
+        "cost"          : {"fire" : 0, "water" : 0, "earth" : 3, "air" : 0},
+        "entityDescId"  : "c1"
+    },
+    "c2" :
+    {
+        "cost"          : {"fire" : 0, "water" : 0, "earth" : 5, "air" : 0},
+        "entityDescId"  : "c2"
+    },
+    "c3" :
+    {
+        "cost"          : {"fire" : 0, "water" : 0, "earth" : 2, "air" : 2},
+        "entityDescId"  : "c3"
+    },
+    "c4" :
+    {
+        "cost"          : {"fire" : 0, "water" : 0, "earth" : 0, "air" : 3},
+        "entityDescId"  : "c4"
+    }
+}

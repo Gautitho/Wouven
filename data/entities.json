@@ -1,0 +1,86 @@
+{
+    "h1" :
+    {
+        "name"          : "Sakai",
+        "spritePath"    : "img/1.png",
+        "pv"            : 300,
+        "armor"         : 0,
+        "atk"           : 30,
+        "pm"            : 3,
+        "aura"          : {},
+        "states"        : [],
+        "abilities"     : []
+    },
+    "h2" :
+    {
+        "name"          : "Vovo",
+        "spritePath"    : "img/2.png",
+        "pv"            : 290,
+        "armor"         : 0,
+        "atk"           : 10,
+        "pm"            : 3,
+        "aura"          : {},
+        "states"        : [],
+        "abilities"     : []
+    },
+    "c1" :
+    {
+        "name"          : "aNA",
+        "spritePath"    : "img/1.png",
+        "pv"            : 68,
+        "armor"         : 0,
+        "atk"           : 18,
+        "pm"            : 3,
+        "aura"          : {},
+        "states"        : [],
+        "abilities"     : []
+    },
+    "c2" :
+    {
+        "name"          : "Ich2ichi",
+        "spritePath"    : "img/1.png",
+        "pv"            : 100,
+        "armor"         : 0,
+        "atk"           : 26,
+        "pm"            : 3,
+        "aura"          : {},
+        "states"        : [],
+        "abilities"     : []
+    },
+    "c3" :
+    {
+        "name"          : "SpaceSapien",
+        "spritePath"    : "img/1.png",
+        "pv"            : 80,
+        "armor"         : 0,
+        "atk"           : 21,
+        "pm"            : 4,
+        "aura"          : {},
+        "states"        : [],
+        "abilities"     : []
+    },
+    "c4" :
+    {
+        "name"          : "Neige",
+        "spritePath"    : "img/1.png",
+        "pv"            : 63,
+        "armor"         : 0,
+        "atk"           : 7,
+        "pm"            : 3,
+        "aura"          : {},
+        "states"        : [],
+        "abilities"     : []
+    },
+    "m1" :
+    {
+        "name"          : "waterWatch",
+        "spritePath"    : "img/1.png",
+        "pv"            : 10,
+        "armor"         : 0,
+        "atk"           : 0,
+        "pm"            : 0,
+        "aura"          : {},
+        "states"        : [],
+        "abilities"     : []
+    }
+}
