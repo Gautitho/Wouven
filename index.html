@@ -7,7 +7,7 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
-    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Wouven</title>
 </head>
 <body class="h-screen w-screen">
@@ -58,7 +58,7 @@
         <div class="h-full w-1/2 mx-2">
             <div id="handBar" class="flex flex-row">
                 <div id="pa" class="h-20 w-20 bg-center bg-cover bg-no-repeat mx-2" style="background-image: url(img/pa.png);"></div>
-                <div id="paStock" class="h-20 w-20 bg-center bg-cover bg-no-repeat mx-2" style="background-image: url(img/pa.png);"></div>
+                <div id="paStock" class="h-20 w-20 bg-center bg-cover bg-no-repeat mx-2" style="background-image: url(img/utils/pareserve.png);"></div>
                 <div id="hand" class="flex-grow grid grid-cols-7 grid-rows-1 w-max mx-2"></div>
             </div>
         </div>
@@ -69,238 +69,30 @@
         </div>
     </section>
 
-    <!-- Client interactions -->
     <script>
         const BOARD_ROWS = 7;
         const BOARD_COLS = 7;
         const HAND_SPELLS = 7;
 
-        // Available states : LOCKED, IDLE, MOVE, SPELL, COMPANION
-        var state = "LOCKED"; 
-        var turn = "blue";
-        var team = "blue";
-        var spellsDataBase = {}
-        var heroesDataBase = {}
-        var entitiesDataBase = {}
-        var selectedEntity = -1;
-        var entitiesList = [];
-        var myPlayer = {};
-        var opPlayer = {};
-        var path = [];
-
-        $.getJSON("data/spells.json", function(data) {spellsDataBase = data});
-        $.getJSON("data/entities.json", function(data) {entitiesDataBase = data});
-        $.getJSON("data/heroes.json", function(data) {heroesDataBase = data});
-        initGame();
-
-        function initGame()
+        $("#stateBtn").css("background-color", "#FF0000");
+        $("#stateBtn").text("Opponent turn");
+        for (y = 0; y < BOARD_ROWS; y++)
         {
-            $("#stateBtn").css("background-color", "#FF0000");
-            $("#stateBtn").text("Opponent turn");
-            for (y = 0; y < BOARD_ROWS; y++)
+            for (x = 0; x < BOARD_COLS; x++)
             {
-                for (x = 0; x < BOARD_COLS; x++)
-                {
-                    document.getElementById("board").insertAdjacentHTML('beforeend',`<div id="board_${x}_${y}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-cover bg-no-repeat" style="background-color: #FFFFFF;"></div>`);
-                    $("#board_" + x + "_" + y).click(function() {boardTileClick($(this))});
-                } 
-            }
-            for (i = 0; i < HAND_SPELLS; i++)
-            {
-                document.getElementById("hand").insertAdjacentHTML('beforeend',`<div id="spell_${i}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-cover bg-no-repeat" style="background-color: #FFFFFF;"></div>`);
-                $("#spell_" + i).click(function() {spellClick($(this))});
-            }
+                document.getElementById("board").insertAdjacentHTML('beforeend',`<div id="board_${x}_${y}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-cover bg-no-repeat" style="background-color: #FFFFFF;"></div>`);
+                $("#board_" + x + "_" + y).click(function() {boardTileClick($(this))});
+            } 
         }
-
-        function updateState(newState)
+        for (i = 0; i < HAND_SPELLS; i++)
         {
-            if (newState == "IDLE")
-            {
-                $("#stateBtn").css("background-color", "#00FF00");
-                $("#stateBtn").text("End turn");
-            }
-            else if (newState == "MOVE")
-            {
-                $("#stateBtn").css("background-color", "#0000FF");
-                $("#stateBtn").text("End move");
-            }
-            else
-            {
-                $("#stateBtn").css("background-color", "#FF0000");
-                $("#stateBtn").text("Opponent turn");
-            }
-            state = newState;
-        }
-
-        function updateBoard()
-        {
-            for (y = 0; y < BOARD_ROWS; y++)
-            {
-                for (x = 0; x < BOARD_COLS; x++)
-                {
-                    $("#board_" + x + "_" + y).css("background-color", "#FFFFFF");
-                    $("#board_" + x + "_" + y).css("background-image", "");
-                }
-            }
-            for (i = 0; i < entitiesList.length; i++)
-            {
-                $("#board_" + entitiesList[i].x + "_" + entitiesList[i].y).css("background-image", "url(" + eval("entitiesDataBase." + entitiesList[i].descId + ".spritePath") + ")");
-            }
-        }
-
-        function updateMyStatus()
-        {
-            $("#myStatusSprite").css("background-image", "url(" + eval("entitiesDataBase." + eval("heroesDataBase." + myPlayer.heroDescId + ".entityDescId") + ".spritePath") + ")");
-            $("#myStatusPv").text("PV : " + entitiesList[myPlayer.heroEntityId].pv + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + myPlayer.heroDescId + ".entityDescId") + ".pv"));
-            $("#myStatusAtk").text("ATK : " + entitiesList[myPlayer.heroEntityId].atk + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + myPlayer.heroDescId + ".entityDescId") + ".atk"));
-            $("#myStatusPm").text("PM : " + entitiesList[myPlayer.heroEntityId].pm + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + myPlayer.heroDescId + ".entityDescId") + ".pm"));
-        }
-
-        function updateOpStatus()
-        {
-            $("#opStatusSprite").css("background-image", "url(" + eval("entitiesDataBase." + eval("heroesDataBase." + opPlayer.heroDescId + ".entityDescId") + ".spritePath") + ")");
-            $("#opStatusPv").text("PV : " + entitiesList[opPlayer.heroEntityId].pv + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + opPlayer.heroDescId + ".entityDescId") + ".pv"));
-            $("#opStatusAtk").text("ATK : " + entitiesList[opPlayer.heroEntityId].atk + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + opPlayer.heroDescId + ".entityDescId") + ".atk"));
-            $("#opStatusPm").text("PM : " + entitiesList[opPlayer.heroEntityId].pm + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + opPlayer.heroDescId + ".entityDescId") + ".pm"));
-        }
-
-        function updateHandBar()
-        {
-            $("#pa").text(myPlayer.pa);
-            $("#paStock").text(myPlayer.paStock);
-            for (i = 0; i < HAND_SPELLS; i++)
-            {
-                $("#spell_" + i).css("background-image", "");
-            }
-            for (j = 0; j < myPlayer.handSpellDescIds.length; j++)
-            {
-                $("#spell_" + j).css("background-image", eval("spellsDataBase." + myPlayer.handSpellDescIds[j] + ".spritePath"));
-            }
-        }
-
-        function stateBtnClick()
-        {
-            if (state == "IDLE")
-            {
-                endTurn();
-            }
-            else if (state == "MOVE")
-            {
-                move();
-            }
-        }
-
-        function cancelBtnClick()
-        {
-            if (state == "MOVE")
-            {
-                path = [];
-                selectedEntity = -1;
-                updateState("IDLE");
-                updateBoard();
-            }
-        }
-
-        function boardTileClick(tile)
-        {
-            var x = tile.attr('id').split('_')[1];
-            var y = tile.attr('id').split('_')[2];
-
-            if (turn != team)
-            {
-                log("Not your turn, bro !");
-            }
-            else if (state == "IDLE")
-            {
-                for (i = 0; i < entitiesList.length; i++)
-                {
-                    if (entitiesList[i].x == x && entitiesList[i].y == y && entitiesList[i].team == team)
-                    {
-                        updateState("MOVE");
-                        selectedEntity = i;
-                        path.push({"x" : x, "y" : y});
-                        $("#board_" + x + "_" + y).css("background-color", "#6DB3F2");
-                    } 
-                }
-            }
-            else if (state == "MOVE")
-            {
-                if (path[path.length-1].x != x || path[path.length-1].y != y)
-                {
-                    path.push({"x" : x, "y" : y});
-                    $("#board_" + x + "_" + y).css("background-color", "#6DB3F2");
-                }
-            }
-        }
-
-        function spellClick(spell)
-        {
-            var spellId = spell.attr('id').split('_')[1];
-            console.log(spellId);
-        }
-
-        function log(message)
-        {
-            $("#logs").append(`<p>${message}</p>`);
-            var element = document.getElementById("logs");
-            element.scrollTop = element.scrollHeight;
+            document.getElementById("hand").insertAdjacentHTML('beforeend',`<div id="spell_${i}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-cover bg-no-repeat" style="background-color: #FFFFFF;"></div>`);
+            $("#spell_" + i).click(function() {spellClick($(this))});
         }
     </script>
 
-    <!-- Communication with server -->
-    <script>
-        socket      = new WebSocket('ws://localhost:8000/');
-        playerId    = Math.random().toString(36).substring(4);
-
-        authCmd = {"cmd" : "AUTH", "playerId" : playerId};
-        socket.onopen = function() {socket.send(JSON.stringify(authCmd));};
-
-        socket.onmessage = function(handler)
-        {
-            console.log(handler.data)
-            cmdObj = JSON.parse(handler.data)
-
-            if (cmdObj.cmd == "INIT")
-            {
-                team = cmdObj.team;
-            }
-            else if (cmdObj.cmd == "STATUS")
-            {
-                turn            = cmdObj.turn;
-                myPlayer        = cmdObj.myPlayer;
-                opPlayer        = cmdObj.opPlayer;
-                entitiesList    = cmdObj.entitiesList;
-
-                if (turn == team)
-                {
-                    updateState("IDLE");
-                }
-                else
-                {
-                    updateState("LOCKED");
-                }
-                updateMyStatus();
-                updateOpStatus();
-                updateHandBar();
-            }
-            updateBoard();
-        };
-
-        function endTurn()
-        {
-            endTurnCmd = {"cmd" : "ENDTURN", "playerId" : playerId};
-            socket.send(JSON.stringify(endTurnCmd));
-        }
-
-        function move()
-        {
-            moveCmd = {"cmd" : "MOVE", "playerId" : playerId, "entityId" : selectedEntity, "path" : path};
-            socket.send(JSON.stringify(moveCmd));
-            path = [];
-            selectedEntity = -1;
-            updateState("IDLE");
-        }
-    </script>
+    <script src="js/clientInteraction.js"></script>
+    <script src="js/serverCom.js"></script>
 
 </body>
 </html>
