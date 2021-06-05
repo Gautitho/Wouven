@@ -6,11 +6,12 @@ var entitiesDataBase = {}
 var spellsDataBase = {}
 var companionsDataBase = {}
 var heroesDataBase = {}
-var selectedEntity = -1;
+var selectedEntity  = -1;
+var selectedSpell   = -1;
 var entitiesList = [];
 var myPlayer = {};
 var opPlayer = {};
-var path = [];
+var boardTileList = [];
 
 $.getJSON("data/entities.json", function(data) {entitiesDataBase = data});
 $.getJSON("data/spells.json", function(data) {spellsDataBase = data});
@@ -28,6 +29,11 @@ function updateState(newState)
     {
         $("#stateBtn").css("background-color", "#0000FF");
         $("#stateBtn").text("End move");
+    }
+    else if (newState == "SPELL")
+    {
+        $("#stateBtn").css("background-color", "#0000FF");
+        $("#stateBtn").text("End spell cast");
     }
     else
     {
@@ -76,6 +82,7 @@ function updateHandBar()
     for (i = 0; i < HAND_SPELLS; i++)
     {
         $("#spell_" + i).css("background-image", "");
+        $("#spell_" + i).css("background-color", "#FFFFFF");
     }
     for (j = 0; j < myPlayer.handSpellDescIds.length; j++)
     {
@@ -92,6 +99,16 @@ function stateBtnClick()
     else if (state == "MOVE")
     {
         move();
+        boardTileList = [];
+        selectedEntity = -1;
+        updateState("IDLE");
+    }
+    else if (state == "SPELL")
+    {
+        spell();
+        boardTileList = [];
+        selectedSpell = -1
+        updateState("IDLE");
     }
 }
 
@@ -99,7 +116,7 @@ function cancelBtnClick()
 {
     if (state == "MOVE")
     {
-        path = [];
+        boardTileList = [];
         selectedEntity = -1;
         updateState("IDLE");
         updateBoard();
@@ -108,8 +125,8 @@ function cancelBtnClick()
 
 function boardTileClick(tile)
 {
-    var x = tile.attr('id').split('_')[1];
-    var y = tile.attr('id').split('_')[2];
+    var x = parseInt(tile.attr('id').split('_')[1]);
+    var y = parseInt(tile.attr('id').split('_')[2]);
 
     if (turn != team)
     {
@@ -123,25 +140,40 @@ function boardTileClick(tile)
             {
                 updateState("MOVE");
                 selectedEntity = i;
-                path.push({"x" : x, "y" : y});
+                boardTileList.push({"x" : x, "y" : y});
                 $("#board_" + x + "_" + y).css("background-color", "#6DB3F2");
             } 
         }
     }
     else if (state == "MOVE")
     {
-        if (path[path.length-1].x != x || path[path.length-1].y != y)
+        if (boardTileList[boardTileList.length-1].x != x || boardTileList[boardTileList.length-1].y != y)
         {
-            path.push({"x" : x, "y" : y});
+            boardTileList.push({"x" : x, "y" : y});
             $("#board_" + x + "_" + y).css("background-color", "#6DB3F2");
         }
+    }
+    else if (state == "SPELL")
+    {
+        boardTileList.push({"x" : x, "y" : y});
+        $("#board_" + x + "_" + y).css("background-color", "#6DB3F2");
     }
 }
 
 function spellClick(spell)
 {
-    var spellId = spell.attr('id').split('_')[1];
-    console.log(spellId);
+    var spellId = parseInt(spell.attr('id').split('_')[1]);
+
+    if (turn != team)
+    {
+        errorLog("Not your turn, bro !");
+    }
+    else if (state == "IDLE")
+    {
+        updateState("SPELL");
+        selectedSpell = spellId;
+        $("#spell_" + spellId).css("background-color", "#6DB3F2");
+    }
 }
 
 function errorLog(message)

@@ -1,11 +1,11 @@
 {
     "s1":
     {
-        "name"          : "Earth charge",
-        "cost"          : 6,
-        "spritePath"    : "img/sorts/1.png",
-        "allowedTarget" : "aligned",
-        "abilities"     :
+        "name"              : "Earth charge",
+        "cost"              : 6,
+        "spritePath"        : "img/sorts/1.png",
+        "allowedTargetList" : ["aligned"],
+        "abilities"         :
         [
             {
                 "trigger"   : "spellCast",
@@ -46,16 +46,16 @@
     },
     "s2":
     {
-        "name"          : "Fire ball",
-        "cost"          : 2,
-        "spritePath"    : "img/sorts/2.png",
-        "allowedTarget" : "all",
-        "abilities"     :
+        "name"              : "Fire ball",
+        "cost"              : 2,
+        "spritePath"        : "img/sorts/2.png",
+        "allowedTargetList" : ["allEntities"],
+        "abilities"         :
         [
             {
                 "trigger"   : "spellCast",
                 "target"    : "target",
-                "feature"   : "ps",
+                "feature"   : "pv",
                 "value"     : -5,
                 "effect"    : ""
             }
@@ -63,16 +63,16 @@
     },
     "s3":
     {
-        "name"          : "Earth ball",
-        "cost"          : 2,
-        "spritePath"    : "img/sorts/3.png",
-        "allowedTarget" : "all",
-        "abilities"     :
+        "name"              : "Earth ball",
+        "cost"              : 2,
+        "spritePath"        : "img/sorts/3.png",
+        "allowedTargetList" : ["allEntities"],
+        "abilities"         :
         [
             {
                 "trigger"   : "spellCast",
                 "target"    : "target",
-                "feature"   : "ps",
+                "feature"   : "pv",
                 "value"     : -5,
                 "effect"    : ""
             }
@@ -80,16 +80,16 @@
     },
     "s4":
     {
-        "name"          : "Ice ball",
-        "cost"          : 2,
-        "spritePath"    : "img/sorts/4.png",
-        "allowedTarget" : "all",
-        "abilities"     :
+        "name"              : "Ice ball",
+        "cost"              : 2,
+        "spritePath"        : "img/sorts/4.png",
+        "allowedTargetList" : ["allEntities"],
+        "abilities"         :
         [
             {
                 "trigger"   : "spellCast",
                 "target"    : "target",
-                "feature"   : "ps",
+                "feature"   : "pv",
                 "value"     : -5,
                 "effect"    : ""
             }
@@ -97,16 +97,16 @@
     },
     "s5":
     {
-        "name"          : "Air ball",
-        "cost"          : 2,
-        "spritePath"    : "img/sorts/5.png",
-        "allowedTarget" : "all",
-        "abilities"     :
+        "name"              : "Air ball",
+        "cost"              : 2,
+        "spritePath"        : "img/sorts/5.png",
+        "allowedTargetList" : ["allEntities"],
+        "abilities"         :
         [
             {
                 "trigger"   : "spellCast",
                 "target"    : "target",
-                "feature"   : "ps",
+                "feature"   : "pv",
                 "value"     : -5,
                 "effect"    : ""
             }
@@ -114,16 +114,16 @@
     },
     "s6":
     {
-        "name"          : "NaN",
-        "cost"          : 2,
-        "spritePath"    : "img/sorts/6.png",
-        "allowedTarget" : "all",
-        "abilities"     :
+        "name"              : "NaN",
+        "cost"              : 2,
+        "spritePath"        : "img/sorts/6.png",
+        "allowedTargetList" : ["allEntities"],
+        "abilities"         :
         [
             {
                 "trigger"   : "spellCast",
                 "target"    : "target",
-                "feature"   : "ps",
+                "feature"   : "pv",
                 "value"     : -5,
                 "effect"    : ""
             }
@@ -131,16 +131,16 @@
     },
     "s7":
     {
-        "name"          : "LoL",
-        "spritePath"    : "img/sorts/6.png",
-        "cost"          : 2,
-        "allowedTarget" : "all",
-        "abilities"     :
+        "name"              : "LoL",
+        "spritePath"        : "img/sorts/6.png",
+        "cost"              : 2,
+        "allowedTargetList" : ["allEntities"],
+        "abilities"         :
         [
             {
                 "trigger"   : "spellCast",
                 "target"    : "target",
-                "feature"   : "ps",
+                "feature"   : "pv",
                 "value"     : -5,
                 "effect"    : ""
             }

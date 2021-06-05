@@ -47,8 +47,8 @@ class Game:
                     self.Move(cmdDict["playerId"], cmdDict["entityId"], cmdDict["path"])
 
             elif (cmd == "SPELL"):
-                if self.checkCmdArgs(cmdDict, ["playerId", "spellId", "mainTargetPosition", "sideTargetPosition"]):
-                    self.SpellCast(cmdDict["playerId"], cmdDict["spellId"], cmdDict["mainTargetPosition"], cmdDict["sideTargetPosition"])
+                if self.checkCmdArgs(cmdDict, ["playerId", "spellId", "targetPositionList"]):
+                    self.SpellCast(cmdDict["playerId"], cmdDict["spellId"], cmdDict["targetPositionList"])
 
             self.sendStatus()
 
@@ -132,8 +132,11 @@ class Game:
             if errorMsg:
                 self._msgList.append({"clientId" : self._clientIds[playerId], "content" : json.dumps({"cmd" : "ERROR", "msg" : errorMsg})})
 
-    def SpellCast(self, playerId, spellId, mainTargetPosition, sideTargetPosition):
+    def SpellCast(self, playerId, spellId, targetPositionList):
         if (self.checkTurn(playerId)):
-            pass
+            errorMsg = self._board.spellCast(playerId, spellId, targetPositionList)
+            if errorMsg:
+                self._msgList.append({"clientId" : self._clientIds[playerId], "content" : json.dumps({"cmd" : "ERROR", "msg" : errorMsg})})
+
 
 

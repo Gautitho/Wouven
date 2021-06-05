@@ -47,17 +47,12 @@ function endTurn()
 
 function move()
 {
-    moveCmd = {"cmd" : "MOVE", "playerId" : playerId, "entityId" : selectedEntity, "path" : path};
+    moveCmd = {"cmd" : "MOVE", "playerId" : playerId, "entityId" : selectedEntity, "path" : boardTileList};
     socket.send(JSON.stringify(moveCmd));
-    path = [];
-    selectedEntity = -1;
-    updateState("IDLE");
 }
 
 function spell()
 {
-    spellCmd = {"cmd" : "SPELL", "playerId" : playerId, "mainTargetPosition" : spellMainTarget, "sideTargetPosition" : spellSideTarget};
-    socket.JSON.stringify(spellCmd);
-    selectedSpell = -1
-    updateState("IDLE");
+    spellCmd = {"cmd" : "SPELL", "playerId" : playerId, "spellId" : selectedSpell, "targetPositionList" : boardTileList};
+    socket.send(JSON.stringify(spellCmd));
 }
