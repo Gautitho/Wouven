@@ -1,7 +1,7 @@
 from functions import *
 from Player import *
 from Entity import *
-from Database import db
+from Database import *
 
 class Board:
 
@@ -63,7 +63,7 @@ class Board:
                                     errorMsg = "Path length is higher than your pm !"
                                     break
                             else:
-                                if (self.entityIdOnTile(nextX, nextY): # The next tile is empty
+                                if (self.entityIdOnTile(nextX, nextY) == -1): # The next tile is empty
                                     x             = nextX
                                     y             = nextY
                                     pm            -= 1
@@ -87,7 +87,7 @@ class Board:
         if (errorMsg == ""):                
             self._entities[entityId].move(x, y)
             if (attackedEntity != -1):
-                self.modifyPv(attackedEntity, -self._atk)
+                self.modifyPv(attackedEntity, -self._entities[entityId].atk)
 
         return errorMsg
 

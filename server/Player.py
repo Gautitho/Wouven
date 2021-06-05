@@ -1,7 +1,7 @@
 import copy
 import random
 from functions import *
-from Database import db
+from Database import *
 
 class Player:
 

@@ -1,5 +1,5 @@
 from functions import *
-from Database import db
+from Database import *
 
 class Entity:
 
@@ -98,6 +98,14 @@ class Entity:
     @property
     def abilities(self):
         return list(self._abilities)
+
+    @property
+    def canMove(self):
+        return self._canMove
+
+    @property
+    def canAttack(self):
+        return self._canAttack
 
     def display(self, printType="DEBUG"):
         printInfo(f"descId      = {self._descId}", printType)
