@@ -5,6 +5,10 @@ COMPANIONS_FILE_PATH    = "data/companions.json"
 ENTITIES_FILE_PATH      = "data/entities.json"
 SPELLS_FILE_PATH        = "data/spells.json"
 
+BOARD_ROWS  = 7
+BOARD_COLS  = 7
+HAND_SPELLS = 7
+
 class DataBase:
 
     def __init__(self):

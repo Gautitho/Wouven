@@ -23,8 +23,8 @@ class Entity:
     def check(self, descId, team, x, y):
         checkCondition(True, descId in db.entities, f"Entity descId ({descId}) does not exist !")
         checkCondition(True, team in ["blue", "red"], f"Entity team ({team}) does not exist !")
-        checkCondition(True, 0 <= x <= 6, f"Entity x position ({x}) is not valid !")
-        checkCondition(True, 0 <= y <= 6, f"Entity y position ({y}) is not valid !")
+        checkCondition(True, 0 <= x <= BOARD_COLS, f"Entity x position ({x}) is not valid !")
+        checkCondition(True, 0 <= y <= BOARD_ROWS, f"Entity y position ({y}) is not valid !")
         checkCondition(True, descId["pv"] > 0, f"Entity pv ({descId['pv']}) is not valid !")
         checkCondition(True, descId["armor"] >= 0, f"Entity armor ({descId['armor']}) is not valid !")
         checkCondition(True, descId["atk"] >= 0, f"Entity atk ({descId['atk']}) is not valid !")
@@ -138,7 +138,7 @@ class Entity:
         self._canMove       = True
         self._canAttack     = True
 
-    def move(self, board, path):
+    def move2(self, board, path):
         errorMsg        = ""
         x               = self._x
         y               = self._y
@@ -186,6 +186,13 @@ class Entity:
                 board.modifyPv(attackedEntity, -self._atk)
 
         return errorMsg
+
+    def move(self, x, y):
+        self._x         = x
+        self._y         = y
+        self._pm        = 0
+        self._canMove   = False
+        self._canAttack = False
 
     def modifyPv(self, value):
         if (value < 0):

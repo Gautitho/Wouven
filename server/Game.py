@@ -128,7 +128,7 @@ class Game:
 
     def Move(self, playerId, entityId, path):
         if (self.checkTurn(playerId)):
-            errorMsg = self._board.entities[entityId].move(self._board, path)
+            errorMsg = self._board.move(entityId, path)
             if errorMsg:
                 self._msgList.append({"clientId" : self._clientIds[playerId], "content" : json.dumps({"cmd" : "ERROR", "msg" : errorMsg})})
 

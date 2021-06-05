@@ -81,7 +81,7 @@ class Player:
 
     def draw(self):
         errorMsg = ""
-        if (len(self._handSpellDescIds) < 7):
+        if (len(self._handSpellDescIds) < HAND_SPELLS):
             self._handSpellDescIds.append(self._deckSpellDescIds.pop(0))            
 
         return errorMsg
