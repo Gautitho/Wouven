@@ -139,29 +139,52 @@ class Entity:
         self._canAttack     = True
 
     def move(self, board, path):
-        errorMsg = ""
-        initPos = path.pop(0)
-        if (int(initPos["x"]) == self._x and int(initPos["y"]) == self._y):
-            if ((len(path) <= self._pm) and (self._canMove)):
+        errorMsg        = ""
+        x               = self._x
+        y               = self._y
+        pm              = self._pm
+        attackedEntity  = -1
+        if (self._canMove):
+            if (int(path[0]["x"]) == x and int(path[0]["y"]) == y): # The path is given with the inital position of the entity
+                path.pop(0)
                 for tile in path:
-                    if (abs(self._x - int(tile["x"])) + abs(self._y - int(tile["y"])) == 1):
-                        if (board.entityIdOnTile(int(tile["x"]), int(tile["y"])) == -1):
-                            self._x             = int(tile["x"])
-                            self._y             = int(tile["y"])
-                            self._pm            -= 1
-                            self._canMove       = False
-                            self._canAttack     = False
+                    if (abs(x - int(tile["x"])) + abs(y - int(tile["y"])) == 1):
+                        if (pm == 0):
+                            if (self._canAttack and board.entityIdOnTile(int(tile["x"]), int(tile["y"])) != -1): # Attack after full pm move
+                                attackedEntity  = board.entityIdOnTile(int(tile["x"]), int(tile["y"]))
+                                pm              = -1                           
+                            else:
+                                errorMsg = "Path length is higher than your pm !"
+                                break
                         else:
-                            board.modifyPv(board.entityIdOnTile(int(tile["x"]), int(tile["y"])), self._atk)
-                            self._pm            = 0
-                            self._canMove       = False
-                            self._canAttack     = False
+                            if (board.entityIdOnTile(int(tile["x"]), int(tile["y"])) == -1): # The next tile is empty
+                                x             = int(tile["x"])
+                                y             = int(tile["y"])
+                                pm            -= 1
+                            else: # There is an entity on next tile
+                                if (self._canAttack):
+                                    attackedEntity  = board.entityIdOnTile(int(tile["x"]), int(tile["y"]))
+                                    pm              = -1
+                                else:
+                                    errorMsg = "You can't attack this turn !"
+                                    break
                     else:
-                        errorMsg = "Successive tiles must be contiguous in path !"
+                        errorMsg = "Successive tiles must be contiguous in path or an entity is on your path !"
+                        break
             else:
-                errorMsg = "Path length is greater than pm entity !"
+                errorMsg = "You can't move anymore this turn !"
         else:
             errorMsg = "First tile of the path must be the current entity position !"
+
+        if (errorMsg == ""):
+            self._x         = x
+            self._y         = y
+            self._pm        = 0
+            self._canMove   = False
+            self._canAttack = False
+            if (attackedEntity != -1):
+                board.modifyPv(attackedEntity, -self._atk)
+
         return errorMsg
 
     def modifyPv(self, value):
@@ -170,7 +193,7 @@ class Entity:
                 self._armor += value
             else:
                 self._armor = 0
-                self._pv    += self._armor + valuea
+                self._pv    += self._armor + value
         else:
             if (self._pv + value > db.entities[self._descId]["pv"]):
                 self._pv = db.entities[self._descId]["pv"]

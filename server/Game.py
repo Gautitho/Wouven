@@ -1,9 +1,10 @@
 import json
+import random
 from functions import *
 from Board import *
 
-deck1       = {"heroDescId" : "h1", "spells" : ["1", "2", "3", "4", "5", "6", "7", "7", "4"], "companions" : ["c1", "c2", "c3", "c4"]}
-deck2       = {"heroDescId" : "h2", "spells" : ["1", "2", "3", "4", "5", "6", "7", "7", "4"], "companions" : ["c1", "c2", "c3", "c4"]}
+deck1       = {"heroDescId" : "h1", "spells" : ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s7", "s4"], "companions" : ["c1", "c2", "c3", "c4"]}
+deck2       = {"heroDescId" : "h2", "spells" : ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s7", "s4"], "companions" : ["c1", "c2", "c3", "c4"]}
 
 class Game:
 
@@ -45,6 +46,10 @@ class Game:
                 if self.checkCmdArgs(cmdDict, ["playerId", "entityId", "path"]):
                     self.Move(cmdDict["playerId"], cmdDict["entityId"], cmdDict["path"])
 
+            elif (cmd == "SPELL"):
+                if self.checkCmdArgs(cmdDict, ["playerId", "spellId", "mainTargetPosition", "sideTargetPosition"]):
+                    self.SpellCast(cmdDict["playerId"], cmdDict["spellId"], cmdDict["mainTargetPosition"], cmdDict["sideTargetPosition"])
+
             self.sendStatus()
 
         return self._msgList
@@ -53,8 +58,18 @@ class Game:
         self._gameState = "RUNNING"
         initCmd = {}
         initCmd["cmd"]      = "INIT"
-        
+
+        firstPlayerId = random.choice(list(self._board.players.keys()))
+
         for playerId in self._board.players:
+            if (playerId == firstPlayerId):
+                self._turn = self._board.players[playerId].team
+                for i in range(0, 5):
+                    self._board.players[playerId].draw()
+            else:
+                self._board.players[playerId].modifyPaStock(1)
+                for i in range(0, 6):
+                    self._board.players[playerId].draw()
             initCmd["team"]     = self._board.players[playerId].team
             self._msgList.append({"clientId" : self._clientIds[playerId], "content" : json.dumps(initCmd)})
 
@@ -114,4 +129,11 @@ class Game:
     def Move(self, playerId, entityId, path):
         if (self.checkTurn(playerId)):
             errorMsg = self._board.entities[entityId].move(self._board, path)
-            print(errorMsg)
+            if errorMsg:
+                self._msgList.append({"clientId" : self._clientIds[playerId], "content" : json.dumps({"cmd" : "ERROR", "msg" : errorMsg})})
+
+    def SpellCast(self, playerId, spellId, mainTargetPosition, sideTargetPosition):
+        if (self.checkTurn(playerId)):
+            pass
+
+

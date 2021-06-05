@@ -32,6 +32,10 @@ socket.onmessage = function(handler)
         updateOpStatus();
         updateHandBar();
     }
+    else if (cmdObj.cmd == "ERROR")
+    {
+        errorLog(cmdObj.msg);
+    }
     updateBoard();
 };
 
@@ -47,5 +51,13 @@ function move()
     socket.send(JSON.stringify(moveCmd));
     path = [];
     selectedEntity = -1;
+    updateState("IDLE");
+}
+
+function spell()
+{
+    spellCmd = {"cmd" : "SPELL", "playerId" : playerId, "mainTargetPosition" : spellMainTarget, "sideTargetPosition" : spellSideTarget};
+    socket.JSON.stringify(spellCmd);
+    selectedSpell = -1
     updateState("IDLE");
 }

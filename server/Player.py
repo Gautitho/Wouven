@@ -1,4 +1,5 @@
 import copy
+import random
 from functions import *
 from Database import db
 
@@ -14,7 +15,7 @@ class Player:
         self._paStock               = 0
         self._gauges                = {"fire" : 0, "water" : 0, "earth" : 0, "air" : 0, "neutral" : 0}
         self._handSpellDescIds      = []
-        self._deckSpellDescIds      = deck["spells"]
+        self._deckSpellDescIds      = random.sample(deck["spells"], len(deck["spells"]))
         self._handCompanionDescIds  = deck["companions"]
         self._boardEntityIds        = []
         self._boardEntityIds.append(heroEntityId)
@@ -74,6 +75,16 @@ class Player:
     @property
     def heroEntityId(self):
         return self._heroEntityId
+
+    def modifyPaStock(self, value):
+        self._paStock += value
+
+    def draw(self):
+        errorMsg = ""
+        if (len(self._handSpellDescIds) < 7):
+            self._handSpellDescIds.append(self._deckSpellDescIds.pop(0))            
+
+        return errorMsg
 
     def display(self, printType="DEBUG"):
         printInfo(f"heroDescId              = {self._heroDescId}", printType)

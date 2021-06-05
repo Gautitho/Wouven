@@ -48,6 +48,7 @@
     {
         "name"          : "Fire ball",
         "cost"          : 2,
+        "spritePath"    : "img/sorts/2.png",
         "allowedTarget" : "all",
         "abilities"     :
         [
@@ -62,8 +63,9 @@
     },
     "s3":
     {
-        "name"          : "Fire ball",
+        "name"          : "Earth ball",
         "cost"          : 2,
+        "spritePath"    : "img/sorts/3.png",
         "allowedTarget" : "all",
         "abilities"     :
         [
@@ -78,8 +80,9 @@
     },
     "s4":
     {
-        "name"          : "Fire ball",
+        "name"          : "Ice ball",
         "cost"          : 2,
+        "spritePath"    : "img/sorts/4.png",
         "allowedTarget" : "all",
         "abilities"     :
         [
@@ -94,8 +97,9 @@
     },
     "s5":
     {
-        "name"          : "Fire ball",
+        "name"          : "Air ball",
         "cost"          : 2,
+        "spritePath"    : "img/sorts/5.png",
         "allowedTarget" : "all",
         "abilities"     :
         [
@@ -110,8 +114,9 @@
     },
     "s6":
     {
-        "name"          : "Fire ball",
+        "name"          : "NaN",
         "cost"          : 2,
+        "spritePath"    : "img/sorts/6.png",
         "allowedTarget" : "all",
         "abilities"     :
         [
@@ -126,7 +131,8 @@
     },
     "s7":
     {
-        "name"          : "Fire ball",
+        "name"          : "LoL",
+        "spritePath"    : "img/sorts/6.png",
         "cost"          : 2,
         "allowedTarget" : "all",
         "abilities"     :

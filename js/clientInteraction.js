@@ -2,18 +2,20 @@
 var state = "LOCKED"; 
 var turn = "blue";
 var team = "blue";
-var spellsDataBase = {}
-var heroesDataBase = {}
 var entitiesDataBase = {}
+var spellsDataBase = {}
+var companionsDataBase = {}
+var heroesDataBase = {}
 var selectedEntity = -1;
 var entitiesList = [];
 var myPlayer = {};
 var opPlayer = {};
 var path = [];
 
-$.getJSON("data/spells.json", function(data) {spellsDataBase = data});
 $.getJSON("data/entities.json", function(data) {entitiesDataBase = data});
+$.getJSON("data/spells.json", function(data) {spellsDataBase = data});
 $.getJSON("data/heroes.json", function(data) {heroesDataBase = data});
+$.getJSON("data/companions.json", function(data) {companionsDataBase = data});
 
 function updateState(newState)
 {
@@ -77,7 +79,7 @@ function updateHandBar()
     }
     for (j = 0; j < myPlayer.handSpellDescIds.length; j++)
     {
-        $("#spell_" + j).css("background-image", eval("spellsDataBase." + myPlayer.handSpellDescIds[j] + ".spritePath"));
+        $("#spell_" + j).css("background-image", "url(" + eval("spellsDataBase." + myPlayer.handSpellDescIds[j] + ".spritePath") + ")");
     }
 }
 
@@ -111,7 +113,7 @@ function boardTileClick(tile)
 
     if (turn != team)
     {
-        log("Not your turn, bro !");
+        errorLog("Not your turn, bro !");
     }
     else if (state == "IDLE")
     {
@@ -142,9 +144,7 @@ function spellClick(spell)
     console.log(spellId);
 }
 
-function log(message)
+function errorLog(message)
 {
-    $("#logs").append(`<p>${message}</p>`);
-    var element = document.getElementById("logs");
-    element.scrollTop = element.scrollHeight;
+    $("#errorLog").text(message);
 }

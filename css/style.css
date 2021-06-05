@@ -24,3 +24,12 @@
     padding-left:       1rem;
     padding-right:      1rem;
 }
+
+.center-white
+{
+    font-weight:        700;
+    color:              #FFFFFF;
+    font-size:          2rem;
+    text-align:         center;
+    line-height:        75px;
+}

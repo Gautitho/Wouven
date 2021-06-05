@@ -32,5 +32,15 @@ When two clients have sent AUTH command, the game is launched
 | Argument | Type | Description |
 |----------|------|-------------|
 | playerId | String | ID of the client who sent this command |
-| entityId | String | Instance ID of the entity to move |
+| entityId | Integer | Instance ID of the entity to move |
 | path | List of Dict | Sequence of positions ({"x" : posX, "y" : posY}) excluding starting position |
+
+<br>
+
+### **SPELL**
+| Argument | Type | Description |
+|----------|------|-------------|
+| playerId | String | ID of the client who sent this command |
+| spellId | Integer | Instance ID of the spell in the player hand |
+| mainTargetPosition | Dict{x, y} | Position of the main target |
+| sideTargetPosition | Dict{x, y} | Position of the side target |
