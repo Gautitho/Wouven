@@ -123,8 +123,7 @@ class Game:
     def EndTurn(self, playerId):
         if (self.checkTurn(playerId)):
             self._turn = "blue" if self._turn == "red" else "red"
-            for entityId in self._board.players[playerId].boardEntityIds:
-                self._board.entities[entityId].newTurn()
+            self._board.newTurn(playerId)
 
     def Move(self, playerId, entityId, path):
         if (self.checkTurn(playerId)):

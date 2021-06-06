@@ -76,6 +76,10 @@ class Player:
     def heroEntityId(self):
         return self._heroEntityId
 
+    def newTurn(self):
+        self._pa = 6
+        self.draw()
+
     def modifyPaStock(self, value):
         self._paStock += value
 
@@ -85,6 +89,10 @@ class Player:
             self._handSpellDescIds.append(self._deckSpellDescIds.pop(0))            
 
         return errorMsg
+
+    def playSpell(self, spellId, pa):
+        self._handSpellDescIds.pop(spellId)
+        self._pa -= pa
 
     def display(self, printType="DEBUG"):
         printInfo(f"heroDescId              = {self._heroDescId}", printType)

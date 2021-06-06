@@ -41,6 +41,11 @@ class Board:
                 return entityId
         return -1
 
+    def newTurn(self, playerId):
+        self._players[playerId].newTurn()
+        for entityId in self._players[playerId].boardEntityIds:
+            self._entities[entityId].newTurn()
+
     def moveEntity(self, entityId, path):
         errorMsg        = ""
         x               = self._entities[entityId].x
@@ -101,55 +106,69 @@ class Board:
         errorMsg = ""
         if (spellId < len(self._players[playerId].handSpellDescIds)):
             spell = db.spells[self._players[playerId].handSpellDescIds[spellId]]
-            if (len(spell["allowedTargetList"]) == len(targetPositionList)):
-                if (len(spell["allowedTargetList"]) == 1):
-                    if (spell["allowedTargetList"][0] == "all"):
-                        pass
+            if (spell["cost"] <= self._players[playerId].pa):
+                if (len(spell["allowedTargetList"]) == len(targetPositionList)):
+                    if (len(spell["allowedTargetList"]) == 1):
+                        if (spell["allowedTargetList"][0] == "all"):
+                            pass
 
-                    elif (spell["allowedTargetList"][0] == "allEntities"):
-                        targetEntity = self.entityIdOnTile(targetPositionList[0]["x"], targetPositionList[0]["y"])
-                        if (targetEntity != -1):
-                            for ability in spell["abilities"]:             
-                                if (ability["target"] == "target"):
-                                    if (ability["feature"] == "pv"):
-                                        self.modifyPv(targetEntity, ability["value"])
+                        elif (spell["allowedTargetList"][0] == "allEntities"):
+                            targetEntity = self.entityIdOnTile(targetPositionList[0]["x"], targetPositionList[0]["y"])
+                            if (targetEntity != -1):
+                                self.executeAbilities(spell["abilites"], "spellCast", playerId, -1, targetEntity, {})
+                            else:
+                                errorMsg = "No entity on this tile !"
 
-                                    elif (ability["feature"] == "earth"):
-                                        pass
+                        elif (spell["allowedTargetList"][0] == "emptyTile"):
+                            pass
 
-                                    else:
-                                        errorMsg = "Wrong ability feature !"
+                        elif (spell["allowedTargetList"][0] == "myEntity"):
+                            pass
 
-                                elif (ability["target"] == "self"):
-                                    pass
+                        elif (spell["allowedTargetList"][0] == "opEntity"):
+                            pass
 
-                                elif (ability["target"] == "myPlayer"):
-                                    pass
-
-                                elif (ability["target"] == "opPlayer"):
-                                    pass
-
-                                else:
-                                    errorMsg = "Wrong ability target !"
                         else:
-                            errorMsg = "No entity on this tile !"
+                            errorMsg = "Wrong entity type !"
+                    else:
+                        errorMsg = "Spell with multi targets not supported !"
+                else:
+                    errorMsg = "Wrong number of target !"
+            else:
+                errorMsg = "Not enough pa to cast this spell !"
+        else:
+            errorMsg = "Spell not in your hand !"
 
-                    elif (spell["allowedTargetList"][0] == "emptyTile"):
-                        pass
+        if (errorMsg == ""):
+            self._players[playerId].playSpell(spellId, spell["cost"])
 
-                    elif (spell["allowedTargetList"][0] == "myEntity"):
-                        pass
+        return errorMsg
 
-                    elif (spell["allowedTargetList"][0] == "opEntity"):
+    def executeAbilities(self, abilityList, trigger, playerId, selfEntityId, targetEntityId, position):
+        # Si nécessaire, mettre l'exécution de l'ability dans une string et l'eval plus tard
+        errorMsg = ""
+        for ability in abilityList:
+            if (trigger == ability["trigger"]):
+                if (ability["target"] == "target"):
+                    if (ability["feature"] == "pv"):
+                        self.modifyPv(targetEntity, ability["value"])
+
+                    elif (ability["feature"] == "earth"):
                         pass
 
                     else:
-                        errorMsg = "Wrong entity type !"
+                        errorMsg = "Wrong ability feature !"
+
+                elif (ability["target"] == "self"):
+                    pass
+
+                elif (ability["target"] == "myPlayer"):
+                    pass
+
+                elif (ability["target"] == "opPlayer"):
+                    pass
+
                 else:
-                    errorMsg = "Spell with multi targets not supported !"
-            else:
-                errorMsg : "Wrong number of target !"
-        else:
-            errorMsg = "Spell not in your hand !"
+                    errorMsg = "Wrong ability target !"
 
         return errorMsg
