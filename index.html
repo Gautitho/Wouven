@@ -25,7 +25,7 @@
     <section class="flex items-center justify-between my-2 h-4/5 w-full">
         <div class="flex h-full w-1/4 mx-2">
             <div id="myStatus" class="flex h-1/5 w-full">
-                <div id="myStatusSprite" class="h-20 w-20 bg-center bg-cover bg-no-repeat" style="background-image: url(img/cell.png)"></div>
+                <div id="myStatusSprite" class="h-20 w-20 bg-center bg-cover bg-no-repeat" style="background-image: url(img/cell.png);"></div>
                 <div id="myStatusFeature" class="mx-2">
                     <div id="myStatusPv">PV : 0 / 0</div>
                     <div id="myStatusAtk">ATK : 0 / 0</div>
@@ -80,13 +80,13 @@
         {
             for (x = 0; x < BOARD_COLS; x++)
             {
-                document.getElementById("board").insertAdjacentHTML('beforeend',`<div id="board_${x}_${y}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-cover bg-no-repeat" style="background-color: #FFFFFF;"></div>`);
+                document.getElementById("board").insertAdjacentHTML('beforeend',`<div id="board_${x}_${y}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-cover bg-no-repeat"></div>`);
                 $("#board_" + x + "_" + y).click(function() {boardTileClick($(this))});
             } 
         }
         for (i = 0; i < HAND_SPELLS; i++)
         {
-            document.getElementById("hand").insertAdjacentHTML('beforeend',`<div id="spell_${i}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-cover bg-no-repeat" style="background-color: #FFFFFF;"></div>`);
+            document.getElementById("hand").insertAdjacentHTML('beforeend',`<div id="spell_${i}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-cover bg-no-repeat"></div>`);
             $("#spell_" + i).click(function() {spellClick($(this))});
         }
     </script>

@@ -204,11 +204,14 @@ class Entity:
 
     def modifyPv(self, value):
         if (value < 0):
-            if (self._armor + value > 0):
-                self._armor += value
+            if "shield" in self._states:
+                self._states.remove("shield")
             else:
-                self._armor = 0
-                self._pv    += self._armor + value
+                if (self._armor + value > 0):
+                    self._armor += value
+                else:
+                    self._armor = 0
+                    self._pv    += self._armor + value
         else:
             if (self._pv + value > db.entities[self._descId]["pv"]):
                 self._pv = db.entities[self._descId]["pv"]

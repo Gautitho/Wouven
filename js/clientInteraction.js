@@ -55,7 +55,13 @@ function updateBoard()
     }
     for (i = 0; i < entitiesList.length; i++)
     {
-        $("#board_" + entitiesList[i].x + "_" + entitiesList[i].y).css("background-image", "url(" + eval("entitiesDataBase." + entitiesList[i].descId + ".spritePath") + ")");
+        var imgStr = "";
+        for (j = 0; j < entitiesList[i].states.length; j++)
+        {
+            imgStr = imgStr + "url(img/" + entitiesList[i].states[j] + ".png), ";
+        }
+        imgStr = imgStr + "url(" + eval("entitiesDataBase." + entitiesList[i].descId + ".spritePath") + ")";
+        $("#board_" + entitiesList[i].x + "_" + entitiesList[i].y).css("background-image", imgStr);
     }
 }
 

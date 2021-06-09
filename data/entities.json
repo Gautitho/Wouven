@@ -8,7 +8,7 @@
         "atk"           : 30,
         "pm"            : 3,
         "aura"          : {},
-        "states"        : [],
+        "states"        : ["shield"],
         "abilities"     : []
     },
     "h2" :
