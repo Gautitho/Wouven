@@ -1,10 +1,10 @@
 # TODO List
 
+- Gérer les exceptions
 - Méchanisme
 - Charge
 - Infobulle sur les sorts et personnages
 - Etat élementaire
-- Bouclier
 - Compagnons
 - Auras
     - Epees sanglantes

@@ -109,6 +109,11 @@ class Game:
         else:
             return True
 
+    def getOpPlayerId(self, playerId):
+        for pId in list(self._clientIds.keys()):
+            if (pId != playerId):
+                return pId
+
     def Auth(self, playerId):
         if (len(self._board.players) == 0):
             self._board.appendPlayer(playerId, deck1, "blue", "1")
@@ -123,7 +128,8 @@ class Game:
     def EndTurn(self, playerId):
         if (self.checkTurn(playerId)):
             self._turn = "blue" if self._turn == "red" else "red"
-            self._board.newTurn(playerId)
+            self._board.endTurn(playerId)
+            self._board.startTurn(self.getOpPlayerId(playerId))
 
     def Move(self, playerId, entityId, path):
         if (self.checkTurn(playerId)):

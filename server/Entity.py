@@ -85,7 +85,7 @@ class Entity:
 
     @property
     def elemState(self):
-        return list(self._elemState)
+        return self._elemState
 
     @property
     def aura(self):
@@ -141,59 +141,13 @@ class Entity:
         dic["canAttack"]    = self._canAttack
         return dic
 
-    def newTurn(self):
+    def startTurn(self):
         self._pm            = db.entities[self._descId]["pm"]
         self._canMove       = True
         self._canAttack     = True
 
-    def move2(self, board, path):
-        errorMsg        = ""
-        x               = self._x
-        y               = self._y
-        pm              = self._pm
-        attackedEntity  = -1
-        if (self._canMove):
-            if (int(path[0]["x"]) == x and int(path[0]["y"]) == y): # The path is given with the inital position of the entity
-                path.pop(0)
-                for tile in path:
-                    if (abs(x - int(tile["x"])) + abs(y - int(tile["y"])) == 1):
-                        if (pm == 0):
-                            if (self._canAttack and board.entityIdOnTile(int(tile["x"]), int(tile["y"])) != -1): # Attack after full pm move
-                                attackedEntity  = board.entityIdOnTile(int(tile["x"]), int(tile["y"]))
-                                pm              = -1                           
-                            else:
-                                errorMsg = "Path length is higher than your pm !"
-                                break
-                        else:
-                            if (board.entityIdOnTile(int(tile["x"]), int(tile["y"])) == -1): # The next tile is empty
-                                x             = int(tile["x"])
-                                y             = int(tile["y"])
-                                pm            -= 1
-                            else: # There is an entity on next tile
-                                if (self._canAttack):
-                                    attackedEntity  = board.entityIdOnTile(int(tile["x"]), int(tile["y"]))
-                                    pm              = -1
-                                else:
-                                    errorMsg = "You can't attack this turn !"
-                                    break
-                    else:
-                        errorMsg = "Successive tiles must be contiguous in path or an entity is on your path !"
-                        break
-            else:
-                errorMsg = "You can't move anymore this turn !"
-        else:
-            errorMsg = "First tile of the path must be the current entity position !"
-
-        if (errorMsg == ""):
-            self._x         = x
-            self._y         = y
-            self._pm        = 0
-            self._canMove   = False
-            self._canAttack = False
-            if (attackedEntity != -1):
-                board.modifyPv(attackedEntity, -self._atk)
-
-        return errorMsg
+    def endTurn(self):
+        pass
 
     def move(self, x, y):
         self._x         = x

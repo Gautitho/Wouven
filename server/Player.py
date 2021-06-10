@@ -76,9 +76,12 @@ class Player:
     def heroEntityId(self):
         return self._heroEntityId
 
-    def newTurn(self):
+    def startTurn(self):
         self._pa = 6
         self.draw()
+     
+    def endTurn(self):
+        pass
 
     def modifyPaStock(self, value):
         self._paStock += value

@@ -41,10 +41,15 @@ class Board:
                 return entityId
         return -1
 
-    def newTurn(self, playerId):
-        self._players[playerId].newTurn()
+    def startTurn(self, playerId):
+        self._players[playerId].startTurn()
         for entityId in self._players[playerId].boardEntityIds:
-            self._entities[entityId].newTurn()
+            self._entities[entityId].startTurn()
+
+    def endTurn(self, playerId):
+        self._players[playerId].endTurn()
+        for entityId in self._players[playerId].boardEntityIds:
+            self._entities[entityId].endTurn()
 
     def moveEntity(self, entityId, path):
         errorMsg        = ""
