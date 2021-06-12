@@ -50,7 +50,6 @@ class Entity:
                 checkCondition(True, type(ability["value"]) == int, f"Entity ability value ({ability['value']}) is not valid !")
                 checkCondition(True, ability["effect"] in ["recover"], f"Entity ability effect ({ability['effect']}) is not valid !")
 
-
     @property
     def descId(self):
         return self._descId

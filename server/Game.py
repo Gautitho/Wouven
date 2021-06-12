@@ -2,6 +2,7 @@ import json
 import random
 from functions import *
 from Board import *
+from GameException import *
 
 deck1       = {"heroDescId" : "h1", "spells" : ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s7", "s4"], "companions" : ["c1", "c2", "c3", "c4"]}
 deck2       = {"heroDescId" : "h2", "spells" : ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s7", "s4"], "companions" : ["c1", "c2", "c3", "c4"]}
@@ -16,21 +17,26 @@ class Game:
         self._clientIds = {}
         self._msgList   = []
 
-    def run(self, clientMsg):
-        cmdDict = json.loads(clientMsg)
+    @property
+    def clientIds(self):
+        return dict(self._clientIds)
+
+    def run(self, cmdDict):
         if "cmd" in cmdDict:
             cmd = cmdDict["cmd"]
         else:
-            for clientId in self._clientIds:
-               self._msgList.append({"clientId" : self._clientIds[clientId], "content" : json.dumps({"cmd" : "ERROR", "msg" : "No cmd field in command"})})
+            raise GameException("No 'cmd' field in command")
+        if "playerId" in cmdDict:
+            playerId = cmdDict["playerId"]
+        else:
+            raise GameException("No 'playerId' field in command")
 
         self._msgList = []
 
         if (self._gameState == "MATCHMAKING"):
 
             if (cmd == "AUTH"):
-                if self.checkCmdArgs(cmdDict, ["playerId"]):
-                    self.Auth(cmdDict["playerId"])
+                self.Auth(cmdDict["playerId"])
 
             if (len(self._board.players) == 2):
                 self.launchGame()
@@ -38,17 +44,17 @@ class Game:
 
         else:
 
+            self.checkTurn(playerId)
             if (cmd == "ENDTURN"):
-                if self.checkCmdArgs(cmdDict, ["playerId"]):
-                    self.EndTurn(cmdDict["playerId"])
+                self.EndTurn(playerId)
 
             elif (cmd == "MOVE"):
-                if self.checkCmdArgs(cmdDict, ["playerId", "entityId", "path"]):
-                    self.Move(cmdDict["playerId"], cmdDict["entityId"], cmdDict["path"])
+                self.checkCmdArgs(cmdDict, ["entityId", "path"])
+                self.Move(cmdDict["entityId"], cmdDict["path"])
 
             elif (cmd == "SPELL"):
-                if self.checkCmdArgs(cmdDict, ["playerId", "spellId", "targetPositionList"]):
-                    self.SpellCast(cmdDict["playerId"], cmdDict["spellId"], cmdDict["targetPositionList"])
+                self.checkCmdArgs(cmdDict, ["spellId", "targetPositionList"])
+                self.SpellCast(playerId, cmdDict["spellId"], cmdDict["targetPositionList"])
 
             self.sendStatus()
 
@@ -56,8 +62,8 @@ class Game:
 
     def launchGame(self):
         self._gameState = "RUNNING"
-        initCmd = {}
-        initCmd["cmd"]      = "INIT"
+        initCmd         = {}
+        initCmd["cmd"]  = "INIT"
 
         firstPlayerId = random.choice(list(self._board.players.keys()))
 
@@ -90,24 +96,15 @@ class Game:
             self._msgList.append({"clientId" : self._clientIds[clientId], "content" : json.dumps(statusCmd)})
 
     def checkCmdArgs(self, cmdDict, keyList):
-        retVal = True
         for key in keyList:
             if not(key in cmdDict):
-                retVal = False
-                for clientId in self._clientIds:
-                   self._msgList.append({"clientId" : self._clientIds[clientId], "content" : json.dumps({"cmd" : "ERROR", "msg" : f"Missing [{key}] in command arguments !"})})
-        return retVal
+                raise GameException("No cmd field in command")
 
     def checkTurn(self, playerId):
         if not(playerId in self._board.players):
-            for clientId in self._clientIds:
-                self._msgList.append({"clientId" : self._clientIds[clientId], "content" : json.dumps({"cmd" : "ERROR", "msg" : f"PlayerId ({playerId}) not recognized !"})})
-            return False
+            raise GameException(f"PlayerId ({playerId}) not recognized !")
         elif (self._board.players[playerId].team != self._turn):
-            self._msgList.append({"clientId" : self._clientIds[playerId], "content" : json.dumps({"cmd" : "ERROR", "msg" : "Not your turn !"})})
-            return False
-        else:
-            return True
+            raise GameException("Not your turn !")
 
     def getOpPlayerId(self, playerId):
         for pId in list(self._clientIds.keys()):
@@ -122,26 +119,15 @@ class Game:
             self._board.appendPlayer(playerId, deck2, "red", "2")
             self._clientIds[playerId]   = 1
         else:
-            self._msgList.append({"clientId" : 0, "content" : json.dumps({"cmd" : "ERROR", "msg" : "2 players already in the game !"})})
-            self._msgList.append({"clientId" : 1, "content" : json.dumps({"cmd" : "ERROR", "msg" : "2 players already in the game !"})})
+            raise GameException("2 players already in the game !")
 
     def EndTurn(self, playerId):
-        if (self.checkTurn(playerId)):
-            self._turn = "blue" if self._turn == "red" else "red"
-            self._board.endTurn(playerId)
-            self._board.startTurn(self.getOpPlayerId(playerId))
+        self._turn = "blue" if self._turn == "red" else "red"
+        self._board.endTurn(playerId)
+        self._board.startTurn(self.getOpPlayerId(playerId))
 
-    def Move(self, playerId, entityId, path):
-        if (self.checkTurn(playerId)):
-            errorMsg = self._board.moveEntity(entityId, path)
-            if errorMsg:
-                self._msgList.append({"clientId" : self._clientIds[playerId], "content" : json.dumps({"cmd" : "ERROR", "msg" : errorMsg})})
+    def Move(self, entityId, path):
+        self._board.moveEntity(entityId, path)
 
     def SpellCast(self, playerId, spellId, targetPositionList):
-        if (self.checkTurn(playerId)):
-            errorMsg = self._board.spellCast(playerId, spellId, targetPositionList)
-            if errorMsg:
-                self._msgList.append({"clientId" : self._clientIds[playerId], "content" : json.dumps({"cmd" : "ERROR", "msg" : errorMsg})})
-
-
-
+        self._board.spellCast(playerId, spellId, targetPositionList)

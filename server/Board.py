@@ -2,6 +2,7 @@ from functions import *
 from Player import *
 from Entity import *
 from Database import *
+from GameException import *
 
 class Board:
 
@@ -70,8 +71,7 @@ class Board:
                                     attackedEntity  = self.entityIdOnTile(nextX, nextY)
                                     pm              = -1                           
                                 else:
-                                    errorMsg = "Path length is higher than your pm !"
-                                    break
+                                    raise GameException("Path length is higher than your pm !")
                             else:
                                 if (self.entityIdOnTile(nextX, nextY) == -1): # The next tile is empty
                                     x             = nextX
@@ -82,31 +82,25 @@ class Board:
                                         attackedEntity  = self.entityIdOnTile(nextX, nextY)
                                         pm              = -1
                                     else:
-                                        errorMsg = "You can't attack this turn !"
-                                        break
+                                        raise GameException("You can't attack this turn !")
                         else:
-                            errorMsg = "Successive tiles must be contiguous in path or an entity is on your path !"
-                            break
+                            raise GameException("Successive tiles must be contiguous in path or an entity is on your path !")
                     else:
-                        errorMsg = "Tile out of the board !"
+                        raise GameException("Tile out of the board !")
             else:
-                errorMsg = "You can't move anymore this turn !"
+                raise GameException("You can't move anymore this turn !")
         else:
-            errorMsg = "First tile of the path must be the current entity position !"
+            raise GameException("First tile of the path must be the current entity position !")
 
-        if (errorMsg == ""):                
-            self._entities[entityId].move(x, y)
-            if (attackedEntity != -1):
-                self.modifyPv(attackedEntity, -self._entities[entityId].atk)
-
-        return errorMsg
+        self._entities[entityId].move(x, y)
+        if (attackedEntity != -1):
+            self.modifyPv(attackedEntity, -self._entities[entityId].atk)
 
     def modifyPv(self, entityIdx, value):
         self._entities[entityIdx].modifyPv(value)
         if (self._entities[entityIdx].pv <= 0):
             removeEntity(entityIdx)
 
-    # TODO : A évaluer, faire une fonction de réalisation d'abilities séparée
     def spellCast(self, playerId, spellId, targetPositionList):
         errorMsg = ""
         if (spellId < len(self._players[playerId].handSpellDescIds)):
@@ -118,9 +112,9 @@ class Board:
                             pass
 
                         elif (spell["allowedTargetList"][0] == "allEntities"):
-                            targetEntity = self.entityIdOnTile(targetPositionList[0]["x"], targetPositionList[0]["y"])
-                            if (targetEntity != -1):
-                                self.executeAbilities(spell["abilites"], "spellCast", playerId, -1, targetEntity, {})
+                            targetEntityId = self.entityIdOnTile(targetPositionList[0]["x"], targetPositionList[0]["y"])
+                            if (targetEntityId != -1):
+                                self.executeAbilities(spell["abilities"], "spellCast", playerId, -1, targetEntityId, {})
                             else:
                                 errorMsg = "No entity on this tile !"
 
@@ -134,35 +128,31 @@ class Board:
                             pass
 
                         else:
-                            errorMsg = "Wrong entity type !"
+                            raise GameException("Wrong target type !")
                     else:
-                        errorMsg = "Spell with multi targets not supported !"
+                        raise GameException("Spell with multi targets not supported !")
                 else:
-                    errorMsg = "Wrong number of target !"
+                    raise GameException("Wrong number of target !")
             else:
-                errorMsg = "Not enough pa to cast this spell !"
+                raise GameException("Not enough pa to cast this spell !")
         else:
-            errorMsg = "Spell not in your hand !"
+            raise GameException("Spell not in your hand !")
 
-        if (errorMsg == ""):
-            self._players[playerId].playSpell(spellId, spell["cost"])
-
-        return errorMsg
+        self._players[playerId].playSpell(spellId, spell["cost"])
 
     def executeAbilities(self, abilityList, trigger, playerId, selfEntityId, targetEntityId, position):
         # Si nécessaire, mettre l'exécution de l'ability dans une string et l'eval plus tard
-        errorMsg = ""
         for ability in abilityList:
             if (trigger == ability["trigger"]):
                 if (ability["target"] == "target"):
                     if (ability["feature"] == "pv"):
-                        self.modifyPv(targetEntity, ability["value"])
+                        self.modifyPv(targetEntityId, ability["value"])
 
                     elif (ability["feature"] == "earth"):
                         pass
 
                     else:
-                        errorMsg = "Wrong ability feature !"
+                        raise GameException("Wrong ability feature !")
 
                 elif (ability["target"] == "self"):
                     pass
@@ -174,6 +164,4 @@ class Board:
                     pass
 
                 else:
-                    errorMsg = "Wrong ability target !"
-
-        return errorMsg
+                    raise GameException("Wrong ability target !")

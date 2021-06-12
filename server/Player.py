@@ -24,9 +24,9 @@ class Player:
     def checkDeck(self, deck):
         # TODO: Check if deck is valid (spells from the good weapon, existing hero and companions, hero spell here, ...)
         if (len(deck["spells"]) != 9):
-            exitOnError("You have to choose 9 spells !")
+            raise GameException("You have to choose 9 spells !")
         if (len(deck["companions"]) != 4):
-            exitOnError("You have to choose 4 companions !")
+            raise GameException("You have to choose 4 companions !")
 
     @property
     def heroDescId(self):
