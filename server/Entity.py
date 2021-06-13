@@ -1,5 +1,6 @@
 from functions import *
 from Database import *
+from GameException import *
 
 class Entity:
 
@@ -170,3 +171,9 @@ class Entity:
                 self._pv = db.entities[self._descId]["pv"]
             else:
                 self._pv += value
+
+    def setElemState(self, value):
+        if value in ["", "oiled", "muddy", "windy", "wet"]:
+            self._elemState = value
+        else:
+            raise GameException("ElemState to apply is not supported !")

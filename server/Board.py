@@ -106,6 +106,7 @@ class Board:
         if (spellId < len(self._players[playerId].handSpellDescIds)):
             spell = db.spells[self._players[playerId].handSpellDescIds[spellId]]
             if (spell["cost"] <= self._players[playerId].pa):
+                self._players[playerId].playSpell(spellId, spell["cost"])
                 if (len(spell["allowedTargetList"]) == len(targetPositionList)):
                     if (len(spell["allowedTargetList"]) == 1):
                         if (spell["allowedTargetList"][0] == "all"):
@@ -114,9 +115,9 @@ class Board:
                         elif (spell["allowedTargetList"][0] == "allEntities"):
                             targetEntityId = self.entityIdOnTile(targetPositionList[0]["x"], targetPositionList[0]["y"])
                             if (targetEntityId != -1):
-                                self.executeAbilities(spell["abilities"], "spellCast", playerId, -1, targetEntityId, {})
+                               self.executeAbilities(spell["abilities"], "spellCast", playerId, -1, targetEntityId, {})
                             else:
-                                errorMsg = "No entity on this tile !"
+                               raise GameException("No entity on this tile !")
 
                         elif (spell["allowedTargetList"][0] == "emptyTile"):
                             pass
@@ -138,27 +139,50 @@ class Board:
         else:
             raise GameException("Spell not in your hand !")
 
-        self._players[playerId].playSpell(spellId, spell["cost"])
-
     def executeAbilities(self, abilityList, trigger, playerId, selfEntityId, targetEntityId, position):
         # Si nécessaire, mettre l'exécution de l'ability dans une string et l'eval plus tard
         for ability in abilityList:
             if (trigger == ability["trigger"]):
                 if (ability["target"] == "target"):
-                    if (ability["feature"] == "pv"):
-                        self.modifyPv(targetEntityId, ability["value"])
 
-                    elif (ability["feature"] == "earth"):
-                        pass
-
+                    conditionValid = False
+                    if (ability["condition"][0] == ""):
+                        conditionValid = True 
+                    elif (ability["condition"][0] == "elemState"):
+                        if (ability["condition"][1] in ["oiled", "wet", "muddy", "windy"]):
+                            conditionValid = (self._entities[targetEntityId].elemState == ability["condition"][1])
+                            self._entities[targetEntityId].setElemState("")
+                        else:
+                            raise GameException("ElemState to consume is not supported !")
                     else:
-                        raise GameException("Wrong ability feature !")
+                        raise GameException("Wrong ability condition !")
+
+                    if conditionValid:
+                        if (ability["feature"] == "pv"):
+                            self.modifyPv(targetEntityId, ability["value"])
+                        elif (ability["feature"] == "elemState"):
+                            self._entities[targetEntityId].setElemState(ability["value"])
+                        else:
+                            raise GameException("Wrong ability feature !")
 
                 elif (ability["target"] == "self"):
                     pass
 
                 elif (ability["target"] == "myPlayer"):
-                    pass
+                    
+                    conditionValid = False
+                    if (ability["condition"][0] == ""):
+                        conditionValid = True 
+                    else:
+                        raise GameException("Wrong ability condition !")
+
+                    if conditionValid:
+                        if (ability["feature"] == "gauges"):
+                            if isinstance(ability["value"], dict):
+                                for gaugeType in list(ability["value"].keys()):
+                                    self._players[playerId].modifyGauge(gaugeType, ability["value"][gaugeType])
+                            else:
+                                raise GameException("Ability value for gauges must be a dict !")
 
                 elif (ability["target"] == "opPlayer"):
                     pass

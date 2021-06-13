@@ -10,6 +10,7 @@
             {
                 "trigger"   : "spellCast",
                 "target"    : "target",
+                "condition" : ["", ""],
                 "feature"   : "pv",
                 "value"     : -10,
                 "effect"    : ""
@@ -17,6 +18,7 @@
             {
                 "trigger"   : "spellCast",
                 "target"    : "self",
+                "condition" : ["", ""],
                 "feature"   : "x",
                 "value"     : 0,
                 "effect"    : "stick_target"
@@ -24,6 +26,7 @@
             {
                 "trigger"   : "spellCast",
                 "target"    : "self",
+                "condition" : ["", ""],
                 "feature"   : "y",
                 "value"     : 0,
                 "effect"    : "stick_target"
@@ -31,6 +34,7 @@
             {
                 "trigger"   : "spellCast",
                 "target"    : "myPlayer",
+                "condition" : ["", ""],
                 "feature"   : "paStock",
                 "value"     : 1,
                 "effect"    : ""
@@ -38,6 +42,7 @@
             {
                 "trigger"   : "spellCast",
                 "target"    : "myPlayer",
+                "condition" : ["", ""],
                 "feature"   : "earth",
                 "value"     : 1,
                 "effect"    : ""
@@ -55,8 +60,25 @@
             {
                 "trigger"   : "spellCast",
                 "target"    : "target",
+                "condition" : ["", ""],
                 "feature"   : "pv",
                 "value"     : -5,
+                "effect"    : ""
+            },
+            {
+                "trigger"   : "spellCast",
+                "target"    : "target",
+                "condition" : ["", ""],
+                "feature"   : "elemState",
+                "value"     : "oiled",
+                "effect"    : ""
+            },
+            {
+                "trigger"   : "spellCast",
+                "target"    : "myPlayer",
+                "condition" : ["", ""],
+                "feature"   : "gauges",
+                "value"     : {"fire" : 2},
                 "effect"    : ""
             }
         ]
@@ -72,8 +94,17 @@
             {
                 "trigger"   : "spellCast",
                 "target"    : "target",
+                "condition" : ["", ""],
                 "feature"   : "pv",
                 "value"     : -5,
+                "effect"    : ""
+            },
+            {
+                "trigger"   : "spellCast",
+                "target"    : "target",
+                "condition" : ["elemState", "oiled"],
+                "feature"   : "pv",
+                "value"     : -10,
                 "effect"    : ""
             }
         ]
@@ -89,57 +120,7 @@
             {
                 "trigger"   : "spellCast",
                 "target"    : "target",
-                "feature"   : "pv",
-                "value"     : -5,
-                "effect"    : ""
-            }
-        ]
-    },
-    "s5":
-    {
-        "name"              : "Air ball",
-        "cost"              : 2,
-        "spritePath"        : "img/sorts/5.png",
-        "allowedTargetList" : ["allEntities"],
-        "abilities"         :
-        [
-            {
-                "trigger"   : "spellCast",
-                "target"    : "target",
-                "feature"   : "pv",
-                "value"     : -5,
-                "effect"    : ""
-            }
-        ]
-    },
-    "s6":
-    {
-        "name"              : "NaN",
-        "cost"              : 2,
-        "spritePath"        : "img/sorts/6.png",
-        "allowedTargetList" : ["allEntities"],
-        "abilities"         :
-        [
-            {
-                "trigger"   : "spellCast",
-                "target"    : "target",
-                "feature"   : "pv",
-                "value"     : -5,
-                "effect"    : ""
-            }
-        ]
-    },
-    "s7":
-    {
-        "name"              : "LoL",
-        "spritePath"        : "img/sorts/6.png",
-        "cost"              : 2,
-        "allowedTargetList" : ["allEntities"],
-        "abilities"         :
-        [
-            {
-                "trigger"   : "spellCast",
-                "target"    : "target",
+                "condition" : ["", ""],
                 "feature"   : "pv",
                 "value"     : -5,
                 "effect"    : ""

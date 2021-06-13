@@ -60,6 +60,10 @@ function updateBoard()
         {
             imgStr = imgStr + "url(img/" + entitiesList[i].states[j] + ".png), ";
         }
+        if (entitiesList[i].elemState != "")
+        {
+            imgStr = imgStr + "url(img/utils/ico/" + entitiesList[i].elemState + ".png), ";
+        }
         imgStr = imgStr + "url(" + eval("entitiesDataBase." + entitiesList[i].descId + ".spritePath") + ")";
         $("#board_" + entitiesList[i].x + "_" + entitiesList[i].y).css("background-image", imgStr);
     }
@@ -71,6 +75,7 @@ function updateMyStatus()
     $("#myStatusPv").text("PV : " + entitiesList[myPlayer.heroEntityId].pv + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + myPlayer.heroDescId + ".entityDescId") + ".pv"));
     $("#myStatusAtk").text("ATK : " + entitiesList[myPlayer.heroEntityId].atk + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + myPlayer.heroDescId + ".entityDescId") + ".atk"));
     $("#myStatusPm").text("PM : " + entitiesList[myPlayer.heroEntityId].pm + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + myPlayer.heroDescId + ".entityDescId") + ".pm"));
+    $("#myStatusGauges").text("Gauges : " + myPlayer.gauges.fire + " / " + myPlayer.gauges.water + " / " + myPlayer.gauges.earth + " / " + myPlayer.gauges.air + " / " + myPlayer.gauges.neutral);
 }
 
 function updateOpStatus()
@@ -79,6 +84,7 @@ function updateOpStatus()
     $("#opStatusPv").text("PV : " + entitiesList[opPlayer.heroEntityId].pv + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + opPlayer.heroDescId + ".entityDescId") + ".pv"));
     $("#opStatusAtk").text("ATK : " + entitiesList[opPlayer.heroEntityId].atk + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + opPlayer.heroDescId + ".entityDescId") + ".atk"));
     $("#opStatusPm").text("PM : " + entitiesList[opPlayer.heroEntityId].pm + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + opPlayer.heroDescId + ".entityDescId") + ".pm"));
+    $("#opStatusGauges").text("Gauges : " + opPlayer.gauges.fire + " / " + opPlayer.gauges.water + " / " + opPlayer.gauges.earth + " / " + opPlayer.gauges.air + " / " + opPlayer.gauges.neutral);
 }
 
 function updateHandBar()

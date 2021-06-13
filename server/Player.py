@@ -2,6 +2,7 @@ import copy
 import random
 from functions import *
 from Database import *
+from GameException import *
 
 class Player:
 
@@ -78,20 +79,25 @@ class Player:
 
     def startTurn(self):
         self._pa = 6
-        self.draw()
      
     def endTurn(self):
-        pass
+        self.draw()
 
     def modifyPaStock(self, value):
         self._paStock += value
 
     def draw(self):
-        errorMsg = ""
         if (len(self._handSpellDescIds) < HAND_SPELLS):
             self._handSpellDescIds.append(self._deckSpellDescIds.pop(0))            
 
-        return errorMsg
+    def modifyGauge(self, gaugeType, value):
+        if (gaugeType in ["fire", "water", "earth", "air", "neutral"]):
+            if (self._gauges[gaugeType] + value < 0):
+                raise GameException("Not enough " + str(self._gauges[gaugeType]) + "gauge !")
+            elif (self._gauges[gaugeType] + value < 10):
+                self._gauges[gaugeType] += value
+        else:
+            raise GameException("Wrong gauge type !")
 
     def playSpell(self, spellId, pa):
         self._handSpellDescIds.pop(spellId)

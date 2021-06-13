@@ -1,11 +1,12 @@
 import json
 import random
+import copy
 from functions import *
 from Board import *
 from GameException import *
 
-deck1       = {"heroDescId" : "h1", "spells" : ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s7", "s4"], "companions" : ["c1", "c2", "c3", "c4"]}
-deck2       = {"heroDescId" : "h2", "spells" : ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s7", "s4"], "companions" : ["c1", "c2", "c3", "c4"]}
+deck1       = {"heroDescId" : "h1", "spells" : ["s4", "s2", "s3", "s4", "s2", "s3", "s3", "s2", "s4"], "companions" : ["c1", "c2", "c3", "c4"]}
+deck2       = {"heroDescId" : "h2", "spells" : ["s4", "s2", "s3", "s4", "s2", "s3", "s3", "s2", "s4"], "companions" : ["c1", "c2", "c3", "c4"]}
 
 class Game:
 
@@ -18,8 +19,24 @@ class Game:
         self._msgList   = []
 
     @property
+    def gameState(self):
+        return dict(self._gameState)
+
+    @property
+    def turn(self):
+        return dict(self._turn)
+
+    @property
+    def board(self):
+        return copy.copy(self._board)
+
+    @property
     def clientIds(self):
         return dict(self._clientIds)
+
+    @property
+    def msgList(self):
+        return list(self._msgList)
 
     def run(self, cmdDict):
         if "cmd" in cmdDict:
