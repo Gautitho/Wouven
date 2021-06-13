@@ -30,6 +30,11 @@ socket.onmessage = function(handler)
         }
         updateMyStatus();
         updateOpStatus();
+        for (i = 0; i < COMPANIONS; i++)
+        {
+            updateMyCompanion(i);
+            //updateOpCompanion(i);
+        }
         updateHandBar();
     }
     else if (cmdObj.cmd == "ERROR")

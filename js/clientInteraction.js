@@ -78,6 +78,15 @@ function updateMyStatus()
     $("#myStatusGauges").text("Gauges : " + myPlayer.gauges.fire + " / " + myPlayer.gauges.water + " / " + myPlayer.gauges.earth + " / " + myPlayer.gauges.air + " / " + myPlayer.gauges.neutral);
 }
 
+function updateMyCompanion(companionIdx)
+{
+    $("#myCompanion_" + companionIdx + "_sprite").css("background-image", "url(" + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.handCompanionDescIds[companionIdx] + ".entityDescId") + ".spritePath") + ")");
+    // TODO : PV actuels pas bons
+    $("#myCompanion_" + companionIdx + "_pv").text("PV : " + entitiesList[myPlayer.heroEntityId].pv + " / " + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.handCompanionDescIds[companionIdx] + ".entityDescId") + ".pv"));
+    $("#myCompanion_" + companionIdx + "_atk").text("ATK : " + entitiesList[myPlayer.heroEntityId].atk + " / " + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.handCompanionDescIds[companionIdx] + ".entityDescId") + ".atk"));
+    $("#myCompanion_" + companionIdx + "_pm").text("PM : " + entitiesList[myPlayer.heroEntityId].pm + " / " + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.handCompanionDescIds[companionIdx] + ".entityDescId") + ".pm"));
+}
+
 function updateOpStatus()
 {
     $("#opStatusSprite").css("background-image", "url(" + eval("entitiesDataBase." + eval("heroesDataBase." + opPlayer.heroDescId + ".entityDescId") + ".spritePath") + ")");
@@ -86,6 +95,15 @@ function updateOpStatus()
     $("#opStatusPm").text("PM : " + entitiesList[opPlayer.heroEntityId].pm + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + opPlayer.heroDescId + ".entityDescId") + ".pm"));
     $("#opStatusGauges").text("Gauges : " + opPlayer.gauges.fire + " / " + opPlayer.gauges.water + " / " + opPlayer.gauges.earth + " / " + opPlayer.gauges.air + " / " + opPlayer.gauges.neutral);
 }
+
+//function updateOpCompanion(companionIdx)
+//{
+//    $("#opCompanion_" + companionIdx + "_sprite").css("background-image", "url(" + eval("entitiesDataBase." + eval("companionsDataBase." + opPlayer.handCompanionDescIds[companionIdx] + ".entityDescId") + ".spritePath") + ")");
+//    // TODO : PV actuels pas bons
+//    $("#opCompanion_" + companionIdx + "_pv").text("PV : " + entitiesList[myPlayer.heroEntityId].pv + " / " + eval("entitiesDataBase." + eval("companionsDataBase." + opPlayer.handCompanionDescIds[companionIdx] + ".entityDescId") + ".pv"));
+//    $("#opCompanion_" + companionIdx + "_atk").text("ATK : " + entitiesList[myPlayer.heroEntityId].atk + " / " + eval("entitiesDataBase." + eval("companionsDataBase." + opPlayer.handCompanionDescIds[companionIdx] + ".entityDescId") + ".atk"));
+//    $("#opCompanion_" + companionIdx + "_pm").text("PM : " + entitiesList[myPlayer.heroEntityId].pm + " / " + eval("entitiesDataBase." + eval("companionsDataBase." + opPlayer.handCompanionDescIds[companionIdx] + ".entityDescId") + ".pm"));
+//}
 
 function updateHandBar()
 {
