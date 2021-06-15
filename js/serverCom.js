@@ -33,7 +33,6 @@ socket.onmessage = function(handler)
         for (i = 0; i < COMPANIONS; i++)
         {
             updateMyCompanion(i);
-            //updateOpCompanion(i);
         }
         updateHandBar();
     }

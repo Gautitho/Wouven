@@ -50,7 +50,6 @@
                     <div id="opStatusGauges">Gauges : 0 / 0 / 0 / 0 / 0</div>
                 </div>
             </div>
-            <div id="opCompanions" class="flex flex-col h-2/3 mx-4 w-full"></div>
         </div>
     </section>
 
@@ -87,18 +86,9 @@
             document.getElementById("myCompanions").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}" class="flex h-1/4 w-full"></div>`);
             document.getElementById("myCompanion_" + i).insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_sprite" class="h-20 w-20 bg-center bg-cover bg-no-repeat" style="background-image: url(img/cell.png);"></div>`);
             document.getElementById("myCompanion_" + i).insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_feature" class="mx-2"></div>`);
-            document.getElementById("myCompanion_" + i + "_feature").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_pv">PV : 0 / 0</div>`);
-            document.getElementById("myCompanion_" + i + "_feature").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_atk">ATK : 0 / 0</div>`);
-            document.getElementById("myCompanion_" + i + "_feature").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_pm">PM : 0 / 0</div>`);
-        }
-        for (i = 0; i < COMPANIONS; i++)
-        {
-            document.getElementById("opCompanions").insertAdjacentHTML('beforeend', `<div id="opCompanion_${i}" class="flex h-1/4 w-full"></div>`);
-            document.getElementById("opCompanion_" + i).insertAdjacentHTML('beforeend', `<div id="opCompanion_${i}_sprite" class="h-20 w-20 bg-center bg-cover bg-no-repeat" style="background-image: url(img/cell.png);"></div>`);
-            document.getElementById("opCompanion_" + i).insertAdjacentHTML('beforeend', `<div id="opCompanion_${i}_feature" class="mx-2"></div>`);
-            document.getElementById("opCompanion_" + i + "_feature").insertAdjacentHTML('beforeend', `<div id="opCompanion_${i}_pv">PV : 0 / 0</div>`);
-            document.getElementById("opCompanion_" + i + "_feature").insertAdjacentHTML('beforeend', `<div id="opCompanion_${i}_atk">ATK : 0 / 0</div>`);
-            document.getElementById("opCompanion_" + i + "_feature").insertAdjacentHTML('beforeend', `<div id="opCompanion_${i}_pm">PM : 0 / 0</div>`);
+            document.getElementById("myCompanion_" + i + "_feature").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_pv">PV : 0</div>`);
+            document.getElementById("myCompanion_" + i + "_feature").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_atk">ATK : 0</div>`);
+            document.getElementById("myCompanion_" + i + "_feature").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_pm">PM : 0</div>`);
         }
         for (y = 0; y < BOARD_ROWS; y++)
         {
@@ -113,10 +103,17 @@
             document.getElementById("hand").insertAdjacentHTML('beforeend',`<div id="spell_${i}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-cover bg-no-repeat"></div>`);
             $("#spell_" + i).click(function() {spellClick($(this))});
         }
+
     </script>
 
     <script src="js/clientInteraction.js"></script>
     <script src="js/serverCom.js"></script>
+    <script src="js/Tooltip.js"></script>
+
+
+    <script>
+        new Tooltip(document.getElementById("myStatus"), "Reluire la plote");
+    </script>
 
 </body>
 </html>

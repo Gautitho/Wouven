@@ -51,6 +51,7 @@ Status of the game
 | gauges | Dict(fire, water, earth, air, neutral) | Gauges of different elements |
 | handSpellDescIds | List | Descriptor IDs of the spells in the player hand |
 | handCompanionDescIds | List | Descriptor IDs of the companions in the player hand |
+| handCompanionDescIds | List | Descriptor IDs of the companions already played by the player |
 | boardEntityIds | List | Instance IDs of the entities owned by the player |
 | heroEntityId | Integer|  |
 

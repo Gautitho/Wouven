@@ -8,19 +8,20 @@ class Player:
 
     def __init__(self, deck, team, pseudo, heroEntityId):
         self.checkDeck(deck)
-        self._heroDescId            = deck["heroDescId"]
-        self._race                  = db.heroes[self._heroDescId]["race"]
-        self._team                  = team
-        self._pseudo                = pseudo
-        self._pa                    = 6
-        self._paStock               = 0
-        self._gauges                = {"fire" : 0, "water" : 0, "earth" : 0, "air" : 0, "neutral" : 0}
-        self._handSpellDescIds      = []
-        self._deckSpellDescIds      = random.sample(deck["spells"], len(deck["spells"]))
-        self._handCompanionDescIds  = deck["companions"]
-        self._boardEntityIds        = []
+        self._heroDescId                = deck["heroDescId"]
+        self._race                      = db.heroes[self._heroDescId]["race"]
+        self._team                      = team
+        self._pseudo                    = pseudo
+        self._pa                        = 6
+        self._paStock                   = 0
+        self._gauges                    = {"fire" : 0, "water" : 0, "earth" : 0, "air" : 0, "neutral" : 0}
+        self._handSpellDescIds          = []
+        self._deckSpellDescIds          = random.sample(deck["spells"], len(deck["spells"]))
+        self._handCompanionDescIds      = deck["companions"]
+        self._playedCompanionDescIds    = []
+        self._boardEntityIds            = []
         self._boardEntityIds.append(heroEntityId)
-        self._heroEntityId          = heroEntityId
+        self._heroEntityId              = heroEntityId
 
     def checkDeck(self, deck):
         # TODO: Check if deck is valid (spells from the good weapon, existing hero and companions, hero spell here, ...)
@@ -114,21 +115,23 @@ class Player:
         printInfo(f"handSpellDescIds        = {self._handSpellDescIds}", printType)
         printInfo(f"deckSpellDescIds        = {self._deckSpellDescIds}", printType)
         printInfo(f"handCompanionDescIds    = {self._handCompanionDescIds}", printType)
+        printInfo(f"playedCompanionDescIds  = {self._playedCompanionDescIds}", printType)
         printInfo(f"boardEntityIds          = {self._boardEntityIds}", printType)
         printInfo(f"heroEntityId            = {self._heroEntityId}", printType)
 
     def getMyStatusDict(self):
         dic = {}
-        dic["heroDescId"]           = self._heroDescId
-        dic["team"]                 = self._team
-        dic["pseudo"]               = self._pseudo
-        dic["pa"]                   = self._pa
-        dic["paStock"]              = self._paStock
-        dic["gauges"]               = self._gauges
-        dic["handSpellDescIds"]     = self._handSpellDescIds
-        dic["handCompanionDescIds"] = self._handCompanionDescIds
-        dic["boardEntityIds"]       = self._boardEntityIds
-        dic["heroEntityId"]         = self._heroEntityId
+        dic["heroDescId"]               = self._heroDescId
+        dic["team"]                     = self._team
+        dic["pseudo"]                   = self._pseudo
+        dic["pa"]                       = self._pa
+        dic["paStock"]                  = self._paStock
+        dic["gauges"]                   = self._gauges
+        dic["handSpellDescIds"]         = self._handSpellDescIds
+        dic["handCompanionDescIds"]     = self._handCompanionDescIds
+        dic["playedCompanionDescIds"]   = self._playedCompanionDescIds
+        dic["boardEntityIds"]           = self._boardEntityIds
+        dic["heroEntityId"]             = self._heroEntityId
         return dic
 
     def getOpStatusDict(self):
