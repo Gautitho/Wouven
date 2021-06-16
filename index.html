@@ -28,8 +28,6 @@
                 <div id="myStatusSprite" class="h-20 w-20 bg-center bg-cover bg-no-repeat" style="background-image: url(img/cell.png);"></div>
                 <div id="myStatusFeature" class="mx-2">
                     <div id="myStatusPv">PV : 0 / 0</div>
-                    <div id="myStatusAtk">ATK : 0 / 0</div>
-                    <div id="myStatusPm">PM : 0 / 0</div>
                     <div id="myStatusGauges">Gauges : 0 / 0 / 0 / 0 / 0</div>
                 </div>
             </div>
@@ -45,8 +43,6 @@
                 <div id="opStatusSprite" class="h-20 w-20 bg-center bg-cover bg-no-repeat" style="background-image: url(img/cell.png)"></div>
                 <div id="opStatusFeature" class="mx-2">
                     <div id="opStatusPv">PV : 0 / 0</div>
-                    <div id="opStatusAtk">ATK : 0 / 0</div>
-                    <div id="opStatusPm">PM : 0 / 0</div>
                     <div id="opStatusGauges">Gauges : 0 / 0 / 0 / 0 / 0</div>
                 </div>
             </div>
@@ -72,6 +68,7 @@
         </div>
     </section>
 
+    <script src="js/Tooltip.js"></script>
     <script>
         const BOARD_ROWS = 7;
         const BOARD_COLS = 7;
@@ -108,12 +105,6 @@
 
     <script src="js/clientInteraction.js"></script>
     <script src="js/serverCom.js"></script>
-    <script src="js/Tooltip.js"></script>
-
-
-    <script>
-        new Tooltip(document.getElementById("myStatus"), "Reluire la plote");
-    </script>
 
 </body>
 </html>
