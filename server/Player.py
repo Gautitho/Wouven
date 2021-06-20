@@ -94,9 +94,13 @@ class Player:
     def modifyGauge(self, gaugeType, value):
         if (gaugeType in ["fire", "water", "earth", "air", "neutral"]):
             if (self._gauges[gaugeType] + value < 0):
-                raise GameException("Not enough " + str(self._gauges[gaugeType]) + "gauge !")
-            elif (self._gauges[gaugeType] + value < 10):
-                self._gauges[gaugeType] += value
+                if (gaugeType != "neutral" and self._gauges[gaugeType] + self._gauges["neutral"] + value >= 0):
+                    self._gauges["neutral"] = self._gauges["neutral"] + value + self._gauges[gaugeType]
+                    self._gauges[gaugeType] = 0
+                else:
+                    raise GameException("Not enough " + gaugeType + " gauge !")
+            else:
+                self._gauges[gaugeType] = min(self._gauges[gaugeType] + value, 9)
         else:
             raise GameException("Wrong gauge type !")
 

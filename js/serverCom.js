@@ -28,19 +28,19 @@ socket.onmessage = function(handler)
         {
             updateState("LOCKED");
         }
-        updateMyStatus();
-        updateOpStatus();
-        for (i = 0; i < COMPANIONS; i++)
-        {
-            updateMyCompanion(i);
-        }
-        updateHandBar();
     }
     else if (cmdObj.cmd == "ERROR")
     {
         errorLog(cmdObj.msg);
     }
     updateBoard();
+    updateMyStatus();
+    updateOpStatus();
+    for (i = 0; i < COMPANIONS; i++)
+    {
+        updateMyCompanion(i);
+    }
+    updateHandBar();
 };
 
 function endTurn()
@@ -59,4 +59,10 @@ function spell()
 {
     spellCmd = {"cmd" : "SPELL", "playerId" : playerId, "spellId" : selectedSpell, "targetPositionList" : boardTileList};
     socket.send(JSON.stringify(spellCmd));
+}
+
+function summon()
+{
+    summonCmd = {"cmd" : "SUMMON", "playerId" : playerId, "companionId" : selectedMyCompanion, "summonPositionList" : boardTileList};
+    socket.send(JSON.stringify(summonCmd));
 }

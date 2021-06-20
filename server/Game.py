@@ -73,6 +73,10 @@ class Game:
                 self.checkCmdArgs(cmdDict, ["spellId", "targetPositionList"])
                 self.SpellCast(playerId, cmdDict["spellId"], cmdDict["targetPositionList"])
 
+            elif (cmd == "SUMMON"):
+                self.checkCmdArgs(cmdDict, ["companionId", "summonPositionList"])
+                self.Summon(playerId, cmdDict["companionId"], cmdDict["summonPositionList"])
+
             self.sendStatus()
 
         return self._msgList
@@ -148,3 +152,6 @@ class Game:
 
     def SpellCast(self, playerId, spellId, targetPositionList):
         self._board.spellCast(playerId, spellId, targetPositionList)
+
+    def Summon(self, playerId, companionId, summonPositionList):
+        self._board.summon(playerId, companionId, summonPositionList)

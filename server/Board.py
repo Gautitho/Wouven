@@ -25,13 +25,15 @@ class Board:
         elif (team == "red"):
             x = 0
             y = BOARD_ROWS - 1
-        self._players[playerId] = Player(deck, team, pseudo, self.appendEntity(Entity(db.heroes[deck["heroDescId"]]["entityDescId"], team, x, y)))
+        self._players[playerId] = Player(deck, team, pseudo, self.appendEntity(db.heroes[deck["heroDescId"]]["entityDescId"], team, x, y))
 
     # Return the entityId
-    def appendEntity(self, entity):
-        if (self.entityIdOnTile(entity.x, entity.y) == -1):
-            self._entities.append(entity)
+    def appendEntity(self, entityDescId, team, x, y):
+        if (self.entityIdOnTile(x, y) == -1):
+            self._entities.append(Entity(entityDescId, team, x, y))
             return len(self._entities) - 1
+        else:
+            raise GameException("Tile is not empty !")
 
     def removeEntity(self, entityIdx):
         del self._boardEntites[entityIdx]
@@ -102,8 +104,7 @@ class Board:
             removeEntity(entityIdx)
 
     def spellCast(self, playerId, spellId, targetPositionList):
-        errorMsg = ""
-        if (spellId < len(self._players[playerId].handSpellDescIds)):
+        if (0 <= spellId < len(self._players[playerId].handSpellDescIds)):
             spell = db.spells[self._players[playerId].handSpellDescIds[spellId]]
             if (spell["cost"] <= self._players[playerId].pa):
                 self._players[playerId].playSpell(spellId, spell["cost"])
@@ -189,3 +190,15 @@ class Board:
 
                 else:
                     raise GameException("Wrong ability target !")
+
+    def summon(self, playerId, companionId, summonPositionList):
+        if (len(summonPositionList) == 1):
+            if (0 <= companionId < len(self._players[playerId].handCompanionDescIds)):
+                companion = db.companions[self._players[playerId].handCompanionDescIds[companionId]]
+                for gaugeType in list(companion["cost"].keys()):
+                    self._players[playerId].modifyGauge(gaugeType, -companion["cost"][gaugeType])
+                self.appendEntity(companion["entityDescId"], self._players[playerId].team, summonPositionList[0]["x"], summonPositionList[0]["y"])
+            else:
+                raise GameException("Companion not in your deck !")
+        else:
+            raise GameException("Only one summon position is allowed !")

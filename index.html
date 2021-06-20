@@ -83,9 +83,9 @@
             document.getElementById("myCompanions").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}" class="flex h-1/4 w-full"></div>`);
             document.getElementById("myCompanion_" + i).insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_sprite" class="h-20 w-20 bg-center bg-cover bg-no-repeat" style="background-image: url(img/cell.png);"></div>`);
             document.getElementById("myCompanion_" + i).insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_feature" class="mx-2"></div>`);
-            document.getElementById("myCompanion_" + i + "_feature").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_pv">PV : 0</div>`);
-            document.getElementById("myCompanion_" + i + "_feature").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_atk">ATK : 0</div>`);
-            document.getElementById("myCompanion_" + i + "_feature").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_pm">PM : 0</div>`);
+            document.getElementById("myCompanion_" + i + "_feature").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_name">This is name !</div>`);
+            document.getElementById("myCompanion_" + i + "_feature").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_cost">Cost : 0 / 0 / 0 / 0</div>`);
+            $("#myCompanion_" + i).click(function() {myCompanionClick($(this))});
         }
         for (y = 0; y < BOARD_ROWS; y++)
         {

@@ -15,7 +15,15 @@ class Tooltip
     let width = tooltip.offsetWidth
     let height = tooltip.offsetHeight
     let left = this.element.offsetWidth / 2 - width / 2 + this.element.getBoundingClientRect().left + document.documentElement.scrollLeft
-    let top = this.element.getBoundingClientRect().top - height - 15 + document.documentElement.scrollTop
+    let top = 0
+    if (this.element.getBoundingClientRect().top - height - 15 + document.documentElement.scrollTop > 10)
+    {
+      top = this.element.getBoundingClientRect().top - height - 15 + document.documentElement.scrollTop
+    }
+    else
+    {
+      top = this.element.getBoundingClientRect().bottom + 15
+    }
     tooltip.style.left = left + "px"
     tooltip.style.top = top + "px"
   }

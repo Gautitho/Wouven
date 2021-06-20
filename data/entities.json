@@ -26,7 +26,7 @@
     "c1" :
     {
         "name"          : "aNA",
-        "spritePath"    : "img/1.png",
+        "spritePath"    : "img/spells/4.png",
         "pv"            : 68,
         "armor"         : 0,
         "atk"           : 18,
@@ -38,7 +38,7 @@
     "c2" :
     {
         "name"          : "Ich2ichi",
-        "spritePath"    : "img/1.png",
+        "spritePath"    : "img/spells/1.png",
         "pv"            : 100,
         "armor"         : 0,
         "atk"           : 26,
@@ -50,7 +50,7 @@
     "c3" :
     {
         "name"          : "SpaceSapien",
-        "spritePath"    : "img/1.png",
+        "spritePath"    : "img/spells/2.png",
         "pv"            : 80,
         "armor"         : 0,
         "atk"           : 21,
@@ -62,7 +62,7 @@
     "c4" :
     {
         "name"          : "Neige",
-        "spritePath"    : "img/1.png",
+        "spritePath"    : "img/spells/3.png",
         "pv"            : 63,
         "armor"         : 0,
         "atk"           : 7,

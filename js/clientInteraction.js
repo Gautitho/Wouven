@@ -6,8 +6,9 @@ var entitiesDataBase = {}
 var spellsDataBase = {}
 var companionsDataBase = {}
 var heroesDataBase = {}
-var selectedEntity  = -1;
-var selectedSpell   = -1;
+var selectedEntity      = -1;
+var selectedSpell       = -1;
+var selectedMyCompanion = -1;
 var entitiesList = [];
 var myPlayer = {};
 var opPlayer = {};
@@ -28,12 +29,17 @@ function updateState(newState)
     else if (newState == "MOVE")
     {
         $("#stateBtn").css("background-color", "#0000FF");
-        $("#stateBtn").text("End move");
+        $("#stateBtn").text("Move");
     }
     else if (newState == "SPELL")
     {
         $("#stateBtn").css("background-color", "#0000FF");
-        $("#stateBtn").text("End spell cast");
+        $("#stateBtn").text("Cast spell");
+    }
+    else if (newState == "SUMMON")
+    {
+        $("#stateBtn").css("background-color", "#0000FF");
+        $("#stateBtn").text("Summon");
     }
     else
     {
@@ -82,10 +88,10 @@ function updateMyStatus()
 
 function updateMyCompanion(companionIdx)
 {
+    $("#myCompanion_" + companionIdx).css("background-color", "#FFFFFF");
     $("#myCompanion_" + companionIdx + "_sprite").css("background-image", "url(" + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.handCompanionDescIds[companionIdx] + ".entityDescId") + ".spritePath") + ")");
-    $("#myCompanion_" + companionIdx + "_pv").text("PV : " + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.handCompanionDescIds[companionIdx] + ".entityDescId") + ".pv"));
-    $("#myCompanion_" + companionIdx + "_atk").text("ATK : " + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.handCompanionDescIds[companionIdx] + ".entityDescId") + ".atk"));
-    $("#myCompanion_" + companionIdx + "_pm").text("PM : " + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.handCompanionDescIds[companionIdx] + ".entityDescId") + ".pm"));
+    $("#myCompanion_" + companionIdx + "_name").text(eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.handCompanionDescIds[companionIdx] + ".entityDescId") + ".name"));
+    $("#myCompanion_" + companionIdx + "_cost").text(eval("companionsDataBase." + myPlayer.handCompanionDescIds[companionIdx] + ".cost"));
 }
 
 function updateOpStatus()
@@ -110,6 +116,11 @@ function updateHandBar()
     }
 }
 
+function errorLog(message)
+{
+    $("#errorLog").text(message);
+}
+
 function stateBtnClick()
 {
     if (state == "IDLE")
@@ -130,6 +141,13 @@ function stateBtnClick()
         selectedSpell = -1
         updateState("IDLE");
     }
+    else if (state == "SUMMON")
+    {
+        summon();
+        boardTileList = [];
+        selectedMyCompanion = -1;
+        updateState("IDLE");
+    }
 }
 
 function cancelBtnClick()
@@ -138,6 +156,14 @@ function cancelBtnClick()
     {
         boardTileList = [];
         selectedEntity = -1;
+        updateState("IDLE");
+        updateBoard();
+    }
+    else if (state == "SUMMON")
+    {
+        updateMyCompanion(selectedMyCompanion);
+        boardTileList = [];
+        selectedMyCompanion = -1;
         updateState("IDLE");
         updateBoard();
     }
@@ -178,6 +204,11 @@ function boardTileClick(tile)
         boardTileList.push({"x" : x, "y" : y});
         $("#board_" + x + "_" + y).css("background-color", "#6DB3F2");
     }
+    else if (state == "SUMMON")
+    {
+        boardTileList.push({"x" : x, "y" : y});
+        $("#board_" + x + "_" + y).css("background-color", "#6DB3F2");
+    }
 }
 
 function spellClick(spell)
@@ -196,7 +227,18 @@ function spellClick(spell)
     }
 }
 
-function errorLog(message)
+function myCompanionClick(myCompanion)
 {
-    $("#errorLog").text(message);
+    var myCompanionId = parseInt(myCompanion.attr('id').split('_')[1]);
+
+    if (turn != team)
+    {
+        errorLog("Not your turn, bro !");
+    }
+    else if (state == "IDLE")
+    {
+        updateState("SUMMON");
+        selectedMyCompanion = myCompanionId;
+        $("#myCompanion_" + myCompanionId).css("background-color", "#6DB3F2");
+    }
 }

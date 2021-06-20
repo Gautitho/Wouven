@@ -42,5 +42,13 @@ When two clients have sent AUTH command, the game is launched
 |----------|------|-------------|
 | playerId | String | ID of the client who sent this command |
 | spellId | Integer | Instance ID of the spell in the player hand |
-| mainTargetPosition | Dict{x, y} | Position of the main target |
-| sideTargetPosition | Dict{x, y} | Position of the side target |
+| targetPositionList | List of Dict{x, y} | Position of the targets |
+
+<br>
+
+### **SUMMON**
+| Argument | Type | Description |
+|----------|------|-------------|
+| playerId | String | ID of the client who sent this command |
+| companionId | Integer | Instance ID of the companion in the player hand |
+| summonPositionList | List of Dict{x, y} | Position where the companion will be summoned (if length > 1, trigger error) |
