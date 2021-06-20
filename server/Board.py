@@ -25,18 +25,28 @@ class Board:
         elif (team == "red"):
             x = 0
             y = BOARD_ROWS - 1
-        self._players[playerId] = Player(deck, team, pseudo, self.appendEntity(db.heroes[deck["heroDescId"]]["entityDescId"], team, x, y))
+        self._players[playerId] = Player(deck, team, pseudo)
+        self._players[playerId].setHeroEntityId(self.appendEntity(playerId, db.heroes[deck["heroDescId"]]["entityDescId"], team, x, y))
 
     # Return the entityId
-    def appendEntity(self, entityDescId, team, x, y):
+    def appendEntity(self, playerId, entityDescId, team, x, y):
         if (self.entityIdOnTile(x, y) == -1):
             self._entities.append(Entity(entityDescId, team, x, y))
+            self._players[playerId].addEntity(len(self._entities) - 1)
             return len(self._entities) - 1
         else:
             raise GameException("Tile is not empty !")
 
     def removeEntity(self, entityIdx):
         del self._boardEntites[entityIdx]
+        found = False
+        for playerId in list(self._players.keys()):
+            if entityIdx in self._players[playerId]:
+                self._players[playerId].removeEntity(entityIdx)
+                found = True
+                break
+        if not(found):
+            raise GameException("Entity to remove not found in players entities list !")
 
     def entityIdOnTile(self, x, y):
         for entityId in range(0, len(self._entities)):
@@ -193,11 +203,30 @@ class Board:
 
     def summon(self, playerId, companionId, summonPositionList):
         if (len(summonPositionList) == 1):
-            if (0 <= companionId < len(self._players[playerId].handCompanionDescIds)):
-                companion = db.companions[self._players[playerId].handCompanionDescIds[companionId]]
-                for gaugeType in list(companion["cost"].keys()):
-                    self._players[playerId].modifyGauge(gaugeType, -companion["cost"][gaugeType])
-                self.appendEntity(companion["entityDescId"], self._players[playerId].team, summonPositionList[0]["x"], summonPositionList[0]["y"])
+            if (0 <= companionId < len(self._players[playerId].companions)):
+                if (self._players[playerId].companions[companionId]["state"] == "available"):
+                    companion = db.companions[self._players[playerId].companions[companionId]["descId"]]
+                    for gaugeType in list(companion["cost"].keys()):
+                        self._players[playerId].modifyGauge(gaugeType, -companion["cost"][gaugeType])
+                    placementValid = False
+                    for placement in companion["placementList"]:
+                        if (placement["ref"] == "ally"):
+                            for allyEntityId in self._players[playerId].boardEntityIds:
+                                if (abs(summonPositionList[0]["x"] - self._entities[allyEntityId].x) + abs(summonPositionList[0]["y"] - self._entities[allyEntityId].y) <= placement["range"]):
+                                    placementValid = True
+                        elif (placement["ref"] == "myPlayer"):
+                            if (abs(summonPositionList[0]["x"] - self._entities[self._players[playerId].heroEntityId].x) + abs(summonPositionList[0]["y"] - self._entities[self._players[playerId].heroEntityId].y) <= placement["range"]):
+                                placementValid = True
+                        else:
+                            raise GameException("Summon reference not allowed !")
+
+                    if placementValid:
+                        self.appendEntity(playerId, companion["entityDescId"], self._players[playerId].team, summonPositionList[0]["x"], summonPositionList[0]["y"])
+                        self._players[playerId].summonCompanion(companionId)
+                    else:
+                        raise GameException("Invalid companion placement !")
+                else:
+                    raise GameException("Companion not available !")
             else:
                 raise GameException("Companion not in your deck !")
         else:

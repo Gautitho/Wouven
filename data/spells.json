@@ -4,7 +4,7 @@
         "name"              : "Earth charge",
         "cost"              : 6,
         "spritePath"        : "img/sorts/1.png",
-        "allowedTargetList" : ["aligned"],
+        "allowedTargetList" : ["alignedEntities"],
         "abilities"         :
         [
             {

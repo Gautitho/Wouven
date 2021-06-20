@@ -3,28 +3,52 @@
     {
         "cost"          : {"fire" : 2},
         "entityDescId"  : "c1",
-        "summonRef"     : ["myPlayer"],
-        "summonRange"   : 2
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            },
+            {
+                "ref"   : "ally",
+                "range" : 1
+            }
+        ]
     },
     "c2" :
     {
         "cost"          : {"earth" : 5},
         "entityDescId"  : "c2",
-        "summonRef"     : ["myPlayer"],
-        "summonRange"   : 2
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
     },
     "c3" :
     {
         "cost"          : {"earth" : 2, "air" : 2},
         "entityDescId"  : "c3",
-        "summonRef"     : ["myPlayer"],
-        "summonRange"   : 2
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
     },
     "c4" :
     {
         "cost"          : {"air" : 3},
         "entityDescId"  : "c4",
-        "summonRef"     : ["myPlayer"],
-        "summonRange"   : 2
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
     }
 }

@@ -6,7 +6,7 @@ from GameException import *
 
 class Player:
 
-    def __init__(self, deck, team, pseudo, heroEntityId):
+    def __init__(self, deck, team, pseudo):
         self.checkDeck(deck)
         self._heroDescId                = deck["heroDescId"]
         self._race                      = db.heroes[self._heroDescId]["race"]
@@ -17,11 +17,12 @@ class Player:
         self._gauges                    = {"fire" : 0, "water" : 0, "earth" : 0, "air" : 0, "neutral" : 0}
         self._handSpellDescIds          = []
         self._deckSpellDescIds          = random.sample(deck["spells"], len(deck["spells"]))
-        self._handCompanionDescIds      = deck["companions"]
+        self._companions                = []
+        for companionDescId in deck["companions"]:
+            self._companions.append({"descId" : companionDescId, "state" : "available"})
         self._playedCompanionDescIds    = []
         self._boardEntityIds            = []
-        self._boardEntityIds.append(heroEntityId)
-        self._heroEntityId              = heroEntityId
+        self._heroEntityId              = None
 
     def checkDeck(self, deck):
         # TODO: Check if deck is valid (spells from the good weapon, existing hero and companions, hero spell here, ...)
@@ -67,8 +68,8 @@ class Player:
         return list(self._deckSpellDescIds)
 
     @property
-    def handCompanionDescIds(self):
-        return list(self._handCompanionDescIds)
+    def companions(self):
+        return list(self._companions)
 
     @property
     def boardEntityIds(self):
@@ -77,6 +78,18 @@ class Player:
     @property
     def heroEntityId(self):
         return self._heroEntityId
+
+    def setHeroEntityId(self, heroEntityId):
+        self._heroEntityId = heroEntityId
+
+    def summonCompanion(self, companionId):
+        self._companions[companionId]["state"] = "alive"
+
+    def removeCompanion(self, companionId):
+        self._companions[companionId]["state"] = "dead"
+
+    def storeCompanion(self, companionId):
+        self._companions[companionId]["state"] = "available"
 
     def startTurn(self):
         self._pa = 6
@@ -89,7 +102,7 @@ class Player:
 
     def draw(self):
         if (len(self._handSpellDescIds) < HAND_SPELLS):
-            self._handSpellDescIds.append(self._deckSpellDescIds.pop(0))            
+            self._handSpellDescIds.append(self._deckSpellDescIds.pop(0))
 
     def modifyGauge(self, gaugeType, value):
         if (gaugeType in ["fire", "water", "earth", "air", "neutral"]):
@@ -108,6 +121,12 @@ class Player:
         self._handSpellDescIds.pop(spellId)
         self._pa -= pa
 
+    def addEntity(self, entityId):
+        self._boardEntityIds.append(entityId)
+
+    def removeEntity(self, entityId):
+        self._boardEntityIds.remove(entityId)
+
     def display(self, printType="DEBUG"):
         printInfo(f"heroDescId              = {self._heroDescId}", printType)
         printInfo(f"race                    = {self._race}", printType)
@@ -118,7 +137,7 @@ class Player:
         printInfo(f"gauges                  = {self._gauges}", printType)
         printInfo(f"handSpellDescIds        = {self._handSpellDescIds}", printType)
         printInfo(f"deckSpellDescIds        = {self._deckSpellDescIds}", printType)
-        printInfo(f"handCompanionDescIds    = {self._handCompanionDescIds}", printType)
+        printInfo(f"companions              = {self._companions}", printType)
         printInfo(f"playedCompanionDescIds  = {self._playedCompanionDescIds}", printType)
         printInfo(f"boardEntityIds          = {self._boardEntityIds}", printType)
         printInfo(f"heroEntityId            = {self._heroEntityId}", printType)
@@ -132,8 +151,7 @@ class Player:
         dic["paStock"]                  = self._paStock
         dic["gauges"]                   = self._gauges
         dic["handSpellDescIds"]         = self._handSpellDescIds
-        dic["handCompanionDescIds"]     = self._handCompanionDescIds
-        dic["playedCompanionDescIds"]   = self._playedCompanionDescIds
+        dic["companions"]               = self._companions
         dic["boardEntityIds"]           = self._boardEntityIds
         dic["heroEntityId"]             = self._heroEntityId
         return dic

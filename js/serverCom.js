@@ -12,6 +12,7 @@ socket.onmessage = function(handler)
     if (cmdObj.cmd == "INIT")
     {
         team = cmdObj.team;
+        errorLog("");
     }
     else if (cmdObj.cmd == "STATUS")
     {
@@ -28,6 +29,7 @@ socket.onmessage = function(handler)
         {
             updateState("LOCKED");
         }
+        errorLog("");
     }
     else if (cmdObj.cmd == "ERROR")
     {

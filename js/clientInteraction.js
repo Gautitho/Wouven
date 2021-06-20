@@ -88,10 +88,21 @@ function updateMyStatus()
 
 function updateMyCompanion(companionIdx)
 {
-    $("#myCompanion_" + companionIdx).css("background-color", "#FFFFFF");
-    $("#myCompanion_" + companionIdx + "_sprite").css("background-image", "url(" + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.handCompanionDescIds[companionIdx] + ".entityDescId") + ".spritePath") + ")");
-    $("#myCompanion_" + companionIdx + "_name").text(eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.handCompanionDescIds[companionIdx] + ".entityDescId") + ".name"));
-    $("#myCompanion_" + companionIdx + "_cost").text(eval("companionsDataBase." + myPlayer.handCompanionDescIds[companionIdx] + ".cost"));
+    if (myPlayer.companions[companionIdx].state == "alive")
+    {
+        $("#myCompanion_" + companionIdx).css("background-color", "#a155d4");
+    }
+    else if (myPlayer.companions[companionIdx].state == "dead")
+    {
+        $("#myCompanion_" + companionIdx).css("background-color", "#FF0000");
+    }
+    else
+    {
+        $("#myCompanion_" + companionIdx).css("background-color", "#FFFFFF");
+    }
+    $("#myCompanion_" + companionIdx + "_sprite").css("background-image", "url(" + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.companions[companionIdx].descId + ".entityDescId") + ".spritePath") + ")");
+    $("#myCompanion_" + companionIdx + "_name").text(eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.companions[companionIdx].descId + ".entityDescId") + ".name"));
+    $("#myCompanion_" + companionIdx + "_cost").text(eval("companionsDataBase." + myPlayer.companions[companionIdx].descId + ".cost"));
 }
 
 function updateOpStatus()
