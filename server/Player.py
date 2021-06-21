@@ -16,6 +16,7 @@ class Player:
         self._paStock                   = 0
         self._gauges                    = {"fire" : 0, "water" : 0, "earth" : 0, "air" : 0, "neutral" : 0}
         self._handSpellDescIds          = []
+        random.seed(0) #ONLY FOR DEBUG
         self._deckSpellDescIds          = random.sample(deck["spells"], len(deck["spells"]))
         self._companions                = []
         for companionDescId in deck["companions"]:

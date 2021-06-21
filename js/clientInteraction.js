@@ -102,7 +102,21 @@ function updateMyCompanion(companionIdx)
     }
     $("#myCompanion_" + companionIdx + "_sprite").css("background-image", "url(" + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.companions[companionIdx].descId + ".entityDescId") + ".spritePath") + ")");
     $("#myCompanion_" + companionIdx + "_name").text(eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.companions[companionIdx].descId + ".entityDescId") + ".name"));
-    $("#myCompanion_" + companionIdx + "_cost").text(eval("companionsDataBase." + myPlayer.companions[companionIdx].descId + ".cost"));
+
+    let costStr = "Cost ";
+    let gaugeCostArray = ["fire", "water", "earth", "air"];
+    for (j = 0; j < gaugeCostArray.length; j++)
+    {
+        if ((typeof eval("companionsDataBase." + myPlayer.companions[companionIdx].descId + ".cost." + gaugeCostArray[j])) != "undefined")
+        {
+            costStr = costStr + " / " + eval("companionsDataBase." + myPlayer.companions[companionIdx].descId + ".cost." + gaugeCostArray[j]);
+        }
+        else
+        {
+            costStr = costStr + " / 0";
+        }
+    }
+    $("#myCompanion_" + companionIdx + "_cost").text(costStr);
 }
 
 function updateOpStatus()

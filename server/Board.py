@@ -38,13 +38,13 @@ class Board:
             raise GameException("Tile is not empty !")
 
     def removeEntity(self, entityIdx):
-        del self._boardEntites[entityIdx]
         found = False
         for playerId in list(self._players.keys()):
-            if entityIdx in self._players[playerId]:
+            if entityIdx in self._players[playerId].boardEntityIds:
                 self._players[playerId].removeEntity(entityIdx)
                 found = True
                 break
+        del self._entities[entityIdx]
         if not(found):
             raise GameException("Entity to remove not found in players entities list !")
 
@@ -111,7 +111,7 @@ class Board:
     def modifyPv(self, entityIdx, value):
         self._entities[entityIdx].modifyPv(value)
         if (self._entities[entityIdx].pv <= 0):
-            removeEntity(entityIdx)
+            self.removeEntity(entityIdx)
 
     def spellCast(self, playerId, spellId, targetPositionList):
         if (0 <= spellId < len(self._players[playerId].handSpellDescIds)):
