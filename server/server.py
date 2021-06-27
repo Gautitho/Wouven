@@ -2,8 +2,8 @@ import copy
 from simple_websocket_server import WebSocketServer, WebSocket
 from Game import *
 
-# Test modes available : NONE, MANUAL, LOG_FILE
-TEST_MODE   = "LOG_FILE"
+# Test modes available : NONE, MANUAL, REPLAY
+TEST_MODE   = "NONE"
 LOG_ENABLE  = True
 
 clients     = []
@@ -61,7 +61,7 @@ if TEST_MODE == "MANUAL":
         msgList = gameTest.run(cmdDict)
         for msg in msgList:
             printInfo(msg, "DEBUG")
-elif TEST_MODE == "LOG_FILE":
+elif TEST_MODE == "REPLAY":
     gameTest = Game()
     logFile = open("cmd.log", "r")
     for line in logFile:

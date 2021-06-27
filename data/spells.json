@@ -105,7 +105,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" : "elemState", "validValue" : "oiled"}],
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
                 "feature"       : "pv",
                 "value"         : -10,
                 "effect"        : ""

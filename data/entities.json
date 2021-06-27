@@ -12,12 +12,12 @@
         "abilities"     : 
         [
             {
-                "trigger"   : "spellCast",
-                "target"    : "self",
-                "condition" : ["elem", "fire"],
-                "feature"   : "pm",
-                "value"     : 1,
-                "effect"    : ""
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [{"feature" : "elem", "value" : "fire"}],
+                "feature"       : "pm",
+                "value"         : 1,
+                "effect"        : ""
             }
         ]
     },

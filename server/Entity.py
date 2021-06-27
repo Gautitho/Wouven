@@ -156,6 +156,9 @@ class Entity:
         self._canMove   = False
         self._canAttack = False
 
+    def modifyPm(self, value):
+        self._pm += value
+
     def modifyPv(self, value):
         if (value < 0):
             if "shield" in self._states:

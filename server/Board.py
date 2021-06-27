@@ -126,7 +126,9 @@ class Board:
                         elif (spell["allowedTargetList"][0] == "allEntities"):
                             targetEntityId = self.entityIdOnTile(targetPositionList[0]["x"], targetPositionList[0]["y"])
                             if (targetEntityId != -1):
-                               self.executeAbilities(spell["abilities"], "spellCast", playerId, -1, targetEntityId, {}, spell["elem"])
+                               self.executeAbilities(spell["abilities"], "spellCast", playerId, None, targetEntityId, {}, spell["elem"])
+                               for entityId in range(0, len(self._entities)):
+                                   self.executeAbilities(self._entities[entityId].abilities, "spellCast", playerId, entityId, None, {}, spell["elem"])
                             else:
                                raise GameException("No entity on this tile !")
 
@@ -151,59 +153,53 @@ class Board:
             raise GameException("Spell not in your hand !")
 
     def executeAbilities(self, abilityList, trigger, playerId, selfEntityId, targetEntityId, position, spellElem):
-        # Si nécessaire, mettre l'exécution de l'ability dans une string et l'eval plus tard
         for ability in abilityList:
             if (trigger == ability["trigger"]):
-                if (ability["target"] == "target"):
-
-                    conditionValid = False
-                    if (ability["condition"][0] == ""):
-                        conditionValid = True 
-                    elif (ability["condition"][0] == "elemState"):
-                        if (ability["condition"][1] in ["oiled", "wet", "muddy", "windy"]):
-                            conditionValid = (self._entities[targetEntityId].elemState == ability["condition"][1])
-                            self._entities[targetEntityId].setElemState("")
+                # Check condition
+                for condition in ability["conditionList"]:
+                    if (condition["feature"] == "elemState"):
+                        if (condition["value"] in ["oiled", "wet", "muddy", "windy"]):
+                            if (self._entities[targetEntityId].elemState == condition["value"]):
+                                self._entities[targetEntityId].setElemState("")
+                            else:
+                                return None # Condition not verified
                         else:
-                            raise GameException("ElemState to consume is not supported !")
+                            raise GameException("ElemState to consume does not exist !")
+
+                    elif (condition["feature"] == "elem"):
+                        if (condition["value"] in ["fire", "water", "earth", "air", "neutral"]):
+                            if (spellElem == condition["value"]):
+                                pass
+                            else:
+                                return None # Condition not verified
+                        else:
+                            raise GameException("Elem of the spell does not exist !")
+
                     else:
                         raise GameException("Wrong ability condition !")
-
-                    if conditionValid:
-                        if (ability["feature"] == "pv"):
-                            self.modifyPv(targetEntityId, ability["value"])
-                        elif (ability["feature"] == "elemState"):
-                            self._entities[targetEntityId].setElemState(ability["value"])
-                        else:
-                            raise GameException("Wrong ability feature !")
+                   
+                # Execute ability
+                if (ability["target"] == "target"):
+                    if (ability["feature"] == "pv"):
+                        self.modifyPv(targetEntityId, ability["value"])
+                    elif (ability["feature"] == "elemState"):
+                        self._entities[targetEntityId].setElemState(ability["value"])
+                    else:
+                        raise GameException("Wrong ability feature !")
 
                 elif (ability["target"] == "self"):
-
-                    conditionValid = False
-                    if (ability["condition"][0] == ""):
-                        conditionValid = True 
-                    elif (ability["condition"][0] == "elem"):
-                        if (ability["condition"][1] in ["fire", "water", "earth", "air", "neutral"]):
-                            conditionValid = (spellElem == ability["condition"][1])
-                        else:
-                            raise GameException("ElemState to consume is not supported !")
+                    if (ability["feature"] == "pm"):
+                        self._entities[selfEntityId].modifyPm(ability["value"])
                     else:
-                        raise GameException("Wrong ability condition !")
+                        raise GameException("Wrong ability feature !")
 
                 elif (ability["target"] == "myPlayer"):
-                    
-                    conditionValid = False
-                    if (ability["condition"][0] == ""):
-                        conditionValid = True 
-                    else:
-                        raise GameException("Wrong ability condition !")
-
-                    if conditionValid:
-                        if (ability["feature"] == "gauges"):
-                            if isinstance(ability["value"], dict):
-                                for gaugeType in list(ability["value"].keys()):
-                                    self._players[playerId].modifyGauge(gaugeType, ability["value"][gaugeType])
-                            else:
-                                raise GameException("Ability value for gauges must be a dict !")
+                    if (ability["feature"] == "gauges"):
+                        if isinstance(ability["value"], dict):
+                            for gaugeType in list(ability["value"].keys()):
+                                self._players[playerId].modifyGauge(gaugeType, ability["value"][gaugeType])
+                        else:
+                            raise GameException("Ability value for gauges must be a dict !")
 
                 elif (ability["target"] == "opPlayer"):
                     pass
