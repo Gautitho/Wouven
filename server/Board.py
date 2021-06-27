@@ -126,7 +126,7 @@ class Board:
                         elif (spell["allowedTargetList"][0] == "allEntities"):
                             targetEntityId = self.entityIdOnTile(targetPositionList[0]["x"], targetPositionList[0]["y"])
                             if (targetEntityId != -1):
-                               self.executeAbilities(spell["abilities"], "spellCast", playerId, -1, targetEntityId, {})
+                               self.executeAbilities(spell["abilities"], "spellCast", playerId, -1, targetEntityId, {}, spell["elem"])
                             else:
                                raise GameException("No entity on this tile !")
 
@@ -150,7 +150,7 @@ class Board:
         else:
             raise GameException("Spell not in your hand !")
 
-    def executeAbilities(self, abilityList, trigger, playerId, selfEntityId, targetEntityId, position):
+    def executeAbilities(self, abilityList, trigger, playerId, selfEntityId, targetEntityId, position, spellElem):
         # Si nécessaire, mettre l'exécution de l'ability dans une string et l'eval plus tard
         for ability in abilityList:
             if (trigger == ability["trigger"]):
@@ -177,7 +177,17 @@ class Board:
                             raise GameException("Wrong ability feature !")
 
                 elif (ability["target"] == "self"):
-                    pass
+
+                    conditionValid = False
+                    if (ability["condition"][0] == ""):
+                        conditionValid = True 
+                    elif (ability["condition"][0] == "elem"):
+                        if (ability["condition"][1] in ["fire", "water", "earth", "air", "neutral"]):
+                            conditionValid = (spellElem == ability["condition"][1])
+                        else:
+                            raise GameException("ElemState to consume is not supported !")
+                    else:
+                        raise GameException("Wrong ability condition !")
 
                 elif (ability["target"] == "myPlayer"):
                     

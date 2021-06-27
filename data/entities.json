@@ -9,7 +9,17 @@
         "pm"            : 3,
         "aura"          : {},
         "states"        : ["shield"],
-        "abilities"     : []
+        "abilities"     : 
+        [
+            {
+                "trigger"   : "spellCast",
+                "target"    : "self",
+                "condition" : ["elem", "fire"],
+                "feature"   : "pm",
+                "value"     : 1,
+                "effect"    : ""
+            }
+        ]
     },
     "h2" :
     {

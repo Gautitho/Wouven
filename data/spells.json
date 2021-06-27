@@ -3,6 +3,7 @@
     {
         "name"              : "Earth charge",
         "cost"              : 6,
+        "elem"              : "earth",
         "spritePath"        : "img/sorts/1.png",
         "allowedTargetList" : ["alignedEntities"],
         "abilities"         :
@@ -53,33 +54,34 @@
     {
         "name"              : "Fire ball",
         "cost"              : 2,
+        "elem"              : "fire",
         "spritePath"        : "img/sorts/2.png",
         "allowedTargetList" : ["allEntities"],
         "abilities"         :
         [
             {
-                "trigger"   : "spellCast",
-                "target"    : "target",
-                "condition" : ["", ""],
-                "feature"   : "pv",
-                "value"     : -5,
-                "effect"    : ""
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "feature"       : "pv",
+                "value"         : -5,
+                "effect"        : ""
             },
             {
-                "trigger"   : "spellCast",
-                "target"    : "target",
-                "condition" : ["", ""],
-                "feature"   : "elemState",
-                "value"     : "oiled",
-                "effect"    : ""
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "feature"       : "elemState",
+                "value"         : "oiled",
+                "effect"        : ""
             },
             {
-                "trigger"   : "spellCast",
-                "target"    : "myPlayer",
-                "condition" : ["", ""],
-                "feature"   : "gauges",
-                "value"     : {"fire" : 2},
-                "effect"    : ""
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"fire" : 2},
+                "effect"        : ""
             }
         ]
     },
@@ -87,25 +89,26 @@
     {
         "name"              : "Earth ball",
         "cost"              : 2,
+        "elem"              : "fire",
         "spritePath"        : "img/sorts/3.png",
         "allowedTargetList" : ["allEntities"],
         "abilities"         :
         [
             {
-                "trigger"   : "spellCast",
-                "target"    : "target",
-                "condition" : ["", ""],
-                "feature"   : "pv",
-                "value"     : -5,
-                "effect"    : ""
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "feature"       : "pv",
+                "value"         : -5,
+                "effect"        : ""
             },
             {
-                "trigger"   : "spellCast",
-                "target"    : "target",
-                "condition" : ["elemState", "oiled"],
-                "feature"   : "pv",
-                "value"     : -10,
-                "effect"    : ""
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "elemState", "validValue" : "oiled"}],
+                "feature"       : "pv",
+                "value"         : -10,
+                "effect"        : ""
             }
         ]
     },
@@ -113,17 +116,18 @@
     {
         "name"              : "Ice ball",
         "cost"              : 2,
+        "elem"              : "fire",
         "spritePath"        : "img/sorts/4.png",
         "allowedTargetList" : ["allEntities"],
         "abilities"         :
         [
             {
-                "trigger"   : "spellCast",
-                "target"    : "target",
-                "condition" : ["", ""],
-                "feature"   : "pv",
-                "value"     : -5,
-                "effect"    : ""
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "feature"       : "pv",
+                "value"         : -5,
+                "effect"        : ""
             }
         ]
     }
