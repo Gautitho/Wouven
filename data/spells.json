@@ -1,55 +1,4 @@
 {
-    "s1":
-    {
-        "name"              : "Earth charge",
-        "cost"              : 6,
-        "elem"              : "earth",
-        "spritePath"        : "img/sorts/1.png",
-        "allowedTargetList" : ["alignedEntities"],
-        "abilities"         :
-        [
-            {
-                "trigger"   : "spellCast",
-                "target"    : "target",
-                "condition" : ["", ""],
-                "feature"   : "pv",
-                "value"     : -10,
-                "effect"    : ""
-            },
-            {
-                "trigger"   : "spellCast",
-                "target"    : "self",
-                "condition" : ["", ""],
-                "feature"   : "x",
-                "value"     : 0,
-                "effect"    : "stick_target"
-            },
-            {
-                "trigger"   : "spellCast",
-                "target"    : "self",
-                "condition" : ["", ""],
-                "feature"   : "y",
-                "value"     : 0,
-                "effect"    : "stick_target"
-            },
-            {
-                "trigger"   : "spellCast",
-                "target"    : "myPlayer",
-                "condition" : ["", ""],
-                "feature"   : "paStock",
-                "value"     : 1,
-                "effect"    : ""
-            },
-            {
-                "trigger"   : "spellCast",
-                "target"    : "myPlayer",
-                "condition" : ["", ""],
-                "feature"   : "earth",
-                "value"     : 1,
-                "effect"    : ""
-            }
-        ]
-    },
     "s2":
     {
         "name"              : "Fire ball",
@@ -65,7 +14,7 @@
                 "conditionList" : [],
                 "feature"       : "pv",
                 "value"         : -5,
-                "effect"        : ""
+                "behavior"      : ""
             },
             {
                 "trigger"       : "spellCast",
@@ -73,7 +22,7 @@
                 "conditionList" : [],
                 "feature"       : "elemState",
                 "value"         : "oiled",
-                "effect"        : ""
+                "behavior"      : ""
             },
             {
                 "trigger"       : "spellCast",
@@ -81,7 +30,7 @@
                 "conditionList" : [],
                 "feature"       : "gauges",
                 "value"         : {"fire" : 2},
-                "effect"        : ""
+                "behavior"      : ""
             }
         ]
     },
@@ -100,7 +49,7 @@
                 "conditionList" : [],
                 "feature"       : "pv",
                 "value"         : -5,
-                "effect"        : ""
+                "behavior"      : ""
             },
             {
                 "trigger"       : "spellCast",
@@ -108,7 +57,7 @@
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
                 "feature"       : "pv",
                 "value"         : -10,
-                "effect"        : ""
+                "behavior"      : ""
             }
         ]
     },
@@ -127,7 +76,15 @@
                 "conditionList" : [],
                 "feature"       : "pv",
                 "value"         : -5,
-                "effect"        : ""
+                "behavior"      : ""
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "feature"       : "atk",
+                "value"         : 3,
+                "behavior"      : "melee"
             }
         ]
     }

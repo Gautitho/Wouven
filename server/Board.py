@@ -30,7 +30,7 @@ class Board:
 
     # Return the entityId
     def appendEntity(self, playerId, entityDescId, team, x, y):
-        if (self.entityIdOnTile(x, y) == -1):
+        if (self.entityIdOnTile(x, y) == None):
             self._entities.append(Entity(entityDescId, team, x, y))
             self._players[playerId].addEntity(len(self._entities) - 1)
             return len(self._entities) - 1
@@ -48,11 +48,66 @@ class Board:
         if not(found):
             raise GameException("Entity to remove not found in players entities list !")
 
+    def getOpTeam(self, playerId):
+        if (self._players[playerId].team == "blue"):
+            return "red"
+        elif (self._players[playerId].team == "red"):
+            return "blue"
+        else:
+            raise GameException(f"Team ({self._players[playerId].team}) does not exist !")
+
     def entityIdOnTile(self, x, y):
         for entityId in range(0, len(self._entities)):
             if ((self._entities[entityId].x == x) and (self._entities[entityId].y == y)):
                 return entityId
-        return -1
+        return None
+
+    def entityIdAroundTile(self, x, y, team):
+        entityIdList = []
+        for xa in range(max(x-1, 0), min(x+2, BOARD_COLS)):
+            for ya in range(max(y-1, 0), min(y+2, BOARD_ROWS)):
+                if (xa != x or ya != y):
+                    matchId = self.entityIdOnTile(xa, ya)
+                    if (matchId != None):
+                        if (team == "all" or team == self._entities[matchId].team):
+                            entityIdList.append(matchId)
+        return entityIdList
+
+    def entityIdNextToTile(self, x, y, team):
+        entityIdList = []
+        matchId = self.entityIdOnTile(max(x-1, 0), y)
+        if (matchId != None):
+            if (team == "all" or team == self._entities[matchId].team):
+                entityIdList.append(matchId)
+        matchId = self.entityIdOnTile(min(x+1, BOARD_COLS), y)
+        if (matchId != None):
+            if (team == "all" or team == self._entities[matchId].team):
+                entityIdList.append(matchId)
+        matchId = self.entityIdOnTile(x, max(y-1, 0))
+        if (matchId != None):
+            if (team == "all" or team == self._entities[matchId].team):
+                entityIdList.append(matchId)
+        matchId = self.entityIdOnTile(x, min(y+1, BOARD_ROWS))
+        if (matchId != None):
+            if (team == "all" or team == self._entities[matchId].team):
+                entityIdList.append(matchId)
+        return entityIdList
+
+    def entityIdAlignedToTile(self, x, y, team):
+        entityIdList = []
+        for xa in range(0, BOARD_COLS):
+            if (xa != x):
+                matchId = self.entityIdOnTile(xa, y)
+                if (matchId != None):
+                    if (team == "all" or team == self._entities[matchId].team):
+                        entityIdList.append(matchId)
+        for ya in range(0, BOARD_ROWS):
+            if (ya != y):
+                matchId = self.entityIdOnTile(x, ya)
+                if (matchId != None):
+                    if (team == "all" or team == self._entities[matchId].team):
+                        entityIdList.append(matchId)
+        return entityIdList
 
     def startTurn(self, playerId):
         self._players[playerId].startTurn()
@@ -65,7 +120,6 @@ class Board:
             self._entities[entityId].endTurn()
 
     def moveEntity(self, entityId, path):
-        errorMsg        = ""
         x               = self._entities[entityId].x
         y               = self._entities[entityId].y
         pm              = self._entities[entityId].pm
@@ -79,13 +133,13 @@ class Board:
                     if (0 <= nextX < BOARD_COLS and 0 <= nextY < BOARD_ROWS):
                         if (abs(x - nextX) + abs(y - nextY) == 1):
                             if (pm == 0):
-                                if (self._entities[entityId].canAttack and self.entityIdOnTile(nextX, nextY) != -1): # Attack after full pm move
+                                if (self._entities[entityId].canAttack and self.entityIdOnTile(nextX, nextY) != None): # Attack after full pm move
                                     attackedEntity  = self.entityIdOnTile(nextX, nextY)
                                     pm              = -1                           
                                 else:
                                     raise GameException("Path length is higher than your pm !")
                             else:
-                                if (self.entityIdOnTile(nextX, nextY) == -1): # The next tile is empty
+                                if (self.entityIdOnTile(nextX, nextY) == None): # The next tile is empty
                                     x             = nextX
                                     y             = nextY
                                     pm            -= 1
@@ -125,7 +179,7 @@ class Board:
 
                         elif (spell["allowedTargetList"][0] == "allEntities"):
                             targetEntityId = self.entityIdOnTile(targetPositionList[0]["x"], targetPositionList[0]["y"])
-                            if (targetEntityId != -1):
+                            if (targetEntityId != None):
                                self.executeAbilities(spell["abilities"], "spellCast", playerId, None, targetEntityId, {}, spell["elem"])
                                for entityId in range(0, len(self._entities)):
                                    self.executeAbilities(self._entities[entityId].abilities, "spellCast", playerId, entityId, None, {}, spell["elem"])
@@ -151,6 +205,37 @@ class Board:
                 raise GameException("Not enough pa to cast this spell !")
         else:
             raise GameException("Spell not in your hand !")
+
+    def summon(self, playerId, companionId, summonPositionList):
+        if (len(summonPositionList) == 1):
+            if (0 <= companionId < len(self._players[playerId].companions)):
+                if (self._players[playerId].companions[companionId]["state"] == "available"):
+                    companion = db.companions[self._players[playerId].companions[companionId]["descId"]]
+                    for gaugeType in list(companion["cost"].keys()):
+                        self._players[playerId].modifyGauge(gaugeType, -companion["cost"][gaugeType])
+                    placementValid = False
+                    for placement in companion["placementList"]:
+                        if (placement["ref"] == "ally"):
+                            for allyEntityId in self._players[playerId].boardEntityIds:
+                                if (abs(summonPositionList[0]["x"] - self._entities[allyEntityId].x) + abs(summonPositionList[0]["y"] - self._entities[allyEntityId].y) <= placement["range"]):
+                                    placementValid = True
+                        elif (placement["ref"] == "myPlayer"):
+                            if (abs(summonPositionList[0]["x"] - self._entities[self._players[playerId].heroEntityId].x) + abs(summonPositionList[0]["y"] - self._entities[self._players[playerId].heroEntityId].y) <= placement["range"]):
+                                placementValid = True
+                        else:
+                            raise GameException("Summon reference not allowed !")
+
+                    if placementValid:
+                        self.appendEntity(playerId, companion["entityDescId"], self._players[playerId].team, summonPositionList[0]["x"], summonPositionList[0]["y"])
+                        self._players[playerId].summonCompanion(companionId)
+                    else:
+                        raise GameException("Invalid companion placement !")
+                else:
+                    raise GameException("Companion not available !")
+            else:
+                raise GameException("Companion not in your deck !")
+        else:
+            raise GameException("Only one summon position is allowed !")
 
     def executeAbilities(self, abilityList, trigger, playerId, selfEntityId, targetEntityId, position, spellElem):
         for ability in abilityList:
@@ -194,46 +279,20 @@ class Board:
                         raise GameException("Wrong ability feature !")
 
                 elif (ability["target"] == "myPlayer"):
-                    if (ability["feature"] == "gauges"):
-                        if isinstance(ability["value"], dict):
-                            for gaugeType in list(ability["value"].keys()):
-                                self._players[playerId].modifyGauge(gaugeType, ability["value"][gaugeType])
-                        else:
-                            raise GameException("Ability value for gauges must be a dict !")
+                    if (ability["behavior"] == ""):
+                        if (ability["feature"] == "gauges"):
+                            if isinstance(ability["value"], dict):
+                                for gaugeType in list(ability["value"].keys()):
+                                    self._players[playerId].modifyGauge(gaugeType, ability["value"][gaugeType])
+                            else:
+                                raise GameException("Ability value for gauges must be a dict !")
+                    elif (ability["behavior"] == "melee"):
+                        mult = len(self.entityIdAroundTile(self._entities[self._players[playerId].heroEntityId].x, self._entities[self._players[playerId].heroEntityId].y, self.getOpTeam(playerId)))
+                        if (ability["feature"] == "atk"):
+                            self._entities[self._players[playerId].heroEntityId].modifyAtk(mult*ability["value"])
 
                 elif (ability["target"] == "opPlayer"):
                     pass
 
                 else:
                     raise GameException("Wrong ability target !")
-
-    def summon(self, playerId, companionId, summonPositionList):
-        if (len(summonPositionList) == 1):
-            if (0 <= companionId < len(self._players[playerId].companions)):
-                if (self._players[playerId].companions[companionId]["state"] == "available"):
-                    companion = db.companions[self._players[playerId].companions[companionId]["descId"]]
-                    for gaugeType in list(companion["cost"].keys()):
-                        self._players[playerId].modifyGauge(gaugeType, -companion["cost"][gaugeType])
-                    placementValid = False
-                    for placement in companion["placementList"]:
-                        if (placement["ref"] == "ally"):
-                            for allyEntityId in self._players[playerId].boardEntityIds:
-                                if (abs(summonPositionList[0]["x"] - self._entities[allyEntityId].x) + abs(summonPositionList[0]["y"] - self._entities[allyEntityId].y) <= placement["range"]):
-                                    placementValid = True
-                        elif (placement["ref"] == "myPlayer"):
-                            if (abs(summonPositionList[0]["x"] - self._entities[self._players[playerId].heroEntityId].x) + abs(summonPositionList[0]["y"] - self._entities[self._players[playerId].heroEntityId].y) <= placement["range"]):
-                                placementValid = True
-                        else:
-                            raise GameException("Summon reference not allowed !")
-
-                    if placementValid:
-                        self.appendEntity(playerId, companion["entityDescId"], self._players[playerId].team, summonPositionList[0]["x"], summonPositionList[0]["y"])
-                        self._players[playerId].summonCompanion(companionId)
-                    else:
-                        raise GameException("Invalid companion placement !")
-                else:
-                    raise GameException("Companion not available !")
-            else:
-                raise GameException("Companion not in your deck !")
-        else:
-            raise GameException("Only one summon position is allowed !")

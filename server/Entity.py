@@ -157,7 +157,10 @@ class Entity:
         self._canAttack = False
 
     def modifyPm(self, value):
-        self._pm += value
+        self._pm = max(self._pm + value, 0)
+
+    def modifyAtk(self, value):
+        self._atk = max(self._atk + value, 0)
 
     def modifyPv(self, value):
         if (value < 0):

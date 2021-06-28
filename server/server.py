@@ -62,12 +62,15 @@ if TEST_MODE == "MANUAL":
         for msg in msgList:
             printInfo(msg, "DEBUG")
 elif TEST_MODE == "REPLAY":
-    gameTest = Game()
     logFile = open("cmd.log", "r")
     for line in logFile:
         clientMsg = line
         cmdDict = json.loads(clientMsg)
-        msgList = gameTest.run(cmdDict)
+        try:
+            msgList = nextGame.run(cmdDict)
+            currGame = copy.deepcopy(nextGame)
+        except GameException as ge:
+            nextGame = copy.deepcopy(currGame) # Restore a stable game
         for msg in msgList:
             printInfo(msg, "DEBUG")
 else:

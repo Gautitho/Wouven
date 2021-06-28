@@ -17,7 +17,7 @@
                 "conditionList" : [{"feature" : "elem", "value" : "fire"}],
                 "feature"       : "pm",
                 "value"         : 1,
-                "effect"        : ""
+                "behavior"      : ""
             }
         ]
     },
