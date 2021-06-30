@@ -135,6 +135,7 @@ class Board:
                             if (pm == 0):
                                 if (self._entities[entityId].canAttack and self.entityIdOnTile(nextX, nextY) != None): # Attack after full pm move
                                     attackedEntity  = self.entityIdOnTile(nextX, nextY)
+                                    self.modifyPv(attackedEntity, -self._entities[entityId].atk)
                                     pm              = -1                           
                                 else:
                                     raise GameException("Path length is higher than your pm !")
@@ -146,6 +147,7 @@ class Board:
                                 else: # There is an entity on next tile
                                     if (self._entities[entityId].canAttack):
                                         attackedEntity  = self.entityIdOnTile(nextX, nextY)
+                                        self.modifyPv(attackedEntity, -self._entities[entityId].atk)
                                         pm              = -1
                                     else:
                                         raise GameException("You can't attack this turn !")
@@ -159,8 +161,6 @@ class Board:
             raise GameException("First tile of the path must be the current entity position !")
 
         self._entities[entityId].move(x, y)
-        if (attackedEntity != -1):
-            self.modifyPv(attackedEntity, -self._entities[entityId].atk)
 
     def modifyPv(self, entityIdx, value):
         self._entities[entityIdx].modifyPv(value)
@@ -286,10 +286,17 @@ class Board:
                                     self._players[playerId].modifyGauge(gaugeType, ability["value"][gaugeType])
                             else:
                                 raise GameException("Ability value for gauges must be a dict !")
+
                     elif (ability["behavior"] == "melee"):
                         mult = len(self.entityIdAroundTile(self._entities[self._players[playerId].heroEntityId].x, self._entities[self._players[playerId].heroEntityId].y, self.getOpTeam(playerId)))
                         if (ability["feature"] == "atk"):
                             self._entities[self._players[playerId].heroEntityId].modifyAtk(mult*ability["value"])
+
+                    elif (ability["behavior"] == "addAura"):
+                        if (ability["feature"] == self._entities[self._players[playerId].heroEntityId].aura["type"]):
+                            self._entities[self._players[playerId].heroEntityId].addAura(ability["value"])
+                        else:
+                            self._entities[self._players[playerId].heroEntityId].newAura(ability["feature"], ability["value"])
 
                 elif (ability["target"] == "opPlayer"):
                     pass

@@ -4,6 +4,7 @@ HEROES_FILE_PATH        = "data/heroes.json"
 COMPANIONS_FILE_PATH    = "data/companions.json"
 ENTITIES_FILE_PATH      = "data/entities.json"
 SPELLS_FILE_PATH        = "data/spells.json"
+AURAS_FILE_PATH         = "data/auras.json"
 
 BOARD_ROWS  = 7
 BOARD_COLS  = 7
@@ -24,6 +25,10 @@ class DataBase:
         self._entities      = json.load(entitiesFile)
         entitiesFile.close()
 
+        aurasFile           = open(AURAS_FILE_PATH, "r")
+        self._auras         = json.load(aurasFile)
+        aurasFile.close() 
+
         spellsFile          = open(SPELLS_FILE_PATH, "r")
         self._spells        = json.load(spellsFile)
         spellsFile.close()
@@ -43,5 +48,9 @@ class DataBase:
     @property
     def spells(self):
         return self._spells
+
+    @property
+    def auras(self):
+        return self._auras
 
 db = DataBase()

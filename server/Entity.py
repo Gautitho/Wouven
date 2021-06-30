@@ -97,7 +97,10 @@ class Entity:
 
     @property
     def abilities(self):
-        return list(self._abilities)
+        if (self._aura):
+            return list(self._abilities).extend(list(db.auras[self._aura["type"]]["abilities"]))
+        else:
+            return list(self._abilities)
 
     @property
     def canMove(self):
@@ -177,6 +180,13 @@ class Entity:
                 self._pv = db.entities[self._descId]["pv"]
             else:
                 self._pv += value
+
+    def newAura(self, type, nb):
+        self._aura["type"]  = type
+        self._aura["nb"]    = min(nb, 5)
+
+    def modifyAuraNb(self, nb):
+        self._aura["nb"] = min(self._aura["nb"] + nb, 5)
 
     def setElemState(self, value):
         if value in ["", "oiled", "muddy", "windy", "wet"]:

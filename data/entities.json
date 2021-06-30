@@ -15,9 +15,9 @@
                 "trigger"       : "spellCast",
                 "target"        : "self",
                 "conditionList" : [{"feature" : "elem", "value" : "fire"}],
+                "behavior"      : "",
                 "feature"       : "pm",
-                "value"         : 1,
-                "behavior"      : ""
+                "value"         : 1
             }
         ]
     },

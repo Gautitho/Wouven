@@ -9,8 +9,6 @@
 - Ajout de descritpion
 
 Pour Kasai :
-- Mélée
-- Gain d'atk et de pm pour le tour
 - Epees sanglantes
 - Charge
 - Explosion

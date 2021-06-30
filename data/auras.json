@@ -1,0 +1,26 @@
+{
+	"bloodySword" :
+    {
+        "name"          : "Epees sanglantes",
+        "spritePath"    : "img/auras/bloodySword.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -12
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "self",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 12
+            }
+        ]
+    }
+}

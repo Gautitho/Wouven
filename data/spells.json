@@ -1,4 +1,23 @@
 {
+    "s1":
+    {
+        "name"              : "Epees sanglantes",
+        "cost"              : 6,
+        "elem"              : "neutral",
+        "spritePath"        : "img/sorts/99.png",
+        "allowedTargetList" : ["myPlayer"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "behavior"      : "addAura",
+                "feature"       : "bloodySword",
+                "value"         : 3
+            }
+        ]
+    },
     "s2":
     {
         "name"              : "Fire ball",
@@ -12,25 +31,25 @@
                 "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionList" : [],
+                "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : -5,
-                "behavior"      : ""
+                "value"         : -5
             },
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionList" : [],
+                "behavior"      : "",
                 "feature"       : "elemState",
-                "value"         : "oiled",
-                "behavior"      : ""
+                "value"         : "oiled"
             },
             {
                 "trigger"       : "spellCast",
                 "target"        : "myPlayer",
+                "behavior"      : "",
                 "conditionList" : [],
                 "feature"       : "gauges",
-                "value"         : {"fire" : 2},
-                "behavior"      : ""
+                "value"         : {"fire" : 2}
             }
         ]
     },
@@ -47,17 +66,17 @@
                 "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionList" : [],
+                "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : -5,
-                "behavior"      : ""
+                "value"         : -5
             },
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : -10,
-                "behavior"      : ""
+                "value"         : -10
             }
         ]
     },
@@ -74,17 +93,17 @@
                 "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionList" : [],
+                "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : -5,
-                "behavior"      : ""
+                "value"         : -5
             },
             {
                 "trigger"       : "spellCast",
                 "target"        : "myPlayer",
                 "conditionList" : [],
+                "behavior"      : "melee",
                 "feature"       : "atk",
-                "value"         : 3,
-                "behavior"      : "melee"
+                "value"         : 3
             }
         ]
     }
