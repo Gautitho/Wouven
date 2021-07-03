@@ -358,31 +358,31 @@ class Board:
                    
                 # Execute ability
                 executed = False
-                if (ability["feature"] == "pv"):
-                    self._entities[abilityEntityId].modifyPv(ability["value"])
-                    executed = True
-                elif (ability["feature"] == "elemState"):
-                    self._entities[abilityEntityId].setElemState(ability["value"])
-                    executed = True
-                elif (ability["feature"] == "pm"):
-                    self._entities[abilityEntityId].modifyPm(ability["value"])
-                    executed = True
-                elif (ability["feature"] == "gauges"):
-                    if isinstance(ability["value"], dict):
-                        for gaugeType in list(ability["value"].keys()):
-                            self._players[playerId].modifyGauge(gaugeType, ability["value"][gaugeType])
+                if (ability["behavior"] == ""):
+                    if (ability["feature"] == "pv"):
+                        self._entities[abilityEntityId].modifyPv(ability["value"])
+                        executed = True
+                    elif (ability["feature"] == "elemState"):
+                        self._entities[abilityEntityId].setElemState(ability["value"])
+                        executed = True
+                    elif (ability["feature"] == "pm"):
+                        self._entities[abilityEntityId].modifyPm(ability["value"])
+                        executed = True
+                    elif (ability["feature"] == "gauges"):
+                        if isinstance(ability["value"], dict):
+                            for gaugeType in list(ability["value"].keys()):
+                                self._players[playerId].modifyGauge(gaugeType, ability["value"][gaugeType])
+                                executed = True
+                        else:
+                            raise GameException("Ability value for gauges must be a dict !")
+                    elif (ability["feature"] == "atk"):
+                        if (ability["behavior"] == "melee"):
+                            mult = len(self.entityIdAroundTile(self._entities[self._players[playerId].heroEntityId].x, self._entities[self._players[playerId].heroEntityId].y, self.getOpTeam(playerId)))
+                            self._entities[self._players[playerId].heroEntityId].modifyAtk(mult*ability["value"])
                             executed = True
-                    else:
-                        raise GameException("Ability value for gauges must be a dict !")
-                elif (ability["feature"] == "atk"):
-                    if (ability["behavior"] == "melee"):
-                        mult = len(self.entityIdAroundTile(self._entities[self._players[playerId].heroEntityId].x, self._entities[self._players[playerId].heroEntityId].y, self.getOpTeam(playerId)))
-                        self._entities[self._players[playerId].heroEntityId].modifyAtk(mult*ability["value"])
-                        executed = True
-                    else:
-                        self._entities[self._players[playerId].heroEntityId].modifyAtk(ability["value"])
-                        executed = True
-                # TODO : Improve this behavior
+                        else:
+                            self._entities[self._players[playerId].heroEntityId].modifyAtk(ability["value"])
+                            executed = True
                 elif (ability["behavior"] == "addAura"):
                     if (self._entities[self._players[playerId].heroEntityId].aura and ability["feature"] == self._entities[self._players[playerId].heroEntityId].aura["type"]):
                         self._entities[self._players[playerId].heroEntityId].addAura(ability["value"])
@@ -394,19 +394,27 @@ class Board:
                     if (self._entities[selfEntityId].x == self._entities[targetEntityId].x):
                         if (self._entities[selfEntityId].y < self._entities[targetEntityId].y):
                             self._entities[selfEntityId].tp(self._entities[selfEntityId].x, self._entities[targetEntityId].y - 1)
+                            executed = True
                         elif (self._entities[selfEntityId].y > self._entities[targetEntityId].y):
                             self._entities[selfEntityId].tp(self._entities[selfEntityId].x, self._entities[targetEntityId].y + 1)
+                            executed = True
                         else:
                             raise GameException("Target can't be on the same tile than selfEntity !")
                     elif (self._entities[selfEntityId].y == self._entities[targetEntityId].y):
                         if (self._entities[selfEntityId].x < self._entities[targetEntityId].x):
                             self._entities[selfEntityId].tp(self._entities[selfEntityId].x - 1, self._entities[targetEntityId].y)
+                            executed = True
                         elif (self._entities[selfEntityId].x > self._entities[targetEntityId].x):
                             self._entities[selfEntityId].tp(self._entities[selfEntityId].x + 1, self._entities[targetEntityId].y)
+                            executed = True
                         else:
                             raise GameException("Target can't be on the same tile than selfEntity !")
                     else:
                         raise GameException("Target not aligned with selfEntity !")
+                elif (ability["behavior"] == "explosion"):
+                    for entityId in self.entityIdAroundTile(self._entities[targetEntityId].x, self._entities[targetEntityId].y, self.getOpTeam(playerId)):
+                        self._entities[entityId].modifyPv(ability["value"])
+                        executed = True
 
                 # Check if an aura has been used
                 if (executed and ability["behavior"] == "aura"):

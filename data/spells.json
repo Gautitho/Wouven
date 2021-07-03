@@ -127,6 +127,14 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "behavior"      : "explosion",
+                "feature"       : "pv",
+                "value"         : -3
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
                 "conditionList" : [],
                 "behavior"      : "charge",
                 "feature"       : "position",

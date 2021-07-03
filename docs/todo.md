@@ -9,7 +9,6 @@
 - Ajout de descritpion
 
 Pour Kasai :
-- Charge
 - Explosion
 - Sorts de compagnon
 - Téléportation sans restriction
