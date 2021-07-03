@@ -123,6 +123,34 @@ class Board:
                         entityIdList.append(matchId)
         return entityIdList
 
+    def firstEntityIdAlignedToTile(self, x, y, team):
+        entityIdList = []
+        for xa in range(x-1, -1, -1):
+            matchId = self.entityIdOnTile(xa, y)
+            if (matchId != None):
+                if (team == "all" or team == self._entities[matchId].team):
+                    entityIdList.append(matchId)
+                    break
+        for xa in range(x+1, BOARD_COLS):
+            matchId = self.entityIdOnTile(xa, y)
+            if (matchId != None):
+                if (team == "all" or team == self._entities[matchId].team):
+                    entityIdList.append(matchId)
+                    break
+        for ya in range(y-1, -1, -1):
+            matchId = self.entityIdOnTile(x, ya)
+            if (matchId != None):
+                if (team == "all" or team == self._entities[matchId].team):
+                    entityIdList.append(matchId)
+                    break
+        for ya in range(y+1, BOARD_ROWS):
+            matchId = self.entityIdOnTile(x, ya)
+            if (matchId != None):
+                if (team == "all" or team == self._entities[matchId].team):
+                    entityIdList.append(matchId)
+                    break
+        return entityIdList
+
     def startTurn(self, playerId):
         self._players[playerId].startTurn()
         for entityId in self._players[playerId].boardEntityIds:
@@ -181,48 +209,69 @@ class Board:
         self._entities[entityId].move(x, y)
 
     def spellCast(self, playerId, spellId, targetPositionList):
+        # Check if spell in hand
         if (0 <= spellId < len(self._players[playerId].handSpellDescIds)):
             spell = db.spells[self._players[playerId].handSpellDescIds[spellId]]
+
+            # Check if there is enough PA to play the spell
             if (spell["cost"] <= self._players[playerId].pa):
                 self._players[playerId].playSpell(spellId, spell["cost"])
-                if (len(spell["allowedTargetList"]) == len(targetPositionList)):
-                    if (len(spell["allowedTargetList"]) == 1):
-                        if (spell["allowedTargetList"][0] == "all"):
-                            pass
 
-                        elif (spell["allowedTargetList"][0] == "allEntities"):
-                            targetEntityId = self.entityIdOnTile(targetPositionList[0]["x"], targetPositionList[0]["y"])
-                            if (targetEntityId != None):
-                               self.executeAbilities(spell["abilities"], "spellCast", playerId, None, targetEntityId, {}, spell["elem"])
-                               for entityId in range(0, len(self._entities)):
-                                   self.executeAbilities(self._entities[entityId].abilities, "spellCast", playerId, entityId, None, {}, spell["elem"])
+                # Check conditions
+                for condition in spell["conditionList"]:
+                    if (condition["feature"] == "allowedTargetList"):
+                        if (len(condition["value"]) == len(targetPositionList)):
+                            if (len(condition["value"]) == 1):
+                                targetEntityId  = self.entityIdOnTile(targetPositionList[0]["x"], targetPositionList[0]["y"])
+                                selfEntityId    = None
+                                if (condition["value"][0] == "all"):
+                                    pass
+                                elif (condition["value"][0] == "allEntity"):
+                                    if (targetEntityId != None):
+                                       pass
+                                    else:
+                                       raise GameException("No entity on this tile !")
+
+                                elif (condition["value"][0] == "emptyTile"):
+                                    pass
+
+                                elif (condition["value"][0] == "myEntity"):
+                                    pass
+
+                                elif (condition["value"][0] == "opEntity"):
+                                    pass
+
+                                elif (condition["value"][0] == "myPlayer"):
+                                    if (targetEntityId == self._players[playerId].heroEntityId):
+                                        selfEntityId = self._players[playerId].heroEntityId
+                                    else:
+                                        raise GameException("Wrong spell target !")
+
+                                elif (condition["value"][0] == "firstAlignedEntity"):
+                                    if (targetEntityId in self.firstEntityIdAlignedToTile(self._entities[self._players[playerId].heroEntityId].x, self._entities[self._players[playerId].heroEntityId].y, "all")):
+                                        selfEntityId = self._players[playerId].heroEntityId
+                                    else:
+                                        raise GameException("Target is not the first aligned entity !")
+                                else:
+                                    raise GameException("Wrong target type !")
                             else:
-                               raise GameException("No entity on this tile !")
-
-                        elif (spell["allowedTargetList"][0] == "emptyTile"):
-                            pass
-
-                        elif (spell["allowedTargetList"][0] == "myEntity"):
-                            pass
-
-                        elif (spell["allowedTargetList"][0] == "opEntity"):
-                            pass
-
-                        elif (spell["allowedTargetList"][0] == "myPlayer"):
-                            targetEntityId = self.entityIdOnTile(targetPositionList[0]["x"], targetPositionList[0]["y"])
-                            if (targetEntityId == self._players[playerId].heroEntityId):
-                                self.executeAbilities(spell["abilities"], "spellCast", playerId, None, targetEntityId, {}, spell["elem"])
-                                for entityId in range(0, len(self._entities)):
-                                    self.executeAbilities(self._entities[entityId].abilities, "spellCast", playerId, entityId, None, {}, spell["elem"])
-                            else:
-                                raise GameException("Wrong spell target !")
-
+                                raise GameException("Spell with multi targets not supported !")
                         else:
-                            raise GameException("Wrong target type !")
+                            raise GameException("Wrong number of target !")
+                    elif (condition["feature"] == "range"):
+                        for targetPosition in targetPositionList: 
+                            if (calcDist(self._entities[self._players[playerId].heroEntityId].x, self._entities[self._players[playerId].heroEntityId].y, targetPosition["x"], targetPosition["y"]) <= condition["value"]):
+                                pass
+                            else:
+                                raise GameException("Target too far !")
                     else:
-                        raise GameException("Spell with multi targets not supported !")
-                else:
-                    raise GameException("Wrong number of target !")
+                        raise GameException("Condition not supported !")
+
+                # Execute spell
+                self.executeAbilities(spell["abilities"], "spellCast", playerId, selfEntityId, targetEntityId, {}, spell["elem"])
+                for entityId in range(0, len(self._entities)):
+                    self.executeAbilities(self._entities[entityId].abilities, "spellCast", playerId, entityId, None, {}, spell["elem"])
+
             else:
                 raise GameException("Not enough pa to cast this spell !")
         else:
@@ -230,11 +279,16 @@ class Board:
 
     def summon(self, playerId, companionId, summonPositionList):
         if (len(summonPositionList) == 1):
+            # Check if companion available
             if (0 <= companionId < len(self._players[playerId].companions)):
                 if (self._players[playerId].companions[companionId]["state"] == "available"):
                     companion = db.companions[self._players[playerId].companions[companionId]["descId"]]
+
+                    # Check if the player ha enough gauges to summon
                     for gaugeType in list(companion["cost"].keys()):
                         self._players[playerId].modifyGauge(gaugeType, -companion["cost"][gaugeType])
+
+                    # Check placement
                     placementValid = False
                     for placement in companion["placementList"]:
                         if (placement["ref"] == "ally"):
@@ -247,9 +301,11 @@ class Board:
                         else:
                             raise GameException("Summon reference not allowed !")
 
+                    # Summon
                     if placementValid:
                         self.appendEntity(playerId, companion["entityDescId"], self._players[playerId].team, summonPositionList[0]["x"], summonPositionList[0]["y"])
                         self._players[playerId].summonCompanion(companionId)
+
                     else:
                         raise GameException("Invalid companion placement !")
                 else:
@@ -264,7 +320,8 @@ class Board:
         opPlayerId  = self.getOpPlayerId(playerId)
         for ability in abilityList:
             if (trigger == ability["trigger"]):
-                # Check condition
+
+                # Check conditions
                 for condition in ability["conditionList"]:
                     if (condition["feature"] == "elemState"):
                         if (condition["value"] in ["oiled", "wet", "muddy", "windy"]):
@@ -287,7 +344,7 @@ class Board:
                     else:
                         raise GameException("Wrong ability condition !")
 
-                # Choose entity
+                # Choose abilityEntity
                 if (ability["target"] == "target"):
                     abilityEntityId = targetEntityId
                 elif (ability["target"] == "self"):
@@ -333,8 +390,25 @@ class Board:
                     else:
                         self._entities[self._players[playerId].heroEntityId].newAura(ability["feature"], ability["value"])
                         executed = True
+                elif (ability["behavior"] == "charge"):
+                    if (self._entities[selfEntityId].x == self._entities[targetEntityId].x):
+                        if (self._entities[selfEntityId].y < self._entities[targetEntityId].y):
+                            self._entities[selfEntityId].tp(self._entities[selfEntityId].x, self._entities[targetEntityId].y - 1)
+                        elif (self._entities[selfEntityId].y > self._entities[targetEntityId].y):
+                            self._entities[selfEntityId].tp(self._entities[selfEntityId].x, self._entities[targetEntityId].y + 1)
+                        else:
+                            raise GameException("Target can't be on the same tile than selfEntity !")
+                    elif (self._entities[selfEntityId].y == self._entities[targetEntityId].y):
+                        if (self._entities[selfEntityId].x < self._entities[targetEntityId].x):
+                            self._entities[selfEntityId].tp(self._entities[selfEntityId].x - 1, self._entities[targetEntityId].y)
+                        elif (self._entities[selfEntityId].x > self._entities[targetEntityId].x):
+                            self._entities[selfEntityId].tp(self._entities[selfEntityId].x + 1, self._entities[targetEntityId].y)
+                        else:
+                            raise GameException("Target can't be on the same tile than selfEntity !")
+                    else:
+                        raise GameException("Target not aligned with selfEntity !")
 
-                # Check aura
+                # Check if an aura has been used
                 if (executed and ability["behavior"] == "aura"):
                     auraUsed = True
 

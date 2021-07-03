@@ -161,6 +161,10 @@ class Entity:
         self._canMove   = False
         self._canAttack = False
 
+    def tp(self, x, y):
+        self._x = x
+        self._y = y
+
     def modifyPm(self, value):
         self._pm = max(self._pm + value, 0)
 

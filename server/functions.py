@@ -12,6 +12,9 @@ def printInfo(msg, type="MISC"):
     if (type in DISPLAYED_INFO_TYPE):
         print('\033[36m' + "INFO: " + str(msg) + '\033[0m')
 
+def calcDist(xa, ya, xb, yb):
+    return (abs(yb - ya) + abs(xb - xa))
+
 def checkCondition(triggerError, condition, msg):
     if not(condition):
         if triggerError:

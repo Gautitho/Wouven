@@ -5,7 +5,7 @@
         "cost"              : 6,
         "elem"              : "neutral",
         "spritePath"        : "img/sorts/99.png",
-        "allowedTargetList" : ["myPlayer"],
+        "conditionList"     : [{"feature" : "allowedTargetList", "value" : ["myPlayer"]}],
         "abilities"         :
         [
             {
@@ -24,7 +24,7 @@
         "cost"              : 2,
         "elem"              : "fire",
         "spritePath"        : "img/sorts/2.png",
-        "allowedTargetList" : ["allEntities"],
+        "conditionList"     : [{"feature" : "allowedTargetList", "value" : ["allEntity"]}],
         "abilities"         :
         [
             {
@@ -59,7 +59,7 @@
         "cost"              : 2,
         "elem"              : "fire",
         "spritePath"        : "img/sorts/3.png",
-        "allowedTargetList" : ["allEntities"],
+        "conditionList"     : [{"feature" : "allowedTargetList", "value" : ["allEntity"]}],
         "abilities"         :
         [
             {
@@ -86,7 +86,7 @@
         "cost"              : 2,
         "elem"              : "fire",
         "spritePath"        : "img/sorts/4.png",
-        "allowedTargetList" : ["allEntities"],
+        "conditionList"     : [{"feature" : "allowedTargetList", "value" : ["allEntity"]}],
         "abilities"         :
         [
             {
@@ -104,6 +104,33 @@
                 "behavior"      : "melee",
                 "feature"       : "atk",
                 "value"         : 3
+            }
+        ]
+    },
+    "s5":
+    {
+        "name"              : "Charge explosive",
+        "cost"              : 6,
+        "elem"              : "fire",
+        "spritePath"        : "img/sorts/58.png",
+        "conditionList"     : [{"feature" :"allowedTargetList", "value" : ["firstAlignedEntity"]}, {"feature" :"range", "value" : 5}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "behavior"      : "charge",
+                "feature"       : "position",
+                "value"         : 0
             }
         ]
     }

@@ -9,7 +9,6 @@
 - Ajout de descritpion
 
 Pour Kasai :
-- Epees sanglantes
 - Charge
 - Explosion
 - Sorts de compagnon
