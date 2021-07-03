@@ -9,7 +9,7 @@
                 "trigger"       : "attack",
                 "target"        : "target",
                 "conditionList" : [],
-                "behavior"      : "",
+                "behavior"      : "aura",
                 "feature"       : "pv",
                 "value"         : -12
             },
@@ -17,7 +17,7 @@
                 "trigger"       : "attack",
                 "target"        : "self",
                 "conditionList" : [],
-                "behavior"      : "",
+                "behavior"      : "aura",
                 "feature"       : "pv",
                 "value"         : 12
             }

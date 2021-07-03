@@ -5,8 +5,8 @@ from functions import *
 from Board import *
 from GameException import *
 
-deck1       = {"heroDescId" : "h1", "spells" : ["s4", "s2", "s3", "s4", "s2", "s3", "s3", "s2", "s4"], "companions" : ["c1", "c2", "c3", "c4"]}
-deck2       = {"heroDescId" : "h2", "spells" : ["s4", "s2", "s3", "s4", "s2", "s3", "s3", "s2", "s4"], "companions" : ["c1", "c2", "c3", "c4"]}
+deck1       = {"heroDescId" : "h1", "spells" : ["s1", "s2", "s3", "s4", "s2", "s3", "s3", "s2", "s4"], "companions" : ["c1", "c2", "c3", "c4"]}
+deck2       = {"heroDescId" : "h2", "spells" : ["s1", "s2", "s3", "s4", "s2", "s3", "s3", "s2", "s4"], "companions" : ["c1", "c2", "c3", "c4"]}
 
 class Game:
 
@@ -67,7 +67,7 @@ class Game:
 
             elif (cmd == "MOVE"):
                 self.checkCmdArgs(cmdDict, ["entityId", "path"])
-                self.Move(cmdDict["entityId"], cmdDict["path"])
+                self.Move(playerId, cmdDict["entityId"], cmdDict["path"])
 
             elif (cmd == "SPELL"):
                 self.checkCmdArgs(cmdDict, ["spellId", "targetPositionList"])
@@ -147,8 +147,8 @@ class Game:
         self._board.endTurn(playerId)
         self._board.startTurn(self.getOpPlayerId(playerId))
 
-    def Move(self, entityId, path):
-        self._board.moveEntity(entityId, path)
+    def Move(self, playerId, entityId, path):
+        self._board.moveEntity(playerId, entityId, path)
 
     def SpellCast(self, playerId, spellId, targetPositionList):
         self._board.spellCast(playerId, spellId, targetPositionList)

@@ -89,7 +89,7 @@ class Entity:
 
     @property
     def aura(self):
-        return list(self._aura)
+        return dict(self._aura)
 
     @property
     def states(self):
@@ -98,7 +98,9 @@ class Entity:
     @property
     def abilities(self):
         if (self._aura):
-            return list(self._abilities).extend(list(db.auras[self._aura["type"]]["abilities"]))
+            outList = list(self._abilities)
+            outList.extend(list(db.auras[self._aura["type"]]["abilities"]))
+            return outList
         else:
             return list(self._abilities)
 
