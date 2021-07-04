@@ -3,6 +3,7 @@
     {
         "cost"          : {"fire" : 2},
         "entityDescId"  : "c1",
+        "spellDescId"   : "sc1",
         "placementList" :
         [
             {

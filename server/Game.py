@@ -77,6 +77,7 @@ class Game:
                 self.checkCmdArgs(cmdDict, ["companionId", "summonPositionList"])
                 self.Summon(playerId, cmdDict["companionId"], cmdDict["summonPositionList"])
 
+            self._board.garbageCollector()
             self.sendStatus()
 
         return self._msgList

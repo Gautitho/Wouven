@@ -141,5 +141,24 @@
                 "value"         : 0
             }
         ]
+    },
+    "sc1":
+    {
+        "name"              : "",
+        "cost"              : 1,
+        "elem"              : "fire",
+        "spritePath"        : "img/sorts/51.png",
+        "conditionList"     : [{"feature" : "allowedTargetList", "value" : ["allEntity"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -3
+            }
+        ]
     }
 }

@@ -20,7 +20,7 @@ class Player:
         self._deckSpellDescIds          = random.sample(deck["spells"], len(deck["spells"]))
         self._companions                = []
         for companionDescId in deck["companions"]:
-            self._companions.append({"descId" : companionDescId, "state" : "available"})
+            self._companions.append({"descId" : companionDescId, "state" : "available", "entityId" : None})
         self._playedCompanionDescIds    = []
         self._boardEntityIds            = []
         self._heroEntityId              = None
@@ -83,14 +83,28 @@ class Player:
     def setHeroEntityId(self, heroEntityId):
         self._heroEntityId = heroEntityId
 
-    def summonCompanion(self, companionId):
-        self._companions[companionId]["state"] = "alive"
+    def summonCompanion(self, companionId, entityId):
+        self._companions[companionId]["state"]      = "alive"
+        self._companions[companionId]["entityId"]   = entityId
+        if (db.companions[self._companions[companionId]["descId"]]["spellDescId"]):
+            if (len(self._handSpellDescIds) < HAND_SPELLS):
+                self._handSpellDescIds.append(db.companions[self._companions[companionId]["descId"]]["spellDescId"])
+            else:
+                self._deckSpellDescIds.append(db.companions[self._companions[companionId]["descId"]]["spellDescId"])
 
     def removeCompanion(self, companionId):
-        self._companions[companionId]["state"] = "dead"
+        print("Here a companion died !")
+        self._companions[companionId]["state"]      = "dead"
+        self._companions[companionId]["entityId"]   = None
+        if (db.companions[self._companions[companionId]["descId"]]["spellDescId"]):
+            if (db.companions[self._companions[companionId]["descId"]]["spellDescId"] in self._handSpellDescIds):
+                self._handSpellDescIds.remove(db.companions[self._companions[companionId]["descId"]]["spellDescId"])
+            if (db.companions[self._companions[companionId]["descId"]]["spellDescId"] in self._deckSpellDescIds):
+                self._deckSpellDescIds.remove(db.companions[self._companions[companionId]["descId"]]["spellDescId"])
 
     def storeCompanion(self, companionId):
-        self._companions[companionId]["state"] = "available"
+        self._companions[companionId]["state"]      = "available"
+        self._companions[companionId]["entityId"]   = None
 
     def startTurn(self):
         self._pa = 6
@@ -119,7 +133,7 @@ class Player:
             raise GameException("Wrong gauge type !")
 
     def playSpell(self, spellId, pa):
-        self._handSpellDescIds.pop(spellId)
+        self._deckSpellDescIds.append(self._handSpellDescIds.pop(spellId))
         self._pa -= pa
 
     def addEntity(self, entityId):
@@ -127,6 +141,9 @@ class Player:
 
     def removeEntity(self, entityId):
         self._boardEntityIds.remove(entityId)
+        for companionId in range(0, len(self._companions)):
+            if (self._companions[companionId]["entityId"] == entityId):
+                self.removeCompanion(companionId)
 
     def display(self, printType="DEBUG"):
         printInfo(f"heroDescId              = {self._heroDescId}", printType)
