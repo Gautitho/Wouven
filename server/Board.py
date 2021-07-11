@@ -178,8 +178,8 @@ class Board:
                                 if (self._entities[entityId].canAttack and self.entityIdOnTile(nextX, nextY) != None): # Attack after full pm move
                                     attackedEntityId  = self.entityIdOnTile(nextX, nextY)
                                     self._entities[attackedEntityId].modifyPv(-self._entities[entityId].atk)
-                                    self.executeAbilities(self._entities[entityId].abilities, "attack", playerId, entityId, attackedEntityId, {}, None)
-                                    self.executeAbilities(self._entities[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, None, {}, None)
+                                    self.executeAbilities(self._entities[entityId].abilities, "attack", playerId, entityId, [attackedEntityId], [], None)
+                                    self.executeAbilities(self._entities[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, None, [], None)
                                     pm              = -1
                                 else:
                                     raise GameException("Path length is higher than your pm !")
@@ -192,8 +192,8 @@ class Board:
                                     if (self._entities[entityId].canAttack):
                                         attackedEntityId  = self.entityIdOnTile(nextX, nextY)
                                         self._entities[attackedEntityId].modifyPv(-self._entities[entityId].atk)
-                                        self.executeAbilities(self._entities[entityId].abilities, "attack", playerId, entityId, attackedEntityId, {}, None)
-                                        self.executeAbilities(self._entities[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, None, {}, None)
+                                        self.executeAbilities(self._entities[entityId].abilities, "attack", playerId, entityId, [attackedEntityId], [], None)
+                                        self.executeAbilities(self._entities[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, None, [], None)
                                         pm              = -1
                                     else:
                                         raise GameException("You can't attack this turn !")
@@ -217,60 +217,90 @@ class Board:
             if (spell["cost"] <= self._players[playerId].pa):
                 self._players[playerId].playSpell(spellId, spell["cost"])
 
-                # Check conditions
-                for condition in spell["conditionList"]:
-                    if (condition["feature"] == "allowedTargetList"):
-                        if (len(condition["value"]) == len(targetPositionList)):
-                            if (len(condition["value"]) == 1):
-                                targetEntityId  = self.entityIdOnTile(targetPositionList[0]["x"], targetPositionList[0]["y"])
-                                selfEntityId    = None
-                                if (condition["value"][0] == "all"):
-                                    pass
-                                elif (condition["value"][0] == "allEntity"):
-                                    if (targetEntityId != None):
-                                       pass
-                                    else:
-                                       raise GameException("No entity on this tile !")
+                # Check allowed targets
+                if (len(spell["allowedTargetList"]) == len(targetPositionList)):
+                    positionList        = targetPositionList
+                    targetEntityIdList  = []
+                    selfEntityId        = None
+                    for allowedTargetIdx in range(0, len(spell["allowedTargetList"])):
+                        targetEntityIdList.append(None)
+                        if (spell["allowedTargetList"][allowedTargetIdx] == "all"):
+                            pass
 
-                                elif (condition["value"][0] == "emptyTile"):
-                                    pass
-
-                                elif (condition["value"][0] == "myEntity"):
-                                    pass
-
-                                elif (condition["value"][0] == "opEntity"):
-                                    pass
-
-                                elif (condition["value"][0] == "myPlayer"):
-                                    if (targetEntityId == self._players[playerId].heroEntityId):
-                                        selfEntityId = self._players[playerId].heroEntityId
-                                    else:
-                                        raise GameException("Wrong spell target !")
-
-                                elif (condition["value"][0] == "firstAlignedEntity"):
-                                    if (targetEntityId in self.firstEntityIdAlignedToTile(self._entities[self._players[playerId].heroEntityId].x, self._entities[self._players[playerId].heroEntityId].y, "all")):
-                                        selfEntityId = self._players[playerId].heroEntityId
-                                    else:
-                                        raise GameException("Target is not the first aligned entity !")
-                                else:
-                                    raise GameException("Wrong target type !")
+                        elif (spell["allowedTargetList"][allowedTargetIdx] == "allEntity"):
+                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
+                            if (targetEntityIdList[-1] != None):
+                               pass
                             else:
-                                raise GameException("Spell with multi targets not supported !")
-                        else:
-                            raise GameException("Wrong number of target !")
-                    elif (condition["feature"] == "range"):
-                        for targetPosition in targetPositionList: 
-                            if (calcDist(self._entities[self._players[playerId].heroEntityId].x, self._entities[self._players[playerId].heroEntityId].y, targetPosition["x"], targetPosition["y"]) <= condition["value"]):
+                               raise GameException("An entity must be targeted !")
+
+                        elif (spell["allowedTargetList"][allowedTargetIdx] == "emptyTile"):
+                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
+                            if (targetEntityIdList[-1] == None):
                                 pass
                             else:
-                                raise GameException("Target too far !")
+                               raise GameException("Target tile must be empty !")
+
+                        elif (spell["allowedTargetList"][allowedTargetIdx] == "myEntity"):
+                            pass
+
+                        elif (spell["allowedTargetList"][allowedTargetIdx] == "opEntity"):
+                            pass
+
+                        elif (spell["allowedTargetList"][allowedTargetIdx] == "myPlayer"):
+                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
+                            if (targetEntityIdList[-1] == self._players[playerId].heroEntityId):
+                                selfEntityId = self._players[playerId].heroEntityId
+                            else:
+                                raise GameException("Target must be in your team !")
+
+                        elif (spell["allowedTargetList"][allowedTargetIdx] == "firstAlignedEntity"):
+                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
+                            if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entities[self._players[playerId].heroEntityId].x, self._entities[self._players[playerId].heroEntityId].y, "all")):
+                                selfEntityId = self._players[playerId].heroEntityId
+                            else:
+                                raise GameException("Target is not the first aligned entity !")
+                        else:
+                            raise GameException("Wrong target type !")
+                else:
+                    raise GameException("Wrong number of target !")
+
+                # Check conditions (TODO : Réfléchir à rajouter un argument booléen "break" aux abilities pour passer les check de condition uniquement dans les abilities)
+                for condition in spell["conditionList"]:
+                    # Set targetIdx
+                    if ("targetIdx" in condition):
+                        targetIdx = condition["targetIdx"]
+                    else:
+                        targetIdx = 0
+
+                    if (condition["feature"] == "range"):
+                        if (calcDist(self._entities[self._players[playerId].heroEntityId].x, self._entities[self._players[playerId].heroEntityId].y, targetPositionList[targetIdx]["x"], targetPositionList[targetIdx]["y"]) <= condition["value"]):
+                            pass
+                        else:
+                            raise GameException("Target too far !")
+
+                    elif (condition["feature"] == "rangeFromFirstTarget"):
+                        if (calcDist(targetPositionList[0]["x"], targetPositionList[0]["y"], targetPositionList[targetIdx]["x"], targetPositionList[targetIdx]["y"]) <= condition["value"]):
+                            pass
+                        else:
+                            raise GameException("Target too far !")
+
+                    elif (condition["feature"] == "elemState"):
+                        if (condition["value"] in ["oiled", "wet", "muddy", "windy"]):
+                            if (self._entities[targetEntityIdList[targetIdx]].elemState == condition["value"]):
+                                self._entities[targetEntityIdList[targetIdx]].setElemState("")
+                            else:
+                                conditionsValid = False
+                        else:
+                            raise GameException("ElemState to consume does not exist !")
+
                     else:
                         raise GameException("Condition not supported !")
 
                 # Execute spell
-                self.executeAbilities(spell["abilities"], "spellCast", playerId, selfEntityId, targetEntityId, {}, spell["elem"])
+                self.executeAbilities(spell["abilities"], "spellCast", playerId, selfEntityId, targetEntityIdList, positionList, spell["elem"])
                 for entityId in range(0, len(self._entities)):
-                    self.executeAbilities(self._entities[entityId].abilities, "spellCast", playerId, entityId, None, {}, spell["elem"])
+                    self.executeAbilities(self._entities[entityId].abilities, "spellCast", playerId, entityId, None, positionList, spell["elem"])
 
             else:
                 raise GameException("Not enough pa to cast this spell !")
@@ -293,10 +323,10 @@ class Board:
                     for placement in companion["placementList"]:
                         if (placement["ref"] == "ally"):
                             for allyEntityId in self._players[playerId].boardEntityIds:
-                                if (abs(summonPositionList[0]["x"] - self._entities[allyEntityId].x) + abs(summonPositionList[0]["y"] - self._entities[allyEntityId].y) <= placement["range"]):
+                                if (calcDist(self._entities[allyEntityId].x, self._entities[allyEntityId].y, summonPositionList[0]["x"], summonPositionList[0]["y"]) <= placement["range"]):
                                     placementValid = True
                         elif (placement["ref"] == "myPlayer"):
-                            if (abs(summonPositionList[0]["x"] - self._entities[self._players[playerId].heroEntityId].x) + abs(summonPositionList[0]["y"] - self._entities[self._players[playerId].heroEntityId].y) <= placement["range"]):
+                            if (calcDist(self._entities[self._players[playerId].heroEntityId].x, self._entities[self._players[playerId].heroEntityId].y, summonPositionList[0]["x"], summonPositionList[0]["y"]) <= placement["range"]):
                                 placementValid = True
                         else:
                             raise GameException("Summon reference not allowed !")
@@ -315,21 +345,25 @@ class Board:
         else:
             raise GameException("Only one summon position is allowed !")
 
-    def executeAbilities(self, abilityList, trigger, playerId, selfEntityId, targetEntityId, position, spellElem):
+    def executeAbilities(self, abilityList, trigger, playerId, selfEntityId, targetEntityIdList, positionList, spellElem):
         auraUsed    = False
         opPlayerId  = self.getOpPlayerId(playerId)
-        print(abilityList)
         for ability in abilityList:
-            print(ability)
             if (trigger == ability["trigger"]):
+
+                # Set targetIdx
+                if ("targetIdx" in ability):
+                    targetIdx = ability["targetIdx"]
+                else:
+                    targetIdx = 0
 
                 # Check conditions
                 conditionsValid = True
                 for condition in ability["conditionList"]:
                     if (condition["feature"] == "elemState"):
                         if (condition["value"] in ["oiled", "wet", "muddy", "windy"]):
-                            if (self._entities[targetEntityId].elemState == condition["value"]):
-                                self._entities[targetEntityId].setElemState("")
+                            if (self._entities[targetEntityIdList[targetIdx]].elemState == condition["value"]):
+                                self._entities[targetEntityIdList[targetIdx]].setElemState("")
                             else:
                                 conditionsValid = False
                         else:
@@ -349,13 +383,15 @@ class Board:
 
                 # Choose abilityEntity
                 if (ability["target"] == "target"):
-                    abilityEntityId = targetEntityId
+                    abilityEntityId = targetEntityIdList[targetIdx]
                 elif (ability["target"] == "self"):
                     abilityEntityId = selfEntityId
                 elif (ability["target"] == "myPlayer"):
                     abilityEntityId = self._players[playerId].heroEntityId
                 elif (ability["target"] == "opPlayer"):
                     abilityEntityId = self._players[opPlayerId].heroEntityId
+                elif (ability["target"] == "tile"):
+                    pass
                 else:
                     raise GameException("Wrong ability target !")
                    
@@ -380,13 +416,18 @@ class Board:
                             else:
                                 raise GameException("Ability value for gauges must be a dict !")
                         elif (ability["feature"] == "atk"):
-                            if (ability["behavior"] == "melee"):
-                                mult = len(self.entityIdAroundTile(self._entities[self._players[playerId].heroEntityId].x, self._entities[self._players[playerId].heroEntityId].y, self.getOpTeam(playerId)))
-                                self._entities[self._players[playerId].heroEntityId].modifyAtk(mult*ability["value"])
-                                executed = True
-                            else:
-                                self._entities[self._players[playerId].heroEntityId].modifyAtk(ability["value"])
-                                executed = True
+                            self._entities[self._players[playerId].heroEntityId].modifyAtk(ability["value"])
+                            executed = True
+                        elif (ability["feature"] == "position"):
+                            self._entities[self._players[playerId].heroEntityId].tp(positionList[targetIdx]["x"], positionList[targetIdx]["y"])
+                            executed = True
+
+                    elif (ability["behavior"] == "melee"):
+                        if (ability["feature"] == "atk"): 
+                            mult = len(self.entityIdAroundTile(self._entities[self._players[playerId].heroEntityId].x, self._entities[self._players[playerId].heroEntityId].y, self.getOpTeam(playerId)))
+                            self._entities[self._players[playerId].heroEntityId].modifyAtk(mult*ability["value"])
+                            executed = True
+                        
                     elif (ability["behavior"] == "addAura"):
                         if (self._entities[self._players[playerId].heroEntityId].aura and ability["feature"] == self._entities[self._players[playerId].heroEntityId].aura["type"]):
                             self._entities[self._players[playerId].heroEntityId].addAura(ability["value"])
@@ -394,29 +435,31 @@ class Board:
                         else:
                             self._entities[self._players[playerId].heroEntityId].newAura(ability["feature"], ability["value"])
                             executed = True
+
                     elif (ability["behavior"] == "charge"):
-                        if (self._entities[selfEntityId].x == self._entities[targetEntityId].x):
-                            if (self._entities[selfEntityId].y < self._entities[targetEntityId].y):
-                                self._entities[selfEntityId].tp(self._entities[selfEntityId].x, self._entities[targetEntityId].y - 1)
+                        if (self._entities[selfEntityId].x == self._entities[abilityEntity].x):
+                            if (self._entities[selfEntityId].y < self._entities[abilityEntity].y):
+                                self._entities[selfEntityId].tp(self._entities[selfEntityId].x, self._entities[abilityEntity].y - 1)
                                 executed = True
-                            elif (self._entities[selfEntityId].y > self._entities[targetEntityId].y):
-                                self._entities[selfEntityId].tp(self._entities[selfEntityId].x, self._entities[targetEntityId].y + 1)
+                            elif (self._entities[selfEntityId].y > self._entities[abilityEntity].y):
+                                self._entities[selfEntityId].tp(self._entities[selfEntityId].x, self._entities[abilityEntity].y + 1)
                                 executed = True
                             else:
                                 raise GameException("Target can't be on the same tile than selfEntity !")
-                        elif (self._entities[selfEntityId].y == self._entities[targetEntityId].y):
-                            if (self._entities[selfEntityId].x < self._entities[targetEntityId].x):
-                                self._entities[selfEntityId].tp(self._entities[selfEntityId].x - 1, self._entities[targetEntityId].y)
+                        elif (self._entities[selfEntityId].y == self._entities[abilityEntity].y):
+                            if (self._entities[selfEntityId].x < self._entities[abilityEntity].x):
+                                self._entities[selfEntityId].tp(self._entities[selfEntityId].x - 1, self._entities[abilityEntity].y)
                                 executed = True
-                            elif (self._entities[selfEntityId].x > self._entities[targetEntityId].x):
-                                self._entities[selfEntityId].tp(self._entities[selfEntityId].x + 1, self._entities[targetEntityId].y)
+                            elif (self._entities[selfEntityId].x > self._entities[abilityEntity].x):
+                                self._entities[selfEntityId].tp(self._entities[selfEntityId].x + 1, self._entities[abilityEntity].y)
                                 executed = True
                             else:
                                 raise GameException("Target can't be on the same tile than selfEntity !")
                         else:
                             raise GameException("Target not aligned with selfEntity !")
+
                     elif (ability["behavior"] == "explosion"):
-                        for entityId in self.entityIdAroundTile(self._entities[targetEntityId].x, self._entities[targetEntityId].y, self.getOpTeam(playerId)):
+                        for entityId in self.entityIdAroundTile(self._entities[abilityEntity].x, self._entities[abilityEntity].y, self.getOpTeam(playerId)):
                             self._entities[entityId].modifyPv(ability["value"])
                             executed = True
 

@@ -5,7 +5,8 @@
         "cost"              : 6,
         "elem"              : "neutral",
         "spritePath"        : "img/sorts/99.png",
-        "conditionList"     : [{"feature" : "allowedTargetList", "value" : ["myPlayer"]}],
+        "allowedTargetList" : ["myPlayer"],
+        "conditionList"     : [],
         "abilities"         :
         [
             {
@@ -24,7 +25,8 @@
         "cost"              : 2,
         "elem"              : "fire",
         "spritePath"        : "img/sorts/2.png",
-        "conditionList"     : [{"feature" : "allowedTargetList", "value" : ["allEntity"]}],
+        "allowedTargetList" : ["allEntity"],
+        "conditionList"     : [],
         "abilities"         :
         [
             {
@@ -59,7 +61,8 @@
         "cost"              : 2,
         "elem"              : "fire",
         "spritePath"        : "img/sorts/3.png",
-        "conditionList"     : [{"feature" : "allowedTargetList", "value" : ["allEntity"]}],
+        "allowedTargetList" : ["allEntity"],
+        "conditionList"     : [],
         "abilities"         :
         [
             {
@@ -86,7 +89,8 @@
         "cost"              : 2,
         "elem"              : "fire",
         "spritePath"        : "img/sorts/4.png",
-        "conditionList"     : [{"feature" : "allowedTargetList", "value" : ["allEntity"]}],
+        "allowedTargetList" : ["allEntity"],
+        "conditionList"     : [],
         "abilities"         :
         [
             {
@@ -113,7 +117,8 @@
         "cost"              : 6,
         "elem"              : "fire",
         "spritePath"        : "img/sorts/58.png",
-        "conditionList"     : [{"feature" :"allowedTargetList", "value" : ["firstAlignedEntity"]}, {"feature" :"range", "value" : 5}],
+        "allowedTargetList" : ["firstAlignedEntity"], 
+        "conditionList"     : [{"feature" :"range", "value" : 5}],
         "abilities"         :
         [
             {
@@ -142,13 +147,63 @@
             }
         ]
     },
+    "s6":
+    {
+        "name"              : "Bond",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/sorts/91.png",
+        "allowedTargetList" : ["emptyTile"],
+        "conditionList"     : [{"feature" :"range", "value" : 2}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "tile",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "position",
+                "value"         : 0
+            }
+        ]
+    },
+    "s7":
+    {
+        "name"              : "Tournoiment",
+        "cost"              : 6,
+        "elem"              : "fire",
+        "spritePath"        : "img/sorts/156.png",
+        "allowedTargetList" : ["allEntity", "emptyTile"],
+        "conditionList"     : [{"feature" : "rangeFromFirstTarget", "value" : 1, "targetIdx" : 1}, {"feature" : "elemState", "value" : "oiled"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "tile",
+                "targetIdx"     : 1,
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "position",
+                "value"         : 0
+            }
+        ]
+    },
     "sc1":
     {
-        "name"              : "",
+        "name"              : "Flamiche",
         "cost"              : 1,
         "elem"              : "fire",
         "spritePath"        : "img/sorts/51.png",
-        "conditionList"     : [{"feature" : "allowedTargetList", "value" : ["allEntity"]}],
+        "allowedTargetList" : ["allEntity"],
+        "conditionList"     : [],
         "abilities"         :
         [
             {

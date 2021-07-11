@@ -9,9 +9,6 @@
 - Ajout de descritpion
 
 Pour Kasai :
-- Sorts de compagnon
-- Téléportation sans restriction
-- Téléportation avec restriction
 - Gain d'atk si seul compagnon
 - Garde du corps
 - Poings volants
