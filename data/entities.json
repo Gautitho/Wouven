@@ -8,9 +8,17 @@
         "atk"           : 30,
         "pm"            : 3,
         "aura"          : {},
-        "states"        : ["shield"],
+        "states"        : [{"feature" : "shield"}],
         "abilities"     : 
         [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
             {
                 "trigger"       : "spellCast",
                 "target"        : "self",
@@ -31,7 +39,17 @@
         "pm"            : 3,
         "aura"          : {},
         "states"        : [],
-        "abilities"     : []
+        "abilities"     :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
     },
     "c1" :
     {
@@ -43,7 +61,25 @@
         "pm"            : 3,
         "aura"          : {},
         "states"        : [],
-        "abilities"     : []
+        "abilities"     :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "always",
+                "target"        : "self",
+                "conditionList" : [{"feature" : "allyCompanions", "value" : 1}],
+                "behavior"      : "state",
+                "feature"       : "elelyAtk",
+                "value"         : 8
+            }
+        ]
     },
     "c2" :
     {
@@ -55,7 +91,25 @@
         "pm"            : 3,
         "aura"          : {},
         "states"        : [],
-        "abilities"     : []
+        "abilities"     :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "targetPlayer",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : -1
+            }
+        ]
     },
     "c3" :
     {
@@ -67,7 +121,25 @@
         "pm"            : 4,
         "aura"          : {},
         "states"        : [],
-        "abilities"     : []
+        "abilities"     :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "move",
+                "target"        : "around",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 12
+            }
+        ]
     },
     "c4" :
     {
@@ -79,18 +151,24 @@
         "pm"            : 3,
         "aura"          : {},
         "states"        : [],
-        "abilities"     : []
-    },
-    "m1" :
-    {
-        "name"          : "waterWatch",
-        "spritePath"    : "img/1.png",
-        "pv"            : 10,
-        "armor"         : 0,
-        "atk"           : 0,
-        "pm"            : 0,
-        "aura"          : {},
-        "states"        : [],
-        "abilities"     : []
+        "abilities"     :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "behavior"      : "state",
+                "feature"       : "bodyguard",
+                "value"         : 0
+            }
+        ]
     }
 }

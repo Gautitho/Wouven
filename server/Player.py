@@ -93,7 +93,6 @@ class Player:
                 self._deckSpellDescIds.append(db.companions[self._companions[companionId]["descId"]]["spellDescId"])
 
     def removeCompanion(self, companionId):
-        print("Here a companion died !")
         self._companions[companionId]["state"]      = "dead"
         self._companions[companionId]["entityId"]   = None
         if (db.companions[self._companions[companionId]["descId"]]["spellDescId"]):
@@ -113,7 +112,11 @@ class Player:
         self.draw()
 
     def modifyPaStock(self, value):
-        self._paStock += value
+        self._paStock = max(min(self._paStock + value, 9), 0)
+
+    def useReserve(self):
+        self._pa += self._paStock
+        self._paStock = 0
 
     def draw(self):
         if (len(self._handSpellDescIds) < HAND_SPELLS):

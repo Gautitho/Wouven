@@ -64,7 +64,7 @@ function updateBoard()
         var imgStr = "";
         for (j = 0; j < entitiesList[i].states.length; j++)
         {
-            imgStr = imgStr + "url(img/" + entitiesList[i].states[j] + ".png), ";
+            imgStr = imgStr + "url(img/" + entitiesList[i].states[j].feature + ".png), ";
         }
         if (entitiesList[i].elemState != "")
         {

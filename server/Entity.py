@@ -148,8 +148,10 @@ class Entity:
 
     def startTurn(self):
         self._pm            = db.entities[self._descId]["pm"]
+        self._atk           = db.entities[self._descId]["atk"]
         self._canMove       = True
         self._canAttack     = True
+        self.applyStates()
 
     def endTurn(self):
         pass
@@ -171,16 +173,41 @@ class Entity:
     def modifyAtk(self, value):
         self._atk = max(self._atk + value, 0)
 
+    def applyStates(self):
+        for state in self._states:
+            if (state["feature"] == "elelyAtk"):
+                self.modifyAtk(state["value"])
+
+    def addState(self, state):
+        cpyState = dict(state)
+        if not(cpyState in self._states):
+            self._states.append(cpyState)
+            self.applyStates()
+
+    def removeState(self, state):
+        if state in self._states:
+            self._states.remove(state)
+            if (state["feature"] == "elelyAtk"):
+                self.modifyAtk(-state["value"])
+        else:
+            raise GameException(f"This state {state} is not applied, it can't be removed !")
+
     def modifyPv(self, value):
         if (value < 0):
-            if "shield" in self._states:
-                self._states.remove("shield")
-            else:
+            apply = True
+            for state in self._states:
+                if (state["feature"] == "shield"):
+                    self.removeState(state)
+                    apply = False
+                    break
+
+            if apply:
                 if (self._armor + value > 0):
                     self._armor += value
                 else:
                     self._armor = 0
                     self._pv    += self._armor + value
+
         else:
             if (self._pv + value > db.entities[self._descId]["pv"]):
                 self._pv = db.entities[self._descId]["pv"]
@@ -198,4 +225,4 @@ class Entity:
         if value in ["", "oiled", "muddy", "windy", "wet"]:
             self._elemState = value
         else:
-            raise GameException("ElemState to apply is not supported !")
+            raise GameException(f"ElemState {value} to apply is not supported !")

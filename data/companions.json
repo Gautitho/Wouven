@@ -18,8 +18,9 @@
     },
     "c2" :
     {
-        "cost"          : {"earth" : 5},
+        "cost"          : {"fire" : 2},
         "entityDescId"  : "c2",
+        "spellDescId"   : "",
         "placementList" :
         [
             {
@@ -30,8 +31,9 @@
     },
     "c3" :
     {
-        "cost"          : {"earth" : 2, "air" : 2},
+        "cost"          : {"fire" : 2},
         "entityDescId"  : "c3",
+        "spellDescId"   : "",
         "placementList" :
         [
             {
@@ -42,8 +44,9 @@
     },
     "c4" :
     {
-        "cost"          : {"air" : 3},
+        "cost"          : {"fire" : 3},
         "entityDescId"  : "c4",
+        "spellDescId"   : "",
         "placementList" :
         [
             {

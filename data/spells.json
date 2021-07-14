@@ -51,7 +51,7 @@
                 "behavior"      : "",
                 "conditionList" : [],
                 "feature"       : "gauges",
-                "value"         : {"fire" : 2}
+                "value"         : {"fire" : 8}
             }
         ]
     },
@@ -80,6 +80,14 @@
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -10
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"fire" : 4}
             }
         ]
     },
@@ -108,6 +116,14 @@
                 "behavior"      : "melee",
                 "feature"       : "atk",
                 "value"         : 3
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"fire" : 2}
             }
         ]
     },

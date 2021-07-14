@@ -77,7 +77,10 @@ class Game:
                 self.checkCmdArgs(cmdDict, ["companionId", "summonPositionList"])
                 self.Summon(playerId, cmdDict["companionId"], cmdDict["summonPositionList"])
 
-            self._board.garbageCollector()
+            elif (cmd == "USE_RESERVE"):
+                self.UseReserve(playerId)
+
+            self._board.always()
             self.sendStatus()
 
         return self._msgList
@@ -156,3 +159,6 @@ class Game:
 
     def Summon(self, playerId, companionId, summonPositionList):
         self._board.summon(playerId, companionId, summonPositionList)
+    
+    def UseReserve(self, playerId):
+        self._board.useRserve(playerId)

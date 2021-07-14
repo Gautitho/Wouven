@@ -1,7 +1,7 @@
 import sys
 import traceback
 
-DISPLAYED_INFO_TYPE = ["MISC", "WARNING", "DEBUG"]
+DISPLAYED_INFO_TYPE = [] #["MISC", "WARNING", "DEBUG"]
 
 def exitOnError(msg):
     traceback.print_stack(file=sys.stdout)
