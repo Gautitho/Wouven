@@ -119,7 +119,7 @@
         "armor"         : 0,
         "atk"           : 21,
         "pm"            : 4,
-        "aura"          : {},
+        "aura"          : {"type" : "flyingFist", "nb" : 3},
         "states"        : [],
         "abilities"     :
         [
@@ -130,14 +130,6 @@
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : "-atk"
-            },
-            {
-                "trigger"       : "move",
-                "target"        : "around",
-                "conditionList" : [],
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : 12
             }
         ]
     },

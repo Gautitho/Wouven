@@ -22,5 +22,21 @@
                 "value"         : 12
             }
         ]
+    },
+    "flyingFist" :
+    {
+        "name"          : "Poings volants",
+        "spritePath"    : "img/auras/flyingFist.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "move",
+                "target"        : "opAround",
+                "conditionList" : [],
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -12
+            }
+        ]
     }
 }
