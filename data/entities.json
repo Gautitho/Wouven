@@ -1,14 +1,14 @@
 {
-    "h1" :
+    "kasai" :
     {
-        "name"          : "Sakai",
-        "spritePath"    : "img/1.png",
-        "pv"            : 300,
+        "name"          : "Kasaï",
+        "spritePath"    : "img/entities/Kasai.png",
+        "pv"            : 390,
         "armor"         : 0,
-        "atk"           : 30,
+        "atk"           : 37,
         "pm"            : 3,
         "aura"          : {},
-        "states"        : [{"feature" : "shield"}],
+        "states"        : [],
         "abilities"     : 
         [
             {
@@ -29,10 +29,10 @@
             }
         ]
     },
-    "h2" :
+    "Pramimum" :
     {
-        "name"          : "Vovo",
-        "spritePath"    : "img/2.png",
+        "name"          : "Pramium",
+        "spritePath"    : "img/entities/Pramium.png",
         "pv"            : 290,
         "armor"         : 0,
         "atk"           : 10,
@@ -51,13 +51,13 @@
             }
         ]
     },
-    "c1" :
+    "elely" :
     {
         "name"          : "aNA",
-        "spritePath"    : "img/spells/4.png",
-        "pv"            : 68,
+        "spritePath"    : "img/entities/Elely.png",
+        "pv"            : 105,
         "armor"         : 0,
-        "atk"           : 18,
+        "atk"           : 22,
         "pm"            : 3,
         "aura"          : {},
         "states"        : [],
@@ -81,62 +81,10 @@
             }
         ]
     },
-    "c2" :
+    "championneSanglante" :
     {
-        "name"          : "Ich2ichi",
-        "spritePath"    : "img/spells/1.png",
-        "pv"            : 100,
-        "armor"         : 0,
-        "atk"           : 26,
-        "pm"            : 3,
-        "aura"          : {},
-        "states"        : [],
-        "abilities"     :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            },
-            {
-                "trigger"       : "attack",
-                "target"        : "targetPlayer",
-                "conditionList" : [],
-                "behavior"      : "",
-                "feature"       : "paStock",
-                "value"         : -1
-            }
-        ]
-    },
-    "c3" :
-    {
-        "name"          : "SpaceSapien",
-        "spritePath"    : "img/spells/2.png",
-        "pv"            : 80,
-        "armor"         : 0,
-        "atk"           : 21,
-        "pm"            : 4,
-        "aura"          : {"type" : "flyingFist", "nb" : 3},
-        "states"        : [],
-        "abilities"     :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
-    "c4" :
-    {
-        "name"          : "Neige",
-        "spritePath"    : "img/spells/3.png",
+        "name"          : "Championne sanglante",
+        "spritePath"    : "img/entities/Championne_sanglante.png",
         "pv"            : 63,
         "armor"         : 0,
         "atk"           : 7,
@@ -160,6 +108,58 @@
                 "behavior"      : "state",
                 "feature"       : "bodyguard",
                 "value"         : 0
+            }
+        ]
+    },
+    "shutter" :
+    {
+        "name"          : "Shutter",
+        "spritePath"    : "img/entities/shutter.png",
+        "pv"            : 72,
+        "armor"         : 0,
+        "atk"           : 10,
+        "pm"            : 3,
+        "aura"          : {"type" : "flyingFist", "nb" : 3},
+        "states"        : [],
+        "abilities"     :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "seraphin" :
+    {
+        "name"          : "Séraphin",
+        "spritePath"    : "img/entities/Seraphin.png",
+        "pv"            : 84,
+        "armor"         : 0,
+        "atk"           : 18,
+        "pm"            : 3,
+        "aura"          : {},
+        "states"        : [],
+        "abilities"     :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "targetPlayer",
+                "conditionList" : [],
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : -1
             }
         ]
     }

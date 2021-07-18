@@ -1,25 +1,21 @@
 {
-    "c1" :
+    "elely" :
     {
-        "cost"          : {"fire" : 2},
-        "entityDescId"  : "c1",
-        "spellDescId"   : "sc1",
+        "cost"          : {"fire" : 5},
+        "entityDescId"  : "elely",
+        "spellDescId"   : "essenceIop",
         "placementList" :
         [
             {
                 "ref"   : "myPlayer",
                 "range" : 2
-            },
-            {
-                "ref"   : "ally",
-                "range" : 1
             }
         ]
     },
-    "c2" :
+    "championneSanglante" :
     {
-        "cost"          : {"fire" : 2},
-        "entityDescId"  : "c2",
+        "cost"          : {"fire" : 4},
+        "entityDescId"  : "championneSanglante",
         "spellDescId"   : "",
         "placementList" :
         [
@@ -29,10 +25,10 @@
             }
         ]
     },
-    "c3" :
+    "shutter" :
     {
-        "cost"          : {"fire" : 2},
-        "entityDescId"  : "c3",
+        "cost"          : {"fire" : 4},
+        "entityDescId"  : "shutter",
         "spellDescId"   : "",
         "placementList" :
         [
@@ -42,10 +38,10 @@
             }
         ]
     },
-    "c4" :
+    "seraphin" :
     {
-        "cost"          : {"fire" : 3},
-        "entityDescId"  : "c4",
+        "cost"          : {"fire" : 4},
+        "entityDescId"  : "seraphin",
         "spellDescId"   : "",
         "placementList" :
         [
