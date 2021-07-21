@@ -173,6 +173,9 @@ class Board:
         for entityId in self._players[playerId].boardEntityIds:
             self._entities[entityId].endTurn()
 
+    def useReserve(self, playerId):
+        self._players[playerId].useReserve()
+
     # This function is called after each action
     def always(self):
         self.garbageCollector()
@@ -443,7 +446,7 @@ class Board:
                     elif (ability["value"] == "atk"):
                         value = self._entities[selfEntityId].atk
                     else:
-                        raise GameException(f"Ability value {ability['value']} is not supported !")
+                        value = ability["value"]
                 else:
                     raise GameException(f"Ability value {ability['value']} must be an int, an str or a dict !")
                    
@@ -488,7 +491,7 @@ class Board:
                             self._entities[self._players[playerId].heroEntityId].tp(positionList[targetIdx]["x"], positionList[targetIdx]["y"])
                             executed = True
                         elif (ability["feature"] == "paStock"):
-                            self._players[self.getPlayerIdFromTeam(self._entities[targetEntityIdList[targetIdx]].team)].modifyPaStock(value)
+                            self._players[playerId].modifyPaStock(value)
                             executed = True
 
                     elif (ability["behavior"] == "melee"):

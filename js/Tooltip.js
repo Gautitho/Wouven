@@ -5,8 +5,16 @@ class Tooltip
     this.element = element
     this.content = content
     this.tooltip = null
-    this.element.addEventListener('mouseover', this.mouseOver.bind(this))
-    this.element.addEventListener('mouseout', this.mouseOut.bind(this))
+    this.mouseOverBind = this.mouseOver.bind(this)
+    this.mouseOutBind = this.mouseOut.bind(this)
+    this.element.addEventListener('mouseover', this.mouseOverBind)
+    this.element.addEventListener('mouseout', this.mouseOutBind)
+  }
+
+  destructor ()
+  {
+    this.element.removeEventListener('mouseover', this.mouseOverBind)
+    this.element.removeEventListener('mouseout', this.mouseOutBind)
   }
 
   mouseOver () 

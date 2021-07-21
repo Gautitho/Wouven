@@ -68,3 +68,9 @@ function summon()
     summonCmd = {"cmd" : "SUMMON", "playerId" : playerId, "companionId" : selectedMyCompanion, "summonPositionList" : boardTileList};
     socket.send(JSON.stringify(summonCmd));
 }
+
+function usePaStock()
+{
+    useCmd = {"cmd" : "USE_RESERVE", "playerId" : playerId};
+    socket.send(JSON.stringify(useCmd));
+}

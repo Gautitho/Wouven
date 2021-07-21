@@ -161,4 +161,4 @@ class Game:
         self._board.summon(playerId, companionId, summonPositionList)
     
     def UseReserve(self, playerId):
-        self._board.useRserve(playerId)
+        self._board.useReserve(playerId)
