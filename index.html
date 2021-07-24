@@ -25,10 +25,16 @@
     <section class="flex items-center justify-between my-2 h-4/5 w-full">
         <div class="flex flex-col h-full w-1/4 mx-2">
             <div id="myStatus" class="flex h-1/5 w-full border-2">
-                <div id="myStatusSprite" class="h-20 w-20 bg-center bg-cover bg-no-repeat" style="background-image: url(img/cell.png);"></div>
-                <div id="myStatusFeature" class="mx-2">
-                    <div id="myStatusPv">PV : 0 / 0</div>
-                    <div id="myStatusGauges">Gauges : 0 / 0 / 0 / 0 / 0</div>
+                <div id="myStatusSprite" class="flex h-20 w-20 bg-center bg-cover bg-no-repeat""></div>
+                <div id="myStatusFeature" class="flex flex-col mx-2">
+                    <div id="myStatusPv" class="flex">PV : 0 / 0</div>
+                    <div id="myStatusGauges" class="flex flex-row">
+                        <div id="myStatusGaugesFire" class="h-10 w-10 bg-center bg-cover bg-no-repeat gauge-class" style="background-image: url(img/utils/fire.png);">0</div>
+                        <div id="myStatusGaugesWater" class="h-10 w-10 bg-center bg-cover bg-no-repeat gauge-class" style="background-image: url(img/utils/water.png);">0</div>
+                        <div id="myStatusGaugesEarth" class="h-10 w-10 bg-center bg-cover bg-no-repeat gauge-class" style="background-image: url(img/utils/earth.png);">0</div>
+                        <div id="myStatusGaugesAir" class="h-10 w-10 bg-center bg-cover bg-no-repeat gauge-class" style="background-image: url(img/utils/air.png);">0</div>
+                        <div id="myStatusGaugesNeutral" class="h-10 w-10 bg-center bg-cover bg-no-repeat gauge-class" style="background-image: url(img/utils/neutral.png);">0</div>
+                    </div>
                 </div>
             </div>
             <div id="myCompanions" class="flex flex-col h-2/3 mx-4 w-full"></div>
@@ -40,10 +46,16 @@
 
         <div class="flex flex-col h-full w-1/4 mx-2">
             <div id="opStatus" class="flex h-1/5 w-full border-2">
-                <div id="opStatusSprite" class="h-20 w-20 bg-center bg-cover bg-no-repeat" style="background-image: url(img/cell.png)"></div>
-                <div id="opStatusFeature" class="mx-2">
+                <div id="opStatusSprite" class="flex h-20 w-20 bg-center bg-cover bg-no-repeat" style="background-image: url(img/cell.png)"></div>
+                <div id="opStatusFeature" class="flex flex-col mx-2">
                     <div id="opStatusPv">PV : 0 / 0</div>
-                    <div id="opStatusGauges">Gauges : 0 / 0 / 0 / 0 / 0</div>
+                    <div id="opStatusGauges" class="flex flex-row">
+                        <div id="opStatusGaugesFire" class="h-10 w-10 bg-center bg-cover bg-no-repeat gauge-class" style="background-image: url(img/utils/fire.png);">0</div>
+                        <div id="opStatusGaugesWater" class="h-10 w-10 bg-center bg-cover bg-no-repeat gauge-class" style="background-image: url(img/utils/water.png);">0</div>
+                        <div id="opStatusGaugesEarth" class="h-10 w-10 bg-center bg-cover bg-no-repeat gauge-class" style="background-image: url(img/utils/earth.png);">0</div>
+                        <div id="opStatusGaugesAir" class="h-10 w-10 bg-center bg-cover bg-no-repeat gauge-class" style="background-image: url(img/utils/air.png);">0</div>
+                        <div id="opStatusGaugesNeutral" class="h-10 w-10 bg-center bg-cover bg-no-repeat gauge-class" style="background-image: url(img/utils/neutral.png);">0</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -56,8 +68,8 @@
 
         <div class="h-full w-1/2 mx-2">
             <div id="handBar" class="flex flex-row">
-                <div id="pa" class="h-20 w-20 bg-center bg-cover bg-no-repeat mx-2 center-white" style="background-image: url(img/utils/pa.png);"></div>
-                <div id="paStock" class="h-20 w-20 bg-center bg-cover bg-no-repeat mx-2 center-white" style="background-image: url(img/utils/paStock.png);" onclick="paStockClick()"></div>
+                <div id="pa" class="h-20 w-20 bg-center bg-cover bg-no-repeat mx-2 pa-class" style="background-image: url(img/utils/pa.png);"></div>
+                <div id="paStock" class="h-20 w-20 bg-center bg-cover bg-no-repeat mx-2 pa-class" style="background-image: url(img/utils/paStock.png);" onclick="paStockClick()"></div>
                 <div id="hand" class="flex-grow grid grid-cols-7 grid-rows-1 w-max mx-2"></div>
             </div>
         </div>
@@ -81,10 +93,9 @@
         for (i = 0; i < COMPANIONS; i++)
         {
             document.getElementById("myCompanions").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}" class="flex h-1/4 w-full"></div>`);
-            document.getElementById("myCompanion_" + i).insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_sprite" class="h-20 w-20 bg-center bg-cover bg-no-repeat" style="background-image: url(img/cell.png);"></div>`);
+            document.getElementById("myCompanion_" + i).insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_sprite" class="h-20 w-20 bg-center bg-cover bg-no-repeat""></div>`);
             document.getElementById("myCompanion_" + i).insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_feature" class="mx-2"></div>`);
             document.getElementById("myCompanion_" + i + "_feature").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_name">This is name !</div>`);
-            document.getElementById("myCompanion_" + i + "_feature").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_cost">Cost : 0 / 0 / 0 / 0</div>`);
             $("#myCompanion_" + i).click(function() {myCompanionClick($(this))});
         }
         for (y = 0; y < BOARD_ROWS; y++)

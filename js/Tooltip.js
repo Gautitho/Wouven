@@ -1,9 +1,10 @@
 class Tooltip
 {
-  constructor (element, content)
+  constructor (element, content, contentType)
   {
     this.element = element
     this.content = content
+    this.contentType = contentType
     this.tooltip = null
     this.mouseOverBind = this.mouseOver.bind(this)
     this.mouseOutBind = this.mouseOut.bind(this)
@@ -47,10 +48,19 @@ class Tooltip
 
   createTooltip ()
   {
-    if (this.tooltip === null) {
+    if (this.tooltip === null) 
+    {
       let tooltip = document.createElement('div')
-      tooltip.innerHTML = this.content
-      tooltip.classList.add('tooltip')
+      if (this.contentType == "img")
+      {
+        tooltip.classList.add('tooltipImg')
+        tooltip.style.backgroundImage = "url('" + this.content + "')"
+      }
+      else if (this.contentType == "txt")
+      {
+        tooltip.innerHTML = this.content
+        tooltip.classList.add('tooltipTxt')
+      }
       document.body.appendChild(tooltip)
       this.tooltip = tooltip
     }

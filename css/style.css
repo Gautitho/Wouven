@@ -25,7 +25,7 @@
     padding-right:      1rem;
 }
 
-.center-white
+.pa-class
 {
     font-weight:        700;
     color:              #FFFFFF;
@@ -34,7 +34,16 @@
     line-height:        75px;
 }
 
-.tooltip
+.gauge-class
+{
+    font-weight:        700;
+    color:              #FFFFFF;
+    font-size:          1rem;
+    text-align:         center;
+    line-height:        35px;
+}
+
+.tooltipTxt
 {
     position:           absolute;
     top:                0;
@@ -47,4 +56,15 @@
     text-align:         center;
     border-radius:      1rem;
     white-space:        pre-wrap;
+}
+
+.tooltipImg
+{
+    position:           absolute;
+    top:                0;
+    left:               0;
+    width:              200px;
+    height:             70px;
+    background-size:    contain;
+    background-repeat:  no-repeat;
 }

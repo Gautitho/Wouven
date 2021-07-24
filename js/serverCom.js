@@ -6,6 +6,7 @@ socket.onopen = function() {socket.send(JSON.stringify(authCmd));};
 
 socket.onmessage = function(handler)
 {
+    removeTooltips();
     console.log(handler.data)
     cmdObj = JSON.parse(handler.data)
 
