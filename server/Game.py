@@ -67,15 +67,15 @@ class Game:
 
             elif (cmd == "MOVE"):
                 self.checkCmdArgs(cmdDict, ["entityId", "path"])
-                self.Move(playerId, cmdDict["entityId"], cmdDict["path"])
+                self.Move(playerId, int(cmdDict["entityId"]), cmdDict["path"])
 
             elif (cmd == "SPELL"):
                 self.checkCmdArgs(cmdDict, ["spellId", "targetPositionList"])
-                self.SpellCast(playerId, cmdDict["spellId"], cmdDict["targetPositionList"])
+                self.SpellCast(playerId, int(cmdDict["spellId"]), cmdDict["targetPositionList"])
 
             elif (cmd == "SUMMON"):
                 self.checkCmdArgs(cmdDict, ["companionId", "summonPositionList"])
-                self.Summon(playerId, cmdDict["companionId"], cmdDict["summonPositionList"])
+                self.Summon(playerId, int(cmdDict["companionId"]), cmdDict["summonPositionList"])
 
             elif (cmd == "USE_RESERVE"):
                 self.UseReserve(playerId)
@@ -114,10 +114,10 @@ class Game:
                     statusCmd["myPlayer"]   = self._board.players[playerId].getMyStatusDict()
                 else:
                     statusCmd["opPlayer"]   = self._board.players[playerId].getOpStatusDict()
-            entitiesList    = []
-            for entityIdx in range(0, len(self._board.entities)):
-                entitiesList.append(self._board.entities[entityIdx].getStatusDict())
-            statusCmd["entitiesList"] = entitiesList
+            entitiesDict    = {}
+            for entityId in list(self._board.entities.keys()):
+                entitiesDict[entityId] = self._board.entities[entityId].getStatusDict()
+            statusCmd["entitiesDict"] = entitiesDict
             self._msgList.append({"clientId" : self._clientIds[clientId], "content" : json.dumps(statusCmd)})
 
     def checkCmdArgs(self, cmdDict, keyList):

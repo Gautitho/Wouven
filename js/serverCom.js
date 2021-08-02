@@ -20,7 +20,7 @@ socket.onmessage = function(handler)
         turn            = cmdObj.turn;
         myPlayer        = cmdObj.myPlayer;
         opPlayer        = cmdObj.opPlayer;
-        entitiesList    = cmdObj.entitiesList;
+        entities        = cmdObj.entitiesDict;
 
         if (turn == team)
         {

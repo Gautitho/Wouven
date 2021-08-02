@@ -7,12 +7,13 @@ from GameException import *
 class Board:
 
     def __init__(self):
-        self._entities  = []
-        self._players   = {}
+        self._nextEntityId  = 0
+        self._entities      = {}
+        self._players       = {}
 
     @property
     def entities(self):
-        return list(self._entities)
+        return dict(self._entities)
 
     @property
     def players(self):
@@ -31,9 +32,10 @@ class Board:
     # Return the entityId
     def appendEntity(self, playerId, entityDescId, team, x, y):
         if (self.entityIdOnTile(x, y) == None):
-            self._entities.append(Entity(entityDescId, team, x, y))
-            self._players[playerId].addEntity(len(self._entities) - 1)
-            return len(self._entities) - 1
+            self._entities[self._nextEntityId] = Entity(entityDescId, team, x, y)
+            self._players[playerId].addEntity(self._nextEntityId)
+            self._nextEntityId +=1
+            return self._nextEntityId - 1
         else:
             raise GameException("Tile is not empty !")
 
