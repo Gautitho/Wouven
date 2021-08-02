@@ -287,38 +287,6 @@ class Board:
                 else:
                     raise GameException("Wrong number of target !")
 
-                # Check conditions (TODO : Réfléchir à rajouter un argument booléen "break" aux abilities pour passer les check de condition uniquement dans les abilities)
-                for condition in spell["conditionList"]:
-                    # Set targetIdx
-                    if ("targetIdx" in condition):
-                        targetIdx = condition["targetIdx"]
-                    else:
-                        targetIdx = 0
-
-                    if (condition["feature"] == "range"):
-                        if (calcDist(self._entities[self._players[playerId].heroEntityId].x, self._entities[self._players[playerId].heroEntityId].y, targetPositionList[targetIdx]["x"], targetPositionList[targetIdx]["y"]) <= condition["value"]):
-                            pass
-                        else:
-                            raise GameException("Target too far !")
-
-                    elif (condition["feature"] == "rangeFromFirstTarget"):
-                        if (calcDist(targetPositionList[0]["x"], targetPositionList[0]["y"], targetPositionList[targetIdx]["x"], targetPositionList[targetIdx]["y"]) <= condition["value"]):
-                            pass
-                        else:
-                            raise GameException("Target too far !")
-
-                    elif (condition["feature"] == "elemState"):
-                        if (condition["value"] in ["oiled", "wet", "muddy", "windy"]):
-                            if (self._entities[targetEntityIdList[targetIdx]].elemState == condition["value"]):
-                                self._entities[targetEntityIdList[targetIdx]].setElemState("")
-                            else:
-                                conditionsValid = False
-                        else:
-                            raise GameException("ElemState to consume does not exist !")
-
-                    else:
-                        raise GameException("Condition not supported !")
-
                 # Execute spell
                 self.executeAbilities(spell["abilities"], "spellCast", playerId, selfEntityId, targetEntityIdList, positionList, spell["elem"])
                 for entityId in range(0, len(self._entities)):
@@ -336,7 +304,7 @@ class Board:
                 if (self._players[playerId].companions[companionId]["state"] == "available"):
                     companion = db.companions[self._players[playerId].companions[companionId]["descId"]]
 
-                    # Check if the player ha enough gauges to summon
+                    # Check if the player have enough gauges to summon
                     for gaugeType in list(companion["cost"].keys()):
                         self._players[playerId].modifyGauge(gaugeType, -companion["cost"][gaugeType])
 
@@ -412,8 +380,23 @@ class Board:
                         else:
                             conditionsValid = False
 
+                    elif (condition["feature"] == "range"):
+                        if (calcDist(self._entities[self._players[playerId].heroEntityId].x, self._entities[self._players[playerId].heroEntityId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"]) <= condition["value"]):
+                            pass
+                        else:
+                            conditionsValid = False
+
+                    elif (condition["feature"] == "rangeFromFirstTarget"):
+                        if (calcDist(positionList[0]["x"], positionList[0]["y"], positionList[targetIdx]["x"], positionList[targetIdx]["y"]) <= condition["value"]):
+                            pass
+                        else:
+                            conditionsValid = False
+
                     else:
                         raise GameException("Wrong ability condition !")
+
+                if (not(conditionsValid) and ability["break"] == "True"):
+                    raise GameException(f"The condition {condition['feature']} is not respected !")
 
                 # Choose abilityEntity
                 if (ability["target"] == "target"):

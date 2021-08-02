@@ -16,6 +16,7 @@
                 "trigger"       : "attack",
                 "target"        : "target",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : "-atk"
@@ -24,6 +25,7 @@
                 "trigger"       : "spellCast",
                 "target"        : "self",
                 "conditionList" : [{"feature" : "elem", "value" : "fire"}],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pm",
                 "value"         : 1
@@ -47,6 +49,7 @@
                 "trigger"       : "attack",
                 "target"        : "target",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : "-atk"
@@ -70,6 +73,7 @@
                 "trigger"       : "attack",
                 "target"        : "target",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : "-atk"
@@ -78,6 +82,7 @@
                 "trigger"       : "always",
                 "target"        : "self",
                 "conditionList" : [{"feature" : "allyCompanions", "value" : 1}],
+                "break"         : "False",
                 "behavior"      : "state",
                 "feature"       : "elelyAtk",
                 "value"         : 8
@@ -101,6 +106,7 @@
                 "trigger"       : "attack",
                 "target"        : "target",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : "-atk"
@@ -109,6 +115,7 @@
                 "trigger"       : "spawn",
                 "target"        : "myPlayer",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "state",
                 "feature"       : "bodyguard",
                 "value"         : 0
@@ -132,6 +139,7 @@
                 "trigger"       : "attack",
                 "target"        : "target",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : "-atk"
@@ -155,6 +163,7 @@
                 "trigger"       : "attack",
                 "target"        : "target",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : "-atk"
@@ -163,6 +172,7 @@
                 "trigger"       : "attack",
                 "target"        : "targetPlayer",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "paStock",
                 "value"         : -1

@@ -7,13 +7,13 @@
         "spritePath"        : "img/spells/icon/bloodySword.png",
         "descSpritePath"    : "img/spells/desc/bloodySword.png",
         "allowedTargetList" : ["myPlayer"],
-        "conditionList"     : [],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
                 "target"        : "myPlayer",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "addAura",
                 "feature"       : "bloodySword",
                 "value"         : 3
@@ -28,13 +28,13 @@
         "spritePath"        : "img/spells/icon/blame.png",
         "descSpritePath"    : "img/spells/desc/blame.png",
         "allowedTargetList" : ["allEntity"],
-        "conditionList"     : [],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -22
@@ -43,6 +43,7 @@
                 "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "elemState",
                 "value"         : "oiled"
@@ -52,6 +53,7 @@
                 "target"        : "myPlayer",
                 "behavior"      : "",
                 "conditionList" : [],
+                "break"         : "False",
                 "feature"       : "gauges",
                 "value"         : {"fire" : 2}
             }
@@ -65,13 +67,13 @@
         "spritePath"        : "img/spells/icon/burn.png",
         "descSpritePath"    : "img/spells/desc/burn.png",
         "allowedTargetList" : ["allEntity"],
-        "conditionList"     : [],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -6
@@ -80,6 +82,7 @@
                 "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -10
@@ -89,6 +92,7 @@
                 "target"        : "myPlayer",
                 "behavior"      : "",
                 "conditionList" : [],
+                "break"         : "False",
                 "feature"       : "gauges",
                 "value"         : {"fire" : 1}
             }
@@ -102,13 +106,13 @@
         "spritePath"        : "img/spells/icon/fulgur.png",
         "descSpritePath"    : "img/spells/desc/fulgur.png",
         "allowedTargetList" : ["allEntity"],
-        "conditionList"     : [],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -17
@@ -117,6 +121,7 @@
                 "trigger"       : "spellCast",
                 "target"        : "myPlayer",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "melee",
                 "feature"       : "atk",
                 "value"         : 6
@@ -125,6 +130,7 @@
                 "trigger"       : "spellCast",
                 "target"        : "myPlayer",
                 "behavior"      : "",
+                "break"         : "False",
                 "conditionList" : [],
                 "feature"       : "paStock",
                 "value"         : 1
@@ -139,13 +145,13 @@
         "spritePath"        : "img/spells/icon/explosiveCharge.png",
         "descSpritePath"    : "img/spells/desc/explosiveCharge.png",
         "allowedTargetList" : ["firstAlignedEntity"], 
-        "conditionList"     : [{"feature" :"range", "value" : 5}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [],
+                "conditionList" : [{"feature" :"range", "value" : 5}],
+                "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -36
@@ -154,6 +160,7 @@
                 "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "break"         : "False",
                 "behavior"      : "explosion",
                 "feature"       : "pv",
                 "value"         : -11
@@ -162,6 +169,7 @@
                 "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "charge",
                 "feature"       : "position",
                 "value"         : 0
@@ -169,8 +177,9 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "myPlayer",
-                "behavior"      : "",
                 "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"fire" : 2}
             }
@@ -184,13 +193,13 @@
         "spritePath"        : "img/spells/icon/leap.png",
         "descSpritePath"    : "img/spells/desc/leap.png",
         "allowedTargetList" : ["emptyTile"],
-        "conditionList"     : [{"feature" :"range", "value" : 2}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
                 "target"        : "tile",
-                "conditionList" : [],
+                "conditionList" : [{"feature" :"range", "value" : 2}],
+                "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
                 "value"         : 0
@@ -198,8 +207,9 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "myPlayer",
-                "behavior"      : "",
                 "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"neutral" : 1}
             }
@@ -213,13 +223,13 @@
         "spritePath"        : "img/spells/icon/spinning.png",
         "descSpritePath"    : "img/spells/desc/spinning.png",
         "allowedTargetList" : ["allEntity", "emptyTile"],
-        "conditionList"     : [{"feature" : "rangeFromFirstTarget", "value" : 1, "targetIdx" : 1}, {"feature" : "elemState", "value" : "oiled"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [],
+                "conditionList" : [{"feature" : "rangeFromFirstTarget", "value" : 1, "targetIdx" : 1}, {"feature" : "elemState", "value" : "oiled"}],
+                "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -29
@@ -229,6 +239,7 @@
                 "target"        : "tile",
                 "targetIdx"     : 1,
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "position",
                 "value"         : 0
@@ -238,6 +249,7 @@
                 "target"        : "myPlayer",
                 "behavior"      : "",
                 "conditionList" : [],
+                "break"         : "False",
                 "feature"       : "gauges",
                 "value"         : {"fire" : 2}
             }
@@ -259,6 +271,7 @@
                 "target"        : "target",
                 "conditionList" : [],
                 "behavior"      : "",
+                "break"         : "False",
                 "feature"       : "pv",
                 "value"         : -21
             },
@@ -267,6 +280,7 @@
                 "target"        : "target",
                 "conditionList" : [],
                 "behavior"      : "",
+                "break"         : "False",
                 "feature"       : "elemState",
                 "value"         : "oiled"
             },
@@ -274,6 +288,7 @@
                 "trigger"       : "spellCast",
                 "target"        : "myPlayer",
                 "behavior"      : "",
+                "break"         : "False",
                 "conditionList" : [],
                 "feature"       : "gauges",
                 "value"         : {"fire" : 1}
@@ -288,13 +303,13 @@
         "spritePath"        : "img/spells/icon/inspiration.png",
         "descSpritePath"    : "img/spells/desc/inspiration.png",
         "allowedTargetList" : ["allEntity"],
-        "conditionList"     : [],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -22
@@ -303,6 +318,7 @@
                 "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -12
@@ -310,8 +326,9 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "myPlayer",
-                "behavior"      : "",
                 "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"fire" : 2}
             }
@@ -325,13 +342,13 @@
         "spritePath"        : "img/spells/icon/iopEssence.png",
         "descSpritePath"    : "img/spells/desc/iopEssence.png",
         "allowedTargetList" : ["allEntity"],
-        "conditionList"     : [],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
                 "target"        : "self",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "atk",
                 "value"         : 12
@@ -340,6 +357,7 @@
                 "trigger"       : "spellCast",
                 "target"        : "self",
                 "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pm",
                 "value"         : 3
