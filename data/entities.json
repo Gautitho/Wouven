@@ -1,15 +1,16 @@
 {
     "kasai" :
     {
-        "name"          : "Kasaï",
-        "spritePath"    : "img/entities/Kasai.png",
-        "pv"            : 390,
-        "armor"         : 0,
-        "atk"           : 37,
-        "pm"            : 3,
-        "aura"          : {},
-        "states"        : [],
-        "abilities"     : 
+        "name"              : "Kasaï",
+        "spritePath"        : "img/entities/icon/Kasai.png",
+        "descSpritePath"    : "img/entities/desc/Kasai.png",
+        "pv"                : 390,
+        "armor"             : 0,
+        "atk"               : 37,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         : 
         [
             {
                 "trigger"       : "attack",
@@ -31,15 +32,16 @@
     },
     "Pramimum" :
     {
-        "name"          : "Pramium",
-        "spritePath"    : "img/entities/Pramium.png",
-        "pv"            : 290,
-        "armor"         : 0,
-        "atk"           : 10,
-        "pm"            : 3,
-        "aura"          : {},
-        "states"        : [],
-        "abilities"     :
+        "name"              : "Pramium",
+        "spritePath"        : "img/entities/icon/Pramium.png",
+        "descSpritePath"    : "img/entities/desc/Elely.png",
+        "pv"                : 290,
+        "armor"             : 0,
+        "atk"               : 10,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
         [
             {
                 "trigger"       : "attack",
@@ -53,15 +55,16 @@
     },
     "elely" :
     {
-        "name"          : "aNA",
-        "spritePath"    : "img/entities/Elely.png",
-        "pv"            : 105,
-        "armor"         : 0,
-        "atk"           : 22,
-        "pm"            : 3,
-        "aura"          : {},
-        "states"        : [],
-        "abilities"     :
+        "name"              : "Elely",
+        "spritePath"        : "img/entities/icon/Elely.png",
+        "descSpritePath"    : "img/entities/desc/Elely.png",
+        "pv"                : 105,
+        "armor"             : 0,
+        "atk"               : 22,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
         [
             {
                 "trigger"       : "attack",
@@ -83,15 +86,16 @@
     },
     "championneSanglante" :
     {
-        "name"          : "Championne sanglante",
-        "spritePath"    : "img/entities/Championne_sanglante.png",
-        "pv"            : 63,
-        "armor"         : 0,
-        "atk"           : 7,
-        "pm"            : 3,
-        "aura"          : {},
-        "states"        : [],
-        "abilities"     :
+        "name"              : "Championne sanglante",
+        "spritePath"        : "img/entities/icon/Championne_sanglante.png",
+        "descSpritePath"    : "img/entities/desc/Championne_sanglante.png",
+        "pv"                : 63,
+        "armor"             : 0,
+        "atk"               : 7,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
         [
             {
                 "trigger"       : "attack",
@@ -113,15 +117,16 @@
     },
     "shutter" :
     {
-        "name"          : "Shutter",
-        "spritePath"    : "img/entities/shutter.png",
-        "pv"            : 72,
-        "armor"         : 0,
-        "atk"           : 10,
-        "pm"            : 3,
-        "aura"          : {"type" : "flyingFist", "nb" : 3},
-        "states"        : [],
-        "abilities"     :
+        "name"              : "Shutter",
+        "spritePath"        : "img/entities/icon/Shutter.png",
+        "descSpritePath"    : "img/entities/desc/Shutter.png",
+        "pv"                : 72,
+        "armor"             : 0,
+        "atk"               : 10,
+        "pm"                : 3,
+        "aura"              : {"type" : "flyingFist", "nb" : 3},
+        "states"            : [],
+        "abilities"         :
         [
             {
                 "trigger"       : "attack",
@@ -135,15 +140,16 @@
     },
     "seraphin" :
     {
-        "name"          : "Séraphin",
-        "spritePath"    : "img/entities/Seraphin.png",
-        "pv"            : 84,
-        "armor"         : 0,
-        "atk"           : 18,
-        "pm"            : 3,
-        "aura"          : {},
-        "states"        : [],
-        "abilities"     :
+        "name"              : "Séraphin",
+        "spritePath"        : "img/entities/icon/Seraphin.png",
+        "descSpritePath"    : "img/entities/desc/Seraphin.png",
+        "pv"                : 84,
+        "armor"             : 0,
+        "atk"               : 18,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
         [
             {
                 "trigger"       : "attack",

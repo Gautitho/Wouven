@@ -4,7 +4,6 @@
         "cost"          : {"fire" : 5},
         "entityDescId"  : "elely",
         "spellDescId"   : "essenceIop",
-        "descSpritePath"    : "img/spells/bloodySwordDesc.png",
         "placementList" :
         [
             {
@@ -18,7 +17,6 @@
         "cost"          : {"fire" : 4},
         "entityDescId"  : "championneSanglante",
         "spellDescId"   : "",
-        "descSpritePath"    : "img/spells/bloodySwordDesc.png",
         "placementList" :
         [
             {
@@ -32,7 +30,6 @@
         "cost"          : {"fire" : 4},
         "entityDescId"  : "shutter",
         "spellDescId"   : "",
-        "descSpritePath"    : "img/spells/bloodySwordDesc.png",
         "placementList" :
         [
             {
@@ -46,7 +43,6 @@
         "cost"          : {"fire" : 4},
         "entityDescId"  : "seraphin",
         "spellDescId"   : "",
-        "descSpritePath"    : "img/spells/bloodySwordDesc.png",
         "placementList" :
         [
             {

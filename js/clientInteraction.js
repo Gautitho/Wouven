@@ -101,6 +101,7 @@ function updateMyStatus()
     $("#myStatusGaugesEarth").text(myPlayer.gauges.earth);
     $("#myStatusGaugesAir").text(myPlayer.gauges.air);
     $("#myStatusGaugesNeutral").text(myPlayer.gauges.neutral);
+    $("#myStatusDescSprite").css("background-image", "url(" + eval("entitiesDataBase." + eval("heroesDataBase." + myPlayer.heroDescId + ".entityDescId") + ".descSpritePath") + ")");
 }
 
 function updateMyCompanion(companionIdx)
@@ -117,9 +118,7 @@ function updateMyCompanion(companionIdx)
     {
         $("#myCompanion_" + companionIdx).css("background-color", "#FFFFFF");
     }
-    $("#myCompanion_" + companionIdx + "_sprite").css("background-image", "url(" + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.companions[companionIdx].descId + ".entityDescId") + ".spritePath") + ")");
-    $("#myCompanion_" + companionIdx + "_name").text(eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.companions[companionIdx].descId + ".entityDescId") + ".name"));
-    tooltipArray.push(new Tooltip(document.getElementById("myCompanion_" + companionIdx), eval("companionsDataBase." + myPlayer.companions[companionIdx].descId + ".descSpritePath"), "img"));
+    $("#myCompanion_" + companionIdx + "_sprite").css("background-image", "url(" + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.companions[companionIdx].descId + ".entityDescId") + ".descSpritePath") + ")");
 }
 
 function updateOpStatus()
