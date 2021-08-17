@@ -1,4 +1,4 @@
-socket      = new WebSocket('ws://localhost:8000/');
+socket      = new WebSocket('ws://localhost:50000/');
 playerId    = Math.random().toString(36).substring(4);
 
 authCmd = {"cmd" : "AUTH", "playerId" : playerId};
@@ -36,14 +36,18 @@ socket.onmessage = function(handler)
     {
         errorLog(cmdObj.msg);
     }
-    updateBoard();
-    updateMyStatus();
-    updateOpStatus();
-    for (i = 0; i < COMPANIONS; i++)
+
+    if (state != "INIT")
     {
-        updateMyCompanion(i);
+        updateBoard();
+        updateMyStatus();
+        updateOpStatus();
+        for (i = 0; i < COMPANIONS; i++)
+        {
+            updateMyCompanion(i);
+        }
+        updateHandBar();
     }
-    updateHandBar();
 };
 
 function endTurn()

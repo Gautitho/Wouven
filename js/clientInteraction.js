@@ -1,5 +1,5 @@
-// Available states : LOCKED, IDLE, MOVE, SPELL, COMPANION
-var state = "LOCKED"; 
+// Available states : INIT, LOCKED, IDLE, MOVE, SPELL, COMPANION
+var state = "INIT"; 
 var turn = "blue";
 var team = "blue";
 var entitiesDataBase = {}

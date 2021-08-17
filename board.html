@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Wouven</title>
+</head>
+<body class="h-screen w-screen">
+
+    <section class="w-full">
+        <div class="flex flex-col items-center">
+            <p class="text-4xl font-bold">Wouven</p>
+        </div>
+
+        <div id="head">
+
+        </div>
+    </section>
+
+    <section class="flex items-center justify-between my-2 h-4/5 w-full">
+        <div class="flex flex-col h-full w-1/4 mx-2">
+            <div id="myStatus" class="flex flex-col h-1/4 w-full border-2">
+                <div class="flex">
+                    <div id="myStatusSprite" class="flex h-20 w-20 bg-center bg-contain bg-no-repeat"></div>
+                    <div id="myStatusFeature" class="flex flex-col mx-2">
+                        <div id="myStatusPv" class="flex">PV : 0 / 0</div>
+                        <div id="myStatusGauges" class="flex flex-row">
+                            <div id="myStatusGaugesFire" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class" style="background-image: url(img/utils/fire.png);">0</div>
+                            <div id="myStatusGaugesWater" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class" style="background-image: url(img/utils/water.png);">0</div>
+                            <div id="myStatusGaugesEarth" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class" style="background-image: url(img/utils/earth.png);">0</div>
+                            <div id="myStatusGaugesAir" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class" style="background-image: url(img/utils/air.png);">0</div>
+                            <div id="myStatusGaugesNeutral" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class" style="background-image: url(img/utils/neutral.png);">0</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="myStatusDescSprite" class="w-5/6 h-1/2 self-center bg-center bg-contain bg-no-repeat"></div>
+            </div>
+            <div id="myCompanions" class="flex flex-col h-2/3 mx-4 w-full"></div>
+        </div>
+
+        <div class="flex h-full w-1/2 mx-2">
+            <div id="board" class="flex-grow grid grid-cols-7 grid-rows-7 w-max"></div>
+        </div>
+
+        <div class="flex flex-col h-full w-1/4 mx-2">
+            <div id="opStatus" class="flex h-1/4 w-full border-2">
+                <div id="opStatusSprite" class="flex h-20 w-20 bg-center bg-contain bg-no-repeat"></div>
+                <div id="opStatusFeature" class="flex flex-col mx-2">
+                    <div id="opStatusPv">PV : 0 / 0</div>
+                    <div id="opStatusGauges" class="flex flex-row">
+                        <div id="opStatusGaugesFire" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class" style="background-image: url(img/utils/fire.png);">0</div>
+                        <div id="opStatusGaugesWater" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class" style="background-image: url(img/utils/water.png);">0</div>
+                        <div id="opStatusGaugesEarth" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class" style="background-image: url(img/utils/earth.png);">0</div>
+                        <div id="opStatusGaugesAir" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class" style="background-image: url(img/utils/air.png);">0</div>
+                        <div id="opStatusGaugesNeutral" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class" style="background-image: url(img/utils/neutral.png);">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="flex items-center justify-between my-2 w-full">
+        <div class="h-full w-1/4 mx-2">
+            <div id="errorLog" class="rounded-lg bg-black text-white font-semibold h-full p-2"></div>
+        </div>
+
+        <div class="h-full w-1/2 mx-2">
+            <div id="handBar" class="flex flex-row">
+                <div id="pa" class="h-20 w-20 bg-center bg-contain bg-no-repeat mx-2 pa-class" style="background-image: url(img/utils/pa.png);"></div>
+                <div id="paStock" class="h-20 w-20 bg-center bg-contain bg-no-repeat mx-2 pa-class" style="background-image: url(img/utils/paStock.png);" onclick="paStockClick()"></div>
+                <div id="hand" class="flex-grow grid grid-cols-7 grid-rows-1 w-max mx-2"></div>
+            </div>
+        </div>
+
+        <div class="h-full w-1/4 mx-2">
+            <button id="stateBtn" type="button" class="state-btn" onclick="stateBtnClick()">Opponent turn</button>
+            <button id="cancelBtn" type="button" class="cancel-btn" onclick="cancelBtnClick()">Cancel</button>
+
+        </div>
+    </section>
+
+    <script src="js/Tooltip.js"></script>
+    <script>
+        const BOARD_ROWS = 7;
+        const BOARD_COLS = 7;
+        const HAND_SPELLS = 7;
+        const COMPANIONS = 4;
+
+        $("#stateBtn").css("background-color", "#FF0000");
+        $("#stateBtn").text("Opponent turn");
+
+        for (i = 0; i < COMPANIONS; i++)
+        {
+            document.getElementById("myCompanions").insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}" class="flex h-1/4 w-full"></div>`);
+            document.getElementById("myCompanion_" + i).insertAdjacentHTML('beforeend', `<div id="myCompanion_${i}_sprite" class="w-5/6 h-5/6 self-center bg-center bg-contain bg-no-repeat"></div>`);
+            $("#myCompanion_" + i).click(function() {myCompanionClick($(this))});
+        }
+        for (y = 0; y < BOARD_ROWS; y++)
+        {
+            for (x = 0; x < BOARD_COLS; x++)
+            {
+                document.getElementById("board").insertAdjacentHTML('beforeend',`<div id="board_${x}_${y}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
+                $("#board_" + x + "_" + y).click(function() {boardTileClick($(this))});
+            } 
+        }
+        for (i = 0; i < HAND_SPELLS; i++)
+        {
+            document.getElementById("hand").insertAdjacentHTML('beforeend',`<div id="spell_${i}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
+            $("#spell_" + i).click(function() {spellClick($(this))});
+        }
+
+    </script>
+
+    <script src="js/clientInteraction.js"></script>
+    <script src="js/serverCom.js"></script>
+
+</body>
+</html>

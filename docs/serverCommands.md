@@ -89,17 +89,3 @@ Status of the game
 | abilities | List of Dict(trigger, target, feature, value, effect) | Special abilities of the entity |
 | canMove | Boolean |  |
 | canAttack | Boolean |  |
-
-<br>
-
-**Aura** available type : bloodySword
-**State** available : shield
-
-##### Ability keys
-| Key | Available value |
-|-----|-----------------|
-| trigger | turnStart, turnEnd, spawn, death, attack, finish, spellCast |
-| target | self, myPlayer, opPlayer, target, aligned |
-| feature | pv, pa, pm, gauges, x, y, paStock |
-| value | Integer |
-| effect | recover |

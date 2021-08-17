@@ -1,4 +1,5 @@
 import copy
+import argparse
 from simple_websocket_server import WebSocketServer, WebSocket
 from Game import *
 
@@ -53,7 +54,12 @@ class SimpleChat(WebSocket):
         for client in clients:
             client.send_message('{"cmd" : "AUTH", "msg" : "' + self.address[0] + ' - disconnected"}')
 
-if TEST_MODE == "MANUAL":
+parser = argparse.ArgumentParser()
+parser.add_argument("--testMode",       choices=["MANUAL", "REPLAY", "NONE"], default="NONE")
+parser.add_argument("--socketAddr",     default="127.0.0.1")
+args = parser.parse_args()
+
+if args.testMode == "MANUAL":
     gameTest = Game()
     while 1:
         clientMsg = input()
@@ -61,7 +67,7 @@ if TEST_MODE == "MANUAL":
         msgList = gameTest.run(cmdDict)
         for msg in msgList:
             printInfo(msg, "DEBUG")
-elif TEST_MODE == "REPLAY":
+elif args.testMode == "REPLAY":
     logFile = open("cmd.log", "r")
     for line in logFile:
         clientMsg = line
@@ -76,7 +82,7 @@ elif TEST_MODE == "REPLAY":
 else:
     if LOG_ENABLE:
         logFile = open("cmd.log", "w")
-    server = WebSocketServer('127.0.0.1', 8000, SimpleChat)
+    server = WebSocketServer(args.socketAddr, 50000, SimpleChat)
     server.serve_forever()
     if LOG_ENABLE:
         logFile.close()
