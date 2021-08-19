@@ -34,27 +34,27 @@ function updateState(newState)
     if (newState == "IDLE")
     {
         $("#stateBtn").css("background-color", "#00FF00");
-        $("#stateBtn").text("End turn");
+        $("#stateBtn").text("Fin de tour");
     }
     else if (newState == "MOVE")
     {
         $("#stateBtn").css("background-color", "#0000FF");
-        $("#stateBtn").text("Move");
+        $("#stateBtn").text("Déplacement");
     }
     else if (newState == "SPELL")
     {
         $("#stateBtn").css("background-color", "#0000FF");
-        $("#stateBtn").text("Cast spell");
+        $("#stateBtn").text("Lancement du sort");
     }
     else if (newState == "SUMMON")
     {
         $("#stateBtn").css("background-color", "#0000FF");
-        $("#stateBtn").text("Summon");
+        $("#stateBtn").text("Invocation");
     }
     else
     {
         $("#stateBtn").css("background-color", "#FF0000");
-        $("#stateBtn").text("Opponent turn");
+        $("#stateBtn").text("Tour adverse");
     }
     state = newState;
 }

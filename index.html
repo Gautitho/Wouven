@@ -12,10 +12,34 @@
 </head>
 <body class="h-screen w-screen">
 
-	C'est la page d'accueil
-	<form action="board.html">
-	    <input type="submit" value="Link"/>
-	</form>
+    <section class="w-full my-4">
+        <div class="flex flex-col items-center my-2">
+            <p class="text-4xl font-bold">Wouven</p>
+        </div>
+
+        <div id="head" class="flex flex-col items-center my-2">
+            Disclaimer here !
+        </div>
+    </section>
+
+    <section class="w-full my-2">
+        <div class="flex flex-col items-center my-4">
+            <button id="deckCreation" type="button" class="classic-btn" onclick="location.href='deckHero.html'">Créer un deck</button>
+        </div>
+        <div class="flex flex-col items-center my-2">
+            <form class="flex flex-col items-center" action="board.html">
+                <div class="flex flex-col items-center my-1">
+                    <label class="flex flex-col items-center" for="pseudo">Pseudo<label>
+                    <input class="flex flex-col items-center" type="text" id="pseudo" name="pseudo">
+                </div>
+                <div class="flex flex-col items-center my-1">
+                    <label class="flex flex-col items-center" for="deck">Code du deck<label>
+                    <input class="flex flex-col items-center" type="text" id="deck" name="deck">
+                </div>
+                <button type="submit" class="classic-btn">Combattre</button>
+            </form>
+        </div>
+    </section>
 
 </body>
 </html>

@@ -1,3 +1,17 @@
+.classic-btn
+{
+    font-weight:        500;
+    background-color:   #552fff;
+    color:              #FFFFFF;
+    font-size:          1.5rem;
+    line-height:        2rem;
+    border-radius:      1rem;
+    padding-top:        1rem;
+    padding-bottom:     1rem;
+    padding-left:       1rem;
+    padding-right:      1rem;
+}
+
 .state-btn
 {
     font-weight:        700;
