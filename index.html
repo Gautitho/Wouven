@@ -27,19 +27,37 @@
             <button id="deckCreation" type="button" class="classic-btn" onclick="location.href='deckHero.html'">Créer un deck</button>
         </div>
         <div class="flex flex-col items-center my-2">
-            <form class="flex flex-col items-center" action="board.html">
-                <div class="flex flex-col items-center my-1">
-                    <label class="flex flex-col items-center" for="pseudo">Pseudo<label>
-                    <input class="flex flex-col items-center" type="text" id="pseudo" name="pseudo">
+            <div class="flex flex-col items-center my-1">
+                <label class="flex flex-col items-center" for="pseudo">Pseudo<label>
+                <input class="flex flex-col items-center" type="text" id="pseudo" name="pseudo">
+                <label class="flex flex-col items-center" for="deck">Code du deck<label>
+                <input class="flex flex-col items-center" type="text" id="deck" name="deck">
+            </div>
+            <div class="flex flex-row my-1">
+                <div class="flex flex-col border-2 items-center my-1 mx-4">
+                    <p class="font-bold">Créer une partie</p>
+                    <label class="flex flex-col items-center" for="gameNameCreate">Nom de la partie<label>
+                    <input class="flex flex-col items-center" type="text" id="gameNameCreate" name="gameNameCreate">
+                    <button id="createGame" type="button" class="classic-btn" onclick=createGame()>Créer</button>
                 </div>
-                <div class="flex flex-col items-center my-1">
-                    <label class="flex flex-col items-center" for="deck">Code du deck<label>
-                    <input class="flex flex-col items-center" type="text" id="deck" name="deck">
+                <div class="flex flex-col border-2 items-center my-1 mx-4">
+                    <p class="font-bold">Rejoindre une partie</p>
+                    <label class="flex flex-col items-center" for="gameNameJoin">Nom de la partie<label>
+                    <input class="flex flex-col items-center" type="text" id="gameNameJoin" name="gameNameJoin">
+                    <button id="joinGame" type="button" class="classic-btn" onclick=joinGame()>Rejoindre</button>
                 </div>
-                <button type="submit" class="classic-btn">Combattre</button>
-            </form>
+                <div class="flex flex-col border-2 items-center my-1 mx-4">
+                    <p class="font-bold">Se reconnecter à une partie</p>
+                    <label class="flex flex-col items-center" for="gameNameReconnect">Nom de la partie<label>
+                    <input class="flex flex-col items-center" type="text" id="gameNameReconnect" name="gameNameReconnect">
+                    <button id="reconnectGame" type="button" class="classic-btn" onclick=reconnectGame()>Se reconnecter</button>
+                </div>
+            </div>
+
         </div>
     </section>
+
+    <script src="js/serverCom.js"></script>
 
 </body>
 </html>

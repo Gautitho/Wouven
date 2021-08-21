@@ -79,3 +79,18 @@ function usePaStock()
     useCmd = {"cmd" : "USE_RESERVE", "playerId" : playerId};
     socket.send(JSON.stringify(useCmd));
 }
+
+function createGame()
+{
+
+}
+
+function joinGame()
+{
+
+}
+
+function reconnectGame()
+{
+    
+}
