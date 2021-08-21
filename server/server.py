@@ -3,8 +3,6 @@ import argparse
 from simple_websocket_server import WebSocketServer, WebSocket
 from Game import *
 
-# Test modes available : NONE, MANUAL, REPLAY
-TEST_MODE   = "NONE"
 LOG_ENABLE  = True
 
 clients     = []
@@ -67,18 +65,28 @@ if args.testMode == "MANUAL":
         msgList = gameTest.run(cmdDict)
         for msg in msgList:
             printInfo(msg, "DEBUG")
+
 elif args.testMode == "REPLAY":
     logFile = open("cmd.log", "r")
     for line in logFile:
-        clientMsg = line
-        cmdDict = json.loads(clientMsg)
+        cmdDict = json.loads(line)
+        printInfo(line, "INFOG")
         try:
             msgList = nextGame.run(cmdDict)
             currGame = copy.deepcopy(nextGame)
         except GameException as ge:
+            if ("playerId" in cmdDict):
+                if (cmdDict["playerId"] in nextGame.clientIds):
+                    msgList.append('{"cmd" : "ERROR", "msg" : "' + ge.errorMsg + '"}')
+                else:
+                    msgList.append('{"cmd" : "ERROR", "msg" : "Wrong playerId !"}')
+            else:
+                msgList.append('{"cmd" : "ERROR", "msg" : "No playerId in cmd !"}')
             nextGame = copy.deepcopy(currGame) # Restore a stable game
-        for msg in msgList:
-            printInfo(msg, "DEBUG")
+        finally:
+            for msg in msgList:
+                printInfo(msg, "INFOB")
+
 else:
     if LOG_ENABLE:
         logFile = open("cmd.log", "w")

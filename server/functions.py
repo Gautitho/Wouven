@@ -1,7 +1,7 @@
 import sys
 import traceback
 
-DISPLAYED_INFO_TYPE = [] #["MISC", "WARNING", "DEBUG"]
+DISPLAYED_INFO_TYPE = ["MISC", "INFOB", "INFOG", "DEBUG", "WARNING"] #Not displayed : []
 
 def exitOnError(msg):
     traceback.print_stack(file=sys.stdout)
@@ -10,7 +10,14 @@ def exitOnError(msg):
 
 def printInfo(msg, type="MISC"):
     if (type in DISPLAYED_INFO_TYPE):
-        print('\033[36m' + "INFO: " + str(msg) + '\033[0m')
+        if (type == "WARNING"):
+            print('\033[36m' + "WARNING: " + str(msg) + '\033[0m')
+        elif (type == "INFOB"):
+            print('\033[34m' + "INFO: " + str(msg) + '\033[0m')
+        elif (type == "INFOG"):
+            print('\033[32m' + "INFO: " + str(msg) + '\033[0m')
+        else:
+            print("INFO: " + str(msg))
 
 def calcDist(xa, ya, xb, yb):
     return (abs(yb - ya) + abs(xb - xa))
