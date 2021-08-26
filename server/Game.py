@@ -10,13 +10,17 @@ deck2       = {"heroDescId" : "kasai", "spells" : ["bloodySword", "blame", "burn
 
 class Game:
 
-    def __init__(self):
+    def __init__(self, name):
+        self._name          = name
         # List of game states : MATCHMAKING, RUNNING
-        self._gameState = "MATCHMAKING"
-        self._turn      = "blue"
-        self._board     = Board()
-        self._clientIds = {}
-        self._msgList   = []
+        self._gameState     = "MATCHMAKING"
+        self._turn          = "blue"
+        self._board         = Board()
+        self._serverCmdList = []
+
+    @property
+    def name(self):
+        return self._name
 
     @property
     def gameState(self):
@@ -31,36 +35,29 @@ class Game:
         return copy.copy(self._board)
 
     @property
-    def clientIds(self):
-        return dict(self._clientIds)
+    def playerIdList(self):
+        return list(self._board.playersDict.keys())
 
     @property
-    def msgList(self):
-        return list(self._msgList)
+    def serverCmdList(self):
+        return list(self._serverCmdList)
+
+    def checkCmdArgs(self, cmdDict, keyList):
+        for key in keyList:
+            if not(key in cmdDict):
+                raise GameException(f"No {key} field in command")
 
     def run(self, cmdDict):
-        if "cmd" in cmdDict:
-            cmd = cmdDict["cmd"]
-        else:
-            raise GameException("No 'cmd' field in command")
-        if "playerId" in cmdDict:
-            playerId = cmdDict["playerId"]
-        else:
-            raise GameException("No 'playerId' field in command")
-
-        self._msgList = []
+        cmd         = cmdDict["cmd"]
+        playerId    = cmdDict["playerId"]
+        self._serverCmdList = []
 
         if (self._gameState == "MATCHMAKING"):
-
-            if (cmd == "AUTH"):
-                self.Auth(cmdDict["playerId"])
-
-            if (len(self._board.players) == 2):
+            if (len(self._board.playersDict) == 2):
                 self.launchGame()
                 self.sendStatus()
 
         else:
-
             self.checkTurn(playerId)
             if (cmd == "ENDTURN"):
                 self.EndTurn(playerId)
@@ -83,68 +80,61 @@ class Game:
             self._board.always()
             self.sendStatus()
 
-        return self._msgList
+        return self._serverCmdList
 
     def launchGame(self):
         self._gameState = "RUNNING"
         initCmd         = {}
         initCmd["cmd"]  = "INIT"
 
-        firstPlayerId = random.choice(list(self._board.players.keys()))
+        firstPlayerId = random.choice(list(self._board.playersDict.keys()))
 
-        for playerId in self._board.players:
+        for playerId in list(self._board.playersDict.keys()):
             if (playerId == firstPlayerId):
-                self._turn = self._board.players[playerId].team
+                self._turn = self._board.playersDict[playerId].team
                 for i in range(0, 5):
-                    self._board.players[playerId].draw()
+                    self._board.playersDict[playerId].draw()
             else:
-                self._board.players[playerId].modifyPaStock(1)
+                self._board.playersDict[playerId].modifyPaStock(1)
                 for i in range(0, 6):
-                    self._board.players[playerId].draw()
-            initCmd["team"]     = self._board.players[playerId].team
-            self._msgList.append({"clientId" : self._clientIds[playerId], "content" : json.dumps(initCmd)})
+                    self._board.playersDict[playerId].draw()
+            initCmd["team"]     = self._board.playersDict[playerId].team
+            self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(initCmd)})
 
     def sendStatus(self):
-        for clientId in self._clientIds:
+        for playerId in list(self._board.playersDict.keys()):
             statusCmd = {}
             statusCmd["cmd"]    = "STATUS"
             statusCmd["turn"]   = self._turn
-            for playerId in self._board.players:
-                if clientId == playerId:
-                    statusCmd["myPlayer"]   = self._board.players[playerId].getMyStatusDict()
+            for playerIdA in list(self._board.playersDict.keys()):
+                if playerId == playerIdA:
+                    statusCmd["myPlayer"]   = self._board.playersDict[playerId].getMyStatusDict()
                 else:
-                    statusCmd["opPlayer"]   = self._board.players[playerId].getOpStatusDict()
+                    statusCmd["opPlayer"]   = self._board.playersDict[playerId].getOpStatusDict()
             entitiesDict    = {}
-            for entityId in list(self._board.entities.keys()):
-                entitiesDict[entityId] = self._board.entities[entityId].getStatusDict()
+            for entityId in list(self._board.entitiesDict.keys()):
+                entitiesDict[entityId] = self._board.entitiesDict[entityId].getStatusDict()
             statusCmd["entitiesDict"] = entitiesDict
-            self._msgList.append({"clientId" : self._clientIds[clientId], "content" : json.dumps(statusCmd)})
-
-    def checkCmdArgs(self, cmdDict, keyList):
-        for key in keyList:
-            if not(key in cmdDict):
-                raise GameException("No cmd field in command")
+            self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(statusCmd)})
 
     def checkTurn(self, playerId):
-        if not(playerId in self._board.players):
+        if not(playerId in list(self._board.playersDict.keys())):
             raise GameException(f"PlayerId ({playerId}) not recognized !")
-        elif (self._board.players[playerId].team != self._turn):
+        elif (self._board.playersDict[playerId].team != self._turn):
             raise GameException("Not your turn !")
 
     def getOpPlayerId(self, playerId):
-        for pId in list(self._clientIds.keys()):
+        for pId in list(self._board.playersDict.keys()):
             if (pId != playerId):
                 return pId
 
-    def Auth(self, playerId):
-        if (len(self._board.players) == 0):
+    def appendPlayer(self, playerId):
+        if (len(self._board.playersDict) == 0):
             self._board.appendPlayer(playerId, deck1, "blue", "1")
-            self._clientIds[playerId]   = 0
-        elif (len(self._board.players) == 1):
+        elif (len(self._board.playersDict) == 1):
             self._board.appendPlayer(playerId, deck2, "red", "2")
-            self._clientIds[playerId]   = 1
         else:
-            raise GameException("2 players already in the game !")
+            raise GameException(f"2 playersDict already in the game {self._name} !")
 
     def EndTurn(self, playerId):
         self._turn = "blue" if self._turn == "red" else "red"

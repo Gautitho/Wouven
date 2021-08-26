@@ -2,7 +2,7 @@
 	"bloodySword" :
     {
         "name"          : "Epees sanglantes",
-        "spritePath"    : "img/states/aura.png",
+        "spritePath"    : "../img/states/aura.png",
         "abilities"     :
         [
             {
@@ -28,7 +28,7 @@
     "flyingFist" :
     {
         "name"          : "Poings volants",
-        "spritePath"    : "img/states/aura.png",
+        "spritePath"    : "../img/states/aura.png",
         "abilities"     :
         [
             {

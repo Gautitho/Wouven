@@ -2,8 +2,8 @@
     "kasai" :
     {
         "name"              : "Kasaï",
-        "spritePath"        : "img/entities/icon/Kasai.png",
-        "descSpritePath"    : "img/entities/desc/Kasai.png",
+        "spritePath"        : "../img/entities/icon/Kasai.png",
+        "descSpritePath"    : "../img/entities/desc/Kasai.png",
         "pv"                : 390,
         "armor"             : 0,
         "atk"               : 37,
@@ -35,8 +35,8 @@
     "Pramimum" :
     {
         "name"              : "Pramium",
-        "spritePath"        : "img/entities/icon/Pramium.png",
-        "descSpritePath"    : "img/entities/desc/Elely.png",
+        "spritePath"        : "../img/entities/icon/Pramium.png",
+        "descSpritePath"    : "../img/entities/desc/Elely.png",
         "pv"                : 290,
         "armor"             : 0,
         "atk"               : 10,
@@ -59,8 +59,8 @@
     "elely" :
     {
         "name"              : "Elely",
-        "spritePath"        : "img/entities/icon/Elely.png",
-        "descSpritePath"    : "img/entities/desc/Elely.png",
+        "spritePath"        : "../img/entities/icon/Elely.png",
+        "descSpritePath"    : "../img/entities/desc/Elely.png",
         "pv"                : 105,
         "armor"             : 0,
         "atk"               : 22,
@@ -92,8 +92,8 @@
     "championneSanglante" :
     {
         "name"              : "Championne sanglante",
-        "spritePath"        : "img/entities/icon/Championne_sanglante.png",
-        "descSpritePath"    : "img/entities/desc/Championne_sanglante.png",
+        "spritePath"        : "../img/entities/icon/Championne_sanglante.png",
+        "descSpritePath"    : "../img/entities/desc/Championne_sanglante.png",
         "pv"                : 63,
         "armor"             : 0,
         "atk"               : 7,
@@ -125,8 +125,8 @@
     "shutter" :
     {
         "name"              : "Shutter",
-        "spritePath"        : "img/entities/icon/Shutter.png",
-        "descSpritePath"    : "img/entities/desc/Shutter.png",
+        "spritePath"        : "../img/entities/icon/Shutter.png",
+        "descSpritePath"    : "../img/entities/desc/Shutter.png",
         "pv"                : 72,
         "armor"             : 0,
         "atk"               : 10,
@@ -149,8 +149,8 @@
     "seraphin" :
     {
         "name"              : "Séraphin",
-        "spritePath"        : "img/entities/icon/Seraphin.png",
-        "descSpritePath"    : "img/entities/desc/Seraphin.png",
+        "spritePath"        : "../img/entities/icon/Seraphin.png",
+        "descSpritePath"    : "../img/entities/desc/Seraphin.png",
         "pv"                : 84,
         "armor"             : 0,
         "atk"               : 18,

@@ -1,13 +1,12 @@
-import copy
 import argparse
 from simple_websocket_server import WebSocketServer, WebSocket
-from Game import *
+from GameManager import *
 
 LOG_ENABLE  = True
 
-clients     = []
-nextGame    = Game()
-currGame    = Game()
+clientList      = []
+clientIdList    = []
+gameManager     = GameManager()
 
 class SimpleChat(WebSocket):
 
@@ -19,38 +18,21 @@ class SimpleChat(WebSocket):
             logFile.write(self.data + "\n")
 
         cmdDict = json.loads(self.data)
-        try:
-            msgList = nextGame.run(cmdDict)
-            for msg in msgList:
-                clients[msg["clientId"]].send_message(msg["content"])
-            currGame = copy.deepcopy(nextGame)
-
-        except GameException as ge:
-            if ("playerId" in cmdDict):
-                if (cmdDict["playerId"] in nextGame.clientIds):
-                    clients[nextGame.clientIds[cmdDict["playerId"]]].send_message('{"cmd" : "ERROR", "msg" : "' + ge.errorMsg + '"}')
-                else:
-                    for client in clients:
-                        client.send_message('{"cmd" : "ERROR", "msg" : "Wrong playerId !"}')
-            else:
-                for client in clients:
-                    client.send_message('{"cmd" : "ERROR", "msg" : "No playerId in cmd !"}')
-            nextGame = copy.deepcopy(currGame) # Restore a stable game
-
-        except Exception as e:
-            print("Exception : " + str(e))
+        msgList = gameManager.run(cmdDict, self.address)
+        for msg in msgList:
+            for i in range(0, len(clientIdList)):
+                if (msg["clientId"] == clientIdList[i]):
+                    clientList[i].send_message(msg["content"])
        
     def connected(self):
         print(self.address, 'connected')
-        clients.append(self)
-        for client in clients:
-            client.send_message('{"cmd" : "AUTH", "msg" : "' + self.address[0] + ' - connected"}')
+        clientList.append(self)
+        clientIdList.append(self.address)
 
     def handle_close(self):
-        clients.remove(self)
+        clientList.remove(self)
+        clientIdList.remove(self.address)
         print(self.address, 'closed')
-        for client in clients:
-            client.send_message('{"cmd" : "AUTH", "msg" : "' + self.address[0] + ' - disconnected"}')
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--testMode",       choices=["MANUAL", "REPLAY", "NONE"], default="NONE")
@@ -58,34 +40,21 @@ parser.add_argument("--socketAddr",     default="127.0.0.1")
 args = parser.parse_args()
 
 if args.testMode == "MANUAL":
-    gameTest = Game()
     while 1:
         clientMsg = input()
         cmdDict = json.loads(clientMsg)
-        msgList = gameTest.run(cmdDict)
+        msgList = gameManager.run(cmdDict, ('0', 0))
         for msg in msgList:
-            printInfo(msg, "DEBUG")
+            printInfo(msg, "INFOB")
 
 elif args.testMode == "REPLAY":
     logFile = open("cmd.log", "r")
     for line in logFile:
         cmdDict = json.loads(line)
         printInfo(line, "INFOG")
-        try:
-            msgList = nextGame.run(cmdDict)
-            currGame = copy.deepcopy(nextGame)
-        except GameException as ge:
-            if ("playerId" in cmdDict):
-                if (cmdDict["playerId"] in nextGame.clientIds):
-                    msgList.append('{"cmd" : "ERROR", "msg" : "' + ge.errorMsg + '"}')
-                else:
-                    msgList.append('{"cmd" : "ERROR", "msg" : "Wrong playerId !"}')
-            else:
-                msgList.append('{"cmd" : "ERROR", "msg" : "No playerId in cmd !"}')
-            nextGame = copy.deepcopy(currGame) # Restore a stable game
-        finally:
-            for msg in msgList:
-                printInfo(msg, "INFOB")
+        msgList = gameManager.run(cmdDict, ('0', 0))
+        for msg in msgList:
+            printInfo(msg, "INFOB")
 
 else:
     if LOG_ENABLE:

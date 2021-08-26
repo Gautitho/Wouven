@@ -4,8 +4,8 @@
         "name"              : "Epees sanglantes",
         "cost"              : 6,
         "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/bloodySword.png",
-        "descSpritePath"    : "img/spells/desc/bloodySword.png",
+        "spritePath"        : "../img/spells/icon/bloodySword.png",
+        "descSpritePath"    : "../img/spells/desc/bloodySword.png",
         "allowedTargetList" : ["myPlayer"],
         "abilities"         :
         [
@@ -25,8 +25,8 @@
         "name"              : "Blâmer",
         "cost"              : 6,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/blame.png",
-        "descSpritePath"    : "img/spells/desc/blame.png",
+        "spritePath"        : "../img/spells/icon/blame.png",
+        "descSpritePath"    : "../img/spells/desc/blame.png",
         "allowedTargetList" : ["allEntity"],
         "abilities"         :
         [
@@ -64,8 +64,8 @@
         "name"              : "Brûler",
         "cost"              : 2,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/burn.png",
-        "descSpritePath"    : "img/spells/desc/burn.png",
+        "spritePath"        : "../img/spells/icon/burn.png",
+        "descSpritePath"    : "../img/spells/desc/burn.png",
         "allowedTargetList" : ["allEntity"],
         "abilities"         :
         [
@@ -103,8 +103,8 @@
         "name"              : "Fulgur",
         "cost"              : 3,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/fulgur.png",
-        "descSpritePath"    : "img/spells/desc/fulgur.png",
+        "spritePath"        : "../img/spells/icon/fulgur.png",
+        "descSpritePath"    : "../img/spells/desc/fulgur.png",
         "allowedTargetList" : ["allEntity"],
         "abilities"         :
         [
@@ -142,8 +142,8 @@
         "name"              : "Charge explosive",
         "cost"              : 6,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/explosiveCharge.png",
-        "descSpritePath"    : "img/spells/desc/explosiveCharge.png",
+        "spritePath"        : "../img/spells/icon/explosiveCharge.png",
+        "descSpritePath"    : "../img/spells/desc/explosiveCharge.png",
         "allowedTargetList" : ["firstAlignedEntity"], 
         "abilities"         :
         [
@@ -190,8 +190,8 @@
         "name"              : "Bond",
         "cost"              : 3,
         "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/leap.png",
-        "descSpritePath"    : "img/spells/desc/leap.png",
+        "spritePath"        : "../img/spells/icon/leap.png",
+        "descSpritePath"    : "../img/spells/desc/leap.png",
         "allowedTargetList" : ["emptyTile"],
         "abilities"         :
         [
@@ -220,8 +220,8 @@
         "name"              : "Tournoiment",
         "cost"              : 6,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/spinning.png",
-        "descSpritePath"    : "img/spells/desc/spinning.png",
+        "spritePath"        : "../img/spells/icon/spinning.png",
+        "descSpritePath"    : "../img/spells/desc/spinning.png",
         "allowedTargetList" : ["allEntity", "emptyTile"],
         "abilities"         :
         [
@@ -260,8 +260,8 @@
         "name"              : "Masser",
         "cost"              : 4,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/massage.png",
-        "descSpritePath"    : "img/spells/desc/massage.png",
+        "spritePath"        : "../img/spells/icon/massage.png",
+        "descSpritePath"    : "../img/spells/desc/massage.png",
         "allowedTargetList" : ["allEntity"],
         "conditionList"     : [],
         "abilities"         :
@@ -300,8 +300,8 @@
         "name"              : "Inspiration",
         "cost"              : 5,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/inspiration.png",
-        "descSpritePath"    : "img/spells/desc/inspiration.png",
+        "spritePath"        : "../img/spells/icon/inspiration.png",
+        "descSpritePath"    : "../img/spells/desc/inspiration.png",
         "allowedTargetList" : ["allEntity"],
         "abilities"         :
         [
@@ -339,8 +339,8 @@
         "name"              : "Essence du dieu Iop",
         "cost"              : 3,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iopEssence.png",
-        "descSpritePath"    : "img/spells/desc/iopEssence.png",
+        "spritePath"        : "../img/spells/icon/iopEssence.png",
+        "descSpritePath"    : "../img/spells/desc/iopEssence.png",
         "allowedTargetList" : ["allEntity"],
         "abilities"         :
         [
