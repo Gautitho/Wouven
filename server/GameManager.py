@@ -48,7 +48,8 @@ class GameManager :
                 self.checkCmdArgs(cmdDict, ["gameName"])
                 self.JoinGame(clientId, cmdDict["gameName"], playerId)
             elif (clientCmd == "RECONNECT"):
-                self.Reconnect()
+                self.checkCmdArgs(cmdDict, ["gameName"])
+                self.Reconnect(clientId, cmdDict["gameName"], playerId)
 
             self._gameIdx = self.getClientGame(clientId)
 
@@ -101,8 +102,11 @@ class GameManager :
             serverCmd = {"cmd" : "WAIT_GAME_START"}
             self._serverCmdList.append({"clientId" : clientId, "content" : json.dumps(serverCmd)})
 
-    def deleteGame(self):
-        pass
+    def Reconnect(self, clientId, gameName, playerId):
+        if not(playerId in list(self._knownPlayerIdDict.keys())):
+            raise GameException(f"Player {playerId} is not in the game {gameName}")
+        
+        self._knownPlayerIdDict[playerId] = clientId
 
-    def Reconnect(self):
+    def deleteGame(self):
         pass

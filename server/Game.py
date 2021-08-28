@@ -12,7 +12,7 @@ class Game:
 
     def __init__(self, name):
         self._name          = name
-        # List of game states : MATCHMAKING, RUNNING
+        # List of game states : MATCHMAKING, INIT, RUNNING
         self._gameState     = "MATCHMAKING"
         self._turn          = "blue"
         self._board         = Board()
@@ -55,37 +55,49 @@ class Game:
         if (self._gameState == "MATCHMAKING"):
             if (len(self._board.playersDict) == 2):
                 self.launchGame()
+
+        elif (self._gameState == "INIT"):
+            if (cmd == "RECONNECT"):
+                self.initGame()
                 self.sendStatus()
 
         else:
-            self.checkTurn(playerId)
-            if (cmd == "ENDTURN"):
-                self.EndTurn(playerId)
+            if (cmd in ["RECONNECT", "ENDTURN", "MOVE", "SPELL", "SUMMON", "USE_RESERVE"]):
+                self.checkTurn(playerId)
+                if (cmd == "ENDTURN"):
+                    self.EndTurn(playerId)
 
-            elif (cmd == "MOVE"):
-                self.checkCmdArgs(cmdDict, ["entityId", "path"])
-                self.Move(playerId, int(cmdDict["entityId"]), cmdDict["path"])
+                elif (cmd == "MOVE"):
+                    self.checkCmdArgs(cmdDict, ["entityId", "path"])
+                    self.Move(playerId, int(cmdDict["entityId"]), cmdDict["path"])
 
-            elif (cmd == "SPELL"):
-                self.checkCmdArgs(cmdDict, ["spellId", "targetPositionList"])
-                self.SpellCast(playerId, int(cmdDict["spellId"]), cmdDict["targetPositionList"])
+                elif (cmd == "SPELL"):
+                    self.checkCmdArgs(cmdDict, ["spellId", "targetPositionList"])
+                    self.SpellCast(playerId, int(cmdDict["spellId"]), cmdDict["targetPositionList"])
 
-            elif (cmd == "SUMMON"):
-                self.checkCmdArgs(cmdDict, ["companionId", "summonPositionList"])
-                self.Summon(playerId, int(cmdDict["companionId"]), cmdDict["summonPositionList"])
+                elif (cmd == "SUMMON"):
+                    self.checkCmdArgs(cmdDict, ["companionId", "summonPositionList"])
+                    self.Summon(playerId, int(cmdDict["companionId"]), cmdDict["summonPositionList"])
 
-            elif (cmd == "USE_RESERVE"):
-                self.UseReserve(playerId)
+                elif (cmd == "USE_RESERVE"):
+                    self.UseReserve(playerId)
 
-            self._board.always()
-            self.sendStatus()
+                self._board.always()
+                self.sendStatus()
 
         return self._serverCmdList
 
     def launchGame(self):
-        self._gameState = "RUNNING"
-        initCmd         = {}
-        initCmd["cmd"]  = "INIT"
+        self._gameState     = "INIT"
+        serverCmd           = {}
+        serverCmd["cmd"]    = "GAME_START"
+        for playerId in list(self._board.playersDict.keys()):
+            self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
+
+    def initGame(self):
+        self._gameState     = "RUNNING"
+        serverCmd           = {}
+        serverCmd["cmd"]    = "INIT"
 
         firstPlayerId = random.choice(list(self._board.playersDict.keys()))
 
@@ -98,24 +110,24 @@ class Game:
                 self._board.playersDict[playerId].modifyPaStock(1)
                 for i in range(0, 6):
                     self._board.playersDict[playerId].draw()
-            initCmd["team"]     = self._board.playersDict[playerId].team
-            self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(initCmd)})
+            serverCmd["team"]     = self._board.playersDict[playerId].team
+            self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
 
     def sendStatus(self):
         for playerId in list(self._board.playersDict.keys()):
-            statusCmd = {}
-            statusCmd["cmd"]    = "STATUS"
-            statusCmd["turn"]   = self._turn
+            serverCmd = {}
+            serverCmd["cmd"]    = "STATUS"
+            serverCmd["turn"]   = self._turn
             for playerIdA in list(self._board.playersDict.keys()):
                 if playerId == playerIdA:
-                    statusCmd["myPlayer"]   = self._board.playersDict[playerId].getMyStatusDict()
+                    serverCmd["myPlayer"]   = self._board.playersDict[playerIdA].getMyStatusDict()
                 else:
-                    statusCmd["opPlayer"]   = self._board.playersDict[playerId].getOpStatusDict()
+                    serverCmd["opPlayer"]   = self._board.playersDict[playerIdA].getOpStatusDict()
             entitiesDict    = {}
             for entityId in list(self._board.entitiesDict.keys()):
                 entitiesDict[entityId] = self._board.entitiesDict[entityId].getStatusDict()
-            statusCmd["entitiesDict"] = entitiesDict
-            self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(statusCmd)})
+            serverCmd["entitiesDict"] = entitiesDict
+            self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
 
     def checkTurn(self, playerId):
         if not(playerId in list(self._board.playersDict.keys())):

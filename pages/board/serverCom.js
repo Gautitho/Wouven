@@ -1,7 +1,13 @@
 socket      = new WebSocket('ws://localhost:50000/');
-playerId    = Math.random().toString(36).substring(4);
 
-socket.onopen = function(){};
+var gameName = location.search.substring(1).split("&")[0];
+var playerId = location.search.substring(1).split("&")[1];
+
+socket.onopen = function()
+{
+    clientCmd = {"cmd" : "RECONNECT", "playerId" : playerId, "gameName" : gameName};
+    socket.send(JSON.stringify(clientCmd));
+};
 
 socket.onmessage = function(handler)
 {
@@ -12,7 +18,6 @@ socket.onmessage = function(handler)
     if (cmdObj.cmd == "INIT")
     {
         team = cmdObj.team;
-        window.location = "html/board.html"; //Use ? to pass playerId to next page
         errorLog("");
     }
     else if (cmdObj.cmd == "STATUS")
@@ -49,23 +54,6 @@ socket.onmessage = function(handler)
         updateHandBar();
     }
 };
-
-function createGame()
-{
-    clientCmd = {"cmd" : "CREATE_GAME", "playerId" : playerId, "gameName" : "Barabara"};
-    socket.send(JSON.stringify(clientCmd));
-}
-
-function joinGame()
-{
-    clientCmd = {"cmd" : "JOIN_GAME", "playerId" : playerId, "gameName" : "Barabara"};
-    socket.send(JSON.stringify(clientCmd));
-}
-
-function reconnectGame()
-{
-    
-}
 
 function endTurn()
 {

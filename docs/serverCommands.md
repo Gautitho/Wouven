@@ -13,6 +13,14 @@ The commands have the following json format :
 
 ## Commands list
 
+### **WAIT_GAME_START**
+
+<br>
+
+### **GAME_START**
+
+<br>
+
 ### **INIT**
 Each player receive a diffrent INIT command at the start of the game
 | Argument | Type | Description |

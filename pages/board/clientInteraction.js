@@ -15,10 +15,10 @@ var opPlayer = {};
 var boardTileList = [];
 var tooltipArray = []
 
-$.getJSON("data/entities.json", function(data) {entitiesDataBase = data});
-$.getJSON("data/spells.json", function(data) {spellsDataBase = data});
-$.getJSON("data/heroes.json", function(data) {heroesDataBase = data});
-$.getJSON("data/companions.json", function(data) {companionsDataBase = data});
+$.getJSON(PROJECT_ROOT_PATH + "data/entities.json", function(data) {entitiesDataBase = data});
+$.getJSON(PROJECT_ROOT_PATH + "data/spells.json", function(data) {spellsDataBase = data});
+$.getJSON(PROJECT_ROOT_PATH + "data/heroes.json", function(data) {heroesDataBase = data});
+$.getJSON(PROJECT_ROOT_PATH + "data/companions.json", function(data) {companionsDataBase = data});
 
 function removeTooltips()
 {
@@ -75,13 +75,13 @@ function updateBoard()
         var imgStr = "";
         for (state in entities[entityId].states)
         {
-            imgStr = imgStr + "url(img/" + entities[entityId].states[state].feature + ".png), ";
+            imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + "img/" + entities[entityId].states[state].feature + ".png), ";
         }
         if (entities[entityId].elemState != "")
         {
-            imgStr = imgStr + "url(img/states/" + entities[entityId].elemState + ".png), ";
+            imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + "img/states/" + entities[entityId].elemState + ".png), ";
         }
-        imgStr = imgStr + "url(" + eval("entitiesDataBase." + entities[entityId].descId + ".spritePath") + ")";
+        imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + entities[entityId].descId + ".spritePath") + ")";
         $("#board_" + entities[entityId].x + "_" + entities[entityId].y).css("background-image", imgStr);
         $("#board_" + entities[entityId].x + "_" + entities[entityId].y).css("border-color", entities[entityId].team);
         tooltipArray.push(new Tooltip(document.getElementById("board_" + entities[entityId].x + "_" + entities[entityId].y),
@@ -94,14 +94,14 @@ function updateBoard()
 function updateMyStatus()
 {
     $("#myStatus").css("border-color", myPlayer.team);
-    $("#myStatusSprite").css("background-image", "url(" + eval("entitiesDataBase." + eval("heroesDataBase." + myPlayer.heroDescId + ".entityDescId") + ".spritePath") + ")");
+    $("#myStatusSprite").css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + eval("heroesDataBase." + myPlayer.heroDescId + ".entityDescId") + ".spritePath") + ")");
     $("#myStatusPv").text("PV : " + entities[myPlayer.heroEntityId].pv + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + myPlayer.heroDescId + ".entityDescId") + ".pv"));
     $("#myStatusGaugesFire").text(myPlayer.gauges.fire);
     $("#myStatusGaugesWater").text(myPlayer.gauges.water);
     $("#myStatusGaugesEarth").text(myPlayer.gauges.earth);
     $("#myStatusGaugesAir").text(myPlayer.gauges.air);
     $("#myStatusGaugesNeutral").text(myPlayer.gauges.neutral);
-    $("#myStatusDescSprite").css("background-image", "url(" + eval("entitiesDataBase." + eval("heroesDataBase." + myPlayer.heroDescId + ".entityDescId") + ".descSpritePath") + ")");
+    $("#myStatusDescSprite").css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + eval("heroesDataBase." + myPlayer.heroDescId + ".entityDescId") + ".descSpritePath") + ")");
 }
 
 function updateMyCompanion(companionIdx)
@@ -118,13 +118,13 @@ function updateMyCompanion(companionIdx)
     {
         $("#myCompanion_" + companionIdx).css("background-color", "#FFFFFF");
     }
-    $("#myCompanion_" + companionIdx + "_sprite").css("background-image", "url(" + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.companions[companionIdx].descId + ".entityDescId") + ".descSpritePath") + ")");
+    $("#myCompanion_" + companionIdx + "_sprite").css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.companions[companionIdx].descId + ".entityDescId") + ".descSpritePath") + ")");
 }
 
 function updateOpStatus()
 {
     $("#opStatus").css("border-color", opPlayer.team);
-    $("#opStatusSprite").css("background-image", "url(" + eval("entitiesDataBase." + eval("heroesDataBase." + opPlayer.heroDescId + ".entityDescId") + ".spritePath") + ")");
+    $("#opStatusSprite").css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + eval("heroesDataBase." + opPlayer.heroDescId + ".entityDescId") + ".spritePath") + ")");
     $("#opStatusPv").text("PV : " + entities[opPlayer.heroEntityId].pv + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + opPlayer.heroDescId + ".entityDescId") + ".pv"));
     $("#opStatusGaugesFire").text(opPlayer.gauges.fire);
     $("#opStatusGaugesWater").text(opPlayer.gauges.water);
@@ -144,8 +144,8 @@ function updateHandBar()
     }
     for (j = 0; j < myPlayer.handSpellDescIds.length; j++)
     {
-        $("#spell_" + j).css("background-image", "url(" + eval("spellsDataBase." + myPlayer.handSpellDescIds[j] + ".spritePath") + ")");
-        tooltipArray.push(new Tooltip(document.getElementById("spell_" + j), eval("spellsDataBase." + myPlayer.handSpellDescIds[j] + ".descSpritePath"), "img"));
+        $("#spell_" + j).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("spellsDataBase." + myPlayer.handSpellDescIds[j] + ".spritePath") + ")");
+        tooltipArray.push(new Tooltip(document.getElementById("spell_" + j), PROJECT_ROOT_PATH + eval("spellsDataBase." + myPlayer.handSpellDescIds[j] + ".descSpritePath"), "img"));
     }
 }
 
