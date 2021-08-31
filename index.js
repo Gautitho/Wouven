@@ -28,6 +28,11 @@ function errorLog(message)
     $("#errorLog").text(message);
 }
 
+function createDeck()
+{
+    window.location = "pages/deckHero/deckHero.html";
+}
+
 function createGame()
 {
     playerId = document.getElementById("pseudo").value;

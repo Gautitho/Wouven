@@ -2,6 +2,7 @@
     "bloodySword":
     {
         "name"              : "Epees sanglantes",
+        "race"              : "iop",
         "cost"              : 6,
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/bloodySword.png",
@@ -23,6 +24,7 @@
     "blame":
     {
         "name"              : "Blâmer",
+        "race"              : "iop",
         "cost"              : 6,
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/blame.png",
@@ -62,6 +64,7 @@
     "burn":
     {
         "name"              : "Brûler",
+        "race"              : "iop",
         "cost"              : 2,
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/burn.png",
@@ -101,6 +104,7 @@
     "fulgur":
     {
         "name"              : "Fulgur",
+        "race"              : "iop",
         "cost"              : 3,
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/fulgur.png",
@@ -140,6 +144,7 @@
     "explosiveCharge":
     {
         "name"              : "Charge explosive",
+        "race"              : "iop",
         "cost"              : 6,
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/explosiveCharge.png",
@@ -188,6 +193,7 @@
     "leap":
     {
         "name"              : "Bond",
+        "race"              : "iop",
         "cost"              : 3,
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/leap.png",
@@ -218,6 +224,7 @@
     "spinning":
     {
         "name"              : "Tournoiment",
+        "race"              : "class",
         "cost"              : 6,
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/spinning.png",
@@ -258,6 +265,7 @@
     "massage":
     {
         "name"              : "Masser",
+        "race"              : "iop",
         "cost"              : 4,
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/massage.png",
@@ -298,6 +306,7 @@
     "inspiration":
     {
         "name"              : "Inspiration",
+        "race"              : "iop",
         "cost"              : 5,
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/inspiration.png",
@@ -337,6 +346,7 @@
     "iopEssence":
     {
         "name"              : "Essence du dieu Iop",
+        "race"              : "companion",
         "cost"              : 3,
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iopEssence.png",

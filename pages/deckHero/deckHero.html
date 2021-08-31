@@ -1,1 +1,58 @@
-Page de choix du hero
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+    <link rel="stylesheet" href="../../css/style.css">
+    <title>Wouven</title>
+</head>
+<body class="h-screen w-screen">
+
+    <section class="w-full my-4">
+        <div class="flex flex-col items-center my-2">
+            <p class="text-4xl font-bold">Wouven</p>
+        </div>
+
+        <div id="head" class="flex flex-col items-center my-2">
+            Disclaimer here !
+        </div>
+    </section>
+
+    <section class="flex flex-col items-center justify-between my-2 h-4/5 w-full">
+        <div class="flex h-2/3 w-11/12 mx-2">
+            <div id="heroMatrix" class="flex-grow grid grid-cols-3 grid-rows-6 w-max"></div>
+        </div>
+    </section>
+
+    <script>
+        const PROJECT_ROOT_PATH = "../../"
+        const HERO_CLASSES = 5;
+        const HERO_RACE_LIST = ['IOP', 'XELOR', 'CRA'];
+
+        for (y = 0; y < 1 + HERO_CLASSES; y++)
+        {
+            for (x = 0; x < HERO_RACE_LIST.length; x++)
+            {
+                if (y == 0)
+                {
+                    document.getElementById("heroMatrix").insertAdjacentHTML('beforeend',`<div id="heroMatrix_${x}"></div>`);
+                    $("#heroMatrix_" + x).text(HERO_RACE_LIST[x]);
+                }
+                else
+                {
+                    document.getElementById("heroMatrix").insertAdjacentHTML('beforeend',`<div id="heroMatrix_${x}_${y}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
+                    $("#heroMatrix_" + x + "_" + y).click(function() {heroClick($(this))});
+                    $("#heroMatrix_" + x + "_" + y).;
+                }
+            } 
+        }
+    </script>
+
+    <script src="deckHero.js"></script>
+
+</body>
+</html>
