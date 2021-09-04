@@ -32,7 +32,7 @@
             }
         ]
     },
-    "Pramimum" :
+    "pramium" :
     {
         "name"              : "Pramium",
         "spritePath"        : "img/entities/icon/Pramium.png",

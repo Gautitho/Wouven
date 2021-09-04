@@ -23,34 +23,17 @@
     </section>
 
     <section class="flex flex-col items-center justify-between my-2 h-4/5 w-full">
-        <div class="flex h-2/3 w-11/12 mx-2">
-            <div id="heroMatrix" class="flex-grow grid grid-cols-3 grid-rows-6 w-max"></div>
+        <div class="flex flex-row h-1/4 mx-2 my-2">
+            <button id="heroBtn" type="button" class="state-btn" onclick="heroChoiceBtnClick()">Choix du héros</button>
+            <button id="spellsBtn" type="button" class="state-btn" onclick="spellsChoiceBtnBtnClick()">Choix des sorts</button>
+            <button id="companionsBtn" type="button" class="state-btn" onclick="companionsChoiceBtnClick()">Choix des compagnons</button>
+        </div>
+        <div class="flex h-2/3 w-11/12 mx-2 my-2">
+            <div id="choiceLayout" class="flex-grow w-max">
+                <div id="choiceGrid"></div>
+            </div>
         </div>
     </section>
-
-    <script>
-        const PROJECT_ROOT_PATH = "../../"
-        const HERO_CLASSES = 5;
-        const HERO_RACE_LIST = ['IOP', 'XELOR', 'CRA'];
-
-        for (y = 0; y < 1 + HERO_CLASSES; y++)
-        {
-            for (x = 0; x < HERO_RACE_LIST.length; x++)
-            {
-                if (y == 0)
-                {
-                    document.getElementById("heroMatrix").insertAdjacentHTML('beforeend',`<div id="heroMatrix_${x}"></div>`);
-                    $("#heroMatrix_" + x).text(HERO_RACE_LIST[x]);
-                }
-                else
-                {
-                    document.getElementById("heroMatrix").insertAdjacentHTML('beforeend',`<div id="heroMatrix_${x}_${y}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
-                    $("#heroMatrix_" + x + "_" + y).click(function() {heroClick($(this))});
-                    $("#heroMatrix_" + x + "_" + y).;
-                }
-            } 
-        }
-    </script>
 
     <script src="deckHero.js"></script>
 
