@@ -41,6 +41,10 @@ socket.onmessage = function(handler)
     {
         errorLog(cmdObj.msg);
     }
+    else if (cmdObj.cmd == "END_GAME")
+    {
+        window.location = PROJECT_ROOT_PATH + "pages/endScreen/endScreen.html?" + cmdObj.result;
+    }
 
     if (state != "INIT")
     {

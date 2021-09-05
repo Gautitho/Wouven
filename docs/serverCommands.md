@@ -48,6 +48,14 @@ Status of the game
 
 <br>
 
+### **END_GAME**
+End of the game
+| Argument | Type | Description |
+|----------|------|-------------|
+| result | String | 3 options : WIN, LOSS, DRAW |
+
+<br>
+
 #### MY_PLAYER
 | Attribute | Type | Description |
 |----------|------|-------------|

@@ -12,7 +12,7 @@ class Game:
 
     def __init__(self, name):
         self._name          = name
-        # List of game states : MATCHMAKING, INIT, RUNNING
+        # List of game states : MATCHMAKING, RUNNING
         self._gameState     = "MATCHMAKING"
         self._turn          = "blue"
         self._board         = Board()
@@ -56,13 +56,12 @@ class Game:
             if (len(self._board.playersDict) == 2):
                 self.launchGame()
 
-        elif (self._gameState == "INIT"):
+        else:
             if (cmd == "RECONNECT"):
-                self.initGame()
+                self.joinGame(playerId)
                 self.sendStatus()
 
-        else:
-            if (cmd in ["RECONNECT", "ENDTURN", "MOVE", "SPELL", "SUMMON", "USE_RESERVE"]):
+            elif (cmd in ["ENDTURN", "MOVE", "SPELL", "SUMMON", "USE_RESERVE"]):
                 self.checkTurn(playerId)
                 if (cmd == "ENDTURN"):
                     self.EndTurn(playerId)
@@ -82,24 +81,18 @@ class Game:
                 elif (cmd == "USE_RESERVE"):
                     self.UseReserve(playerId)
 
+
+
                 self._board.always()
                 self.sendStatus()
 
         return self._serverCmdList
 
     def launchGame(self):
-        self._gameState     = "INIT"
-        serverCmd           = {}
-        serverCmd["cmd"]    = "GAME_START"
-        for playerId in list(self._board.playersDict.keys()):
-            self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
-
-    def initGame(self):
         self._gameState     = "RUNNING"
         serverCmd           = {}
-        serverCmd["cmd"]    = "INIT"
-
-        firstPlayerId = random.choice(list(self._board.playersDict.keys()))
+        serverCmd["cmd"]    = "GAME_START"
+        firstPlayerId       = random.choice(list(self._board.playersDict.keys()))
 
         for playerId in list(self._board.playersDict.keys()):
             if (playerId == firstPlayerId):
@@ -110,8 +103,13 @@ class Game:
                 self._board.playersDict[playerId].modifyPaStock(1)
                 for i in range(0, 6):
                     self._board.playersDict[playerId].draw()
-            serverCmd["team"]     = self._board.playersDict[playerId].team
             self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
+
+    def joinGame(self, playerId):
+        serverCmd           = {}
+        serverCmd["cmd"]    = "INIT"
+        serverCmd["team"]   = self._board.playersDict[playerId].team
+        self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
 
     def sendStatus(self):
         for playerId in list(self._board.playersDict.keys()):
@@ -128,6 +126,25 @@ class Game:
                 entitiesDict[entityId] = self._board.entitiesDict[entityId].getStatusDict()
             serverCmd["entitiesDict"] = entitiesDict
             self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
+
+        # Check for end of the game
+        deadPlayerIdList = []
+        for playerId in list(self._board.playersDict.keys()):
+            if not(self._board.playersDict[playerId].heroEntityId in self._board.entitiesDict):
+               deadPlayerIdList.append(playerId)
+        if deadPlayerIdList:
+            print(deadPlayerIdList)
+            for playerId in list(self._board.playersDict.keys()):
+                serverCmd = {}
+                serverCmd["cmd"]    = "END_GAME"
+                if (len(deadPlayerIdList) == 1):
+                    if (playerId == deadPlayerIdList[0]):
+                        serverCmd["result"] = "LOSS"
+                    else:
+                        serverCmd["result"] = "WIN"
+                else:
+                    serverCmd["result"] = "DRAW"
+                self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
 
     def checkTurn(self, playerId):
         if not(playerId in list(self._board.playersDict.keys())):

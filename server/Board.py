@@ -58,13 +58,13 @@ class Board:
             raise GameException("Entity to remove not found in playersDict entitiesDict list !")
 
     def garbageCollector(self):
-        entityId = 0
-        while (entityId < len(self._entitiesDict)):
-            if (self._entitiesDict[entityId].pv <= 0):
-                self.removeEntity(entityId)
-                entityId = 0
+        entityIdx = 0
+        while (entityIdx < len(list(self._entitiesDict.keys()))):
+            if (self._entitiesDict[list(self._entitiesDict.keys())[entityIdx]].pv <= 0):
+                self.removeEntity(list(self._entitiesDict.keys())[entityIdx])
+                entityIdx = 0
             else:
-                entityId += 1
+                entityIdx += 1
 
     def getPlayerIdFromTeam(self, team):
         for pId in list(self._playersDict.keys()):
@@ -181,8 +181,9 @@ class Board:
     # This function is called after each action
     def always(self):
         self.garbageCollector()
-        for entityId in range(0, len(self._entitiesDict)):
-            self.executeAbilities(self._entitiesDict[entityId].abilities, "always", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, None, [], None)
+        for entityIdx in range(0, len(list(self._entitiesDict.keys()))):
+            self.executeAbilities(self._entitiesDict[list(self._entitiesDict.keys())[entityIdx]].abilities, "always", self.getPlayerIdFromTeam(self._entitiesDict[list(self._entitiesDict.keys())[entityIdx]].team), list(self._entitiesDict.keys())[entityIdx], None, [], None)
+        self.garbageCollector()
 
     def moveEntity(self, playerId, entityId, path):
         x               = self._entitiesDict[entityId].x
