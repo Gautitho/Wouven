@@ -1,5 +1,5 @@
 {
-	"bloodySword" :
+	"a0" :
     {
         "name"          : "Epees sanglantes",
         "spritePath"    : "img/states/aura.png",
@@ -25,7 +25,7 @@
             }
         ]
     },
-    "flyingFist" :
+    "a1" :
     {
         "name"          : "Poings volants",
         "spritePath"    : "img/states/aura.png",

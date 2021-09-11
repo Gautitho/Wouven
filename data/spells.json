@@ -1,5 +1,5 @@
 {
-    "bloodySword":
+    "s0":
     {
         "name"              : "Epees sanglantes",
         "race"              : "iop",
@@ -21,7 +21,7 @@
             }
         ]
     },
-    "blame":
+    "s1":
     {
         "name"              : "Blâmer",
         "race"              : "iop",
@@ -61,7 +61,7 @@
             }
         ]
     },
-    "burn":
+    "s2":
     {
         "name"              : "Brûler",
         "race"              : "iop",
@@ -101,7 +101,7 @@
             }
         ]
     },
-    "fulgur":
+    "s3":
     {
         "name"              : "Fulgur",
         "race"              : "iop",
@@ -141,7 +141,7 @@
             }
         ]
     },
-    "explosiveCharge":
+    "s4":
     {
         "name"              : "Charge explosive",
         "race"              : "iop",
@@ -190,7 +190,7 @@
             }
         ]
     },
-    "leap":
+    "s5":
     {
         "name"              : "Bond",
         "race"              : "iop",
@@ -221,48 +221,7 @@
             }
         ]
     },
-    "spinning":
-    {
-        "name"              : "Tournoiment",
-        "race"              : "class",
-        "cost"              : 6,
-        "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/spinning.png",
-        "descSpritePath"    : "img/spells/desc/spinning.png",
-        "allowedTargetList" : ["allEntity", "emptyTile"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" : "rangeFromFirstTarget", "value" : 1, "targetIdx" : 1}, {"feature" : "elemState", "value" : "oiled"}],
-                "break"         : "True",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -29
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "tile",
-                "targetIdx"     : 1,
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "position",
-                "value"         : 0
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "conditionList" : [],
-                "break"         : "False",
-                "feature"       : "gauges",
-                "value"         : {"fire" : 2}
-            }
-        ]
-    },
-    "massage":
+    "s6":
     {
         "name"              : "Masser",
         "race"              : "iop",
@@ -303,7 +262,7 @@
             }
         ]
     },
-    "inspiration":
+    "s7":
     {
         "name"              : "Inspiration",
         "race"              : "iop",
@@ -343,7 +302,48 @@
             }
         ]
     },
-    "iopEssence":
+    "sh0":
+    {
+        "name"              : "Tournoiment",
+        "race"              : "h0",
+        "cost"              : 6,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/spinning.png",
+        "descSpritePath"    : "img/spells/desc/spinning.png",
+        "allowedTargetList" : ["allEntity", "emptyTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "rangeFromFirstTarget", "value" : 1, "targetIdx" : 1}, {"feature" : "elemState", "value" : "oiled"}],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -29
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "tile",
+                "targetIdx"     : 1,
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "position",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 2}
+            }
+        ]
+    },
+    "sc0":
     {
         "name"              : "Essence du dieu Iop",
         "race"              : "companion",

@@ -12,7 +12,7 @@
 </head>
 <body class="h-screen w-screen">
 
-    <section class="w-full my-4">
+    <section class="w-full h-1/8 my-4">
         <div class="flex flex-col items-center my-2">
             <p class="text-4xl font-bold">Wouven</p>
         </div>
@@ -22,20 +22,29 @@
         </div>
     </section>
 
-    <section class="flex flex-col items-center justify-between my-2 h-4/5 w-full">
-        <div class="flex flex-row h-1/4 mx-2 my-2">
+    <section class="flex flex-col items-center justify-between my-2 w-full h-full">
+        <div class="flex flex-row h-1/12 mx-2 my-2">
             <button id="heroBtn" type="button" class="state-btn" onclick="heroChoiceBtnClick()">Choix du héros</button>
-            <button id="spellsBtn" type="button" class="state-btn" onclick="spellsChoiceBtnBtnClick()">Choix des sorts</button>
-            <button id="companionsBtn" type="button" class="state-btn" onclick="companionsChoiceBtnClick()">Choix des compagnons</button>
+            <button id="spellBtn" type="button" class="state-btn" onclick="spellChoiceBtnClick()">Choix des sorts</button>
+            <button id="companionBtn" type="button" class="state-btn" onclick="companionChoiceBtnClick()">Choix des compagnons</button>
         </div>
         <div class="flex h-2/3 w-11/12 mx-2 my-2">
             <div id="choiceLayout" class="flex-grow w-max">
                 <div id="choiceGrid"></div>
             </div>
         </div>
+        <div class="flex h-20 w-11/12 mx-2 my-2">
+            <div id="deckLayout" class="flex flex-grow flex-row w-max">
+                <div id="heroBar" class="h-20 w-20 bg-center bg-contain bg-no-repeat mx-4 border-2 border-light-blue-500 border-opacity-25"></div>
+                <div id="spellBarLayout"><div id="spellBar"></div></div>
+                <div id="companionBarLayout"><div id="companionBar"></div></div>
+                <button id="validateBtn" type="button" class="state-btn" onclick="validateBtnClick()"></button>
+            </div>
+        </div>
     </section>
 
-    <script src="deckHero.js"></script>
+    <script src="../../js/Tooltip.js"></script>
+    <script src="deckBuild.js"></script>
 
 </body>
 </html>

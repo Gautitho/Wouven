@@ -14,6 +14,10 @@ class Tooltip
 
   destructor ()
   {
+    if (document.getElementById("tooltip_" + this.element.id))
+    {
+      document.body.removeChild(this.tooltip)
+    }
     this.element.removeEventListener('mouseover', this.mouseOverBind)
     this.element.removeEventListener('mouseout', this.mouseOutBind)
   }
@@ -62,7 +66,8 @@ class Tooltip
         tooltip.classList.add('tooltipTxt')
       }
       document.body.appendChild(tooltip)
-      this.tooltip = tooltip
+      tooltip.id    = "tooltip_" + this.element.id
+      this.tooltip  = tooltip
     }
     return this.tooltip
   }

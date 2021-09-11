@@ -1,9 +1,9 @@
 {
-    "elely" :
+    "c0" :
     {
         "cost"          : {"fire" : 5},
-        "entityDescId"  : "elely",
-        "spellDescId"   : "essenceIop",
+        "entityDescId"  : "ec0",
+        "spellDescId"   : "sc0",
         "placementList" :
         [
             {
@@ -12,10 +12,10 @@
             }
         ]
     },
-    "championneSanglante" :
+    "c1" :
     {
         "cost"          : {"fire" : 4},
-        "entityDescId"  : "championneSanglante",
+        "entityDescId"  : "ec1",
         "spellDescId"   : "",
         "placementList" :
         [
@@ -25,10 +25,10 @@
             }
         ]
     },
-    "shutter" :
+    "c2" :
     {
         "cost"          : {"fire" : 4},
-        "entityDescId"  : "shutter",
+        "entityDescId"  : "ec2",
         "spellDescId"   : "",
         "placementList" :
         [
@@ -38,10 +38,10 @@
             }
         ]
     },
-    "seraphin" :
+    "c3" :
     {
         "cost"          : {"fire" : 4},
-        "entityDescId"  : "seraphin",
+        "entityDescId"  : "ec3",
         "spellDescId"   : "",
         "placementList" :
         [

@@ -37,6 +37,7 @@ class SimpleChat(WebSocket):
 parser = argparse.ArgumentParser()
 parser.add_argument("--testMode",       choices=["MANUAL", "REPLAY", "NONE"], default="NONE")
 parser.add_argument("--socketAddr",     default="127.0.0.1")
+parser.add_argument("--port",           default="50000")
 args = parser.parse_args()
 
 if args.testMode == "MANUAL":
@@ -59,7 +60,7 @@ elif args.testMode == "REPLAY":
 else:
     if LOG_ENABLE:
         logFile = open("cmd.log", "w")
-    server = WebSocketServer(args.socketAddr, 50000, SimpleChat)
+    server = WebSocketServer(args.socketAddr, args.port, SimpleChat)
     server.serve_forever()
     if LOG_ENABLE:
         logFile.close()

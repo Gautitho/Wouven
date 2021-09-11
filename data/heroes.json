@@ -1,14 +1,14 @@
 {
-    "kasai" :
+    "h0" :
     {
         "race"          : "iop",
-        "spellId"       : "spinning",
-        "entityDescId"  : "kasai"
+        "spellDescId"   : "sh0",
+        "entityDescId"  : "eh0"
     },
-    "pramium" :
+    "h1" :
     {
         "race"          : "xelor",
-        "spellId"       : "inspiration",
-        "entityDescId"  : "pramium"
+        "spellDescId"   : "sh0",
+        "entityDescId"  : "eh1"
     }
 }
