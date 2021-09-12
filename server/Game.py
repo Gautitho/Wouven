@@ -5,8 +5,8 @@ from functions import *
 from Board import *
 from GameException import *
 
-deck1       = {"heroDescId" : "kasai", "spells" : ["bloodySword", "blame", "burn", "fulgur", "explosiveCharge", "leap", "spinning", "massage", "inspiration"], "companions" : ["elely", "shutter", "championneSanglante", "seraphin"]}
-deck2       = {"heroDescId" : "kasai", "spells" : ["bloodySword", "blame", "burn", "fulgur", "explosiveCharge", "leap", "spinning", "massage", "inspiration"], "companions" : ["elely", "shutter", "championneSanglante", "seraphin"]}
+deck1       = {"heroDescId" : "h0", "spellDescIdList" : ["sh0", "s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7"], "companionDescIdList" : ["c0", "c1", "c2", "c3"]}
+deck2       = {"heroDescId" : "h0", "spellDescIdList" : ["sh0", "s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7"], "companionDescIdList" : ["c0", "c1", "c2", "c3"]}
 
 class Game:
 
@@ -157,13 +157,13 @@ class Game:
             if (pId != playerId):
                 return pId
 
-    def appendPlayer(self, playerId):
+    def appendPlayer(self, playerId, deck):
         if (len(self._board.playersDict) == 0):
-            self._board.appendPlayer(playerId, deck1, "blue", "1")
+            self._board.appendPlayer(playerId, deck, "blue", playerId)
         elif (len(self._board.playersDict) == 1):
-            self._board.appendPlayer(playerId, deck2, "red", "2")
+            self._board.appendPlayer(playerId, deck, "red", playerId)
         else:
-            raise GameException(f"2 playersDict already in the game {self._name} !")
+            raise GameException(f"2 players already in the game {self._name} !")
 
     def EndTurn(self, playerId):
         self._turn = "blue" if self._turn == "red" else "red"

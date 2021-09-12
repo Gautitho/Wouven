@@ -106,11 +106,11 @@ function updateMyStatus()
 
 function updateMyCompanion(companionIdx)
 {
-    if (myPlayer.companions[companionIdx].state == "alive")
+    if (myPlayer.companionList[companionIdx].state == "alive")
     {
         $("#myCompanion_" + companionIdx).css("background-color", "#a155d4");
     }
-    else if (myPlayer.companions[companionIdx].state == "dead")
+    else if (myPlayer.companionList[companionIdx].state == "dead")
     {
         $("#myCompanion_" + companionIdx).css("background-color", "#FF0000");
     }
@@ -118,7 +118,7 @@ function updateMyCompanion(companionIdx)
     {
         $("#myCompanion_" + companionIdx).css("background-color", "#FFFFFF");
     }
-    $("#myCompanion_" + companionIdx + "_sprite").css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.companions[companionIdx].descId + ".entityDescId") + ".descSpritePath") + ")");
+    $("#myCompanion_" + companionIdx + "_sprite").css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.companionList[companionIdx].descId + ".entityDescId") + ".descSpritePath") + ")");
 }
 
 function updateOpStatus()
@@ -142,10 +142,10 @@ function updateHandBar()
         $("#spell_" + i).css("background-image", "");
         $("#spell_" + i).css("background-color", "#FFFFFF");
     }
-    for (j = 0; j < myPlayer.handSpellDescIds.length; j++)
+    for (j = 0; j < myPlayer.handSpellDescIdList.length; j++)
     {
-        $("#spell_" + j).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("spellsDataBase." + myPlayer.handSpellDescIds[j] + ".spritePath") + ")");
-        tooltipArray.push(new Tooltip(document.getElementById("spell_" + j), PROJECT_ROOT_PATH + eval("spellsDataBase." + myPlayer.handSpellDescIds[j] + ".descSpritePath"), "img"));
+        $("#spell_" + j).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("spellsDataBase." + myPlayer.handSpellDescIdList[j] + ".spritePath") + ")");
+        tooltipArray.push(new Tooltip(document.getElementById("spell_" + j), PROJECT_ROOT_PATH + eval("spellsDataBase." + myPlayer.handSpellDescIdList[j] + ".descSpritePath"), "img"));
     }
 }
 

@@ -15,21 +15,21 @@ class Player:
         self._pa                        = 6
         self._paStock                   = 0
         self._gauges                    = {"fire" : 0, "water" : 0, "earth" : 0, "air" : 0, "neutral" : 0}
-        self._handSpellDescIds          = []
+        self._handSpellDescIdList       = []
         random.seed(0) #ONLY FOR DEBUG
-        self._deckSpellDescIds          = random.sample(deck["spells"], len(deck["spells"]))
-        self._companions                = []
-        for companionDescId in deck["companions"]:
-            self._companions.append({"descId" : companionDescId, "state" : "available", "entityId" : None})
+        self._deckSpellDescIdList       = random.sample(deck["spellDescIdList"], len(deck["spellDescIdList"]))
+        self._companionList             = []
+        for companionDescId in deck["companionDescIdList"]:
+            self._companionList.append({"descId" : companionDescId, "state" : "available", "entityId" : None})
         self._playedCompanionDescIds    = []
         self._boardEntityIds            = []
         self._heroEntityId              = None
 
     def checkDeck(self, deck):
-        # TODO: Check if deck is valid (spells from the good weapon, existing hero and companions, hero spell here, ...)
-        if (len(deck["spells"]) != 9):
+        # TODO: Check if deck is valid (spells from the good weapon, existing hero and companionList, hero spell here, ...)
+        if (len(deck["spellDescIdList"]) != 9):
             raise GameException("You have to choose 9 spells !")
-        if (len(deck["companions"]) != 4):
+        if (len(deck["companionDescIdList"]) != 4):
             raise GameException("You have to choose 4 companions !")
 
     @property
@@ -61,16 +61,16 @@ class Player:
         return dict(self._gauges)
 
     @property
-    def handSpellDescIds(self):
-        return list(self._handSpellDescIds)
+    def handSpellDescIdList(self):
+        return list(self._handSpellDescIdList)
 
     @property
-    def deckSpellDescIds(self):
-        return list(self._deckSpellDescIds)
+    def deckSpellDescIdList(self):
+        return list(self._deckSpellDescIdList)
 
     @property
-    def companions(self):
-        return list(self._companions)
+    def companionList(self):
+        return list(self._companionList)
 
     @property
     def boardEntityIds(self):
@@ -84,26 +84,26 @@ class Player:
         self._heroEntityId = heroEntityId
 
     def summonCompanion(self, companionId, entityId):
-        self._companions[companionId]["state"]      = "alive"
-        self._companions[companionId]["entityId"]   = entityId
-        if (db.companions[self._companions[companionId]["descId"]]["spellDescId"]):
-            if (len(self._handSpellDescIds) < HAND_SPELLS):
-                self._handSpellDescIds.append(db.companions[self._companions[companionId]["descId"]]["spellDescId"])
+        self._companionList[companionId]["state"]      = "alive"
+        self._companionList[companionId]["entityId"]   = entityId
+        if (db.companionList[self._companionList[companionId]["descId"]]["spellDescId"]):
+            if (len(self._handSpellDescIdList) < HAND_SPELLS):
+                self._handSpellDescIdList.append(db.companionList[self._companionList[companionId]["descId"]]["spellDescId"])
             else:
-                self._deckSpellDescIds.append(db.companions[self._companions[companionId]["descId"]]["spellDescId"])
+                self._deckSpellDescIdList.append(db.companionList[self._companionList[companionId]["descId"]]["spellDescId"])
 
     def removeCompanion(self, companionId):
-        self._companions[companionId]["state"]      = "dead"
-        self._companions[companionId]["entityId"]   = None
-        if (db.companions[self._companions[companionId]["descId"]]["spellDescId"]):
-            if (db.companions[self._companions[companionId]["descId"]]["spellDescId"] in self._handSpellDescIds):
-                self._handSpellDescIds.remove(db.companions[self._companions[companionId]["descId"]]["spellDescId"])
-            if (db.companions[self._companions[companionId]["descId"]]["spellDescId"] in self._deckSpellDescIds):
-                self._deckSpellDescIds.remove(db.companions[self._companions[companionId]["descId"]]["spellDescId"])
+        self._companionList[companionId]["state"]      = "dead"
+        self._companionList[companionId]["entityId"]   = None
+        if (db.companionList[self._companionList[companionId]["descId"]]["spellDescId"]):
+            if (db.companionList[self._companionList[companionId]["descId"]]["spellDescId"] in self._handSpellDescIdList):
+                self._handSpellDescIdList.remove(db.companionList[self._companionList[companionId]["descId"]]["spellDescId"])
+            if (db.companionList[self._companionList[companionId]["descId"]]["spellDescId"] in self._deckSpellDescIdList):
+                self._deckSpellDescIdList.remove(db.companionList[self._companionList[companionId]["descId"]]["spellDescId"])
 
     def storeCompanion(self, companionId):
-        self._companions[companionId]["state"]      = "available"
-        self._companions[companionId]["entityId"]   = None
+        self._companionList[companionId]["state"]      = "available"
+        self._companionList[companionId]["entityId"]   = None
 
     def startTurn(self):
         self._pa = 6
@@ -119,8 +119,8 @@ class Player:
         self._paStock = 0
 
     def draw(self):
-        if (len(self._handSpellDescIds) < HAND_SPELLS):
-            self._handSpellDescIds.append(self._deckSpellDescIds.pop(0))
+        if (len(self._handSpellDescIdList) < HAND_SPELLS):
+            self._handSpellDescIdList.append(self._deckSpellDescIdList.pop(0))
 
     def modifyGauge(self, gaugeType, value):
         if (gaugeType in ["fire", "water", "earth", "air", "neutral"]):
@@ -136,7 +136,7 @@ class Player:
             raise GameException("Wrong gauge type !")
 
     def playSpell(self, spellId, pa):
-        self._deckSpellDescIds.append(self._handSpellDescIds.pop(spellId))
+        self._deckSpellDescIdList.append(self._handSpellDescIdList.pop(spellId))
         self._pa -= pa
 
     def addEntity(self, entityId):
@@ -144,8 +144,8 @@ class Player:
 
     def removeEntity(self, entityId):
         self._boardEntityIds.remove(entityId)
-        for companionId in range(0, len(self._companions)):
-            if (self._companions[companionId]["entityId"] == entityId):
+        for companionId in range(0, len(self._companionList)):
+            if (self._companionList[companionId]["entityId"] == entityId):
                 self.removeCompanion(companionId)
 
     def display(self, printType="DEBUG"):
@@ -156,9 +156,9 @@ class Player:
         printInfo(f"pa                      = {self._pa}", printType)
         printInfo(f"paStock                 = {self._paStock}", printType)
         printInfo(f"gauges                  = {self._gauges}", printType)
-        printInfo(f"handSpellDescIds        = {self._handSpellDescIds}", printType)
-        printInfo(f"deckSpellDescIds        = {self._deckSpellDescIds}", printType)
-        printInfo(f"companions              = {self._companions}", printType)
+        printInfo(f"handSpellDescIdList     = {self._handSpellDescIdList}", printType)
+        printInfo(f"deckSpellDescIdList     = {self._deckSpellDescIdList}", printType)
+        printInfo(f"companionList           = {self._companionList}", printType)
         printInfo(f"playedCompanionDescIds  = {self._playedCompanionDescIds}", printType)
         printInfo(f"boardEntityIds          = {self._boardEntityIds}", printType)
         printInfo(f"heroEntityId            = {self._heroEntityId}", printType)
@@ -171,8 +171,8 @@ class Player:
         dic["pa"]                       = self._pa
         dic["paStock"]                  = self._paStock
         dic["gauges"]                   = self._gauges
-        dic["handSpellDescIds"]         = self._handSpellDescIds
-        dic["companions"]               = self._companions
+        dic["handSpellDescIdList"]      = self._handSpellDescIdList
+        dic["companionList"]            = self._companionList
         dic["boardEntityIds"]           = self._boardEntityIds
         dic["heroEntityId"]             = self._heroEntityId
         return dic

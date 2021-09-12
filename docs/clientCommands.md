@@ -19,6 +19,7 @@ When two clients have sent AUTH command, the game is launched
 | Argument | Type | Description |
 |----------|------|-------------|
 | gameName | String | Name of the game to create |
+| deck | Dict{heroDescId, spellDescIdList, companionDescIdList} | Deck of the player |
 
 <br>
 
@@ -27,6 +28,7 @@ When two clients have sent AUTH command, the game is launched
 | Argument | Type | Description |
 |----------|------|-------------|
 | gameName | String | Name of the game to join |
+| deck | Dict{heroDescId, spellDescIdList, companionDescIdList} | Deck of the player |
 
 <br>
 

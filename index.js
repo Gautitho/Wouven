@@ -5,6 +5,7 @@
 var playerId = "";
 var gameName = "";
 var deckCode = location.search.substring(1);
+var deck = {"heroDescId" : deckCode.split("&")[0], "spellDescIdList" : deckCode.split("&").slice(1, 10), "companionDescIdList" : deckCode.split("&").slice(10, 14)};
 
 $("#deckCode").val(deckCode);
 
@@ -48,7 +49,7 @@ function createGame()
 {
     playerId = document.getElementById("pseudo").value;
     gameName = document.getElementById("gameNameCreate").value;
-    clientCmd = {"cmd" : "CREATE_GAME", "playerId" : playerId, "gameName" : gameName};
+    clientCmd = {"cmd" : "CREATE_GAME", "playerId" : playerId, "gameName" : gameName, "deck" : deck};
     socket.send(JSON.stringify(clientCmd));
 }
 
@@ -56,7 +57,7 @@ function joinGame()
 {
     playerId = document.getElementById("pseudo").value;
     gameName = document.getElementById("gameNameJoin").value;
-    clientCmd = {"cmd" : "JOIN_GAME", "playerId" : playerId, "gameName" : gameName};
+    clientCmd = {"cmd" : "JOIN_GAME", "playerId" : playerId, "gameName" : gameName, "deck" : deck};
     socket.send(JSON.stringify(clientCmd));
 }
 
