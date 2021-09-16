@@ -6,9 +6,12 @@ ENTITIES_FILE_PATH      = "data/entities.json"
 SPELLS_FILE_PATH        = "data/spells.json"
 AURAS_FILE_PATH         = "data/auras.json"
 
-BOARD_ROWS  = 7
-BOARD_COLS  = 7
-HAND_SPELLS = 7
+BOARD_ROWS      = 7
+BOARD_COLS      = 7
+HAND_SPELLS     = 7
+DECK_SPELLS     = 9
+DECK_COMPANIONS = 4
+ACTION_LIST_LEN = 5
 
 class DataBase:
 

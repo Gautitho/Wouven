@@ -17,6 +17,7 @@ class Game:
         self._turn          = "blue"
         self._board         = Board()
         self._serverCmdList = []
+        self._actionList    = []
 
     @property
     def name(self):
@@ -41,6 +42,10 @@ class Game:
     @property
     def serverCmdList(self):
         return list(self._serverCmdList)
+
+    @property
+    def actionList(self):
+        return list(self._actionList)
 
     def checkCmdArgs(self, cmdDict, keyList):
         for key in keyList:
@@ -69,22 +74,25 @@ class Game:
                 elif (cmd == "MOVE"):
                     self.checkCmdArgs(cmdDict, ["entityId", "path"])
                     self.Move(playerId, int(cmdDict["entityId"]), cmdDict["path"])
+                    self.addActionToList("move", self._board.playersDict[playerId].team, cmdDict["entityId"], cmdDict["path"][-1])
 
                 elif (cmd == "SPELL"):
                     self.checkCmdArgs(cmdDict, ["spellId", "targetPositionList"])
                     self.SpellCast(playerId, int(cmdDict["spellId"]), cmdDict["targetPositionList"])
+                    self.addActionToList("spellCast", self._board.playersDict[playerId].team, cmdDict["spellId"], cmdDict["targetPositionList"])
 
                 elif (cmd == "SUMMON"):
                     self.checkCmdArgs(cmdDict, ["companionId", "summonPositionList"])
                     self.Summon(playerId, int(cmdDict["companionId"]), cmdDict["summonPositionList"])
+                    self.addActionToList("summon", self._board.playersDict[playerId].team, cmdDict["companionId"], cmdDict["summonPositionList"])
 
                 elif (cmd == "USE_RESERVE"):
                     self.UseReserve(playerId)
-
-
+                    self.addActionToList("useReserve", self._board.playersDict[playerId].team, self._board.playersDict[playerId].heroEntityId, [])
 
                 self._board.always()
                 self.sendStatus()
+                self.sendActionList()
 
         return self._serverCmdList
 
@@ -133,7 +141,6 @@ class Game:
             if not(self._board.playersDict[playerId].heroEntityId in self._board.entitiesDict):
                deadPlayerIdList.append(playerId)
         if deadPlayerIdList:
-            print(deadPlayerIdList)
             for playerId in list(self._board.playersDict.keys()):
                 serverCmd = {}
                 serverCmd["cmd"]    = "END_GAME"
@@ -145,6 +152,29 @@ class Game:
                 else:
                     serverCmd["result"] = "DRAW"
                 self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
+
+    def addActionToList(self, actionType, team, sourceId, targetPositionList):
+        action              = {}
+        action["type"]      = actionType
+        action["team"]      = team
+        action["sourceId"]  = sourceId
+        if targetPositionList:
+            for position in targetPositionList:
+                action["targetId"] = self._board.entityIdOnTile(position["x"], position["y"])
+                self._actionList.insert(0, dict(action))
+                if (len(self._actionList) == ACTION_LIST_LEN):
+                    self._actionList.pop(-1)
+        else:
+            action["targetId"] = None
+            self._actionList.insert(0, dict(action))
+            if (len(self._actionList) == ACTION_LIST_LEN):
+                self._actionList.pop(-1)
+
+    def sendActionList(self):
+        for playerId in list(self._board.playersDict.keys()):
+            serverCmd = {}
+            serverCmd["cmd"]        = "HISTORIC"
+            serverCmd["actionList"] = self._actionList
 
     def checkTurn(self, playerId):
         if not(playerId in list(self._board.playersDict.keys())):
