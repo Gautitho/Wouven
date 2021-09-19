@@ -4,6 +4,7 @@
         "name"              : "Kasaï",
         "spritePath"        : "img/entities/icon/Kasai.png",
         "descSpritePath"    : "img/entities/desc/Kasai.png",
+        "types"             : [],
         "pv"                : 390,
         "armor"             : 0,
         "atk"               : 37,
@@ -37,6 +38,7 @@
         "name"              : "Pramium",
         "spritePath"        : "img/entities/icon/Pramium.png",
         "descSpritePath"    : "img/entities/desc/Elely.png",
+        "types"             : [],
         "pv"                : 290,
         "armor"             : 0,
         "atk"               : 10,
@@ -61,6 +63,7 @@
         "name"              : "Elely",
         "spritePath"        : "img/entities/icon/Elely.png",
         "descSpritePath"    : "img/entities/desc/Elely.png",
+        "types"             : [],
         "pv"                : 105,
         "armor"             : 0,
         "atk"               : 22,
@@ -94,6 +97,7 @@
         "name"              : "Championne sanglante",
         "spritePath"        : "img/entities/icon/Championne_sanglante.png",
         "descSpritePath"    : "img/entities/desc/Championne_sanglante.png",
+        "types"             : [],
         "pv"                : 63,
         "armor"             : 0,
         "atk"               : 7,
@@ -127,11 +131,12 @@
         "name"              : "Shutter",
         "spritePath"        : "img/entities/icon/Shutter.png",
         "descSpritePath"    : "img/entities/desc/Shutter.png",
+        "types"             : [],
         "pv"                : 72,
         "armor"             : 0,
         "atk"               : 10,
         "pm"                : 3,
-        "aura"              : {"type" : "flyingFist", "nb" : 3},
+        "aura"              : {"type" : "a1", "nb" : 3},
         "states"            : [],
         "abilities"         :
         [
@@ -151,6 +156,7 @@
         "name"              : "Séraphin",
         "spritePath"        : "img/entities/icon/Seraphin.png",
         "descSpritePath"    : "img/entities/desc/Seraphin.png",
+        "types"             : [],
         "pv"                : 84,
         "armor"             : 0,
         "atk"               : 18,
@@ -176,6 +182,31 @@
                 "behavior"      : "",
                 "feature"       : "paStock",
                 "value"         : -1
+            }
+        ]
+    },
+    "ei0" :
+    {
+        "name"              : "Sinistro feu",
+        "spritePath"        : "img/entities/icon/Seraphin.png",
+        "descSpritePath"    : "img/entities/desc/Seraphin.png",
+        "types"             : ["mechanism", "sinistro"],
+        "pv"                : 10,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spawn",
+                "target"        : "opOrganicAround",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -10
             }
         ]
     }

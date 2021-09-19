@@ -16,7 +16,8 @@ class Player:
         self._paStock                   = 0
         self._gauges                    = {"fire" : 0, "water" : 0, "earth" : 0, "air" : 0, "neutral" : 0}
         self._handSpellDescIdList       = []
-        random.seed(0) #ONLY FOR DEBUG
+        if TEST_ENABLE:
+            random.seed(0) #ONLY FOR DEBUG
         self._deckSpellDescIdList       = random.sample(deck["spellDescIdList"], len(deck["spellDescIdList"]))
         self._companionList             = []
         for companionDescId in deck["companionDescIdList"]:
@@ -86,7 +87,7 @@ class Player:
     def summonCompanion(self, companionId, entityId):
         self._companionList[companionId]["state"]      = "alive"
         self._companionList[companionId]["entityId"]   = entityId
-        if (db.companionList[self._companionList[companionId]["descId"]]["spellDescId"]):
+        if (db.companions[self._companionList[companionId]["descId"]]["spellDescId"]):
             if (len(self._handSpellDescIdList) < HAND_SPELLS):
                 self._handSpellDescIdList.append(db.companionList[self._companionList[companionId]["descId"]]["spellDescId"])
             else:

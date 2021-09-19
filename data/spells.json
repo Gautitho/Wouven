@@ -16,7 +16,7 @@
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addAura",
-                "feature"       : "bloodySword",
+                "feature"       : "a0",
                 "value"         : 3
             }
         ]
@@ -29,7 +29,7 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/blame.png",
         "descSpritePath"    : "img/spells/desc/blame.png",
-        "allowedTargetList" : ["allEntity"],
+        "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
             {
@@ -69,7 +69,7 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/burn.png",
         "descSpritePath"    : "img/spells/desc/burn.png",
-        "allowedTargetList" : ["allEntity"],
+        "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
             {
@@ -109,7 +109,7 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/fulgur.png",
         "descSpritePath"    : "img/spells/desc/fulgur.png",
-        "allowedTargetList" : ["allEntity"],
+        "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
             {
@@ -149,7 +149,7 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/explosiveCharge.png",
         "descSpritePath"    : "img/spells/desc/explosiveCharge.png",
-        "allowedTargetList" : ["firstAlignedEntity"], 
+        "allowedTargetList" : ["allfirstAlignedOrganic"], 
         "abilities"         :
         [
             {
@@ -198,17 +198,17 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/leap.png",
         "descSpritePath"    : "img/spells/desc/leap.png",
-        "allowedTargetList" : ["emptyTile"],
+        "allowedTargetList" : ["myOrganic", "emptyTile"],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "tile",
+                "target"        : "target",
                 "conditionList" : [{"feature" :"range", "value" : 2}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
-                "value"         : 0
+                "value"         : "target:1"
             },
             {
                 "trigger"       : "spellCast",
@@ -229,7 +229,7 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/massage.png",
         "descSpritePath"    : "img/spells/desc/massage.png",
-        "allowedTargetList" : ["allEntity"],
+        "allowedTargetList" : ["allOrganic"],
         "conditionList"     : [],
         "abilities"         :
         [
@@ -270,7 +270,7 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/inspiration.png",
         "descSpritePath"    : "img/spells/desc/inspiration.png",
-        "allowedTargetList" : ["allEntity"],
+        "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
             {
@@ -302,6 +302,28 @@
             }
         ]
     },
+    "s8":
+    {
+        "name"              : "Sinistro feu",
+        "race"              : "xelor",
+        "cost"              : 2,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/iopEssence.png",
+        "descSpritePath"    : "img/spells/desc/iopEssence.png",
+        "allowedTargetList" : ["emptyTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "tile",
+                "conditionList" : [{"feature" :"range", "value" : 3}],
+                "break"         : "True",
+                "behavior"      : "invocation",
+                "feature"       : "ei0",
+                "value"         : 0
+            }
+        ]
+    },
     "sh0":
     {
         "name"              : "Tournoiment",
@@ -310,7 +332,7 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/spinning.png",
         "descSpritePath"    : "img/spells/desc/spinning.png",
-        "allowedTargetList" : ["allEntity", "emptyTile"],
+        "allowedTargetList" : ["allOrganic", "emptyTile"],
         "abilities"         :
         [
             {
@@ -324,13 +346,12 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "tile",
-                "targetIdx"     : 1,
+                "target"        : "myPlayer",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "position",
-                "value"         : 0
+                "value"         : "target:1"
             },
             {
                 "trigger"       : "spellCast",
@@ -346,12 +367,12 @@
     "sc0":
     {
         "name"              : "Essence du dieu Iop",
-        "race"              : "companion",
+        "race"              : "c0",
         "cost"              : 3,
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iopEssence.png",
         "descSpritePath"    : "img/spells/desc/iopEssence.png",
-        "allowedTargetList" : ["allEntity"],
+        "allowedTargetList" : ["self"],
         "abilities"         :
         [
             {

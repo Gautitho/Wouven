@@ -29,7 +29,9 @@
 |-----|-----------------|
 | target | Entity on which the effect is applied |
 | self | Entity which apply the effect |
-| opAround | Opponents around |
+| allOrganicAround | All, not mechanism, around |
+| myOrganicAround | Current player entities, not mechanism, around |
+| opOrganicAround | Opponent entities, not mechanism, around |
 | myPlayer | Player who own the entity which apply the effect |
 | opPlayer |  |
 | tile | |

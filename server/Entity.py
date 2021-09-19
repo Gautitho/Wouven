@@ -13,6 +13,7 @@ class Entity:
         self._armor         = db.entities[descId]["armor"]
         self._atk           = db.entities[descId]["atk"]
         self._pm            = db.entities[descId]["pm"]
+        self._types         = db.entities[descId]["types"]
         self._elemState     = ""
         self._aura          = db.entities[descId]["aura"]
         self._states        = db.entities[descId]["states"]
@@ -84,6 +85,10 @@ class Entity:
         return self._pm
 
     @property
+    def types(self):
+        return list(self._types)
+
+    @property
     def elemState(self):
         return self._elemState
 
@@ -121,6 +126,7 @@ class Entity:
         printInfo(f"armor       = {self._armor}", printType)
         printInfo(f"atk         = {self._atk}", printType)
         printInfo(f"pm          = {self._pm}", printType)
+        printInfo(f"types       = {self._types}", printType)
         printInfo(f"elemState   = {self._elemState}", printType)
         printInfo(f"aura        = {self._aura}", printType)
         printInfo(f"states      = {self._states}", printType)
@@ -138,6 +144,7 @@ class Entity:
         dic["armor"]        = self._armor
         dic["atk"]          = self._atk
         dic["pm"]           = self._pm
+        dic["types"]        = self._types
         dic["elemState"]    = self._elemState
         dic["aura"]         = self._aura
         dic["states"]       = self._states

@@ -5,7 +5,7 @@ from functions import *
 from Board import *
 from GameException import *
 
-deck1       = {"heroDescId" : "h0", "spellDescIdList" : ["sh0", "s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7"], "companionDescIdList" : ["c0", "c1", "c2", "c3"]}
+deck1       = {"heroDescId" : "h0", "spellDescIdList" : ["sh0", "s0", "s1", "s2", "s3", "s4", "s5", "s6", "s8"], "companionDescIdList" : ["c0", "c1", "c2", "c3"]}
 deck2       = {"heroDescId" : "h0", "spellDescIdList" : ["sh0", "s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7"], "companionDescIdList" : ["c0", "c1", "c2", "c3"]}
 
 class Game:
@@ -74,7 +74,7 @@ class Game:
                 elif (cmd == "MOVE"):
                     self.checkCmdArgs(cmdDict, ["entityId", "path"])
                     self.Move(playerId, int(cmdDict["entityId"]), cmdDict["path"])
-                    self.addActionToList("move", self._board.playersDict[playerId].team, cmdDict["entityId"], cmdDict["path"][-1])
+                    self.addActionToList("move", self._board.playersDict[playerId].team, cmdDict["entityId"], [cmdDict["path"][-1]])
 
                 elif (cmd == "SPELL"):
                     self.checkCmdArgs(cmdDict, ["spellId", "targetPositionList"])
@@ -189,9 +189,15 @@ class Game:
 
     def appendPlayer(self, playerId, deck):
         if (len(self._board.playersDict) == 0):
-            self._board.appendPlayer(playerId, deck, "blue", playerId)
+            if TEST_ENABLE:
+                self._board.appendPlayer(playerId, deck1, "blue", playerId)
+            else:
+                self._board.appendPlayer(playerId, deck, "blue", playerId)
         elif (len(self._board.playersDict) == 1):
-            self._board.appendPlayer(playerId, deck, "red", playerId)
+            if TEST_ENABLE:
+                self._board.appendPlayer(playerId, deck2, "red", playerId)
+            else:
+                self._board.appendPlayer(playerId, deck, "red", playerId)
         else:
             raise GameException(f"2 players already in the game {self._name} !")
 
