@@ -27,11 +27,30 @@ class Player:
         self._heroEntityId              = None
 
     def checkDeck(self, deck):
-        # TODO: Check if deck is valid (spells from the good weapon, existing hero and companionList, hero spell here, ...)
+        if not(deck["heroDescId"] in db.heroes):
+            raise GameException(f"The hero ({deck['heroDescId']}) you picked does not exist !")
         if (len(deck["spellDescIdList"]) != 9):
             raise GameException("You have to choose 9 spells !")
         if (len(deck["companionDescIdList"]) != 4):
             raise GameException("You have to choose 4 companions !")
+        heroSpellFound = False
+        for spellDescId in deck["spellDescIdList"]:
+            if not(spellDescId in db.spells):
+                raise GameException(f"The spell ({spellDescId}) you picked does not exist !")
+            elif (deck["spellDescIdList"].count(spellDescId) > 1):
+                raise GameException(f"You can't pick a spell ({spellDescId}) more than 1 time !")
+            else:
+                if (db.spells["spellDescId"]["race"] == self._heroDescId):
+                    heroSpellFound = True
+                elif (db.spells[spellDescId]["race"] != self._race):
+                    raise GameException(f"You have picked a spell ({spellDescId}) with the wrong race !")
+        if not(heroSpellFound):
+            raise GameException("You haven't picked a your hero spell !")
+        for companionDescIdList in deck["companionDescIdList"]:
+            if not(companionDescId in db.companions):
+                raise GameException(f"The companion ({companionDescId}) you picked does not exist !")
+            elif (deck["companionDescIdList"].count(companionDescId) > 1):
+                raise GameException(f"You can't pick a companion ({companionDescId}) more than 1 time !") 
 
     @property
     def heroDescId(self):
