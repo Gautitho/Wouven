@@ -165,6 +165,39 @@ class Board:
                     break
         return entityIdList
 
+    def entityIdAligned(self, xStart, yStart, xDir, yDir, rangeCondition, team):
+        entityIdList = []
+        if (yStart == yDir):
+            if (xDir > xStart):
+                for x in range(xStart + 1, min(xStart + rangeCondition + 1, BOARD_COLS)):
+                    matchId = self.entityIdOnTile(x, yStart)
+                    if (matchId != None):
+                        if (team == "all" or team == self._entitiesDict[matchId].team):
+                            entityIdList.append(matchId)
+            elif (xDir < xStart):
+                for x in range(xStart - 1, min(xStart - rangeCondition - 1, -1), -1):
+                    matchId = self.entityIdOnTile(x, yStart)
+                    if (matchId != None):
+                        if (team == "all" or team == self._entitiesDict[matchId].team):
+                            entityIdList.append(matchId)
+        elif (xStart == xDir):
+            if (yDir > yStart):
+                for y in range(yStart + 1, min(yStart + rangeCondition + 1, BOARD_ROWS)):
+                    matchId = self.entityIdOnTile(xStart, y)
+                    if (matchId != None):
+                        if (team == "all" or team == self._entitiesDict[matchId].team):
+                            entityIdList.append(matchId)
+            elif (yDir < yStart):
+                for y in range(yStart - 1, min(yStart - rangeCondition - 1, -1), -1):
+                    matchId = self.entityIdOnTile(xStart, y)
+                    if (matchId != None):
+                        if (team == "all" or team == self._entitiesDict[matchId].team):
+                            entityIdList.append(matchId)
+        return entityIdList
+
+    def isAdjacentToTile(self, xSelf, ySelf, xTarget, yTarget):
+        return ((xTarget == xSelf and (yTarget == ySelf + 1 or yTarget == ySelf - 1)) or (yTarget == ySelf and (xTarget == xSelf + 1 or xTarget == xSelf - 1)))
+
     def startTurn(self, playerId):
         self._playersDict[playerId].startTurn()
         for entityId in self._playersDict[playerId].boardEntityIds:
@@ -348,6 +381,13 @@ class Board:
                             else:
                                 raise GameException("Target is not the first, not mechanism, aligned entity !")
 
+                        elif (spell["allowedTargetList"][allowedTargetIdx] == "allAdjacentTile"):
+                            if (self.isAdjacentToTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])):
+                                targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
+                                selfEntityId = self._playersDict[playerId].heroEntityId
+                            else:
+                                raise GameException("Target is not the first, not mechanism, aligned entity !")
+
                         else:
                             raise GameException("Wrong target type !")
                 else:
@@ -448,7 +488,7 @@ class Board:
 
                     elif (condition["feature"] == "range"):
                         if (calcDist(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"]) <= condition["value"]):
-                            pass
+                            rangeCondition = condition["value"]
                         else:
                             conditionsValid = False
 
@@ -481,6 +521,10 @@ class Board:
                     abilityEntityIdList = self.entityIdAroundTile(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, self.getOpTeam(self._entitiesDict[selfEntityId].team))
                 elif (ability["target"] == "myOrganicAround"):
                     abilityEntityIdList = self.entityIdAroundTile(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, self._entitiesDict[selfEntityId].team)
+                elif (ability["target"] == "allOrganicAligned"):
+                    abilityEntityIdList = self.entityIdAligned(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"], rangeCondition, "all")
+                elif (ability["target"] == "opOrganicAligned"):
+                    abilityEntityIdList = self.entityIdAligned(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"], rangeCondition, self.getOpTeam(self._entitiesDict[selfEntityId].team))
                 elif (ability["target"] == "tile"):
                     pass
                 else:
@@ -553,6 +597,18 @@ class Board:
                             mult = len(self.entityIdAroundTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, self._playersDict[self.getOpPlayerId(playerId)].team))
                             self._entitiesDict[self._playersDict[playerId].heroEntityId].modifyAtk(mult*value)
                             executed = True
+
+                    elif (ability["behavior"] == "opAffected"):
+                        if (ability["target"] == "opOrganicAligned"):
+                            opsAffected = len(self.entityIdAligned(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"], rangeCondition, self.getOpTeam(self._entitiesDict[selfEntityId].team)))
+                        if (ability["feature"] == "gauges"):
+                            if isinstance(value, dict):
+                                for gaugeType in list(value.keys()):
+                                    self._playersDict[playerId].modifyGauge(gaugeType, opsAffected*value[gaugeType])
+                                    executed = True
+                            else:
+                                raise GameException("Ability value for gauges must be a dict !")
+
                         
                     elif (ability["behavior"] == "addAura"):
                         if (self._entitiesDict[self._playersDict[playerId].heroEntityId].aura and ability["feature"] == self._entitiesDict[self._playersDict[playerId].heroEntityId].aura["type"]):

@@ -1,7 +1,7 @@
 ## Ability keys
 
 | Key | Description |
-|-----|-----------------|
+|-----|-------------|
 | trigger | Determine on which event the effect occur |
 | target | Target on which the effect is applied |
 | conditionList | All the conditions must be true to trigger the effect |
@@ -15,7 +15,7 @@
 ### trigger
 
 | Key | Description |
-|-----|-----------------|
+|-----|-------------|
 | always | At each action of all players |
 | attack | |
 | attacked | |
@@ -26,12 +26,13 @@
 ### target
 
 | Key | Description |
-|-----|-----------------|
+|-----|-------------|
 | target | Entity on which the effect is applied |
 | self | Entity which apply the effect |
-| allOrganicAround | All, not mechanism, around |
+| allOrganicAround | All entity, not mechanism, around |
 | myOrganicAround | Current player entities, not mechanism, around |
 | opOrganicAround | Opponent entities, not mechanism, around |
+| allOrganicAligned | All entity, not mechanism, on a line |
 | myPlayer | Player who own the entity which apply the effect |
 | opPlayer |  |
 | tile | |
@@ -43,14 +44,14 @@ This is an example : [{"feature" : "elemState", "value" : "oiled"}]
 ### break
 
 | Key | Description |
-|-----|-----------------|
+|-----|-------------|
 | True | |
 | False | |
 
 ### feature
 
 | Key | Description |
-|-----|-----------------|
+|-----|-------------|
 | pv | |
 | pm | |
 | atk | |
@@ -63,7 +64,7 @@ This is an example : [{"feature" : "elemState", "value" : "oiled"}]
 ### value
 
 | Key | Description |
-|-----|-----------------|
+|-----|-------------|
 | Integer | |
 | String | Could be a feature |
 | Dict | If feature is at gauges |
@@ -71,9 +72,10 @@ This is an example : [{"feature" : "elemState", "value" : "oiled"}]
 ### behavior
 
 | Key | Description |
-|-----|-----------------|
+|-----|-------------|
 | addAura |  |
 | explosion |  |
 | charge |  |
 | state |  |
+| opAffected |  |
 

@@ -40,13 +40,13 @@ class Player:
             elif (deck["spellDescIdList"].count(spellDescId) > 1):
                 raise GameException(f"You can't pick a spell ({spellDescId}) more than 1 time !")
             else:
-                if (db.spells["spellDescId"]["race"] == self._heroDescId):
+                if (db.spells[spellDescId]["race"] == deck["heroDescId"]):
                     heroSpellFound = True
-                elif (db.spells[spellDescId]["race"] != self._race):
+                elif (db.spells[spellDescId]["race"] != db.heroes[deck["heroDescId"]]["race"]):
                     raise GameException(f"You have picked a spell ({spellDescId}) with the wrong race !")
         if not(heroSpellFound):
             raise GameException("You haven't picked a your hero spell !")
-        for companionDescIdList in deck["companionDescIdList"]:
+        for companionDescId in deck["companionDescIdList"]:
             if not(companionDescId in db.companions):
                 raise GameException(f"The companion ({companionDescId}) you picked does not exist !")
             elif (deck["companionDescIdList"].count(companionDescId) > 1):

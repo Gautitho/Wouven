@@ -324,6 +324,46 @@
             }
         ]
     },
+    "s9":
+    {
+        "name"              : "Fondre le sol",
+        "race"              : "iop",
+        "cost"              : 8,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/iopEssence.png",
+        "descSpritePath"    : "img/spells/desc/iopEssence.png",
+        "allowedTargetList" : ["allAdjacentTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "allOrganicAligned",
+                "conditionList" : [{"feature" :"range", "value" : 3}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -35
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 3}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "opOrganicAligned",
+                "conditionList" : [{"feature" :"range", "value" : 3}],
+                "break"         : "False",
+                "behavior"      : "opAffected",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            }
+        ]
+    },
     "sh0":
     {
         "name"              : "Tournoiment",

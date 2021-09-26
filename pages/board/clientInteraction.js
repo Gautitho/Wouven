@@ -75,7 +75,7 @@ function updateBoard()
         var imgStr = "";
         for (state in entities[entityId].states)
         {
-            imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + "img/" + entities[entityId].states[state].feature + ".png), ";
+            imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + "img/states/" + entities[entityId].states[state].feature + ".png), ";
         }
         if (entities[entityId].elemState != "")
         {
