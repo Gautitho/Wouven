@@ -214,8 +214,12 @@ class Board:
     # This function is called after each action
     def always(self):
         self.garbageCollector()
-        for entityIdx in range(0, len(list(self._entitiesDict.keys()))):
-            self.executeAbilities(self._entitiesDict[list(self._entitiesDict.keys())[entityIdx]].abilities, "always", self.getPlayerIdFromTeam(self._entitiesDict[list(self._entitiesDict.keys())[entityIdx]].team), list(self._entitiesDict.keys())[entityIdx], None, [], None)
+        for entityId in list(self._entitiesDict.keys()):
+            self.executeAbilities(self._entitiesDict[entityId].abilities, "always", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, None, [], None)
+        for playerId in list(self._playersDict.keys()):
+            for spellId in range(0, len(self._playersDict[playerId].handSpellList)):
+                self._playersDict[playerId].resetSpellCost(spellId) # WARNING : This might be an error in some cases
+                self.executeAbilities(db.spells[self._playersDict[playerId].handSpellList[spellId]["descId"]]["abilities"], "always", playerId, spellId, [], [], None)
         self.garbageCollector()
 
     def moveEntity(self, playerId, entityId, path):
@@ -266,12 +270,12 @@ class Board:
 
     def spellCast(self, playerId, spellId, targetPositionList):
         # Check if spell in hand
-        if (0 <= spellId < len(self._playersDict[playerId].handSpellDescIdList)):
-            spell = db.spells[self._playersDict[playerId].handSpellDescIdList[spellId]]
+        if (0 <= spellId < len(self._playersDict[playerId].handSpellList)):
+            spell = db.spells[self._playersDict[playerId].handSpellList[spellId]["descId"]]
 
             # Check if there is enough PA to play the spell
-            if (spell["cost"] <= self._playersDict[playerId].pa):
-                self._playersDict[playerId].playSpell(spellId, spell["cost"])
+            if (self._playersDict[playerId].handSpellList[spellId]["cost"] <= self._playersDict[playerId].pa):
+                self._playersDict[playerId].playSpell(spellId)
 
                 # Check allowed targets
                 if (len(spell["allowedTargetList"]) == len(targetPositionList)):
@@ -442,7 +446,7 @@ class Board:
         else:
             raise GameException("Only one summon position is allowed !")
 
-    def executeAbilities(self, abilityList, trigger, playerId, selfEntityId, targetEntityIdList, positionList, spellElem):
+    def executeAbilities(self, abilityList, trigger, playerId, selfId, targetEntityIdList, positionList, spellElem):
         auraUsed    = False
         opPlayerId  = self.getOpPlayerId(playerId) if playerId else ""
         for ability in abilityList:
@@ -508,7 +512,7 @@ class Board:
                 if (ability["target"] == "target"):
                     abilityEntityIdList = [targetEntityIdList[targetIdx]]
                 elif (ability["target"] == "self"):
-                    abilityEntityIdList = [selfEntityId]
+                    abilityEntityIdList = [selfId     ]
                 elif (ability["target"] == "targetPlayer"):
                     abilityEntityIdList = [self._playersDict[self.getPlayerIdFromTeam(self._entitiesDict[targetEntityIdList[targetIdx]].team)].heroEntityId]
                 elif (ability["target"] == "myPlayer"):
@@ -516,16 +520,18 @@ class Board:
                 elif (ability["target"] == "opPlayer"):
                     abilityEntityIdList = [self._playersDict[opPlayerId].heroEntityId]
                 elif (ability["target"] == "allOrganicAround"):
-                    abilityEntityIdList = self.entityIdAroundTile(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, "all")
+                    abilityEntityIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, "all")
                 elif (ability["target"] == "opOrganicAround"):
-                    abilityEntityIdList = self.entityIdAroundTile(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, self.getOpTeam(self._entitiesDict[selfEntityId].team))
+                    abilityEntityIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self.getOpTeam(self._entitiesDict[selfId].team))
                 elif (ability["target"] == "myOrganicAround"):
-                    abilityEntityIdList = self.entityIdAroundTile(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, self._entitiesDict[selfEntityId].team)
+                    abilityEntityIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[selfId].team)
                 elif (ability["target"] == "allOrganicAligned"):
-                    abilityEntityIdList = self.entityIdAligned(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"], rangeCondition, "all")
+                    abilityEntityIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"], rangeCondition, "all")
                 elif (ability["target"] == "opOrganicAligned"):
-                    abilityEntityIdList = self.entityIdAligned(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"], rangeCondition, self.getOpTeam(self._entitiesDict[selfEntityId].team))
+                    abilityEntityIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"], rangeCondition, self.getOpTeam(self._entitiesDict[selfId].team))
                 elif (ability["target"] == "tile"):
+                    pass
+                elif (ability["target"] == "spell"):
                     pass
                 else:
                     raise GameException("Wrong ability target !")
@@ -537,9 +543,9 @@ class Board:
                     value = ability["value"]
                 elif isinstance(ability["value"], str):
                     if (ability["value"] == "-atk"):
-                        value = -self._entitiesDict[selfEntityId].atk
+                        value = -self._entitiesDict[selfId].atk
                     elif (ability["value"] == "atk"):
-                        value = self._entitiesDict[selfEntityId].atk
+                        value = self._entitiesDict[selfId].atk
                     elif (ability["value"].split(':')[0] == "target"):
                         value = int(ability["value"].split(':')[1])
                     else:
@@ -593,14 +599,17 @@ class Board:
                             executed = True
 
                     elif (ability["behavior"] == "melee"):
+                        mult = len(self.entityIdAroundTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, self._playersDict[self.getOpPlayerId(playerId)].team))
                         if (ability["feature"] == "atk"): 
-                            mult = len(self.entityIdAroundTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, self._playersDict[self.getOpPlayerId(playerId)].team))
                             self._entitiesDict[self._playersDict[playerId].heroEntityId].modifyAtk(mult*value)
+                            executed = True
+                        elif (ability["feature"] == "cost"):
+                            self._playersDict[playerId].modifySpellCost(selfId, mult*value)
                             executed = True
 
                     elif (ability["behavior"] == "opAffected"):
                         if (ability["target"] == "opOrganicAligned"):
-                            opsAffected = len(self.entityIdAligned(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"], rangeCondition, self.getOpTeam(self._entitiesDict[selfEntityId].team)))
+                            opsAffected = len(self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"], rangeCondition, self.getOpTeam(self._entitiesDict[selfId].team)))
                         if (ability["feature"] == "gauges"):
                             if isinstance(value, dict):
                                 for gaugeType in list(value.keys()):
@@ -620,21 +629,21 @@ class Board:
 
                     elif (ability["behavior"] == "charge"):
                         for abilityEntityId in abilityEntityIdList:
-                            if (self._entitiesDict[selfEntityId].x == self._entitiesDict[abilityEntityId].x):
-                                if (self._entitiesDict[selfEntityId].y < self._entitiesDict[abilityEntityId].y):
-                                    self._entitiesDict[selfEntityId].tp(self._entitiesDict[selfEntityId].x, self._entitiesDict[abilityEntityId].y - 1)
+                            if (self._entitiesDict[selfId].x == self._entitiesDict[abilityEntityId].x):
+                                if (self._entitiesDict[selfId].y < self._entitiesDict[abilityEntityId].y):
+                                    self._entitiesDict[selfId].tp(self._entitiesDict[selfId].x, self._entitiesDict[abilityEntityId].y - 1)
                                     executed = True
-                                elif (self._entitiesDict[selfEntityId].y > self._entitiesDict[abilityEntityId].y):
-                                    self._entitiesDict[selfEntityId].tp(self._entitiesDict[selfEntityId].x, self._entitiesDict[abilityEntityId].y + 1)
+                                elif (self._entitiesDict[selfId].y > self._entitiesDict[abilityEntityId].y):
+                                    self._entitiesDict[selfId].tp(self._entitiesDict[selfId].x, self._entitiesDict[abilityEntityId].y + 1)
                                     executed = True
                                 else:
                                     raise GameException("Target can't be on the same tile than selfEntity !")
-                            elif (self._entitiesDict[selfEntityId].y == self._entitiesDict[abilityEntityId].y):
-                                if (self._entitiesDict[selfEntityId].x < self._entitiesDict[abilityEntityId].x):
-                                    self._entitiesDict[selfEntityId].tp(self._entitiesDict[selfEntityId].x - 1, self._entitiesDict[abilityEntityId].y)
+                            elif (self._entitiesDict[selfId].y == self._entitiesDict[abilityEntityId].y):
+                                if (self._entitiesDict[selfId].x < self._entitiesDict[abilityEntityId].x):
+                                    self._entitiesDict[selfId].tp(self._entitiesDict[selfId].x - 1, self._entitiesDict[abilityEntityId].y)
                                     executed = True
-                                elif (self._entitiesDict[selfEntityId].x > self._entitiesDict[abilityEntityId].x):
-                                    self._entitiesDict[selfEntityId].tp(self._entitiesDict[selfEntityId].x + 1, self._entitiesDict[abilityEntityId].y)
+                                elif (self._entitiesDict[selfId].x > self._entitiesDict[abilityEntityId].x):
+                                    self._entitiesDict[selfId].tp(self._entitiesDict[selfId].x + 1, self._entitiesDict[abilityEntityId].y)
                                     executed = True
                                 else:
                                     raise GameException("Target can't be on the same tile than selfEntity !")
@@ -653,9 +662,9 @@ class Board:
                             if (ability["feature"] == "bodyguard"):
                                 state["feature"]    = "bodyguard"
                                 state["value"]      = abilityEntityId
-                                self._entitiesDict[selfEntityId].addState(state)
+                                self._entitiesDict[selfId].addState(state)
                                 state["feature"]    = "bodyguarded"
-                                state["value"]      = selfEntityId
+                                state["value"]      = selfId     
                                 self._entitiesDict[abilityEntityId].addState(state)
                             else:
                                 state["feature"]    = ability["feature"]
@@ -679,4 +688,4 @@ class Board:
                     auraUsed = True
 
         if auraUsed:
-            self._entitiesDict[selfEntityId].modifyAuraNb(-1)
+            self._entitiesDict[selfId].modifyAuraNb(-1)
