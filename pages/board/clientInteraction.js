@@ -142,10 +142,10 @@ function updateHandBar()
         $("#spell_" + i).css("background-image", "");
         $("#spell_" + i).css("background-color", "#FFFFFF");
     }
-    for (j = 0; j < myPlayer.handSpellDescIdList.length; j++)
+    for (j = 0; j < myPlayer.handSpellList.length; j++)
     {
-        $("#spell_" + j).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("spellsDataBase." + myPlayer.handSpellDescIdList[j] + ".spritePath") + ")");
-        tooltipArray.push(new Tooltip(document.getElementById("spell_" + j), PROJECT_ROOT_PATH + eval("spellsDataBase." + myPlayer.handSpellDescIdList[j] + ".descSpritePath"), "img"));
+        $("#spell_" + j).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("spellsDataBase." + myPlayer.handSpellList[j].descId + ".spritePath") + ")");
+        tooltipArray.push(new Tooltip(document.getElementById("spell_" + j), PROJECT_ROOT_PATH + eval("spellsDataBase." + myPlayer.handSpellList[j].descId + ".descSpritePath"), "img"));
     }
 }
 

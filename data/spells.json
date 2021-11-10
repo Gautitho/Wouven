@@ -1,4 +1,35 @@
 {
+    "ph":
+    {
+        "name"              : "Place holder",
+        "race"              : "iop",
+        "cost"              : 6,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/placeHolder.png",
+        "descSpritePath"    : "img/spells/desc/placeHolder.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "always",
+                "target"        : "spell",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "melee",
+                "feature"       : "cost",
+                "value"         : -1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "",
+                "value"         : 21
+            }
+        ]
+    },
     "s0":
     {
         "name"              : "Epees sanglantes",

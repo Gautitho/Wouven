@@ -34,8 +34,9 @@
 | opOrganicAround | Opponent entities, not mechanism, around |
 | allOrganicAligned | All entity, not mechanism, on a line |
 | myPlayer | Player who own the entity which apply the effect |
-| opPlayer |  |
+| opPlayer | |
 | tile | |
+| spell | Current spell |
 
 ### conditionList
 
@@ -59,6 +60,7 @@ This is an example : [{"feature" : "elemState", "value" : "oiled"}]
 | paStock | |
 | position | |
 | elemState | |
+| cost | Target must be spell |
 | "auraName" | Behavior must be addAura |
 
 ### value
