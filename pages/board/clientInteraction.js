@@ -13,7 +13,8 @@ var entities = {};
 var myPlayer = {};
 var opPlayer = {};
 var boardTileList = [];
-var tooltipArray = []
+var tooltipArray = [];
+var actionList = [];
 
 $.getJSON(PROJECT_ROOT_PATH + "data/entities.json", function(data) {entitiesDataBase = data});
 $.getJSON(PROJECT_ROOT_PATH + "data/spells.json", function(data) {spellsDataBase = data});
@@ -131,6 +132,7 @@ function updateOpStatus()
     $("#opStatusGaugesEarth").text(opPlayer.gauges.earth);
     $("#opStatusGaugesAir").text(opPlayer.gauges.air);
     $("#opStatusGaugesNeutral").text(opPlayer.gauges.neutral);
+    $("#opStatusDescSprite").css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + eval("heroesDataBase." + opPlayer.heroDescId + ".entityDescId") + ".descSpritePath") + ")");
 }
 
 function updateHandBar()
@@ -146,6 +148,58 @@ function updateHandBar()
     {
         $("#spell_" + j).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("spellsDataBase." + myPlayer.handSpellList[j].descId + ".spritePath") + ")");
         tooltipArray.push(new Tooltip(document.getElementById("spell_" + j), PROJECT_ROOT_PATH + eval("spellsDataBase." + myPlayer.handSpellList[j].descId + ".descSpritePath"), "img"));
+    }
+}
+
+function updateHistoric()
+{
+    for (i = 0; i < ACTION_LIST_LEN; i++)
+    {
+        $("#historic0_" + i).css("background-image", "");
+        $("#historic0_" + i).css("border-color", "");
+        $("#historic1_" + i).css("background-image", "");
+        $("#historic1_" + i).css("border-color", "");
+        $("#historic2_" + i).css("background-image", "");
+        $("#historic2_" + i).css("border-color", "");
+    }
+    for (i = 0; i < actionList.length; i++)
+    {
+        if (actionList[i].type == "move")
+        {
+            $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + actionList[i].source.descId + ".spritePath") + ")");
+            $("#historic0_" + i).css("border-color", actionList[i].source.team);
+            $("#historic1_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/move.png)");
+            if (actionList[i].targetList.length > 0)
+            {
+                $("#historic2_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + actionList[i].targetList[0].descId + ".spritePath") + ")");
+                $("#historic2_" + i).css("border-color", actionList[i].targetList[0].team);
+            }
+        }
+        else if (actionList[i].type == "spellCast")
+        {
+            $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("spellsDataBase." + actionList[i].source.descId + ".spritePath") + ")");
+            $("#historic0_" + i).css("border-color", actionList[i].source.team);
+            if (actionList[i].targetList.length > 0)
+            {
+                $("#historic1_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + actionList[i].targetList[0].descId + ".spritePath") + ")");
+                $("#historic1_" + i).css("border-color", actionList[i].targetList[0].team);
+            }
+            if (actionList[i].targetList.length > 1)
+            {
+                $("#historic2_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + actionList[i].targetList[1].descId + ".spritePath") + ")");
+                $("#historic2_" + i).css("border-color", actionList[i].targetList[1].team);
+            }
+        }
+        else if (actionList[i].type == "summon")
+        {
+            $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + actionList[i].source.descId + ".spritePath") + ")");
+            $("#historic0_" + i).css("border-color", actionList[i].source.team);
+        }
+        else if (actionList[i].type == "useReserve")
+        {
+            $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/paStock.png)");
+            $("#historic0_" + i).css("border-color", actionList[i].source.team);
+        }
     }
 }
 
