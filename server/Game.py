@@ -73,22 +73,22 @@ class Game:
 
                 elif (cmd == "MOVE"):
                     self.checkCmdArgs(cmdDict, ["entityId", "path"])
+                    self.addActionToList("move", self._board.playersDict[playerId].team, self._board.entitiesDict[int(cmdDict["entityId"])].descId, [cmdDict["path"][-1]])
                     self.Move(playerId, int(cmdDict["entityId"]), cmdDict["path"])
-                    self.addActionToList("move", self._board.playersDict[playerId].team, cmdDict["entityId"], [cmdDict["path"][-1]])
 
                 elif (cmd == "SPELL"):
                     self.checkCmdArgs(cmdDict, ["spellId", "targetPositionList"])
+                    self.addActionToList("spellCast", self._board.playersDict[playerId].team, self._board.playersDict[playerId].handSpellList[int(cmdDict["spellId"])]["descId"], cmdDict["targetPositionList"])
                     self.SpellCast(playerId, int(cmdDict["spellId"]), cmdDict["targetPositionList"])
-                    self.addActionToList("spellCast", self._board.playersDict[playerId].team, cmdDict["spellId"], cmdDict["targetPositionList"])
 
                 elif (cmd == "SUMMON"):
                     self.checkCmdArgs(cmdDict, ["companionId", "summonPositionList"])
+                    self.addActionToList("summon", self._board.playersDict[playerId].team, db.companions[self._board.playersDict[playerId].companionList[int(cmdDict["companionId"])]["descId"]]["entityDescId"], cmdDict["summonPositionList"])
                     self.Summon(playerId, int(cmdDict["companionId"]), cmdDict["summonPositionList"])
-                    self.addActionToList("summon", self._board.playersDict[playerId].team, cmdDict["companionId"], cmdDict["summonPositionList"])
 
                 elif (cmd == "USE_RESERVE"):
+                    self.addActionToList("useReserve", self._board.playersDict[playerId].team, None, [])
                     self.UseReserve(playerId)
-                    self.addActionToList("useReserve", self._board.playersDict[playerId].team, self._board.playersDict[playerId].heroEntityId, [])
 
                 self._board.always()
                 self.sendStatus()
@@ -153,28 +153,29 @@ class Game:
                     serverCmd["result"] = "DRAW"
                 self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
 
-    def addActionToList(self, actionType, team, sourceId, targetPositionList):
+    def addActionToList(self, actionType, sourceTeam, sourceDescId, targetPositionList):
         action              = {}
         action["type"]      = actionType
-        action["team"]      = team
-        action["sourceId"]  = sourceId
+        action["source"]    = {"descId" : sourceDescId, "team" : sourceTeam}
+        targetList          = []
         if targetPositionList:
             for position in targetPositionList:
-                action["targetId"] = self._board.entityIdOnTile(position["x"], position["y"])
-                self._actionList.insert(0, dict(action))
-                if (len(self._actionList) == ACTION_LIST_LEN):
-                    self._actionList.pop(-1)
-        else:
-            action["targetId"] = None
-            self._actionList.insert(0, dict(action))
-            if (len(self._actionList) == ACTION_LIST_LEN):
-                self._actionList.pop(-1)
+                entityId = self._board.entityIdOnTile(position["x"], position["y"])
+                if (entityId != None):
+                    targetList.append({"descId" : self._board.entitiesDict[entityId].descId, "team" : self._board.entitiesDict[entityId].team})
+        action["targetList"] = copy.deepcopy(targetList)
+        print(action)
+
+        self._actionList.insert(0, dict(action))
+        if (len(self._actionList) == ACTION_LIST_LEN + 1):
+            self._actionList.pop(-1)
 
     def sendActionList(self):
         for playerId in list(self._board.playersDict.keys()):
             serverCmd = {}
             serverCmd["cmd"]        = "HISTORIC"
             serverCmd["actionList"] = self._actionList
+            self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
 
     def checkTurn(self, playerId):
         if not(playerId in list(self._board.playersDict.keys())):

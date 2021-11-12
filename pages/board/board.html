@@ -48,18 +48,25 @@
         </div>
 
         <div class="flex flex-col h-full w-1/4 mx-2">
-            <div id="opStatus" class="flex h-1/4 w-full border-2">
-                <div id="opStatusSprite" class="flex h-20 w-20 bg-center bg-contain bg-no-repeat"></div>
-                <div id="opStatusFeature" class="flex flex-col mx-2">
-                    <div id="opStatusPv">PV : 0 / 0</div>
-                    <div id="opStatusGauges" class="flex flex-row">
-                        <div id="opStatusGaugesFire" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
-                        <div id="opStatusGaugesWater" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
-                        <div id="opStatusGaugesEarth" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
-                        <div id="opStatusGaugesAir" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
-                        <div id="opStatusGaugesNeutral" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
+            <div id="opStatus" class="flex flex-col h-1/4 w-full border-2">
+                <div class="flex">
+                    <div id="opStatusSprite" class="flex h-20 w-20 bg-center bg-contain bg-no-repeat"></div>
+                    <div id="opStatusFeature" class="flex flex-col mx-2">
+                        <div id="opStatusPv">PV : 0 / 0</div>
+                        <div id="opStatusGauges" class="flex flex-row">
+                            <div id="opStatusGaugesFire" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
+                            <div id="opStatusGaugesWater" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
+                            <div id="opStatusGaugesEarth" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
+                            <div id="opStatusGaugesAir" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
+                            <div id="opStatusGaugesNeutral" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
+                        </div>
                     </div>
                 </div>
+                <div id="opStatusDescSprite" class="w-5/6 h-1/2 self-center bg-center bg-contain bg-no-repeat"></div>
+            </div>
+            <div id="historicContainer" class="flex flex-col">
+                <div id="historicLogo" class="h-20 w-20 place-self-center bg-center bg-contain bg-no-repeat"></div>
+                <div id="historic" class="flex flex-col grid grid-rows-5 grid-cols-3 place-self-center border-2"></div>
             </div>
         </div>
     </section>
@@ -90,6 +97,7 @@
         const BOARD_COLS = 7;
         const HAND_SPELLS = 7;
         const COMPANIONS = 4;
+        const ACTION_LIST_LEN = 5;
 
         $("#pa").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/pa.png)");
         $("#paStock").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/paStock.png)");
@@ -103,6 +111,7 @@
         $("#opStatusGaugesEarth").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/earth.png)");
         $("#opStatusGaugesAir").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/air.png)");
         $("#opStatusGaugesNeutral").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/neutral.png)");
+        $("#historicLogo").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/historic.png)");
 
         $("#stateBtn").css("background-color", "#FF0000");
         $("#stateBtn").text("Opponent turn");
@@ -125,6 +134,12 @@
         {
             document.getElementById("hand").insertAdjacentHTML('beforeend',`<div id="spell_${i}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
             $("#spell_" + i).click(function() {spellClick($(this))});
+        }
+        for (i = 0; i < ACTION_LIST_LEN; i++)
+        {
+            document.getElementById("historic").insertAdjacentHTML('beforeend',`<div id="historic0_${i}" class="h-16 w-16 border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
+            document.getElementById("historic").insertAdjacentHTML('beforeend',`<div id="historic1_${i}" class="h-16 w-16 border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
+            document.getElementById("historic").insertAdjacentHTML('beforeend',`<div id="historic2_${i}" class="h-16 w-16 border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
         }
 
     </script>

@@ -6,6 +6,7 @@ class Entity:
 
     def __init__(self, descId, team, x, y):
         self._descId        = descId
+        self._name          = db.entities[descId]["name"]
         self._team          = team
         self._x             = x
         self._y             = y
@@ -55,6 +56,10 @@ class Entity:
     @property
     def descId(self):
         return self._descId
+
+    @property
+    def name(self):
+        return self._name
 
     @property
     def team(self):

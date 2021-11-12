@@ -37,6 +37,11 @@ socket.onmessage = function(handler)
         }
         errorLog("");
     }
+    else if (cmdObj.cmd == "HISTORIC")
+    {
+        actionList = cmdObj.actionList;
+        updateHistoric();
+    }
     else if (cmdObj.cmd == "ERROR")
     {
         errorLog(cmdObj.msg);
