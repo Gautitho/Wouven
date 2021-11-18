@@ -164,7 +164,6 @@ class Game:
                 if (entityId != None):
                     targetList.append({"descId" : self._board.entitiesDict[entityId].descId, "team" : self._board.entitiesDict[entityId].team})
         action["targetList"] = copy.deepcopy(targetList)
-        print(action)
 
         self._actionList.insert(0, dict(action))
         if (len(self._actionList) == ACTION_LIST_LEN + 1):
