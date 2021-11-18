@@ -227,41 +227,41 @@ class Board:
         y               = self._entitiesDict[entityId].y
         pm              = self._entitiesDict[entityId].pm
         attackedEntity  = -1
-        if (self._entitiesDict[entityId].canMove):
-            if (path[0]["x"] == x and path[0]["y"] == y): # The path is given with the inital position of the entity
-                path.pop(0)
-                for tile in path:
-                    nextX = tile["x"]
-                    nextY = tile["y"]
-                    if (0 <= nextX < BOARD_COLS and 0 <= nextY < BOARD_ROWS):
-                        if (abs(x - nextX) + abs(y - nextY) == 1):
-                            if (pm == 0):
-                                if (self._entitiesDict[entityId].canAttack and self.entityIdOnTile(nextX, nextY) != None): # Attack after full pm move
+        if (path[0]["x"] == x and path[0]["y"] == y): # The path is given with the inital position of the entity
+            path.pop(0)
+            for tile in path:
+                nextX = tile["x"]
+                nextY = tile["y"]
+                if (0 <= nextX < BOARD_COLS and 0 <= nextY < BOARD_ROWS):
+                    if (abs(x - nextX) + abs(y - nextY) == 1):
+                        if (pm == 0):
+                            if (self._entitiesDict[entityId].canAttack and self.entityIdOnTile(nextX, nextY) != None): # Attack after full pm move
+                                attackedEntityId  = self.entityIdOnTile(nextX, nextY)
+                                self.executeAbilities(self._entitiesDict[entityId].abilities, "attack", playerId, entityId, [attackedEntityId], [], None)
+                                self.executeAbilities(self._entitiesDict[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, None, [], None)
+                                pm              = -1
+                            else:
+                                raise GameException("Path length is higher than your pm !")
+                        else:
+                            if (self.entityIdOnTile(nextX, nextY) == None): # The next tile is empty
+                                if (self._entitiesDict[entityId].canMove):
+                                    x             = nextX
+                                    y             = nextY
+                                    pm            -= 1
+                                else:
+                                    raise GameException("You can't move anymore this turn !")
+                            else: # There is an entity on next tile
+                                if (self._entitiesDict[entityId].canAttack):
                                     attackedEntityId  = self.entityIdOnTile(nextX, nextY)
                                     self.executeAbilities(self._entitiesDict[entityId].abilities, "attack", playerId, entityId, [attackedEntityId], [], None)
                                     self.executeAbilities(self._entitiesDict[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, None, [], None)
                                     pm              = -1
                                 else:
-                                    raise GameException("Path length is higher than your pm !")
-                            else:
-                                if (self.entityIdOnTile(nextX, nextY) == None): # The next tile is empty
-                                    x             = nextX
-                                    y             = nextY
-                                    pm            -= 1
-                                else: # There is an entity on next tile
-                                    if (self._entitiesDict[entityId].canAttack):
-                                        attackedEntityId  = self.entityIdOnTile(nextX, nextY)
-                                        self.executeAbilities(self._entitiesDict[entityId].abilities, "attack", playerId, entityId, [attackedEntityId], [], None)
-                                        self.executeAbilities(self._entitiesDict[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, None, [], None)
-                                        pm              = -1
-                                    else:
-                                        raise GameException("You can't attack this turn !")
-                        else:
-                            raise GameException("Successive tiles must be contiguous in path or an entity is on your path !")
+                                    raise GameException("You can't attack this turn !")
                     else:
-                        raise GameException("Tile out of the board !")
-            else:
-                raise GameException("You can't move anymore this turn !")
+                        raise GameException("Successive tiles must be contiguous in path or an entity is on your path !")
+                else:
+                    raise GameException("Tile out of the board !")
         else:
             raise GameException("First tile of the path must be the current entity position !")
 
@@ -276,6 +276,10 @@ class Board:
             # Check if there is enough PA to play the spell
             if (self._playersDict[playerId].handSpellList[spellId]["cost"] <= self._playersDict[playerId].pa):
                 self._playersDict[playerId].playSpell(spellId)
+                for playerEntityId in self._playersDict[playerId].boardEntityIds:
+                    for state in self._entitiesDict[playerEntityId].states:
+                        if (state["feature"] == "frozen"):
+                            self._entitiesDict[playerEntityId].modifyPv(state["value"])
 
                 # Check allowed targets
                 if (len(spell["allowedTargetList"]) == len(targetPositionList)):
@@ -512,7 +516,7 @@ class Board:
                 if (ability["target"] == "target"):
                     abilityEntityIdList = [targetEntityIdList[targetIdx]]
                 elif (ability["target"] == "self"):
-                    abilityEntityIdList = [selfId     ]
+                    abilityEntityIdList = [selfId]
                 elif (ability["target"] == "targetPlayer"):
                     abilityEntityIdList = [self._playersDict[self.getPlayerIdFromTeam(self._entitiesDict[targetEntityIdList[targetIdx]].team)].heroEntityId]
                 elif (ability["target"] == "myPlayer"):
@@ -656,7 +660,7 @@ class Board:
                                 self._entitiesDict[entityId].modifyPv(value)
                                 executed = True
 
-                    elif (ability["behavior"] == "state"):
+                    elif (ability["behavior"] == "permanentState"):
                         state = {}
                         for abilityEntityId in abilityEntityIdList:
                             if (ability["feature"] == "bodyguard"):
@@ -671,12 +675,19 @@ class Board:
                                 state["value"]      = value
                                 self._entitiesDict[abilityEntityId].addState(state)
 
+                    elif (ability["behavior"] == "addState"):
+                        state = {}
+                        for abilityEntityId in abilityEntityIdList:
+                            state["feature"]    = ability["feature"]
+                            state["value"]      = value
+                            self._entitiesDict[abilityEntityId].addState(state)
+
                     elif (ability["behavior"] == "invocation"):
                         entityId = self.appendEntity(playerId, ability["feature"], self._playersDict[playerId].team, positionList[0]["x"], positionList[0]["y"])
                         self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, None, {}, None)
 
                 else:
-                    if (ability["behavior"] == "state"):
+                    if (ability["behavior"] == "permanentState"):
                         state = {}
                         for abilityEntityId in abilityEntityIdList:
                             state["feature"]    = ability["feature"]

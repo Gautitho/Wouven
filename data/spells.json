@@ -3,7 +3,7 @@
     {
         "name"              : "Place holder",
         "race"              : "iop",
-        "cost"              : 6,
+        "cost"              : 0,
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/placeHolder.png",
         "descSpritePath"    : "img/spells/desc/placeHolder.png",
@@ -11,22 +11,13 @@
         "abilities"         :
         [
             {
-                "trigger"       : "always",
-                "target"        : "spell",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "melee",
-                "feature"       : "cost",
-                "value"         : -1
-            },
-            {
                 "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "",
-                "value"         : 21
+                "behavior"      : "addState",
+                "feature"       : "petrified",
+                "value"         : 0
             }
         ]
     },

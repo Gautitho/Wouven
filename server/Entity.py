@@ -1,3 +1,4 @@
+import copy
 from functions import *
 from Database import *
 from GameException import *
@@ -14,11 +15,11 @@ class Entity:
         self._armor         = db.entities[descId]["armor"]
         self._atk           = db.entities[descId]["atk"]
         self._pm            = db.entities[descId]["pm"]
-        self._types         = db.entities[descId]["types"]
+        self._types         = copy.deepcopy(db.entities[descId]["types"])
         self._elemState     = ""
-        self._aura          = db.entities[descId]["aura"]
-        self._states        = db.entities[descId]["states"]
-        self._abilities     = db.entities[descId]["abilities"]
+        self._aura          = copy.deepcopy(db.entities[descId]["aura"])
+        self._states        = copy.deepcopy(db.entities[descId]["states"])
+        self._abilities     = copy.deepcopy(db.entities[descId]["abilities"])
 
         self._canMove       = True
         self._canAttack     = True
@@ -166,7 +167,12 @@ class Entity:
         self.applyStates()
 
     def endTurn(self):
-        pass
+        if (self.isInStates("disarmed")):
+            self.removeState("disarmed")
+        if (self.isInStates("locked")):
+            self.removeState("locked")
+        if (self.isInStates("frozen")):
+            self.removeState("frozen")
 
     def move(self, x, y):
         self._x         = x
@@ -186,32 +192,47 @@ class Entity:
         self._atk = max(self._atk + value, 0)
 
     def applyStates(self):
-        for state in self._states:
-            if (state["feature"] == "elelyAtk"):
-                self.modifyAtk(state["value"])
+        if (self.isInStates("elelyAtk")):
+            self.modifyAtk(state["value"])
+        if (self.isInStates("disarmed")):
+            self._canAttack = False
+        if (self.isInStates("locked")):
+            self._canMove = False
+        if (self.isInStates("petrified")):
+            self._canAttack = False
+            self._canMove = False
 
     def addState(self, state):
-        cpyState = dict(state)
+        cpyState        = dict(state)
+        uniqueStateList = ["disarmed", "locked", "frozen"]
         if not(cpyState in self._states):
+            for presentState in self._states:
+                if (cpyState["feature"] in uniqueStateList):
+                    if (presentState["feature"] in uniqueStateList):
+                        self.removeState(presentState["feature"])
             self._states.append(cpyState)
             self.applyStates()
 
-    def removeState(self, state):
-        if state in self._states:
-            self._states.remove(state)
-            if (state["feature"] == "elelyAtk"):
-                self.modifyAtk(-state["value"])
-        else:
+    def removeState(self, stateFeature):
+        stateFound = False
+        for state in self._states:
+            if (state["feature"] == stateFeature):
+                self._states.remove(state)
+                if (state["feature"] == "elelyAtk"):
+                    self.modifyAtk(-state["value"])
+                stateFound = True
+                break
+        if not(stateFound):
             raise GameException(f"This state {state} is not applied, it can't be removed !")
 
     def modifyPv(self, value):
         if (value < 0):
             apply = True
-            for state in self._states:
-                if (state["feature"] == "shield"):
-                    self.removeState(state)
-                    apply = False
-                    break
+            if (self.isInStates("shield")):
+                self.removeState("shield")
+                apply = False
+            if (self.isInStates("petrified")):
+                apply = False
 
             if apply:
                 if (self._armor + value > 0):
@@ -238,3 +259,9 @@ class Entity:
             self._elemState = value
         else:
             raise GameException(f"ElemState {value} to apply is not supported !")
+
+    def isInStates(self, stateFeature):
+        for state in self._states:
+            if (state["feature"] == stateFeature):
+                return True
+        return False

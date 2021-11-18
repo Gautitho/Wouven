@@ -86,7 +86,7 @@
                 "target"        : "self",
                 "conditionList" : [{"feature" : "allyCompanions", "value" : 1}],
                 "break"         : "False",
-                "behavior"      : "state",
+                "behavior"      : "permanentState",
                 "feature"       : "elelyAtk",
                 "value"         : 8
             }
@@ -120,7 +120,7 @@
                 "target"        : "myPlayer",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "state",
+                "behavior"      : "permanentState",
                 "feature"       : "bodyguard",
                 "value"         : 0
             }

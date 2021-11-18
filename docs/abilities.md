@@ -76,8 +76,9 @@ This is an example : [{"feature" : "elemState", "value" : "oiled"}]
 | Key | Description |
 |-----|-------------|
 | addAura |  |
+| addState |  |
 | explosion |  |
 | charge |  |
-| state |  |
+| permanentState |  |
 | opAffected |  |
 
