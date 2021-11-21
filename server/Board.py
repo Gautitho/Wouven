@@ -611,6 +611,15 @@ class Board:
                             self._playersDict[playerId].modifySpellCost(selfId, mult*value)
                             executed = True
 
+                    elif (ability["behavior"] == "auraNb"):
+                        if (self._entitiesDict[self._playersDict[playerId].heroEntityId].aura):
+                            mult = self._entitiesDict[self._playersDict[playerId].heroEntityId].aura["nb"]
+                        else:
+                            mult = 0
+                        if (ability["feature"] == "cost"):
+                            self._playersDict[playerId].modifySpellCost(selfId, mult*value)
+                            executed = True
+
                     elif (ability["behavior"] == "opAffected"):
                         if (ability["target"] == "opOrganicAligned"):
                             opsAffected = len(self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"], rangeCondition, self.getOpTeam(self._entitiesDict[selfId].team)))
@@ -622,7 +631,6 @@ class Board:
                             else:
                                 raise GameException("Ability value for gauges must be a dict !")
 
-                        
                     elif (ability["behavior"] == "addAura"):
                         if (self._entitiesDict[self._playersDict[playerId].heroEntityId].aura and ability["feature"] == self._entitiesDict[self._playersDict[playerId].heroEntityId].aura["type"]):
                             self._entitiesDict[self._playersDict[playerId].heroEntityId].addAura(value)
@@ -682,9 +690,12 @@ class Board:
                             state["value"]      = value
                             self._entitiesDict[abilityEntityId].addState(state)
 
-                    elif (ability["behavior"] == "invocation"):
+                    elif (ability["behavior"] == "summon"):
                         entityId = self.appendEntity(playerId, ability["feature"], self._playersDict[playerId].team, positionList[0]["x"], positionList[0]["y"])
                         self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, None, {}, None)
+
+                    elif (ability["behavior"] == "freeAura"):
+                        self._entitiesDict[self._playersDict[playerId].heroEntityId].freeAura()
 
                 else:
                     if (ability["behavior"] == "permanentState"):

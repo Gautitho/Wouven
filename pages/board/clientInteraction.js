@@ -6,6 +6,7 @@ var entitiesDataBase = {}
 var spellsDataBase = {}
 var companionsDataBase = {}
 var heroesDataBase = {}
+var aurasDataBase = {}
 var selectedEntity      = -1;
 var selectedSpell       = -1;
 var selectedMyCompanion = -1;
@@ -20,6 +21,7 @@ $.getJSON(PROJECT_ROOT_PATH + "data/entities.json", function(data) {entitiesData
 $.getJSON(PROJECT_ROOT_PATH + "data/spells.json", function(data) {spellsDataBase = data});
 $.getJSON(PROJECT_ROOT_PATH + "data/heroes.json", function(data) {heroesDataBase = data});
 $.getJSON(PROJECT_ROOT_PATH + "data/companions.json", function(data) {companionsDataBase = data});
+$.getJSON(PROJECT_ROOT_PATH + "data/auras.json", function(data) {aurasDataBase = data});
 
 function removeTooltips()
 {
@@ -74,21 +76,47 @@ function updateBoard()
     for (entityId in entities)
     {
         var imgStr = "";
-        for (state_ in entities[entityId].states)
+        for (stateId = 0; stateId < entities[entityId].states.length; stateId++)
         {
-            imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + "img/states/" + entities[entityId].states[state_].feature + ".png), ";
+            imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + "img/states/" + entities[entityId].states[stateId].feature + ".png), ";
         }
         if (entities[entityId].elemState != "")
         {
             imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + "img/states/" + entities[entityId].elemState + ".png), ";
         }
+        if (!jQuery.isEmptyObject(entities[entityId].aura))
+        {
+            imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + "img/states/aura.png), ";
+        }
         imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + entities[entityId].descId + ".spritePath") + ")";
         $("#board_" + entities[entityId].x + "_" + entities[entityId].y).css("background-image", imgStr);
         $("#board_" + entities[entityId].x + "_" + entities[entityId].y).css("border-color", entities[entityId].team);
-        tooltipArray.push(new Tooltip(document.getElementById("board_" + entities[entityId].x + "_" + entities[entityId].y),
-                    "PV : " + entities[entityId].pv + " / " + eval("entitiesDataBase." + entities[entityId].descId + ".pv") + "\n" +
-                    "ATK : " + entities[entityId].atk + " / " + eval("entitiesDataBase." + entities[entityId].descId + ".atk") + "\n" +
-                    "PM : " + entities[entityId].pm + " / " + eval("entitiesDataBase." + entities[entityId].descId + ".pm"), "txt"));
+
+        tooltipStr = "PV : " + entities[entityId].pv + " / " + eval("entitiesDataBase." + entities[entityId].descId + ".pv") + "\n" +
+                     "Armure : " + entities[entityId].armor + " / " + eval("entitiesDataBase." + entities[entityId].descId + ".armor") + "\n" +
+                     "ATK : " + entities[entityId].atk + " / " + eval("entitiesDataBase." + entities[entityId].descId + ".atk") + "\n" +
+                     "PM : " + entities[entityId].pm + " / " + eval("entitiesDataBase." + entities[entityId].descId + ".pm");
+        if (entities[entityId].elemState != "")
+        {
+            tooltipStr = tooltipStr + "\n" + "Etat élémentaire : " + entities[entityId].elemState;
+        }
+        if (entities[entityId].states.length > 0)
+        {
+            tooltipStr = tooltipStr + "\n" + "Etats : ";
+            for (stateId = 0; stateId < entities[entityId].states.length; stateId++)
+            {
+                tooltipStr = tooltipStr + entities[entityId].states[stateId]
+                if (stateId < entities[entityId].states.length - 1)
+                {
+                    tooltipStr = tooltipStr + ", ";
+                }
+            }
+        }
+        if (!jQuery.isEmptyObject(entities[entityId].aura))
+        {
+            tooltipStr = tooltipStr + "\n" + "Aura : " + aurasDataBase[entities[entityId].aura.type].name + " (" + entities[entityId].aura.nb + ")";
+        }
+        tooltipArray.push(new Tooltip(document.getElementById("board_" + entities[entityId].x + "_" + entities[entityId].y), tooltipStr, "txt"));
     }
 }
 

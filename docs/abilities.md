@@ -62,6 +62,7 @@ This is an example : [{"feature" : "elemState", "value" : "oiled"}]
 | elemState | |
 | cost | Target must be spell |
 | "auraName" | Behavior must be addAura |
+| "entityDesc" | Behavior must be invocation |
 
 ### value
 
@@ -80,5 +81,9 @@ This is an example : [{"feature" : "elemState", "value" : "oiled"}]
 | explosion |  |
 | charge |  |
 | permanentState |  |
+| melee |  |
+| auraNb |  |
 | opAffected |  |
+| invocation |  |
+| freeAura |  |
 

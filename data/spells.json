@@ -3,7 +3,7 @@
     {
         "name"              : "Place holder",
         "race"              : "iop",
-        "cost"              : 0,
+        "cost"              : 3,
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/placeHolder.png",
         "descSpritePath"    : "img/spells/desc/placeHolder.png",
@@ -11,12 +11,21 @@
         "abilities"         :
         [
             {
+                "trigger"       : "always",
+                "target"        : "spell",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "auraNb",
+                "feature"       : "cost",
+                "value"         : -1
+            },
+            {
                 "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "addState",
-                "feature"       : "petrified",
+                "behavior"      : "freeAura",
+                "feature"       : "",
                 "value"         : 0
             }
         ]
@@ -340,7 +349,7 @@
                 "target"        : "tile",
                 "conditionList" : [{"feature" :"range", "value" : 3}],
                 "break"         : "True",
-                "behavior"      : "invocation",
+                "behavior"      : "summon",
                 "feature"       : "ei0",
                 "value"         : 0
             }
