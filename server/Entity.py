@@ -252,7 +252,15 @@ class Entity:
         self._aura["nb"]    = min(nb, 5)
 
     def modifyAuraNb(self, nb):
-        self._aura["nb"] = min(self._aura["nb"] + nb, 5)
+        if (self._aura["nb"] + nb > 0):
+            self._aura["nb"] = min(self._aura["nb"] + nb, 5)
+        elif (self._aura["nb"] + nb == 0):
+            self._aura = {}
+        else:
+            raise GameException(f"You have not aura anymore !")
+
+    def freeAura(self):
+        self._aura = {}
 
     def setElemState(self, value):
         if value in ["", "oiled", "muddy", "windy", "wet"]:
