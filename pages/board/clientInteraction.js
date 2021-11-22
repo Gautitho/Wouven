@@ -174,8 +174,8 @@ function updateHandBar()
     }
     for (j = 0; j < myPlayer.handSpellList.length; j++)
     {
-        $("#spell_" + j).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("spellsDataBase." + myPlayer.handSpellList[j].descId + ".spritePath") + ")");
-        tooltipArray.push(new Tooltip(document.getElementById("spell_" + j), PROJECT_ROOT_PATH + eval("spellsDataBase." + myPlayer.handSpellList[j].descId + ".descSpritePath"), "img"));
+        $("#spell_" + j).css("background-image", "url(" + PROJECT_ROOT_PATH + myPlayer.handSpellList[j].spritePath + ")");
+        tooltipArray.push(new Tooltip(document.getElementById("spell_" + j), PROJECT_ROOT_PATH + myPlayer.handSpellList[j].descSpritePath, "img"));
     }
 }
 
@@ -205,7 +205,7 @@ function updateHistoric()
         }
         else if (actionList[i].type == "spellCast")
         {
-            $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("spellsDataBase." + actionList[i].source.descId + ".spritePath") + ")");
+            $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].source.descId + ")"); // TODO : Normaliser ce comportement (ne plus utiliser les data bases dans le client et passer les spritePath par commandes)
             $("#historic0_" + i).css("border-color", actionList[i].source.team);
             if (actionList[i].targetList.length > 0)
             {

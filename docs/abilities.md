@@ -36,7 +36,8 @@
 | myPlayer | Player who own the entity which apply the effect |
 | opPlayer | |
 | tile | |
-| spell | Current spell |
+| currentSpell |  |
+| nextSpell |  |
 
 ### conditionList
 

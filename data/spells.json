@@ -11,22 +11,13 @@
         "abilities"         :
         [
             {
-                "trigger"       : "always",
-                "target"        : "spell",
+                "trigger"       : "spellCast",
+                "target"        : "nextSpell",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "auraNb",
+                "behavior"      : "melee",
                 "feature"       : "cost",
                 "value"         : -1
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "freeAura",
-                "feature"       : "",
-                "value"         : 0
             }
         ]
     },
