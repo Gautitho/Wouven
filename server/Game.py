@@ -78,7 +78,7 @@ class Game:
 
                 elif (cmd == "SPELL"):
                     self.checkCmdArgs(cmdDict, ["spellId", "targetPositionList"])
-                    self.addActionToList("spellCast", self._board.playersDict[playerId].team, self._board.playersDict[playerId].handSpellList[int(cmdDict["spellId"])]["descId"], cmdDict["targetPositionList"])
+                    self.addActionToList("spellCast", self._board.playersDict[playerId].team, self._board.playersDict[playerId].handSpellList[int(cmdDict["spellId"])].spritePath, cmdDict["targetPositionList"])
                     self.SpellCast(playerId, int(cmdDict["spellId"]), cmdDict["targetPositionList"])
 
                 elif (cmd == "SUMMON"):

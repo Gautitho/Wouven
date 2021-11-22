@@ -1,4 +1,3 @@
 # TODO List
 
-- Ajout de descritpion
-- Affichage aura
+- Généraliser le comportement des sorts (passage de spritePath par commande plutôt que passage de descId)
