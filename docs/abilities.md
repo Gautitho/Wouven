@@ -9,6 +9,8 @@
 | feature | Feature affected by the effect |
 | value | Value of the effect |
 | behavior | Specific behavior |
+| targetIdx | Optionnal. When several targets, indicates which is targeted |
+| stopTrigger | Optionnal. Indicates when the effect must disapear. If defined the ability is an ongoingAbility |
 
 ## Available values
 
@@ -37,7 +39,7 @@
 | opPlayer | |
 | tile | |
 | currentSpell |  |
-| nextSpell |  |
+| hand | All spells in hand |
 
 ### conditionList
 
@@ -87,4 +89,12 @@ This is an example : [{"feature" : "elemState", "value" : "oiled"}]
 | opAffected |  |
 | invocation |  |
 | freeAura |  |
+
+### stopTrigger
+
+| Key | Description |
+|-----|-------------|
+| always | The effect disapears when after each action |
+| spellCast | The effect disapears when a spell is cast (after pa paid but before abilities execution) |
+
 

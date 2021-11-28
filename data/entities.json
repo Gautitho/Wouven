@@ -86,8 +86,9 @@
                 "target"        : "self",
                 "conditionList" : [{"feature" : "allyCompanions", "value" : 1}],
                 "break"         : "False",
-                "behavior"      : "permanentState",
-                "feature"       : "elelyAtk",
+                "behavior"      : "",
+                "feature"       : "atk",
+                "stopTrigger"   : "always",
                 "value"         : 8
             }
         ]

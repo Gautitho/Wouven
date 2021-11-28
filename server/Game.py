@@ -5,8 +5,8 @@ from functions import *
 from Board import *
 from GameException import *
 
-deck1       = {"heroDescId" : "h0", "spellDescIdList" : ["sh0", "s0", "s1", "s2", "s3", "s4", "s5", "s6", "ph"], "companionDescIdList" : ["c0", "c1", "c2", "c3"]}
-deck2       = {"heroDescId" : "h0", "spellDescIdList" : ["sh0", "s0", "s1", "s2", "s3", "s4", "s5", "s6", "ph"], "companionDescIdList" : ["c0", "c1", "c2", "c3"]}
+deck1       = {"heroDescId" : "h0", "spellDescIdList" : ["sh0", "s0", "s1", "s2", "s3", "s4", "ph0", "s5", "ph1"], "companionDescIdList" : ["c0", "c1", "c2", "c3"]}
+deck2       = {"heroDescId" : "h0", "spellDescIdList" : ["sh0", "s0", "s1", "s2", "s3", "s4", "ph0", "s5", "ph1"], "companionDescIdList" : ["c0", "c1", "c2", "c3"]}
 
 class Game:
 

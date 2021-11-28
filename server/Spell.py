@@ -57,6 +57,9 @@ class Spell:
     def costModifierList(self):
         return copy.deepcopy(self._costModifierList)
 
+    def modifyCost(self, value):
+        self._cost = max(self._cost + value, 0)
+
     def getDict(self):
         dic = {}
         dic["name"]                 = self.name

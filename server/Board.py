@@ -1,3 +1,4 @@
+import traceback
 from functions import *
 from Player import *
 from Entity import *
@@ -8,9 +9,10 @@ from Spell import *
 class Board:
 
     def __init__(self):
-        self._nextEntityId  = 0
-        self._entitiesDict  = {}
-        self._playersDict   = {}
+        self._nextEntityId      = 0
+        self._entitiesDict      = {}
+        self._playersDict       = {}
+        self._ongoingAbilityList = []
 
     @property
     def entitiesDict(self):
@@ -215,6 +217,7 @@ class Board:
     # This function is called after each action
     def always(self):
         self.garbageCollector()
+        self.removeOngoingAbilities("always")
         for entityId in list(self._entitiesDict.keys()):
             self.executeAbilities(self._entitiesDict[entityId].abilities, "always", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, None, [], None)
         for playerId in list(self._playersDict.keys()):
@@ -402,6 +405,7 @@ class Board:
                     raise GameException("Wrong number of target !")
 
                 # Execute spell
+                self.removeOngoingAbilities("spellCast") # WARNING : This line is here only because, for now, the only spellCast ongoingAbilities affect cost
                 self.executeAbilities(spell.abilities, "spellCast", playerId, selfEntityId, targetEntityIdList, positionList, spell.elem)
                 for entityId in range(0, len(self._entitiesDict)):
                     self.executeAbilities(self._entitiesDict[entityId].abilities, "spellCast", playerId, entityId, None, positionList, spell.elem)
@@ -450,17 +454,23 @@ class Board:
         else:
             raise GameException("Only one summon position is allowed !")
 
-    def executeAbilities(self, abilityList, trigger, playerId, selfId, targetEntityIdList, positionList, spellElem):
+    def executeAbilities(self, abilityList, trigger, playerId, selfId, targetEntityIdList, positionList, spellElem, force=False):
         auraUsed    = False
         opPlayerId  = self.getOpPlayerId(playerId) if playerId else ""
         for ability in abilityList:
-            if (trigger == ability["trigger"]):
+            if (trigger == ability["trigger"] or force):
 
                 # Set targetIdx
                 if ("targetIdx" in ability):
                     targetIdx = ability["targetIdx"]
                 else:
                     targetIdx = 0
+
+                # Set stopTrigger
+                if ("stopTrigger" in ability):
+                    stopTrigger = ability["stopTrigger"]
+                else:
+                    stopTrigger = ""
 
                 # Check conditions
                 conditionsValid = True
@@ -536,9 +546,9 @@ class Board:
                 elif (ability["target"] == "tile"):
                     pass
                 elif (ability["target"] == "currentSpell"):
-                    abilityEntityIdList = selfId
-                elif (ability["target"] == "nextSpell"):
-                    abilityEntityIdList = range(len(self._playersDict[playerId].handSpellList)) # WARNING : if a spell is draw, it is not taken / DOesn't work with currentSpell
+                    abilityEntityIdList = [selfId]
+                elif (ability["target"] == "hand"):
+                    abilityEntityIdList = range(len(self._playersDict[playerId].handSpellList)) # WARNING : if a spell is draw, it is not taken
                 else:
                     raise GameException("Wrong ability target !")
 
@@ -561,7 +571,7 @@ class Board:
                    
                 # Execute ability
                 executed = False
-                if conditionsValid:
+                if (conditionsValid or force):
                     if (ability["behavior"] in ["", "aura"]):
                         if (ability["feature"] == "pv"):
                             for abilityEntityId in abilityEntityIdList:
@@ -611,7 +621,6 @@ class Board:
                             executed = True
                         elif (ability["feature"] == "cost"):
                             for spellId in abilityEntityIdList:
-                                self._playersDict[playerId].resetSpellCost(spellId)
                                 self._playersDict[playerId].modifySpellCost(spellId, mult*value)
                                 executed = True
 
@@ -622,7 +631,6 @@ class Board:
                             mult = 0
                         if (ability["feature"] == "cost"):
                             for spellId in abilityEntityIdList:
-                                self._playersDict[playerId].resetSpellCost(spellId)
                                 self._playersDict[playerId].modifySpellCost(spellId, mult*value)
                                 executed = True
 
@@ -698,18 +706,19 @@ class Board:
 
                     elif (ability["behavior"] == "summon"):
                         entityId = self.appendEntity(playerId, ability["feature"], self._playersDict[playerId].team, positionList[0]["x"], positionList[0]["y"])
-                        self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, None, {}, None)
+                        self.executeAbilities(caller, self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, None, {}, None)
 
                     elif (ability["behavior"] == "freeAura"):
                         self._entitiesDict[self._playersDict[playerId].heroEntityId].freeAura()
 
-                else:
-                    if (ability["behavior"] == "permanentState"):
-                        state = {}
-                        for abilityEntityId in abilityEntityIdList:
-                            state["feature"]    = ability["feature"]
-                            state["value"]      = value
-                            self._entitiesDict[abilityEntityId].removeState(state)
+                    # If stopTrigger is defined, the ability must be added to the ongoingAbilityList
+                    if stopTrigger and not(force):
+                        ongoingAbilityDict = {}
+                        ongoingAbilityDict["ability"]       = copy.deepcopy(ability)
+                        ongoingAbilityDict["playerId"]      = playerId
+                        ongoingAbilityDict["selfId"]        = selfId
+                        ongoingAbilityDict["stopTrigger"]   = stopTrigger
+                        self._ongoingAbilityList.append(ongoingAbilityDict)
 
                 # Check if an aura has been used
                 if (executed and ability["behavior"] == "aura"):
@@ -717,3 +726,11 @@ class Board:
 
         if auraUsed:
             self._entitiesDict[selfId].modifyAuraNb(-1)
+
+    def removeOngoingAbilities(self, stopTrigger):
+        copyOngoingAbilityList = list(self._ongoingAbilityList)
+        for ongoingAbility in copyOngoingAbilityList:
+            if (stopTrigger == ongoingAbility["stopTrigger"]):
+                ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]
+                self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [], [], "", True)
+                self._ongoingAbilityList.remove(ongoingAbility)
