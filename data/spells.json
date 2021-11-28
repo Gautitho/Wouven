@@ -1,20 +1,62 @@
 {
-    "ph":
+    "ph0":
     {
-        "name"              : "Place holder",
+        "name"              : "Place holder 0",
         "race"              : "iop",
         "cost"              : 3,
         "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/placeHolder.png",
-        "descSpritePath"    : "img/spells/desc/placeHolder.png",
+        "spritePath"        : "img/spells/icon/placeHolder0.png",
+        "descSpritePath"    : "img/spells/desc/placeHolder0.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "nextSpell",
+                "target"        : "target",
                 "conditionList" : [],
                 "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "hand",
+                "conditionList" : [],
+                "break"         : "False",
+                "stopTrigger"   : "spellCast",
+                "behavior"      : "melee",
+                "feature"       : "cost",
+                "value"         : -1
+            }
+        ]
+    },
+    "ph1":
+    {
+        "name"              : "Place holder 1",
+        "race"              : "iop",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/placeHolder1.png",
+        "descSpritePath"    : "img/spells/desc/placeHolder1.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -2
+            },
+            {
+                "trigger"       : "always",
+                "target"        : "currentSpell",
+                "conditionList" : [],
+                "break"         : "False",
+                "stopTrigger"   : "always",
                 "behavior"      : "melee",
                 "feature"       : "cost",
                 "value"         : -1
@@ -32,6 +74,7 @@
         "allowedTargetList" : ["myPlayer"],
         "abilities"         :
         [
+
             {
                 "trigger"       : "spellCast",
                 "target"        : "myPlayer",

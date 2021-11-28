@@ -108,7 +108,7 @@ class Player:
         self._companionList[companionId]["state"]      = "alive"
         self._companionList[companionId]["entityId"]   = entityId
         if (db.companions[self._companionList[companionId]["descId"]]["spellDescId"]):
-            companionSpellDescId = db.companionList[self._companionList[companionId]["descId"]]["spellDescId"]
+            companionSpellDescId = db.companions[self._companionList[companionId]["descId"]]["spellDescId"]
             if (len(self._handSpellList) < HAND_SPELLS):
                 self._handSpellList.append(Spell(companionSpellDescId))
             else:
@@ -167,10 +167,7 @@ class Player:
         self._pa -= spell.cost
 
     def modifySpellCost(self, spellId, value):
-        self._handSpellList[spellId]["cost"] = max(self._handSpellList[spellId]["cost"] + value, 0) # TODO
-
-    def resetSpellCost(self, spellId):
-        self._handSpellList[spellId]["cost"] = db.spells[self._handSpellList[spellId]["descId"]]["cost"] # TODO
+        self._handSpellList[spellId].modifyCost(value)
 
     def addEntity(self, entityId):
         self._boardEntityIds.append(entityId)

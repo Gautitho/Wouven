@@ -161,7 +161,6 @@ class Entity:
 
     def startTurn(self):
         self._pm            = db.entities[self._descId]["pm"]
-        self._atk           = db.entities[self._descId]["atk"]
         self._canMove       = True
         self._canAttack     = True
         self.applyStates()
@@ -173,6 +172,8 @@ class Entity:
             self.removeState("locked")
         if (self.isInStates("frozen")):
             self.removeState("frozen")
+        if (self.isInStates("petrified")):
+            self.removeState("petrified")
 
     def move(self, x, y):
         self._x         = x
@@ -192,8 +193,6 @@ class Entity:
         self._atk = max(self._atk + value, 0)
 
     def applyStates(self):
-        if (self.isInStates("elelyAtk")):
-            self.modifyAtk(state["value"])
         if (self.isInStates("disarmed")):
             self._canAttack = False
         if (self.isInStates("locked")):
@@ -218,8 +217,6 @@ class Entity:
         for state in self._states:
             if (state["feature"] == stateFeature):
                 self._states.remove(state)
-                if (state["feature"] == "elelyAtk"):
-                    self.modifyAtk(-state["value"])
                 stateFound = True
                 break
         if not(stateFound):
