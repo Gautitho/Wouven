@@ -1,10 +1,10 @@
 import json
 
-HEROES_FILE_PATH        = "data/heroes.json"
-COMPANIONS_FILE_PATH    = "data/companions.json"
-ENTITIES_FILE_PATH      = "data/entities.json"
-SPELLS_FILE_PATH        = "data/spells.json"
-AURAS_FILE_PATH         = "data/auras.json"
+HEROES_FILE_PATH_LIST       = ["data/heroes/iop.json", "data/heroes/xelor.json", "data/heroes/cra.json", "data/heroes/sacrieur.json"]
+COMPANIONS_FILE_PATH_LIST   = ["data/companions/air.json", "data/companions/water.json", "data/companions/fire.json", "data/companions/earth.json", "data/companions/multi.json"]
+ENTITIES_FILE_PATH_LIST     = ["data/entities/air.json", "data/entities/water.json", "data/entities/fire.json", "data/entities/earth.json", "data/entities/iop.json", "data/entities/xelor.json", "data/entities/cra.json", "data/entities/sacrieur.json"]
+SPELLS_FILE_PATH_LIST       = ["data/spells/air.json", "data/spells/water.json", "data/spells/fire.json", "data/spells/earth.json", "data/spells/iop.json", "data/spells/xelor.json", "data/spells/cra.json", "data/spells/sacrieur.json", "data/spells/misc.json"]
+AURAS_FILE_PATH_LIST        = ["data/auras.json"]
 
 TEST_ENABLE = True
 
@@ -18,25 +18,35 @@ ACTION_LIST_LEN = 5
 class DataBase:
 
     def __init__(self):
-        heroesFile          = open(HEROES_FILE_PATH, "r")
-        self._heroes        = json.load(heroesFile)
-        heroesFile.close()
+        self._heroes = {}
+        for filePath in HEROES_FILE_PATH_LIST:
+            heroesFile = open(filePath, "r")
+            self._heroes.update(json.load(heroesFile))
+            heroesFile.close()
 
-        companionsFile      = open(COMPANIONS_FILE_PATH, "r")
-        self._companions    = json.load(companionsFile)
-        companionsFile.close()
+        self._companions = {}
+        for filePath in COMPANIONS_FILE_PATH_LIST:
+            companionsFile = open(filePath, "r")
+            self._companions.update(json.load(companionsFile))
+            companionsFile.close()
 
-        entitiesFile        = open(ENTITIES_FILE_PATH, "r")
-        self._entities      = json.load(entitiesFile)
-        entitiesFile.close()
+        self._entities = {}
+        for filePath in ENTITIES_FILE_PATH_LIST:
+            entitiesFile = open(filePath, "r")
+            self._entities.update(json.load(entitiesFile))
+            entitiesFile.close()
 
-        aurasFile           = open(AURAS_FILE_PATH, "r")
-        self._auras         = json.load(aurasFile)
-        aurasFile.close() 
+        self._spells = {}
+        for filePath in SPELLS_FILE_PATH_LIST:
+            spellsFile = open(filePath, "r")
+            self._spells.update(json.load(spellsFile))
+            spellsFile.close()
 
-        spellsFile          = open(SPELLS_FILE_PATH, "r")
-        self._spells        = json.load(spellsFile)
-        spellsFile.close()
+        self._auras = {}
+        for filePath in AURAS_FILE_PATH_LIST:
+            aurasFile = open(filePath, "r")
+            self._auras.update(json.load(aurasFile))
+            aurasFile.close() 
 
     @property
     def heroes(self):

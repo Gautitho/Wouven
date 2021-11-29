@@ -1,0 +1,33 @@
+{
+    "scf0":
+    {
+        "name"              : "Essence du dieu Iop",
+        "race"              : "cf0",
+        "cost"              : 3,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/iopEssenceDuDieuIop.png",
+        "descSpritePath"    : "img/spells/desc/iopEssenceDuDieuIop.png",
+        "allowedTargetList" : ["self"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "atk",
+                "value"         : 12
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pm",
+                "value"         : 3
+            }
+        ]
+    }
+}

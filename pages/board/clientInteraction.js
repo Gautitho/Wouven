@@ -17,11 +17,33 @@ var boardTileList = [];
 var tooltipArray = [];
 var actionList = [];
 
-$.getJSON(PROJECT_ROOT_PATH + "data/entities.json", function(data) {entitiesDataBase = data});
-$.getJSON(PROJECT_ROOT_PATH + "data/spells.json", function(data) {spellsDataBase = data});
-$.getJSON(PROJECT_ROOT_PATH + "data/heroes.json", function(data) {heroesDataBase = data});
-$.getJSON(PROJECT_ROOT_PATH + "data/companions.json", function(data) {companionsDataBase = data});
-$.getJSON(PROJECT_ROOT_PATH + "data/auras.json", function(data) {aurasDataBase = data});
+$.getJSON(PROJECT_ROOT_PATH + "data/entities/air.json",         function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/entities/water.json",       function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/entities/fire.json",        function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/entities/earth.json",       function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/entities/iop.json",         function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/entities/xelor.json",       function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/entities/cra.json",         function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/entities/sacrieur.json",    function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/spells/air.json",           function(data) {spellsDataBase = {...spellsDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/spells/water.json",         function(data) {spellsDataBase = {...spellsDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/spells/fire.json",          function(data) {spellsDataBase = {...spellsDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/spells/earth.json",         function(data) {spellsDataBase = {...spellsDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/spells/iop.json",           function(data) {spellsDataBase = {...spellsDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/spells/xelor.json",         function(data) {spellsDataBase = {...spellsDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/spells/cra.json",           function(data) {spellsDataBase = {...spellsDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/spells/sacrieur.json",      function(data) {spellsDataBase = {...spellsDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/spells/misc.json",          function(data) {spellsDataBase = {...spellsDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/heroes/iop.json",           function(data) {heroesDataBase = {...heroesDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/heroes/xelor.json",         function(data) {heroesDataBase = {...heroesDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/heroes/cra.json",           function(data) {heroesDataBase = {...heroesDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/heroes/sacrieur.json",      function(data) {heroesDataBase = {...heroesDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/companions/air.json",       function(data) {companionsDataBase = {...companionsDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/companions/water.json",     function(data) {companionsDataBase = {...companionsDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/companions/fire.json",      function(data) {companionsDataBase = {...companionsDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/companions/earth.json",     function(data) {companionsDataBase = {...companionsDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/companions/multi.json",     function(data) {companionsDataBase = {...companionsDataBase, ...data}});
+$.getJSON(PROJECT_ROOT_PATH + "data/auras.json",                function(data) {aurasDataBase = {...aurasDataBase, ...data}});
 
 function removeTooltips()
 {

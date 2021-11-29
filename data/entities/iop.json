@@ -1,0 +1,36 @@
+{
+    "ehi0" :
+    {
+        "name"              : "Kasaï",
+        "spritePath"        : "img/entities/icon/Kasai.png",
+        "descSpritePath"    : "img/entities/desc/Kasai.png",
+        "types"             : [],
+        "pv"                : 390,
+        "armor"             : 0,
+        "atk"               : 37,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [{"feature" : "elem", "value" : "fire"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pm",
+                "value"         : 1
+            }
+        ]
+    }
+}
