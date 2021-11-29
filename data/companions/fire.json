@@ -1,0 +1,54 @@
+{
+    "cf0" :
+    {
+        "cost"          : {"fire" : 5},
+        "entityDescId"  : "ecf0",
+        "spellDescId"   : "scf0",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "cf1" :
+    {
+        "cost"          : {"fire" : 4},
+        "entityDescId"  : "ecf1",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "cf2" :
+    {
+        "cost"          : {"fire" : 4},
+        "entityDescId"  : "ecf2",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "cf3" :
+    {
+        "cost"          : {"fire" : 4},
+        "entityDescId"  : "ecf3",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    }
+}

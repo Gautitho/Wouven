@@ -1,0 +1,52 @@
+{
+    "ehx0" :
+    {
+        "name"              : "Pramium",
+        "spritePath"        : "img/entities/icon/Pramium.png",
+        "descSpritePath"    : "img/entities/desc/Elely.png",
+        "types"             : [],
+        "pv"                : 290,
+        "armor"             : 0,
+        "atk"               : 10,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "emx0" :
+    {
+        "name"              : "Sinistro feu",
+        "spritePath"        : "img/entities/icon/Seraphin.png",
+        "descSpritePath"    : "img/entities/desc/Seraphin.png",
+        "types"             : ["mechanism", "sinistro"],
+        "pv"                : 10,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spawn",
+                "target"        : "opOrganicAround",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -10
+            }
+        ]
+    }
+}

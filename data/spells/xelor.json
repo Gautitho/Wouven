@@ -1,0 +1,24 @@
+{
+    "sx0":
+    {
+        "name"              : "Sinistro feu",
+        "race"              : "xelor",
+        "cost"              : 2,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/iopEssence.png",
+        "descSpritePath"    : "img/spells/desc/iopEssence.png",
+        "allowedTargetList" : ["emptyTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "tile",
+                "conditionList" : [{"feature" :"range", "value" : 3}],
+                "break"         : "True",
+                "behavior"      : "summon",
+                "feature"       : "emx0",
+                "value"         : 0
+            }
+        ]
+    }
+}
