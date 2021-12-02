@@ -16,4 +16,4 @@
 
 ### Available states
 
-The following states are available : elelyAtk (permanent), bodyguard (permanent), bodyguarded(permanent), shield, disarmed, locked, frozen, petrified
+The following states are available : bodyguard (permanent), bodyguarded(permanent), shield, disarmed, locked, frozen, petrified, stunned

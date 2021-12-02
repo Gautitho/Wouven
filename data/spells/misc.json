@@ -21,13 +21,12 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "hand",
+                "target"        : "target",
                 "conditionList" : [],
                 "break"         : "False",
-                "stopTrigger"   : "spellCast",
-                "behavior"      : "melee",
-                "feature"       : "cost",
-                "value"         : -1
+                "behavior"      : "addState",
+                "feature"       : "stunned",
+                "value"         : 0
             }
         ]
     },
