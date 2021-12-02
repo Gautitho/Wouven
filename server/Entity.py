@@ -21,8 +21,10 @@ class Entity:
         self._states        = copy.deepcopy(db.entities[descId]["states"])
         self._abilities     = copy.deepcopy(db.entities[descId]["abilities"])
 
-        self._canMove       = True
-        self._canAttack     = True
+        self._canMove           = True
+        self._canAttack         = True
+        self._storedCanMove     = True
+        self._storedCanAttack   = True
 
     def check(self, descId, team, x, y):
         checkCondition(True, descId in db.entities, f"Entity descId ({descId}) does not exist !")
@@ -160,9 +162,11 @@ class Entity:
         return dic
 
     def startTurn(self):
-        self._pm            = db.entities[self._descId]["pm"]
-        self._canMove       = True
-        self._canAttack     = True
+        self._pm                = db.entities[self._descId]["pm"]
+        self._canMove           = True
+        self._canAttack         = True
+        self._storedCanMove     = True
+        self._storedCanAttack   = True
         self.applyStates()
 
     def endTurn(self):
@@ -174,6 +178,8 @@ class Entity:
             self.removeState("frozen")
         if (self.isInStates("petrified")):
             self.removeState("petrified")
+        if (self.isInStates("stunned")):
+            self.removeState("stunned")
 
     def move(self, x, y):
         self._x         = x
@@ -193,6 +199,8 @@ class Entity:
         self._atk = max(self._atk + value, 0)
 
     def applyStates(self):
+        self._storedCanMove     = self._canMove
+        self._storedCanAttack   = self._canAttack
         if (self.isInStates("disarmed")):
             self._canAttack = False
         if (self.isInStates("locked")):
@@ -200,10 +208,13 @@ class Entity:
         if (self.isInStates("petrified")):
             self._canAttack = False
             self._canMove = False
+        if (self.isInStates("stunned")):
+            self._canAttack = False
+            self._canMove = False
 
     def addState(self, state):
         cpyState        = dict(state)
-        uniqueStateList = ["disarmed", "locked", "frozen"]
+        uniqueStateList = ["disarmed", "locked", "frozen", "stunned"]
         if not(cpyState in self._states):
             for presentState in self._states:
                 if (cpyState["feature"] in uniqueStateList):
@@ -217,6 +228,8 @@ class Entity:
         for state in self._states:
             if (state["feature"] == stateFeature):
                 self._states.remove(state)
+                self._canAttack = self._storedCanAttack
+                self._canMove = self._storedCanMove
                 stateFound = True
                 break
         if not(stateFound):
@@ -232,6 +245,8 @@ class Entity:
                 apply = False
 
             if apply:
+                if (self.isInStates("stunned")):
+                    self.removeState("stunned")
                 if (self._armor + value > 0):
                     self._armor += value
                 else:
