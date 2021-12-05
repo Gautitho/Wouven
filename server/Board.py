@@ -647,6 +647,10 @@ class Board:
                         elif (ability["feature"] == "paStock"):
                             self._playersDict[playerId].modifyPaStock(value)
                             executed = True
+                        elif (ability["feature"] == "armor"):
+                            for abilityEntityId in abilityEntityIdList:
+                                self._entitiesDict[abilityEntityId].modifyArmor(value)
+                                executed = True
 
                     elif (ability["behavior"] == "melee"):
                         mult = len(self.entityIdAroundTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, self._playersDict[self.getOpPlayerId(playerId)].team))
@@ -733,7 +737,7 @@ class Board:
                                 toAffectEntityList.extend(list(set(self.entityIdAroundTile(self._entitiesDict[affectedEntity].x, self._entitiesDict[affectedEntity].y, self._playersDict[self.getOpPlayerId(playerId)].team)) - set(affectedEntityList)))
                                 self._entitiesDict[affectedEntity].modifyPv(value)
 
-                    elif (ability["behavior"] == "permanentState"):
+                    elif (ability["behavior"] == "permanentState"): # TODO : Change behavior to ongoingAbilities
                         state = {}
                         for abilityEntityId in abilityEntityIdList:
                             if (ability["feature"] == "bodyguard"):
@@ -785,3 +789,10 @@ class Board:
                 ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]
                 self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [], [], "", True)
                 self._ongoingAbilityList.remove(ongoingAbility)
+            elif (stopTrigger == "always" and ongoingAbility["stopTrigger"] == "noArmor"):
+                if (self._entitiesDict[self._playersDict[ongoingAbility["playerId"]].heroEntityId].armor == 0):
+                    ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]
+                    self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [], [], "", True)
+                    self._ongoingAbilityList.remove(ongoingAbility)
+
+                    

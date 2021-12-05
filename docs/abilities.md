@@ -98,5 +98,6 @@ This is an example : [{"feature" : "elemState", "value" : "oiled"}]
 |-----|-------------|
 | always | The effect disapears when after each action |
 | spellCast | The effect disapears when a spell is cast (after pa paid but before abilities execution) |
+| noArmor | The effect disapears when the entity have no armor |
 
 
