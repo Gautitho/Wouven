@@ -2,8 +2,6 @@
 
 - Généraliser le comportement des sorts (passage de spritePath par commande plutôt que passage de descId)
 - Mécaniques à dev : 
-  - Repousse
-  - Transformation
   - Transformation d'aura (mires)
   - Zone de dégâts (croix)
   - Pas d'ennemi autour

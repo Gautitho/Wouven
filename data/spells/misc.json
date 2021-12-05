@@ -7,17 +7,37 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/placeHolder0.png",
         "descSpritePath"    : "img/spells/desc/placeHolder0.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : ["myPlayer"],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : "self",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "bounce",
-                "feature"       : "pv",
-                "value"         : -1
+                "behavior"      : "",
+                "feature"       : "armor",
+                "value"         : 39
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pm",
+                "stopTrigger"   : "noArmor",
+                "value"         : 2
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "atk",
+                "stopTrigger"   : "noArmor",
+                "value"         : 10
             }
         ]
     },
@@ -29,26 +49,17 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/placeHolder1.png",
         "descSpritePath"    : "img/spells/desc/placeHolder1.png",
-        "allowedTargetList" : ["allOrganic", "firstTargetAdjacentTile"],
+        "allowedTargetList" : ["myPlayer"],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "push",
-                "feature"       : "position",
-                "value"         : 5
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : "self",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -2
+                "feature"       : "armor",
+                "value"         : 5
             }
         ]
     }

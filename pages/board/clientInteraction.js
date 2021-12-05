@@ -115,9 +115,9 @@ function updateBoard()
         $("#board_" + entities[entityId].x + "_" + entities[entityId].y).css("border-color", entities[entityId].team);
 
         tooltipStr = "PV : " + entities[entityId].pv + " / " + eval("entitiesDataBase." + entities[entityId].descId + ".pv") + "\n" +
-                     "Armure : " + entities[entityId].armor + " / " + eval("entitiesDataBase." + entities[entityId].descId + ".armor") + "\n" +
-                     "ATK : " + entities[entityId].atk + " / " + eval("entitiesDataBase." + entities[entityId].descId + ".atk") + "\n" +
-                     "PM : " + entities[entityId].pm + " / " + eval("entitiesDataBase." + entities[entityId].descId + ".pm");
+                     "Armure : " + entities[entityId].armor + "\n" +
+                     "ATK : " + entities[entityId].atk + "\n" +
+                     "PM : " + entities[entityId].pm;
         if (entities[entityId].elemState != "")
         {
             tooltipStr = tooltipStr + "\n" + "Etat élémentaire : " + entities[entityId].elemState;

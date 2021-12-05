@@ -198,6 +198,9 @@ class Entity:
     def modifyAtk(self, value):
         self._atk = max(self._atk + value, 0)
 
+    def modifyArmor(self, value):
+        self._armor = max(self._armor + value, 0)
+
     def applyStates(self):
         self._storedCanMove     = self._canMove
         self._storedCanAttack   = self._canAttack

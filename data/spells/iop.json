@@ -309,8 +309,8 @@
         "race"              : "iop",
         "cost"              : 8,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iopEssence.png",
-        "descSpritePath"    : "img/spells/desc/iopEssence.png",
+        "spritePath"        : "img/spells/icon/placeHolder0.png",
+        "descSpritePath"    : "img/spells/desc/placeHolder0.png",
         "allowedTargetList" : ["heroAdjacentTile"],
         "abilities"         :
         [
@@ -349,8 +349,8 @@
         "race"              : "iop",
         "cost"              : 4,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iopEssence.png",
-        "descSpritePath"    : "img/spells/desc/iopEssence.png",
+        "spritePath"        : "img/spells/icon/placeHolder0.png",
+        "descSpritePath"    : "img/spells/desc/placeHolder0.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
