@@ -89,6 +89,8 @@ This is an example : [{"feature" : "elemState", "value" : "oiled"}]
 | opAffected |  |
 | invocation |  |
 | freeAura |  |
+| bounce |  |
+| push |  |
 
 ### stopTrigger
 

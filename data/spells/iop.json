@@ -311,7 +311,7 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iopEssence.png",
         "descSpritePath"    : "img/spells/desc/iopEssence.png",
-        "allowedTargetList" : ["allAdjacentTile"],
+        "allowedTargetList" : ["heroAdjacentTile"],
         "abilities"         :
         [
             {

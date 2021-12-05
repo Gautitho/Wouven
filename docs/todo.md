@@ -1,3 +1,31 @@
 # TODO List
 
 - Généraliser le comportement des sorts (passage de spritePath par commande plutôt que passage de descId)
+- Mécaniques à dev : 
+  - Repousse
+  - Transformation
+  - Transformation d'aura (mires)
+  - Zone de dégâts (croix)
+  - Pas d'ennemi autour
+  - Combo
+  - Coup de grace
+  - Scaling avec la distance
+  - Recule
+  - Insaisissable
+  - Passif Bunelame
+  - Passif Expingole
+  - Vole de vie
+  - Déclenchement d'un mécanisme
+  - Dépahasage
+  - Soutien
+  - Respawn de compagnon
+  - Tuteur à mécanisme
+  - Inciblable
+  - Passif Bouvaloir
+  - Agonie
+  - Effet par personnage trvaersé
+  - Attirance
+  - Echange
+  - Maitre de l'agonie
+  - Transformation de mécanisme
+  - Rembobinage

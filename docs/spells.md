@@ -22,7 +22,8 @@
 | allEntity | All entity on the board |
 | allOrganic | All entity which are not mechanism |
 | allMechanism | All mechanisms on the board |
-| allAdjacentTile | All adjacent tiles of the hero |
+| heroAdjacentTile | All adjacent tiles of the hero |
+| firstTargetAdjacentTile | All adjacent tiles of the first target or first target |
 | myEntity | All of the current player entity on the board |
 | myOrganic | All of the current player entity which are not mechanism |
 | myMechanism | All of the current player mechanisms |
