@@ -271,6 +271,34 @@ class Board:
         self._entitiesDict[entityId].move(x, y)
         self.executeAbilities(self._entitiesDict[entityId].abilities, "move", playerId, entityId, [], [], None)
 
+    def pushEntity(self, entityId, x, y, distance):
+        xe  = self._entitiesDict[entityId].x
+        ye  = self._entitiesDict[entityId].y
+        remainingDistance = distance
+        nextX = xe
+        nextY = ye
+        if (x == xe and y == ye):
+            pass
+        elif (x == xe and y == ye + 1):
+            while (0 <= nextY + 1 < BOARD_ROWS and self.entityIdOnTile(nextX, nextY + 1) == None and remainingDistance > 0):
+                remainingDistance -= 1
+                nextY += 1
+        elif (x == xe and y == ye - 1):
+            while (0 <= nextY - 1 < BOARD_ROWS and self.entityIdOnTile(nextX, nextY - 1) == None and remainingDistance > 0):
+                remainingDistance -= 1
+                nextY -= 1
+        elif (x == xe + 1 and y == ye):
+            while (0 <= nextX + 1 < BOARD_COLS and self.entityIdOnTile(nextX + 1, nextY) == None and remainingDistance > 0):
+                remainingDistance -= 1
+                nextX += 1
+        elif (x == xe - 1 and y == ye):
+            while (0 <= nextX - 1 < BOARD_COLS and self.entityIdOnTile(nextX - 1, nextY) == None and remainingDistance > 0):
+                remainingDistance -= 1
+                nextX -= 1
+        else:
+            raise GameException("To push, the second target tile must adjacent to the first target !")
+        self._entitiesDict[entityId].tp(nextX, nextY)
+
     def spellCast(self, playerId, spellId, targetPositionList):
         # Check if spell in hand
         if (0 <= spellId < len(self._playersDict[playerId].handSpellList)):
@@ -392,12 +420,18 @@ class Board:
                             else:
                                 raise GameException("Target is not the first, not mechanism, aligned entity !")
 
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "allAdjacentTile"):
+                        elif (spell.allowedTargetList[allowedTargetIdx] == "heroAdjacentTile"):
                             if (self.isAdjacentToTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])):
                                 targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                                 selfEntityId = self._playersDict[playerId].heroEntityId
                             else:
-                                raise GameException("Target is not the first, not mechanism, aligned entity !")
+                                raise GameException("Target must be adjacent to your hero !")
+
+                        elif (spell.allowedTargetList[allowedTargetIdx] == "firstTargetAdjacentTile"):
+                            if (self.isAdjacentToTile(targetPositionList[0]["x"], targetPositionList[0]["y"], targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"]) or (targetPositionList[0]["x"] == targetPositionList[allowedTargetIdx]["x"] and targetPositionList[0]["y"] == targetPositionList[allowedTargetIdx]["y"])):
+                                pass
+                            else:
+                                raise GameException("Second target must be adjacent to first target !")
 
                         else:
                             raise GameException("Wrong target type !")
@@ -676,11 +710,28 @@ class Board:
                             else:
                                 raise GameException("Target not aligned with selfEntity !")
 
+                    elif (ability["behavior"] == "push"):
+                        for abilityEntityId in abilityEntityIdList:
+                            self.pushEntity(abilityEntityId, positionList[1]["x"], positionList[1]["y"], value)
+                            executed = True
+
                     elif (ability["behavior"] == "explosion"):
                         for abilityEntityId in abilityEntityIdList:
                             for entityId in self.entityIdAroundTile(self._entitiesDict[abilityEntityId].x, self._entitiesDict[abilityEntityId].y, self._playersDict[self.getOpPlayerId(playerId)].team):
                                 self._entitiesDict[entityId].modifyPv(value)
                                 executed = True
+
+                    elif (ability["behavior"] == "bounce"):
+                        for abilityEntityId in abilityEntityIdList:
+                            self._entitiesDict[abilityEntityId].modifyPv(value)
+                            executed = True
+                            affectedEntityList = [abilityEntityId]
+                            toAffectEntityList = self.entityIdAroundTile(self._entitiesDict[abilityEntityId].x, self._entitiesDict[abilityEntityId].y, self._playersDict[self.getOpPlayerId(playerId)].team)
+                            while toAffectEntityList:
+                                affectedEntity = toAffectEntityList.pop(0)
+                                affectedEntityList.append(affectedEntity)
+                                toAffectEntityList.extend(list(set(self.entityIdAroundTile(self._entitiesDict[affectedEntity].x, self._entitiesDict[affectedEntity].y, self._playersDict[self.getOpPlayerId(playerId)].team)) - set(affectedEntityList)))
+                                self._entitiesDict[affectedEntity].modifyPv(value)
 
                     elif (ability["behavior"] == "permanentState"):
                         state = {}

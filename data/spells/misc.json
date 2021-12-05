@@ -15,18 +15,9 @@
                 "target"        : "target",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "",
+                "behavior"      : "bounce",
                 "feature"       : "pv",
                 "value"         : -1
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "addState",
-                "feature"       : "stunned",
-                "value"         : 0
             }
         ]
     },
@@ -38,9 +29,18 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/placeHolder1.png",
         "descSpritePath"    : "img/spells/desc/placeHolder1.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : ["allOrganic", "firstTargetAdjacentTile"],
         "abilities"         :
         [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "push",
+                "feature"       : "position",
+                "value"         : 5
+            },
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
@@ -49,16 +49,6 @@
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -2
-            },
-            {
-                "trigger"       : "always",
-                "target"        : "currentSpell",
-                "conditionList" : [],
-                "break"         : "False",
-                "stopTrigger"   : "always",
-                "behavior"      : "melee",
-                "feature"       : "cost",
-                "value"         : -1
             }
         ]
     }
