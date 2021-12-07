@@ -442,7 +442,7 @@ class Board:
                 self.removeOngoingAbilities("spellCast") # WARNING : This line is here only because, for now, the only spellCast ongoingAbilities affect cost
                 self.executeAbilities(spell.abilities, "spellCast", playerId, selfEntityId, targetEntityIdList, positionList, spell.elem)
                 for entityId in range(0, len(self._entitiesDict)):
-                    self.executeAbilities(self._entitiesDict[entityId].abilities, "spellCast", playerId, entityId, None, positionList, spell.elem)
+                    self.executeAbilities(self._entitiesDict[entityId].abilities, "spellCast", playerId, entityId, targetEntityIdList, positionList, spell.elem)
 
             else:
                 raise GameException("Not enough pa to cast this spell !")
@@ -549,6 +549,13 @@ class Board:
                             pass
                         else:
                             conditionsValid = False
+
+                    elif (condition["feature"] == "target"):
+                        if (condition["value"] == "opOrganic"):
+                            if (targetEntityIdList and self.getOpTeam(self._entitiesDict[targetEntityIdList[0]].team) == self._playersDict[playerId].team):
+                                pass
+                            else:
+                                conditionsValid = False
 
                     else:
                         raise GameException("Wrong ability condition !")
@@ -685,10 +692,15 @@ class Board:
 
                     elif (ability["behavior"] == "addAura"):
                         if (self._entitiesDict[self._playersDict[playerId].heroEntityId].aura and ability["feature"] == self._entitiesDict[self._playersDict[playerId].heroEntityId].aura["type"]):
-                            self._entitiesDict[self._playersDict[playerId].heroEntityId].addAura(value)
+                            self._entitiesDict[self._playersDict[playerId].heroEntityId].modifyAuraNb(value)
                             executed = True
                         else:
                             self._entitiesDict[self._playersDict[playerId].heroEntityId].newAura(ability["feature"], value)
+                            executed = True
+                    
+                    elif (ability["behavior"] == "transformAura"):
+                        if (self._entitiesDict[self._playersDict[playerId].heroEntityId].aura):
+                            self._entitiesDict[self._playersDict[playerId].heroEntityId].modifyAuraType(ability["feature"])
                             executed = True
 
                     elif (ability["behavior"] == "charge"):
