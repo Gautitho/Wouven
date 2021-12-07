@@ -15,29 +15,9 @@
                 "target"        : "self",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "armor",
-                "value"         : 39
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pm",
-                "stopTrigger"   : "noArmor",
-                "value"         : 2
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "atk",
-                "stopTrigger"   : "noArmor",
-                "value"         : 10
+                "behavior"      : "addAura",
+                "feature"       : "a2",
+                "value"         : 3
             }
         ]
     },
@@ -57,8 +37,17 @@
                 "target"        : "self",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "armor",
+                "behavior"      : "addAura",
+                "feature"       : "a2",
+                "value"         : 3
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "transformAura",
+                "feature"       : "a3",
                 "value"         : 5
             }
         ]

@@ -1,7 +1,7 @@
 {
 	"a0" :
     {
-        "name"          : "Epees sanglantes",
+        "name"          : "Epées sanglantes",
         "spritePath"    : "img/states/aura.png",
         "abilities"     :
         [
@@ -28,17 +28,60 @@
     "a1" :
     {
         "name"          : "Poings volants",
-        "spritePath"    : "img/states/aura.png",
+        "spritepath"    : "img/states/aura.png",
         "abilities"     :
         [
             {
                 "trigger"       : "move",
-                "target"        : "opAround",
+                "target"        : "opOrganicAround",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "aura",
                 "feature"       : "pv",
                 "value"         : -17
+            }
+        ]
+    },
+    "a2" :
+    {
+        "name"          : "Mires",
+        "spritepath"    : "img/states/sight.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic"}],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -9
+            }
+        ]
+    },
+    "a3" :
+    {
+        "name"          : "Mires motivantes",
+        "spritepath"    : "img/states/improvedSight.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic"}],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -9
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic"}],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "paStock",
+                "value"         : 1
             }
         ]
     }

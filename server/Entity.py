@@ -274,6 +274,12 @@ class Entity:
         else:
             raise GameException(f"You have not aura anymore !")
 
+    def modifyAuraType(self, auraType):
+        if (self._aura):
+            self._aura["type"] = auraType
+        else:
+            raise GameException(f"You have not aura anymore !")
+
     def freeAura(self):
         self._aura = {}
 
