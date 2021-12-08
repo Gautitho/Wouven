@@ -7,17 +7,17 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/placeHolder0.png",
         "descSpritePath"    : "img/spells/desc/placeHolder0.png",
-        "allowedTargetList" : ["myPlayer"],
+        "allowedTargetList" : ["all"],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
+                "target"        : "allOrganicCross:1",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "addAura",
-                "feature"       : "a2",
-                "value"         : 3
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -1
             }
         ]
     },
@@ -35,20 +35,11 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "self",
-                "conditionList" : [],
+                "conditionList" : [{"feature" : "opAroundSelf", "value" : 0}],
                 "break"         : "False",
                 "behavior"      : "addAura",
                 "feature"       : "a2",
                 "value"         : 3
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "transformAura",
-                "feature"       : "a3",
-                "value"         : 5
             }
         ]
     }
