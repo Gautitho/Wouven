@@ -198,6 +198,16 @@ class Board:
                             entityIdList.append(matchId)
         return entityIdList
 
+    def entityIdInCross(self, x, y, rangeCondition, team):
+        entityIdList = []
+        for xa in range(max(x-rangeCondition, 0), min(x+rangeCondition+1, BOARD_COLS)):
+            for ya in range(max(y-rangeCondition, 0), min(y+rangeCondition+1, BOARD_ROWS)):
+                matchId = self.entityIdOnTile(xa, ya)
+                if (matchId != None):
+                    if (team == "all" or team == self._entitiesDict[matchId].team):
+                        entityIdList.append(matchId)
+        return entityIdList
+
     def isAdjacentToTile(self, xSelf, ySelf, xTarget, yTarget):
         return ((xTarget == xSelf and (yTarget == ySelf + 1 or yTarget == ySelf - 1)) or (yTarget == ySelf and (xTarget == xSelf + 1 or xTarget == xSelf - 1)))
 
@@ -552,10 +562,16 @@ class Board:
 
                     elif (condition["feature"] == "target"):
                         if (condition["value"] == "opOrganic"):
-                            if (targetEntityIdList and self.getOpTeam(self._entitiesDict[targetEntityIdList[0]].team) == self._playersDict[playerId].team):
+                            if (targetEntityIdList != [None] and self.getOpTeam(self._entitiesDict[targetEntityIdList[0]].team) == self._playersDict[playerId].team):
                                 pass
                             else:
                                 conditionsValid = False
+
+                    elif (condition["feature"] == "opAroundSelf"):
+                        if (len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self.getOpTeam(self._entitiesDict[selfId].team))) == condition["value"]):
+                            pass
+                        else:
+                            conditionsValid = False
 
                     else:
                         raise GameException("Wrong ability condition !")
@@ -584,6 +600,8 @@ class Board:
                     abilityEntityIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"], rangeCondition, "all")
                 elif (ability["target"] == "opOrganicAligned"):
                     abilityEntityIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"], rangeCondition, self.getOpTeam(self._entitiesDict[selfId].team))
+                elif (ability["target"].split(':')[0] == "allOrganicCross"):
+                    abilityEntityIdList = self.entityIdInCross(positionList[targetIdx]["x"], positionList[targetIdx]["y"], int(ability["target"].split(':')[1]), "all")
                 elif (ability["target"] == "tile"):
                     pass
                 elif (ability["target"] == "currentSpell"):

@@ -1,10 +1,8 @@
 # TODO List
 
 - Généraliser le comportement des sorts (passage de spritePath par commande plutôt que passage de descId)
+- Afficher le cout en PA sur le sort
 - Mécaniques à dev : 
-  - Transformation d'aura (mires)
-  - Zone de dégâts (croix)
-  - Pas d'ennemi autour
   - Combo
   - Coup de grace
   - Scaling avec la distance
