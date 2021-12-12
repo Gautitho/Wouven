@@ -26,6 +26,7 @@ class Player:
         self._playedCompanionDescIds    = []
         self._boardEntityIds            = []
         self._heroEntityId              = None
+        self._spellsPlayedDuringTurn    = 0
 
     def checkDeck(self, deck):
         if not(deck["heroDescId"] in db.heroes):
@@ -101,6 +102,10 @@ class Player:
     def heroEntityId(self):
         return self._heroEntityId
 
+    @property
+    def spellsPlayedDuringTurn(self):
+        return self._spellsPlayedDuringTurn
+
     def setHeroEntityId(self, heroEntityId):
         self._heroEntityId = heroEntityId
 
@@ -132,6 +137,7 @@ class Player:
 
     def startTurn(self):
         self._pa = 6
+        self._spellsPlayedDuringTurn = 0
      
     def endTurn(self):
         self.draw()
@@ -165,6 +171,7 @@ class Player:
         spell = self._handSpellList.pop(spellId)
         self._deckSpellDescIdList.append(spell.descId)
         self._pa -= spell.cost
+        self._spellsPlayedDuringTurn += 1
 
     def modifySpellCost(self, spellId, value):
         self._handSpellList[spellId].modifyCost(value)

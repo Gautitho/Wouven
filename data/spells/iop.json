@@ -156,7 +156,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" :"range", "value" : 5}],
+                "conditionList" : [{"feature" :"range", "value" : 5, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -205,7 +205,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" :"range", "value" : 2}],
+                "conditionList" : [{"feature" :"range", "value" : 2, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
@@ -317,7 +317,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "allOrganicAligned",
-                "conditionList" : [{"feature" :"range", "value" : 3}],
+                "conditionList" : [{"feature" :"range", "value" : 3, "operator" : "<="}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -335,7 +335,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "opOrganicAligned",
-                "conditionList" : [{"feature" :"range", "value" : 3}],
+                "conditionList" : [{"feature" :"range", "value" : 3, "operator" : "<="}],
                 "break"         : "False",
                 "behavior"      : "opAffected",
                 "feature"       : "gauges",
@@ -828,7 +828,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" :"range", "value" : 5}],
+                "conditionList" : [{"feature" :"range", "value" : 5, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -957,7 +957,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" :"range", "value" : 3}],
+                "conditionList" : [{"feature" :"range", "value" : 3, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -1179,7 +1179,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" :"range", "value" : 5}],
+                "conditionList" : [{"feature" :"range", "value" : 5, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -1562,7 +1562,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" :"range", "value" : 5}],
+                "conditionList" : [{"feature" :"range", "value" : 5, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -1602,7 +1602,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" : "rangeFromFirstTarget", "value" : 1, "targetIdx" : 1}, {"feature" : "elemState", "value" : "oiled"}],
+                "conditionList" : [{"feature" : "rangeFromFirstTarget", "value" : 1, "operator" : "<=", "targetIdx" : 1}, {"feature" : "elemState", "value" : "oiled"}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
