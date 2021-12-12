@@ -519,8 +519,12 @@ class Board:
                 # Check conditions
                 conditionsValid = True
                 for condition in ability["conditionList"]:
+                    if ("operator" in condition):
+                        operator = condition["operator"]
+                    else:
+                        operator = "="
                     if (condition["feature"] == "elemState"):
-                        if (condition["value"] in ["oiled", "wet", "muddy", "windy"]):
+                        if (operator == "=" and condition["value"] in ["oiled", "wet", "muddy", "windy"]):
                             if (self._entitiesDict[targetEntityIdList[targetIdx]].elemState == condition["value"]):
                                 self._entitiesDict[targetEntityIdList[targetIdx]].setElemState("")
                             else:
@@ -529,7 +533,7 @@ class Board:
                             raise GameException("ElemState to consume does not exist !")
 
                     elif (condition["feature"] == "elem"):
-                        if (condition["value"] in ["fire", "water", "earth", "air", "neutral"]):
+                        if (operator == "=" and condition["value"] in ["fire", "water", "earth", "air", "neutral"]):
                             if (spellElem == condition["value"]):
                                 pass
                             else:
@@ -543,19 +547,23 @@ class Board:
                             if (companion["state"] == "alive"):
                                 allyCompanions += 1
 
-                        if (allyCompanions == condition["value"]):
+                        if (operator == "=" and allyCompanions == condition["value"]):
                             pass
                         else:
                             conditionsValid = False
 
                     elif (condition["feature"] == "range"):
-                        if (calcDist(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"]) <= condition["value"]):
+                        if (operator == "=" and calcDist(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"]) == condition["value"]):
+                            rangeCondition = condition["value"]
+                        elif (operator == "<=" and calcDist(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"]) <= condition["value"]):
                             rangeCondition = condition["value"]
                         else:
                             conditionsValid = False
 
                     elif (condition["feature"] == "rangeFromFirstTarget"):
-                        if (calcDist(positionList[0]["x"], positionList[0]["y"], positionList[targetIdx]["x"], positionList[targetIdx]["y"]) <= condition["value"]):
+                        if (operator == "=" and calcDist(positionList[0]["x"], positionList[0]["y"], positionList[targetIdx]["x"], positionList[targetIdx]["y"]) == condition["value"]):
+                            pass
+                        elif (operator == "<=" and calcDist(positionList[0]["x"], positionList[0]["y"], positionList[targetIdx]["x"], positionList[targetIdx]["y"]) <= condition["value"]):
                             pass
                         else:
                             conditionsValid = False
@@ -572,6 +580,21 @@ class Board:
                             pass
                         else:
                             conditionsValid = False
+
+                    elif (condition["feature"] == "spellsPlayedDuringTurn"):
+                        if (operator == "=" and self._playersDict[playerId].spellsPlayedDuringTurn == condition["value"]):
+                            pass
+                        elif (operator == ">" and self._playersDict[playerId].spellsPlayedDuringTurn > condition["value"]):
+                            pass
+                        else:
+                            conditionsValid = False
+
+                    elif (condition["feature"] == "turn"):
+                        if (condition["value"] == "my"):
+                            if (self._entitiesDict[selfId].team == self._playersDict[playerId].team):
+                                pass
+                            else:
+                                conditionsValid = False
 
                     else:
                         raise GameException("Wrong ability condition !")

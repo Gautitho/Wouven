@@ -44,7 +44,7 @@
 
 ### conditionList
 
-This is an example : [{"feature" : "elemState", "value" : "oiled"}]
+This is an example : [{"feature" : "elemState", "value" : "oiled", "operator" : "="}]
 
 ### break
 

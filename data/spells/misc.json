@@ -7,13 +7,13 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/placeHolder0.png",
         "descSpritePath"    : "img/spells/desc/placeHolder0.png",
-        "allowedTargetList" : ["all"],
+        "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "allOrganicCross:1",
-                "conditionList" : [],
+                "target"        : "target",
+                "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",

@@ -51,7 +51,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic"}],
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "aura",
                 "feature"       : "pv",
@@ -68,7 +68,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic"}],
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "aura",
                 "feature"       : "pv",
@@ -77,7 +77,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "myPlayer",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic"}],
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "aura",
                 "feature"       : "paStock",
