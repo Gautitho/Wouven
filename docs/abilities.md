@@ -46,6 +46,12 @@
 
 This is an example : [{"feature" : "elemState", "value" : "oiled", "operator" : "="}]
 
+| Key | Description |
+|-----|-------------|
+| elemState | |
+| targetPv | |
+| opAroundSelf | |
+
 ### break
 
 | Key | Description |
@@ -92,6 +98,7 @@ This is an example : [{"feature" : "elemState", "value" : "oiled", "operator" : 
 | freeAura |  |
 | bounce |  |
 | push |  |
+| attackAgain |  |
 
 ### stopTrigger
 

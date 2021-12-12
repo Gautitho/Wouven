@@ -122,8 +122,8 @@ class Player:
     def removeCompanion(self, companionId):
         self._companionList[companionId]["state"]      = "dead"
         self._companionList[companionId]["entityId"]   = None
-        if (db.companionList[self._companionList[companionId]["descId"]]["spellDescId"]):
-            companionSpellDescId = db.companionList[self._companionList[companionId]["descId"]]["spellDescId"]
+        if (db.companions[self._companionList[companionId]["descId"]]["spellDescId"]):
+            companionSpellDescId = db.companions[self._companionList[companionId]["descId"]]["spellDescId"]
             for handSpellIdx in range(0, len(self._handSpellList)):
                 if (self._handSpellList[handSpellIdx].descId == companionSpellDescId):
                     del self._handSpellList[handSpellIdx]

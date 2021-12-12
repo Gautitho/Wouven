@@ -3,7 +3,6 @@
 - Généraliser le comportement des sorts (passage de spritePath par commande plutôt que passage de descId)
 - Afficher le cout en PA sur le sort
 - Mécaniques à dev : 
-  - Combo
   - Coup de grace
   - Scaling avec la distance
   - Recule
@@ -25,3 +24,4 @@
   - Maitre de l'agonie
   - Transformation de mécanisme
   - Rembobinage
+  - Rejouer son tour
