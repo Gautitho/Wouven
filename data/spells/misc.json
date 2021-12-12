@@ -13,11 +13,20 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">"}],
+                "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : -1
+                "value"         : -100
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "targetPv", "value" : 0, "operator" : "<="}],
+                "break"         : "False",
+                "behavior"      : "attackAgain",
+                "feature"       : "",
+                "value"         : 0
             }
         ]
     },

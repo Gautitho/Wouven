@@ -445,6 +445,7 @@ class Board:
 
                         else:
                             raise GameException("Wrong target type !")
+
                 else:
                     raise GameException("Wrong number of target !")
 
@@ -595,6 +596,12 @@ class Board:
                                 pass
                             else:
                                 conditionsValid = False
+
+                    elif (condition["feature"] == "targetPv"):
+                        if (operator == "<=" and self._entitiesDict[targetEntityIdList[targetIdx]].pv <= condition["value"]):
+                            pass
+                        else:
+                            conditionsValid = False
 
                     else:
                         raise GameException("Wrong ability condition !")
@@ -815,6 +822,10 @@ class Board:
                     elif (ability["behavior"] == "summon"):
                         entityId = self.appendEntity(playerId, ability["feature"], self._playersDict[playerId].team, positionList[0]["x"], positionList[0]["y"])
                         self.executeAbilities(caller, self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, None, {}, None)
+
+                    elif (ability["behavior"] == "attackAgain"):
+                        for abilityEntityId in abilityEntityIdList:
+                            self._entitiesDict[abilityEntityId].attackAgain()
 
                     elif (ability["behavior"] == "freeAura"):
                         self._entitiesDict[self._playersDict[playerId].heroEntityId].freeAura()

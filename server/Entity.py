@@ -184,7 +184,6 @@ class Entity:
     def move(self, x, y):
         self._x         = x
         self._y         = y
-        self._pm        = 0
         self._canMove   = False
         self._canAttack = False
 
@@ -265,6 +264,10 @@ class Entity:
     def newAura(self, type, nb):
         self._aura["type"]  = type
         self._aura["nb"]    = min(nb, 5)
+
+    def attackAgain(self):
+        self._canMove   = True
+        self._canAttack = True
 
     def modifyAuraNb(self, nb):
         if (self._aura["nb"] + nb > 0):
