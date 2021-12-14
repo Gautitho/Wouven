@@ -99,6 +99,7 @@ This is an example : [{"feature" : "elemState", "value" : "oiled", "operator" : 
 | bounce |  |
 | push |  |
 | attackAgain |  |
+| distance |  |
 
 ### stopTrigger
 
