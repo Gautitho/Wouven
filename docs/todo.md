@@ -3,13 +3,12 @@
 - Généraliser le comportement des sorts (passage de spritePath par commande plutôt que passage de descId)
 - Afficher le cout en PA sur le sort
 - Mécaniques à dev : 
-  - Coup de grace
   - Scaling avec la distance
   - Recule
   - Insaisissable
   - Passif Bunelame
   - Passif Expingole
-  - Vole de vie
+  - Vol de vie
   - Déclenchement d'un mécanisme
   - Dépahasage
   - Soutien
@@ -24,4 +23,3 @@
   - Maitre de l'agonie
   - Transformation de mécanisme
   - Rembobinage
-  - Rejouer son tour

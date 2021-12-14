@@ -326,7 +326,7 @@ class Board:
                 if (len(spell.allowedTargetList) == len(targetPositionList)):
                     positionList        = targetPositionList
                     targetEntityIdList  = []
-                    selfEntityId        = None
+                    selfEntityId        = self._playersDict[playerId].heroEntityId
                     for allowedTargetIdx in range(0, len(spell.allowedTargetList)):
                         targetEntityIdList.append(None)
                         if (spell.allowedTargetList[allowedTargetIdx] == "all"):
@@ -405,35 +405,34 @@ class Board:
                         elif (spell.allowedTargetList[allowedTargetIdx] == "myPlayer"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] == self._playersDict[playerId].heroEntityId):
-                                selfEntityId = self._playersDict[playerId].heroEntityId
+                                pass
                             else:
                                 raise GameException("Target must be your hero !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "opPlayer"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] == self._playersDict[self.getOpPlayerId(playerId)].heroEntityId):
-                                selfEntityId = self._playersDict[self.getOpPlayerId(playerId)].heroEntityId
+                                pass
                             else:
                                 raise GameException("Target must be opponent hero !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allfirstAlignedEntity"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, "all")):
-                                selfEntityId = self._playersDict[playerId].heroEntityId
+                                pass
                             else:
                                 raise GameException("Target is not the first aligned entity !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allfirstAlignedOrganic"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].types)):
-                                selfEntityId = self._playersDict[playerId].heroEntityId
+                                pass
                             else:
                                 raise GameException("Target is not the first, not mechanism, aligned entity !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "heroAdjacentTile"):
                             if (self.isAdjacentToTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])):
                                 targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                                selfEntityId = self._playersDict[playerId].heroEntityId
                             else:
                                 raise GameException("Target must be adjacent to your hero !")
 
@@ -715,6 +714,20 @@ class Board:
                         elif (ability["feature"] == "cost"):
                             for spellId in abilityEntityIdList:
                                 self._playersDict[playerId].modifySpellCost(spellId, mult*value)
+                                executed = True
+
+                    elif (ability["behavior"] == "distance"):
+                        mult = calcDist(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[abilityEntityIdList[0]].x, self._entitiesDict[abilityEntityIdList[0]].y)
+                        if (ability["feature"] == "atk"): 
+                            self._entitiesDict[self._playersDict[playerId].heroEntityId].modifyAtk(mult*value)
+                            executed = True
+                        elif (ability["feature"] == "cost"):
+                            for spellId in abilityEntityIdList:
+                                self._playersDict[playerId].modifySpellCost(spellId, mult*value)
+                                executed = True
+                        elif (ability["feature"] == "pv"):
+                            for abilityEntityId in abilityEntityIdList:
+                                self._entitiesDict[abilityEntityId].modifyPv(mult*value)
                                 executed = True
 
                     elif (ability["behavior"] == "auraNb"):

@@ -15,18 +15,9 @@
                 "target"        : "target",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "",
+                "behavior"      : "distance",
                 "feature"       : "pv",
-                "value"         : -100
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "conditionList" : [{"feature" : "targetPv", "value" : 0, "operator" : "<="}],
-                "break"         : "False",
-                "behavior"      : "attackAgain",
-                "feature"       : "",
-                "value"         : 0
+                "value"         : -1
             }
         ]
     },
