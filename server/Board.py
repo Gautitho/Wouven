@@ -250,9 +250,12 @@ class Board:
                         if (pm == 0):
                             if (self._entitiesDict[entityId].canAttack and self.entityIdOnTile(nextX, nextY) != None): # Attack after full pm move
                                 attackedEntityId  = self.entityIdOnTile(nextX, nextY)
-                                self.executeAbilities(self._entitiesDict[entityId].abilities, "attack", playerId, entityId, [attackedEntityId], [], None)
-                                self.executeAbilities(self._entitiesDict[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, None, [], None)
-                                pm              = -1
+                                if (not(self._entitiesDict[attackedEntityId].isInStates("elusive"))):
+                                    self.executeAbilities(self._entitiesDict[entityId].abilities, "attack", playerId, entityId, [attackedEntityId], [], None)
+                                    self.executeAbilities(self._entitiesDict[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, None, [], None)
+                                    pm              = -1
+                                else:
+                                    raise GameException("You can't attack the target because it is elusive !")
                             else:
                                 raise GameException("Path length is higher than your pm !")
                         else:
@@ -266,9 +269,12 @@ class Board:
                             else: # There is an entity on next tile
                                 if (self._entitiesDict[entityId].canAttack):
                                     attackedEntityId  = self.entityIdOnTile(nextX, nextY)
-                                    self.executeAbilities(self._entitiesDict[entityId].abilities, "attack", playerId, entityId, [attackedEntityId], [], None)
-                                    self.executeAbilities(self._entitiesDict[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, None, [], None)
-                                    pm              = -1
+                                    if (not(self._entitiesDict[attackedEntityId].isInStates("elusive"))):
+                                        self.executeAbilities(self._entitiesDict[entityId].abilities, "attack", playerId, entityId, [attackedEntityId], [], None)
+                                        self.executeAbilities(self._entitiesDict[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, None, [], None)
+                                        pm              = -1
+                                    else:
+                                        raise GameException("You can't attack the target because it is elusive !")
                                 else:
                                     raise GameException("You can't attack this turn !")
                     else:
@@ -284,24 +290,24 @@ class Board:
     def pushEntity(self, entityId, x, y, distance):
         xe  = self._entitiesDict[entityId].x
         ye  = self._entitiesDict[entityId].y
-        remainingDistance = distance
+        remainingDistance = abs(distance)
         nextX = xe
         nextY = ye
         if (x == xe and y == ye):
             pass
-        elif (x == xe and y == ye + 1):
+        elif (x == xe and ((y == ye + 1 and distance >= 0) or (y == ye - 1 and distance <= 0))):
             while (0 <= nextY + 1 < BOARD_ROWS and self.entityIdOnTile(nextX, nextY + 1) == None and remainingDistance > 0):
                 remainingDistance -= 1
                 nextY += 1
-        elif (x == xe and y == ye - 1):
+        elif (x == xe and ((y == ye - 1 and distance >= 0) or (y == ye + 1 and distance <= 0))):
             while (0 <= nextY - 1 < BOARD_ROWS and self.entityIdOnTile(nextX, nextY - 1) == None and remainingDistance > 0):
                 remainingDistance -= 1
                 nextY -= 1
-        elif (x == xe + 1 and y == ye):
+        elif (((x == xe + 1 and distance >= 0) or (x == xe - 1 and distance <= 0)) and y == ye):
             while (0 <= nextX + 1 < BOARD_COLS and self.entityIdOnTile(nextX + 1, nextY) == None and remainingDistance > 0):
                 remainingDistance -= 1
                 nextX += 1
-        elif (x == xe - 1 and y == ye):
+        elif (((x == xe - 1 and distance >= 0) or (x == xe + 1 and distance <= 0)) and y == ye):
             while (0 <= nextX - 1 < BOARD_COLS and self.entityIdOnTile(nextX - 1, nextY) == None and remainingDistance > 0):
                 remainingDistance -= 1
                 nextX -= 1
@@ -790,6 +796,11 @@ class Board:
                     elif (ability["behavior"] == "push"):
                         for abilityEntityId in abilityEntityIdList:
                             self.pushEntity(abilityEntityId, positionList[1]["x"], positionList[1]["y"], value)
+                            executed = True
+
+                    elif (ability["behavior"] == "pushBack"):
+                        for abilityEntityId in abilityEntityIdList:
+                            self.pushEntity(abilityEntityId, positionList[0]["x"], positionList[0]["y"], -value)
                             executed = True
 
                     elif (ability["behavior"] == "explosion"):
