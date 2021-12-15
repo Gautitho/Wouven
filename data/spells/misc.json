@@ -7,7 +7,7 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/placeHolder0.png",
         "descSpritePath"    : "img/spells/desc/placeHolder0.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : ["allfirstAlignedOrganic"],
         "abilities"         :
         [
             {
@@ -15,9 +15,18 @@
                 "target"        : "target",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "distance",
+                "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "pushBack",
+                "feature"       : "",
+                "value"         : 1
             }
         ]
     },
@@ -29,17 +38,17 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/placeHolder1.png",
         "descSpritePath"    : "img/spells/desc/placeHolder1.png",
-        "allowedTargetList" : ["myPlayer"],
+        "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [{"feature" : "opAroundSelf", "value" : 0}],
+                "target"        : "target",
+                "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "addAura",
-                "feature"       : "a2",
-                "value"         : 3
+                "behavior"      : "addState",
+                "feature"       : "elusive",
+                "value"         : 0
             }
         ]
     }

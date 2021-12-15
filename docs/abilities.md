@@ -98,6 +98,7 @@ This is an example : [{"feature" : "elemState", "value" : "oiled", "operator" : 
 | freeAura |  |
 | bounce |  |
 | push |  |
+| pushBack |  |
 | attackAgain |  |
 | distance |  |
 
