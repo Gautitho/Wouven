@@ -5,8 +5,8 @@ from functions import *
 from Board import *
 from GameException import *
 
-deck1       = {"heroDescId" : "hi0", "spellDescIdList" : ["shi0", "si0", "si1", "si2", "si3", "si4", "sm0", "si5", "sm1"], "companionDescIdList" : ["cf0", "cf1", "cf2", "cf3"]}
-deck2       = {"heroDescId" : "hi0", "spellDescIdList" : ["shi0", "si0", "si1", "si2", "si3", "si4", "sm0", "si5", "sm1"], "companionDescIdList" : ["cf0", "cf1", "cf2", "cf3"]}
+deck1       = {"heroDescId" : "hc0", "spellDescIdList" : ["shi0", "si0", "si1", "si2", "si3", "si4", "sm0", "si5", "sm1"], "companionDescIdList" : ["cf0", "cf1", "cf2", "cf3"]}
+deck2       = {"heroDescId" : "hc1", "spellDescIdList" : ["shi0", "si0", "si1", "si2", "si3", "si4", "sm0", "si5", "sm1"], "companionDescIdList" : ["cf0", "cf1", "cf2", "cf3"]}
 
 class Game:
 
@@ -105,12 +105,10 @@ class Game:
         for playerId in list(self._board.playersDict.keys()):
             if (playerId == firstPlayerId):
                 self._turn = self._board.playersDict[playerId].team
-                for i in range(0, 5):
-                    self._board.playersDict[playerId].draw()
+                self._board.playersDict[playerId].draw(5)
             else:
                 self._board.playersDict[playerId].modifyPaStock(1)
-                for i in range(0, 6):
-                    self._board.playersDict[playerId].draw()
+                self._board.playersDict[playerId].draw(6)
             self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
 
     def joinGame(self, playerId):

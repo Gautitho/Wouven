@@ -13,7 +13,7 @@
 
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "self",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addAura",

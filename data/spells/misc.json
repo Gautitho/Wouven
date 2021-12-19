@@ -38,17 +38,17 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/placeHolder1.png",
         "descSpritePath"    : "img/spells/desc/placeHolder1.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : ["myPlayer"],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : "self",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "addState",
-                "feature"       : "elusive",
-                "value"         : 0
+                "behavior"      : "addAura",
+                "feature"       : "a2",
+                "value"         : 3
             }
         ]
     }
