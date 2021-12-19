@@ -8,7 +8,7 @@ from Spell import *
 class Player:
 
     def __init__(self, deck, team, pseudo):
-        self.checkDeck(deck)
+        #self.checkDeck(deck)
         self._heroDescId                = deck["heroDescId"]
         self._race                      = db.heroes[self._heroDescId]["race"]
         self._team                      = team
@@ -140,7 +140,7 @@ class Player:
         self._spellsPlayedDuringTurn = 0
      
     def endTurn(self):
-        self.draw()
+        self.draw(1)
 
     def modifyPaStock(self, value):
         self._paStock = max(min(self._paStock + value, 9), 0)
@@ -149,10 +149,14 @@ class Player:
         self._pa += self._paStock
         self._paStock = 0
 
-    def draw(self):
-        if (len(self._handSpellList) < HAND_SPELLS):
+    def draw(self, nb):
+        for i in range(nb):
             spellDescId = self._deckSpellDescIdList.pop(0)
-            self._handSpellList.append(Spell(spellDescId))
+            if (len(self._handSpellList) < HAND_SPELLS):
+                self._handSpellList.append(Spell(spellDescId))
+            else:
+                self._deckSpellDescIdList.append(spellDescId)
+            
 
     def modifyGauge(self, gaugeType, value):
         if (gaugeType in ["fire", "water", "earth", "air", "neutral"]):

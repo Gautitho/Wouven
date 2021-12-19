@@ -1,3 +1,14 @@
 {
-
+    "hc0" :
+    {
+        "race"          : "cra",
+        "spellDescId"   : "shi0",
+        "entityDescId"  : "ehc0"
+    },
+    "hc1" :
+    {
+        "race"          : "cra",
+        "spellDescId"   : "shi0",
+        "entityDescId"  : "ehc1"
+    }
 }

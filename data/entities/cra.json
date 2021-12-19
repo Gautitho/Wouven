@@ -1,3 +1,70 @@
 {
-
+    "ehc0" :
+    {
+        "name"              : "Bunelame",
+        "spritePath"        : "img/entities/icon/Bunelame.png",
+        "descSpritePath"    : "img/entities/desc/Bunelame.png",
+        "types"             : [],
+        "pv"                : 393,
+        "armor"             : 0,
+        "atk"               : 16,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "always",
+                "target"        : "self",
+                "conditionList" : [{"feature" : "auraNb", "value" : 3, "operator" : ">="}],
+                "break"         : "False",
+                "behavior"      : "transformAura",
+                "feature"       : "a4",
+                "value"         : 0
+            }
+        ]
+    },
+    "ehc1" :
+    {
+        "name"              : "Expingole",
+        "spritePath"        : "img/entities/icon/Expingole.png",
+        "descSpritePath"    : "img/entities/desc/Expingole.png",
+        "types"             : [],
+        "pv"                : 390,
+        "armor"             : 0,
+        "atk"               : 16,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic"}, {"feature" : "oneByTurn", "value" : "ehc1"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "addAura",
+                "feature"       : "a2",
+                "value"         : 1
+            }
+        ]
+    }
 }

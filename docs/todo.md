@@ -6,8 +6,6 @@
   - Passif Bunelame
   - Passif Expingole
   - Vol de vie
-  - Déclenchement d'un mécanisme
-  - Dépahasage
   - Soutien
   - Respawn de compagnon
   - Tuteur à mécanisme
@@ -18,5 +16,7 @@
   - Attirance
   - Echange
   - Maitre de l'agonie
-  - Transformation de mécanisme
   - Rembobinage
+  - Déclenchement d'un mécanisme
+  - Transformation de mécanisme
+  - Dépahasage

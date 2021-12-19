@@ -51,6 +51,11 @@ This is an example : [{"feature" : "elemState", "value" : "oiled", "operator" : 
 | elemState | |
 | targetPv | |
 | opAroundSelf | |
+| turn | op, my |
+| spellsPlayedDuringTurn | |
+| oneByTurn | |
+| auraNb | |
+| targetPv | |
 
 ### break
 

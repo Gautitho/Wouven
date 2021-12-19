@@ -106,7 +106,7 @@ function updateBoard()
         {
             imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + "img/states/" + entities[entityId].elemState + ".png), ";
         }
-        if (!jQuery.isEmptyObject(entities[entityId].aura))
+        if (entities[entityId].aura.type != "null")
         {
             imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + "img/states/aura.png), ";
         }
@@ -134,7 +134,7 @@ function updateBoard()
                 }
             }
         }
-        if (!jQuery.isEmptyObject(entities[entityId].aura))
+        if (entities[entityId].aura.type != "null")
         {
             tooltipStr = tooltipStr + "\n" + "Aura : " + aurasDataBase[entities[entityId].aura.type].name + " (" + entities[entityId].aura.nb + ")";
         }

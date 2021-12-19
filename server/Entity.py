@@ -17,14 +17,15 @@ class Entity:
         self._pm            = db.entities[descId]["pm"]
         self._types         = copy.deepcopy(db.entities[descId]["types"])
         self._elemState     = ""
-        self._aura          = copy.deepcopy(db.entities[descId]["aura"])
+        self._aura          = {"type" : "null", "nb" : 0} if db.entities[descId]["aura"] == {} else copy.deepcopy(db.entities[descId]["aura"])
         self._states        = copy.deepcopy(db.entities[descId]["states"])
         self._abilities     = copy.deepcopy(db.entities[descId]["abilities"])
 
-        self._canMove           = True
-        self._canAttack         = True
-        self._storedCanMove     = True
-        self._storedCanAttack   = True
+        self._canMove               = True
+        self._canAttack             = True
+        self._storedCanMove         = True
+        self._storedCanAttack       = True
+        self._oneByTurnAbilityList  = []
 
     def check(self, descId, team, x, y):
         checkCondition(True, descId in db.entities, f"Entity descId ({descId}) does not exist !")
@@ -109,8 +110,12 @@ class Entity:
         return list(self._states)
 
     @property
+    def oneByTurnAbilityList(self):
+        return list(self._oneByTurnAbilityList)
+
+    @property
     def abilities(self):
-        if (self._aura):
+        if (self._aura["type"] != "null"):
             outList = list(self._abilities)
             outList.extend(list(db.auras[self._aura["type"]]["abilities"]))
             return outList
@@ -170,6 +175,7 @@ class Entity:
         self.applyStates()
 
     def endTurn(self):
+        self._oneByTurnAbilityList = []
         if (self.isInStates("disarmed")):
             self.removeState("disarmed")
         if (self.isInStates("locked")):
@@ -273,7 +279,7 @@ class Entity:
         if (self._aura["nb"] + nb > 0):
             self._aura["nb"] = min(self._aura["nb"] + nb, 5)
         elif (self._aura["nb"] + nb == 0):
-            self._aura = {}
+            self._aura = {"type" : "null", "nb" : 0}
         else:
             raise GameException(f"You have not aura anymore !")
 
@@ -284,7 +290,7 @@ class Entity:
             raise GameException(f"You have not aura anymore !")
 
     def freeAura(self):
-        self._aura = {}
+        self._aura = {"type" : "null", "nb" : 0}
 
     def setElemState(self, value):
         if value in ["", "oiled", "muddy", "windy", "wet"]:
@@ -297,3 +303,6 @@ class Entity:
             if (state["feature"] == stateFeature):
                 return True
         return False
+
+    def appendOneByTurnAbility(self, ability):
+        self._oneByTurnAbilityList.append(ability)
