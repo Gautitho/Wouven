@@ -110,11 +110,11 @@ function updateBoard()
         {
             imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + "img/states/aura.png), ";
         }
-        imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + entities[entityId].descId + ".spritePath") + ")";
+        imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + entities[entityId].spritePath + ")";
         $("#board_" + entities[entityId].x + "_" + entities[entityId].y).css("background-image", imgStr);
         $("#board_" + entities[entityId].x + "_" + entities[entityId].y).css("border-color", entities[entityId].team);
 
-        tooltipStr = "PV : " + entities[entityId].pv + " / " + eval("entitiesDataBase." + entities[entityId].descId + ".pv") + "\n" +
+        tooltipStr = "PV : " + entities[entityId].pv + " / " + entities[entityId].maxPv + "\n" +
                      "Armure : " + entities[entityId].armor + "\n" +
                      "ATK : " + entities[entityId].atk + "\n" +
                      "PM : " + entities[entityId].pm;
@@ -145,14 +145,14 @@ function updateBoard()
 function updateMyStatus()
 {
     $("#myStatus").css("border-color", myPlayer.team);
-    $("#myStatusSprite").css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + eval("heroesDataBase." + myPlayer.heroDescId + ".entityDescId") + ".spritePath") + ")");
-    $("#myStatusPv").text("PV : " + entities[myPlayer.heroEntityId].pv + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + myPlayer.heroDescId + ".entityDescId") + ".pv"));
+    $("#myStatusSprite").css("background-image", "url(" + PROJECT_ROOT_PATH + entities[myPlayer.heroEntityId].spritePath + ")");
+    $("#myStatusPv").text("PV : " + entities[myPlayer.heroEntityId].pv + " / " + entities[myPlayer.heroEntityId].maxPv);
     $("#myStatusGaugesFire").text(myPlayer.gauges.fire);
     $("#myStatusGaugesWater").text(myPlayer.gauges.water);
     $("#myStatusGaugesEarth").text(myPlayer.gauges.earth);
     $("#myStatusGaugesAir").text(myPlayer.gauges.air);
     $("#myStatusGaugesNeutral").text(myPlayer.gauges.neutral);
-    $("#myStatusDescSprite").css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + eval("heroesDataBase." + myPlayer.heroDescId + ".entityDescId") + ".descSpritePath") + ")");
+    $("#myStatusDescSprite").css("background-image", "url(" + PROJECT_ROOT_PATH + entities[myPlayer.heroEntityId].descSpritePath + ")");
 }
 
 function updateMyCompanion(companionIdx)
@@ -169,20 +169,20 @@ function updateMyCompanion(companionIdx)
     {
         $("#myCompanion_" + companionIdx).css("background-color", "#FFFFFF");
     }
-    $("#myCompanion_" + companionIdx + "_sprite").css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + eval("companionsDataBase." + myPlayer.companionList[companionIdx].descId + ".entityDescId") + ".descSpritePath") + ")");
+    $("#myCompanion_" + companionIdx + "_sprite").css("background-image", "url(" + PROJECT_ROOT_PATH + myPlayer.companionList[companionIdx].descSpritePath + ")");
 }
 
 function updateOpStatus()
 {
     $("#opStatus").css("border-color", opPlayer.team);
-    $("#opStatusSprite").css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + eval("heroesDataBase." + opPlayer.heroDescId + ".entityDescId") + ".spritePath") + ")");
-    $("#opStatusPv").text("PV : " + entities[opPlayer.heroEntityId].pv + " / " + eval("entitiesDataBase." + eval("heroesDataBase." + opPlayer.heroDescId + ".entityDescId") + ".pv"));
+    $("#opStatusSprite").css("background-image", "url(" + PROJECT_ROOT_PATH + entities[opPlayer.heroEntityId].spritePath + ")");
+    $("#opStatusPv").text("PV : " + entities[opPlayer.heroEntityId].pv + " / " + entities[opPlayer.heroEntityId].maxPv);
     $("#opStatusGaugesFire").text(opPlayer.gauges.fire);
     $("#opStatusGaugesWater").text(opPlayer.gauges.water);
     $("#opStatusGaugesEarth").text(opPlayer.gauges.earth);
     $("#opStatusGaugesAir").text(opPlayer.gauges.air);
     $("#opStatusGaugesNeutral").text(opPlayer.gauges.neutral);
-    $("#opStatusDescSprite").css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + eval("heroesDataBase." + opPlayer.heroDescId + ".entityDescId") + ".descSpritePath") + ")");
+    $("#opStatusDescSprite").css("background-image", "url(" + PROJECT_ROOT_PATH + entities[opPlayer.heroEntityId].descSpritePath + ")");
 }
 
 function updateHandBar()
@@ -216,12 +216,12 @@ function updateHistoric()
     {
         if (actionList[i].type == "move")
         {
-            $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + actionList[i].source.descId + ".spritePath") + ")");
+            $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].source.spritePath + ")");
             $("#historic0_" + i).css("border-color", actionList[i].source.team);
             $("#historic1_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/move.png)");
             if (actionList[i].targetList.length > 0)
             {
-                $("#historic2_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + actionList[i].targetList[0].descId + ".spritePath") + ")");
+                $("#historic2_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].targetList[0].spritePath + ")");
                 $("#historic2_" + i).css("border-color", actionList[i].targetList[0].team);
             }
         }
@@ -231,18 +231,18 @@ function updateHistoric()
             $("#historic0_" + i).css("border-color", actionList[i].source.team);
             if (actionList[i].targetList.length > 0)
             {
-                $("#historic1_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + actionList[i].targetList[0].descId + ".spritePath") + ")");
+                $("#historic1_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].targetList[0].spritePath + ")");
                 $("#historic1_" + i).css("border-color", actionList[i].targetList[0].team);
             }
             if (actionList[i].targetList.length > 1)
             {
-                $("#historic2_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + actionList[i].targetList[1].descId + ".spritePath") + ")");
+                $("#historic2_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].targetList[1].spritePath + ")");
                 $("#historic2_" + i).css("border-color", actionList[i].targetList[1].team);
             }
         }
         else if (actionList[i].type == "summon")
         {
-            $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + actionList[i].source.descId + ".spritePath") + ")");
+            $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].source.spritePath + ")");
             $("#historic0_" + i).css("border-color", actionList[i].source.team);
         }
         else if (actionList[i].type == "useReserve")

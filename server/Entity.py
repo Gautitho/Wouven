@@ -12,6 +12,7 @@ class Entity:
         self._x             = x
         self._y             = y
         self._pv            = db.entities[descId]["pv"]
+        self._maxPv         = db.entities[descId]["pv"]
         self._armor         = db.entities[descId]["armor"]
         self._atk           = db.entities[descId]["atk"]
         self._pm            = db.entities[descId]["pm"]
@@ -82,6 +83,10 @@ class Entity:
         return self._pv
 
     @property
+    def maxPv(self):
+        return self._maxPv
+
+    @property
     def armor(self):
         return self._armor
 
@@ -136,6 +141,7 @@ class Entity:
         printInfo(f"x           = {self._x}", printType)
         printInfo(f"y           = {self._y}", printType)
         printInfo(f"pv          = {self._pv}", printType)
+        printInfo(f"maxPv       = {self._maxPv}", printType)
         printInfo(f"armor       = {self._armor}", printType)
         printInfo(f"atk         = {self._atk}", printType)
         printInfo(f"pm          = {self._pm}", printType)
@@ -149,21 +155,24 @@ class Entity:
 
     def getStatusDict(self):
         dic = {}
-        dic["descId"]       = self._descId
-        dic["team"]         = self._team
-        dic["x"]            = self._x
-        dic["y"]            = self._y
-        dic["pv"]           = self._pv
-        dic["armor"]        = self._armor
-        dic["atk"]          = self._atk
-        dic["pm"]           = self._pm
-        dic["types"]        = self._types
-        dic["elemState"]    = self._elemState
-        dic["aura"]         = self._aura
-        dic["states"]       = self._states
-        dic["abilities"]    = self._abilities
-        dic["canMove"]      = self._canMove
-        dic["canAttack"]    = self._canAttack
+        dic["descId"]           = self._descId
+        dic["spritePath"]       = db.entities[self._descId]["spritePath"]
+        dic["descSpritePath"]   = db.entities[self._descId]["descSpritePath"]
+        dic["team"]             = self._team
+        dic["x"]                = self._x
+        dic["y"]                = self._y
+        dic["pv"]               = self._pv
+        dic["maxPv"]            = self._maxPv
+        dic["armor"]            = self._armor
+        dic["atk"]              = self._atk
+        dic["pm"]               = self._pm
+        dic["types"]            = self._types
+        dic["elemState"]        = self._elemState
+        dic["aura"]             = self._aura
+        dic["states"]           = self._states
+        dic["abilities"]        = self._abilities
+        dic["canMove"]          = self._canMove
+        dic["canAttack"]        = self._canAttack
         return dic
 
     def startTurn(self):

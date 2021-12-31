@@ -59,15 +59,15 @@ End of the game
 #### MY_PLAYER
 | Attribute | Type | Description |
 |----------|------|-------------|
-| heroDescId | String | Descriptor ID of the hero in data/heroes.json |
+| heroSpritePath | String | Path of the hero sprite |
+| heroDescSpritePath | String | Path of the hero description sprite |
 | team | String | Team of the entity  : red or blue |
 | pseudo | String | Pseudo of the player |
 | pa | Integer | Remaining PA of the player |
 | paStock | Integer | PA in stock for this player |
 | gauges | Dict(fire, water, earth, air, neutral) | Gauges of different elements |
 | handSpellDescIds | List | Descriptor IDs of the spells in the player hand |
-| handCompanionDescIds | List | Descriptor IDs of the companions in the player hand |
-| handCompanionDescIds | List | Descriptor IDs of the companions already played by the player |
+| companionList | List of dict | List of companions of the player {descSpritePath; status} |
 | boardEntityIds | List | Instance IDs of the entities owned by the player |
 | heroEntityId | Integer|  |
 
@@ -76,7 +76,8 @@ End of the game
 #### OP_PLAYER
 | Attribute | Type | Description |
 |----------|------|-------------|
-| heroDescId | String | Descriptor ID of the hero in data/heroes.json |
+| heroSpritePath | String | Path of the hero sprite |
+| heroDescSpritePath | String | Path of the hero description sprite |
 | team | String | Team of the entity  : red or blue |
 | pseudo | String | Pseudo of the player |
 | pa | Integer | Remaining PA of the player |

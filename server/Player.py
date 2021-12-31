@@ -206,26 +206,24 @@ class Player:
 
     def getMyStatusDict(self):
         dic = {}
-        dic["heroDescId"]               = self._heroDescId
-        dic["team"]                     = self._team
-        dic["pseudo"]                   = self._pseudo
-        dic["pa"]                       = self._pa
-        dic["paStock"]                  = self._paStock
-        dic["gauges"]                   = self._gauges
-        dic["handSpellList"]            = [spell.getDict() for spell in self._handSpellList]
-        dic["companionList"]            = self._companionList
-        dic["boardEntityIds"]           = self._boardEntityIds
-        dic["heroEntityId"]             = self._heroEntityId
-        return dic
-
-    def getOpStatusDict(self):
-        dic = {}
-        dic["heroDescId"]           = self._heroDescId
         dic["team"]                 = self._team
         dic["pseudo"]               = self._pseudo
         dic["pa"]                   = self._pa
         dic["paStock"]              = self._paStock
         dic["gauges"]               = self._gauges
-        dic["boardEntityIds"]       = self._boardEntityIds
+        dic["handSpellList"]        = [spell.getDict() for spell in self._handSpellList]
+        dic["companionList"]        = [{"descSpritePath" : db.entities[db.companions[companion["descId"]]["entityDescId"]]["descSpritePath"], "state" : companion["state"]} for companion in self._companionList]
         dic["heroEntityId"]         = self._heroEntityId
+        dic["boardEntityIds"]       = self._boardEntityIds
+        return dic
+
+    def getOpStatusDict(self):
+        dic = {}
+        dic["team"]                 = self._team
+        dic["pseudo"]               = self._pseudo
+        dic["pa"]                   = self._pa
+        dic["paStock"]              = self._paStock
+        dic["gauges"]               = self._gauges
+        dic["heroEntityId"]         = self._heroEntityId
+        dic["boardEntityIds"]       = self._boardEntityIds
         return dic
