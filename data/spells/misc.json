@@ -7,7 +7,7 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/placeHolder0.png",
         "descSpritePath"    : "img/spells/desc/placeHolder0.png",
-        "allowedTargetList" : ["allfirstAlignedOrganic"],
+        "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
             {
@@ -16,17 +16,8 @@
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
-                "feature"       : "pv",
+                "feature"       : "stealLife",
                 "value"         : -1
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "pushBack",
-                "feature"       : "",
-                "value"         : 1
             }
         ]
     },
@@ -46,9 +37,9 @@
                 "target"        : "self",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "addAura",
-                "feature"       : "a2",
-                "value"         : 3
+                "behavior"      : "",
+                "feature"       : "armor",
+                "value"         : 10
             }
         ]
     }
