@@ -69,6 +69,7 @@ This is an example : [{"feature" : "elemState", "value" : "oiled", "operator" : 
 | Key | Description |
 |-----|-------------|
 | pv | |
+| stealLife | Same as pv on the target but heal the caster |
 | pm | |
 | atk | |
 | gauges | Value must be a dict |

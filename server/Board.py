@@ -682,7 +682,7 @@ class Board:
                 executed = False
                 if (conditionsValid or force):
                     if (ability["behavior"] in ["", "aura"]):
-                        if (ability["feature"] == "pv"):
+                        if (ability["feature"] == "pv" or ability["feature"] == "stealLife"):
                             for abilityEntityId in abilityEntityIdList:
                                 guarded = False
                                 if (value < 0):
@@ -692,9 +692,11 @@ class Board:
                                             guarded = True
                                             break
                                 if guarded:
-                                    self._entitiesDict[guardId].modifyPv(value)
+                                    removedPv = self._entitiesDict[guardId].modifyPv(value)
                                 else:
-                                    self._entitiesDict[abilityEntityId].modifyPv(value)
+                                    removedPv = self._entitiesDict[abilityEntityId].modifyPv(value)
+                                if (ability["feature"] == "stealLife"):
+                                    self._entitiesDict[selfId].modifyPv(-removedPv)
                                 executed = True
                         elif (ability["feature"] == "elemState"):
                             for abilityEntityId in abilityEntityIdList:

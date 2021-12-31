@@ -244,6 +244,7 @@ class Entity:
             raise GameException(f"This state {state} is not applied, it can't be removed !")
 
     def modifyPv(self, value):
+        removedPv = 0
         if (value < 0):
             apply = True
             if (self.isInStates("shield")):
@@ -258,14 +259,16 @@ class Entity:
                 if (self._armor + value > 0):
                     self._armor += value
                 else:
-                    self._armor = 0
                     self._pv    += self._armor + value
-
+                    self._armor = 0
+                    removedPv = self._armor + value
         else:
             if (self._pv + value > db.entities[self._descId]["pv"]):
                 self._pv = db.entities[self._descId]["pv"]
             else:
                 self._pv += value
+
+        return removedPv
 
     def newAura(self, type, nb):
         self._aura["type"]  = type
