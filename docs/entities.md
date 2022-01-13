@@ -5,7 +5,7 @@
 | name | String | Name of the entity |
 | spritePath | String  | Path of the board sprite (from root of the project) |
 | descSpritePath | String | Path of the description of the entity picture (from root of the project) |
-| types | List of String | Types of the entity |
+| typeList | List of String | Types of the entity |
 | pv | Int |  |
 | armor | Int |  |
 | atk | Int |  |

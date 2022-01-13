@@ -149,14 +149,22 @@ class Player:
         self._pa += self._paStock
         self._paStock = 0
 
-    def draw(self, nb):
+    def draw(self, nb, type=""):
         for i in range(nb):
-            spellDescId = self._deckSpellDescIdList.pop(0)
             if (len(self._handSpellList) < HAND_SPELLS):
-                self._handSpellList.append(Spell(spellDescId))
+                for spellIdx in range(len(self._deckSpellDescIdList)):
+                    if (type == ""):
+                        spellDescId = self._deckSpellDescIdList.pop(spellIdx)
+                        self._handSpellList.append(Spell(spellDescId))
+                        break
+                    else:
+                        if ("typeList" in db.spells[self._deckSpellDescIdList[spellIdx]] and type in db.spells[self._deckSpellDescIdList[spellIdx]]["typeList"]):
+                            spellDescId = self._deckSpellDescIdList.pop(spellIdx)
+                            self._handSpellList.append(Spell(spellDescId))
+                            break
             else:
+                spellDescId = self._deckSpellDescIdList.pop(0)
                 self._deckSpellDescIdList.append(spellDescId)
-            
 
     def modifyGauge(self, gaugeType, value):
         if (gaugeType in ["fire", "water", "earth", "air", "neutral"]):

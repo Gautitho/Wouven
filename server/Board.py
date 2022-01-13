@@ -862,7 +862,7 @@ class Board:
 
                     elif (ability["behavior"] == "summon"):
                         entityId = self.appendEntity(playerId, ability["feature"], self._playersDict[playerId].team, positionList[0]["x"], positionList[0]["y"])
-                        self.executeAbilities(caller, self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, None, {}, None)
+                        self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, None, {}, None)
 
                     elif (ability["behavior"] == "attackAgain"):
                         for abilityEntityId in abilityEntityIdList:
@@ -872,7 +872,7 @@ class Board:
                         self._entitiesDict[self._playersDict[playerId].heroEntityId].freeAura()
 
                     elif (ability["behavior"] == "draw"):
-                        self._playersDict[playerId].draw(value)
+                        self._playersDict[playerId].draw(value, ability["feature"])
 
                     # If stopTrigger is defined, the ability must be added to the ongoingAbilityList
                     if stopTrigger and not(force):
