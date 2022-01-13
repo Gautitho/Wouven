@@ -16,7 +16,7 @@ class Entity:
         self._armor         = db.entities[descId]["armor"]
         self._atk           = db.entities[descId]["atk"]
         self._pm            = db.entities[descId]["pm"]
-        self._types         = copy.deepcopy(db.entities[descId]["types"])
+        self._typeList      = [] if not("typeList" in db.entities[descId]) else copy.deepcopy(db.entities[descId]["typeList"])
         self._elemState     = ""
         self._aura          = {"type" : "null", "nb" : 0} if db.entities[descId]["aura"] == {} else copy.deepcopy(db.entities[descId]["aura"])
         self._states        = copy.deepcopy(db.entities[descId]["states"])
@@ -100,7 +100,7 @@ class Entity:
 
     @property
     def types(self):
-        return list(self._types)
+        return list(self._typeList)
 
     @property
     def elemState(self):
@@ -145,7 +145,7 @@ class Entity:
         printInfo(f"armor       = {self._armor}", printType)
         printInfo(f"atk         = {self._atk}", printType)
         printInfo(f"pm          = {self._pm}", printType)
-        printInfo(f"types       = {self._types}", printType)
+        printInfo(f"typeList    = {self._typeList}", printType)
         printInfo(f"elemState   = {self._elemState}", printType)
         printInfo(f"aura        = {self._aura}", printType)
         printInfo(f"states      = {self._states}", printType)
@@ -166,7 +166,7 @@ class Entity:
         dic["armor"]            = self._armor
         dic["atk"]              = self._atk
         dic["pm"]               = self._pm
-        dic["types"]            = self._types
+        dic["typeList"]         = self._typeList
         dic["elemState"]        = self._elemState
         dic["aura"]             = self._aura
         dic["states"]           = self._states

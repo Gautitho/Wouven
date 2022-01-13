@@ -13,8 +13,9 @@ class Spell:
         self._elem                  = db.spells[self._descId]["elem"]
         self._spritePath            = db.spells[self._descId]["spritePath"]
         self._descSpritePath        = db.spells[self._descId]["descSpritePath"]
-        self._allowedTargetList     = db.spells[self._descId]["allowedTargetList"]
-        self._abilities             = db.spells[self._descId]["abilities"]
+        self._allowedTargetList     = copy.deepcopy(db.spells[self._descId]["allowedTargetList"])
+        self._abilities             = copy.deepcopy(db.spells[self._descId]["abilities"])
+        self._typeList              = [] if not("typeList" in db.spells[self._descId]) else copy.deepcopy(db.spells[self._descId]["typeList"])
         self._costModifierList      = []
 
     @property

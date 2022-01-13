@@ -1,14 +1,9 @@
 # TODO List
 
-- Généraliser le comportement des sorts (passage de spritePath par commande plutôt que passage de descId)
 - Afficher le cout en PA sur le sort
 - Mécaniques à dev : 
-  - Passif Bunelame
-  - Passif Expingole
-  - Vol de vie
   - Soutien
   - Respawn de compagnon
-  - Tuteur à mécanisme
   - Inciblable
   - Passif Bouvaloir
   - Agonie
@@ -19,4 +14,5 @@
   - Rembobinage
   - Déclenchement d'un mécanisme
   - Transformation de mécanisme
+  - Destruction de mechanisme quand on reconstruit le même 
   - Dépahasage

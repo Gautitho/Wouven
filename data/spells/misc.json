@@ -7,39 +7,40 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/placeHolder0.png",
         "descSpritePath"    : "img/spells/desc/placeHolder0.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "stealLife",
-                "value"         : -1
-            }
-        ]
-    },
-    "sm1":
-    {
-        "name"              : "Place holder 1",
-        "race"              : "iop",
-        "cost"              : 3,
-        "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/placeHolder1.png",
-        "descSpritePath"    : "img/spells/desc/placeHolder1.png",
         "allowedTargetList" : ["myPlayer"],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
+                "target"        : "myPlayer",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "armor",
-                "value"         : 10
+                "behavior"      : "draw",
+                "feature"       : "sinistro",
+                "value"         : 1
+            }
+        ]
+    },
+    "sm1":
+    {
+        "name"              : "Sinistro feu",
+        "race"              : "iop",
+        "cost"              : 2,
+        "elem"              : "fire",
+        "typeList"          : ["mechanism", "sinistro"],
+        "spritePath"        : "img/spells/icon/placeHolder1.png",
+        "descSpritePath"    : "img/spells/desc/placeHolder1.png",
+        "allowedTargetList" : ["emptyTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "tile",
+                "conditionList" : [{"feature" : "range", "value" : 3, "operator" : "<="}],
+                "break"         : "True",
+                "behavior"      : "summon",
+                "feature"       : "emx0",
+                "value"         : 0
             }
         ]
     }

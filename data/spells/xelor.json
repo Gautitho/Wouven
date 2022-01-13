@@ -13,7 +13,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "tile",
-                "conditionList" : [{"feature" :"range", "value" : 3}],
+                "conditionList" : [{"feature" :"range", "value" : 3, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "summon",
                 "feature"       : "emx0",
