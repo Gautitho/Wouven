@@ -8,12 +8,13 @@ AURAS_FILE_PATH_LIST        = ["data/auras.json"]
 
 TEST_ENABLE = True
 
-BOARD_ROWS      = 7
-BOARD_COLS      = 7
-HAND_SPELLS     = 7
-DECK_SPELLS     = 9
-DECK_COMPANIONS = 4
-ACTION_LIST_LEN = 5
+BOARD_ROWS                  = 7
+BOARD_COLS                  = 7
+HAND_SPELLS                 = 7
+DECK_SPELLS                 = 9
+DECK_COMPANIONS             = 4
+ACTION_LIST_LEN             = 5
+INACTIVE_GAME_ERASE_TIME    = 600
 
 class DataBase:
 

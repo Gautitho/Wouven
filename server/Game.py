@@ -1,6 +1,7 @@
 import json
 import random
 import copy
+import time
 from functions import *
 from Board import *
 from GameException import *
@@ -11,13 +12,15 @@ deck2       = {"heroDescId" : "hc1", "spellDescIdList" : ["shi0", "si0", "si1", 
 class Game:
 
     def __init__(self, name):
-        self._name          = name
-        # List of game states : MATCHMAKING, RUNNING
-        self._gameState     = "MATCHMAKING"
-        self._turn          = "blue"
-        self._board         = Board()
-        self._serverCmdList = []
-        self._actionList    = []
+        self._name              = name
+        # List of game states : MATCHMAKING, RUNNING, DONE
+        self._gameState         = "MATCHMAKING"
+        self._turn              = "blue"
+        self._board             = Board()
+        self._serverCmdList     = []
+        self._actionList        = []
+        self._connectedPlayers  = 0
+        self._inactiveStartTime = 0
 
     @property
     def name(self):
@@ -47,10 +50,35 @@ class Game:
     def actionList(self):
         return list(self._actionList)
 
+    @property
+    def connectedPlayers(self):
+        return self._connectedPlayers
+
+    @property
+    def inactiveTime(self):
+        return self._inactiveTime
+
+    def checkInactiveGameErase(self):
+        if (self._inactiveStartTime == 0 and self._connectedPlayers < 2):
+            self._inactiveStartTime = time.time()
+        elif (self._connectedPlayers == 2):
+            self._inactiveStartTime = 0
+
+        if (self._inactiveStartTime > 0 and time.time() - self._inactiveStartTime > INACTIVE_GAME_ERASE_TIME):
+            return True
+        else:
+            return False
+
     def checkCmdArgs(self, cmdDict, keyList):
         for key in keyList:
             if not(key in cmdDict):
                 raise GameException(f"No {key} field in command")
+
+    def clientConnect(self):
+        self._connectedPlayers += 1
+
+    def clientDisconnect(self):
+        self._connectedPlayers -= 1
 
     def run(self, cmdDict):
         cmd         = cmdDict["cmd"]
@@ -78,7 +106,7 @@ class Game:
 
                 elif (cmd == "SPELL"):
                     self.checkCmdArgs(cmdDict, ["spellId", "targetPositionList"])
-                    self.addActionToList("spellCast", self._board.playersDict[playerId].team, self._board.playersDict[playerId].handSpellList[int(cmdDict["spellId"])].spritePath, cmdDict["targetPositionList"])
+                    self.addActionToList("spellCast", self._board.playersDict[playerId].team, self._board.playersDict[playerId].handSpellList[int(cmdDict["spellId"])].descId, cmdDict["targetPositionList"])
                     self.SpellCast(playerId, int(cmdDict["spellId"]), cmdDict["targetPositionList"])
 
                 elif (cmd == "SUMMON"):
@@ -140,6 +168,7 @@ class Game:
                deadPlayerIdList.append(playerId)
         if deadPlayerIdList:
             for playerId in list(self._board.playersDict.keys()):
+                self._gameState     = "DONE"
                 serverCmd = {}
                 serverCmd["cmd"]    = "END_GAME"
                 if (len(deadPlayerIdList) == 1):
@@ -154,13 +183,20 @@ class Game:
     def addActionToList(self, actionType, sourceTeam, sourceDescId, targetPositionList):
         action              = {}
         action["type"]      = actionType
-        action["source"]    = {"descId" : sourceDescId, "team" : sourceTeam}
+        if (actionType == "move"):            
+            action["source"]    = {"spritePath" : db.entities[sourceDescId]["spritePath"], "team" : sourceTeam}
+        elif (actionType == "spellCast"):
+            action["source"]    = {"spritePath" : db.spells[sourceDescId]["spritePath"], "team" : sourceTeam}
+        elif (actionType == "summon"):
+            action["source"]    = {"spritePath" : db.entities[sourceDescId]["spritePath"], "team" : sourceTeam}
+        else:
+            action["source"]    = {"spritePath" : "", "team" : sourceTeam}
         targetList          = []
         if targetPositionList:
             for position in targetPositionList:
                 entityId = self._board.entityIdOnTile(position["x"], position["y"])
                 if (entityId != None):
-                    targetList.append({"descId" : self._board.entitiesDict[entityId].descId, "team" : self._board.entitiesDict[entityId].team})
+                    targetList.append({"spritePath" : db.entities[self._board.entitiesDict[entityId].descId]["spritePath"], "team" : self._board.entitiesDict[entityId].team})
         action["targetList"] = copy.deepcopy(targetList)
 
         self._actionList.insert(0, dict(action))

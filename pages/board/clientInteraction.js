@@ -227,7 +227,7 @@ function updateHistoric()
         }
         else if (actionList[i].type == "spellCast")
         {
-            $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].source.descId + ")"); // TODO : Normaliser ce comportement (ne plus utiliser les data bases dans le client et passer les spritePath par commandes)
+            $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].source.spritePath + ")"); // TODO : Normaliser ce comportement (ne plus utiliser les data bases dans le client et passer les spritePath par commandes)
             $("#historic0_" + i).css("border-color", actionList[i].source.team);
             if (actionList[i].targetList.length > 0)
             {

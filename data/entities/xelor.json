@@ -2,8 +2,8 @@
     "ehx0" :
     {
         "name"              : "Pramium",
-        "spritePath"        : "img/entities/icon/Pramium.png",
-        "descSpritePath"    : "img/entities/desc/Elely.png",
+        "spritePath"        : "img/entities/icon/placeHolder0.png",
+        "descSpritePath"    : "img/entities/desc/placeHolder0.png",
         "pv"                : 290,
         "armor"             : 0,
         "atk"               : 10,

@@ -17,8 +17,8 @@ var heroesDataBase          = {}
 var entitiesDataBase        = {}
 var spellsDataBase          = {}
 var companionsDataBase      = {}
-var selectedHero            = "h0"
-var selectedSpellList       = ["sh0"]
+var selectedHero            = "hi0"
+var selectedSpellList       = ["shi0"]
 var selectedCompanionList   = []
 var tooltipArray            = []
 
@@ -235,6 +235,7 @@ function heroBarDisplay()
 
 function spellBarDisplay()
 {
+    console.log("spellBarDisplay");
     document.getElementById("spellBarLayout").insertAdjacentHTML('beforeend',`<div id="spellBar" class="grid grid-cols-9 grid-rows-1 w-max mx-4"></div>`);
     for (i = 0; i < DECK_SPELLS; i++)
     {

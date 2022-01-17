@@ -11,8 +11,6 @@ gameManager     = GameManager()
 class SimpleChat(WebSocket):
 
     def handle(self):
-        global nextGame
-        global currGame
         print(self.data)
         if LOG_ENABLE:
             logFile.write(self.data + "\n")
@@ -32,6 +30,7 @@ class SimpleChat(WebSocket):
     def handle_close(self):
         clientList.remove(self)
         clientIdList.remove(self.address)
+        gameManager.clientDisconnect(self.address)
         print(self.address, 'closed')
 
 parser = argparse.ArgumentParser()

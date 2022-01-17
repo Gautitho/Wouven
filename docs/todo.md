@@ -1,5 +1,6 @@
 # TODO List
 
+- Gérer les deconnexions
 - Afficher le cout en PA sur le sort
 - Mécaniques à dev : 
   - Soutien
