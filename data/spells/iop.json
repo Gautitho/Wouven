@@ -5,8 +5,8 @@
         "race"              : "iop",
         "cost"              : 6,
         "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/iopEpeesSanglantes.png",
-        "descSpritePath"    : "img/spells/desc/iopEpeesSanglantes.png",
+        "spritePath"        : "img/spells/icon/iop/epeesSanglantes.png",
+        "descSpritePath"    : "img/spells/desc/iop/epeesSanglantes.png",
         "allowedTargetList" : ["myPlayer"],
         "abilities"         :
         [
@@ -28,8 +28,8 @@
         "race"              : "iop",
         "cost"              : 6,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iopBlamer.png",
-        "descSpritePath"    : "img/spells/desc/iopBlamer.png",
+        "spritePath"        : "img/spells/icon/iop/blamer.png",
+        "descSpritePath"    : "img/spells/desc/iop/blamer.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -68,8 +68,8 @@
         "race"              : "iop",
         "cost"              : 2,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iopBruler.png",
-        "descSpritePath"    : "img/spells/desc/iopBruler.png",
+        "spritePath"        : "img/spells/icon/iop/bruler.png",
+        "descSpritePath"    : "img/spells/desc/iop/bruler.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -108,8 +108,8 @@
         "race"              : "iop",
         "cost"              : 3,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iopFulgur.png",
-        "descSpritePath"    : "img/spells/desc/iopFulgur.png",
+        "spritePath"        : "img/spells/icon/iop/fulgur.png",
+        "descSpritePath"    : "img/spells/desc/iop/fulgur.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -148,8 +148,8 @@
         "race"              : "iop",
         "cost"              : 6,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iopChargeExplosive.png",
-        "descSpritePath"    : "img/spells/desc/iopChargeExplosive.png",
+        "spritePath"        : "img/spells/icon/iop/chargeExplosive.png",
+        "descSpritePath"    : "img/spells/desc/iop/chargeExplosive.png",
         "allowedTargetList" : ["allfirstAlignedOrganic"], 
         "abilities"         :
         [
@@ -197,8 +197,8 @@
         "race"              : "iop",
         "cost"              : 3,
         "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/iopBond.png",
-        "descSpritePath"    : "img/spells/desc/iopBond.png",
+        "spritePath"        : "img/spells/icon/iop/bond.png",
+        "descSpritePath"    : "img/spells/desc/iop/bond.png",
         "allowedTargetList" : ["myOrganic", "emptyTile"],
         "abilities"         :
         [
@@ -228,8 +228,8 @@
         "race"              : "iop",
         "cost"              : 4,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iopMasser.png",
-        "descSpritePath"    : "img/spells/desc/iopMasser.png",
+        "spritePath"        : "img/spells/icon/iop/masser.png",
+        "descSpritePath"    : "img/spells/desc/iop/masser.png",
         "allowedTargetList" : ["allOrganic"],
         "conditionList"     : [],
         "abilities"         :
@@ -269,8 +269,8 @@
         "race"              : "iop",
         "cost"              : 5,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iopInspiration.png",
-        "descSpritePath"    : "img/spells/desc/iopInspiration.png",
+        "spritePath"        : "img/spells/icon/iop/inspiration.png",
+        "descSpritePath"    : "img/spells/desc/iop/inspiration.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -309,8 +309,8 @@
         "race"              : "iop",
         "cost"              : 8,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/placeHolder0.png",
-        "descSpritePath"    : "img/spells/desc/placeHolder0.png",
+        "spritePath"        : "img/spells/icon/iop/fondreLeSol.png",
+        "descSpritePath"    : "img/spells/desc/iop/fondreLeSol.png",
         "allowedTargetList" : ["heroAdjacentTile"],
         "abilities"         :
         [
@@ -349,8 +349,8 @@
         "race"              : "iop",
         "cost"              : 4,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/placeHolder0.png",
-        "descSpritePath"    : "img/spells/desc/placeHolder0.png",
+        "spritePath"        : "img/spells/icon/iop/fondreLaVie.png",
+        "descSpritePath"    : "img/spells/desc/iop/fondreLaVie.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -389,8 +389,8 @@
         "race"              : "iop",
         "cost"              : 5,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iopCorriger.png",
-        "descSpritePath"    : "img/spells/desc/iopCorriger.png",
+        "spritePath"        : "img/spells/icon/iop/corriger.png",
+        "descSpritePath"    : "img/spells/desc/iop/corriger.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -438,8 +438,8 @@
         "race"              : "iop",
         "cost"              : 7,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iopFondreLAme.png",
-        "descSpritePath"    : "img/spells/desc/iopFondreLAme.png",
+        "spritePath"        : "img/spells/icon/iop/fondreLAme.png",
+        "descSpritePath"    : "img/spells/desc/iop/fondreLAme.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -478,8 +478,8 @@
         "race"              : "iop",
         "cost"              : 2,
         "elem"              : "water",
-        "spritePath"        : "img/spells/icon/iopPicGlacial.png",
-        "descSpritePath"    : "img/spells/desc/iopPicGlacial.png",
+        "spritePath"        : "img/spells/icon/iop/picGlacial.png",
+        "descSpritePath"    : "img/spells/desc/iop/picGlacial.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -518,8 +518,8 @@
         "race"              : "iop",
         "cost"              : 3,
         "elem"              : "water",
-        "spritePath"        : "img/spells/icon/iopSiber.png",
-        "descSpritePath"    : "img/spells/desc/iopSiber.png",
+        "spritePath"        : "img/spells/icon/iop/siber.png",
+        "descSpritePath"    : "img/spells/desc/iop/siber.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -558,8 +558,8 @@
         "race"              : "iop",
         "cost"              : 3,
         "elem"              : "water",
-        "spritePath"        : "img/spells/icon/iopPoingDeGlace.png",
-        "descSpritePath"    : "img/spells/desc/iopPoingDeGlace.png",
+        "spritePath"        : "img/spells/icon/iop/poingDeGlace.png",
+        "descSpritePath"    : "img/spells/desc/iop/poingDeGlace.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -589,8 +589,8 @@
         "race"              : "iop",
         "cost"              : 4,
         "elem"              : "water",
-        "spritePath"        : "img/spells/icon/iopTsunami.png",
-        "descSpritePath"    : "img/spells/desc/iopTsunami.png",
+        "spritePath"        : "img/spells/icon/iop/tsunami.png",
+        "descSpritePath"    : "img/spells/desc/iop/tsunami.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -629,8 +629,8 @@
         "race"              : "iop",
         "cost"              : 4,
         "elem"              : "water",
-        "spritePath"        : "img/spells/icon/iopMorsureGlaciale.png",
-        "descSpritePath"    : "img/spells/desc/iopMorsureGlaciale.png",
+        "spritePath"        : "img/spells/icon/iop/morsureGlaciale.png",
+        "descSpritePath"    : "img/spells/desc/iop/morsureGlaciale.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -669,8 +669,8 @@
         "race"              : "iop",
         "cost"              : 5,
         "elem"              : "water",
-        "spritePath"        : "img/spells/icon/iopOndeDeChoc.png",
-        "descSpritePath"    : "img/spells/desc/iopOndeDeChoc.png",
+        "spritePath"        : "img/spells/icon/iop/ondeDeChoc.png",
+        "descSpritePath"    : "img/spells/desc/iop/ondeDeChoc.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -700,8 +700,8 @@
         "race"              : "iop",
         "cost"              : 5,
         "elem"              : "water",
-        "spritePath"        : "img/spells/icon/iopLanceDeGlace.png",
-        "descSpritePath"    : "img/spells/desc/iopLanceDeGlace.png",
+        "spritePath"        : "img/spells/icon/iop/lanceDeGlace.png",
+        "descSpritePath"    : "img/spells/desc/iop/lanceDeGlace.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -740,8 +740,8 @@
         "race"              : "iop",
         "cost"              : 6,
         "elem"              : "water",
-        "spritePath"        : "img/spells/icon/iopDag.png",
-        "descSpritePath"    : "img/spells/desc/iopDag.png",
+        "spritePath"        : "img/spells/icon/iop/dag.png",
+        "descSpritePath"    : "img/spells/desc/iop/dag.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -780,8 +780,8 @@
         "race"              : "iop",
         "cost"              : 6,
         "elem"              : "water",
-        "spritePath"        : "img/spells/icon/iopNouvelleVague.png",
-        "descSpritePath"    : "img/spells/desc/iopNouvelleVague.png",
+        "spritePath"        : "img/spells/icon/iop/nouvelleVague.png",
+        "descSpritePath"    : "img/spells/desc/iop/nouvelleVague.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -820,8 +820,8 @@
         "race"              : "iop",
         "cost"              : 7,
         "elem"              : "water",
-        "spritePath"        : "img/spells/icon/iopChargeGlaciale.png",
-        "descSpritePath"    : "img/spells/desc/iopChargeGlaciale.png",
+        "spritePath"        : "img/spells/icon/iop/chargeGlaciale.png",
+        "descSpritePath"    : "img/spells/desc/iop/chargeGlaciale.png",
         "allowedTargetList" : ["allfirstAlignedOrganic"], 
         "abilities"         :
         [
@@ -869,8 +869,8 @@
         "race"              : "iop",
         "cost"              : 3,
         "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/iopEbranler.png",
-        "descSpritePath"    : "img/spells/desc/iopEbranler.png",
+        "spritePath"        : "img/spells/icon/iop/ebranler.png",
+        "descSpritePath"    : "img/spells/desc/iop/ebranler.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -909,8 +909,8 @@
         "race"              : "iop",
         "cost"              : 3,
         "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/iopHeurtDeGloire.png",
-        "descSpritePath"    : "img/spells/desc/iopHeurtDeGloire.png",
+        "spritePath"        : "img/spells/icon/iop/heurtDeGloire.png",
+        "descSpritePath"    : "img/spells/desc/iop/heurtDeGloire.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -949,8 +949,8 @@
         "race"              : "iop",
         "cost"              : 4,
         "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/iopChargeCourte.png",
-        "descSpritePath"    : "img/spells/desc/iopChargeCourte.png",
+        "spritePath"        : "img/spells/icon/iop/chargeCourte.png",
+        "descSpritePath"    : "img/spells/desc/iop/chargeCourte.png",
         "allowedTargetList" : ["allfirstAlignedOrganic"], 
         "abilities"         :
         [
@@ -980,8 +980,8 @@
         "race"              : "iop",
         "cost"              : 4,
         "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/iopFracasser.png",
-        "descSpritePath"    : "img/spells/desc/iopFracasser.png",
+        "spritePath"        : "img/spells/icon/iop/fracasser.png",
+        "descSpritePath"    : "img/spells/desc/iop/fracasser.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -1020,8 +1020,8 @@
         "race"              : "iop",
         "cost"              : 5,
         "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/iopButoir.png",
-        "descSpritePath"    : "img/spells/desc/iopButoir.png",
+        "spritePath"        : "img/spells/icon/iop/butoir.png",
+        "descSpritePath"    : "img/spells/desc/iop/butoir.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -1051,8 +1051,8 @@
         "race"              : "iop",
         "cost"              : 5,
         "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/iopFrappeImmobilisante.png",
-        "descSpritePath"    : "img/spells/desc/iopFrappeImmobilisante.png",
+        "spritePath"        : "img/spells/icon/iop/frappeImmobilisante.png",
+        "descSpritePath"    : "img/spells/desc/iop/frappeImmobilisante.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -1082,8 +1082,8 @@
         "race"              : "iop",
         "cost"              : 5,
         "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/iopFrappeDuDragon.png",
-        "descSpritePath"    : "img/spells/desc/iopFrappeDuDragon.png",
+        "spritePath"        : "img/spells/icon/iop/frappeDuDragon.png",
+        "descSpritePath"    : "img/spells/desc/iop/frappeDuDragon.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -1122,8 +1122,8 @@
         "race"              : "iop",
         "cost"              : 6,
         "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/iopChoquer.png",
-        "descSpritePath"    : "img/spells/desc/iopChoquer.png",
+        "spritePath"        : "img/spells/icon/iop/choquer.png",
+        "descSpritePath"    : "img/spells/desc/iop/choquer.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -1171,8 +1171,8 @@
         "race"              : "iop",
         "cost"              : 7,
         "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/iopChargeLongue.png",
-        "descSpritePath"    : "img/spells/desc/iopChargeLongue.png",
+        "spritePath"        : "img/spells/icon/iop/chargeLongue.png",
+        "descSpritePath"    : "img/spells/desc/iop/chargeLongue.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -1207,12 +1207,12 @@
     },
     "si33":
     {
-        "name"              : "JABS",
+        "name"              : "Jabs",
         "race"              : "iop",
         "cost"              : 1,
         "elem"              : "air",
-        "spritePath"        : "img/spells/icon/iopJABS.png",
-        "descSpritePath"    : "img/spells/desc/iopJABS.png",
+        "spritePath"        : "img/spells/icon/iop/jabs.png",
+        "descSpritePath"    : "img/spells/desc/iop/jabs.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -1242,8 +1242,8 @@
         "race"              : "iop",
         "cost"              : 2,
         "elem"              : "air",
-        "spritePath"        : "img/spells/icon/iopCrochet.png",
-        "descSpritePath"    : "img/spells/desc/iopCrochet.png",
+        "spritePath"        : "img/spells/icon/iop/crochet.png",
+        "descSpritePath"    : "img/spells/desc/iop/crochet.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -1273,8 +1273,8 @@
         "race"              : "iop",
         "cost"              : 3,
         "elem"              : "air",
-        "spritePath"        : "img/spells/icon/iopIntimidation.png",
-        "descSpritePath"    : "img/spells/desc/iopIntimidation.png",
+        "spritePath"        : "img/spells/icon/iop/intimidation.png",
+        "descSpritePath"    : "img/spells/desc/iop/intimidation.png",
         "allowedTargetList" : ["allOrganicAround"],
         "abilities"         :
         [
@@ -1314,8 +1314,8 @@
         "race"              : "iop",
         "cost"              : 3,
         "elem"              : "air",
-        "spritePath"        : "img/spells/icon/iopUppercut.png",
-        "descSpritePath"    : "img/spells/desc/iopUppercut.png",
+        "spritePath"        : "img/spells/icon/iop/uppercut.png",
+        "descSpritePath"    : "img/spells/desc/iop/uppercut.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -1354,8 +1354,8 @@
         "race"              : "iop",
         "cost"              : 4,
         "elem"              : "air",
-        "spritePath"        : "img/spells/icon/iopRafale.png",
-        "descSpritePath"    : "img/spells/desc/iopRafale.png",
+        "spritePath"        : "img/spells/icon/iop/rafale.png",
+        "descSpritePath"    : "img/spells/desc/iop/rafale.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -1394,8 +1394,8 @@
         "race"              : "iop",
         "cost"              : 4,
         "elem"              : "air",
-        "spritePath"        : "img/spells/icon/iopFendreLAir.png",
-        "descSpritePath"    : "img/spells/desc/iopFendreLAir.png",
+        "spritePath"        : "img/spells/icon/iop/fendreLAir.png",
+        "descSpritePath"    : "img/spells/desc/iop/fendreLAir.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -1434,8 +1434,8 @@
         "race"              : "iop",
         "cost"              : 5,
         "elem"              : "air",
-        "spritePath"        : "img/spells/icon/iopTonnerreEnSerie.png",
-        "descSpritePath"    : "img/spells/desc/iopTonnerreEnSerie.png",
+        "spritePath"        : "img/spells/icon/iop/tonnerreEnSerie.png",
+        "descSpritePath"    : "img/spells/desc/iop/tonnerreEnSerie.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -1465,8 +1465,8 @@
         "race"              : "iop",
         "cost"              : 5,
         "elem"              : "air",
-        "spritePath"        : "img/spells/icon/iopFoudroyer.png",
-        "descSpritePath"    : "img/spells/desc/iopFoudroyer.png",
+        "spritePath"        : "img/spells/icon/iop/foudroyer.png",
+        "descSpritePath"    : "img/spells/desc/iop/foudroyer.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -1505,8 +1505,8 @@
         "race"              : "iop",
         "cost"              : 6,
         "elem"              : "air",
-        "spritePath"        : "img/spells/icon/iopBrise.png",
-        "descSpritePath"    : "img/spells/desc/iopBrise.png",
+        "spritePath"        : "img/spells/icon/iop/brise.png",
+        "descSpritePath"    : "img/spells/desc/iop/brise.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -1554,8 +1554,8 @@
         "race"              : "iop",
         "cost"              : 8,
         "elem"              : "air",
-        "spritePath"        : "img/spells/icon/iopChargeTonnerreEnSerie.png",
-        "descSpritePath"    : "img/spells/desc/iopChargeTonnerreEnSerie.png",
+        "spritePath"        : "img/spells/icon/iop/chargeTonnerreEnSerie.png",
+        "descSpritePath"    : "img/spells/desc/iop/chargeTonnerreEnSerie.png",
         "allowedTargetList" : ["allfirstAlignedOrganic"], 
         "abilities"         :
         [
@@ -1594,8 +1594,8 @@
         "race"              : "hi0",
         "cost"              : 6,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iopTournoiement.png",
-        "descSpritePath"    : "img/spells/desc/iopTournoiement.png",
+        "spritePath"        : "img/spells/icon/iop/tournoiement.png",
+        "descSpritePath"    : "img/spells/desc/iop/tournoiement.png",
         "allowedTargetList" : ["allOrganic", "emptyTile"],
         "abilities"         :
         [
