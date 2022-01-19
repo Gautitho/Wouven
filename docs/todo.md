@@ -1,6 +1,11 @@
 # TODO List
 
 - Gérer les deconnexions
+- Enlever le nom de la partie dans Se reconnecter
+- Afficher les pseudos
+- Gérer le CANCEL_FIND_GAME
+- Bug bodyguard
+- Ajouter des outils de monitoring
 - Afficher le cout en PA sur le sort
 - Mécaniques à dev : 
   - Soutien

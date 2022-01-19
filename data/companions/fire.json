@@ -50,5 +50,18 @@
                 "range" : 2
             }
         ]
+    },
+    "cf4" :
+    {
+        "cost"          : {"fire" : 9},
+        "entityDescId"  : "ecf4",
+        "spellDescId"   : "scf1",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
     }
 }

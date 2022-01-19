@@ -122,5 +122,29 @@
                 "value"         : -1
             }
         ]
+    },
+    "ecf4" :
+    {
+        "name"              : "Goultard",
+        "spritePath"        : "img/entities/icon/Goultard.png",
+        "descSpritePath"    : "img/entities/desc/Goultard.png",
+        "pv"                : 175,
+        "armor"             : 0,
+        "atk"               : 45,
+        "pm"                : 5,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
     }
 }
