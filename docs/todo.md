@@ -8,6 +8,7 @@
 - Ajouter des outils de monitoring
 - Afficher le cout en PA sur le sort
 - Mécaniques à dev : 
+  - Ajout de la mire déjà présente
   - Soutien
   - Respawn de compagnon
   - Inciblable
@@ -22,3 +23,6 @@
   - Transformation de mécanisme
   - Destruction de mechanisme quand on reconstruit le même 
   - Dépahasage
+
+  Sorts Cra non ajoutés :
+  - 

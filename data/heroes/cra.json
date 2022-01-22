@@ -2,13 +2,13 @@
     "hc0" :
     {
         "race"          : "cra",
-        "spellDescId"   : "shi0",
+        "spellDescId"   : "shc0",
         "entityDescId"  : "ehc0"
     },
     "hc1" :
     {
         "race"          : "cra",
-        "spellDescId"   : "shi0",
+        "spellDescId"   : "shc1",
         "entityDescId"  : "ehc1"
     }
 }
