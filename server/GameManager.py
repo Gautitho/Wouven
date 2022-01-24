@@ -1,6 +1,7 @@
 import copy
 import json
 import traceback
+import os
 from Game import *
 from GameException import *
 
@@ -88,6 +89,25 @@ class GameManager :
         except Exception as e:
             print(traceback.format_exc())
             print("Exception : " + str(e))
+
+        # Logs
+        #s = ""
+        #for game in self._currGameList:
+        #    s += game.generalLog() + "\n"
+        #printLog(s, filePath="logs/gameList.log", writeMode="w")
+
+        #for game in self._currGameList:
+        #    if not(os.path.isdir("logs/game_" + game.name)):
+        #        os.mkdir("logs/game_" + game.name)
+        #    printLog(game.entitiesLog() + "\n", filePath="logs/game_" + game.name + "/entityList.log", writeMode="w")
+        #    if (game.name == self._nextGameList[self._gameIdx].name):
+        #        printLog(cmdDict, filePath="logs/game_" + game.name + "/client.log", writeMode="a")
+        #        printLog(gameCmdList, filePath="logs/game_" + game.name + "/server.log", writeMode="a")
+
+        #s = ""
+        #for playerId in list(self._knownPlayerIdDict.keys()):
+        #    s += "Player Id : " + str(playerId) + " / Client Id : " + str(self._knownPlayerIdDict[playerId]) + "\n"
+        #printLog(s, filePath="logs/knownPlayerList.log", writeMode="w")
 
         return self._serverCmdList
 
