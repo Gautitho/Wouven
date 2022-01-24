@@ -1,5 +1,6 @@
 import sys
 import traceback
+import logging, logging.handlers
 
 DISPLAYED_INFO_TYPE = ["MISC", "INFOB", "INFOG", "DEBUG", "WARNING"] #Not displayed : []
 
@@ -36,3 +37,24 @@ def checkKeyPresence(triggerError, dic, dicName, key, default=""):
         else:
             printInfo(f"Missing [{key}] in {dicName} ! Set to the default value ({default}).", "WARNING")
 
+def createLogger(name, filePath, writeMode, format="LIGHT"):
+    if (format == "FULL"):
+        formatter = logging.Formatter('%(asctime)s %(message)s')
+    else:
+        formatter = logging.Formatter('%(message)s')
+
+    handler = logging.handlers.WatchedFileHandler(filePath, mode=writeMode)
+    handler.setFormatter(formatter)
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.INFO)
+    logger.addHandler(handler) 
+    return logger
+
+def printLog(message, type="MISC", filePath=None, writeMode="a", format="LIGHT"):
+    if (filePath == None):
+        printInfo(message, type)
+    else:
+        pass
+        #fd = os.open(path, os.O_RDWR)
+        #os.write(fd, str.encode(message))
+        #os.close(fd)

@@ -55,8 +55,8 @@ class Game:
         return self._connectedPlayers
 
     @property
-    def inactiveTime(self):
-        return self._inactiveTime
+    def inactiveStartTime(self):
+        return self._inactiveStartTime
 
     def checkInactiveGameErase(self):
         if (self._inactiveStartTime == 0 and self._connectedPlayers < 2):
@@ -251,3 +251,22 @@ class Game:
     
     def UseReserve(self, playerId):
         self._board.useReserve(playerId)
+
+    def generalLog(self):
+        s = ""
+        s += self._name + " : "
+        s += "Game state = " + self._gameState + " / "
+        s += "Connected players = " + str(self._connectedPlayers) + " / "
+        s += "Turn = " + self._turn + " / "
+        s += "Player Ids : "
+        for playerId in self.playerIdList:
+            s += playerId + " | "
+        s = s[-3] + " / Inactive time start = " + str(self._inactiveStartTime)
+        return s
+
+    def entitiesLog(self):
+        s = ""
+        for entityId in list(self._board.entitiesDict.keys()):
+            s += str(entityId) + " :\n"
+            s += self._board.entitiesDict[entityId].toString() + "\n"
+        return s

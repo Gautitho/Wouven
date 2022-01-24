@@ -135,23 +135,25 @@ class Entity:
     def canAttack(self):
         return self._canAttack
 
-    def display(self, printType="DEBUG"):
-        printInfo(f"descId      = {self._descId}", printType)
-        printInfo(f"team        = {self._team}", printType)
-        printInfo(f"x           = {self._x}", printType)
-        printInfo(f"y           = {self._y}", printType)
-        printInfo(f"pv          = {self._pv}", printType)
-        printInfo(f"maxPv       = {self._maxPv}", printType)
-        printInfo(f"armor       = {self._armor}", printType)
-        printInfo(f"atk         = {self._atk}", printType)
-        printInfo(f"pm          = {self._pm}", printType)
-        printInfo(f"typeList    = {self._typeList}", printType)
-        printInfo(f"elemState   = {self._elemState}", printType)
-        printInfo(f"aura        = {self._aura}", printType)
-        printInfo(f"states      = {self._states}", printType)
-        printInfo(f"abilities   = {self._abilities}", printType)
-        printInfo(f"canMove     = {self._canMove}", printType)
-        printInfo(f"canAttack   = {self._canAttack}", printType)
+    def toString(self):
+        s = ""
+        s += f"  descId      = {self._descId}\n"
+        s += f"  team        = {self._team}\n"
+        s += f"  x           = {self._x}\n"
+        s += f"  y           = {self._y}\n"
+        s += f"  pv          = {self._pv}\n"
+        s += f"  maxPv       = {self._maxPv}\n"
+        s += f"  armor       = {self._armor}\n"
+        s += f"  atk         = {self._atk}\n"
+        s += f"  pm          = {self._pm}\n"
+        s += f"  typeList    = {self._typeList}\n"
+        s += f"  elemState   = {self._elemState}\n"
+        s += f"  aura        = {self._aura}\n"
+        s += f"  states      = {self._states}\n"
+        s += f"  abilities   = {self._abilities}\n"
+        s += f"  canMove     = {self._canMove}\n"
+        s += f"  canAttack   = {self._canAttack}\n"
+        return s
 
     def getStatusDict(self):
         dic = {}
