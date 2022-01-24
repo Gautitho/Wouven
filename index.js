@@ -7,6 +7,7 @@ var gameName = "";
 var deckCode = location.search.substring(1);
 var deck = {"heroDescId" : deckCode.split("&")[0], "spellDescIdList" : deckCode.split("&").slice(1, 10), "companionDescIdList" : deckCode.split("&").slice(10, 14)};
 var findState = "IDLE" // IDLE, FINDING
+var createState = "IDLE" // IDLE, FINDING
 
 $("#deckCode").val(deckCode);
 
@@ -25,6 +26,10 @@ socket.onmessage = function(handler)
     else if (cmdObj.cmd == "WAIT_GAME_START")
     {
         errorLog("Waiting for an opponent ...");
+    }
+    else if (cmdObj.cmd == "CANCEL_GAME_START")
+    {
+        errorLog("");
     }
     else if (cmdObj.cmd == "GAME_START")
     {
@@ -66,7 +71,20 @@ function createGame()
     {
         playerId = document.getElementById("pseudo").value;
         gameName = document.getElementById("gameNameCreate").value;
-        clientCmd = {"cmd" : "CREATE_GAME", "playerId" : playerId, "gameName" : gameName, "deck" : deck};
+        if (findState == "IDLE")
+        {
+            clientCmd = {"cmd" : "CREATE_GAME", "playerId" : playerId, "gameName" : gameName, "deck" : deck};
+            createState = "FINDING";
+            $("#createGame").css("background-color", "#FF0000");
+            $("#createGame").text("Annuler");
+        }
+        else
+        {
+            clientCmd = {"cmd" : "CANCEL_CREATE_GAME", "playerId" : playerId};
+            createState = "IDLE";
+            $("#createGame").css("background-color", "#552fff");
+            $("#createGame").text("Créer");
+        }
         socket.send(JSON.stringify(clientCmd));
     }
 }
@@ -110,7 +128,7 @@ function findGame()
             clientCmd = {"cmd" : "CANCEL_FIND_GAME", "playerId" : playerId};
             findState = "IDLE";
             $("#findGame").css("background-color", "#552fff");
-            $("#findGame").text("Trouver une partie");
+            $("#findGame").text("Chercher");
         }
         socket.send(JSON.stringify(clientCmd));
     }
