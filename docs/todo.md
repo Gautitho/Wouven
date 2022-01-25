@@ -7,6 +7,7 @@
 - Bug bodyguard
 - Ajouter des outils de monitoring
 - Afficher le cout en PA sur le sort
+- Afficher la réserve de l'adversaire
 - Mécaniques à dev : 
   - Ajout de la mire déjà présente
   - Soutien

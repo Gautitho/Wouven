@@ -198,7 +198,7 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/cra/flecheHuilee.png",
         "descSpritePath"    : "img/spells/desc/cra/flecheHuilee.png",
-        "allowedTargetList" : ["all"],
+        "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
             {
@@ -217,7 +217,7 @@
                 "break"         : "False",
                 "conditionList" : [],
                 "feature"       : "gauges",
-                "value"         : {"fire" : 1}
+                "value"         : {"fire" : 2}
             },
             {
                 "trigger"       : "spellCast",
@@ -306,7 +306,7 @@
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : 26
+                "value"         : -26
             },
             {
                 "trigger"       : "spellCast",
@@ -332,11 +332,11 @@
     {
         "name"              : "Maelstrom de flèches",
         "race"              : "cra",
-        "cost"              : 4,
+        "cost"              : 8,
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/cra/maelstromDeFleches.png",
         "descSpritePath"    : "img/spells/desc/cra/maelstromDeFleches.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : ["all"],
         "abilities"         :
         [
             {
@@ -346,7 +346,7 @@
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : 26
+                "value"         : -36
             },
             {
                 "trigger"       : "spellCast",
@@ -377,7 +377,7 @@
                 "break"         : "False",
                 "behavior"      : "bounce",
                 "feature"       : "pv",
-                "value"         : 17
+                "value"         : -17
             },
             {
                 "trigger"       : "spellCast",
@@ -408,7 +408,7 @@
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : 23
+                "value"         : -23
             },
             {
                 "trigger"       : "spellCast",
