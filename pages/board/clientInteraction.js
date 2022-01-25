@@ -146,6 +146,7 @@ function updateMyStatus()
 {
     $("#myStatus").css("border-color", myPlayer.team);
     $("#myStatusSprite").css("background-image", "url(" + PROJECT_ROOT_PATH + entities[myPlayer.heroEntityId].spritePath + ")");
+    $("#myStatusPseudo").text(myPlayer.pseudo);
     $("#myStatusPv").text("PV : " + entities[myPlayer.heroEntityId].pv + " / " + entities[myPlayer.heroEntityId].maxPv);
     $("#myStatusGaugesFire").text(myPlayer.gauges.fire);
     $("#myStatusGaugesWater").text(myPlayer.gauges.water);
@@ -176,6 +177,7 @@ function updateOpStatus()
 {
     $("#opStatus").css("border-color", opPlayer.team);
     $("#opStatusSprite").css("background-image", "url(" + PROJECT_ROOT_PATH + entities[opPlayer.heroEntityId].spritePath + ")");
+    $("#opStatusPseudo").text(opPlayer.pseudo);
     $("#opStatusPv").text("PV : " + entities[opPlayer.heroEntityId].pv + " / " + entities[opPlayer.heroEntityId].maxPv);
     $("#opStatusGaugesFire").text(opPlayer.gauges.fire);
     $("#opStatusGaugesWater").text(opPlayer.gauges.water);
