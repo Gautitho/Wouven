@@ -17,6 +17,7 @@ Python server port external : 3724
 
 Dans index.js : Mettre l'adresse externe du serveur python pour le socket à la place de localhost:50000  
 Dans pages/board/serverCom.js : Mettre l'adresse externe du serveur python pour le socket à la place de localhost:50000
+Dans server/Database.py : Disable TEST_ENABLE si besoin
 Lancer le serveur avec la commande suivante : python server/server.py --socketAddr <PI_INTERNAL_ADDR> --port 50000
 
 # Commandes Apache utiles pour lancer le serveur
