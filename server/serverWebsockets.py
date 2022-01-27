@@ -41,16 +41,16 @@ if __name__ == "__main__":
             cmdDict = json.loads(clientMsg)
             msgList = gameManager.run(cmdDict, ('0', 0))
             for msg in msgList:
-                printInfo(msg, "INFOG")
+                printLog(msg, "INFOG")
 
     elif args.testMode == "REPLAY":
         logFile = open("logs/client.log", "r")
         for line in logFile:
             cmdDict = json.loads(line)
-            printInfo(line, "INFOB")
+            printLog(line, "INFOB")
             msgList = gameManager.run(cmdDict, ('0', 0))
             for msg in msgList:
-                printInfo(msg, "INFOG")
+                printLog(msg, "INFOG")
         logFile.close()
 
     else:

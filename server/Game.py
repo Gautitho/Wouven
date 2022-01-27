@@ -259,14 +259,23 @@ class Game:
         s += "Connected players = " + str(self._connectedPlayers) + " / "
         s += "Turn = " + self._turn + " / "
         s += "Player Ids : "
-        for playerId in self.playerIdList:
+        for playerId in list(self._board.playersDict.keys()):
             s += playerId + " | "
-        s = s[-3] + " / Inactive time start = " + str(self._inactiveStartTime)
+        s = s[:-3] + " / Inactive time start = " + str(self._inactiveStartTime)
         return s
 
-    def entitiesLog(self):
+    def entityListLog(self):
         s = ""
         for entityId in list(self._board.entitiesDict.keys()):
             s += str(entityId) + " :\n"
             s += self._board.entitiesDict[entityId].toString() + "\n"
+        s = s[:-1]
+        return s
+
+    def playerListLog(self):
+        s = ""
+        for playerId in list(self._board.playersDict.keys()):
+            s += str(playerId) + " :\#n"
+            s += self._board.playersDict[playerId].toString() + "\n"
+        s = s[:-1]
         return s

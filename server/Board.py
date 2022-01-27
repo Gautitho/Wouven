@@ -902,5 +902,3 @@ class Board:
                     ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]
                     self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [], [], "", True)
                     self._ongoingAbilityList.remove(ongoingAbility)
-
-                    

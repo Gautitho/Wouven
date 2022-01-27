@@ -197,20 +197,22 @@ class Player:
             if (self._companionList[companionId]["entityId"] == entityId):
                 self.removeCompanion(companionId)
 
-    def display(self, printType="DEBUG"):
-        printInfo(f"heroDescId              = {self._heroDescId}", printType)
-        printInfo(f"race                    = {self._race}", printType)
-        printInfo(f"team                    = {self._team}", printType)
-        printInfo(f"pseudo                  = {self._pseudo}", printType)
-        printInfo(f"pa                      = {self._pa}", printType)
-        printInfo(f"paStock                 = {self._paStock}", printType)
-        printInfo(f"gauges                  = {self._gauges}", printType)
-        printInfo(f"handSpellList           = {[spell.getDict() for spell in self._handSpellList]}", printType)
-        printInfo(f"deckSpellDescIdList     = {self._deckSpellDescIdList}", printType)
-        printInfo(f"companionList           = {self._companionList}", printType)
-        printInfo(f"playedCompanionDescIds  = {self._playedCompanionDescIds}", printType)
-        printInfo(f"boardEntityIds          = {self._boardEntityIds}", printType)
-        printInfo(f"heroEntityId            = {self._heroEntityId}", printType)
+    def toString(self):
+        s = ""
+        s += f"  heroDescId              = {self._heroDescId}\n"
+        s += f"  race                    = {self._race}\n"
+        s += f"  team                    = {self._team}\n"
+        s += f"  pseudo                  = {self._pseudo}\n"
+        s += f"  pa                      = {self._pa}\n"
+        s += f"  paStock                 = {self._paStock}\n"
+        s += f"  gauges                  = {self._gauges}\n"
+        s += f"  handSpellList           = {[spell.getDict() for spell in self._handSpellList]}\n"
+        s += f"  deckSpellDescIdList     = {self._deckSpellDescIdList}\n"
+        s += f"  companionList           = {self._companionList}\n"
+        s += f"  playedCompanionDescIds  = {self._playedCompanionDescIds}\n"
+        s += f"  boardEntityIds          = {self._boardEntityIds}\n"
+        s += f"  heroEntityId            = {self._heroEntityId}\n"
+        return s
 
     def getMyStatusDict(self):
         dic = {}
