@@ -230,6 +230,7 @@ class Board:
         self.removeOngoingAbilities("always")
         for entityId in list(self._entitiesDict.keys()):
             self.executeAbilities(self._entitiesDict[entityId].abilities, "always", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, None, [], None)
+            self._entitiesDict[entityId].endAction()
         for playerId in list(self._playersDict.keys()):
             for spellId in range(0, len(self._playersDict[playerId].handSpellList)):
                 self.executeAbilities(self._playersDict[playerId].handSpellList[spellId].abilities, "always", playerId, spellId, [], [], None)
@@ -642,7 +643,7 @@ class Board:
                             conditionsValid = False
 
                     elif (condition["feature"] == "auraNb"):
-                        if (operator == "==" and self._entitiesDict[abilityEntityIdList[0]].aura["nb"] == condition["value"]):
+                        if (operator == "=" and self._entitiesDict[abilityEntityIdList[0]].aura["nb"] == condition["value"]):
                             pass
                         elif (operator == ">=" and self._entitiesDict[abilityEntityIdList[0]].aura["nb"] >= condition["value"]):
                             pass
@@ -653,13 +654,18 @@ class Board:
                         if (condition["value"] in self._entitiesDict[abilityEntityIdList[0]].oneByTurnAbilityList):
                             conditionsValid = False
                         else:
-                            self._entitiesDict[abilityEntityIdList[0]].appendOneByTurnAbility(condition["value"])
+                            pass
 
                     else:
                         raise GameException("Wrong ability condition !")
 
                 if (not(conditionsValid) and ability["break"] == "True"):
                     raise GameException(f"The condition {condition['feature']} is not respected !")
+
+                if (conditionsValid):
+                    for condition in ability["conditionList"]:
+                        if (condition["feature"] == "oneByTurn"):
+                            self._entitiesDict[abilityEntityIdList[0]].appendOneByTurnAbility(condition["value"])
 
                 # Handle variable value case
                 if isinstance(ability["value"], int):
@@ -774,18 +780,17 @@ class Board:
                             else:
                                 raise GameException("Ability value for gauges must be a dict !")
 
-                    elif (ability["behavior"] == "addAura"):
-                        if (self._entitiesDict[selfId].aura and ability["feature"] == self._entitiesDict[selfId].aura["type"]):
-                            self._entitiesDict[selfId].modifyAuraNb(value)
-                            executed = True
-                        else:
-                            self._entitiesDict[selfId].newAura(ability["feature"], value)
-                            executed = True
+                    elif (ability["behavior"] == "addAuraWeak"):
+                        self._entitiesDict[selfId].addAuraBuffer(ability["feature"], value, "WEAK")
+                        executed = True
                     
-                    elif (ability["behavior"] == "transformAura"):
-                        if (self._entitiesDict[selfId].aura):
-                            self._entitiesDict[selfId].modifyAuraType(ability["feature"])
-                            executed = True
+                    elif (ability["behavior"] == "addAuraStrong"):
+                        self._entitiesDict[selfId].addAuraBuffer(ability["feature"], value, "STRONG")
+                        executed = True
+
+                    elif (ability["behavior"] == "addAuraReset"):
+                        self._entitiesDict[selfId].addAuraBuffer(ability["feature"], value, "RESET")
+                        executed = True
 
                     elif (ability["behavior"] == "charge"):
                         for abilityEntityId in abilityEntityIdList:
@@ -888,7 +893,7 @@ class Board:
                     auraUsed = True
 
         if auraUsed:
-            self._entitiesDict[selfId].modifyAuraNb(-1)
+            self._entitiesDict[selfId].consumeAura(1)
 
     def removeOngoingAbilities(self, stopTrigger):
         copyOngoingAbilityList = list(self._ongoingAbilityList)

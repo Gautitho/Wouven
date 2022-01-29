@@ -27,7 +27,7 @@
                 "target"        : "self",
                 "conditionList" : [{"feature" : "auraNb", "value" : 3, "operator" : ">="}],
                 "break"         : "False",
-                "behavior"      : "transformAura",
+                "behavior"      : "addAuraStrong",
                 "feature"       : "a4",
                 "value"         : 0
             }
@@ -61,7 +61,7 @@
                 "target"        : "self",
                 "conditionList" : [{"feature" : "target", "value" : "opOrganic"}, {"feature" : "oneByTurn", "value" : "ehc1"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
-                "behavior"      : "addAura",
+                "behavior"      : "addAuraWeak",
                 "feature"       : "a2",
                 "value"         : 1
             }

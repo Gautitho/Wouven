@@ -102,7 +102,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "self",
-                "behavior"      : "addAura",
+                "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
                 "feature"       : "a2",
@@ -182,7 +182,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "self",
-                "behavior"      : "addAura",
+                "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
                 "feature"       : "a2",
@@ -412,10 +412,10 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : "self",
                 "conditionList" : [{"feature" : "auraNb", "value" : 0, "operator" : "="}],
                 "break"         : "False",
-                "behavior"      : "addAura",
+                "behavior"      : "addAuraWeak",
                 "feature"       : "a2",
                 "value"         : 2
             },

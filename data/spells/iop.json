@@ -16,7 +16,7 @@
                 "target"        : "self",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "addAura",
+                "behavior"      : "addAuraReset",
                 "feature"       : "a0",
                 "value"         : 3
             }

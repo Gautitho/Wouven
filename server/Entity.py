@@ -18,7 +18,8 @@ class Entity:
         self._pm            = db.entities[descId]["pm"]
         self._typeList      = [] if not("typeList" in db.entities[descId]) else copy.deepcopy(db.entities[descId]["typeList"])
         self._elemState     = ""
-        self._aura          = {"type" : "null", "nb" : 0} if db.entities[descId]["aura"] == {} else copy.deepcopy(db.entities[descId]["aura"])
+        self._aura          = {"type" : "", "nb" : 0} if db.entities[descId]["aura"] == {} else copy.deepcopy(db.entities[descId]["aura"])
+        self._auraBuffer    = {"type" : "", "nb" : 0, "addingRule" : "WEAK"}
         self._states        = copy.deepcopy(db.entities[descId]["states"])
         self._abilities     = copy.deepcopy(db.entities[descId]["abilities"])
 
@@ -120,7 +121,7 @@ class Entity:
 
     @property
     def abilities(self):
-        if (self._aura["type"] != "null"):
+        if (self._aura["type"] != ""):
             outList = list(self._abilities)
             outList.extend(list(db.auras[self._aura["type"]]["abilities"]))
             return outList
@@ -197,6 +198,9 @@ class Entity:
             self.removeState("petrified")
         if (self.isInStates("stunned")):
             self.removeState("stunned")
+
+    def endAction(self):
+        self.updateAura()
 
     def move(self, x, y):
         self._x         = x
@@ -281,30 +285,54 @@ class Entity:
 
         return removedPv
 
-    def newAura(self, type, nb):
-        self._aura["type"]  = type
-        self._aura["nb"]    = min(nb, 5)
-
     def attackAgain(self):
         self._canMove   = True
         self._canAttack = True
 
-    def modifyAuraNb(self, nb):
-        if (self._aura["nb"] + nb > 0):
-            self._aura["nb"] = min(self._aura["nb"] + nb, 5)
-        elif (self._aura["nb"] + nb == 0):
-            self._aura = {"type" : "null", "nb" : 0}
+    def addAuraBuffer(self, type, nb, addingRule):
+        if (addingRule == "WEAK"):
+            self._auraBuffer["type"]        = type if (self._auraBuffer["nb"] < 1) else self._auraBuffer["type"]
+            self._auraBuffer["nb"]          = self._auraBuffer["nb"] + nb
+            self._auraBuffer["addingRule"]  = addingRule if self._auraBuffer["addingRule"] == "" else self._auraBuffer["addingRule"]
+        elif (addingRule == "STRONG"):
+            self._auraBuffer["type"]        = type
+            self._auraBuffer["nb"]          = self._auraBuffer["nb"] + nb
+            self._auraBuffer["addingRule"]  = addingRule
+        elif (addingRule == "RESET"):
+            self._auraBuffer["nb"]          = self._auraBuffer["nb"] + nb if(self._auraBuffer["type"] == type) else nb
+            self._auraBuffer["type"]        = type
+            self._auraBuffer["addingRule"]  = addingRule
         else:
-            raise GameException(f"You have not aura anymore !")
+            raise GameException(f"Aura adding rule doesn't exist : {self._auraBuffer['addingRule']}")
 
-    def modifyAuraType(self, auraType):
-        if (self._aura):
-            self._aura["type"] = auraType
+    def updateAura(self):
+        # WARNING : If auraBuffer not empty
+        if (self._auraBuffer["addingRule"] == "WEAK"):
+            self._aura["type"] = self._auraBuffer["type"] if (self._aura["nb"] < 1) else self._aura["type"]
+            self._aura["nb"]   = self._aura["nb"] + self._auraBuffer["nb"]
+        elif (self._auraBuffer["addingRule"] == "STRONG"):
+            self._aura["type"] = self._auraBuffer["type"]
+            self._aura["nb"]   = self._aura["nb"] + self._auraBuffer["nb"]
+        elif (self._auraBuffer["addingRule"] == "RESET"):
+            self._aura["nb"]   = self._aura["nb"] + self._auraBuffer["nb"] if(self._aura["type"] == self._auraBuffer["type"]) else self._auraBuffer["nb"]
+            self._aura["type"] = self._auraBuffer["type"]
+        else:
+            raise GameException(f"Aura adding rule doesn't exist : {self._auraBuffer['addingRule']}")
+        self._auraBuffer = {"type" : "", "nb" : 0, "addingRule" : "WEAK"}
+
+    def consumeAura(self, nb):
+        if (nb < 0):
+            raise GameException(f"Coding error : aura must be added through the aura buffer")
+
+        if (self._aura["nb"] - nb > 0):
+            self._aura["nb"] = min(self._aura["nb"] + nb, 5)
+        elif (self._aura["nb"] - nb == 0):
+            self._aura = {"type" : "", "nb" : 0}
         else:
             raise GameException(f"You have not aura anymore !")
 
     def freeAura(self):
-        self._aura = {"type" : "null", "nb" : 0}
+        self._aura = {"type" : "", "nb" : 0}
 
     def setElemState(self, value):
         if value in ["", "oiled", "muddy", "windy", "wet"]:

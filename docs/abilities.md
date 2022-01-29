@@ -92,7 +92,9 @@ This is an example : [{"feature" : "elemState", "value" : "oiled", "operator" : 
 
 | Key | Description |
 |-----|-------------|
-| addAura |  |
+| addAuraWeak | Keep the current aura nb, add the new aura nb and keep the current type |
+| addAuraStrong | Keep the current aura nb, add the new aura nb and replace them by the new type |
+| addAuraReset | If current aura type is different than new aura type, remove current aura to replace by the new |
 | addState |  |
 | explosion |  |
 | charge |  |
