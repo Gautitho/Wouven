@@ -79,6 +79,7 @@ class GameManager :
             self._gameIdx = self.getClientGame(clientId)
 
             if (self._gameIdx != None):
+                gameCmdList = [] # Create list for the exception case
                 gameCmdList = self._nextGameList[self._gameIdx].run(cmdDict)
                 for gameCmd in gameCmdList:
                     self._serverCmdList.append({"clientId" : self._knownPlayerIdDict[gameCmd["playerId"]], "content" : gameCmd["content"]})
@@ -106,7 +107,7 @@ class GameManager :
                 os.mkdir("logs/game_" + game.name)
             printLog(game.entityListLog() + "\n", filePath="logs/game_" + game.name + "/entityList.log", writeMode="w")
             printLog(game.playerListLog() + "\n", filePath="logs/game_" + game.name + "/playerList.log", writeMode="w")
-            if (game.name == self._nextGameList[self._gameIdx].name):
+            if (game.name == self._currGameList[self._gameIdx].name):
                 printLog(cmdDict, filePath="logs/game_" + game.name + "/client.log", writeMode="a")
                 printLog(gameCmdList, filePath="logs/game_" + game.name + "/server.log", writeMode="a")
 

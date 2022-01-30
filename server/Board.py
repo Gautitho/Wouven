@@ -528,8 +528,6 @@ class Board:
                     abilityEntityIdList = [targetEntityIdList[targetIdx]]
                 elif (ability["target"] == "self"):
                     abilityEntityIdList = [selfId]
-                elif (ability["target"] == "targetPlayer"):
-                    abilityEntityIdList = [self._playersDict[self.getPlayerIdFromTeam(self._entitiesDict[targetEntityIdList[targetIdx]].team)].heroEntityId]
                 elif (ability["target"] == "myPlayer"):
                     abilityEntityIdList = [self._playersDict[playerId].heroEntityId]
                 elif (ability["target"] == "opPlayer"):
@@ -562,6 +560,12 @@ class Board:
                         operator = condition["operator"]
                     else:
                         operator = "="
+
+                    if ("targetIdx" in condition):
+                        conditionTargetIdx = condition["targetIdx"]
+                    else:
+                        conditionTargetIdx = 0
+
                     if (condition["feature"] == "elemState"):
                         if (operator == "=" and condition["value"] in ["oiled", "wet", "muddy", "windy"]):
                             if (self._entitiesDict[abilityEntityIdList[0]].elemState == condition["value"]):
@@ -600,9 +604,9 @@ class Board:
                             conditionsValid = False
 
                     elif (condition["feature"] == "rangeFromFirstTarget"):
-                        if (operator == "=" and calcDist(positionList[0]["x"], positionList[0]["y"], positionList[targetIdx]["x"], positionList[targetIdx]["y"]) == condition["value"]):
+                        if (operator == "=" and calcDist(positionList[0]["x"], positionList[0]["y"], positionList[conditionTargetIdx]["x"], positionList[conditionTargetIdx]["y"]) == condition["value"]):
                             pass
-                        elif (operator == "<=" and calcDist(positionList[0]["x"], positionList[0]["y"], positionList[targetIdx]["x"], positionList[targetIdx]["y"]) <= condition["value"]):
+                        elif (operator == "<=" and calcDist(positionList[0]["x"], positionList[0]["y"], positionList[conditionTargetIdx]["x"], positionList[conditionTargetIdx]["y"]) <= condition["value"]):
                             pass
                         else:
                             conditionsValid = False
@@ -660,7 +664,7 @@ class Board:
                         raise GameException("Wrong ability condition !")
 
                 if (not(conditionsValid) and ability["break"] == "True"):
-                    raise GameException(f"The condition {condition['feature']} is not respected !")
+                    raise GameException("The conditions to launch this spell are not respected !")
 
                 if (conditionsValid):
                     for condition in ability["conditionList"]:
@@ -728,7 +732,7 @@ class Board:
                                 self._entitiesDict[abilityEntityId].tp(positionList[value]["x"], positionList[value]["y"])
                                 executed = True
                         elif (ability["feature"] == "paStock"):
-                            self._playersDict[playerId].modifyPaStock(value)
+                            self._playersDict[self.getPlayerIdFromTeam(self._entitiesDict[abilityEntityId].team)].modifyPaStock(value)
                             executed = True
                         elif (ability["feature"] == "armor"):
                             for abilityEntityId in abilityEntityIdList:
@@ -796,19 +800,19 @@ class Board:
                         for abilityEntityId in abilityEntityIdList:
                             if (self._entitiesDict[selfId].x == self._entitiesDict[abilityEntityId].x):
                                 if (self._entitiesDict[selfId].y < self._entitiesDict[abilityEntityId].y):
-                                    self._entitiesDict[selfId].tp(self._entitiesDict[selfId].x, self._entitiesDict[abilityEntityId].y - 1)
+                                    self._entitiesDict[selfId].tp(self._entitiesDict[abilityEntityId].x, self._entitiesDict[abilityEntityId].y - 1)
                                     executed = True
                                 elif (self._entitiesDict[selfId].y > self._entitiesDict[abilityEntityId].y):
-                                    self._entitiesDict[selfId].tp(self._entitiesDict[selfId].x, self._entitiesDict[abilityEntityId].y + 1)
+                                    self._entitiesDict[selfId].tp(self._entitiesDict[abilityEntityId].x, self._entitiesDict[abilityEntityId].y + 1)
                                     executed = True
                                 else:
                                     raise GameException("Target can't be on the same tile than selfEntity !")
                             elif (self._entitiesDict[selfId].y == self._entitiesDict[abilityEntityId].y):
                                 if (self._entitiesDict[selfId].x < self._entitiesDict[abilityEntityId].x):
-                                    self._entitiesDict[selfId].tp(self._entitiesDict[selfId].x - 1, self._entitiesDict[abilityEntityId].y)
+                                    self._entitiesDict[selfId].tp(self._entitiesDict[abilityEntityId].x - 1, self._entitiesDict[abilityEntityId].y)
                                     executed = True
                                 elif (self._entitiesDict[selfId].x > self._entitiesDict[abilityEntityId].x):
-                                    self._entitiesDict[selfId].tp(self._entitiesDict[selfId].x + 1, self._entitiesDict[abilityEntityId].y)
+                                    self._entitiesDict[selfId].tp(self._entitiesDict[abilityEntityId].x + 1, self._entitiesDict[abilityEntityId].y)
                                     executed = True
                                 else:
                                     raise GameException("Target can't be on the same tile than selfEntity !")

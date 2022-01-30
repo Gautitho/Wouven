@@ -186,7 +186,7 @@
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
                 "feature"       : "a2",
-                "value"         : "2"
+                "value"         : 2
             }
         ]
     },

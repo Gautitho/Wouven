@@ -2,14 +2,12 @@
 
 - Gérer les deconnexions
 - Enlever le nom de la partie dans Se reconnecter
-- Afficher les pseudos
-- Gérer le CANCEL_FIND_GAME
 - Bug bodyguard
-- Ajouter des outils de monitoring
-- Afficher le cout en PA sur le sort
-- Afficher la réserve de l'adversaire
+- Bug Seraphin ?
+- Bug Charge qui recule
+- Bug Tournoiment
+- Régulariser le comportement de myPlayer, opPlayer
 - Mécaniques à dev : 
-  - Ajout de la mire déjà présente
   - Soutien
   - Respawn de compagnon
   - Inciblable
