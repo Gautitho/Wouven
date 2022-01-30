@@ -30,12 +30,12 @@
                     <div id="myStatusFeature" class="flex flex-col mx-2">
                         <div id="myStatusPseudo" class="flex font-bold">Pseudo</div>
                         <div id="myStatusPv" class="flex">PV : 0 / 0</div>
-                        <div id="myStatusGauges" class="flex flex-row">
-                            <div id="myStatusGaugesFire" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
-                            <div id="myStatusGaugesWater" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
-                            <div id="myStatusGaugesEarth" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
-                            <div id="myStatusGaugesAir" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
-                            <div id="myStatusGaugesNeutral" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
+                        <div id="myStatusIcons" class="flex flex-row">
+                            <div id="myStatusGaugesFire" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="myStatusGaugesWater" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="myStatusGaugesEarth" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="myStatusGaugesAir" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="myStatusGaugesNeutral" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
                         </div>
                     </div>
                 </div>
@@ -55,12 +55,15 @@
                     <div id="opStatusFeature" class="flex flex-col mx-2">
                         <div id="opStatusPseudo" class="font-bold">Pseudo</div>
                         <div id="opStatusPv">PV : 0 / 0</div>
-                        <div id="opStatusGauges" class="flex flex-row">
-                            <div id="opStatusGaugesFire" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
-                            <div id="opStatusGaugesWater" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
-                            <div id="opStatusGaugesEarth" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
-                            <div id="opStatusGaugesAir" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
-                            <div id="opStatusGaugesNeutral" class="h-10 w-10 bg-center bg-contain bg-no-repeat gauge-class">0</div>
+                        <div id="opStatusIcons" class="flex flex-row">
+                            <div id="opStatusGaugesFire" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="opStatusGaugesWater" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="opStatusGaugesEarth" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="opStatusGaugesAir" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="opStatusGaugesNeutral" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="opStatusPa" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="opStatusPaStock" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="opStatusHandSize" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
                         </div>
                     </div>
                 </div>
@@ -114,6 +117,9 @@
         $("#opStatusGaugesEarth").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/earth.png)");
         $("#opStatusGaugesAir").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/air.png)");
         $("#opStatusGaugesNeutral").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/neutral.png)");
+        $("#opStatusPa").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/pa.png)");
+        $("#opStatusPaStock").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/paStock.png)");
+        $("#opStatusHandSize").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/deck.png)");
         $("#historicLogo").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/historic.png)");
 
         $("#stateBtn").css("background-color", "#FF0000");

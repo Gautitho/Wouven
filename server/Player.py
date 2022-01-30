@@ -236,4 +236,5 @@ class Player:
         dic["gauges"]               = self._gauges
         dic["heroEntityId"]         = self._heroEntityId
         dic["boardEntityIds"]       = self._boardEntityIds
+        dic["handSize"]             = len(self._handSpellList)
         return dic

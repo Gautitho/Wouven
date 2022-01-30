@@ -184,6 +184,9 @@ function updateOpStatus()
     $("#opStatusGaugesEarth").text(opPlayer.gauges.earth);
     $("#opStatusGaugesAir").text(opPlayer.gauges.air);
     $("#opStatusGaugesNeutral").text(opPlayer.gauges.neutral);
+    $("#opStatusPa").text(opPlayer.pa);
+    $("#opStatusPaStock").text(opPlayer.paStock);
+    $("#opStatusHandSize").text(opPlayer.handSize);
     $("#opStatusDescSprite").css("background-image", "url(" + PROJECT_ROOT_PATH + entities[opPlayer.heroEntityId].descSpritePath + ")");
 }
 
