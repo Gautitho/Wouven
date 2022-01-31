@@ -1,9 +1,66 @@
 {
-    "ecf0" :
+    "ecf7" :
+    {
+        "name"              : "Séraphin",
+        "spritePath"        : "img/entities/icon/fire/seraphin.png",
+        "descSpritePath"    : "img/entities/desc/fire/seraphin.png",
+        "pv"                : 84,
+        "armor"             : 0,
+        "atk"               : 18,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : -1
+            }
+        ]
+    },
+    "ecf8" :
+    {
+        "name"              : "Shutter",
+        "spritePath"        : "img/entities/icon/fire/shutter.png",
+        "descSpritePath"    : "img/entities/desc/fire/shutter.png",
+        "pv"                : 72,
+        "armor"             : 0,
+        "atk"               : 10,
+        "pm"                : 3,
+        "aura"              : {"type" : "a1", "nb" : 3},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ecf9" :
     {
         "name"              : "Elely",
-        "spritePath"        : "img/entities/icon/Elely.png",
-        "descSpritePath"    : "img/entities/desc/Elely.png",
+        "spritePath"        : "img/entities/icon/fire/elely.png",
+        "descSpritePath"    : "img/entities/desc/fire/elely.png",
         "pv"                : 105,
         "armor"             : 0,
         "atk"               : 22,
@@ -33,101 +90,11 @@
             }
         ]
     },
-    "ecf1" :
-    {
-        "name"              : "Championne sanglante",
-        "spritePath"        : "img/entities/icon/Championne_sanglante.png",
-        "descSpritePath"    : "img/entities/desc/Championne_sanglante.png",
-        "pv"                : 63,
-        "armor"             : 0,
-        "atk"               : 7,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            },
-            {
-                "trigger"       : "spawn",
-                "target"        : "myPlayer",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "permanentState",
-                "feature"       : "bodyguard",
-                "value"         : 0
-            }
-        ]
-    },
-    "ecf2" :
-    {
-        "name"              : "Shutter",
-        "spritePath"        : "img/entities/icon/Shutter.png",
-        "descSpritePath"    : "img/entities/desc/Shutter.png",
-        "pv"                : 72,
-        "armor"             : 0,
-        "atk"               : 10,
-        "pm"                : 3,
-        "aura"              : {"type" : "a1", "nb" : 3},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
-    "ecf3" :
-    {
-        "name"              : "Séraphin",
-        "spritePath"        : "img/entities/icon/Seraphin.png",
-        "descSpritePath"    : "img/entities/desc/Seraphin.png",
-        "pv"                : 84,
-        "armor"             : 0,
-        "atk"               : 18,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            },
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "paStock",
-                "value"         : -1
-            }
-        ]
-    },
-    "ecf4" :
+    "ecf16" :
     {
         "name"              : "Goultard",
-        "spritePath"        : "img/entities/icon/Goultard.png",
-        "descSpritePath"    : "img/entities/desc/Goultard.png",
+        "spritePath"        : "img/entities/icon/fire/goultard.png",
+        "descSpritePath"    : "img/entities/desc/fire/goultard.png",
         "pv"                : 175,
         "armor"             : 0,
         "atk"               : 45,

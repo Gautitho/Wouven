@@ -110,5 +110,32 @@
                 "value"         : 1
             }
         ]
+    },
+    "a5" :
+    {
+        "name"          : "Mires aérienne",
+        "spritepath"    : "img/states/improvedSight.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -9
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            }
+        ]
     }
+
 }

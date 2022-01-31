@@ -2,8 +2,8 @@
     "ehc0" :
     {
         "name"              : "Bunelame",
-        "spritePath"        : "img/entities/icon/Bunelame.png",
-        "descSpritePath"    : "img/entities/desc/Bunelame.png",
+        "spritePath"        : "img/entities/icon/cra/bunelame.png",
+        "descSpritePath"    : "img/entities/desc/cra/bunelame.png",
         "types"             : [],
         "pv"                : 393,
         "armor"             : 0,
@@ -36,8 +36,8 @@
     "ehc1" :
     {
         "name"              : "Expingole",
-        "spritePath"        : "img/entities/icon/Expingole.png",
-        "descSpritePath"    : "img/entities/desc/Expingole.png",
+        "spritePath"        : "img/entities/icon/cra/expingole.png",
+        "descSpritePath"    : "img/entities/desc/cra/expingole.png",
         "types"             : [],
         "pv"                : 390,
         "armor"             : 0,

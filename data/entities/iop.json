@@ -2,8 +2,8 @@
     "ehi0" :
     {
         "name"              : "Kasaï",
-        "spritePath"        : "img/entities/icon/Kasai.png",
-        "descSpritePath"    : "img/entities/desc/Kasai.png",
+        "spritePath"        : "img/entities/icon/iop/kasai.png",
+        "descSpritePath"    : "img/entities/desc/iop/kasai.png",
         "pv"                : 390,
         "armor"             : 0,
         "atk"               : 37,

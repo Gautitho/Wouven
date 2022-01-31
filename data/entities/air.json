@@ -1,3 +1,110 @@
 {
-
+    "eca0" :
+    {
+        "name"              : "Flécheur",
+        "spritePath"        : "img/entities/icon/flecheur.png",
+        "descSpritePath"    : "img/entities/desc/flecheur.png",
+        "pv"                : 52,
+        "armor"             : 0,
+        "atk"               : 5,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAura",
+                "feature"       : "a5",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "startTurn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAura",
+                "feature"       : "a5",
+                "value"         : 1
+            }
+        ]
+    },
+    "eca1" :
+    {
+        "name"              : "Héros félin",
+        "spritePath"        : "img/entities/icon/herosFelin.png",
+        "descSpritePath"    : "img/entities/desc/herosFelin.png",
+        "pv"                : 54,
+        "armor"             : 0,
+        "atk"               : 9,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAura",
+                "feature"       : "a5",
+                "value"         : 1
+            }
+        ]
+    },
+    "eca3" :
+    {
+        "name"              : "Championne du blasphème",
+        "spritePath"        : "img/entities/icon/championneDuBlaspheme.png",
+        "descSpritePath"    : "img/entities/desc/championneDuBlaspheme.png",
+        "pv"                : 60,
+        "armor"             : 0,
+        "atk"               : 14,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "elemState", "value" : "windy"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    }
 }

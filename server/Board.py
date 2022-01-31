@@ -215,11 +215,13 @@ class Board:
         self._playersDict[playerId].startTurn()
         for entityId in self._playersDict[playerId].boardEntityIds:
             self._entitiesDict[entityId].startTurn()
+            self.executeAbilities(self._entitiesDict[entityId].abilities, "startTurn", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, None, [], None)
 
     def endTurn(self, playerId):
         self._playersDict[playerId].endTurn()
         for entityId in self._playersDict[playerId].boardEntityIds:
             self._entitiesDict[entityId].endTurn()
+            self.executeAbilities(self._entitiesDict[entityId].abilities, "endTurn", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, None, [], None)
 
     def useReserve(self, playerId):
         self._playersDict[playerId].useReserve()

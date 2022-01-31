@@ -1,0 +1,827 @@
+{
+    "ecf0" :
+    {
+        "name"              : "Maître egreneur",
+        "spritePath"        : "img/entities/icon/fire/maitreEgreneur.png",
+        "descSpritePath"    : "img/entities/desc/fire/maitreEgreneur.png",
+        "pv"                : 54,
+        "armor"             : 0,
+        "atk"               : 11,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ecf1" :
+    {
+        "name"              : "Dargone",
+        "spritePath"        : "img/entities/icon/fire/dargone.png",
+        "descSpritePath"    : "img/entities/desc/fire/dargone.png",
+        "pv"                : 60,
+        "armor"             : 0,
+        "atk"               : 10,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ecf2" :
+    {
+        "name"              : "Championne périmée",
+        "spritePath"        : "img/entities/icon/fire/championnePerimee.png",
+        "descSpritePath"    : "img/entities/desc/fire/championnePerimee.png",
+        "pv"                : 67,
+        "armor"             : 0,
+        "atk"               : 15,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ecf3" :
+    {
+        "name"              : "Skhul",
+        "spritePath"        : "img/entities/icon/fire/skhul.png",
+        "descSpritePath"    : "img/entities/desc/fire/skhul.png",
+        "pv"                : 65,
+        "armor"             : 0,
+        "atk"               : 15,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ecf4" :
+    {
+        "name"              : "Sentinelle Affutée",
+        "spritePath"        : "img/entities/icon/fire/sentinelleAffutee.png",
+        "descSpritePath"    : "img/entities/desc/fire/sentinelleAffutee.png",
+        "pv"                : 54,
+        "armor"             : 0,
+        "atk"               : 9,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ecf5" :
+    {
+        "name"              : "Igror",
+        "spritePath"        : "img/entities/icon/fire/igror.png",
+        "descSpritePath"    : "img/entities/desc/fire/igror.png",
+        "pv"                : 86,
+        "armor"             : 0,
+        "atk"               : 16,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ecf6" :
+    {
+        "name"              : "Championne sanglante",
+        "spritePath"        : "img/entities/icon/fire/championneSanglante.png",
+        "descSpritePath"    : "img/entities/desc/fire/championneSanglante.png",
+        "pv"                : 63,
+        "armor"             : 0,
+        "atk"               : 7,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "permanentState",
+                "feature"       : "bodyguard",
+                "value"         : 0
+            }
+        ]
+    },
+    "ecf10" :
+    {
+        "name"              : "Remington",
+        "spritePath"        : "img/entities/icon/fire/remington.png",
+        "descSpritePath"    : "img/entities/desc/fire/remington.png",
+        "pv"                : 94,
+        "armor"             : 0,
+        "atk"               : 14,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ecf11" :
+    {
+        "name"              : "Dark Vlad",
+        "spritePath"        : "img/entities/icon/fire/darkVlad.png",
+        "descSpritePath"    : "img/entities/desc/fire/darkVlad.png",
+        "pv"                : 101,
+        "armor"             : 0,
+        "atk"               : 20,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ecf12" :
+    {
+        "name"              : "Admaï",
+        "spritePath"        : "img/entities/icon/fire/adamai.png",
+        "descSpritePath"    : "img/entities/desc/fire/adamai.png",
+        "pv"                : 92,
+        "armor"             : 0,
+        "atk"               : 30,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ecf13" :
+    {
+        "name"              : "Bakara",
+        "spritePath"        : "img/entities/icon/fire/bakara.png",
+        "descSpritePath"    : "img/entities/desc/fire/bakara.png",
+        "pv"                : 94,
+        "armor"             : 0,
+        "atk"               : 18,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ecf14" :
+    {
+        "name"              : "Oropo",
+        "spritePath"        : "img/entities/icon/fire/oropo.png",
+        "descSpritePath"    : "img/entities/desc/fire/oropo.png",
+        "pv"                : 137,
+        "armor"             : 0,
+        "atk"               : 27,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ecf15" :
+    {
+        "name"              : "Julith",
+        "spritePath"        : "img/entities/icon/fire/julith.png",
+        "descSpritePath"    : "img/entities/desc/fire/julith.png",
+        "pv"                : 137,
+        "armor"             : 0,
+        "atk"               : 27,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "eca2" :
+    {
+        "name"              : "Oracle offensée",
+        "spritePath"        : "img/entities/icon/air/oracleOffensee.png",
+        "descSpritePath"    : "img/entities/desc/air/oracleOffensee.png",
+        "pv"                : 63,
+        "armor"             : 0,
+        "atk"               : 16,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "eca4" :
+    {
+        "name"              : "Abigaïl",
+        "spritePath"        : "img/entities/icon/air/abigail.png",
+        "descSpritePath"    : "img/entities/desc/air/abigail.png",
+        "pv"                : 60,
+        "armor"             : 0,
+        "atk"               : 8,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "eca5" :
+    {
+        "name"              : "Empaleur embusqué",
+        "spritePath"        : "img/entities/icon/air/empaleurEmbusque.png",
+        "descSpritePath"    : "img/entities/desc/air/empaleurEmbusque.png",
+        "pv"                : 85,
+        "armor"             : 0,
+        "atk"               : 9,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "eca6" :
+    {
+        "name"              : "Farnix",
+        "spritePath"        : "img/entities/icon/air/farnix.png",
+        "descSpritePath"    : "img/entities/desc/air/farnix.png",
+        "pv"                : 72,
+        "armor"             : 0,
+        "atk"               : 9,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "eca7" :
+    {
+        "name"              : "Assa",
+        "spritePath"        : "img/entities/icon/air/assa.png",
+        "descSpritePath"    : "img/entities/desc/air/assa.png",
+        "pv"                : 86,
+        "armor"             : 0,
+        "atk"               : 16,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "eca8" :
+    {
+        "name"              : "Exécuteur endeuillé",
+        "spritePath"        : "img/entities/icon/air/executeurEndeuille.png",
+        "descSpritePath"    : "img/entities/desc/air/executeurEndeuille.png",
+        "pv"                : 84,
+        "armor"             : 0,
+        "atk"               : 23,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "eca9" :
+    {
+        "name"              : "Angèle",
+        "spritePath"        : "img/entities/icon/air/angele.png",
+        "descSpritePath"    : "img/entities/desc/air/angele.png",
+        "pv"                : 82,
+        "armor"             : 0,
+        "atk"               : 23,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "eca10" :
+    {
+        "name"              : "Corbeau noir",
+        "spritePath"        : "img/entities/icon/air/corbeauNoir.png",
+        "descSpritePath"    : "img/entities/desc/air/corbeauNoir.png",
+        "pv"                : 95,
+        "armor"             : 0,
+        "atk"               : 27,
+        "pm"                : 4,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "eca11" :
+    {
+        "name"              : "Coqueline",
+        "spritePath"        : "img/entities/icon/air/coqueline.png",
+        "descSpritePath"    : "img/entities/desc/air/coqueline.png",
+        "pv"                : 79,
+        "armor"             : 0,
+        "atk"               : 23,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "eca12" :
+    {
+        "name"              : "Ush",
+        "spritePath"        : "img/entities/icon/air/ush.png",
+        "descSpritePath"    : "img/entities/desc/air/ush.png",
+        "pv"                : 107,
+        "armor"             : 0,
+        "atk"               : 23,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "eca13" :
+    {
+        "name"              : "Atcham",
+        "spritePath"        : "img/entities/icon/air/atcham.png",
+        "descSpritePath"    : "img/entities/desc/air/atcham.png",
+        "pv"                : 95,
+        "armor"             : 0,
+        "atk"               : 27,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "eca14" :
+    {
+        "name"              : "Evangelyne",
+        "spritePath"        : "img/entities/icon/air/evangelyne.png",
+        "descSpritePath"    : "img/entities/desc/air/evangelyne.png",
+        "pv"                : 112,
+        "armor"             : 0,
+        "atk"               : 14,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "eca15" :
+    {
+        "name"              : "Yugo",
+        "spritePath"        : "img/entities/icon/air/yugo.png",
+        "descSpritePath"    : "img/entities/desc/air/yugo.png",
+        "pv"                : 132,
+        "armor"             : 0,
+        "atk"               : 36,
+        "pm"                : 4,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "eca16" :
+    {
+        "name"              : "Grougaloragran",
+        "spritePath"        : "img/entities/icon/air/grougaloragran.png",
+        "descSpritePath"    : "img/entities/desc/air/grougaloragran.png",
+        "pv"                : 147,
+        "armor"             : 0,
+        "atk"               : 38,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ece0" :
+    {
+        "name"              : "Argolio",
+        "spritePath"        : "img/entities/icon/earth/argolio.png",
+        "descSpritePath"    : "img/entities/desc/earth/argolio.png",
+        "pv"                : 52,
+        "armor"             : 0,
+        "atk"               : 5,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ece1" :
+    {
+        "name"              : "Ashmal",
+        "spritePath"        : "img/entities/icon/earth/ashmal.png",
+        "descSpritePath"    : "img/entities/desc/earth/ashmal.png",
+        "pv"                : 60,
+        "armor"             : 0,
+        "atk"               : 10,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ece2" :
+    {
+        "name"              : "Kaotika",
+        "spritePath"        : "img/entities/icon/earth/kaotika.png",
+        "descSpritePath"    : "img/entities/desc/earth/kaotika.png",
+        "pv"                : 58,
+        "armor"             : 0,
+        "atk"               : 13,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ece3" :
+    {
+        "name"              : "Achméa",
+        "spritePath"        : "img/entities/icon/earth/achmea.png",
+        "descSpritePath"    : "img/entities/desc/earth/achmea.png",
+        "pv"                : 54,
+        "armor"             : 0,
+        "atk"               : 9,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ece4" :
+    {
+        "name"              : "Zorine",
+        "spritePath"        : "img/entities/icon/earth/zorine.png",
+        "descSpritePath"    : "img/entities/desc/earth/zorine.png",
+        "pv"                : 67,
+        "armor"             : 0,
+        "atk"               : 18,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ece5" :
+    {
+        "name"              : "Soigneuse corrompue",
+        "spritePath"        : "img/entities/icon/earth/soigneuseCorrompue.png",
+        "descSpritePath"    : "img/entities/desc/earth/soigneuseCorrompue.png",
+        "pv"                : 80,
+        "armor"             : 0,
+        "atk"               : 13,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ece6" :
+    {
+        "name"              : "Eclaireur d'élite",
+        "spritePath"        : "img/entities/icon/earth/eclaireurDElite.png",
+        "descSpritePath"    : "img/entities/desc/earth/eclaireurDElite.png",
+        "pv"                : 52,
+        "armor"             : 0,
+        "atk"               : 5,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+}

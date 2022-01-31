@@ -2,11 +2,11 @@
     "scf0":
     {
         "name"              : "Essence du dieu Iop (WIP)",
-        "race"              : "cf0",
+        "race"              : "cf9",
         "cost"              : 3,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iopEssenceDuDieuIop.png",
-        "descSpritePath"    : "img/spells/desc/iopEssenceDuDieuIop.png",
+        "spritePath"        : "img/spells/icon/fire/EssenceDuDieuIop.png",
+        "descSpritePath"    : "img/spells/desc/fire/EssenceDuDieuIop.png",
         "allowedTargetList" : ["self"],
         "abilities"         :
         [
@@ -30,14 +30,14 @@
             }
         ]
     },
-    "scf1":
+    "scf7":
     {
         "name"              : "Bond de Goultard (WIP)",
-        "race"              : "cf4",
+        "race"              : "cf16",
         "cost"              : 7,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/bondDeGoultard.png",
-        "descSpritePath"    : "img/spells/desc/bondDeGoultard.png",
+        "spritePath"        : "img/spells/icon/fire/bondDeGoultard.png",
+        "descSpritePath"    : "img/spells/desc/fire/bondDeGoultard.png",
         "allowedTargetList" : ["myOrganic", "emptyTile"],
         "abilities"         :
         [
