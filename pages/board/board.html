@@ -141,7 +141,7 @@
         }
         for (i = 0; i < HAND_SPELLS; i++)
         {
-            document.getElementById("hand").insertAdjacentHTML('beforeend',`<div id="spell_${i}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
+            document.getElementById("hand").insertAdjacentHTML('beforeend',`<div id="spell_${i}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"><div id="spell_${i}_cost" class="h-5 w-5 bg-center bg-contain bg-no-repeat cost-class"></div></div>`);
             $("#spell_" + i).click(function() {spellClick($(this))});
         }
         for (i = 0; i < ACTION_LIST_LEN; i++)

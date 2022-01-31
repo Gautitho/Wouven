@@ -202,6 +202,8 @@ function updateHandBar()
     for (j = 0; j < myPlayer.handSpellList.length; j++)
     {
         $("#spell_" + j).css("background-image", "url(" + PROJECT_ROOT_PATH + myPlayer.handSpellList[j].spritePath + ")");
+        $("#spell_" + j + "_cost").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/pa.png)");
+        $("#spell_" + j + "_cost").text(myPlayer.handSpellList[j].cost);
         tooltipArray.push(new Tooltip(document.getElementById("spell_" + j), PROJECT_ROOT_PATH + myPlayer.handSpellList[j].descSpritePath, "img"));
     }
 }

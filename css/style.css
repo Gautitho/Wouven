@@ -52,6 +52,14 @@
     line-height:        75px;
 }
 
+.cost-class
+{
+    font-weight:        700;
+    color:              #FFFFFF;
+    font-size:          0.8rem;
+    text-align:         center;
+}
+
 .icon-class
 {
     font-weight:        700;
