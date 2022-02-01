@@ -113,7 +113,7 @@
     },
     "a5" :
     {
-        "name"          : "Mires aérienne",
+        "name"          : "Mires aériennes",
         "spritepath"    : "img/states/improvedSight.png",
         "abilities"     :
         [

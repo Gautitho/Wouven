@@ -1,6 +1,40 @@
 {
     "ehc0" :
     {
+        "name"              : "Piven",
+        "spritePath"        : "img/entities/icon/cra/piven.png",
+        "descSpritePath"    : "img/entities/desc/cra/piven.png",
+        "types"             : [],
+        "pv"                : 392,
+        "armor"             : 0,
+        "atk"               : 16,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "endTurn",
+                "target"        : "self",
+                "conditionList" : [{"feature" : "opAroundSelf", "value" : 0}],
+                "break"         : "False",
+                "behavior"      : "addAuraWeak",
+                "feature"       : "a2",
+                "value"         : 1
+            }
+        ]
+    },
+    "ehc1" :
+    {
         "name"              : "Bunelame",
         "spritePath"        : "img/entities/icon/cra/bunelame.png",
         "descSpritePath"    : "img/entities/desc/cra/bunelame.png",
@@ -33,7 +67,7 @@
             }
         ]
     },
-    "ehc1" :
+    "ehc2" :
     {
         "name"              : "Expingole",
         "spritePath"        : "img/entities/icon/cra/expingole.png",

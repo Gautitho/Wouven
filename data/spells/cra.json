@@ -203,12 +203,12 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "allOrganicCross:1",
+                "target"        : "target",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : -30
+                "value"         : -31
             },
             {
                 "trigger"       : "spellCast",
@@ -231,6 +231,46 @@
         ]
     },
     "sc6":
+    {
+        "name"              : "Flèche crucifiante",
+        "race"              : "cra",
+        "cost"              : 6,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/cra/flecheCrucifiante.png",
+        "descSpritePath"    : "img/spells/desc/cra/flecheCrucifiante.png",
+        "allowedTargetList" : ["all"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "allOrganicCross:1",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -30
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "sc7":
     {
         "name"              : "Flèche Boom",
         "race"              : "cra",
@@ -288,7 +328,7 @@
             }
         ]
     },
-    "sc7":
+    "sc8":
     {
         "name"              : "Flèche explosive",
         "race"              : "cra",
@@ -328,7 +368,7 @@
             }
         ]
     },
-    "sc8":
+    "sc9":
     {
         "name"              : "Maelstrom de flèches",
         "race"              : "cra",
@@ -359,10 +399,1059 @@
             }
         ]
     },
+    "sc10":
+    {
+        "name"              : "Trait visqueux",
+        "race"              : "cra",
+        "cost"              : 2,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/cra/traitVisqueux.png",
+        "descSpritePath"    : "img/spells/desc/cra/traitVisqueux.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -5
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "elemState",
+                "value"         : "wet"
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            }
+        ]
+    },
+    "sc11":
+    {
+        "name"              : "Trait aqueux",
+        "race"              : "cra",
+        "cost"              : 3,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/cra/traitAqueux.png",
+        "descSpritePath"    : "img/spells/desc/cra/traitAqueux.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -23
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "addAuraWeak",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "opAroundSelf", "value" : 0}],
+                "feature"       : "a2",
+                "value"         : 1
+            }
+        ]
+    },
+    "sc13":
+    {
+        "name"              : "Trait glace corps",
+        "race"              : "cra",
+        "cost"              : 4,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/cra/traitGlaceCorps.png",
+        "descSpritePath"    : "img/spells/desc/cra/traitGlaceCorps.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -26
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "behavior"      : "addState",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "elemState", "value" : "wet"}],
+                "feature"       : "frozen",
+                "value"         : 0
+            }
+        ]
+    },
+    "sc14":
+    {
+        "name"              : "Trait mouillant",
+        "race"              : "cra",
+        "cost"              : 5,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/cra/traitMouillant.png",
+        "descSpritePath"    : "img/spells/desc/cra/traitMouillant.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -26
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "elemState",
+                "value"         : "wet"
+            }
+        ]
+    },
+    "sc15":
+    {
+        "name"              : "Trait des mers ondulantes",
+        "race"              : "cra",
+        "cost"              : 5,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/cra/traitDesMersOndulantes.png",
+        "descSpritePath"    : "img/spells/desc/cra/traitDesMersOndulantes.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -38
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            }
+        ]
+    },
+    "sc16":
+    {
+        "name"              : "Trait du grand large",
+        "race"              : "cra",
+        "cost"              : 6,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/cra/traitDuGrandLarge.png",
+        "descSpritePath"    : "img/spells/desc/cra/traitDuGrandLarge.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -29
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "addAuraWeak",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "opAroundSelf", "value" : 0}],
+                "feature"       : "a2",
+                "value"         : 2
+            }
+        ]
+    },
+    "sc17":
+    {
+        "name"              : "Trait bouillant",
+        "race"              : "cra",
+        "cost"              : 6,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/cra/traitBouillant.png",
+        "descSpritePath"    : "img/spells/desc/cra/traitBouillant.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -31
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "behavior"      : "addState",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "elemState", "value" : "wet"}],
+                "feature"       : "disarmed",
+                "value"         : 0
+            }
+        ]
+    },
+    "sc18":
+    {
+        "name"              : "Trait venu du rivage",
+        "race"              : "cra",
+        "cost"              : 7,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/cra/traitVenuDuRivage.png",
+        "descSpritePath"    : "img/spells/desc/cra/traitVenuDuRivage.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -50
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 2}
+            }
+        ]
+    },
+    "sc20":
+    {
+        "name"              : "Tir enlisant",
+        "race"              : "cra",
+        "cost"              : 3,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/cra/tirEnlisant.png",
+        "descSpritePath"    : "img/spells/desc/cra/tirEnlisant.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -27
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
+                "feature"       : "pm",
+                "value"         : -1
+            }
+        ]
+    },
+    "sc21":
+    {
+        "name"              : "Tir boueux",
+        "race"              : "cra",
+        "cost"              : 3,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/cra/tirBoueux.png",
+        "descSpritePath"    : "img/spells/desc/cra/tirBoueux.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -16
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "elemState",
+                "value"         : "muddy"
+            }
+        ]
+    },
+    "sc22":
+    {
+        "name"              : "Tir mordant",
+        "race"              : "cra",
+        "cost"              : 3,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/cra/tirMordant.png",
+        "descSpritePath"    : "img/spells/desc/cra/tirMordant.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 21
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "addAuraWeak",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">"}],
+                "feature"       : "a2",
+                "value"         : 1
+            }
+        ]
+    },
+    "sc24":
+    {
+        "name"              : "Tir farouche",
+        "race"              : "cra",
+        "cost"              : 4,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/cra/tirFarouche.png",
+        "descSpritePath"    : "img/spells/desc/cra/tirFarouche.png",
+        "allowedTargetList" : ["allAligned"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -32
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "distance",
+                "feature"       : "pv",
+                "value"         : -4
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            }
+        ]
+    },
+    "sc25":
+    {
+        "name"              : "Tir terrestre",
+        "race"              : "cra",
+        "cost"              : 5,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/cra/tirTerrestre.png",
+        "descSpritePath"    : "img/spells/desc/cra/tirTerrestre.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -26
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "elemState",
+                "value"         : "muddy"
+            }
+        ]
+    },
+    "sc26":
+    {
+        "name"              : "Tir croquant",
+        "race"              : "cra",
+        "cost"              : 5,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/cra/tirCroquant.png",
+        "descSpritePath"    : "img/spells/desc/cra/tirCroquant.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -33
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
+            }
+        ]
+    },
+    "sc28":
+    {
+        "name"              : "Tir féroce",
+        "race"              : "cra",
+        "cost"              : 3,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/cra/tirFeroce.png",
+        "descSpritePath"    : "img/spells/desc/cra/tirFeroce.png",
+        "allowedTargetList" : ["allAligned"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -37
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "distance",
+                "feature"       : "pv",
+                "value"         : -4
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
+            }
+        ]
+    },
+    "sc29":
+    {
+        "name"              : "Tir immobilisant",
+        "race"              : "cra",
+        "cost"              : 8,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/cra/tirImmobilisant.png",
+        "descSpritePath"    : "img/spells/desc/cra/tirImmobilisant.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -59
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "behavior"      : "addState",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
+                "feature"       : "locked",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "opAround",
+                "behavior"      : "addState",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
+                "feature"       : "locked",
+                "value"         : 0
+            }
+        ]
+    },
+    "sc30":
+    {
+        "name"              : "Pointe acérée",
+        "race"              : "cra",
+        "cost"              : 2,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/cra/pointeAceree.png",
+        "descSpritePath"    : "img/spells/desc/cra/pointeAceree.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -10
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "elemState",
+                "value"         : "windy"
+            }
+        ]
+    },
+    "sc32":
+    {
+        "name"              : "Pointe chuchotante",
+        "race"              : "cra",
+        "cost"              : 3,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/cra/pointeChuchotante.png",
+        "descSpritePath"    : "img/spells/desc/cra/pointeChuchotante.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -22
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "addAuraWeak",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "elemState", "value" : "windy"}],
+                "feature"       : "a2",
+                "value"         : 1
+            }
+        ]
+    },
+    "sc33":
+    {
+        "name"              : "Pointe venteuse",
+        "race"              : "cra",
+        "cost"              : 4,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/cra/pointeVenteuse.png",
+        "descSpritePath"    : "img/spells/desc/cra/pointeVenteuse.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -19
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "elemState",
+                "value"         : "windy"
+            }
+        ]
+    },
+    "sc35":
+    {
+        "name"              : "Pointe étoilée",
+        "race"              : "cra",
+        "cost"              : 4,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/cra/pointeEtoilee.png",
+        "descSpritePath"    : "img/spells/desc/cra/pointeEtoilee.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -23
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "behavior"      : "draw",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">"}],
+                "feature"       : "",
+                "value"         : 1
+            }
+        ]
+    },
+    "sc36":
+    {
+        "name"              : "Pointe provocatrice",
+        "race"              : "cra",
+        "cost"              : 5,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/cra/pointeProvocatrice.png",
+        "descSpritePath"    : "img/spells/desc/cra/pointeProvocatrice.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -38
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            }
+        ]
+    },
+    "sc37":
+    {
+        "name"              : "Pointe électrique",
+        "race"              : "cra",
+        "cost"              : 5,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/cra/pointeElectrique.png",
+        "descSpritePath"    : "img/spells/desc/cra/pointeElectrique.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "bounce",
+                "feature"       : "pv",
+                "value"         : -23
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            }
+        ]
+    },
+    "sc38":
+    {
+        "name"              : "Pointe des cieux",
+        "race"              : "cra",
+        "cost"              : 6,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/cra/pointeDesCieux.png",
+        "descSpritePath"    : "img/spells/desc/cra/pointeDesCieux.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellcast",
+                "target"        : "target",
+                "conditionlist" : [],
+                "break"         : "false",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -29
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "addAuraWeak",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "elemState", "value" : "windy"}],
+                "feature"       : "a2",
+                "value"         : 2
+            }
+        ]
+    },
+    "sc40":
+    {
+        "name"              : "Archerie",
+        "race"              : "cra",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/cra/archerie.png",
+        "descSpritePath"    : "img/spells/desc/cra/archerie.png",
+        "allowedTargetList" : ["myPlayer"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "addAuraWeak",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "a2",
+                "value"         : 2
+            }
+        ]
+    },
+    "sc47":
+    {
+        "name"              : "Ataraxie",
+        "race"              : "cra",
+        "cost"              : 5,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/cra/ataraxie.png",
+        "descSpritePath"    : "img/spells/desc/cra/ataraxie.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellcast",
+                "target"        : "target",
+                "conditionlist" : [],
+                "break"         : "false",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -24
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "draw",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "opAroundSelf", "value" : 0}],
+                "feature"       : "",
+                "value"         : 2
+            }
+        ]
+    },
     "shc0":
     {
-        "name"              : "Bumbond",
+        "name"              : "Trait glace coeur",
         "race"              : "hc0",
+        "cost"              : 5,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/cra/traitGlaceCoeur.png",
+        "descSpritePath"    : "img/spells/desc/cra/traitGlaceCoeur.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -27
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "behavior"      : "addState",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "elemState", "value" : "wet"}],
+                "feature"       : "frozen",
+                "value"         : 0
+            }
+        ]
+    },
+    "shc1":
+    {
+        "name"              : "Bumbond",
+        "race"              : "hc1",
         "cost"              : 3,
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/cra/bumbond.png",
@@ -390,10 +1479,10 @@
             }
         ]
     },
-    "shc1":
+    "shc2":
     {
         "name"              : "Décharge pétulante",
-        "race"              : "hc1",
+        "race"              : "hc2",
         "cost"              : 6,
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/cra/dechargePetulante.png",

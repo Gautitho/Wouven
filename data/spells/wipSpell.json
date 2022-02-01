@@ -1,0 +1,273 @@
+{
+    "sc12":
+    {
+        "name"              : "Trait venu d'ailleurs",
+        "race"              : "cra",
+        "cost"              : 4,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/cra/traitVenuDAilleurs.png",
+        "descSpritePath"    : "img/spells/desc/cra/traitVenuDAilleurs.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -23
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            }
+        ]
+    },
+    "sc19":
+    {
+        "name"              : "Trait des profondeurs",
+        "race"              : "cra",
+        "cost"              : 8,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/cra/traitDesProfondeurs.png",
+        "descSpritePath"    : "img/spells/desc/cra/traitDesProfondeurs.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -34
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            }
+        ]
+    },
+    "sc23":
+    {
+        "name"              : "Tir déchirant",
+        "race"              : "cra",
+        "cost"              : 4,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/cra/tirDechirant.png",
+        "descSpritePath"    : "img/spells/desc/cra/tirDechirant.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -26
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            }
+        ]
+    },
+    "sc27":
+    {
+        "name"              : "Tir attroce",
+        "race"              : "cra",
+        "cost"              : 6,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/cra/tirAttroce.png",
+        "descSpritePath"    : "img/spells/desc/cra/tirAttroce.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -23
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            }
+        ]
+    },
+    "sc31":
+    {
+        "name"              : "Pointe harcelante",
+        "race"              : "cra",
+        "cost"              : 3,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/cra/pointeHarcelante.png",
+        "descSpritePath"    : "img/spells/desc/cra/pointeHarcelante.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -23
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "sc34":
+    {
+        "name"              : "Pointe répulsive",
+        "race"              : "cra",
+        "cost"              : 3,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/cra/pointeRepulsive.png",
+        "descSpritePath"    : "img/spells/desc/cra/pointeRepulsive.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -23
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            }
+        ]
+    },
+    "sc39":
+    {
+        "name"              : "Pointe des cieux divins",
+        "race"              : "cra",
+        "cost"              : 7,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/cra/pointeDesCieuxDivins.png",
+        "descSpritePath"    : "img/spells/desc/cra/pointeDesCieuxDivins.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -42
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 2}
+            }
+        ]
+    }
+}

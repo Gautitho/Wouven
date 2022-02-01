@@ -1,3 +1,33 @@
 {
-
+    "sca6":
+    {
+        "name"              : "Souffle de Grougaloragran",
+        "race"              : "sca16",
+        "cost"              : 5,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/air/souffleDeGrougaloragran.png",
+        "descSpritePath"    : "img/spells/desc/air/souffleDeGrougaloragran.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -27
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 2}
+            }
+        ]
+    }
 }
