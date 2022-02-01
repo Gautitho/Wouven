@@ -2,8 +2,8 @@
     "eca0" :
     {
         "name"              : "Flécheur",
-        "spritePath"        : "img/entities/icon/flecheur.png",
-        "descSpritePath"    : "img/entities/desc/flecheur.png",
+        "spritePath"        : "img/entities/icon/air/flecheur.png",
+        "descSpritePath"    : "img/entities/desc/air/flecheur.png",
         "pv"                : 52,
         "armor"             : 0,
         "atk"               : 5,
@@ -44,8 +44,8 @@
     "eca1" :
     {
         "name"              : "Héros félin",
-        "spritePath"        : "img/entities/icon/herosFelin.png",
-        "descSpritePath"    : "img/entities/desc/herosFelin.png",
+        "spritePath"        : "img/entities/icon/air/herosFelin.png",
+        "descSpritePath"    : "img/entities/desc/air/herosFelin.png",
         "pv"                : 54,
         "armor"             : 0,
         "atk"               : 9,
@@ -64,21 +64,21 @@
                 "value"         : "-atk"
             },
             {
-                "trigger"       : "spawn",
-                "target"        : "self",
+                "trigger"       : "attack",
+                "target"        : "myPlayer",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "addAura",
-                "feature"       : "a5",
-                "value"         : 1
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
             }
         ]
     },
     "eca3" :
     {
         "name"              : "Championne du blasphème",
-        "spritePath"        : "img/entities/icon/championneDuBlaspheme.png",
-        "descSpritePath"    : "img/entities/desc/championneDuBlaspheme.png",
+        "spritePath"        : "img/entities/icon/air/championneDuBlaspheme.png",
+        "descSpritePath"    : "img/entities/desc/air/championneDuBlaspheme.png",
         "pv"                : 60,
         "armor"             : 0,
         "atk"               : 14,
@@ -104,6 +104,213 @@
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : "-atk"
+            }
+        ]
+    },
+    "eca4" :
+    {
+        "name"              : "Abigaïl",
+        "spritePath"        : "img/entities/icon/air/abigail.png",
+        "descSpritePath"    : "img/entities/desc/air/abigail.png",
+        "pv"                : 60,
+        "armor"             : 0,
+        "atk"               : 8,
+        "pm"                : 3,
+        "aura"              : {"type" : "a0", "nb" : 3},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "eca6" :
+    {
+        "name"              : "Farnix",
+        "spritePath"        : "img/entities/icon/air/farnix.png",
+        "descSpritePath"    : "img/entities/desc/air/farnix.png",
+        "pv"                : 72,
+        "armor"             : 0,
+        "atk"               : 9,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAura",
+                "feature"       : "a4",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "startTurn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAura",
+                "feature"       : "a4",
+                "value"         : 1
+            }
+        ]
+    },
+    "eca7" :
+    {
+        "name"              : "Assa",
+        "spritePath"        : "img/entities/icon/air/assa.png",
+        "descSpritePath"    : "img/entities/desc/air/assa.png",
+        "pv"                : 86,
+        "armor"             : 0,
+        "atk"               : 16,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "elemState",
+                "value"         : "windy"
+            }
+        ]
+    },
+    "eca8" :
+    {
+        "name"              : "Exécuteur endeuillé",
+        "spritePath"        : "img/entities/icon/air/executeurEndeuille.png",
+        "descSpritePath"    : "img/entities/desc/air/executeurEndeuille.png",
+        "pv"                : 84,
+        "armor"             : 0,
+        "atk"               : 23,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "atk"
+            }
+        ]
+    },
+    "eca14" :
+    {
+        "name"              : "Evangelyne",
+        "spritePath"        : "img/entities/icon/air/evangelyne.png",
+        "descSpritePath"    : "img/entities/desc/air/evangelyne.png",
+        "pv"                : 112,
+        "armor"             : 0,
+        "atk"               : 14,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAura",
+                "feature"       : "a4",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "startTurn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAura",
+                "feature"       : "a4",
+                "value"         : 1
+            }
+        ]
+    },
+    "eca16" :
+    {
+        "name"              : "Grougaloragran",
+        "spritePath"        : "img/entities/icon/air/grougaloragran.png",
+        "descSpritePath"    : "img/entities/desc/air/grougaloragran.png",
+        "pv"                : 147,
+        "armor"             : 0,
+        "atk"               : 38,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 2}
             }
         ]
     }

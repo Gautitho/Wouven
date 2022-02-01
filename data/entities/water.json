@@ -1,3 +1,200 @@
 {
-
+    "ecw0" :
+    {
+        "name"              : "Pacificatrice enjouée",
+        "spritePath"        : "img/entities/icon/water/pacificatriceEnjouee.png",
+        "descSpritePath"    : "img/entities/desc/water/pacificatriceEnjouee.png",
+        "pv"                : 60,
+        "armor"             : 0,
+        "atk"               : 10,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "atk"
+            }
+        ]
+    },
+    "ecw2" :
+    {
+        "name"              : "Saly",
+        "spritePath"        : "img/entities/icon/water/saly.png",
+        "descSpritePath"    : "img/entities/desc/water/saly.png",
+        "pv"                : 54,
+        "armor"             : 0,
+        "atk"               : 9,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            }
+        ]
+    },
+    "ecw3" :
+    {
+        "name"              : "Gousset",
+        "spritePath"        : "img/entities/icon/water/gousset.png",
+        "descSpritePath"    : "img/entities/desc/water/gousset.png",
+        "pv"                : 59,
+        "armor"             : 0,
+        "atk"               : 12,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "ecw5" :
+    {
+        "name"              : "Gardienne inflexible",
+        "spritePath"        : "img/entities/icon/water/gardienneInflexible.png",
+        "descSpritePath"    : "img/entities/desc/water/gardienneInflexible.png",
+        "pv"                : 86,
+        "armor"             : 0,
+        "atk"               : 16,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "elemState",
+                "value"         : "wet"
+            }
+        ]
+    },
+    "ecw14" :
+    {
+        "name"              : "Echo",
+        "spritePath"        : "img/entities/icon/water/echo.png",
+        "descSpritePath"    : "img/entities/desc/water/echo.png",
+        "pv"                : 117,
+        "armor"             : 0,
+        "atk"               : 17,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "atk"
+            }
+        ]
+    },
+    "ecw15" :
+    {
+        "name"              : "Nox",
+        "spritePath"        : "img/entities/icon/water/Nox.png",
+        "descSpritePath"    : "img/entities/desc/water/Nox.png",
+        "pv"                : 141,
+        "armor"             : 0,
+        "atk"               : 30,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    }
 }

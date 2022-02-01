@@ -1,3 +1,191 @@
 {
-
+    "ece1" :
+    {
+        "name"              : "Ashmal",
+        "spritePath"        : "img/entities/icon/earth/ashmal.png",
+        "descSpritePath"    : "img/entities/desc/earth/ashmal.png",
+        "pv"                : 60,
+        "armor"             : 0,
+        "atk"               : 10,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "atk"
+            }
+        ]
+    },
+    "ece3" :
+    {
+        "name"              : "Achméa",
+        "spritePath"        : "img/entities/icon/earth/achmea.png",
+        "descSpritePath"    : "img/entities/desc/earth/achmea.png",
+        "pv"                : 54,
+        "armor"             : 0,
+        "atk"               : 9,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            }
+        ]
+    },
+    "ece4" :
+    {
+        "name"              : "Zorine",
+        "spritePath"        : "img/entities/icon/earth/zorine.png",
+        "descSpritePath"    : "img/entities/desc/earth/zorine.png",
+        "pv"                : 67,
+        "armor"             : 0,
+        "atk"               : 18,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ece5" :
+    {
+        "name"              : "Soigneuse corrompue",
+        "spritePath"        : "img/entities/icon/earth/soigneuseCorrompue.png",
+        "descSpritePath"    : "img/entities/desc/earth/soigneuseCorrompue.png",
+        "pv"                : 80,
+        "armor"             : 0,
+        "atk"               : 13,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "atk"
+            }
+        ]
+    },
+    "ece8" :
+    {
+        "name"              : "Héros endurci",
+        "spritePath"        : "img/entities/icon/earth/herosEndurci.png",
+        "descSpritePath"    : "img/entities/desc/earth/herosEndurci.png",
+        "pv"                : 78,
+        "armor"             : 0,
+        "atk"               : 14,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "opAround",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ece9" :
+    {
+        "name"              : "Griffeur Tonkino",
+        "spritePath"        : "img/entities/icon/earth/griffeurTonkino.png",
+        "descSpritePath"    : "img/entities/desc/earth/griffeurTonkino.png",
+        "pv"                : 86,
+        "armor"             : 0,
+        "atk"               : 16,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "elemState",
+                "value"         : "muddy"
+            }
+        ]
+    }
 }

@@ -1,3 +1,80 @@
 {
-
+    "cw0" :
+    {
+        "cost"          : {"water" : 3},
+        "entityDescId"  : "ecw0",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "cw2" :
+    {
+        "cost"          : {"water" : 3},
+        "entityDescId"  : "ecw2",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "cw3" :
+    {
+        "cost"          : {"water" : 3},
+        "entityDescId"  : "ecw3",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "cw5" :
+    {
+        "cost"          : {"water" : 4},
+        "entityDescId"  : "ecw5",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "cw14" :
+    {
+        "cost"          : {"water" : 6},
+        "entityDescId"  : "ecw14",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "cw15" :
+    {
+        "cost"          : {"water" : 8},
+        "entityDescId"  : "ecw15",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    }
 }

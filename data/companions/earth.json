@@ -1,3 +1,80 @@
 {
-
+    "ce1" :
+    {
+        "cost"          : {"earth" : 3},
+        "entityDescId"  : "ece1",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "ce3" :
+    {
+        "cost"          : {"earth" : 3},
+        "entityDescId"  : "ece3",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "ce4" :
+    {
+        "cost"          : {"earth" : 3},
+        "entityDescId"  : "ece4",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "ce5" :
+    {
+        "cost"          : {"earth" : 4},
+        "entityDescId"  : "ece5",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "ce8" :
+    {
+        "cost"          : {"earth" : 4},
+        "entityDescId"  : "ece8",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "ce9" :
+    {
+        "cost"          : {"earth" : 4},
+        "entityDescId"  : "ece9",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    }
 }

@@ -1,3 +1,119 @@
 {
-
+    "ca0" :
+    {
+        "cost"          : {"air" : 3},
+        "entityDescId"  : "eca0",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "ca1" :
+    {
+        "cost"          : {"air" : 3},
+        "entityDescId"  : "eca1",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "ca3" :
+    {
+        "cost"          : {"air" : 3},
+        "entityDescId"  : "eca3",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "ca4" :
+    {
+        "cost"          : {"air" : 3},
+        "entityDescId"  : "eca4",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "ca6" :
+    {
+        "cost"          : {"air" : 3},
+        "entityDescId"  : "eca6",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "ca7" :
+    {
+        "cost"          : {"air" : 4},
+        "entityDescId"  : "eca7",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "ca8" :
+    {
+        "cost"          : {"air" : 4},
+        "entityDescId"  : "eca8",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "ca14" :
+    {
+        "cost"          : {"air" : 6},
+        "entityDescId"  : "eca14",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "ca16" :
+    {
+        "cost"          : {"air" : 8},
+        "entityDescId"  : "eca16",
+        "spellDescId"   : "sca6",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    }
 }

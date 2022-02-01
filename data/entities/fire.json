@@ -1,4 +1,103 @@
 {
+    "ecf1" :
+    {
+        "name"              : "Dargone",
+        "spritePath"        : "img/entities/icon/fire/dargone.png",
+        "descSpritePath"    : "img/entities/desc/fire/dargone.png",
+        "pv"                : 60,
+        "armor"             : 0,
+        "atk"               : 10,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "atk"
+            }
+        ]
+    },
+    "ecf4" :
+    {
+        "name"              : "Sentinelle Affutée",
+        "spritePath"        : "img/entities/icon/fire/sentinelleAffutee.png",
+        "descSpritePath"    : "img/entities/desc/fire/sentinelleAffutee.png",
+        "pv"                : 54,
+        "armor"             : 0,
+        "atk"               : 9,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            }
+        ]
+    },
+    "ecf5" :
+    {
+        "name"              : "Igror",
+        "spritePath"        : "img/entities/icon/fire/igror.png",
+        "descSpritePath"    : "img/entities/desc/fire/igror.png",
+        "pv"                : 86,
+        "armor"             : 0,
+        "atk"               : 16,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "elemState",
+                "value"         : "oiled"
+            }
+        ]
+    },
     "ecf7" :
     {
         "name"              : "Séraphin",
@@ -87,6 +186,72 @@
                 "feature"       : "atk",
                 "stopTrigger"   : "always",
                 "value"         : 8
+            }
+        ]
+    },
+    "ecf11" :
+    {
+        "name"              : "Dark Vlad",
+        "spritePath"        : "img/entities/icon/fire/darkVlad.png",
+        "descSpritePath"    : "img/entities/desc/fire/darkVlad.png",
+        "pv"                : 101,
+        "armor"             : 0,
+        "atk"               : 20,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ecf14" :
+    {
+        "name"              : "Oropo",
+        "spritePath"        : "img/entities/icon/fire/oropo.png",
+        "descSpritePath"    : "img/entities/desc/fire/oropo.png",
+        "pv"                : 137,
+        "armor"             : 0,
+        "atk"               : 27,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "",
+                "value"         : "1"
             }
         ]
     },

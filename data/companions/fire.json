@@ -1,4 +1,30 @@
 {
+    "cf1" :
+    {
+        "cost"          : {"fire" : 3},
+        "entityDescId"  : "ecf1",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "cf4" :
+    {
+        "cost"          : {"fire" : 3},
+        "entityDescId"  : "ecf4",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
     "cf7" :
     {
         "cost"          : {"fire" : 4},
@@ -29,7 +55,33 @@
     {
         "cost"          : {"fire" : 5},
         "entityDescId"  : "ecf9",
-        "spellDescId"   : "scf0",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "cf11" :
+    {
+        "cost"          : {"fire" : 5},
+        "entityDescId"  : "ecf11",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "cf14" :
+    {
+        "cost"          : {"fire" : 7},
+        "entityDescId"  : "ecf14",
+        "spellDescId"   : "",
         "placementList" :
         [
             {
@@ -42,7 +94,7 @@
     {
         "cost"          : {"fire" : 9},
         "entityDescId"  : "ecf16",
-        "spellDescId"   : "scf7",
+        "spellDescId"   : "",
         "placementList" :
         [
             {
