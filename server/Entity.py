@@ -292,29 +292,29 @@ class Entity:
     def addAuraBuffer(self, type, nb, addingRule):
         if (addingRule == "WEAK"):
             self._auraBuffer["type"]        = type if (self._auraBuffer["nb"] < 1) else self._auraBuffer["type"]
-            self._auraBuffer["nb"]          = self._auraBuffer["nb"] + nb
+            self._auraBuffer["nb"]          = min(self._auraBuffer["nb"] + nb, 5)
             self._auraBuffer["addingRule"]  = addingRule if self._auraBuffer["addingRule"] == "" else self._auraBuffer["addingRule"]
         elif (addingRule == "STRONG"):
             self._auraBuffer["type"]        = type
-            self._auraBuffer["nb"]          = self._auraBuffer["nb"] + nb
+            self._auraBuffer["nb"]          = min(self._auraBuffer["nb"] + nb, 5)
             self._auraBuffer["addingRule"]  = addingRule
         elif (addingRule == "RESET"):
-            self._auraBuffer["nb"]          = self._auraBuffer["nb"] + nb if(self._auraBuffer["type"] == type) else nb
+            self._auraBuffer["nb"]          = min(self._auraBuffer["nb"] + nb, 5) if(self._auraBuffer["type"] == type) else nb
             self._auraBuffer["type"]        = type
             self._auraBuffer["addingRule"]  = addingRule
         else:
             raise GameException(f"Aura adding rule doesn't exist : {self._auraBuffer['addingRule']}")
 
     def updateAura(self):
-        # WARNING : If auraBuffer not empty
+        # WARNING : Ajouter If auraBuffer not empty
         if (self._auraBuffer["addingRule"] == "WEAK"):
             self._aura["type"] = self._auraBuffer["type"] if (self._aura["nb"] < 1) else self._aura["type"]
-            self._aura["nb"]   = self._aura["nb"] + self._auraBuffer["nb"]
+            self._aura["nb"]   = min(self._aura["nb"] + self._auraBuffer["nb"], 5)
         elif (self._auraBuffer["addingRule"] == "STRONG"):
             self._aura["type"] = self._auraBuffer["type"]
-            self._aura["nb"]   = self._aura["nb"] + self._auraBuffer["nb"]
+            self._aura["nb"]   = min(self._aura["nb"] + self._auraBuffer["nb"], 5)
         elif (self._auraBuffer["addingRule"] == "RESET"):
-            self._aura["nb"]   = self._aura["nb"] + self._auraBuffer["nb"] if(self._aura["type"] == self._auraBuffer["type"]) else self._auraBuffer["nb"]
+            self._aura["nb"]   = min(self._aura["nb"] + self._auraBuffer["nb"], 5) if(self._aura["type"] == self._auraBuffer["type"]) else self._auraBuffer["nb"]
             self._aura["type"] = self._auraBuffer["type"]
         else:
             raise GameException(f"Aura adding rule doesn't exist : {self._auraBuffer['addingRule']}")
@@ -325,8 +325,8 @@ class Entity:
             raise GameException(f"Coding error : aura must be added through the aura buffer")
 
         if (self._aura["nb"] - nb > 0):
-            self._aura["nb"] = min(self._aura["nb"] + nb, 5)
-        elif (self._aura["nb"] - nb == 0):
+            self._aura["nb"] = self._aura["nb"] - nb
+        elif (self._aura["nb"] - nb <= 0):
             self._aura = {"type" : "", "nb" : 0}
         else:
             raise GameException(f"You have not aura anymore !")

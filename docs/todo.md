@@ -3,10 +3,16 @@
 - Gérer les deconnexions
 - Enlever le nom de la partie dans Se reconnecter
 - Bug bodyguard
-- Bug Seraphin ?
-- Bug Charge qui recule
-- Bug Tournoiment
+- Bug Deck invalide
+- Bug Héros endurci
+- Bug allAligned
+- Bug Réserve sur Fulgur
+- Déplacer les logs au lieu des les supprimer
+- Bug gain d'épées sanglantes en tapant
+- Bug déplacement après mort de compa
+- Catch les exceptions générales
 - Régulariser le comportement de myPlayer, opPlayer
+- Ajouter tooltip sur l'historique
 - Mécaniques à dev : 
   - Soutien
   - Respawn de compagnon
@@ -22,6 +28,3 @@
   - Transformation de mécanisme
   - Destruction de mechanisme quand on reconstruit le même 
   - Dépahasage
-
-  Sorts Cra non ajoutés :
-  - 

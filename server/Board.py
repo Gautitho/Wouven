@@ -171,6 +171,7 @@ class Board:
     def entityIdAligned(self, xStart, yStart, xDir, yDir, rangeCondition, team):
         entityIdList = []
         if (yStart == yDir):
+            rangeCondition = BOARD_COLS if rangeCondition == None else rangeCondition
             if (xDir > xStart):
                 for x in range(xStart + 1, min(xStart + rangeCondition + 1, BOARD_COLS)):
                     matchId = self.entityIdOnTile(x, yStart)
@@ -178,12 +179,13 @@ class Board:
                         if (team == "all" or team == self._entitiesDict[matchId].team):
                             entityIdList.append(matchId)
             elif (xDir < xStart):
-                for x in range(xStart - 1, min(xStart - rangeCondition - 1, -1), -1):
+                for x in range(xStart - 1, max(xStart - rangeCondition - 1, -1), -1):
                     matchId = self.entityIdOnTile(x, yStart)
                     if (matchId != None):
                         if (team == "all" or team == self._entitiesDict[matchId].team):
                             entityIdList.append(matchId)
         elif (xStart == xDir):
+            rangeCondition = BOARD_ROWS if rangeCondition == None else rangeCondition
             if (yDir > yStart):
                 for y in range(yStart + 1, min(yStart + rangeCondition + 1, BOARD_ROWS)):
                     matchId = self.entityIdOnTile(xStart, y)
@@ -191,7 +193,7 @@ class Board:
                         if (team == "all" or team == self._entitiesDict[matchId].team):
                             entityIdList.append(matchId)
             elif (yDir < yStart):
-                for y in range(yStart - 1, min(yStart - rangeCondition - 1, -1), -1):
+                for y in range(yStart - 1, max(yStart - rangeCondition - 1, -1), -1):
                     matchId = self.entityIdOnTile(xStart, y)
                     if (matchId != None):
                         if (team == "all" or team == self._entitiesDict[matchId].team):
@@ -425,14 +427,21 @@ class Board:
                             else:
                                 raise GameException("Target must be opponent hero !")
 
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "allfirstAlignedEntity"):
+                        elif (spell.allowedTargetList[allowedTargetIdx] == "allAlignedOrganic"):
+                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
+                            if (targetEntityIdList[-1] in self.entityIdAligned(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"], None, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].types)):
+                                pass
+                            else:
+                                raise GameException("Target is not the first, not mechanism, aligned entity !")
+
+                        elif (spell.allowedTargetList[allowedTargetIdx] == "allFirstAlignedEntity"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, "all")):
                                 pass
                             else:
                                 raise GameException("Target is not the first aligned entity !")
 
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "allfirstAlignedOrganic"):
+                        elif (spell.allowedTargetList[allowedTargetIdx] == "allFirstAlignedOrganic"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].types)):
                                 pass
@@ -752,7 +761,7 @@ class Board:
                                 executed = True
 
                     elif (ability["behavior"] == "distance"):
-                        mult = calcDist(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[abilityEntityIdList[0]].x, self._entitiesDict[abilityEntityIdList[0]].y)
+                        mult = calcDist(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[abilityEntityIdList[0]].x, self._entitiesDict[abilityEntityIdList[0]].y, offset=-1)
                         if (ability["feature"] == "atk"): 
                             self._entitiesDict[self._playersDict[playerId].heroEntityId].modifyAtk(mult*value)
                             executed = True

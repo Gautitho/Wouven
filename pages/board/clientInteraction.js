@@ -198,6 +198,8 @@ function updateHandBar()
     {
         $("#spell_" + i).css("background-image", "");
         $("#spell_" + i).css("background-color", "#FFFFFF");
+        $("#spell_" + i + "_cost").css("background-image", "");
+        $("#spell_" + i + "_cost").text("");
     }
     for (j = 0; j < myPlayer.handSpellList.length; j++)
     {

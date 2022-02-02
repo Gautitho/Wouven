@@ -181,7 +181,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
+                "target"        : "myPlayer",
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
@@ -856,7 +856,7 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/cra/tirFarouche.png",
         "descSpritePath"    : "img/spells/desc/cra/tirFarouche.png",
-        "allowedTargetList" : ["allAligned"],
+        "allowedTargetList" : ["allAlignedOrganic"],
         "abilities"         :
         [
             {
@@ -963,11 +963,11 @@
     {
         "name"              : "Tir féroce",
         "race"              : "cra",
-        "cost"              : 3,
+        "cost"              : 6,
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/cra/tirFeroce.png",
         "descSpritePath"    : "img/spells/desc/cra/tirFeroce.png",
-        "allowedTargetList" : ["allAligned"],
+        "allowedTargetList" : ["allAlignedOrganic"],
         "abilities"         :
         [
             {

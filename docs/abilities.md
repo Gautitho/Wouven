@@ -31,11 +31,12 @@
 |-----|-------------|
 | target | Entity on which the effect is applied |
 | self | Entity which apply the effect |
-| allOrganicAround | All entity, not mechanism, around |
+| allOrganicAround | All entities, not mechanism, around |
 | myOrganicAround | Current player entities, not mechanism, around |
 | opOrganicAround | Opponent entities, not mechanism, around |
-| allOrganicAligned | All entity, not mechanism, on a line |
-| allOrganicCross:n | All entity, not mechanism, in a cross with an n-radius |
+| allOrganicAligned | All entities, not mechanism, on a line |
+| opOrganicAligned | Opponent entities, not mechanism, on a line |
+| allOrganicCross:n | All entities, not mechanism, in a cross with an n-radius |
 | myPlayer | Player who own the entity which apply the effect |
 | opPlayer | |
 | tile | |

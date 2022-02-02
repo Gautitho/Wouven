@@ -10,8 +10,8 @@ def exitOnError(msg):
     print('\033[31m' + "ERROR: " + str(msg) + '\033[0m')
     sys.exit(1)
 
-def calcDist(xa, ya, xb, yb):
-    return (abs(yb - ya) + abs(xb - xa))
+def calcDist(xa, ya, xb, yb, offset=0):
+    return (abs(yb - ya) + abs(xb - xa) + offset)
 
 def checkCondition(triggerError, condition, msg):
     if not(condition):
