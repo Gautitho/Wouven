@@ -11,40 +11,42 @@ gameManager     = GameManager()
 class SimpleChat(WebSocket):
 
     def handle(self):
-        printLog(self.data, type="INFOG", filePath="logs/all.log")
-        printLog(self.data, filePath="logs/client.log")
-        printLog(toString(clientIdList, separator="\n"), filePath="logs/clientList.log", writeMode="w")
+        printLog(self.data, type="INFOG", filePath="all.log")
+        printLog(self.data, filePath="client.log")
+        printLog(toString(clientIdList, separator="\n"), filePath="clientList.log", writeMode="w")
 
         cmdDict = json.loads(self.data)
         msgList = gameManager.run(cmdDict, self.address)
         for msg in msgList:
-            printLog(msg, type="INFOB", filePath="logs/all.log")
-            printLog(msg, filePath="logs/server.log")
+            printLog(msg, type="INFOB", filePath="all.log")
+            printLog(msg, filePath="server.log")
             for i in range(0, len(clientIdList)):
                 if (msg["clientId"] == clientIdList[i]):
                     clientList[i].send_message(msg["content"])
        
     def connected(self):
-        printLog(str(self.address) + ' connected', type="INFO", filePath="logs/all.log")
+        printLog(str(self.address) + ' connected', type="INFO", filePath="all.log")
         clientList.append(self)
         clientIdList.append(self.address)
-        printLog(toString(clientIdList, separator="\n"), filePath="logs/clientList.log", writeMode="w")
+        printLog(toString(clientIdList, separator="\n"), filePath="clientList.log", writeMode="w")
 
     def handle_close(self):
         clientList.remove(self)
         clientIdList.remove(self.address)
         gameManager.clientDisconnect(self.address)
-        printLog(str(self.address) + ' closed', type="INFO", filePath="logs/all.log")
-        printLog(toString(clientIdList, separator="\n"), filePath="logs/clientList.log", writeMode="w")
+        printLog(str(self.address) + ' closed', type="INFO", filePath="all.log")
+        printLog(toString(clientIdList, separator="\n"), filePath="clientList.log", writeMode="w")
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--testMode",       choices=["MANUAL", "REPLAY", "NONE"], default="NONE")
 parser.add_argument("--socketAddr",     default="127.0.0.1")
 parser.add_argument("--port",           default="50000")
+parser.add_argument("--replayFilePath", default="")
 args = parser.parse_args()
 
-os.system("rm -r logs")
-os.mkdir("logs")
+if not(os.path.isdir("logs")):
+    os.mkdir("logs")
+os.mkdir(logDir)
 
 if args.testMode == "MANUAL":
     while 1:
@@ -52,16 +54,16 @@ if args.testMode == "MANUAL":
         cmdDict = json.loads(clientMsg)
         msgList = gameManager.run(cmdDict, ('0', 0))
         for msg in msgList:
-            printLog(msg, type="INFOB", filePath="logs/all.log")
+            printLog(msg, type="INFOB", filePath="all.log")
 
 elif args.testMode == "REPLAY":
-    logFile = open("logs/client.log", "r")
+    logFile = open(replayFilePath, "r")
     for line in logFile:
         cmdDict = json.loads(line)
-        printLog(line, type="INFOG", filePath="logs/all.log")
+        printLog(line, type="INFOG", filePath="all.log")
         msgList = gameManager.run(cmdDict, ('0', 0))
         for msg in msgList:
-            printLog(msg, type="INFOB", filePath="logs/all.log")
+            printLog(msg, type="INFOB", filePath="all.log")
 
 else:
     server = WebSocketServer(args.socketAddr, args.port, SimpleChat)

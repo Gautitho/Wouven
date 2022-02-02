@@ -1,9 +1,10 @@
 import sys
 import traceback
-import logging, logging.handlers
+from datetime import datetime
 from Database import *
 
-DISPLAYED_INFO_TYPE = ["MISC", "INFOB", "INFOG", "INFO", "DEBUG", "WARNING"] #Not displayed : []
+DISPLAYED_INFO_TYPE = ["MISC", "INFOB", "INFOG", "INFO", "DEBUG", "WARNING"] # Not displayed : []
+logDir = "logs/" + datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
 
 def exitOnError(msg):
     traceback.print_stack(file=sys.stdout)
@@ -56,6 +57,6 @@ def printLog(msg, type="MISC", filePath=None, writeMode="a", format="LIGHT"):
             if TEST_ENABLE:
                 print(filePath + " : " + s)
             else:
-                fd = open(filePath, writeMode)
+                fd = open(logDir + "/" + filePath, writeMode)
                 fd.write(s + "\n")
                 fd.close()

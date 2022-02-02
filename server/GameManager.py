@@ -2,6 +2,7 @@ import copy
 import json
 import traceback
 import os
+import sys
 from Game import *
 from GameException import *
 
@@ -91,31 +92,32 @@ class GameManager :
             if (self._currGameList and self._currGameList[self._gameIdx]):
                 self._nextGameList[self._gameIdx] = copy.deepcopy(self._currGameList[self._gameIdx]) # Restore a stable game
 
-        except Exception as e:
+        except:
             print(traceback.format_exc())
-            print("Exception : " + str(e))
+            print("Exception : " + str(sys.exc_info()[0]))
+            sys.exit(1)
 
         # Logs
         s = ""
         for game in self._currGameList:
             s += game.generalLog() + "\n"
         s = s[:-1]
-        printLog(s, filePath="logs/gameList.log", writeMode="w")
+        printLog(s, filePath="gameList.log", writeMode="w")
 
         for game in self._currGameList:
-            if not(os.path.isdir("logs/game_" + game.name)):
-                os.mkdir("logs/game_" + game.name)
-            printLog(game.entityListLog() + "\n", filePath="logs/game_" + game.name + "/entityList.log", writeMode="w")
-            printLog(game.playerListLog() + "\n", filePath="logs/game_" + game.name + "/playerList.log", writeMode="w")
+            if not(os.path.isdir("game_" + game.name)):
+                os.mkdir("game_" + game.name)
+            printLog(game.entityListLog() + "\n", filePath="game_" + game.name + "/entityList.log", writeMode="w")
+            printLog(game.playerListLog() + "\n", filePath="game_" + game.name + "/playerList.log", writeMode="w")
             if (game.name == self._currGameList[self._gameIdx].name):
-                printLog(cmdDict, filePath="logs/game_" + game.name + "/client.log", writeMode="a")
-                printLog(gameCmdList, filePath="logs/game_" + game.name + "/server.log", writeMode="a")
+                printLog(cmdDict, filePath="game_" + game.name + "/client.log", writeMode="a")
+                printLog(gameCmdList, filePath="game_" + game.name + "/server.log", writeMode="a")
 
         s = ""
         for playerId in list(self._knownPlayerIdDict.keys()):
             s += "Player Id : " + str(playerId) + " / Client Id : " + str(self._knownPlayerIdDict[playerId]) + "\n"
         s = s[:-1]
-        printLog(s, filePath="logs/knownPlayerList.log", writeMode="w")
+        printLog(s, filePath="knownPlayerList.log", writeMode="w")
 
         return self._serverCmdList
 
