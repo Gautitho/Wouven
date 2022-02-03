@@ -102,11 +102,10 @@ function joinGame()
 
 function reconnectGame()
 {
-    if (checkArgs(["pseudo", "gameNameReconnect"]))
+    if (checkArgs(["pseudo"]))
     {
         playerId = document.getElementById("pseudo").value;
-        gameName = document.getElementById("gameNameReconnect").value;
-        clientCmd = {"cmd" : "RECONNECT", "playerId" : playerId, "gameName" : gameName};
+        clientCmd = {"cmd" : "RECONNECT", "playerId" : playerId};
         socket.send(JSON.stringify(clientCmd));
     }
 }

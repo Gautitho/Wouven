@@ -8,7 +8,7 @@ from Spell import *
 class Player:
 
     def __init__(self, deck, team, pseudo):
-        #self.checkDeck(deck)
+        self.checkDeck(deck)
         self._heroDescId                = deck["heroDescId"]
         self._race                      = db.heroes[self._heroDescId]["race"]
         self._team                      = team
@@ -42,12 +42,14 @@ class Player:
             elif (deck["spellDescIdList"].count(spellDescId) > 1):
                 raise GameException(f"You can't pick a spell ({spellDescId}) more than 1 time !")
             else:
-                if (db.spells[spellDescId]["race"] == deck["heroDescId"]):
-                    heroSpellFound = True
-                elif (db.spells[spellDescId]["race"] != db.heroes[deck["heroDescId"]]["race"]):
-                    raise GameException(f"You have picked a spell ({spellDescId}) with the wrong race !")
-        if not(heroSpellFound):
-            raise GameException("You haven't picked a your hero spell !")
+                if not(TEST_ENABLE):
+                    if (db.spells[spellDescId]["race"] == deck["heroDescId"]):
+                        heroSpellFound = True
+                    elif (db.spells[spellDescId]["race"] != db.heroes[deck["heroDescId"]]["race"]):
+                        raise GameException(f"You have picked a spell ({spellDescId}) with the wrong race !")
+        if not(TEST_ENABLE):
+            if not(heroSpellFound):
+                raise GameException("You haven't picked your hero spell !")
         for companionDescId in deck["companionDescIdList"]:
             if not(companionDescId in db.companions):
                 raise GameException(f"The companion ({companionDescId}) you picked does not exist !")
