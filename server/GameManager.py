@@ -52,6 +52,7 @@ class GameManager :
 
     def run(self, cmdDict, clientId):
         self._serverCmdList = []
+        gameCmdList = []
         try:
             self.garbageCollector()
             self.checkCmdArgs(cmdDict, ["cmd", "playerId"])
@@ -68,8 +69,8 @@ class GameManager :
                 self.checkCmdArgs(cmdDict, ["gameName", "deck"])
                 self.JoinGame(clientId, cmdDict["gameName"], playerId, cmdDict["deck"])
             elif (clientCmd == "RECONNECT"):
-                self.checkCmdArgs(cmdDict, ["gameName"])
-                self.Reconnect(clientId, cmdDict["gameName"], playerId)
+                self.checkCmdArgs(cmdDict, [])
+                self.Reconnect(clientId, playerId)
             elif (clientCmd == "FIND_GAME"):
                 self.checkCmdArgs(cmdDict, ["deck"])
                 self.FindGame(clientId, playerId, cmdDict["deck"])
@@ -80,7 +81,6 @@ class GameManager :
             self._gameIdx = self.getClientGame(clientId)
 
             if (self._gameIdx != None):
-                gameCmdList = [] # Create list for the exception case
                 gameCmdList = self._nextGameList[self._gameIdx].run(cmdDict)
                 for gameCmd in gameCmdList:
                     self._serverCmdList.append({"clientId" : self._knownPlayerIdDict[gameCmd["playerId"]], "content" : gameCmd["content"]})
@@ -194,9 +194,9 @@ class GameManager :
                 return
         raise GameException(f"Game {gameName} doesn't exist")
 
-    def Reconnect(self, clientId, gameName, playerId):
+    def Reconnect(self, clientId, playerId):
         if not(playerId in list(self._knownPlayerIdDict.keys())):
-            raise GameException(f"Player {playerId} is not in the game {gameName}")
+            raise GameException(f"Player {playerId} is not in a game")
         
         self._knownPlayerIdDict[playerId] = clientId
 
@@ -209,9 +209,10 @@ class GameManager :
             serverCmd = {"cmd" : "WAIT_GAME_START"}
             self._serverCmdList.append({"clientId" : clientId, "content" : json.dumps(serverCmd)})
         else:
-            self.create("Game_" + self._waitingPlayer["playerId"] + "_" + playerId)
-            self.join(self._waitingPlayer["clientId"], "Game_" + self._waitingPlayer["playerId"] + "_" + playerId, self._waitingPlayer["playerId"], self._waitingPlayer["deck"])
-            self.join(clientId, "Game_" + self._waitingPlayer["playerId"] + "_" + playerId, playerId, deck)
+            gameName = "Game_" + str(self._nextGameId)
+            self.create(gameName)
+            self.join(self._waitingPlayer["clientId"], gameName, self._waitingPlayer["playerId"], self._waitingPlayer["deck"])
+            self.join(clientId, gameName, playerId, deck)
             self._waitingPlayer = {}
 
     def CancelFindGame(self, clientId, playerId):
