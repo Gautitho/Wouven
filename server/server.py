@@ -57,7 +57,7 @@ if args.testMode == "MANUAL":
             printLog(msg, type="INFOB", filePath="all.log")
 
 elif args.testMode == "REPLAY":
-    logFile = open(replayFilePath, "r")
+    logFile = open(args.replayFilePath, "r")
     for line in logFile:
         cmdDict = json.loads(line)
         printLog(line, type="INFOG", filePath="all.log")

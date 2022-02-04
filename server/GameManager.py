@@ -113,8 +113,8 @@ class GameManager :
         printLog(s, filePath="gameList.log", writeMode="w")
 
         for game in self._currGameList:
-            if not(os.path.isdir("game_" + game.name)):
-                os.mkdir("game_" + game.name)
+            if not(os.path.isdir(logDir + "/game_" + game.name)):
+                os.mkdir(logDir + "/game_" + game.name)
             printLog(game.entityListLog() + "\n", filePath="game_" + game.name + "/entityList.log", writeMode="w")
             printLog(game.playerListLog() + "\n", filePath="game_" + game.name + "/playerList.log", writeMode="w")
             if (game.name == self._currGameList[self._gameIdx].name):

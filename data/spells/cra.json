@@ -1309,7 +1309,7 @@
         "abilities"         :
         [
             {
-                "trigger"       : "spellcast",
+                "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionlist" : [],
                 "break"         : "false",
@@ -1380,7 +1380,7 @@
         "abilities"         :
         [
             {
-                "trigger"       : "spellcast",
+                "trigger"       : "spellCast",
                 "target"        : "target",
                 "conditionlist" : [],
                 "break"         : "false",
