@@ -13,7 +13,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "tile",
-                "conditionList" : [{"feature" :"range", "value" : 3, "operator" : "<="}],
+                "conditionList" : [{"feature" :"rangeFromFirstTarget", "value" : 3, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "summon",
                 "feature"       : "emx0",
@@ -35,7 +35,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "tile",
-                "conditionList" : [{"feature" :"range", "value" : 3, "operator" : "<="}],
+                "conditionList" : [{"feature" :"rangeFromFirstTarget", "value" : 3, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "summon",
                 "feature"       : "emx0",

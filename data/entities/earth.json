@@ -23,7 +23,7 @@
             },
             {
                 "trigger"       : "attack",
-                "target"        : "myPlayer",
+                "target"        : "myHero",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -113,7 +113,7 @@
             },
             {
                 "trigger"       : "attack",
-                "target"        : "myPlayer",
+                "target"        : "myHero",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",

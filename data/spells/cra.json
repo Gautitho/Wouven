@@ -181,7 +181,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "self",
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
@@ -470,7 +470,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "self",
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "opAroundSelf", "value" : 0}],
@@ -639,7 +639,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "self",
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "opAroundSelf", "value" : 0}],
@@ -839,7 +839,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "self",
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">"}],
@@ -1128,7 +1128,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "self",
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "windy"}],
@@ -1217,7 +1217,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : "myPlayer",
                 "behavior"      : "draw",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">"}],
@@ -1328,7 +1328,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "self",
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "windy"}],
@@ -1345,7 +1345,7 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/cra/archerie.png",
         "descSpritePath"    : "img/spells/desc/cra/archerie.png",
-        "allowedTargetList" : ["myPlayer"],
+        "allowedTargetList" : ["myHero"],
         "abilities"         :
         [
             {
@@ -1359,7 +1359,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "self",
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [],

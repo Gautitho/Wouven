@@ -93,6 +93,7 @@ class GameManager :
                 self._nextGameList[self._gameIdx] = copy.deepcopy(self._currGameList[self._gameIdx]) # Restore a stable game
 
         except:
+            #TODO: Remettre le recover 
             print(traceback.format_exc())
             print("Exception : " + str(sys.exc_info()[0]))
             sys.exit(1)

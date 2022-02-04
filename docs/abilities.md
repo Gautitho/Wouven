@@ -37,7 +37,9 @@
 | allOrganicAligned | All entities, not mechanism, on a line |
 | opOrganicAligned | Opponent entities, not mechanism, on a line |
 | allOrganicCross:n | All entities, not mechanism, in a cross with an n-radius |
-| myPlayer | Player who own the entity which apply the effect |
+| myHero | Hero entity of the current player |
+| opHero | Hero entity of the opponent of the current player |
+| myPlayer | |
 | opPlayer | |
 | tile | |
 | currentSpell |  |
@@ -50,6 +52,7 @@ This is an example : [{"feature" : "elemState", "value" : "oiled", "operator" : 
 | Key | Description |
 |-----|-------------|
 | elemState | |
+| elem | |
 | targetPv | |
 | opAroundSelf | |
 | turn | op, my |
@@ -57,6 +60,10 @@ This is an example : [{"feature" : "elemState", "value" : "oiled", "operator" : 
 | oneByTurn | |
 | auraNb | |
 | targetPv | |
+| myCompanions | |
+| rangeFromHero | |
+| rangeFromFirstTarget | |
+| rangeFromSelf | Not implemented (ex : Bond de Goultard) |
 
 ### break
 

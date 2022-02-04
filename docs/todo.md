@@ -1,15 +1,11 @@
 # TODO List
 
 - Gérer les deconnexions
-- Enlever le nom de la partie dans Se reconnecter
 - Bug bodyguard
-- Bug Deck invalide
 - Bug Héros endurci
-- Bug Réserve sur Fulgur
-- Déplacer les logs au lieu des les supprimer
 - Bug déplacement après mort de compa
 - Catch les exceptions générales
-- Régulariser le comportement de myPlayer, opPlayer
+- Mieux ranger les auras
 - Ajouter tooltip sur l'historique
 - Mécaniques à dev : 
   - Soutien

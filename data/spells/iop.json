@@ -7,7 +7,7 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/iop/epeesSanglantes.png",
         "descSpritePath"    : "img/spells/desc/iop/epeesSanglantes.png",
-        "allowedTargetList" : ["myPlayer"],
+        "allowedTargetList" : ["myHero"],
         "abilities"         :
         [
 
@@ -124,7 +124,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "myHero",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "melee",
@@ -156,7 +156,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" :"range", "value" : 5, "operator" : "<="}],
+                "conditionList" : [{"feature" :"rangeFromHero", "value" : 5, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -205,7 +205,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" :"range", "value" : 2, "operator" : "<="}],
+                "conditionList" : [{"feature" :"rangeFromFirstTarget", "value" : 2, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
@@ -317,7 +317,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "allOrganicAligned",
-                "conditionList" : [{"feature" :"range", "value" : 3, "operator" : "<="}],
+                "conditionList" : [{"feature" :"rangeFromHero", "value" : 3, "operator" : "<="}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -335,7 +335,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "opOrganicAligned",
-                "conditionList" : [{"feature" :"range", "value" : 3, "operator" : "<="}],
+                "conditionList" : [{"feature" :"rangeFromHero", "value" : 3, "operator" : "<="}],
                 "break"         : "False",
                 "behavior"      : "opAffected",
                 "feature"       : "gauges",
@@ -405,7 +405,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "myHero",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "melee",
@@ -828,7 +828,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" :"range", "value" : 5, "operator" : "<="}],
+                "conditionList" : [{"feature" :"rangeFromHero", "value" : 5, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -925,7 +925,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "myHero",
                 "behavior"      : "melee",
                 "break"         : "False",
                 "conditionList" : [],
@@ -957,7 +957,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" :"range", "value" : 3, "operator" : "<="}],
+                "conditionList" : [{"feature" :"rangeFromHero", "value" : 3, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -1138,7 +1138,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "myHero",
                 "behavior"      : "melee",
                 "break"         : "False",
                 "conditionList" : [],
@@ -1179,7 +1179,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" :"range", "value" : 5, "operator" : "<="}],
+                "conditionList" : [{"feature" :"rangeFromHero", "value" : 5, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -1562,7 +1562,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" :"range", "value" : 5, "operator" : "<="}],
+                "conditionList" : [{"feature" :"rangeFromHero", "value" : 5, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -1610,7 +1610,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "myHero",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",

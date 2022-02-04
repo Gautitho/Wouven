@@ -30,8 +30,8 @@
 | opOrganic | All of the opponent of the current player entity which are not mechanism |
 | opMechanism | All of the opponent of the current player mechanisms |
 | self | Entity specified in 'race' field |
-| myPlayer | Hero entity of the current player |
-| opPlayer | Hero entity of the opponent of the current player |
+| myHero | Hero entity of the current player |
+| opHero | Hero entity of the opponent of the current player |
 | allAlignedOrganic | All entity, not mechanism, aligned with the caster |
 | allFirstAlignedEntity | All entity aligned with the caster and with no entity between the caster and the target |
 | allFirstAlignedOrganic | All entity, not mechanism, aligned with the caster and with no entity between the caster and the target |

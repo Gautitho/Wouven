@@ -44,7 +44,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" :"range", "value" : 2, "operator" : "<="}],
+                "conditionList" : [{"feature" :"rangeFromSelf", "value" : 2, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",

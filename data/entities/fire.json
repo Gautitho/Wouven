@@ -23,7 +23,7 @@
             },
             {
                 "trigger"       : "attack",
-                "target"        : "myPlayer",
+                "target"        : "myHero",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -122,7 +122,7 @@
             },
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : "targetPlayer",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -180,7 +180,7 @@
             {
                 "trigger"       : "always",
                 "target"        : "self",
-                "conditionList" : [{"feature" : "allyCompanions", "value" : 1}],
+                "conditionList" : [{"feature" : "myCompanions", "value" : 1}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "atk",
@@ -251,7 +251,7 @@
                 "break"         : "False",
                 "behavior"      : "draw",
                 "feature"       : "",
-                "value"         : "1"
+                "value"         : 1
             }
         ]
     },

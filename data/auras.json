@@ -19,7 +19,7 @@
                 "target"        : "self",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "aura",
+                "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : 12
             }

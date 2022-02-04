@@ -536,31 +536,37 @@ class Board:
         
                 # Choose abilityEntity
                 if (ability["target"] == "target"):
-                    abilityEntityIdList = [targetEntityIdList[targetIdx]]
+                    abilityTargetIdList = [targetEntityIdList[targetIdx]]
                 elif (ability["target"] == "self"):
-                    abilityEntityIdList = [selfId]
+                    abilityTargetIdList = [selfId]
                 elif (ability["target"] == "myPlayer"):
-                    abilityEntityIdList = [self._playersDict[playerId].heroEntityId]
+                    abilityTargetIdList = [playerId]
                 elif (ability["target"] == "opPlayer"):
-                    abilityEntityIdList = [self._playersDict[opPlayerId].heroEntityId]
+                    abilityTargetIdList = [opPlayerId]
+                elif (ability["target"] == "targetPlayer"):
+                    abilityTargetIdList = [self.getPlayerIdFromTeam(self._entitiesDict[targetEntityIdList[targetIdx]].team)]
+                elif (ability["target"] == "myHero"):
+                    abilityTargetIdList = [self._playersDict[playerId].heroEntityId]
+                elif (ability["target"] == "opHero"):
+                    abilityTargetIdList = [self._playersDict[opPlayerId].heroEntityId]
                 elif (ability["target"] == "allOrganicAround"):
-                    abilityEntityIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, "all")
+                    abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, "all")
                 elif (ability["target"] == "opOrganicAround"):
-                    abilityEntityIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self.getOpTeam(self._entitiesDict[selfId].team))
+                    abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self.getOpTeam(self._entitiesDict[selfId].team))
                 elif (ability["target"] == "myOrganicAround"):
-                    abilityEntityIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[selfId].team)
+                    abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[selfId].team)
                 elif (ability["target"] == "allOrganicAligned"):
-                    abilityEntityIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"], rangeCondition, "all")
+                    abilityTargetIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"], rangeCondition, "all")
                 elif (ability["target"] == "opOrganicAligned"):
-                    abilityEntityIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"], rangeCondition, self.getOpTeam(self._entitiesDict[selfId].team))
+                    abilityTargetIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"], rangeCondition, self.getOpTeam(self._entitiesDict[selfId].team))
                 elif (ability["target"].split(':')[0] == "allOrganicCross"):
-                    abilityEntityIdList = self.entityIdInCross(positionList[targetIdx]["x"], positionList[targetIdx]["y"], int(ability["target"].split(':')[1]), "all")
+                    abilityTargetIdList = self.entityIdInCross(positionList[targetIdx]["x"], positionList[targetIdx]["y"], int(ability["target"].split(':')[1]), "all")
                 elif (ability["target"] == "tile"):
-                    abilityEntityIdList = [None]
+                    abilityTargetIdList = [None]
                 elif (ability["target"] == "currentSpell"):
-                    abilityEntityIdList = [selfId]
+                    abilityTargetIdList = [selfId]
                 elif (ability["target"] == "hand"):
-                    abilityEntityIdList = range(len(self._playersDict[playerId].handSpellList)) # WARNING : if a spell is draw, it is not taken
+                    abilityTargetIdList = range(len(self._playersDict[playerId].handSpellList)) # WARNING : if a spell is draw, it is not taken
                 else:
                     raise GameException("Wrong ability target !")
 
@@ -579,8 +585,8 @@ class Board:
 
                     if (condition["feature"] == "elemState"):
                         if (operator == "=" and condition["value"] in ["oiled", "wet", "muddy", "windy"]):
-                            if (self._entitiesDict[abilityEntityIdList[0]].elemState == condition["value"]):
-                                self._entitiesDict[abilityEntityIdList[0]].setElemState("")
+                            if (self._entitiesDict[abilityTargetIdList[0]].elemState == condition["value"]):
+                                self._entitiesDict[abilityTargetIdList[0]].setElemState("")
                             else:
                                 conditionsValid = False
                         else:
@@ -595,7 +601,7 @@ class Board:
                         else:
                             raise GameException("Elem of the spell does not exist !")
 
-                    elif (condition["feature"] == "allyCompanions"):
+                    elif (condition["feature"] == "myCompanions"):
                         allyCompanions = 0
                         for companion in self._playersDict[playerId].companionList:
                             if (companion["state"] == "alive"):
@@ -606,7 +612,7 @@ class Board:
                         else:
                             conditionsValid = False
 
-                    elif (condition["feature"] == "range"):
+                    elif (condition["feature"] == "rangeFromHero"):
                         if (operator == "=" and calcDist(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"]) == condition["value"]):
                             rangeCondition = condition["value"]
                         elif (operator == "<=" and calcDist(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, positionList[targetIdx]["x"], positionList[targetIdx]["y"]) <= condition["value"]):
@@ -652,21 +658,21 @@ class Board:
                             conditionsValid = False
 
                     elif (condition["feature"] == "targetPv"):
-                        if (operator == "<=" and self._entitiesDict[abilityEntityIdList[0]].pv <= condition["value"]):
+                        if (operator == "<=" and self._entitiesDict[abilityTargetIdList[0]].pv <= condition["value"]):
                             pass
                         else:
                             conditionsValid = False
 
                     elif (condition["feature"] == "auraNb"):
-                        if (operator == "=" and self._entitiesDict[abilityEntityIdList[0]].aura["nb"] == condition["value"]):
+                        if (operator == "=" and self._entitiesDict[selfId].aura["nb"] == condition["value"]):
                             pass
-                        elif (operator == ">=" and self._entitiesDict[abilityEntityIdList[0]].aura["nb"] >= condition["value"]):
+                        elif (operator == ">=" and self._entitiesDict[selfId].aura["nb"] >= condition["value"]):
                             pass
                         else:
                             conditionsValid = False
 
                     elif (condition["feature"] == "oneByTurn"):
-                        if (condition["value"] in self._entitiesDict[abilityEntityIdList[0]].oneByTurnAbilityList):
+                        if (condition["value"] in self._entitiesDict[selfId].oneByTurnAbilityList):
                             conditionsValid = False
                         else:
                             pass
@@ -680,7 +686,7 @@ class Board:
                 if (conditionsValid):
                     for condition in ability["conditionList"]:
                         if (condition["feature"] == "oneByTurn"):
-                            self._entitiesDict[abilityEntityIdList[0]].appendOneByTurnAbility(condition["value"])
+                            self._entitiesDict[abilityTargetIdList[0]].appendOneByTurnAbility(condition["value"])
 
                 # Handle variable value case
                 if isinstance(ability["value"], int):
@@ -704,7 +710,7 @@ class Board:
                 if (conditionsValid or force):
                     if (ability["behavior"] in ["", "aura"]):
                         if (ability["feature"] == "pv" or ability["feature"] == "stealLife"):
-                            for abilityEntityId in abilityEntityIdList:
+                            for abilityEntityId in abilityTargetIdList:
                                 guarded = False
                                 if (value < 0):
                                     for state in self._entitiesDict[abilityEntityId].states:
@@ -720,67 +726,66 @@ class Board:
                                     self._entitiesDict[selfId].modifyPv(-removedPv)
                                 executed = True
                         elif (ability["feature"] == "elemState"):
-                            for abilityEntityId in abilityEntityIdList:
+                            for abilityEntityId in abilityTargetIdList:
                                 self._entitiesDict[abilityEntityId].setElemState(value)
                                 executed = True
                         elif (ability["feature"] == "pm"):
-                            for abilityEntityId in abilityEntityIdList:
+                            for abilityEntityId in abilityTargetIdList:
                                 self._entitiesDict[abilityEntityId].modifyPm(value)
                                 executed = True
                         elif (ability["feature"] == "gauges"):
                             if isinstance(value, dict):
                                 for gaugeType in list(value.keys()):
-                                    self._playersDict[playerId].modifyGauge(gaugeType, value[gaugeType])
+                                    self._playersDict[abilityTargetIdList[0]].modifyGauge(gaugeType, value[gaugeType])
                                     executed = True
                             else:
                                 raise GameException("Ability value for gauges must be a dict !")
                         elif (ability["feature"] == "atk"):
-                            for abilityEntityId in abilityEntityIdList:
+                            for abilityEntityId in abilityTargetIdList:
                                 self._entitiesDict[abilityEntityId].modifyAtk(value)
                                 executed = True
                         elif (ability["feature"] == "position"):
-                            for abilityEntityId in abilityEntityIdList:
-                                self._entitiesDict[abilityEntityId].tp(positionList[value]["x"], positionList[value]["y"])
-                                executed = True
+                            self._entitiesDict[abilityTargetIdList[targetIdx]].tp(positionList[value]["x"], positionList[value]["y"])
+                            executed = True
                         elif (ability["feature"] == "paStock"):
-                            self._playersDict[self.getPlayerIdFromTeam(self._entitiesDict[abilityEntityId].team)].modifyPaStock(value)
+                            self._playersDict[abilityTargetIdList[0]].modifyPaStock(value)
                             executed = True
                         elif (ability["feature"] == "armor"):
-                            for abilityEntityId in abilityEntityIdList:
+                            for abilityEntityId in abilityTargetIdList:
                                 self._entitiesDict[abilityEntityId].modifyArmor(value)
                                 executed = True
 
                     elif (ability["behavior"] == "melee"):
-                        mult = len(self.entityIdAroundTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, self._playersDict[self.getOpPlayerId(playerId)].team))
+                        mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team))
                         if (ability["feature"] == "atk"): 
-                            self._entitiesDict[self._playersDict[playerId].heroEntityId].modifyAtk(mult*value)
+                            self._entitiesDict[abilityTargetIdList[targetIdx]].modifyAtk(mult*value)
                             executed = True
                         elif (ability["feature"] == "cost"):
-                            for spellId in abilityEntityIdList:
-                                self._playersDict[playerId].modifySpellCost(spellId, mult*value)
+                            for spellId in abilityTargetIdList:
+                                self._playersDict[abilityTargetIdList[0]].modifySpellCost(spellId, mult*value)
                                 executed = True
 
                     elif (ability["behavior"] == "distance"):
-                        mult = calcDist(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[abilityEntityIdList[0]].x, self._entitiesDict[abilityEntityIdList[0]].y, offset=-1)
+                        mult = calcDist(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[abilityTargetIdList[0]].x, self._entitiesDict[abilityTargetIdList[0]].y, offset=-1)
                         if (ability["feature"] == "atk"): 
-                            self._entitiesDict[self._playersDict[playerId].heroEntityId].modifyAtk(mult*value)
+                            self._entitiesDict[selfId].modifyAtk(mult*value)
                             executed = True
                         elif (ability["feature"] == "cost"):
-                            for spellId in abilityEntityIdList:
+                            for spellId in abilityTargetIdList:
                                 self._playersDict[playerId].modifySpellCost(spellId, mult*value)
                                 executed = True
                         elif (ability["feature"] == "pv"):
-                            for abilityEntityId in abilityEntityIdList:
+                            for abilityEntityId in abilityTargetIdList:
                                 self._entitiesDict[abilityEntityId].modifyPv(mult*value)
                                 executed = True
 
                     elif (ability["behavior"] == "auraNb"):
-                        if (self._entitiesDict[self._playersDict[playerId].heroEntityId].aura):
-                            mult = self._entitiesDict[self._playersDict[playerId].heroEntityId].aura["nb"]
+                        if (self._entitiesDict[selfId].aura):
+                            mult = self._entitiesDict[selfId].aura["nb"]
                         else:
                             mult = 0
                         if (ability["feature"] == "cost"):
-                            for spellId in abilityEntityIdList:
+                            for spellId in abilityTargetIdList:
                                 self._playersDict[playerId].modifySpellCost(spellId, mult*value)
                                 executed = True
 
@@ -808,7 +813,7 @@ class Board:
                         executed = True
 
                     elif (ability["behavior"] == "charge"):
-                        for abilityEntityId in abilityEntityIdList:
+                        for abilityEntityId in abilityTargetIdList:
                             if (self._entitiesDict[selfId].x == self._entitiesDict[abilityEntityId].x):
                                 if (self._entitiesDict[selfId].y < self._entitiesDict[abilityEntityId].y):
                                     self._entitiesDict[selfId].tp(self._entitiesDict[abilityEntityId].x, self._entitiesDict[abilityEntityId].y - 1)
@@ -831,23 +836,23 @@ class Board:
                                 raise GameException("Target not aligned with selfEntity !")
 
                     elif (ability["behavior"] == "push"):
-                        for abilityEntityId in abilityEntityIdList:
+                        for abilityEntityId in abilityTargetIdList:
                             self.pushEntity(abilityEntityId, positionList[1]["x"], positionList[1]["y"], value)
                             executed = True
 
                     elif (ability["behavior"] == "pushBack"):
-                        for abilityEntityId in abilityEntityIdList:
+                        for abilityEntityId in abilityTargetIdList:
                             self.pushEntity(abilityEntityId, positionList[0]["x"], positionList[0]["y"], -value)
                             executed = True
 
                     elif (ability["behavior"] == "explosion"):
-                        for abilityEntityId in abilityEntityIdList:
+                        for abilityEntityId in abilityTargetIdList:
                             for entityId in self.entityIdAroundTile(self._entitiesDict[abilityEntityId].x, self._entitiesDict[abilityEntityId].y, self._playersDict[self.getOpPlayerId(playerId)].team):
                                 self._entitiesDict[entityId].modifyPv(value)
                                 executed = True
 
                     elif (ability["behavior"] == "bounce"):
-                        for abilityEntityId in abilityEntityIdList:
+                        for abilityEntityId in abilityTargetIdList:
                             self._entitiesDict[abilityEntityId].modifyPv(value)
                             executed = True
                             affectedEntityList = [abilityEntityId]
@@ -860,7 +865,7 @@ class Board:
 
                     elif (ability["behavior"] == "permanentState"): # TODO : Change behavior to ongoingAbilities
                         state = {}
-                        for abilityEntityId in abilityEntityIdList:
+                        for abilityEntityId in abilityTargetIdList:
                             if (ability["feature"] == "bodyguard"):
                                 state["feature"]    = "bodyguard"
                                 state["value"]      = abilityEntityId
@@ -875,7 +880,7 @@ class Board:
 
                     elif (ability["behavior"] == "addState"):
                         state = {}
-                        for abilityEntityId in abilityEntityIdList:
+                        for abilityEntityId in abilityTargetIdList:
                             state["feature"]    = ability["feature"]
                             state["value"]      = value
                             self._entitiesDict[abilityEntityId].addState(state)
@@ -885,14 +890,14 @@ class Board:
                         self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, None, {}, None)
 
                     elif (ability["behavior"] == "attackAgain"):
-                        for abilityEntityId in abilityEntityIdList:
+                        for abilityEntityId in abilityTargetIdList:
                             self._entitiesDict[abilityEntityId].attackAgain()
 
                     elif (ability["behavior"] == "freeAura"):
-                        self._entitiesDict[self._playersDict[playerId].heroEntityId].freeAura()
+                        self._entitiesDict[selfId].freeAura()
 
                     elif (ability["behavior"] == "draw"):
-                        self._playersDict[playerId].draw(value, ability["feature"])
+                        self._playersDict[abilityTargetIdList[0]].draw(value, ability["feature"])
 
                     # If stopTrigger is defined, the ability must be added to the ongoingAbilityList
                     if stopTrigger and not(force):
@@ -903,7 +908,7 @@ class Board:
                         ongoingAbilityDict["stopTrigger"]   = stopTrigger
                         self._ongoingAbilityList.append(ongoingAbilityDict)
 
-                # Check if an aura has been used
+                # Check if an aura has been used / aura must be specified only once by aura ability
                 if (executed and ability["behavior"] == "aura"):
                     auraUsed = True
 
