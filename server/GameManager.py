@@ -93,10 +93,17 @@ class GameManager :
                 self._nextGameList[self._gameIdx] = copy.deepcopy(self._currGameList[self._gameIdx]) # Restore a stable game
 
         except:
-            #TODO: Remettre le recover 
-            print(traceback.format_exc())
-            print("Exception : " + str(sys.exc_info()[0]))
-            sys.exit(1)
+            if TEST_ENABLE:
+                print(traceback.format_exc())
+                print("Exception : " + str(sys.exc_info()[0]))
+                sys.exit(1)
+            else:
+                printLog(str(traceback.format_exc()), filePath="error.log", writeMode="a")
+                printLog(str(sys.exc_info()[0]), filePath="error.log", writeMode="a")
+                serverCmd = {"cmd" : "ERROR", "msg" : "Fatal error : " + str(sys.exc_info()[0])}
+                self._serverCmdList.append({"clientId" : clientId, "content" : json.dumps(serverCmd)})
+                if (self._currGameList and self._currGameList[self._gameIdx]):
+                    self._nextGameList[self._gameIdx] = copy.deepcopy(self._currGameList[self._gameIdx]) # Restore a stable game
 
         # Logs
         s = ""
