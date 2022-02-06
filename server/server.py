@@ -1,8 +1,11 @@
 import argparse
 import os
+import pathlib
 from simple_websocket_server import WebSocketServer, WebSocket
 from GameManager import *
 from functions import *
+
+DEFAULT_REPLAY_FILE_PATH = str(max(pathlib.Path("logs").glob('*/'), key=os.path.getmtime)) + "/client.log"
 
 clientList      = []
 clientIdList    = []
@@ -41,12 +44,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--testMode",       choices=["MANUAL", "REPLAY", "NONE"], default="NONE")
 parser.add_argument("--socketAddr",     default="127.0.0.1")
 parser.add_argument("--port",           default="50000")
-parser.add_argument("--replayFilePath", default="")
+parser.add_argument("--replayFilePath", default=DEFAULT_REPLAY_FILE_PATH)
 args = parser.parse_args()
-
-if not(os.path.isdir("logs")):
-    os.mkdir("logs")
-os.mkdir(logDir)
 
 if args.testMode == "MANUAL":
     while 1:
@@ -66,5 +65,8 @@ elif args.testMode == "REPLAY":
             printLog(msg, type="INFOB", filePath="all.log")
 
 else:
+    if not(os.path.isdir("logs")):
+        os.mkdir("logs")
+    os.mkdir(logDir)
     server = WebSocketServer(args.socketAddr, args.port, SimpleChat)
     server.serve_forever()
