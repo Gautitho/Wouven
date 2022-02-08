@@ -108,7 +108,7 @@ class Board:
             raise GameException(f"Team ({team}) does not exist !")
 
     def entityIdOnTile(self, x, y):
-        for entityId in range(0, len(self._entitiesDict)):
+        for entityId in list(self._entitiesDict.keys()):
             if ((self._entitiesDict[entityId].x == x) and (self._entitiesDict[entityId].y == y)):
                 return entityId
         return None
@@ -489,7 +489,7 @@ class Board:
                 self.removeOngoingAbilities("spellCast") # WARNING : This line is here only because, for now, the only spellCast ongoingAbilities affect cost
                 self.executeAbilities(spell.abilities, "spellCast", playerId, selfEntityId, targetEntityIdList, spellElem=spell.elem)
                 self.tileGarbageCollector()
-                for entityId in range(0, len(self._entitiesDict)):
+                for entityId in list(self._entitiesDict.keys()):
                     self.executeAbilities(self._entitiesDict[entityId].abilities, "spellCast", playerId, entityId, targetEntityIdList, spellElem=spell.elem)
 
             else:
