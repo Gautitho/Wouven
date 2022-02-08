@@ -1,0 +1,5 @@
+#cmd.exe /c 'wt.exe -w0 --title Server wsl ssh gautitho@192.168.1.96 "export TERM=xterm-256color\; cd workspace/Wouven\; python server/server.py --socketAddr 192.168.1.96 --port 50000"'
+cmd.exe /c 'wt.exe -w0 --title all wsl ssh gautitho@192.168.1.96 "export TERM=xterm-256color\; cd workspace/Wouven\; watch -n1 tail \$(ls -td logs/* | head -1)/all.log"'
+cmd.exe /c 'wt.exe -w0 --title clientList wsl ssh gautitho@192.168.1.96 "export TERM=xterm-256color\; cd workspace/Wouven\; watch -n1 tail \$(ls -td logs/* | head -1)/clientList.log"'
+cmd.exe /c 'wt.exe -w0 --title error wsl ssh gautitho@192.168.1.96 "export TERM=xterm-256color\; cd workspace/Wouven\; watch -n1 tail \$(ls -td logs/* | head -1)/error.log"'
+cmd.exe /c 'wt.exe -w0 --title work wsl ssh gautitho@192.168.1.96 "export TERM=xterm-256color\; cd workspace/Wouven/logs\;$SHELL"'
