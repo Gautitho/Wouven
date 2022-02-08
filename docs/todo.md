@@ -11,6 +11,7 @@
 - Gestion de l'overdraw
 - Update comportement de lance de glace et poing de glace
 - Ajouter tooltip sur l'historique
+- Tester fondre le sol, tournoiment, poing de glace
 - Mécaniques à dev : 
   - Soutien
   - Respawn de compagnon

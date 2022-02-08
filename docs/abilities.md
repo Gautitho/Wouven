@@ -29,7 +29,7 @@
 
 | Key | Description |
 |-----|-------------|
-| target | Entity on which the effect is applied |
+| target | Entity or tile on which the effect is applied |
 | self | Entity which apply the effect |
 | allOrganicAround | All entities, not mechanism, around |
 | myOrganicAround | Current player entities, not mechanism, around |
@@ -41,7 +41,6 @@
 | opHero | Hero entity of the opponent of the current player |
 | myPlayer | |
 | opPlayer | |
-| tile | |
 | currentSpell |  |
 | hand | All spells in hand |
 
@@ -82,7 +81,7 @@ This is an example : [{"feature" : "elemState", "value" : "oiled", "operator" : 
 | atk | |
 | gauges | Value must be a dict |
 | paStock | |
-| position | |
+| position | Value is targetIdx of the destination among the spellTargetList |
 | elemState | |
 | cost | Target must be spell |
 | "auraName" | Behavior must be addAura |

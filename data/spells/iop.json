@@ -209,7 +209,7 @@
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
-                "value"         : "target:1"
+                "value"         : 1
             },
             {
                 "trigger"       : "spellCast",
@@ -552,38 +552,7 @@
             }
         ]
     },
-     "si15":
-    {
-        "name"              : "Poing de glace",
-        "race"              : "iop",
-        "cost"              : 3,
-        "elem"              : "water",
-        "spritePath"        : "img/spells/icon/iop/poingDeGlace.png",
-        "descSpritePath"    : "img/spells/desc/iop/poingDeGlace.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -14
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "conditionList" : [],
-                "break"         : "False",
-                "feature"       : "paStock",
-                "value"         : 1
-            }
-        ]
-    },
-     "si16":
+    "si16":
     {
         "name"              : "Tsunami",
         "race"              : "iop",
@@ -623,7 +592,7 @@
             }
         ]
     },
-     "si17":
+    "si17":
     {
         "name"              : "Morsure glaciale",
         "race"              : "iop",
@@ -691,46 +660,6 @@
                 "break"         : "False",
                 "feature"       : "gauges",
                 "value"         : {"water" : 2}
-            }
-        ]
-    },
-    "si19":
-    {
-        "name"              : "Lance de glace",
-        "race"              : "iop",
-        "cost"              : 5,
-        "elem"              : "water",
-        "spritePath"        : "img/spells/icon/iop/lanceDeGlace.png",
-        "descSpritePath"    : "img/spells/desc/iop/lanceDeGlace.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -21
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "conditionList" : [],
-                "break"         : "False",
-                "feature"       : "gauges",
-                "value"         : {"water" : 1}
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "paStock",
-                "value"         : 1
             }
         ]
     },
@@ -1602,7 +1531,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" : "rangeFromFirstTarget", "value" : 1, "operator" : "<=", "targetIdx" : 1}, {"feature" : "elemState", "value" : "oiled"}],
+                "conditionList" : [{"feature" : "rangeFromFirstTarget", "value" : 1, "operator" : "<=", "target" : "spellTarget:1"}, {"feature" : "elemState", "value" : "oiled"}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -1615,7 +1544,7 @@
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "position",
-                "value"         : "target:1"
+                "value"         : 1
             },
             {
                 "trigger"       : "spellCast",

@@ -104,7 +104,7 @@
                 "target"        : "self",
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
-                "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
                 "feature"       : "a2",
                 "value"         : "1"
             }
@@ -184,7 +184,7 @@
                 "target"        : "self",
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
-                "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
                 "feature"       : "a2",
                 "value"         : 2
             }
@@ -999,64 +999,6 @@
             }
         ]
     },
-    "sc29":
-    {
-        "name"              : "Tir immobilisant",
-        "race"              : "cra",
-        "cost"              : 8,
-        "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/cra/tirImmobilisant.png",
-        "descSpritePath"    : "img/spells/desc/cra/tirImmobilisant.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -59
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "paStock",
-                "value"         : 1
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "gauges",
-                "value"         : {"earth" : 2}
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "behavior"      : "addState",
-                "break"         : "False",
-                "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
-                "feature"       : "locked",
-                "value"         : 0
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "opAround",
-                "behavior"      : "addState",
-                "break"         : "False",
-                "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
-                "feature"       : "locked",
-                "value"         : 0
-            }
-        ]
-    },
     "sc30":
     {
         "name"              : "Pointe acérée",
@@ -1131,7 +1073,7 @@
                 "target"        : "self",
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
-                "conditionList" : [{"feature" : "elemState", "value" : "windy"}],
+                "conditionList" : [{"feature" : "elemState", "value" : "windy", "target" : "spellTarget"}],
                 "feature"       : "a2",
                 "value"         : 1
             }
@@ -1331,7 +1273,7 @@
                 "target"        : "self",
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
-                "conditionList" : [{"feature" : "elemState", "value" : "windy"}],
+                "conditionList" : [{"feature" : "elemState", "value" : "windy", "target" : "spellTarget"}],
                 "feature"       : "a2",
                 "value"         : 2
             }

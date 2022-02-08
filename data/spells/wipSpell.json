@@ -1,4 +1,85 @@
 {
+    "si15":
+    {
+        "name"              : "Poing de glace",
+        "race"              : "iop",
+        "cost"              : 3,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/iop/poingDeGlace.png",
+        "descSpritePath"    : "img/spells/desc/iop/poingDeGlace.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -14
+            },
+            {
+                "trigger"       : "always",
+                "target"        : "currentSpell",
+                "behavior"      : "melee",
+                "break"         : "False",
+                "conditionList" : [],
+                "stopTrigger"   : "always",
+                "feature"       : "cost",
+                "value"         : -1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "si19":
+    {
+        "name"              : "Lance de glace",
+        "race"              : "iop",
+        "cost"              : 5,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/iop/lanceDeGlace.png",
+        "descSpritePath"    : "img/spells/desc/iop/lanceDeGlace.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -21
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "currentSpell",
+                "behavior"      : "melee",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "cost",
+                "value"         : -1
+            }
+        ]
+    },
     "sc12":
     {
         "name"              : "Trait venu d'ailleurs",
@@ -156,6 +237,64 @@
                 "conditionList" : [],
                 "feature"       : "gauges",
                 "value"         : {"earth" : 1}
+            }
+        ]
+    },
+    "sc29":
+    {
+        "name"              : "Tir immobilisant",
+        "race"              : "cra",
+        "cost"              : 8,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/cra/tirImmobilisant.png",
+        "descSpritePath"    : "img/spells/desc/cra/tirImmobilisant.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -59
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "behavior"      : "addState",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
+                "feature"       : "locked",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "opAround",
+                "behavior"      : "addState",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
+                "feature"       : "locked",
+                "value"         : 0
             }
         ]
     },
