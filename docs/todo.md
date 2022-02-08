@@ -2,16 +2,11 @@
 
 - Gérer les deconnexions
 - Bug bodyguard
-- Bug Héros endurci (entityId à la mort d'un compagnon)
-- Bug déplacement après mort de compa
-- Catch les exceptions générales
 - Mieux ranger les auras
-- Condition affectant une cible différente de l'ability (ex : gain de mire sur EE)
-- Script pour ouvrir tous les logs d'un coup
 - Gestion de l'overdraw
 - Update comportement de lance de glace et poing de glace
 - Ajouter tooltip sur l'historique
-- Tester fondre le sol, tournoiment, poing de glace
+- Tester d'entrer en game avec un sort inexistant en mode REPLAY pour catch une erreur
 - Mécaniques à dev : 
   - Soutien
   - Respawn de compagnon

@@ -100,7 +100,7 @@ class Entity:
         return self._pm
 
     @property
-    def types(self):
+    def typeList(self):
         return list(self._typeList)
 
     @property

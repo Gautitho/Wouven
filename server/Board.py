@@ -378,14 +378,14 @@ class Board:
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allOrganic"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] != None and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].types)):
+                            if (targetEntityIdList[-1] != None and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
                                pass
                             else:
                                raise GameException("An entity, not mechanism, must be targeted !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allMechanism"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] != None and "mechanism" in self._entitiesDict[targetEntityIdList[-1]].types):
+                            if (targetEntityIdList[-1] != None and "mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList):
                                pass
                             else:
                                raise GameException("An entity, mechanism, must be targeted !")
@@ -399,14 +399,14 @@ class Board:
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "myOrganic"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[playerId].team and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].types)):
+                            if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[playerId].team and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
                                pass
                             else:
                                raise GameException("An entity, owned by you, not mechanism, must be targeted !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "myMechanism"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[playerId].team and "mechanism" in self._entitiesDict[targetEntityIdList[-1]].types):
+                            if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[playerId].team and "mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList):
                                pass
                             else:
                                raise GameException("An entity, owned by you, mechanism, must be targeted !")
@@ -420,14 +420,14 @@ class Board:
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "opOrganic"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[self.getOpPlayerId(playerId)].team and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].types)):
+                            if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[self.getOpPlayerId(playerId)].team and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
                                pass
                             else:
                                raise GameException("An entity, owned by your opponent, not mechanism, must be targeted !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "opMechanism"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[self.getOpPlayerId(playerId)].team and "mechanism" in self._entitiesDict[targetEntityIdList[-1]].types):
+                            if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[self.getOpPlayerId(playerId)].team and "mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList):
                                pass
                             else:
                                raise GameException("An entity, owned by your opponent, not mechanism, must be targeted !")
@@ -448,7 +448,7 @@ class Board:
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allAlignedOrganic"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] in self.entityIdAligned(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"], None, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].types)):
+                            if (targetEntityIdList[-1] in self.entityIdAligned(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"], None, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
                                 pass
                             else:
                                 raise GameException("Target is not the first, not mechanism, aligned entity !")
@@ -462,7 +462,7 @@ class Board:
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allFirstAlignedOrganic"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].types)):
+                            if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
                                 pass
                             else:
                                 raise GameException("Target is not the first, not mechanism, aligned entity !")
@@ -488,9 +488,9 @@ class Board:
                 # Execute spell
                 self.removeOngoingAbilities("spellCast") # WARNING : This line is here only because, for now, the only spellCast ongoingAbilities affect cost
                 self.executeAbilities(spell.abilities, "spellCast", playerId, selfEntityId, targetEntityIdList, spellElem=spell.elem)
-                self.tileGarbageCollector()
-                for entityId in list(self._entitiesDict.keys()):
+                for entityId in [e for e in list(self._entitiesDict.keys()) if not("tile" in str(e))]:
                     self.executeAbilities(self._entitiesDict[entityId].abilities, "spellCast", playerId, entityId, targetEntityIdList, spellElem=spell.elem)
+                self.tileGarbageCollector()
 
             else:
                 raise GameException("Not enough pa to cast this spell !")
@@ -575,10 +575,16 @@ class Board:
                     abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self.getOpTeam(self._entitiesDict[selfId].team))
                 elif (ability["target"] == "myOrganicAround"):
                     abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[selfId].team)
-                elif (ability["target"] == "allOrganicAligned"):
-                    abilityTargetIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, rangeCondition, "all")
-                elif (ability["target"] == "opOrganicAligned"):
-                    abilityTargetIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, rangeCondition, self.getOpTeam(self._entitiesDict[selfId].team))
+                elif (ability["target"].split(':')[0] == "allOrganicAligned"):
+                    if (len(ability["target"].split(':')) > 1):
+                        abilityTargetIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, int(ability["target"].split(':')[1]), "all")
+                    else:
+                        abilityTargetIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, None, "all")
+                elif (ability["target"].split(':')[0] == "opOrganicAligned"):
+                    if (len(ability["target"].split(':')) > 1):
+                        abilityTargetIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, int(ability["target"].split(':')[1]), self.getOpTeam(self._entitiesDict[selfId].team))
+                    else:
+                        abilityTargetIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, None, self.getOpTeam(self._entitiesDict[selfId].team))
                 elif (ability["target"].split(':')[0] == "allOrganicCross"):
                     abilityTargetIdList = self.entityIdInCross(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, int(ability["target"].split(':')[1]), "all")
                 elif (ability["target"] == "currentSpell"):
@@ -657,7 +663,7 @@ class Board:
 
                     elif (condition["feature"] == "target"):
                         if (condition["value"] == "opOrganic"):
-                            if (targetEntityIdList != [None] and self.getOpTeam(self._entitiesDict[conditionTargetId].team) == self._playersDict[playerId].team):
+                            if (type(self._entitiesDict[conditionTargetId]).__name__ == "Entity" and not("mechanism" in self._entitiesDict[conditionTargetId].typeList) and self.getOpTeam(self._entitiesDict[conditionTargetId].team) == self._playersDict[playerId].team):
                                 pass
                             else:
                                 conditionsValid = False
@@ -815,8 +821,7 @@ class Board:
                                 executed = True
 
                     elif (ability["behavior"] == "opAffected"):
-                        if (ability["target"] == "opOrganicAligned"):
-                            opsAffected = len(self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[abilityTargetIdList[targetIdx]].x, self._entitiesDict[abilityTargetIdList[targetIdx]].y, rangeCondition, self.getOpTeam(self._entitiesDict[selfId].team)))
+                        opsAffected = len(abilityTargetIdList)
                         if (ability["feature"] == "gauges"):
                             if isinstance(value, dict):
                                 for gaugeType in list(value.keys()):

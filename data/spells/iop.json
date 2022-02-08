@@ -150,7 +150,7 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iop/chargeExplosive.png",
         "descSpritePath"    : "img/spells/desc/iop/chargeExplosive.png",
-        "allowedTargetList" : ["allfirstAlignedOrganic"], 
+        "allowedTargetList" : ["allFirstAlignedOrganic"], 
         "abilities"         :
         [
             {
@@ -316,8 +316,8 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "allOrganicAligned",
-                "conditionList" : [{"feature" :"rangeFromHero", "value" : 3, "operator" : "<="}],
+                "target"        : "allOrganicAligned:3",
+                "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -334,8 +334,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "opOrganicAligned",
-                "conditionList" : [{"feature" :"rangeFromHero", "value" : 3, "operator" : "<="}],
+                "target"        : "opOrganicAligned:3",
+                "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "opAffected",
                 "feature"       : "gauges",
@@ -751,7 +751,7 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/iop/chargeGlaciale.png",
         "descSpritePath"    : "img/spells/desc/iop/chargeGlaciale.png",
-        "allowedTargetList" : ["allfirstAlignedOrganic"], 
+        "allowedTargetList" : ["allFirstAlignedOrganic"], 
         "abilities"         :
         [
             {
@@ -880,7 +880,7 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/iop/chargeCourte.png",
         "descSpritePath"    : "img/spells/desc/iop/chargeCourte.png",
-        "allowedTargetList" : ["allfirstAlignedOrganic"], 
+        "allowedTargetList" : ["allFirstAlignedOrganic"], 
         "abilities"         :
         [
             {
@@ -1485,7 +1485,7 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/iop/chargeTonnerreEnSerie.png",
         "descSpritePath"    : "img/spells/desc/iop/chargeTonnerreEnSerie.png",
-        "allowedTargetList" : ["allfirstAlignedOrganic"], 
+        "allowedTargetList" : ["allFirstAlignedOrganic"], 
         "abilities"         :
         [
             {
