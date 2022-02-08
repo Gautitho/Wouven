@@ -184,11 +184,11 @@ class Game:
         action              = {}
         action["type"]      = actionType
         if (actionType == "move"):            
-            action["source"]    = {"spritePath" : db.entities[sourceDescId]["spritePath"], "team" : sourceTeam}
+            action["source"]    = {"spritePath" : db.entities[sourceDescId]["spritePath"], "descSpritePath" : db.entities[sourceDescId]["descSpritePath"], "team" : sourceTeam}
         elif (actionType == "spellCast"):
-            action["source"]    = {"spritePath" : db.spells[sourceDescId]["spritePath"], "team" : sourceTeam}
+            action["source"]    = {"spritePath" : db.spells[sourceDescId]["spritePath"], "descSpritePath" : db.spells[sourceDescId]["descSpritePath"], "team" : sourceTeam}
         elif (actionType == "summon"):
-            action["source"]    = {"spritePath" : db.entities[sourceDescId]["spritePath"], "team" : sourceTeam}
+            action["source"]    = {"spritePath" : db.entities[sourceDescId]["spritePath"], "descSpritePath" : db.entities[sourceDescId]["descSpritePath"], "team" : sourceTeam}
         else:
             action["source"]    = {"spritePath" : "", "team" : sourceTeam}
         targetList          = []
@@ -196,7 +196,7 @@ class Game:
             for position in targetPositionList:
                 entityId = self._board.entityIdOnTile(position["x"], position["y"])
                 if (entityId != None):
-                    targetList.append({"spritePath" : db.entities[self._board.entitiesDict[entityId].descId]["spritePath"], "team" : self._board.entitiesDict[entityId].team})
+                    targetList.append({"spritePath" : db.entities[self._board.entitiesDict[entityId].descId]["spritePath"], "descSpritePath" : db.entities[self._board.entitiesDict[entityId].descId]["descSpritePath"],"team" : self._board.entitiesDict[entityId].team})
         action["targetList"] = copy.deepcopy(targetList)
 
         self._actionList.insert(0, dict(action))

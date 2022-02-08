@@ -227,32 +227,38 @@ function updateHistoric()
         {
             $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].source.spritePath + ")");
             $("#historic0_" + i).css("border-color", actionList[i].source.team);
+            tooltipArray.push(new Tooltip(document.getElementById("historic0_" + i), PROJECT_ROOT_PATH + actionList[i].source.descSpritePath, "img"));
             $("#historic1_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/move.png)");
             if (actionList[i].targetList.length > 0)
             {
                 $("#historic2_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].targetList[0].spritePath + ")");
                 $("#historic2_" + i).css("border-color", actionList[i].targetList[0].team);
+                tooltipArray.push(new Tooltip(document.getElementById("historic2_" + i), PROJECT_ROOT_PATH + actionList[i].targetList[0].descSpritePath, "img"));
             }
         }
         else if (actionList[i].type == "spellCast")
         {
             $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].source.spritePath + ")"); // TODO : Normaliser ce comportement (ne plus utiliser les data bases dans le client et passer les spritePath par commandes)
             $("#historic0_" + i).css("border-color", actionList[i].source.team);
+            tooltipArray.push(new Tooltip(document.getElementById("historic0_" + i), PROJECT_ROOT_PATH + actionList[i].source.descSpritePath, "img"));
             if (actionList[i].targetList.length > 0)
             {
                 $("#historic1_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].targetList[0].spritePath + ")");
                 $("#historic1_" + i).css("border-color", actionList[i].targetList[0].team);
+                tooltipArray.push(new Tooltip(document.getElementById("historic1_" + i), PROJECT_ROOT_PATH + actionList[i].targetList[0].descSpritePath, "img"));
             }
             if (actionList[i].targetList.length > 1)
             {
                 $("#historic2_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].targetList[1].spritePath + ")");
                 $("#historic2_" + i).css("border-color", actionList[i].targetList[1].team);
+                tooltipArray.push(new Tooltip(document.getElementById("historic2_" + i), PROJECT_ROOT_PATH + actionList[i].targetList[1].descSpritePath, "img"));
             }
         }
         else if (actionList[i].type == "summon")
         {
             $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].source.spritePath + ")");
             $("#historic0_" + i).css("border-color", actionList[i].source.team);
+            tooltipArray.push(new Tooltip(document.getElementById("historic0_" + i), PROJECT_ROOT_PATH + actionList[i].source.descSpritePath, "img"));
         }
         else if (actionList[i].type == "useReserve")
         {
