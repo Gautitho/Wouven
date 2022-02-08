@@ -47,6 +47,10 @@ parser.add_argument("--port",           default="50000")
 parser.add_argument("--replayFilePath", default=DEFAULT_REPLAY_FILE_PATH)
 args = parser.parse_args()
 
+if not(os.path.isdir("logs")):
+    os.mkdir("logs")
+os.mkdir(logDir)
+
 if args.testMode == "MANUAL":
     while 1:
         clientMsg = input()
@@ -65,8 +69,5 @@ elif args.testMode == "REPLAY":
             printLog(msg, type="INFOB", filePath="all.log")
 
 else:
-    if not(os.path.isdir("logs")):
-        os.mkdir("logs")
-    os.mkdir(logDir)
     server = WebSocketServer(args.socketAddr, args.port, SimpleChat)
     server.serve_forever()

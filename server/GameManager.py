@@ -89,7 +89,7 @@ class GameManager :
         except GameException as ge:
             serverCmd = {"cmd" : "ERROR", "msg" : ge.errorMsg}
             self._serverCmdList.append({"clientId" : clientId, "content" : json.dumps(serverCmd)})
-            if (self._currGameList and self._currGameList[self._gameIdx]):
+            if (self._gameIdx != None and self._currGameList and self._currGameList[self._gameIdx]):
                 self._nextGameList[self._gameIdx] = copy.deepcopy(self._currGameList[self._gameIdx]) # Restore a stable game
 
         except:
@@ -102,7 +102,7 @@ class GameManager :
                 printLog(str(sys.exc_info()[0]), filePath="error.log", writeMode="a")
                 serverCmd = {"cmd" : "ERROR", "msg" : "Fatal error : " + str(sys.exc_info()[0])}
                 self._serverCmdList.append({"clientId" : clientId, "content" : json.dumps(serverCmd)})
-                if (self._currGameList and self._currGameList[self._gameIdx]):
+                if (self._gameIdx != None and self._currGameList and self._currGameList[self._gameIdx]):
                     self._nextGameList[self._gameIdx] = copy.deepcopy(self._currGameList[self._gameIdx]) # Restore a stable game
 
         # Logs
@@ -117,7 +117,7 @@ class GameManager :
                 os.mkdir(logDir + "/game_" + game.name)
             printLog(game.entityListLog() + "\n", filePath="game_" + game.name + "/entityList.log", writeMode="w")
             printLog(game.playerListLog() + "\n", filePath="game_" + game.name + "/playerList.log", writeMode="w")
-            if (game.name == self._currGameList[self._gameIdx].name):
+            if (self._gameIdx != None and game.name == self._currGameList[self._gameIdx].name):
                 printLog(cmdDict, filePath="game_" + game.name + "/client.log", writeMode="a")
                 printLog(gameCmdList, filePath="game_" + game.name + "/server.log", writeMode="a")
 

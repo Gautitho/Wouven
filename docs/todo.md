@@ -7,6 +7,10 @@
 - Update comportement de lance de glace et poing de glace
 - Ajouter tooltip sur l'historique
 - Tester d'entrer en game avec un sort inexistant en mode REPLAY pour catch une erreur
+- Dans index.js, le deckcode n'est pas pris en compte
+- Si 2 joueurs sont matchés mais que l'un d'entre eux a un mauvais deck, l'autre rentre dans la game tout seul et est coincé, le premier n'est plus en matchmaking non plus
+- Bug mires sacrées
+- Bug flèche éclatante
 - Mécaniques à dev : 
   - Soutien
   - Respawn de compagnon
