@@ -1235,7 +1235,7 @@
                 "break"         : "False",
                 "conditionList" : [],
                 "feature"       : "gauges",
-                "value"         : {"air" : 1}
+                "value"         : {"air" : 2}
             }
         ]
     },
@@ -1253,7 +1253,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionlist" : [],
+                "conditionList" : [],
                 "break"         : "false",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -1324,7 +1324,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionlist" : [],
+                "conditionList" : [],
                 "break"         : "false",
                 "behavior"      : "",
                 "feature"       : "pv",
