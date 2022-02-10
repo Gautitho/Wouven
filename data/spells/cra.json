@@ -105,8 +105,8 @@
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
-                "feature"       : "a2",
-                "value"         : "1"
+                "feature"       : "ac0",
+                "value"         : 1
             }
         ]
     },
@@ -185,7 +185,7 @@
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
-                "feature"       : "a2",
+                "feature"       : "ac0",
                 "value"         : 2
             }
         ]
@@ -474,7 +474,7 @@
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "opAroundSelf", "value" : 0}],
-                "feature"       : "a2",
+                "feature"       : "ac0",
                 "value"         : 1
             }
         ]
@@ -643,7 +643,7 @@
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "opAroundSelf", "value" : 0}],
-                "feature"       : "a2",
+                "feature"       : "ac0",
                 "value"         : 2
             }
         ]
@@ -843,7 +843,7 @@
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">"}],
-                "feature"       : "a2",
+                "feature"       : "ac0",
                 "value"         : 1
             }
         ]
@@ -1074,7 +1074,7 @@
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "windy", "target" : "spellTarget"}],
-                "feature"       : "a2",
+                "feature"       : "ac0",
                 "value"         : 1
             }
         ]
@@ -1274,7 +1274,7 @@
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "windy", "target" : "spellTarget"}],
-                "feature"       : "a2",
+                "feature"       : "ac0",
                 "value"         : 2
             }
         ]
@@ -1305,7 +1305,7 @@
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
                 "conditionList" : [],
-                "feature"       : "a2",
+                "feature"       : "ac0",
                 "value"         : 2
             }
         ]
@@ -1447,7 +1447,7 @@
                 "conditionList" : [{"feature" : "auraNb", "value" : 0, "operator" : "="}],
                 "break"         : "False",
                 "behavior"      : "addAuraWeak",
-                "feature"       : "a2",
+                "feature"       : "ac0",
                 "value"         : 2
             },
             {

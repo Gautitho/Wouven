@@ -17,7 +17,7 @@
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addAuraReset",
-                "feature"       : "a0",
+                "feature"       : "ai2",
                 "value"         : 3
             }
         ]

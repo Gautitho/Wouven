@@ -171,7 +171,8 @@ class Entity:
         dic["pm"]               = self._pm
         dic["typeList"]         = self._typeList
         dic["elemState"]        = self._elemState
-        dic["aura"]             = self._aura
+        extendedAuraDict        = {"name" : "", "spritePath" : ""} if self._aura["type"] == "" else {"name" : db.auras[self._aura["type"]]["name"], "spritePath" : db.auras[self._aura["type"]]["spritePath"]}
+        dic["aura"]             = {**self._aura, **extendedAuraDict}
         dic["states"]           = self._states
         dic["abilities"]        = self._abilities
         dic["canMove"]          = self._canMove

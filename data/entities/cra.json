@@ -28,7 +28,7 @@
                 "conditionList" : [{"feature" : "opAroundSelf", "value" : 0}],
                 "break"         : "False",
                 "behavior"      : "addAuraWeak",
-                "feature"       : "a2",
+                "feature"       : "ac0",
                 "value"         : 1
             }
         ]
@@ -57,12 +57,12 @@
                 "value"         : "-atk"
             },
             {
-                "trigger"       : "always",
+                "trigger"       : "alwaysAfterEnd",
                 "target"        : "self",
                 "conditionList" : [{"feature" : "auraNb", "value" : 3, "operator" : ">="}],
                 "break"         : "False",
                 "behavior"      : "addAuraStrong",
-                "feature"       : "a4",
+                "feature"       : "ac4",
                 "value"         : 0
             }
         ]
@@ -96,7 +96,7 @@
                 "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "oneByTurn", "value" : "ehc1"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "addAuraWeak",
-                "feature"       : "a2",
+                "feature"       : "ac0",
                 "value"         : 1
             }
         ]

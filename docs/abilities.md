@@ -18,7 +18,8 @@
 
 | Key | Description |
 |-----|-------------|
-| always | At each action of all players |
+| always | After each action of each player but before endAction |
+| alwaysAfterEnd | After each action of each player but after endAction |
 | attack | |
 | attacked | |
 | spellCast | |

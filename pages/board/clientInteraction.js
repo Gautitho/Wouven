@@ -2,11 +2,6 @@
 var state = "INIT"; 
 var turn = "blue";
 var team = "blue";
-var entitiesDataBase = {}
-var spellsDataBase = {}
-var companionsDataBase = {}
-var heroesDataBase = {}
-var aurasDataBase = {}
 var selectedEntity      = -1;
 var selectedSpell       = -1;
 var selectedMyCompanion = -1;
@@ -16,34 +11,6 @@ var opPlayer = {};
 var boardTileList = [];
 var tooltipArray = [];
 var actionList = [];
-
-$.getJSON(PROJECT_ROOT_PATH + "data/entities/air.json",         function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/entities/water.json",       function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/entities/fire.json",        function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/entities/earth.json",       function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/entities/iop.json",         function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/entities/xelor.json",       function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/entities/cra.json",         function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/entities/sacrieur.json",    function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/spells/air.json",           function(data) {spellsDataBase = {...spellsDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/spells/water.json",         function(data) {spellsDataBase = {...spellsDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/spells/fire.json",          function(data) {spellsDataBase = {...spellsDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/spells/earth.json",         function(data) {spellsDataBase = {...spellsDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/spells/iop.json",           function(data) {spellsDataBase = {...spellsDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/spells/xelor.json",         function(data) {spellsDataBase = {...spellsDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/spells/cra.json",           function(data) {spellsDataBase = {...spellsDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/spells/sacrieur.json",      function(data) {spellsDataBase = {...spellsDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/spells/misc.json",          function(data) {spellsDataBase = {...spellsDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/heroes/iop.json",           function(data) {heroesDataBase = {...heroesDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/heroes/xelor.json",         function(data) {heroesDataBase = {...heroesDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/heroes/cra.json",           function(data) {heroesDataBase = {...heroesDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/heroes/sacrieur.json",      function(data) {heroesDataBase = {...heroesDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/companions/air.json",       function(data) {companionsDataBase = {...companionsDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/companions/water.json",     function(data) {companionsDataBase = {...companionsDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/companions/fire.json",      function(data) {companionsDataBase = {...companionsDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/companions/earth.json",     function(data) {companionsDataBase = {...companionsDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/companions/multi.json",     function(data) {companionsDataBase = {...companionsDataBase, ...data}});
-$.getJSON(PROJECT_ROOT_PATH + "data/auras.json",                function(data) {aurasDataBase = {...aurasDataBase, ...data}});
 
 function removeTooltips()
 {
@@ -108,7 +75,7 @@ function updateBoard()
         }
         if (entities[entityId].aura.type != "")
         {
-            imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + "img/states/aura.png), ";
+            imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + "img/states/" + entities[entityId].aura.spritePath + ".png), ";
         }
         imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + entities[entityId].spritePath + ")";
         $("#board_" + entities[entityId].x + "_" + entities[entityId].y).css("background-image", imgStr);
@@ -136,7 +103,7 @@ function updateBoard()
         }
         if (entities[entityId].aura.type != "")
         {
-            tooltipStr = tooltipStr + "\n" + "Aura : " + aurasDataBase[entities[entityId].aura.type].name + " (" + entities[entityId].aura.nb + ")";
+            tooltipStr = tooltipStr + "\n" + "Aura : " + entities[entityId].aura.name + " (" + entities[entityId].aura.nb + ")";
         }
         tooltipArray.push(new Tooltip(document.getElementById("board_" + entities[entityId].x + "_" + entities[entityId].y), tooltipStr, "txt"));
     }

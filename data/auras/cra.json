@@ -1,0 +1,140 @@
+{
+    "ac0" :
+    {
+        "name"          : "Mires",
+        "spritePath"    : "img/states/sight.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -9
+            }
+        ]
+    },
+    "ac1" :
+    {
+        "name"          : "Mires soignantes",
+        "spritePath"    : "img/states/improvedSight.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -9
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : 9
+            }
+        ]
+    },
+    "ac2" :
+    {
+        "name"          : "Mires puissantes",
+        "spritePath"    : "img/states/improvedSight.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -18
+            }
+        ]
+    },
+    "ac3" :
+    {
+        "name"          : "Mires motivantes",
+        "spritePath"    : "img/states/improvedSight.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -9
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "ac4" :
+    {
+        "name"          : "Mires sacrees",
+        "spritePath"    : "img/states/improvedSight.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -9
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "",
+                "value"         : 1
+            }
+        ]
+    },
+    "ac5" :
+    {
+        "name"          : "Mires aeriennes",
+        "spritePath"    : "img/states/improvedSight.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -9
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            }
+        ]
+    }
+}

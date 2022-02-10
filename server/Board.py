@@ -252,8 +252,11 @@ class Board:
     def always(self):
         self.garbageCollector()
         self.removeOngoingAbilities("always")
+        self.removeOngoingAbilities("alwaysAfterEnd")
         for entityId in list(self._entitiesDict.keys()):
             self.executeAbilities(self._entitiesDict[entityId].abilities, "always", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [])
+            self._entitiesDict[entityId].endAction()
+            self.executeAbilities(self._entitiesDict[entityId].abilities, "alwaysAfterEnd", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [])
             self._entitiesDict[entityId].endAction()
         for playerId in list(self._playersDict.keys()):
             for spellId in range(0, len(self._playersDict[playerId].handSpellList)):

@@ -1,0 +1,45 @@
+{
+    "ai1" :
+    {
+        "name"          : "Poings volants",
+        "spritePath"    : "img/states/aura.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "move",
+                "target"        : "opOrganicAround",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -17
+            }
+        ]
+    },
+    "ai2" :
+    {
+        "name"          : "Epees sanglantes",
+        "spritePath"    : "img/states/aura.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -12
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 12
+            }
+        ]
+    }
+}

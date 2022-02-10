@@ -140,7 +140,7 @@
         "armor"             : 0,
         "atk"               : 10,
         "pm"                : 3,
-        "aura"              : {"type" : "a1", "nb" : 3},
+        "aura"              : {"type" : "ai1", "nb" : 3},
         "states"            : [],
         "abilities"         :
         [
