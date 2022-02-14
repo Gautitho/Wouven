@@ -1,7 +1,6 @@
 # TODO List
 
 - Gérer les deconnexions
-- Bug bodyguard
 - Update comportement de lance de glace et poing de glace
 - Dans index.js, le deckcode n'est pas pris en compte
 - Si 2 joueurs sont matchés mais que l'un d'entre eux a un mauvais deck, l'autre rentre dans la game tout seul et est coincé, le premier n'est plus en matchmaking non plus

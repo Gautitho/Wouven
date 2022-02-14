@@ -98,6 +98,40 @@
             }
         ]
     },
+    "ecf6" :
+    {
+        "name"              : "Championne sanglante",
+        "spritePath"        : "img/entities/icon/fire/championneSanglante.png",
+        "descSpritePath"    : "img/entities/desc/fire/championneSanglante.png",
+        "pv"                : 63,
+        "armor"             : 0,
+        "atk"               : 7,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "stopTrigger"   : "death",
+                "target"        : "myHero",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addState",
+                "feature"       : "bodyguard",
+                "value"         : 0
+            }
+        ]
+    },
     "ecf7" :
     {
         "name"              : "Séraphin",
@@ -179,12 +213,12 @@
             },
             {
                 "trigger"       : "always",
+                "stopTrigger"   : "always",
                 "target"        : "self",
                 "conditionList" : [{"feature" : "myCompanions", "value" : 1}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "atk",
-                "stopTrigger"   : "always",
                 "value"         : 8
             }
         ]

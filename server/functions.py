@@ -55,7 +55,8 @@ def printLog(msg, type="MISC", filePath=None, writeMode="a", format="LIGHT"):
             print(s)
         else:
             if TEST_ENABLE:
-                print(filePath + " : " + s)
+                #print(filePath + " : " + s)
+                pass
             else:
                 fd = open(logDir + "/" + filePath, writeMode)
                 fd.write(s + "\n")

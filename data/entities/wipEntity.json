@@ -71,39 +71,6 @@
             }
         ]
     },
-    "ecf6" :
-    {
-        "name"              : "Championne sanglante",
-        "spritePath"        : "img/entities/icon/fire/championneSanglante.png",
-        "descSpritePath"    : "img/entities/desc/fire/championneSanglante.png",
-        "pv"                : 63,
-        "armor"             : 0,
-        "atk"               : 7,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            },
-            {
-                "trigger"       : "spawn",
-                "target"        : "myPlayer",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "permanentState",
-                "feature"       : "bodyguard",
-                "value"         : 0
-            }
-        ]
-    },
     "ecf10" :
     {
         "name"              : "Remington",

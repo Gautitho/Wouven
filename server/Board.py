@@ -46,6 +46,7 @@ class Board:
 
     def removeEntity(self, entityId):
         found = False
+        self.removeOngoingAbilities("death")
         self.executeAbilities(self._entitiesDict[entityId].abilities, "death", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [])
         for playerId in list(self._playersDict.keys()):
             if entityId in self._playersDict[playerId].boardEntityIds:
@@ -110,8 +111,9 @@ class Board:
 
     def entityIdOnTile(self, x, y):
         for entityId in list(self._entitiesDict.keys()):
-            if ((self._entitiesDict[entityId].x == x) and (self._entitiesDict[entityId].y == y)):
-                return entityId
+            if (type(self._entitiesDict[entityId]).__name__ == "Entity"):
+                if ((self._entitiesDict[entityId].x == x) and (self._entitiesDict[entityId].y == y)):
+                    return entityId
         return None
 
     def entityIdAroundTile(self, x, y, team):
@@ -897,7 +899,7 @@ class Board:
                                 toAffectEntityList.extend(list(set(self.entityIdAroundTile(self._entitiesDict[affectedEntity].x, self._entitiesDict[affectedEntity].y, self._playersDict[self.getOpPlayerId(playerId)].team)) - set(affectedEntityList)))
                                 self._entitiesDict[affectedEntity].modifyPv(value)
 
-                    elif (ability["behavior"] == "permanentState"): # TODO : Change behavior to ongoingAbilities
+                    elif (ability["behavior"] == "addState"):
                         state = {}
                         for abilityEntityId in abilityTargetIdList:
                             if (ability["feature"] == "bodyguard"):
@@ -911,13 +913,6 @@ class Board:
                                 state["feature"]    = ability["feature"]
                                 state["value"]      = value
                                 self._entitiesDict[abilityEntityId].addState(state)
-
-                    elif (ability["behavior"] == "addState"):
-                        state = {}
-                        for abilityEntityId in abilityTargetIdList:
-                            state["feature"]    = ability["feature"]
-                            state["value"]      = value
-                            self._entitiesDict[abilityEntityId].addState(state)
 
                     elif (ability["behavior"] == "summon"):
                         entityId = self.appendEntity(playerId, ability["feature"], self._playersDict[playerId].team, self._entitiesDict[targetEntityIdList[0]].x, self._entitiesDict[targetEntityIdList[0]].y)
@@ -954,9 +949,18 @@ class Board:
         copyOngoingAbilityList = list(self._ongoingAbilityList)
         for ongoingAbility in copyOngoingAbilityList:
             if (stopTrigger == ongoingAbility["stopTrigger"]):
-                ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]
-                self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [], spellId=ongoingAbility["spellId"], force=True)
-                self._ongoingAbilityList.remove(ongoingAbility)
+                if (ongoingAbility["ability"]["feature"] == "bodyguard"):
+                    for state in self._entitiesDict[ongoingAbility["selfId"]].states:
+                        if (state["feature"] == "bodyguard"):
+                            bodyguardedId = state["value"]
+                            break
+                    self._entitiesDict[ongoingAbility["selfId"]].removeState("bodyguard")
+                    self._entitiesDict[bodyguardedId].removeState("bodyguarded")
+                    self._ongoingAbilityList.remove(ongoingAbility)
+                else:
+                    ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]
+                    self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [], spellId=ongoingAbility["spellId"], force=True)
+                    self._ongoingAbilityList.remove(ongoingAbility)
             elif (stopTrigger == "always" and ongoingAbility["stopTrigger"] == "noArmor"):
                 if (self._entitiesDict[self._playersDict[ongoingAbility["playerId"]].heroEntityId].armor == 0):
                     ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]
