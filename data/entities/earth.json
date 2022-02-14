@@ -187,5 +187,38 @@
                 "value"         : "muddy"
             }
         ]
+    },
+    "ece13" :
+    {
+        "name"              : "Ruel",
+        "spritePath"        : "img/entities/icon/earth/ruel.png",
+        "descSpritePath"    : "img/entities/desc/earth/ruel.png",
+        "pv"                : 120,
+        "armor"             : 0,
+        "atk"               : 29,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "death",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
+            }
+        ]
     }
 }

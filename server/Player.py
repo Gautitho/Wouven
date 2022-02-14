@@ -14,8 +14,12 @@ class Player:
         self._team                      = team
         self._pseudo                    = pseudo
         self._pa                        = 6
-        self._paStock                   = 0
-        self._gauges                    = {"fire" : 0, "water" : 0, "earth" : 0, "air" : 0, "neutral" : 0}
+        if (TEST_ENABLE):
+            self._paStock                   = 8
+            self._gauges                    = {"fire" : 5, "water" : 5, "earth" : 5, "air" : 5, "neutral" : 5}
+        else:
+            self._paStock                   = 0
+            self._gauges                    = {"fire" : 0, "water" : 0, "earth" : 0, "air" : 0, "neutral" : 0}
         self._handSpellList             = []
         if TEST_ENABLE:
             random.seed(0) #ONLY FOR DEBUG

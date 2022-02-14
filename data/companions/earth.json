@@ -76,5 +76,18 @@
                 "range" : 2
             }
         ]
+    },
+    "ce13" :
+    {
+        "cost"          : {"earth" : 6},
+        "entityDescId"  : "ece13",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
     }
 }

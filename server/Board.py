@@ -44,21 +44,22 @@ class Board:
         else:
             raise GameException("Tile is not empty !")
 
-    def removeEntity(self, entityIdx):
+    def removeEntity(self, entityId):
         found = False
+        self.executeAbilities(self._entitiesDict[entityId].abilities, "death", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [])
         for playerId in list(self._playersDict.keys()):
-            if entityIdx in self._playersDict[playerId].boardEntityIds:
-                self._playersDict[playerId].removeEntity(entityIdx)
+            if entityId in self._playersDict[playerId].boardEntityIds:
+                self._playersDict[playerId].removeEntity(entityId)
                 found = True
                 break
-        for state in self._entitiesDict[entityIdx].states:
+        for state in self._entitiesDict[entityId].states:
             if (state["feature"] == "bodyguard"):
                 rmState = {}
                 rmState["feature"]  = "bodyguarded"
-                rmState["value"]    = entityIdx
+                rmState["value"]    = entityId
                 self._entitiesDict[state["value"]].removeState(rmState)
                 break
-        del self._entitiesDict[entityIdx]
+        del self._entitiesDict[entityId]
         if not(found):
             raise GameException("Entity to remove not found in playersDict entitiesDict list !")
 
