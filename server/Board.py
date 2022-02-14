@@ -926,7 +926,7 @@ class Board:
                     elif (ability["behavior"] == "addState"):
                         state = {}
                         for abilityEntityId in abilityTargetIdList:
-                            if (ability["feature"] == "bodyguard"):
+                            if (ability["feature"] == bodyguard):
                                 state["feature"]    = "bodyguard"
                                 state["value"]      = abilityEntityId
                                 self._entitiesDict[selfId].addState(state)
