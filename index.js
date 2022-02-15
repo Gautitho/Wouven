@@ -4,12 +4,13 @@
 
 var playerId = "";
 var gameName = "";
-var deckCode = location.search.substring(1);
+var deckBuildingCode = location.search.substring(1);
+var deckCode = document.getElementById("deckCode").value;
 var deck = {"heroDescId" : deckCode.split("&")[0], "spellDescIdList" : deckCode.split("&").slice(1, 10), "companionDescIdList" : deckCode.split("&").slice(10, 14)};
 var findState = "IDLE" // IDLE, FINDING
 var createState = "IDLE" // IDLE, FINDING
 
-$("#deckCode").val(deckCode);
+$("#deckCode").val(deckBuildingCode);
 
 socket          = new WebSocket('ws://localhost:50000/');
 socket.onopen   = function(){};
@@ -45,7 +46,6 @@ function checkArgs(argList)
 {
     for (const arg of argList)
     {
-        console.log(arg)
         if (document.getElementById(arg).value == "")
         {
             errorLog(arg + " field must be completed");
@@ -71,6 +71,8 @@ function createGame()
     {
         playerId = document.getElementById("pseudo").value;
         gameName = document.getElementById("gameNameCreate").value;
+        deckCode = document.getElementById("deckCode").value;
+        deck     = {"heroDescId" : deckCode.split("&")[0], "spellDescIdList" : deckCode.split("&").slice(1, 10), "companionDescIdList" : deckCode.split("&").slice(10, 14)};
         if (findState == "IDLE")
         {
             clientCmd = {"cmd" : "CREATE_GAME", "playerId" : playerId, "gameName" : gameName, "deck" : deck};
@@ -95,6 +97,8 @@ function joinGame()
     {
         playerId = document.getElementById("pseudo").value;
         gameName = document.getElementById("gameNameJoin").value;
+        deckCode = document.getElementById("deckCode").value;
+        deck     = {"heroDescId" : deckCode.split("&")[0], "spellDescIdList" : deckCode.split("&").slice(1, 10), "companionDescIdList" : deckCode.split("&").slice(10, 14)};
         clientCmd = {"cmd" : "JOIN_GAME", "playerId" : playerId, "gameName" : gameName, "deck" : deck};
         socket.send(JSON.stringify(clientCmd));
     }
@@ -115,6 +119,9 @@ function findGame()
     if (checkArgs(["pseudo", "deckCode"]))
     {
         playerId = document.getElementById("pseudo").value;
+        deckCode = document.getElementById("deckCode").value;
+        deck     = {"heroDescId" : deckCode.split("&")[0], "spellDescIdList" : deckCode.split("&").slice(1, 10), "companionDescIdList" : deckCode.split("&").slice(10, 14)};
+        console.log(deck)
         if (findState == "IDLE")
         {
             clientCmd = {"cmd" : "FIND_GAME", "playerId" : playerId, "deck" : deck};
