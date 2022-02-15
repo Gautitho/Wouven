@@ -75,7 +75,7 @@ function updateBoard()
         }
         if (entities[entityId].aura.type != "")
         {
-            imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + "img/states/" + entities[entityId].aura.spritePath + ".png), ";
+            imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + entities[entityId].aura.spritePath + "), ";
         }
         imgStr = imgStr + "url(" + PROJECT_ROOT_PATH + entities[entityId].spritePath + ")";
         $("#board_" + entities[entityId].x + "_" + entities[entityId].y).css("background-image", imgStr);
