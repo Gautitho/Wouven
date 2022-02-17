@@ -617,6 +617,8 @@ class Board:
                             conditionTargetId = abilityTargetIdList[int(condition["target"].split(':')[1])]
                         elif (condition["target"] == "abilityTarget"):
                             conditionTargetId = abilityTargetIdList[0]
+                        elif (condition["target"] == "self"):
+                            conditionTargetId = selfId
                         else:
                             raise GameException("Wrong condition target !")
                     else:
@@ -630,6 +632,12 @@ class Board:
                                 conditionsValid = False
                         else:
                             raise GameException("ElemState to consume does not exist !")
+
+                    elif (condition["feature"] == "state"):
+                        if (operator == "=" and self._entitiesDict[conditionTargetId].isInStates(condition["value"])):
+                            pass
+                        else:
+                            conditionsValid = False
 
                     elif (condition["feature"] == "elem"):
                         if (operator == "=" and condition["value"] in ["fire", "water", "earth", "air", "neutral"]):

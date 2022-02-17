@@ -6,8 +6,8 @@ from functions import *
 from Board import *
 from GameException import *
 
-deck1       = {"heroDescId" : "hc1", "spellDescIdList" : ["shi0", "sc4", "sc40", "sc11", "sc16", "si4", "si9", "si3", "sc28"], "companionDescIdList" : ["cf6", "cf8", "ce13", "cf16"]}
-deck2       = {"heroDescId" : "hc1", "spellDescIdList" : ["shi0", "sc4", "sc40", "sc11", "sc16", "si4", "si9", "si5", "sc28"], "companionDescIdList" : ["cf6", "cf8", "ce13", "cf16"]}
+deck1       = {"heroDescId" : "hc1", "spellDescIdList" : ["sc4", "sc40", "sc11", "sc16", "sm0", "si9", "si3", "sc28", "shi0"], "companionDescIdList" : ["cf6", "cf8", "ce13", "cf16"]}
+deck2       = {"heroDescId" : "hc1", "spellDescIdList" : ["sc4", "sc40", "sc11", "sc16", "sm0", "si9", "si5", "sc28", "shi0"], "companionDescIdList" : ["cf6", "cf8", "ce13", "cf16"]}
 
 class Game:
 
@@ -134,6 +134,7 @@ class Game:
             if (playerId == firstPlayerId):
                 self._turn = self._board.playersDict[playerId].team
                 self._board.playersDict[playerId].draw(5)
+                self._board.startTurn(playerId)
             else:
                 self._board.playersDict[playerId].modifyPaStock(1)
                 self._board.playersDict[playerId].draw(6)

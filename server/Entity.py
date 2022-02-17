@@ -23,6 +23,7 @@ class Entity:
         self._states        = copy.deepcopy(db.entities[descId]["states"])
         self._abilities     = copy.deepcopy(db.entities[descId]["abilities"])
 
+        self._myTurn                = False
         self._canMove               = True
         self._canAttack             = True
         self._storedCanMove         = True
@@ -129,6 +130,10 @@ class Entity:
             return list(self._abilities)
 
     @property
+    def myTurn(self):
+        return self._myTurn
+
+    @property
     def canMove(self):
         return self._canMove
 
@@ -152,6 +157,7 @@ class Entity:
         s += f"  aura        = {self._aura}\n"
         s += f"  states      = {self._states}\n"
         s += f"  abilities   = {self._abilities}\n"
+        s += f"  myTurn      = {self._myTurn}\n"
         s += f"  canMove     = {self._canMove}\n"
         s += f"  canAttack   = {self._canAttack}\n"
         return s
@@ -175,12 +181,14 @@ class Entity:
         dic["aura"]             = {**self._aura, **extendedAuraDict}
         dic["states"]           = self._states
         dic["abilities"]        = self._abilities
+        dic["myTurn"]           = self._myTurn
         dic["canMove"]          = self._canMove
         dic["canAttack"]        = self._canAttack
         return dic
 
     def startTurn(self):
         self._pm                = db.entities[self._descId]["pm"]
+        self._myTurn            = True
         self._canMove           = True
         self._canAttack         = True
         self._storedCanMove     = True
@@ -188,6 +196,7 @@ class Entity:
         self.applyStates()
 
     def endTurn(self):
+        self._myTurn            = False
         self._oneByTurnAbilityList = []
         if (self.isInStates("disarmed")):
             self.removeState("disarmed")
@@ -199,6 +208,8 @@ class Entity:
             self.removeState("petrified")
         if (self.isInStates("stunned")):
             self.removeState("stunned")
+        if (self.isInStates("agony")):
+            self.removeState("agony")
 
     def endAction(self):
         self.updateAura()
@@ -283,6 +294,9 @@ class Entity:
                 self._pv = db.entities[self._descId]["pv"]
             else:
                 self._pv += value
+
+        if (self._myTurn and removedPv < 0):
+            self.addState({"feature" : "agony", "value" : 0})
 
         return removedPv
 

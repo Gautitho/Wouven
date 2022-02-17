@@ -10,7 +10,6 @@
   - Respawn de compagnon
   - Inciblable
   - Passif Bouvaloir
-  - Agonie
   - Effet par personnage trvaersé
   - Attirance
   - Echange
