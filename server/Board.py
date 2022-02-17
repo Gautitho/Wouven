@@ -802,7 +802,23 @@ class Board:
 
                     elif (ability["behavior"] == "melee"):
                         mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team))
-                        if (ability["feature"] == "atk"): 
+                        if (ability["feature"] == "pv"): 
+                            self._entitiesDict[abilityTargetIdList[targetIdx]].modifyPv(mult*value)
+                            executed = True
+                        elif (ability["feature"] == "atk"): 
+                            self._entitiesDict[abilityTargetIdList[targetIdx]].modifyAtk(mult*value)
+                            executed = True
+                        elif (ability["feature"] == "cost"):
+                            for spellId in abilityTargetIdList:
+                                self._playersDict[playerId].modifySpellCost(spellId, mult*value)
+                                executed = True
+
+                    elif (ability["behavior"] == "support"):
+                        mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[playerId].team))
+                        if (ability["feature"] == "pv"): 
+                            self._entitiesDict[abilityTargetIdList[targetIdx]].modifyPv(mult*value)
+                            executed = True
+                        elif (ability["feature"] == "atk"): 
                             self._entitiesDict[abilityTargetIdList[targetIdx]].modifyAtk(mult*value)
                             executed = True
                         elif (ability["feature"] == "cost"):

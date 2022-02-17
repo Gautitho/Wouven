@@ -27,20 +27,19 @@
         "race"              : "iop",
         "cost"              : 2,
         "elem"              : "fire",
-        "typeList"          : ["mechanism", "sinistro"],
         "spritePath"        : "img/spells/icon/placeHolder1.png",
         "descSpritePath"    : "img/spells/desc/placeHolder1.png",
-        "allowedTargetList" : ["emptyTile"],
+        "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "tile",
-                "conditionList" : [{"feature" : "rangeFromHero", "value" : 3, "operator" : "<="}],
-                "break"         : "True",
-                "behavior"      : "summon",
-                "feature"       : "emx0",
-                "value"         : 0
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "support",
+                "feature"       : "pv",
+                "value"         : -1
             }
         ]
     }
