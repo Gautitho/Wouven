@@ -28,15 +28,15 @@ class Game:
 
     @property
     def gameState(self):
-        return dict(self._gameState)
+        return self._gameState
 
     @property
     def turn(self):
-        return dict(self._turn)
+        return self._turn
 
     @property
     def board(self):
-        return copy.copy(self._board)
+        return copy.deepcopy(self._board)
 
     @property
     def playerIdList(self):

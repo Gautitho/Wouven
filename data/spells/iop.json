@@ -10,7 +10,6 @@
         "allowedTargetList" : ["myHero"],
         "abilities"         :
         [
-
             {
                 "trigger"       : "spellCast",
                 "target"        : "self",
