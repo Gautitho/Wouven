@@ -1,3 +1,26 @@
 {
-
+    "ehs1" :
+    {
+        "name"              : "Darde Kan",
+        "spritePath"        : "img/entities/icon/iop/dardeKan.png",
+        "descSpritePath"    : "img/entities/desc/iop/dardeKan.png",
+        "pv"                : 425,
+        "armor"             : 0,
+        "atk"               : 25,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    }   
 }

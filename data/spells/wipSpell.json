@@ -529,5 +529,373 @@
                 "value"         : {"air" : 2}
             }
         ]
+    },
+    "ss04":
+    {
+        "name"              : "Exaltation",
+        "race"              : "sacrieur",
+        "cost"              : 4,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/sacrieur/exaltation.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/exaltation.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -18
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "ss07":
+    {
+        "name"              : "Excitation",
+        "race"              : "sacrieur",
+        "cost"              : 6,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/sacrieur/excitation.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/excitation.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -32
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "ss08":
+    {
+        "name"              : "Du sang dans la bouche",
+        "race"              : "sacrieur",
+        "cost"              : 7,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/sacrieur/excitation.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/excitation.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -32
+            }
+        ]
+    },
+    "ss09":
+    {
+        "name"              : "Du sang sur les mains",
+        "race"              : "sacrieur",
+        "cost"              : 8,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/sacrieur/duSangSurLesMains.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/duSangSurLesMains.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -32
+            }
+        ]
+    },
+    "ss16":
+    {
+        "name"              : "bonneDouleur",
+        "race"              : "sacrieur",
+        "cost"              : 6,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/sacrieur/bonneDouleur.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/bonneDouleur.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -28
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "ss19":
+        {
+            "name"              : "camefaitplusmalquatoi",
+            "race"              : "sacrieur",
+            "cost"              : 8,
+            "elem"              : "water",
+            "spritePath"        : "img/spells/icon/sacrieur/camefaitplusmalquatoi.png",
+            "descSpritePath"    : "img/spells/desc/sacrieur/camefaitplusmalquatoi.png",
+            "allowedTargetList" : ["allOrganic"],
+            "abilities"         :
+            [
+                {
+                    "trigger"       : "spellCast",
+                    "target"        : "target",
+                    "conditionList" : [],
+                    "break"         : "False",
+                    "behavior"      : "",
+                    "feature"       : "pv",
+                    "value"         : -47
+                },
+                {
+                    "trigger"       : "spellCast",
+                    "target"        : "myPlayer",
+                    "behavior"      : "",
+                    "conditionList" : [],
+                    "break"         : "False",
+                    "feature"       : "gauges",
+                    "value"         : {"water" : 2}
+                }
+            ]
+        },
+    "ss22":
+    {
+        "name"              : "Rempart",
+        "race"              : "sacrieur",
+        "cost"              : 3,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/sacrieur/rempart.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/rempart.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -19
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "ss27":
+    {
+        "name"              : "Grand rempart",
+        "race"              : "sacrieur",
+        "cost"              : 6,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/sacrieur/grandRempart.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/grandRempart.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -26
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "ss32":
+    {
+        "name"              : "Persecution",
+        "race"              : "sacrieur",
+        "cost"              : 3,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/persecution.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/persecution.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -14
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            }
+        ]
+    },
+    "ss33":
+        {
+            "name"              : "assaut",
+            "race"              : "sacrieur",
+            "cost"              : 3,
+            "elem"              : "air",
+            "spritePath"        : "img/spells/icon/sacrieur/assait.png",
+            "descSpritePath"    : "img/spells/desc/sacrieur/assait.png",
+            "allowedTargetList" : ["allOrganic"],
+            "abilities"         :
+            [
+                {
+                    "trigger"       : "spellCast",
+                    "target"        : "target",
+                    "conditionList" : [{"feature" :"rangeFromSelf", "value" : 1, "operator" : "=="}],
+                    "break"         : "False",
+                    "behavior"      : "",
+                    "feature"       : "pv",
+                    "value"         : -20
+                },
+                {
+                    "trigger"       : "spellCast",
+                    "target"        : "myPlayer",
+                    "behavior"      : "",
+                    "break"         : "False",
+                    "conditionList" : [],
+                    "feature"       : "paStock",
+                    "value"         : 1
+                }
+            ]
+        },
+    "ss36":
+    {
+        "name"              : "tourment",
+        "race"              : "sacrieur",
+        "cost"              : 5,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/tourment.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/tourment.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -26
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
     }
 }

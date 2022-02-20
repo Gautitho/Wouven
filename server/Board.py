@@ -630,6 +630,11 @@ class Board:
                                 self._entitiesDict[conditionTargetId].setElemState("")
                             else:
                                 conditionsValid = False
+                        if (operator == "!=" and condition["value"] in ["oiled", "wet", "muddy", "windy"]):
+                            if (self._entitiesDict[conditionTargetId].elemState != condition["value"]):
+                                pass
+                            else:
+                                conditionsValid = False
                         else:
                             raise GameException("ElemState to consume does not exist !")
 

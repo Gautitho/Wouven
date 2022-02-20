@@ -1,1046 +1,744 @@
 {
     "ss0":
-        {
-            "name"              : "punition",
-            "race"              : "sacrieur",
-            "cost"              : 2,
-            "elem"              : "fire",
-            "spritePath"        : "img/spells/icon/ioppunition.png",
-            "descSpritePath"    : "img/spells/desc/ioppunition.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -5
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"fire" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "atk",
-                    "value"         : 5
-                }
-            ]
-        },
+    {
+        "name"              : "Punition",
+        "race"              : "sacrieur",
+        "cost"              : 2,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/sacrieur/punition.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/punition.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -5
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "atk",
+                "value"         : 5
+            }
+        ]
+    },
     "ss01":
-        {
-            "name"              : "douleur",
-            "race"              : "sacrieur",
-            "cost"              : 3,
-            "elem"              : "fire",
-            "spritePath"        : "img/spells/icon/iopdouleur.png",
-            "descSpritePath"    : "img/spells/desc/iopdouleur.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -14
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"fire" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
-                    "feature"       : "pv",
-                    "value"         : 14
-                }
-            ]
-        },
+    {
+        "name"              : "Douleur",
+        "race"              : "sacrieur",
+        "cost"              : 3,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/sacrieur/douleur.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/douleur.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget", "operator" : "!="}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -14
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "stealLife",
+                "value"         : -14
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            }
+        ]
+    },
     "ss02":
-        {
-            "name"              : "sanction",
-            "race"              : "sacrieur",
-            "cost"              : 3,
-            "elem"              : "fire",
-            "spritePath"        : "img/spells/icon/iopsanction.png",
-            "descSpritePath"    : "img/spells/desc/iopsanction.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -11
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"fire" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "elemState",
-                    "value"         : "oiled"
-                }
-            ]
-        },
+    {
+        "name"              : "Sanction",
+        "race"              : "sacrieur",
+        "cost"              : 3,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/sacrieur/sanction.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/sanction.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -11
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "elemState",
+                "value"         : "oiled"
+            }
+        ]
+    },
     "ss03":
-        {
-            "name"              : "entailles",
-            "race"              : "sacrieur",
-            "cost"              : 4,
-            "elem"              : "fire",
-            "spritePath"        : "img/spells/icon/iopentailles.png",
-            "descSpritePath"    : "img/spells/desc/iopentailles.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -34
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "paStock",
-                    "value"         : 1
-                }
-            ]
-        },
-    "ss04":
-        {
-            "name"              : "exaltation",
-            "race"              : "sacrieur",
-            "cost"              : 4,
-            "elem"              : "fire",
-            "spritePath"        : "img/spells/icon/iopexaltation.png",
-            "descSpritePath"    : "img/spells/desc/iopexaltation.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -18
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"fire" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "paStock",
-                    "value"         : 1
-                }
-            ]
-        },
+    {
+        "name"              : "Entailles",
+        "race"              : "sacrieur",
+        "cost"              : 4,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/sacrieur/entailles.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/entailles.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -34
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
     "ss05":
-        {
-            "name"              : "represailles",
-            "race"              : "sacrieur",
-            "cost"              : 5,
-            "elem"              : "fire",
-            "spritePath"        : "img/spells/icon/ioprepresailles.png",
-            "descSpritePath"    : "img/spells/desc/ioprepresailles.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -20
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
-                    "feature"       : "pv",
-                    "value"         : 20
-                }
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"fire" : 2}
-                }
-            ]
-        }, 
+    {
+        "name"              : "Represailles",
+        "race"              : "sacrieur",
+        "cost"              : 5,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/sacrieur/represailles.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/represailles.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget", "operator" : "!="}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "stealLife",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 2}
+            }
+        ]
+    },
     "ss06":
-        {
-            "name"              : "execution",
-            "race"              : "sacrieur",
-            "cost"              : 5,
-            "elem"              : "fire",
-            "spritePath"        : "img/spells/icon/iopexecution.png",
-            "descSpritePath"    : "img/spells/desc/iopexecution.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -19
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"fire" : 2}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "elemState",
-                    "value"         : "oiled"
-                }
-            ]
-        },
-    "ss07":
-        {
-            "name"              : "excitation",
-            "race"              : "sacrieur",
-            "cost"              : 6,
-            "elem"              : "fire",
-            "spritePath"        : "img/spells/icon/iopexcitation.png",
-            "descSpritePath"    : "img/spells/desc/iopexcitation.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -32
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"fire" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "paStock",
-                    "value"         : 1
-                }
-            ]
-        },
+    {
+        "name"              : "Execution",
+        "race"              : "sacrieur",
+        "cost"              : 5,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/sacrieur/execution.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/execution.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -19
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "elemState",
+                "value"         : "oiled"
+            }
+        ]
+    },
     "ss10":
-        {
-            "name"              : "griffure",
-            "race"              : "sacrieur",
-            "cost"              : 2,
-            "elem"              : "ice",
-            "spritePath"        : "img/spells/icon/iopgriffure.png",
-            "descSpritePath"    : "img/spells/desc/iopgriffure.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -14
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "paStock",
-                    "value"         : 1
-                }
-            ]
-        },
+    {
+        "name"              : "Griffure",
+        "race"              : "sacrieur",
+        "cost"              : 2,
+        "elem"              : "ice",
+        "spritePath"        : "img/spells/icon/sacrieur/griffure.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/griffure.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -14
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
     "ss11":
-        {
-            "name"              : "affliction",
-            "race"              : "sacrieur",
-            "cost"              : 3,
-            "elem"              : "water",
-            "spritePath"        : "img/spells/icon/iopaffliction.png",
-            "descSpritePath"    : "img/spells/desc/iopaffliction.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -11
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"water" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "elemState",
-                    "value"         : "wet"
-                }
-            ]
-        },
+    {
+        "name"              : "Affliction",
+        "race"              : "sacrieur",
+        "cost"              : 3,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/sacrieur/affliction.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/affliction.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -11
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "elemState",
+                "value"         : "wet"
+            }
+        ]
+    },
     "ss12":
-        {
-            "name"              : "crevecoeur",
-            "race"              : "sacrieur",
-            "cost"              : 3,
-            "elem"              : "water",
-            "spritePath"        : "img/spells/icon/iopcrevecoeur.png",
-            "descSpritePath"    : "img/spells/desc/iopcrevecoeur.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -5
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"water" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "paStock",
-                    "value"         : 1
-                }
-            ]
-        },
+    {
+        "name"              : "Creve-coeur",
+        "race"              : "sacrieur",
+        "cost"              : 3,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/sacrieur/creveCoeur.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/creveCoeur.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -5
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
     "ss13":
-        {
-            "name"              : "commotion",
-            "race"              : "4",
-            "cost"              : 4,
-            "elem"              : "water",
-            "spritePath"        : "img/spells/icon/iopcommotion.png",
-            "descSpritePath"    : "img/spells/desc/iopcommotion.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -29
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"water" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [{"feature" : "elemState", "value" : "wet", "target" : "spellTarget"}],
-                    "feature"       : "paStock",
-                    "value"         : 1
-                }
-            ]
-        },
+    {
+        "name"              : "commotion",
+        "race"              : "4",
+        "cost"              : 4,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/sacrieur/commotion.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/commotion.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -29
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "elemState", "value" : "wet", "target" : "spellTarget"}],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
     "ss14":
-        {
-            "name"              : "suppliceglace",
-            "race"              : "sacrieur",
-            "cost"              : 5,
-            "elem"              : "water",
-            "spritePath"        : "img/spells/icon/iopsuppliceglace.png",
-            "descSpritePath"    : "img/spells/desc/iopsuppliceglace.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -17
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"water" : 2}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "behavior"      : "addState",
-                    "break"         : "False",
-                    "conditionList" : [{"feature" : "elemState", "value" : "wet", "target" : "spellTarget"}],
-                    "feature"       : "frozen",
-                    "value"         : 18
-                }
-            ]
-        },
+    {
+        "name"              : "Supplice glace",
+        "race"              : "sacrieur",
+        "cost"              : 5,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/sacrieur/suppliceGlace.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/suppliceGlace.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -17
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "behavior"      : "addState",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "elemState", "value" : "wet", "target" : "spellTarget"}],
+                "feature"       : "frozen",
+                "value"         : 18
+            }
+        ]
+    },
     "ss15":
-        {
-            "name"              : "chagrin",
-            "race"              : "sacrieur",
-            "cost"              : 5,
-            "elem"              : "water",
-            "spritePath"        : "img/spells/icon/iopchagrin.png",
-            "descSpritePath"    : "img/spells/desc/iopchagrin.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -24
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"water" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "elemState",
-                    "value"         : "wet"
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "paStock",
-                    "value"         : 1
-                }
-            ]
-        },
-    "ss16":
-        {
-            "name"              : "bonnedouleur",
-            "race"              : "sacrieur",
-            "cost"              : 6,
-            "elem"              : "water",
-            "spritePath"        : "img/spells/icon/iopbonnedouleur.png",
-            "descSpritePath"    : "img/spells/desc/iopbonnedouleur.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -28
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"water" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "paStock",
-                    "value"         : 1
-                }
-            ]
-        },
+    {
+        "name"              : "chagrin",
+        "race"              : "sacrieur",
+        "cost"              : 5,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/sacrieur/chagrin.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/chagrin.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -24
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "elemState",
+                "value"         : "wet"
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
     "ss18":
-        {
-            "name"              : "cestpourtonbien",
-            "race"              : "sacrieur",
-            "cost"              : 7,
-            "elem"              : "water",
-            "spritePath"        : "img/spells/icon/iopcestpourtonbien.png",
-            "descSpritePath"    : "img/spells/desc/iopcestpourtonbien.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -40
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"water" : 2}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [{"feature" : "elemState", "value" : "wet", "target" : "spellTarget"}],
-                    "feature"       : "paStock",
-                    "value"         : 2
-                }
-            ]
-        },
-    "ss19":
-        {
-            "name"              : "camefaitplusmalquatoi",
-            "race"              : "sacrieur",
-            "cost"              : 8,
-            "elem"              : "water",
-            "spritePath"        : "img/spells/icon/iopcamefaitplusmalquatoi.png",
-            "descSpritePath"    : "img/spells/desc/iopcamefaitplusmalquatoi.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -47
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"water" : 2}
-                }
-            ]
-        },
+    {
+        "name"              : "C'est pour ton bin",
+        "race"              : "sacrieur",
+        "cost"              : 7,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/sacrieur/cEstPourTonBien.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/cEstPourTonBien.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -40
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "elemState", "value" : "wet", "target" : "spellTarget"}],
+                "feature"       : "paStock",
+                "value"         : 2
+            }
+        ]
+    },
     "ss20":
-        {
-            "name"              : "pichenette",
-            "race"              : "sacrieur",
-            "cost"              : 2,
-            "elem"              : "earth",
-            "spritePath"        : "img/spells/icon/ioppichenette.png",
-            "descSpritePath"    : "img/spells/desc/ioppichenette.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -2
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"earth" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "elemState",
-                    "value"         : "muddy"
-                }
-            ]
-        },
-    "ss22":
-        {
-            "name"              : "rempart",
-            "race"              : "sacrieur",
-            "cost"              : 3,
-            "elem"              : "earth",
-            "spritePath"        : "img/spells/icon/ioprempart.png",
-            "descSpritePath"    : "img/spells/desc/ioprempart.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -19
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "paStock",
-                    "value"         : 1
-                }
-            ]
-        },
+    {
+        "name"              : "Pichenette",
+        "race"              : "sacrieur",
+        "cost"              : 2,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/sacrieur/pichenette.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/pichenette.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -2
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "elemState",
+                "value"         : "muddy"
+            }
+        ]
+    },
     "ss24":
-        {
-            "name"              : "bequille",
-            "race"              : "sacrieur",
-            "cost"              : 4,
-            "elem"              : "earth",
-            "spritePath"        : "img/spells/icon/iopbequille.png",
-            "descSpritePath"    : "img/spells/desc/iopbequille.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -22
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"earth" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "elemState",
-                    "value"         : "muddy"
-                }
-            ]
-        },
+    {
+        "name"              : "Bequille",
+        "race"              : "sacrieur",
+        "cost"              : 4,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/sacrieur/bequille.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/bequille.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -22
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "elemState",
+                "value"         : "muddy"
+            }
+        ]
+    },
     "ss26":
-        {
-            "name"              : "ravage",
-            "race"              : "sacrieur",
-            "cost"              : 5,
-            "elem"              : "earth",
-            "spritePath"        : "img/spells/icon/iopravage.png",
-            "descSpritePath"    : "img/spells/desc/iopravage.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -30
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"earth" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "paStock",
-                    "value"         : 1
-                }
-            ]
-        },
-    "ss27":
-        {
-            "name"              : "grandrempart",
-            "race"              : "sacrieur",
-            "cost"              : 6,
-            "elem"              : "earth",
-            "spritePath"        : "img/spells/icon/iopgrandrempart.png",
-            "descSpritePath"    : "img/spells/desc/iopgrandrempart.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -26
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"earth" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "paStock",
-                    "value"         : 1
-                }
-            ]
-        },
+    {
+        "name"              : "Ravage",
+        "race"              : "sacrieur",
+        "cost"              : 5,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/sacrieur/ravage.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/ravage.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -30
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
     "ss31":
-        {
-            "name"              : "mousson",
-            "race"              : "sacrieur",
-            "cost"              : 2,
-            "elem"              : "air",
-            "spritePath"        : "img/spells/icon/iopmousson.png",
-            "descSpritePath"    : "img/spells/desc/iopmousson.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -2
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"air" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "elemState",
-                    "value"         : "windy"
-                }
-            ]
-        },
-    "ss32":
-        {
-            "name"              : "persecution",
-            "race"              : "sacrieur",
-            "cost"              : 3,
-            "elem"              : "air",
-            "spritePath"        : "img/spells/icon/ioppersecution.png",
-            "descSpritePath"    : "img/spells/desc/ioppersecution.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -14
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"air" : 1}
-                }
-            ]
-        },
-    "ss33":
-        {
-            "name"              : "assaut",
-            "race"              : "sacrieur",
-            "cost"              : 3,
-            "elem"              : "air",
-            "spritePath"        : "img/spells/icon/iopassait.png",
-            "descSpritePath"    : "img/spells/desc/iopassait.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [{"feature" :"rangeFromSelf", "value" : 1, "operator" : "=="}],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -20
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "paStock",
-                    "value"         : 1
-                }
-            ]
-        },
+    {
+        "name"              : "Mousson",
+        "race"              : "sacrieur",
+        "cost"              : 2,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/mousson.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/mousson.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -2
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "elemState",
+                "value"         : "windy"
+            }
+        ]
+    },
     "ss34":
-        {
-            "name"              : "chinook",
-            "race"              : "sacrieur",
-            "cost"              : 4,
-            "elem"              : "air",
-            "spritePath"        : "img/spells/icon/iopchinook.png",
-            "descSpritePath"    : "img/spells/desc/iopchinook.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -13
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"air" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "paStock",
-                    "value"         : 1
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "elemState",
-                    "value"         : "windy"
-                }
-            ]
-        },
-    "ss36":
-        {
-            "name"              : "tourment",
-            "race"              : "sacrieur",
-            "cost"              : 5,
-            "elem"              : "air",
-            "spritePath"        : "img/spells/icon/ioptourment.png",
-            "descSpritePath"    : "img/spells/desc/ioptourment.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -26
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"air" : 1}
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "paStock",
-                    "value"         : 1
-                }
-            ]
-        }
+    {
+        "name"              : "Chinook",
+        "race"              : "sacrieur",
+        "cost"              : 4,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/chinook.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/chinook.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -13
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "elemState",
+                "value"         : "windy"
+            }
+        ]
+    },
+    "shs1":
+    {
+        "name"              : "Oeil tatoue",
+        "race"              : "sacrieur",
+        "cost"              : 3,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/sacrieur/oeilTatoue.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/oeilTatoue.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -14
+            }
+        ]
+    }
 }
