@@ -146,7 +146,7 @@
             },
             {
                 "trigger"       : "spawn",
-                "target"        : "opOrganicAround",
+                "target"        : "opOrganicAroundSelf",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",

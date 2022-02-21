@@ -26,8 +26,8 @@
     "emx0" :
     {
         "name"              : "Sinistro feu",
-        "spritePath"        : "img/entities/icon/Seraphin.png",
-        "descSpritePath"    : "img/entities/desc/Seraphin.png",
+        "spritePath"        : "img/entities/icon/placeHolder1.png",
+        "descSpritePath"    : "img/entities/desc/placeHolder1.png",
         "typeList"          : ["mechanism", "sinistro"],
         "pv"                : 10,
         "armor"             : 0,
@@ -39,7 +39,7 @@
         [
             {
                 "trigger"       : "spawn",
-                "target"        : "opOrganicAround",
+                "target"        : "opOrganicAroundSelf",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",

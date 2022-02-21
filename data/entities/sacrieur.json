@@ -20,6 +20,15 @@
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
             }
         ]
     }   

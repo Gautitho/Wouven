@@ -575,12 +575,18 @@ class Board:
                     abilityTargetIdList = [self._playersDict[playerId].heroEntityId]
                 elif (ability["target"] == "opHero"):
                     abilityTargetIdList = [self._playersDict[opPlayerId].heroEntityId]
-                elif (ability["target"] == "allOrganicAround"):
+                elif (ability["target"] == "allOrganicAroundSelf"):
                     abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, "all")
-                elif (ability["target"] == "opOrganicAround"):
+                elif (ability["target"] == "opOrganicAroundSelf"):
                     abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self.getOpTeam(self._entitiesDict[selfId].team))
-                elif (ability["target"] == "myOrganicAround"):
+                elif (ability["target"] == "myOrganicAroundSelf"):
                     abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[selfId].team)
+                elif (ability["target"] == "allOrganicAroundTarget"):
+                    abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, "all")
+                elif (ability["target"] == "opOrganicAroundTarget"):
+                    abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, self.getOpTeam(self._entitiesDict[selfId].team))
+                elif (ability["target"] == "myOrganicAroundTarget"):
+                    abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, self._entitiesDict[selfId].team)
                 elif (ability["target"].split(':')[0] == "allOrganicAligned"):
                     if (len(ability["target"].split(':')) > 1):
                         abilityTargetIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, int(ability["target"].split(':')[1]), "all")
@@ -632,7 +638,7 @@ class Board:
                                 self._entitiesDict[conditionTargetId].setElemState("")
                             else:
                                 conditionsValid = False
-                        if (operator == "!=" and condition["value"] in ["oiled", "wet", "muddy", "windy"]):
+                        elif (operator == "!=" and condition["value"] in ["oiled", "wet", "muddy", "windy"]):
                             if (self._entitiesDict[conditionTargetId].elemState != condition["value"]):
                                 pass
                             else:

@@ -7,7 +7,7 @@
         [
             {
                 "trigger"       : "move",
-                "target"        : "opOrganicAround",
+                "target"        : "opOrganicAroundSelf",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "aura",

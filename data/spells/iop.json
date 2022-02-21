@@ -163,10 +163,10 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "target"        : "opOrganicAroundTarget",
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
                 "break"         : "False",
-                "behavior"      : "explosion",
+                "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -11
             },

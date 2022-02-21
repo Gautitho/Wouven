@@ -530,46 +530,6 @@
             }
         ]
     },
-    "ss04":
-    {
-        "name"              : "Exaltation",
-        "race"              : "sacrieur",
-        "cost"              : 4,
-        "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/sacrieur/exaltation.png",
-        "descSpritePath"    : "img/spells/desc/sacrieur/exaltation.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -18
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "conditionList" : [],
-                "break"         : "False",
-                "feature"       : "gauges",
-                "value"         : {"fire" : 1}
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "paStock",
-                "value"         : 1
-            }
-        ]
-    },
     "ss07":
     {
         "name"              : "Excitation",

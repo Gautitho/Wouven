@@ -39,7 +39,7 @@
             }
         ]
     },
-    "ss01":
+    "ss1":
     {
         "name"              : "Douleur",
         "race"              : "sacrieur",
@@ -79,7 +79,7 @@
             }
         ]
     },
-    "ss02":
+    "ss2":
     {
         "name"              : "Sanction",
         "race"              : "sacrieur",
@@ -119,7 +119,7 @@
             }
         ]
     },
-    "ss03":
+    "ss3":
     {
         "name"              : "Entailles",
         "race"              : "sacrieur",
@@ -150,7 +150,56 @@
             }
         ]
     },
-    "ss05":
+    "ss4":
+    {
+        "name"              : "Exaltation",
+        "race"              : "sacrieur",
+        "cost"              : 4,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/sacrieur/exaltation.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/exaltation.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -18
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "opOrganicAroundSelf",
+                "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -11
+            }
+        ]
+    },
+    "ss5":
     {
         "name"              : "Represailles",
         "race"              : "sacrieur",
@@ -190,7 +239,7 @@
             }
         ]
     },
-    "ss06":
+    "ss6":
     {
         "name"              : "Execution",
         "race"              : "sacrieur",
