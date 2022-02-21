@@ -692,7 +692,7 @@
     {
         "name"              : "Casse-guiboles",
         "race"              : "sacrieur",
-        "cost"              : 3,
+        "cost"              : 4,
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/sacrieur/casseGuiboles.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/casseGuiboles.png",
@@ -1070,7 +1070,7 @@
     {
         "name"              : "Tourment",
         "race"              : "sacrieur",
-        "cost"              : 3,
+        "cost"              : 5,
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/sacrieur/tourment.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/tourment.png",

@@ -1,7 +1,7 @@
 socket      = new WebSocket('ws://localhost:50000/');
 
-var gameName = location.search.substring(1).split("&")[0];
-var playerId = location.search.substring(1).split("&")[1];
+var gameName = decodeURI(location.search.substring(1).split("&")[0]);
+var playerId = decodeURI(location.search.substring(1).split("&")[1]);
 
 socket.onopen = function()
 {

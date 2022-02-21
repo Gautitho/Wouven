@@ -121,7 +121,6 @@ function findGame()
         playerId = document.getElementById("pseudo").value;
         deckCode = document.getElementById("deckCode").value;
         deck     = {"heroDescId" : deckCode.split("&")[0], "spellDescIdList" : deckCode.split("&").slice(1, 10), "companionDescIdList" : deckCode.split("&").slice(10, 14)};
-        console.log(deck)
         if (findState == "IDLE")
         {
             clientCmd = {"cmd" : "FIND_GAME", "playerId" : playerId, "deck" : deck};

@@ -1,7 +1,7 @@
 {
     "eca0" :
     {
-        "name"              : "Flécheur",
+        "name"              : "Flecheur",
         "spritePath"        : "img/entities/icon/air/flecheur.png",
         "descSpritePath"    : "img/entities/desc/air/flecheur.png",
         "pv"                : 52,
@@ -26,7 +26,7 @@
                 "target"        : "self",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "addAura",
+                "behavior"      : "addAuraStrong",
                 "feature"       : "ac5",
                 "value"         : 1
             },
@@ -35,7 +35,7 @@
                 "target"        : "self",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "addAura",
+                "behavior"      : "addAuraStrong",
                 "feature"       : "ac5",
                 "value"         : 1
             }
@@ -43,7 +43,7 @@
     },
     "eca1" :
     {
-        "name"              : "Héros félin",
+        "name"              : "Heros felin",
         "spritePath"        : "img/entities/icon/air/herosFelin.png",
         "descSpritePath"    : "img/entities/desc/air/herosFelin.png",
         "pv"                : 54,
@@ -109,7 +109,7 @@
     },
     "eca4" :
     {
-        "name"              : "Abigaïl",
+        "name"              : "Abigail",
         "spritePath"        : "img/entities/icon/air/abigail.png",
         "descSpritePath"    : "img/entities/desc/air/abigail.png",
         "pv"                : 60,
@@ -158,8 +158,8 @@
                 "target"        : "self",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "addAura",
-                "feature"       : "a4",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac4",
                 "value"         : 1
             },
             {
@@ -167,8 +167,8 @@
                 "target"        : "self",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "addAura",
-                "feature"       : "a4",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac4",
                 "value"         : 1
             }
         ]
@@ -208,7 +208,7 @@
     },
     "eca8" :
     {
-        "name"              : "Exécuteur endeuillé",
+        "name"              : "Executeur endeuille",
         "spritePath"        : "img/entities/icon/air/executeurEndeuille.png",
         "descSpritePath"    : "img/entities/desc/air/executeurEndeuille.png",
         "pv"                : 84,
@@ -266,8 +266,8 @@
                 "target"        : "self",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "addAura",
-                "feature"       : "a4",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac4",
                 "value"         : 1
             },
             {
@@ -275,8 +275,8 @@
                 "target"        : "self",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "addAura",
-                "feature"       : "a4",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac4",
                 "value"         : 1
             }
         ]

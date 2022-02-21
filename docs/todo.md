@@ -5,6 +5,8 @@
 - Si 2 joueurs sont matchés mais que l'un d'entre eux a un mauvais deck, l'autre rentre dans la game tout seul et est coincé, le premier n'est plus en matchmaking non plus
 - Gérer organic pour le opAround de la conditionList
 - Gérer les sorts qui cible le compagnon
+- Pas de mire sur Evangelyne
+- Charge tonnerre en série ne rébondit pas
 - Mécaniques à dev : 
   - Soutien
   - Respawn de compagnon
