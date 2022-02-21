@@ -54,7 +54,7 @@ def printLog(msg, type="MISC", filePath=None, writeMode="a", format="LIGHT"):
         if (filePath == None):
             print(s)
         else:
-            if TEST_ENABLE:
+            if LOCAL_ENABLE:
                 #print(filePath + " : " + s)
                 pass
             else:

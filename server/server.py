@@ -5,7 +5,7 @@ from simple_websocket_server import WebSocketServer, WebSocket
 from GameManager import *
 from functions import *
 
-DEFAULT_REPLAY_FILE_PATH = "logs/client.log" if TEST_ENABLE else str(max(pathlib.Path("logs").glob('*/'), key=os.path.getmtime)) + "/client.log"
+DEFAULT_REPLAY_FILE_PATH = "logs/client.log" if LOCAL_ENABLE else str(max(pathlib.Path("logs").glob('*/'), key=os.path.getmtime)) + "/client.log"
 
 clientList      = []
 clientIdList    = []
@@ -16,7 +16,7 @@ class SimpleChat(WebSocket):
     def handle(self):
         printLog(self.data, type="INFOG", filePath="all.log")
         printLog(self.data, filePath="client.log")
-        if TEST_ENABLE:
+        if LOCAL_ENABLE:
             clientLog.write(self.data + "\n")
         printLog(toString(clientIdList, separator="\n"), filePath="clientList.log", writeMode="w")
 
@@ -71,9 +71,9 @@ elif args.testMode == "REPLAY":
             printLog(msg, type="INFOB", filePath="all.log")
 
 else:
-    if TEST_ENABLE:
+    if LOCAL_ENABLE:
         clientLog = open("logs/client.log", "w")
     server = WebSocketServer(args.socketAddr, args.port, SimpleChat)
     server.serve_forever()
-    if TEST_ENABLE:
+    if LOCAL_ENABLE:
         clientLog.close()
