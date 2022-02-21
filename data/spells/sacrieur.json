@@ -738,6 +738,24 @@
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -14
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "paStock", "value" : 1, "target" : "spellTargetPlayer", "operator" : ">="}, {"feature" : "state", "value" : "agony", "target" : "self"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "targetPlayer",
+                "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : -1
             }
         ]
     }

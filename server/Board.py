@@ -613,6 +613,8 @@ class Board:
                             conditionTargetId = targetEntityIdList[int(condition["target"].split(':')[1])]
                         elif (condition["target"] == "spellTarget"):
                             conditionTargetId = targetEntityIdList[0]
+                        elif (condition["target"] == "spellTargetPlayer"):
+                            conditionTargetId = self.getPlayerIdFromTeam(self._entitiesDict[targetEntityIdList[0]].team)
                         elif ("abilityTarget:" in condition["target"]):
                             conditionTargetId = abilityTargetIdList[int(condition["target"].split(':')[1])]
                         elif (condition["target"] == "abilityTarget"):
@@ -652,6 +654,14 @@ class Board:
                                 conditionsValid = False
                         else:
                             raise GameException("Elem of the spell does not exist !")
+
+                    elif (condition["feature"] == "paStock"):
+                        if (operator == "=" and self._playersDict[conditionTargetId].paStock == condition["value"]):
+                            pass
+                        elif (operator == ">=" and self._playersDict[conditionTargetId].paStock >= condition["value"]):
+                            pass
+                        else:
+                            conditionsValid = False
 
                     elif (condition["feature"] == "myCompanions"):
                         myCompanions = 0
