@@ -279,6 +279,55 @@
             }
         ]
     },
+    "ss7":
+    {
+        "name"              : "Excitation",
+        "race"              : "sacrieur",
+        "cost"              : 6,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/sacrieur/excitation.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/excitation.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -32
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "opOrganicAroundSelf",
+                "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -11
+            }
+        ]
+    },
     "ss10":
     {
         "name"              : "Griffure",
@@ -358,12 +407,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/sacrieur/creveCoeur.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/creveCoeur.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : ["myHero"],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "myHero",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -392,7 +441,7 @@
     },
     "ss13":
     {
-        "name"              : "commotion",
+        "name"              : "Commotion",
         "race"              : "4",
         "cost"              : 4,
         "elem"              : "water",
@@ -466,13 +515,13 @@
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "wet", "target" : "spellTarget"}],
                 "feature"       : "frozen",
-                "value"         : 18
+                "value"         : -18
             }
         ]
     },
     "ss15":
     {
-        "name"              : "chagrin",
+        "name"              : "Chagrin",
         "race"              : "sacrieur",
         "cost"              : 5,
         "elem"              : "water",
@@ -521,7 +570,7 @@
     },
     "ss18":
     {
-        "name"              : "C'est pour ton bin",
+        "name"              : "C'est pour ton bien",
         "race"              : "sacrieur",
         "cost"              : 7,
         "elem"              : "water",
@@ -599,6 +648,86 @@
             }
         ]
     },
+    "ss22":
+    {
+        "name"              : "Rempart",
+        "race"              : "sacrieur",
+        "cost"              : 3,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/sacrieur/rempart.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/rempart.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -19
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myHero",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
+                "feature"       : "armor",
+                "value"         : 13
+            }
+        ]
+    },
+    "ss23":
+    {
+        "name"              : "Casse-guiboles",
+        "race"              : "sacrieur",
+        "cost"              : 3,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/sacrieur/casseGuiboles.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/casseGuiboles.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -26
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
+                "behavior"      : "addState",
+                "break"         : "False",
+                "feature"       : "locked",
+                "value"         : 0
+            }
+        ]
+    },
     "ss24":
     {
         "name"              : "Bequille",
@@ -636,6 +765,46 @@
                 "conditionList" : [],
                 "feature"       : "elemState",
                 "value"         : "muddy"
+            }
+        ]
+    },
+    "ss25":
+    {
+        "name"              : "Casse-crane",
+        "race"              : "sacrieur",
+        "cost"              : 3,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/sacrieur/casseCrane.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/casseCrane.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -21
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
+                "behavior"      : "addState",
+                "break"         : "False",
+                "feature"       : "stunned",
+                "value"         : 0
             }
         ]
     },
@@ -679,6 +848,95 @@
             }
         ]
     },
+    "ss27":
+    {
+        "name"              : "Grand rempart",
+        "race"              : "sacrieur",
+        "cost"              : 6,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/sacrieur/grandRempart.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/grandRempart.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -26
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myHero",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
+                "feature"       : "armor",
+                "value"         : 13
+            }
+        ]
+    },
+    "ss29":
+    {
+        "name"              : "Dur au mal",
+        "race"              : "sacrieur",
+        "cost"              : 8,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/sacrieur/durAuMal.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/durAuMal.png",
+        "allowedTargetList" : ["myHero"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myHero",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "armor",
+                "value"         : 30
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 3}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myHero",
+                "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
+                "behavior"      : "addState",
+                "break"         : "False",
+                "feature"       : "petrified",
+                "value"         : 0
+            }
+        ]
+    },
     "ss31":
     {
         "name"              : "Mousson",
@@ -716,6 +974,46 @@
                 "conditionList" : [],
                 "feature"       : "elemState",
                 "value"         : "windy"
+            }
+        ]
+    },
+    "ss32":
+    {
+        "name"              : "Persecution",
+        "race"              : "sacrieur",
+        "cost"              : 3,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/persecution.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/persecution.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -14
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
+                "behavior"      : "draw",
+                "break"         : "False",
+                "feature"       : "",
+                "value"         : 1
             }
         ]
     },
@@ -765,6 +1063,55 @@
                 "conditionList" : [],
                 "feature"       : "elemState",
                 "value"         : "windy"
+            }
+        ]
+    },
+    "ss36":
+    {
+        "name"              : "Tourment",
+        "race"              : "sacrieur",
+        "cost"              : 3,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/tourment.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/tourment.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -26
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
+                "behavior"      : "draw",
+                "break"         : "False",
+                "feature"       : "",
+                "value"         : 1
             }
         ]
     },

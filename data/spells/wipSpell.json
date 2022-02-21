@@ -530,46 +530,6 @@
             }
         ]
     },
-    "ss07":
-    {
-        "name"              : "Excitation",
-        "race"              : "sacrieur",
-        "cost"              : 6,
-        "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/sacrieur/excitation.png",
-        "descSpritePath"    : "img/spells/desc/sacrieur/excitation.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -32
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "conditionList" : [],
-                "break"         : "False",
-                "feature"       : "gauges",
-                "value"         : {"fire" : 1}
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "paStock",
-                "value"         : 1
-            }
-        ]
-    },
     "ss08":
     {
         "name"              : "Du sang dans la bouche",
@@ -616,7 +576,7 @@
     },
     "ss16":
     {
-        "name"              : "bonneDouleur",
+        "name"              : "Bonne douleur",
         "race"              : "sacrieur",
         "cost"              : 6,
         "elem"              : "water",
@@ -655,44 +615,44 @@
         ]
     },
     "ss19":
-        {
-            "name"              : "camefaitplusmalquatoi",
-            "race"              : "sacrieur",
-            "cost"              : 8,
-            "elem"              : "water",
-            "spritePath"        : "img/spells/icon/sacrieur/camefaitplusmalquatoi.png",
-            "descSpritePath"    : "img/spells/desc/sacrieur/camefaitplusmalquatoi.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -47
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "conditionList" : [],
-                    "break"         : "False",
-                    "feature"       : "gauges",
-                    "value"         : {"water" : 2}
-                }
-            ]
-        },
-    "ss22":
     {
-        "name"              : "Rempart",
+        "name"              : "Ca me fait plus mal qu'a toi",
+        "race"              : "sacrieur",
+        "cost"              : 8,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/sacrieur/caMeFaitPlusMalQuAToi.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/caMeFaitPlusMalQuAToi.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -47
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 2}
+            }
+        ]
+    },
+    "ss21":
+    {
+        "name"              : "Scarifications",
         "race"              : "sacrieur",
         "cost"              : 3,
         "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/sacrieur/rempart.png",
-        "descSpritePath"    : "img/spells/desc/sacrieur/rempart.png",
+        "spritePath"        : "img/spells/icon/sacrieur/scarifications.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/scarifications.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -704,67 +664,18 @@
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -19
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "paStock",
-                "value"         : 1
             }
         ]
     },
-    "ss27":
+    "ss28":
     {
-        "name"              : "Grand rempart",
-        "race"              : "sacrieur",
-        "cost"              : 6,
-        "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/sacrieur/grandRempart.png",
-        "descSpritePath"    : "img/spells/desc/sacrieur/grandRempart.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -26
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "conditionList" : [],
-                "break"         : "False",
-                "feature"       : "gauges",
-                "value"         : {"earth" : 1}
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "paStock",
-                "value"         : 1
-            }
-        ]
-    },
-    "ss32":
-    {
-        "name"              : "Persecution",
+        "name"              : "Saut audacieux",
         "race"              : "sacrieur",
         "cost"              : 3,
-        "elem"              : "air",
-        "spritePath"        : "img/spells/icon/sacrieur/persecution.png",
-        "descSpritePath"    : "img/spells/desc/sacrieur/persecution.png",
-        "allowedTargetList" : ["allOrganic"],
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/sacrieur/sautAudacieux.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/sautAudacieux.png",
+        "allowedTargetList" : ["myHero"],
         "abilities"         :
         [
             {
@@ -774,78 +685,51 @@
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : -14
-            },
+                "value"         : -19
+            }
+        ]
+    },
+    "ss30":
+    {
+        "name"              : "Peine",
+        "race"              : "sacrieur",
+        "cost"              : 2,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/peine.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/peine.png",
+        "allowedTargetList" : ["myHero"],
+        "abilities"         :
+        [
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
+                "target"        : "myHero",
                 "conditionList" : [],
                 "break"         : "False",
-                "feature"       : "gauges",
-                "value"         : {"air" : 1}
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -5
             }
         ]
     },
     "ss33":
-        {
-            "name"              : "assaut",
-            "race"              : "sacrieur",
-            "cost"              : 3,
-            "elem"              : "air",
-            "spritePath"        : "img/spells/icon/sacrieur/assait.png",
-            "descSpritePath"    : "img/spells/desc/sacrieur/assait.png",
-            "allowedTargetList" : ["allOrganic"],
-            "abilities"         :
-            [
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "target",
-                    "conditionList" : [{"feature" :"rangeFromSelf", "value" : 1, "operator" : "=="}],
-                    "break"         : "False",
-                    "behavior"      : "",
-                    "feature"       : "pv",
-                    "value"         : -20
-                },
-                {
-                    "trigger"       : "spellCast",
-                    "target"        : "myPlayer",
-                    "behavior"      : "",
-                    "break"         : "False",
-                    "conditionList" : [],
-                    "feature"       : "paStock",
-                    "value"         : 1
-                }
-            ]
-        },
-    "ss36":
     {
-        "name"              : "tourment",
+        "name"              : "Assaut",
         "race"              : "sacrieur",
-        "cost"              : 5,
+        "cost"              : 3,
         "elem"              : "air",
-        "spritePath"        : "img/spells/icon/sacrieur/tourment.png",
-        "descSpritePath"    : "img/spells/desc/sacrieur/tourment.png",
+        "spritePath"        : "img/spells/icon/sacrieur/assautLointain.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/assautLointain.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [],
+                "conditionList" : [{"feature" :"rangeFromSelf", "value" : 1, "operator" : "=="}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : -26
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "conditionList" : [],
-                "break"         : "False",
-                "feature"       : "gauges",
-                "value"         : {"air" : 1}
+                "value"         : -20
             },
             {
                 "trigger"       : "spellCast",
@@ -857,5 +741,129 @@
                 "value"         : 1
             }
         ]
-    }
+    },
+    "ss35":
+    {
+        "name"              : "Assaut lointain",
+        "race"              : "sacrieur",
+        "cost"              : 5,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/assautLointain.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/assautLointain.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" :"rangeFromSelf", "value" : 1, "operator" : "=="}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "ss36":
+    {
+        "name"              : "Frappe cyclone",
+        "race"              : "sacrieur",
+        "cost"              : 5,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/frappeCyclone.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/frappeCyclone.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" :"rangeFromSelf", "value" : 1, "operator" : "=="}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "ss37":
+    {
+        "name"              : "Attirance",
+        "race"              : "sacrieur",
+        "cost"              : 6,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/attirance.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/attirance.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" :"rangeFromSelf", "value" : 1, "operator" : "=="}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "ss38":
+    {
+        "name"              : "Fulgurance",
+        "race"              : "sacrieur",
+        "cost"              : 7,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/fulgurance.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/fulgurance.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" :"rangeFromSelf", "value" : 1, "operator" : "=="}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
 }
