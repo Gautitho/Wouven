@@ -722,7 +722,7 @@
     "shs1":
     {
         "name"              : "Oeil tatoue",
-        "race"              : "sacrieur",
+        "race"              : "hs1",
         "cost"              : 3,
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/sacrieur/oeilTatoue.png",

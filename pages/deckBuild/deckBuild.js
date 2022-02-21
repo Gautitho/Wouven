@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const PROJECT_ROOT_PATH = "../../"
-const HERO_RACE_LIST = ['iop', 'xelor', 'cra']
+const HERO_RACE_LIST = ['iop', 'cra', 'sacrieur', 'xelor']
 const HERO_CLASSES = 5
 const ELEMS = ['fire', 'water', 'earth', 'air', 'neutral']
 const SPELLS_BY_ELEM = 10
@@ -120,29 +120,21 @@ function cleanPage()
 function heroChoice()
 {
     document.getElementById("choiceLayout").insertAdjacentHTML('beforeend',`<div id="choiceGrid" class="h-full"></div>`);
-    $("#choiceGrid").addClass("flex-grow grid grid-cols-" + String(HERO_RACE_LIST.length) + " grid-rows-" + String(1 + HERO_CLASSES))
+    $("#choiceGrid").addClass("flex-grow grid grid-cols-" + String(HERO_RACE_LIST.length) + " grid-rows-" + String(HERO_CLASSES))
 
-    for (y = 0; y < 1 + HERO_CLASSES; y++)
+    for (y = 0; y < HERO_CLASSES; y++)
     {
         for (x = 0; x < HERO_RACE_LIST.length; x++)
         {
-            if (y == 0)
-            {
-                document.getElementById("choiceGrid").insertAdjacentHTML('beforeend',`<div id="choiceGrid_${x}"></div>`);
-                $("#choiceGrid_" + x).text(HERO_RACE_LIST[x]);
-            }
-            else
-            {
-                document.getElementById("choiceGrid").insertAdjacentHTML('beforeend',`<div id="choiceGrid_${x}_${y}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
-                $("#choiceGrid_" + x + "_" + y).click(function() {heroChoiceClick($(this))});
-                $("#choiceGrid_" + x + "_" + y).css("background-color", "#FFFFFF");
-            }
+            document.getElementById("choiceGrid").insertAdjacentHTML('beforeend',`<div id="choiceGrid_${x}_${y}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
+            $("#choiceGrid_" + x + "_" + y).click(function() {heroChoiceClick($(this))});
+            $("#choiceGrid_" + x + "_" + y).css("background-color", "#FFFFFF");
         } 
     }
 
     for (x = 0; x < HERO_RACE_LIST.length; x++)
     {
-        var y = 1;
+        var y = 0;
         for (h in heroesDataBase)
         {
             if (heroesDataBase[h]["race"] == HERO_RACE_LIST[x])
@@ -235,7 +227,6 @@ function heroBarDisplay()
 
 function spellBarDisplay()
 {
-    console.log("spellBarDisplay");
     document.getElementById("spellBarLayout").insertAdjacentHTML('beforeend',`<div id="spellBar" class="grid grid-cols-9 grid-rows-1 w-max mx-4"></div>`);
     for (i = 0; i < DECK_SPELLS; i++)
     {

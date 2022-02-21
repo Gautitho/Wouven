@@ -2,8 +2,8 @@
     "ehs1" :
     {
         "name"              : "Darde Kan",
-        "spritePath"        : "img/entities/icon/iop/dardeKan.png",
-        "descSpritePath"    : "img/entities/desc/iop/dardeKan.png",
+        "spritePath"        : "img/entities/icon/sacrieur/dardeKan.png",
+        "descSpritePath"    : "img/entities/desc/sacrieur/dardeKan.png",
         "pv"                : 425,
         "armor"             : 0,
         "atk"               : 25,

@@ -2,7 +2,7 @@
     "sm0":
     {
         "name"              : "Place holder 0",
-        "race"              : "iop",
+        "race"              : "misc",
         "cost"              : 3,
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/placeHolder0.png",
@@ -24,7 +24,7 @@
     "sm1":
     {
         "name"              : "Sinistro feu",
-        "race"              : "iop",
+        "race"              : "misc",
         "cost"              : 2,
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/placeHolder1.png",
