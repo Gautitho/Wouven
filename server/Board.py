@@ -862,13 +862,14 @@ class Board:
                                 executed = True
 
                     elif (ability["behavior"] == "auraNb"):
-                        if (self._entitiesDict[selfId].aura):
-                            mult = self._entitiesDict[selfId].aura["nb"]
-                        else:
-                            mult = 0
+                        mult = self._entitiesDict[selfId].aura["nb"]
                         if (ability["feature"] == "cost"):
                             for spellId in abilityTargetIdList:
                                 self._playersDict[playerId].modifySpellCost(spellId, mult*value)
+                                executed = True
+                        elif (ability["feature"] == "pv"):
+                            for entityId in abilityTargetIdList:
+                                self._entitiesDict[entityId].modifyPv(mult*value)
                                 executed = True
 
                     elif (ability["behavior"] == "opAffected"):
@@ -941,7 +942,9 @@ class Board:
                             while toAffectEntityList:
                                 affectedEntity = toAffectEntityList.pop(0)
                                 affectedEntityList.append(affectedEntity)
-                                toAffectEntityList.extend(list(set(self.entityIdAroundTile(self._entitiesDict[affectedEntity].x, self._entitiesDict[affectedEntity].y, self._playersDict[self.getOpPlayerId(playerId)].team)) - set(affectedEntityList)))
+                                for entityId in self.entityIdAroundTile(self._entitiesDict[affectedEntity].x, self._entitiesDict[affectedEntity].y, self._playersDict[self.getOpPlayerId(playerId)].team): 
+                                    if not(entityId in affectedEntityList) and not(entityId in toAffectEntityList):
+                                        toAffectEntityList.append(entityId)
                                 self._entitiesDict[affectedEntity].modifyPv(value)
 
                     elif (ability["behavior"] == "addState"):

@@ -826,7 +826,7 @@
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : 21
+                "value"         : -21
             },
             {
                 "trigger"       : "spellCast",

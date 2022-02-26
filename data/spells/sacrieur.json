@@ -7,12 +7,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/sacrieur/punition.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/punition.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : ["myHero"],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "myHero",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -30,7 +30,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "myHero",
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],

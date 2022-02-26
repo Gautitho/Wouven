@@ -5,7 +5,7 @@ from simple_websocket_server import WebSocketServer, WebSocket
 from GameManager import *
 from functions import *
 
-DEFAULT_REPLAY_FILE_PATH = "logs/client.log" if LOCAL_ENABLE else str(max(pathlib.Path("logs").glob('*/'), key=os.path.getmtime)) + "/client.log"
+DEFAULT_REPLAY_FILE_PATH = "logs/client.log" if (LOCAL_ENABLE or len(os.listdir("logs")) < 1) else str(max(pathlib.Path("logs").glob('*/'), key=os.path.getmtime)) + "/client.log"
 
 clientList      = []
 clientIdList    = []
