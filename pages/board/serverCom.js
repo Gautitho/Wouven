@@ -9,6 +9,8 @@ socket.onopen = function()
     socket.send(JSON.stringify(clientCmd));
 };
 
+setInterval(poll, 5000);
+
 socket.onmessage = function(handler)
 {
     removeTooltips();
@@ -63,6 +65,12 @@ socket.onmessage = function(handler)
         updateHandBar();
     }
 };
+
+function poll()
+{
+    clientCmd = {"cmd" : "POLL", "playerId" : playerId};
+    socket.send(JSON.stringify(clientCmd));
+}
 
 function endTurn()
 {

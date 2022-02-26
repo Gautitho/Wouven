@@ -18,6 +18,16 @@ The commands have the following json format :
 <br>
 
 ### **GAME_START**
+Each player receive a this command to indicate to the client to go on board page
+| Argument | Type | Description |
+|----------|------|-------------|
+| name | String | Name of the game started |
+
+### **GAME_RECONNECT**
+A player who reconnect receive the name of the game he will join
+| Argument | Type | Description |
+|----------|------|-------------|
+| name | String | Name of the game joined |
 
 <br>
 

@@ -15,6 +15,8 @@ $("#deckCode").val(deckBuildingCode);
 socket          = new WebSocket('ws://localhost:50000/');
 socket.onopen   = function(){};
 
+setInterval(poll, 5000);
+
 socket.onmessage = function(handler)
 {
     console.log(handler.data)
@@ -23,6 +25,12 @@ socket.onmessage = function(handler)
     if (cmdObj.cmd == "ERROR")
     {
         errorLog(cmdObj.msg);
+        createState = "IDLE";
+        $("#createGame").css("background-color", "#552fff");
+        $("#createGame").text("Créer");
+        findState = "IDLE";
+        $("#findGame").css("background-color", "#552fff");
+        $("#findGame").text("Chercher");
     }
     else if (cmdObj.cmd == "WAIT_GAME_START")
     {
@@ -34,7 +42,7 @@ socket.onmessage = function(handler)
     }
     else if (cmdObj.cmd == "GAME_START")
     {
-        window.location = "pages/board/board.html?" + gameName + "&" + playerId;
+        window.location = "pages/board/board.html?" + cmdObj.name + "&" + playerId;
     }
 }
 
@@ -58,6 +66,12 @@ function checkArgs(argList)
 function errorLog(message)
 {
     $("#errorLog").text(message);
+}
+
+function poll()
+{
+    clientCmd = {"cmd" : "POLL", "playerId" : playerId};
+    socket.send(JSON.stringify(clientCmd));
 }
 
 function createDeck()

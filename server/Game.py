@@ -66,6 +66,8 @@ class Game:
 
         if (self._inactiveStartTime > 0 and time.time() - self._inactiveStartTime > INACTIVE_GAME_ERASE_TIME):
             return True
+        elif (self._gameState != "RUNNING"):
+            return True
         else:
             return False
 
@@ -91,6 +93,7 @@ class Game:
 
         else:
             if (cmd == "RECONNECT"):
+                #self.reconnectGame(playerId)
                 self.joinGame(playerId)
                 self.sendStatus()
 
@@ -128,6 +131,7 @@ class Game:
         self._gameState     = "RUNNING"
         serverCmd           = {}
         serverCmd["cmd"]    = "GAME_START"
+        serverCmd["name"]   = self._name
         firstPlayerId       = random.choice(list(self._board.playersDict.keys()))
 
         for playerId in list(self._board.playersDict.keys()):
@@ -139,6 +143,12 @@ class Game:
                 self._board.playersDict[playerId].modifyPaStock(1)
                 self._board.playersDict[playerId].draw(6)
             self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
+
+    def reconnectGame(self, playerId):
+        serverCmd           = {}
+        serverCmd["cmd"]    = "GAME_RECONNECT"
+        serverCmd["name"]   = self._name
+        self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
 
     def joinGame(self, playerId):
         serverCmd           = {}
