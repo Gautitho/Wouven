@@ -1,6 +1,7 @@
 import argparse
 import os
 import pathlib
+from datetime import datetime
 from simple_websocket_server import WebSocketServer, WebSocket
 from GameManager import *
 from functions import *
@@ -49,9 +50,22 @@ parser.add_argument("--port",           default="50000")
 parser.add_argument("--replayFilePath", default=DEFAULT_REPLAY_FILE_PATH)
 args = parser.parse_args()
 
+# Preparing logging repository
 if not(os.path.isdir("logs")):
     os.mkdir("logs")
-os.mkdir(logDir)
+if not(LOCAL_ENABLE):
+    if os.path.isdir(logDir):
+        if not(os.path.exists(logDir + "/info.log")): 
+            printLog("File info.log not found in previous logDir, directory removed !", type="WARNING")
+        else:
+            infoFile = open(logDir + "/info.log", "r")
+            date = infoFile.read()
+            infoFile.close()
+            os.rename(logDir, "logs/" + date)
+    os.mkdir(logDir)
+    infoFile = open(logDir + "/info.log", "w")
+    infoFile.write(datetime.now().strftime('%Y_%m_%d_%H_%M_%S'))
+    infoFile.close()
 
 if args.testMode == "MANUAL":
     while 1:

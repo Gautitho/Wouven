@@ -1,10 +1,9 @@
 import sys
 import traceback
-from datetime import datetime
 from Database import *
 
 DISPLAYED_INFO_TYPE = ["MISC", "INFOB", "INFOG", "INFO", "DEBUG", "WARNING"] # Not displayed : []
-logDir = "logs/" + datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
+logDir = "logs/lastLogDir"
 
 def exitOnError(msg):
     traceback.print_stack(file=sys.stdout)
@@ -28,11 +27,16 @@ def checkKeyPresence(triggerError, dic, dicName, key, default=""):
         else:
             printLog(f"Missing [{key}] in {dicName} ! Set to the default value ({default}).", "WARNING")
 
-def toString(obj, separator=""):
+def toString(obj, separator=" "):
     if (type(obj) is list):
         s = ""
         for elem in obj:
             s += toString(elem) + separator
+        s = s[:-len(separator)]
+    elif (type(obj) is dict):
+        s = ""
+        for key in list(obj.keys()):
+            s += str(key) + " : " + toString(obj[key]) + separator
         s = s[:-len(separator)]
     else:
         s = str(obj)
@@ -55,8 +59,8 @@ def printLog(msg, type="MISC", filePath=None, writeMode="a", format="LIGHT"):
             print(s)
         else:
             if LOCAL_ENABLE:
-                #print(filePath + " : " + s)
-                pass
+                print(filePath + " : " + s)
+                #pass
             else:
                 fd = open(logDir + "/" + filePath, writeMode)
                 fd.write(s + "\n")

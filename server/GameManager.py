@@ -127,6 +127,18 @@ class GameManager :
         s = s[:-1]
         printLog(s, filePath="knownPlayerList.log", writeMode="w")
 
+        if self._waitingPlayer:
+            s = "Player Id : " + str(self._waitingPlayer["playerId"]) + " / Deck : " + toString(self._waitingPlayer["deck"], separator="\n")
+        else:
+            s= ""
+        printLog(s, filePath="waitingPlayer.log", writeMode="w")
+
+        s = ""
+        for game in self._waitingCreatedGameList:
+            s += toString(game, separator=" / ") + "\n"
+        s = s[:-1]
+        printLog(s, filePath="waitingCreatedGameList.log", writeMode="w")
+
         return self._serverCmdList
 
     def garbageCollector(self):
