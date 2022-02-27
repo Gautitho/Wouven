@@ -227,6 +227,7 @@ class GameManager :
         for game in self._currGameList:
             if (gameName == game.name):
                 raise GameException(f"Game {gameName} already exists")
+        checkDeck(deck)
 
         self._waitingCreatedGameList.append({"gameName" : gameName, "clientId" : clientId, "playerId" : playerId, "deck" : deck})
         serverCmd = {"cmd" : "WAIT_GAME_START"}
@@ -245,6 +246,8 @@ class GameManager :
     def JoinGame(self, clientId, gameName, playerId, deck):
         if self.isKnownPlayer(playerId):
             raise GameException(f"Player {playerId} is already in a game")
+        checkDeck(deck)
+
         self.appendKnownPlayer(playerId, clientId, None)
         for gameIdx in range(len(self._waitingCreatedGameList)):
             if (gameName == self._waitingCreatedGameList[gameIdx]["gameName"]):
@@ -264,6 +267,8 @@ class GameManager :
     def FindGame(self, clientId, playerId, deck):
         if self.isKnownPlayer(playerId):
             raise GameException(f"Player {playerId} is already in a game")
+        checkDeck(deck)
+
         self.appendKnownPlayer(playerId, clientId, None)
         if (self._waitingPlayer == {}):
             self._waitingPlayer = {"clientId" : clientId, "playerId" : playerId, "deck" : deck}

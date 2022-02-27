@@ -1,4 +1,5 @@
 import json
+from GameException import *
 
 HEROES_FILE_PATH_LIST       = ["data/heroes/iop.json", "data/heroes/xelor.json", "data/heroes/cra.json", "data/heroes/sacrieur.json"]
 COMPANIONS_FILE_PATH_LIST   = ["data/companions/air.json", "data/companions/water.json", "data/companions/fire.json", "data/companions/earth.json", "data/companions/multi.json"]
@@ -16,6 +17,33 @@ DECK_SPELLS                 = 9
 DECK_COMPANIONS             = 4
 ACTION_LIST_LEN             = 5
 INACTIVE_GAME_ERASE_TIME    = 600
+
+def checkDeck(deck):
+    if not(TEST_ENABLE):
+        if not(deck["heroDescId"] in db.heroes):
+            raise GameException(f"The hero ({deck['heroDescId']}) you picked does not exist !")
+        if (len(deck["spellDescIdList"]) != 9):
+            raise GameException("You have to choose 9 spells !")
+        if (len(deck["companionDescIdList"]) != 4):
+            raise GameException("You have to choose 4 companions !")
+        heroSpellFound = False
+        for spellDescId in deck["spellDescIdList"]:
+            if not(spellDescId in db.spells):
+                raise GameException(f"The spell ({spellDescId}) you picked does not exist !")
+            elif (deck["spellDescIdList"].count(spellDescId) > 1):
+                raise GameException(f"You can't pick a spell ({spellDescId}) more than 1 time !")
+            else:
+                if (db.spells[spellDescId]["race"] == deck["heroDescId"]):
+                    heroSpellFound = True
+                elif (db.spells[spellDescId]["race"] != db.heroes[deck["heroDescId"]]["race"]):
+                    raise GameException(f"You have picked a spell ({spellDescId}) with the wrong race !")
+        if not(heroSpellFound):
+            raise GameException("You haven't picked your hero spell !")
+        for companionDescId in deck["companionDescIdList"]:
+            if not(companionDescId in db.companions):
+                raise GameException(f"The companion ({companionDescId}) you picked does not exist !")
+            elif (deck["companionDescIdList"].count(companionDescId) > 1):
+                raise GameException(f"You can't pick a companion ({companionDescId}) more than 1 time !") 
 
 class DataBase:
 
