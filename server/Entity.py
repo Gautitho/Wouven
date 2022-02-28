@@ -193,23 +193,12 @@ class Entity:
         self._canAttack         = True
         self._storedCanMove     = True
         self._storedCanAttack   = True
+        self.evalTimeoutStates()
         self.applyStates()
 
     def endTurn(self):
         self._myTurn            = False
         self._oneByTurnAbilityList = []
-        if (self.isInStates("disarmed")):
-            self.removeState("disarmed")
-        if (self.isInStates("locked")):
-            self.removeState("locked")
-        if (self.isInStates("frozen")):
-            self.removeState("frozen")
-        if (self.isInStates("petrified")):
-            self.removeState("petrified")
-        if (self.isInStates("stunned")):
-            self.removeState("stunned")
-        if (self.isInStates("agony")):
-            self.removeState("agony")
 
     def endAction(self):
         self.updateAura()
@@ -296,7 +285,7 @@ class Entity:
                 self._pv += value
 
         if (self._myTurn and removedPv < 0):
-            self.addState({"feature" : "agony", "value" : 0})
+            self.addState({"feature" : "agony", "value" : 0, "duration" : 0})
 
         return removedPv
 
@@ -360,6 +349,16 @@ class Entity:
             if (state["feature"] == stateFeature):
                 return True
         return False
+
+    def evalTimeoutStates(self):
+        stateToRemoveList = []
+        for stateIdx in range(len(self._states)):
+            if (self._states[stateIdx]["duration"] > 0):
+                self._states[stateIdx]["duration"] -= 1
+            elif (self._states[stateIdx]["duration"] == 0):
+                stateToRemoveList.append(self._states[stateIdx]["feature"])
+        for stateFeature in stateToRemoveList:
+            self.removeState(stateFeature)
 
     def appendOneByTurnAbility(self, ability):
         self._oneByTurnAbilityList.append(ability)

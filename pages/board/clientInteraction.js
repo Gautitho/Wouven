@@ -94,7 +94,7 @@ function updateBoard()
             tooltipStr = tooltipStr + "\n" + "Etats : ";
             for (stateId = 0; stateId < entities[entityId].states.length; stateId++)
             {
-                tooltipStr = tooltipStr + entities[entityId].states[stateId]
+                tooltipStr = tooltipStr + entities[entityId].states[stateId].feature
                 if (stateId < entities[entityId].states.length - 1)
                 {
                     tooltipStr = tooltipStr + ", ";

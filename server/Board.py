@@ -949,17 +949,27 @@ class Board:
 
                     elif (ability["behavior"] == "addState"):
                         state = {}
+                        if (":" in ability["feature"]):
+                            stateFeature = ability["feature"].split(':')[0]
+                            duration     = int(ability["feature"].split(':')[1])
+                        else:
+                            stateFeature = ability["feature"]
+                            duration     = 1
+
                         for abilityEntityId in abilityTargetIdList:
-                            if (ability["feature"] == "bodyguard"):
+                            if (stateFeature == "bodyguard"):
                                 state["feature"]    = "bodyguard"
                                 state["value"]      = abilityEntityId
+                                state["duration"]   = -1
                                 self._entitiesDict[selfId].addState(state)
                                 state["feature"]    = "bodyguarded"
                                 state["value"]      = selfId     
+                                state["duration"]   = -1
                                 self._entitiesDict[abilityEntityId].addState(state)
                             else:
-                                state["feature"]    = ability["feature"]
+                                state["feature"]    = stateFeature
                                 state["value"]      = value
+                                state["duration"]   = duration
                                 self._entitiesDict[abilityEntityId].addState(state)
 
                     elif (ability["behavior"] == "summon"):
