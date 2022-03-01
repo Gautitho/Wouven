@@ -227,7 +227,6 @@ class GameManager :
         for game in self._currGameList:
             if (gameName == game.name):
                 raise GameException(f"Game {gameName} already exists")
-        checkDeck(deck)
 
         self.appendKnownPlayer(playerId, clientId, None)
         self._waitingCreatedGameList.append({"gameName" : gameName, "clientId" : clientId, "playerId" : playerId, "deck" : deck})
