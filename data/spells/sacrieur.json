@@ -1152,6 +1152,15 @@
                 "behavior"      : "",
                 "feature"       : "paStock",
                 "value"         : -1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
             }
         ]
     }

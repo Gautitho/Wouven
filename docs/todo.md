@@ -6,6 +6,9 @@
 - Gérer organic pour le opAround de la conditionList
 - Bug reconnexion avec le même pseudo
 - Gérer les sorts qui cible le compagnon
+- Les joueurs ayant fini leur game sont toujours dans knowPlayerList
+- GameId ne se met pas à jour dans knowPlayerList
+- Assomé
 - Mécaniques à dev : 
   - Respawn de compagnon
   - Inciblable
