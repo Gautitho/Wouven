@@ -86,7 +86,7 @@ function move()
 
 function spell()
 {
-    clientCmd = {"cmd" : "SPELL", "playerId" : playerId, "spellId" : selectedSpell, "targetPositionList" : boardTileList};
+    clientCmd = {"cmd" : "SPELL", "playerId" : playerId, "spellIdx" : selectedSpell, "targetPositionList" : boardTileList};
     socket.send(JSON.stringify(clientCmd));
 }
 

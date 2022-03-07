@@ -1,5 +1,6 @@
 import copy
 import random
+from collections import OrderedDict
 from functions import *
 from Database import *
 from GameException import *
@@ -20,7 +21,8 @@ class Player:
         else:
             self._paStock                   = 0
             self._gauges                    = {"fire" : 0, "water" : 0, "earth" : 0, "air" : 0, "neutral" : 0}
-        self._handSpellList             = []
+        self._handSpellDict             = OrderedDict()
+        self._nextHandSpellId           = 0
         if TEST_ENABLE:
             random.seed(0) #ONLY FOR DEBUG
         self._deckSpellDescIdList       = random.sample(deck["spellDescIdList"], len(deck["spellDescIdList"]))
@@ -61,8 +63,8 @@ class Player:
         return dict(self._gauges)
 
     @property
-    def handSpellList(self):
-        return list(self._handSpellList)
+    def handSpellDict(self):
+        return copy.deepcopy(self._handSpellDict)
 
     @property
     def deckSpellDescIdList(self):
@@ -92,8 +94,9 @@ class Player:
         self._companionList[companionId]["entityId"]   = entityId
         if (db.companions[self._companionList[companionId]["descId"]]["spellDescId"]):
             companionSpellDescId = db.companions[self._companionList[companionId]["descId"]]["spellDescId"]
-            if (len(self._handSpellList) < HAND_SPELLS):
-                self._handSpellList.append(Spell(companionSpellDescId))
+            if (len(list(self._handSpellDict.keys())) < HAND_SPELLS):
+                self._handSpellDict[self._nextHandSpellId] = Spell(companionSpellDescId)
+                self._nextHandSpellId += 1
             else:
                 self._deckSpellDescIdList.append(companionSpellDescId)
 
@@ -102,9 +105,9 @@ class Player:
         self._companionList[companionId]["entityId"]   = None
         if (db.companions[self._companionList[companionId]["descId"]]["spellDescId"]):
             companionSpellDescId = db.companions[self._companionList[companionId]["descId"]]["spellDescId"]
-            for handSpellIdx in range(0, len(self._handSpellList)):
-                if (self._handSpellList[handSpellIdx].descId == companionSpellDescId):
-                    del self._handSpellList[handSpellIdx]
+            for handSpellId in list(self._handSpellDict.keys()):
+                if (self._handSpellDict[handSpellId].descId == companionSpellDescId):
+                    del self._handSpellDict[handSpellId]
                     break
             if (companionSpellDescId in self._deckSpellDescIdList):
                 self._deckSpellDescIdList.remove(companionSpellDescId)
@@ -129,16 +132,18 @@ class Player:
 
     def draw(self, nb, type=""):
         for i in range(nb):
-            if (len(self._handSpellList) < HAND_SPELLS):
+            if (len(list(self._handSpellDict.keys())) < HAND_SPELLS):
                 for spellIdx in range(len(self._deckSpellDescIdList)):
                     if (type == ""):
                         spellDescId = self._deckSpellDescIdList.pop(spellIdx)
-                        self._handSpellList.append(Spell(spellDescId))
+                        self._handSpellDict[self._nextHandSpellId] = Spell(spellDescId)
+                        self._nextHandSpellId += 1
                         break
                     else:
                         if ("typeList" in db.spells[self._deckSpellDescIdList[spellIdx]] and type in db.spells[self._deckSpellDescIdList[spellIdx]]["typeList"]):
                             spellDescId = self._deckSpellDescIdList.pop(spellIdx)
-                            self._handSpellList.append(Spell(spellDescId))
+                            self._handSpellDict[self._nextHandSpellId] = Spell(spellDescId)
+                            self._nextHandSpellId += 1
                             break
             else:
                 spellDescId = self._deckSpellDescIdList.pop(0)
@@ -158,13 +163,14 @@ class Player:
             raise GameException("Wrong gauge type !")
 
     def playSpell(self, spellId):
-        spell = self._handSpellList.pop(spellId)
+        spell = self._handSpellDict[spellId]
+        del self._handSpellDict[spellId]
         self._deckSpellDescIdList.append(spell.descId)
         self._pa -= spell.cost
         self._spellsPlayedDuringTurn += 1
 
     def modifySpellCost(self, spellId, value):
-        self._handSpellList[spellId].modifyCost(value)
+        self._handSpellDict[spellId].modifyCost(value)
 
     def addEntity(self, entityId):
         self._boardEntityIds.append(entityId)
@@ -184,7 +190,7 @@ class Player:
         s += f"  pa                      = {self._pa}\n"
         s += f"  paStock                 = {self._paStock}\n"
         s += f"  gauges                  = {self._gauges}\n"
-        s += f"  handSpellList           = {[spell.getDict() for spell in self._handSpellList]}\n"
+        s += f"  handSpellList           = {[self._handSpellDict[spellId].getDict() for spellId in list(self._handSpellDict.keys())]}\n" # List sent instead of dict because it's easier to handle on client side
         s += f"  deckSpellDescIdList     = {self._deckSpellDescIdList}\n"
         s += f"  companionList           = {self._companionList}\n"
         s += f"  playedCompanionDescIds  = {self._playedCompanionDescIds}\n"
@@ -199,7 +205,7 @@ class Player:
         dic["pa"]                   = self._pa
         dic["paStock"]              = self._paStock
         dic["gauges"]               = self._gauges
-        dic["handSpellList"]        = [spell.getDict() for spell in self._handSpellList]
+        dic["handSpellList"]        = [self._handSpellDict[spellId].getDict() for spellId in list(self._handSpellDict.keys())] # List sent instead of dict because it's easier to handle on client side
         dic["companionList"]        = [{"descSpritePath" : db.entities[db.companions[companion["descId"]]["entityDescId"]]["descSpritePath"], "state" : companion["state"]} for companion in self._companionList]
         dic["heroEntityId"]         = self._heroEntityId
         dic["boardEntityIds"]       = self._boardEntityIds
@@ -214,5 +220,5 @@ class Player:
         dic["gauges"]               = self._gauges
         dic["heroEntityId"]         = self._heroEntityId
         dic["boardEntityIds"]       = self._boardEntityIds
-        dic["handSize"]             = len(self._handSpellList)
+        dic["handSize"]             = len(list(self._handSpellDict.keys()))
         return dic

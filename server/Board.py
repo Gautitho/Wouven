@@ -262,8 +262,9 @@ class Board:
             self.executeAbilities(self._entitiesDict[entityId].abilities, "alwaysAfterEnd", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [])
             self._entitiesDict[entityId].endAction()
         for playerId in list(self._playersDict.keys()):
-            for spellId in range(0, len(self._playersDict[playerId].handSpellList)):
-                self.executeAbilities(self._playersDict[playerId].handSpellList[spellId].abilities, "always", playerId, self._playersDict[playerId].heroEntityId, [], spellId=spellId)
+            for spellIdx in range(0, len(list(self._playersDict[playerId].handSpellDict.keys()))):
+                spellId = list(self._playersDict[playerId].handSpellDict.keys())[spellIdx]
+                self.executeAbilities(self._playersDict[playerId].handSpellDict[spellId].abilities, "always", playerId, self._playersDict[playerId].heroEntityId, [], spellId=spellId)
         self.garbageCollector()
 
     def moveEntity(self, playerId, entityId, path):
@@ -346,10 +347,11 @@ class Board:
             raise GameException("To push, the second target tile must adjacent to the first target !")
         self._entitiesDict[entityId].tp(nextX, nextY)
 
-    def spellCast(self, playerId, spellId, targetPositionList):
+    def spellCast(self, playerId, spellIdx, targetPositionList):
         # Check if spell in hand
-        if (0 <= spellId < len(self._playersDict[playerId].handSpellList)):
-            spell = self._playersDict[playerId].handSpellList[spellId]
+        if (0 <= spellIdx < len(list(self._playersDict[playerId].handSpellDict.keys()))):
+            spellId = list(self._playersDict[playerId].handSpellDict.keys())[spellIdx]
+            spell = self._playersDict[playerId].handSpellDict[spellId]
 
             # Check if there is enough PA to play the spell
             if (spell.cost <= self._playersDict[playerId].pa):
@@ -602,7 +604,7 @@ class Board:
                 elif (ability["target"] == "currentSpell"):
                     abilityTargetIdList = [] if spellId == None else [spellId]
                 elif (ability["target"] == "hand"):
-                    abilityTargetIdList = range(len(self._playersDict[playerId].handSpellList)) # WARNING : if a spell is draw, it is not taken
+                    abilityTargetIdList = range(len(list(self._playersDict[playerId].handSpellDict.keys()))) # WARNING : if a spell is draw, it is not taken
                 else:
                     raise GameException("Wrong ability target !")
 
@@ -773,6 +775,7 @@ class Board:
                    
                 # Execute ability
                 executed = False
+                mult = 1 if not("mult" in ability) else ability["mult"] # Usefull to handle stopTrigger case
                 if (conditionsValid or force):
                     if (ability["behavior"] in ["", "aura"]):
                         if (ability["feature"] == "pv" or ability["feature"] == "stealLife"):
@@ -820,9 +823,13 @@ class Board:
                             for abilityEntityId in abilityTargetIdList:
                                 self._entitiesDict[abilityEntityId].modifyArmor(value)
                                 executed = True
+                        elif (ability["feature"] == "cost"):
+                            for spellId in abilityTargetIdList:
+                                self._playersDict[playerId].modifySpellCost(spellId, value)
+                                executed = True
 
                     elif (ability["behavior"] == "melee"):
-                        mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team))
+                        mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team)) if not(force) else mult # Handle the stopTrigger case
                         if (ability["feature"] == "pv"): 
                             self._entitiesDict[abilityTargetIdList[targetIdx]].modifyPv(mult*value)
                             executed = True
@@ -835,7 +842,7 @@ class Board:
                                 executed = True
 
                     elif (ability["behavior"] == "support"):
-                        mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[playerId].team))
+                        mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[playerId].team)) if not(force) else mult # Handle the stopTrigger case
                         if (ability["feature"] == "pv"): 
                             self._entitiesDict[abilityTargetIdList[targetIdx]].modifyPv(mult*value)
                             executed = True
@@ -848,7 +855,7 @@ class Board:
                                 executed = True
 
                     elif (ability["behavior"] == "distance"):
-                        mult = calcDist(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[abilityTargetIdList[0]].x, self._entitiesDict[abilityTargetIdList[0]].y, offset=-1)
+                        mult = calcDist(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[abilityTargetIdList[0]].x, self._entitiesDict[abilityTargetIdList[0]].y, offset=-1) if not(force) else mult # Handle the stopTrigger case
                         if (ability["feature"] == "atk"): 
                             self._entitiesDict[selfId].modifyAtk(mult*value)
                             executed = True
@@ -862,7 +869,7 @@ class Board:
                                 executed = True
 
                     elif (ability["behavior"] == "auraNb"):
-                        mult = self._entitiesDict[selfId].aura["nb"]
+                        mult = self._entitiesDict[selfId].aura["nb"] if not(force) else mult # Handle the stopTrigger case
                         if (ability["feature"] == "cost"):
                             for spellId in abilityTargetIdList:
                                 self._playersDict[playerId].modifySpellCost(spellId, mult*value)
@@ -873,11 +880,11 @@ class Board:
                                 executed = True
 
                     elif (ability["behavior"] == "opAffected"):
-                        opsAffected = len(abilityTargetIdList)
+                        mult = len(abilityTargetIdList) if not(force) else mult # Handle the stopTrigger case
                         if (ability["feature"] == "gauges"):
                             if isinstance(value, dict):
                                 for gaugeType in list(value.keys()):
-                                    self._playersDict[playerId].modifyGauge(gaugeType, opsAffected*value[gaugeType])
+                                    self._playersDict[playerId].modifyGauge(gaugeType, mult*value[gaugeType])
                                     executed = True
                             else:
                                 raise GameException("Ability value for gauges must be a dict !")
@@ -989,7 +996,9 @@ class Board:
                     # If stopTrigger is defined, the ability must be added to the ongoingAbilityList
                     if stopTrigger and not(force):
                         ongoingAbilityDict = {}
-                        ongoingAbilityDict["ability"]       = copy.deepcopy(ability)
+                        copiedAbility = copy.deepcopy(ability)
+                        copiedAbility["mult"]               = mult
+                        ongoingAbilityDict["ability"]       = copiedAbility
                         ongoingAbilityDict["playerId"]      = playerId
                         ongoingAbilityDict["selfId"]        = selfId
                         ongoingAbilityDict["spellId"]       = spellId
@@ -1016,9 +1025,10 @@ class Board:
                     self._entitiesDict[bodyguardedId].removeState("bodyguarded")
                     self._ongoingAbilityList.remove(ongoingAbility)
                 else:
-                    ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]
-                    self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [], spellId=ongoingAbility["spellId"], force=True)
-                    self._ongoingAbilityList.remove(ongoingAbility)
+                    if (ongoingAbility["selfId"] in list(self._entitiesDict.keys()) and (ongoingAbility["spellId"] == None or ongoingAbility["spellId"] in list(self._playersDict[ongoingAbility["playerId"]].handSpellDict.keys()))):
+                        ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]
+                        self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [], spellId=ongoingAbility["spellId"], force=True)
+                        self._ongoingAbilityList.remove(ongoingAbility)
             elif (stopTrigger == "always" and ongoingAbility["stopTrigger"] == "noArmor"):
                 if (self._entitiesDict[self._playersDict[ongoingAbility["playerId"]].heroEntityId].armor == 0):
                     ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]

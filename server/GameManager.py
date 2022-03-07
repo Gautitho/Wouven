@@ -3,6 +3,7 @@ import json
 import traceback
 import os
 import sys
+from Database import *
 from Game import *
 from GameException import *
 
@@ -154,7 +155,7 @@ class GameManager :
         printLog(s, filePath="gameList.log", writeMode="w")
 
         for game in self._currGameList:
-            if not(os.path.isdir(logDir + "/game_" + game.name)):
+            if not(LOCAL_ENABLE) and not(os.path.isdir(logDir + "/game_" + game.name)):
                 os.mkdir(logDir + "/game_" + game.name)
             printLog(game.entityListLog() + "\n", filePath="game_" + game.name + "/entityList.log", writeMode="w")
             printLog(game.playerListLog() + "\n", filePath="game_" + game.name + "/playerList.log", writeMode="w")

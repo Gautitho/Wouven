@@ -551,6 +551,47 @@
             }
         ]
     },
+    "si15":
+    {
+        "name"              : "Poing de glace",
+        "race"              : "iop",
+        "cost"              : 3,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/iop/poingDeGlace.png",
+        "descSpritePath"    : "img/spells/desc/iop/poingDeGlace.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -14
+            },
+            {
+                "trigger"       : "always",
+                "stopTrigger"   : "always",
+                "target"        : "currentSpell",
+                "behavior"      : "melee",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "cost",
+                "value"         : -1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
     "si16":
     {
         "name"              : "Tsunami",
@@ -659,6 +700,47 @@
                 "break"         : "False",
                 "feature"       : "gauges",
                 "value"         : {"water" : 2}
+            }
+        ]
+    },
+    "si19":
+    {
+        "name"              : "Lance de glace",
+        "race"              : "iop",
+        "cost"              : 5,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/iop/lanceDeGlace.png",
+        "descSpritePath"    : "img/spells/desc/iop/lanceDeGlace.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -21
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            },
+            {
+                "trigger"       : "always",
+                "stopTrigger"   : "always",
+                "target"        : "currentSpell",
+                "behavior"      : "melee",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "cost",
+                "value"         : -1
             }
         ]
     },

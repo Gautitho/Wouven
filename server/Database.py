@@ -45,7 +45,7 @@ def checkDeck(deck):
             elif (deck["companionDescIdList"].count(companionDescId) > 1):
                 raise GameException(f"You can't pick a companion ({companionDescId}) more than 1 time !") 
 
-class DataBase:
+class Database:
 
     def __init__(self):
         self._heroes = {}
@@ -98,4 +98,4 @@ class DataBase:
     def auras(self):
         return self._auras
 
-db = DataBase()
+db = Database()

@@ -6,8 +6,8 @@ from functions import *
 from Board import *
 from GameException import *
 
-deck1       = {"heroDescId" : "hc1", "spellDescIdList" : ["shc1", "ss0", "ss36", "ss29", "sc16", "sc7", "si9", "si3", "sc28"], "companionDescIdList" : ["ca0", "cf8", "ce8", "cf16"]}
-deck2       = {"heroDescId" : "hc1", "spellDescIdList" : ["shc1", "ss0", "ss36", "ss29", "sc16", "sc7", "si9", "si5", "sc28"], "companionDescIdList" : ["ca0", "cf8", "ce8", "cf16"]}
+deck1       = {"heroDescId" : "hc1", "spellDescIdList" : ["shc1", "si19", "ss16", "ss19", "sc16", "si15", "si9", "si3", "sc28"], "companionDescIdList" : ["ca0", "cf9", "ce8", "ca16"]}
+deck2       = {"heroDescId" : "hc1", "spellDescIdList" : ["shc1", "si19", "ss16", "ss19", "sc16", "si15", "si9", "si5", "sc28"], "companionDescIdList" : ["ca0", "cf9", "ce8", "ca16"]}
 
 class Game:
 
@@ -108,9 +108,9 @@ class Game:
                     self.Move(playerId, int(cmdDict["entityId"]), cmdDict["path"])
 
                 elif (cmd == "SPELL"):
-                    self.checkCmdArgs(cmdDict, ["spellId", "targetPositionList"])
-                    self.addActionToList("spellCast", self._board.playersDict[playerId].team, self._board.playersDict[playerId].handSpellList[int(cmdDict["spellId"])].descId, cmdDict["targetPositionList"])
-                    self.SpellCast(playerId, int(cmdDict["spellId"]), cmdDict["targetPositionList"])
+                    self.checkCmdArgs(cmdDict, ["spellIdx", "targetPositionList"])
+                    self.addActionToList("spellCast", self._board.playersDict[playerId].team, self._board.playersDict[playerId].handSpellDict[list(self._board.playersDict[playerId].handSpellDict.keys())[int(cmdDict["spellIdx"])]].descId, cmdDict["targetPositionList"])
+                    self.SpellCast(playerId, int(cmdDict["spellIdx"]), cmdDict["targetPositionList"])
 
                 elif (cmd == "SUMMON"):
                     self.checkCmdArgs(cmdDict, ["companionId", "summonPositionList"])
@@ -254,8 +254,8 @@ class Game:
     def Move(self, playerId, entityId, path):
         self._board.moveEntity(playerId, entityId, path)
 
-    def SpellCast(self, playerId, spellId, targetPositionList):
-        self._board.spellCast(playerId, spellId, targetPositionList)
+    def SpellCast(self, playerId, spellIdx, targetPositionList):
+        self._board.spellCast(playerId, spellIdx, targetPositionList)
 
     def Summon(self, playerId, companionId, summonPositionList):
         self._board.summon(playerId, companionId, summonPositionList)

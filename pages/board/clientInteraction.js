@@ -345,7 +345,7 @@ function boardTileClick(tile)
 
 function spellClick(spell)
 {
-    var spellId = parseInt(spell.attr('id').split('_')[1]);
+    var spellIdx = parseInt(spell.attr('id').split('_')[1]);
 
     if (turn != team)
     {
@@ -354,8 +354,8 @@ function spellClick(spell)
     else if (state == "IDLE")
     {
         updateState("SPELL");
-        selectedSpell = spellId;
-        $("#spell_" + spellId).css("background-color", "#6DB3F2");
+        selectedSpell = spellIdx;
+        $("#spell_" + spellIdx).css("background-color", "#6DB3F2");
     }
 }
 
