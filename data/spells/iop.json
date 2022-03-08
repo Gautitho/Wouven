@@ -1,68 +1,6 @@
 {
     "si0":
     {
-        "name"              : "Epees sanglantes",
-        "race"              : "iop",
-        "cost"              : 6,
-        "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/iop/epeesSanglantes.png",
-        "descSpritePath"    : "img/spells/desc/iop/epeesSanglantes.png",
-        "allowedTargetList" : ["myHero"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "addAuraReset",
-                "feature"       : "ai2",
-                "value"         : 3
-            }
-        ]
-    },
-    "si1":
-    {
-        "name"              : "Blâmer",
-        "race"              : "iop",
-        "cost"              : 6,
-        "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iop/blamer.png",
-        "descSpritePath"    : "img/spells/desc/iop/blamer.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -22
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "elemState",
-                "value"         : "oiled"
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "conditionList" : [],
-                "break"         : "False",
-                "feature"       : "gauges",
-                "value"         : {"fire" : 2}
-            }
-        ]
-    },
-    "si2":
-    {
         "name"              : "Brûler",
         "race"              : "iop",
         "cost"              : 2,
@@ -101,7 +39,7 @@
             }
         ]
     },
-    "si3":
+    "si1":
     {
         "name"              : "Fulgur",
         "race"              : "iop",
@@ -141,87 +79,47 @@
             }
         ]
     },
-    "si4":
+    "si2":
     {
-        "name"              : "Charge explosive",
+        "name"              : "Fondre la vie",
         "race"              : "iop",
-        "cost"              : 6,
+        "cost"              : 4,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iop/chargeExplosive.png",
-        "descSpritePath"    : "img/spells/desc/iop/chargeExplosive.png",
-        "allowedTargetList" : ["allFirstAlignedOrganic"], 
+        "spritePath"        : "img/spells/icon/iop/fondreLaVie.png",
+        "descSpritePath"    : "img/spells/desc/iop/fondreLaVie.png",
+        "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromHero", "value" : 5, "operator" : "<="}],
-                "break"         : "True",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -36
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "opOrganicAroundTarget",
-                "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -11
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "charge",
-                "feature"       : "position",
-                "value"         : 0
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -19
             },
             {
                 "trigger"       : "spellCast",
                 "target"        : "myPlayer",
+                "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "",
                 "feature"       : "gauges",
-                "value"         : {"fire" : 2}
-            }
-        ]
-    },
-    "si5":
-    {
-        "name"              : "Bond",
-        "race"              : "iop",
-        "cost"              : 3,
-        "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/iop/bond.png",
-        "descSpritePath"    : "img/spells/desc/iop/bond.png",
-        "allowedTargetList" : ["myOrganic", "emptyTile"],
-        "abilities"         :
-        [
-            {
+                "value"         : {"fire" : 1}
+            },
+                        {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromFirstTarget", "value" : 2, "operator" : "<="}],
-                "break"         : "True",
+                "target"        : "myPlayer",
                 "behavior"      : "",
-                "feature"       : "position",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
                 "value"         : 1
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "gauges",
-                "value"         : {"neutral" : 1}
             }
         ]
     },
-    "si6":
+    "si3":
     {
         "name"              : "Masser",
         "race"              : "iop",
@@ -262,127 +160,7 @@
             }
         ]
     },
-    "si7":
-    {
-        "name"              : "Inspiration",
-        "race"              : "iop",
-        "cost"              : 5,
-        "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iop/inspiration.png",
-        "descSpritePath"    : "img/spells/desc/iop/inspiration.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -22
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -12
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "gauges",
-                "value"         : {"fire" : 2}
-            }
-        ]
-    },
-    "si9":
-    {
-        "name"              : "Fondre le sol",
-        "race"              : "iop",
-        "cost"              : 8,
-        "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iop/fondreLeSol.png",
-        "descSpritePath"    : "img/spells/desc/iop/fondreLeSol.png",
-        "allowedTargetList" : ["heroAdjacentTile"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "allOrganicAligned:3",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -35
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "conditionList" : [],
-                "break"         : "False",
-                "feature"       : "gauges",
-                "value"         : {"fire" : 3}
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "opOrganicAligned:3",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "opAffected",
-                "feature"       : "gauges",
-                "value"         : {"fire" : 1}
-            }
-        ]
-    },
-    "si10":
-    {
-        "name"              : "Fondre la vie",
-        "race"              : "iop",
-        "cost"              : 4,
-        "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/iop/fondreLaVie.png",
-        "descSpritePath"    : "img/spells/desc/iop/fondreLaVie.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -19
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "conditionList" : [],
-                "break"         : "False",
-                "feature"       : "gauges",
-                "value"         : {"fire" : 1}
-            },
-                        {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "paStock",
-                "value"         : 1
-            }
-        ]
-    },
-    "si11":
+    "si4":
     {
         "name"              : "Corriger",
         "race"              : "iop",
@@ -431,7 +209,136 @@
             }
         ]
     },
-     "si12":
+    "si5":
+    {
+        "name"              : "Inspiration",
+        "race"              : "iop",
+        "cost"              : 5,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/iop/inspiration.png",
+        "descSpritePath"    : "img/spells/desc/iop/inspiration.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -22
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -12
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 2}
+            }
+        ]
+    },
+    "si6":
+    {
+        "name"              : "Blâmer",
+        "race"              : "iop",
+        "cost"              : 6,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/iop/blamer.png",
+        "descSpritePath"    : "img/spells/desc/iop/blamer.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -22
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "elemState",
+                "value"         : "oiled"
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 2}
+            }
+        ]
+    },
+    "si7":
+    {
+        "name"              : "Charge explosive",
+        "race"              : "iop",
+        "cost"              : 6,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/iop/chargeExplosive.png",
+        "descSpritePath"    : "img/spells/desc/iop/chargeExplosive.png",
+        "allowedTargetList" : ["allFirstOrganicAligned"], 
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" :"rangeFromHero", "value" : 5, "operator" : "<="}],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -36
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "opOrganicAroundTarget",
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -11
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "charge",
+                "feature"       : "position",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 2}
+            }
+        ]
+    },
+    "si8":
     {
         "name"              : "Fondre l'âme",
         "race"              : "iop",
@@ -471,7 +378,47 @@
             }
         ]
     },
-     "si13":
+    "si9":
+    {
+        "name"              : "Fondre le sol",
+        "race"              : "iop",
+        "cost"              : 8,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/iop/fondreLeSol.png",
+        "descSpritePath"    : "img/spells/desc/iop/fondreLeSol.png",
+        "allowedTargetList" : ["heroAdjacentTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "allOrganicAligned:3",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -35
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 3}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "opOrganicAligned:3",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "opAffected",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            }
+        ]
+    },
+    "si10":
     {
         "name"              : "Pic glacial",
         "race"              : "iop",
@@ -511,7 +458,7 @@
             }
         ]
     },
-    "si14":
+    "si11":
     {
         "name"              : "Siber",
         "race"              : "iop",
@@ -551,7 +498,7 @@
             }
         ]
     },
-    "si15":
+    "si12":
     {
         "name"              : "Poing de glace",
         "race"              : "iop",
@@ -592,7 +539,7 @@
             }
         ]
     },
-    "si16":
+    "si13":
     {
         "name"              : "Tsunami",
         "race"              : "iop",
@@ -632,7 +579,7 @@
             }
         ]
     },
-    "si17":
+    "si14":
     {
         "name"              : "Morsure glaciale",
         "race"              : "iop",
@@ -672,7 +619,7 @@
             }
         ]
     },
-    "si18":
+    "si15":
     {
         "name"              : "Onde de choc",
         "race"              : "iop",
@@ -703,7 +650,7 @@
             }
         ]
     },
-    "si19":
+    "si16":
     {
         "name"              : "Lance de glace",
         "race"              : "iop",
@@ -744,7 +691,7 @@
             }
         ]
     },
-    "si20":
+    "si17":
     {
         "name"              : "Dag",
         "race"              : "iop",
@@ -784,7 +731,7 @@
             }
         ]
     },
-    "si21":
+    "si18":
     {
         "name"              : "Nouvelle vague",
         "race"              : "iop",
@@ -824,7 +771,7 @@
             }
         ]
     },
-    "si22":
+    "si19":
     {
         "name"              : "Charge glaciale",
         "race"              : "iop",
@@ -832,7 +779,7 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/iop/chargeGlaciale.png",
         "descSpritePath"    : "img/spells/desc/iop/chargeGlaciale.png",
-        "allowedTargetList" : ["allFirstAlignedOrganic"], 
+        "allowedTargetList" : ["allFirstOrganicAligned"], 
         "abilities"         :
         [
             {
@@ -873,7 +820,7 @@
             }
         ]
     },
-    "si23":
+    "si20":
     {
         "name"              : "Ebranler",
         "race"              : "iop",
@@ -913,7 +860,7 @@
             }
         ]
     },
-    "si24":
+    "si21":
     {
         "name"              : "Heurt de gloire",
         "race"              : "iop",
@@ -953,7 +900,7 @@
             }
         ]
     },
-    "si25":
+    "si22":
     {
         "name"              : "Charge courte",
         "race"              : "iop",
@@ -961,7 +908,7 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/iop/chargeCourte.png",
         "descSpritePath"    : "img/spells/desc/iop/chargeCourte.png",
-        "allowedTargetList" : ["allFirstAlignedOrganic"], 
+        "allowedTargetList" : ["allFirstOrganicAligned"], 
         "abilities"         :
         [
             {
@@ -984,7 +931,7 @@
             }
         ]
     },
-    "si26":
+    "si23":
     {
         "name"              : "Fracasser",
         "race"              : "iop",
@@ -1024,7 +971,7 @@
             }
         ]
     },
-    "si27":
+    "si24":
     {
         "name"              : "Butoir",
         "race"              : "iop",
@@ -1055,7 +1002,7 @@
             }
         ]
     },
-    "si28":
+    "si25":
     {
         "name"              : "Frappe immobilisante",
         "race"              : "iop",
@@ -1086,7 +1033,7 @@
             }
         ]
     },
-    "si29":
+    "si26":
     {
         "name"              : "Frappe du dragon",
         "race"              : "iop",
@@ -1126,7 +1073,47 @@
             }
         ]
     },
-    "si31":
+    "si27":
+    {
+        "name"              : "Bond fracassant",
+        "race"              : "iop",
+        "cost"              : 6,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/iop/bondFracassant.png",
+        "descSpritePath"    : "img/spells/desc/iop/bondFracassant.png",
+        "allowedTargetList" : ["myHero", "emptyTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "rangeFromFirstTarget", "target" : "spellTarget:1", "value" : 3, "operator" : "<="}],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "position",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "opOrganicAroundSelf",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -14
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
+            }
+        ]
+    },
+    "si28":
     {
         "name"              : "Choquer",
         "race"              : "iop",
@@ -1175,7 +1162,7 @@
             }
         ]
     },
-    "si32":
+    "si29":
     {
         "name"              : "Charge longue",
         "race"              : "iop",
@@ -1215,7 +1202,7 @@
             }
         ]
     },
-    "si33":
+    "si30":
     {
         "name"              : "Jabs",
         "race"              : "iop",
@@ -1246,7 +1233,47 @@
             }
         ]
     },
-    "si36":
+    "si31":
+    {
+        "name"              : "Crochet",
+        "race"              : "iop",
+        "cost"              : 2,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/iop/crochet.png",
+        "descSpritePath"    : "img/spells/desc/iop/crochet.png",
+        "allowedTargetList" : ["allOrganic", "firstTargetAdjacentTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -6
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "push",
+                "feature"       : "",
+                "value"         : 1
+            }
+        ]
+    },
+    "si33":
     {
         "name"              : "Uppercut",
         "race"              : "iop",
@@ -1286,7 +1313,7 @@
             }
         ]
     },
-    "si37":
+    "si34":
     {
         "name"              : "Rafale",
         "race"              : "iop",
@@ -1326,7 +1353,7 @@
             }
         ]
     },
-    "si38":
+    "si35":
     {
         "name"              : "Fendre l'air",
         "race"              : "iop",
@@ -1366,7 +1393,7 @@
             }
         ]
     },
-    "si39":
+    "si36":
     {
         "name"              : "Tonnerre en série",
         "race"              : "iop",
@@ -1397,7 +1424,7 @@
             }
         ]
     },
-    "si40":
+    "si37":
     {
         "name"              : "Foudroyer",
         "race"              : "iop",
@@ -1437,7 +1464,7 @@
             }
         ]
     },
-    "si42":
+    "si39":
     {
         "name"              : "Charge tonnerre en série",
         "race"              : "iop",
@@ -1445,7 +1472,7 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/iop/chargeTonnerreEnSerie.png",
         "descSpritePath"    : "img/spells/desc/iop/chargeTonnerreEnSerie.png",
-        "allowedTargetList" : ["allFirstAlignedOrganic"], 
+        "allowedTargetList" : ["allFirstOrganicAligned"], 
         "abilities"         :
         [
             {
@@ -1474,6 +1501,121 @@
                 "break"         : "False",
                 "feature"       : "gauges",
                 "value"         : {"air" : 3}
+            }
+        ]
+    },
+    "si40":
+    {
+        "name"              : "Bond",
+        "race"              : "iop",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/iop/bond.png",
+        "descSpritePath"    : "img/spells/desc/iop/bond.png",
+        "allowedTargetList" : ["myOrganic", "emptyTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" :"rangeFromFirstTarget", "target" : "spellTarget:1", "value" : 2, "operator" : "<="}],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "position",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            }
+        ]
+    },
+    "si42":
+    {
+        "name"              : "Bouclier",
+        "race"              : "iop",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/iop/bouclier.png",
+        "descSpritePath"    : "img/spells/desc/iop/bouclier.png",
+        "allowedTargetList" : ["myOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addState",
+                "feature"       : "shield",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            }
+        ]
+    },
+    "si43":
+    {
+        "name"              : "Algarade",
+        "race"              : "iop",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/iop/algarade.png",
+        "descSpritePath"    : "img/spells/desc/iop/algarade.png",
+        "allowedTargetList" : ["myHero"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "melee",
+                "feature"       : "draw",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            }
+        ]
+    },
+    "si48":
+    {
+        "name"              : "Epees sanglantes",
+        "race"              : "iop",
+        "cost"              : 6,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/iop/epeesSanglantes.png",
+        "descSpritePath"    : "img/spells/desc/iop/epeesSanglantes.png",
+        "allowedTargetList" : ["myHero"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraReset",
+                "feature"       : "ai2",
+                "value"         : 3
             }
         ]
     },

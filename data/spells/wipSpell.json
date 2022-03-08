@@ -1,5 +1,5 @@
 {
-    "si35":
+    "si40":
     {
         "name"              : "Intimidation",
         "race"              : "iop",
@@ -37,10 +37,9 @@
                 "feature"       : "paStock",
                 "value"         : 1
             }
- 
         ]
     },
-    "si41":
+    "si46":
     {
         "name"              : "Brise",
         "race"              : "iop",
@@ -89,37 +88,6 @@
             }
         ]
     },
-    "si34":
-    {
-        "name"              : "Crochet",
-        "race"              : "iop",
-        "cost"              : 2,
-        "elem"              : "air",
-        "spritePath"        : "img/spells/icon/iop/crochet.png",
-        "descSpritePath"    : "img/spells/desc/iop/crochet.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -6
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "conditionList" : [],
-                "break"         : "False",
-                "feature"       : "gauges",
-                "value"         : {"air" : 1}
-            }
-        ]
-    },
     "sc12":
     {
         "name"              : "Trait venu d'ailleurs",
@@ -157,126 +125,6 @@
                 "conditionList" : [],
                 "feature"       : "gauges",
                 "value"         : {"water" : 1}
-            }
-        ]
-    },
-    "sc19":
-    {
-        "name"              : "Trait des profondeurs",
-        "race"              : "cra",
-        "cost"              : 8,
-        "elem"              : "water",
-        "spritePath"        : "img/spells/icon/cra/traitDesProfondeurs.png",
-        "descSpritePath"    : "img/spells/desc/cra/traitDesProfondeurs.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -34
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "paStock",
-                "value"         : 1
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "gauges",
-                "value"         : {"water" : 1}
-            }
-        ]
-    },
-    "sc23":
-    {
-        "name"              : "Tir déchirant",
-        "race"              : "cra",
-        "cost"              : 4,
-        "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/cra/tirDechirant.png",
-        "descSpritePath"    : "img/spells/desc/cra/tirDechirant.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -26
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "paStock",
-                "value"         : 1
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "gauges",
-                "value"         : {"earth" : 1}
-            }
-        ]
-    },
-    "sc27":
-    {
-        "name"              : "Tir attroce",
-        "race"              : "cra",
-        "cost"              : 6,
-        "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/cra/tirAttroce.png",
-        "descSpritePath"    : "img/spells/desc/cra/tirAttroce.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -23
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "paStock",
-                "value"         : 1
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "gauges",
-                "value"         : {"earth" : 1}
             }
         ]
     },
@@ -369,86 +217,6 @@
             }
         ]
     },
-    "sc34":
-    {
-        "name"              : "Pointe répulsive",
-        "race"              : "cra",
-        "cost"              : 3,
-        "elem"              : "air",
-        "spritePath"        : "img/spells/icon/cra/pointeRepulsive.png",
-        "descSpritePath"    : "img/spells/desc/cra/pointeRepulsive.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -23
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "paStock",
-                "value"         : 1
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "gauges",
-                "value"         : {"air" : 1}
-            }
-        ]
-    },
-    "sc39":
-    {
-        "name"              : "Pointe des cieux divins",
-        "race"              : "cra",
-        "cost"              : 7,
-        "elem"              : "air",
-        "spritePath"        : "img/spells/icon/cra/pointeDesCieuxDivins.png",
-        "descSpritePath"    : "img/spells/desc/cra/pointeDesCieuxDivins.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -42
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "paStock",
-                "value"         : 1
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "gauges",
-                "value"         : {"air" : 2}
-            }
-        ]
-    },
     "ss08":
     {
         "name"              : "Du sang dans la bouche",
@@ -457,28 +225,6 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/sacrieur/excitation.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/excitation.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -32
-            }
-        ]
-    },
-    "ss09":
-    {
-        "name"              : "Du sang sur les mains",
-        "race"              : "sacrieur",
-        "cost"              : 8,
-        "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/sacrieur/duSangSurLesMains.png",
-        "descSpritePath"    : "img/spells/desc/sacrieur/duSangSurLesMains.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -512,50 +258,6 @@
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -19
-            }
-        ]
-    },
-    "ss28":
-    {
-        "name"              : "Saut audacieux",
-        "race"              : "sacrieur",
-        "cost"              : 3,
-        "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/sacrieur/sautAudacieux.png",
-        "descSpritePath"    : "img/spells/desc/sacrieur/sautAudacieux.png",
-        "allowedTargetList" : ["myHero"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -19
-            }
-        ]
-    },
-    "ss30":
-    {
-        "name"              : "Peine",
-        "race"              : "sacrieur",
-        "cost"              : 2,
-        "elem"              : "air",
-        "spritePath"        : "img/spells/icon/sacrieur/peine.png",
-        "descSpritePath"    : "img/spells/desc/sacrieur/peine.png",
-        "allowedTargetList" : ["myHero"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myHero",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -5
             }
         ]
     },
@@ -621,37 +323,6 @@
             }
         ]
     },
-    "ss36":
-    {
-        "name"              : "Frappe cyclone",
-        "race"              : "sacrieur",
-        "cost"              : 5,
-        "elem"              : "air",
-        "spritePath"        : "img/spells/icon/sacrieur/frappeCyclone.png",
-        "descSpritePath"    : "img/spells/desc/sacrieur/frappeCyclone.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromSelf", "value" : 1, "operator" : "=="}],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -20
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "paStock",
-                "value"         : 1
-            }
-        ]
-    },
     "ss37":
     {
         "name"              : "Attirance",
@@ -683,7 +354,7 @@
             }
         ]
     },
-    "ss38":
+    "ss39":
     {
         "name"              : "Fulgurance",
         "race"              : "sacrieur",
@@ -711,6 +382,38 @@
                 "conditionList" : [],
                 "feature"       : "paStock",
                 "value"         : 1
+            }
+        ]
+    },
+    "ss44":
+    {
+        "name"              : "Dernier souffle",
+        "race"              : "sacrieur",
+        "cost"              : 5,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/cra/dernierSouffle.png",
+        "descSpritePath"    : "img/spells/desc/cra/dernierSouffle.png",
+        "allowedTargetList" : ["myHero"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myHero",
+                "stopTrigger"   : "startTurn",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "atk",
+                "value"         : 15
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myHero",
+                "behavior"      : "draw",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "opAroundSelf", "value" : 0}],
+                "feature"       : "",
+                "value"         : 2
             }
         ]
     },

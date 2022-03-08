@@ -328,6 +328,46 @@
             }
         ]
     },
+    "ss9":
+    {
+        "name"              : "Du sang sur les mains",
+        "race"              : "sacrieur",
+        "cost"              : 8,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/sacrieur/duSangSurLesMains.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/duSangSurLesMains.png",
+        "allowedTargetList" : ["allOrganicAdjacent"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -59
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -10
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 3}
+            }
+        ]
+    },
     "ss10":
     {
         "name"              : "Griffure",
@@ -988,6 +1028,46 @@
             }
         ]
     },
+    "ss28":
+    {
+        "name"              : "Saut audacieux",
+        "race"              : "sacrieur",
+        "cost"              : 6,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/sacrieur/sautAudacieux.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/sautAudacieux.png",
+        "allowedTargetList" : ["myHero", "emptyTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "rangeFromFirstTarget", "target" : "spellTarget:1", "value" : 3, "operator" : "<="}],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "position",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "opOrganicAroundSelf",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -13
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
+            }
+        ]
+    },
     "ss29":
     {
         "name"              : "Dur au mal",
@@ -1025,6 +1105,37 @@
                 "break"         : "False",
                 "feature"       : "petrified:0",
                 "value"         : 0
+            }
+        ]
+    },
+    "ss30":
+    {
+        "name"              : "Peine",
+        "race"              : "sacrieur",
+        "cost"              : 2,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/peine.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/peine.png",
+        "allowedTargetList" : ["myHero"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myHero",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -5
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myHero",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pm",
+                "value"         : 2
             }
         ]
     },
@@ -1203,6 +1314,46 @@
                 "break"         : "False",
                 "feature"       : "",
                 "value"         : 1
+            }
+        ]
+    },
+    "ss37":
+    {
+        "name"              : "Frappe cyclone",
+        "race"              : "sacrieur",
+        "cost"              : 5,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/frappeCyclone.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/frappeCyclone.png",
+        "allowedTargetList" : ["allOrganic", "firstTargetAdjacentTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -23
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "push",
+                "feature"       : "",
+                "value"         : 2
             }
         ]
     },

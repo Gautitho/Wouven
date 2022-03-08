@@ -3,7 +3,7 @@
 - Gérer les deconnexions (Inactive start time ne se déclenche pas)
 - Update comportement de lance de glace et poing de glace
 - Si 2 joueurs sont matchés mais que l'un d'entre eux a un mauvais deck, l'autre rentre dans la game tout seul et est coincé, le premier n'est plus en matchmaking non plus
-- Gérer organic pour le opAround de la conditionList
+- Gérer organic / mecanic correctement
 - Bug reconnexion avec le même pseudo
 - Gérer les sorts qui cible le compagnon
 - Les joueurs ayant fini leur game sont toujours dans knowPlayerList

@@ -728,6 +728,46 @@
             }
         ]
     },
+    "sc19":
+    {
+        "name"              : "Trait des profondeurs",
+        "race"              : "cra",
+        "cost"              : 8,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/cra/traitDesProfondeurs.png",
+        "descSpritePath"    : "img/spells/desc/cra/traitDesProfondeurs.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -34
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "auraNb",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            }
+        ]
+    },
     "sc20":
     {
         "name"              : "Tir enlisant",
@@ -848,6 +888,55 @@
             }
         ]
     },
+    "sc23":
+    {
+        "name"              : "Tir dechirant",
+        "race"              : "cra",
+        "cost"              : 4,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/cra/tirDechirant.png",
+        "descSpritePath"    : "img/spells/desc/cra/tirDechirant.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -26
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "behavior"      : "addAuraWeak",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "feature"       : "ac0",
+                "value"         : 1
+            }
+        ]
+    },
     "sc24":
     {
         "name"              : "Tir farouche",
@@ -856,7 +945,7 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/cra/tirFarouche.png",
         "descSpritePath"    : "img/spells/desc/cra/tirFarouche.png",
-        "allowedTargetList" : ["allAlignedOrganic"],
+        "allowedTargetList" : ["allOrganicAligned"],
         "abilities"         :
         [
             {
@@ -959,6 +1048,55 @@
             }
         ]
     },
+    "sc27":
+    {
+        "name"              : "Tir attroce",
+        "race"              : "cra",
+        "cost"              : 6,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/cra/tirAttroce.png",
+        "descSpritePath"    : "img/spells/desc/cra/tirAttroce.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -23
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "behavior"      : "addAuraWeak",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "feature"       : "ac0",
+                "value"         : 2
+            }
+        ]
+    },
     "sc28":
     {
         "name"              : "Tir féroce",
@@ -967,7 +1105,7 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/cra/tirFeroce.png",
         "descSpritePath"    : "img/spells/desc/cra/tirFeroce.png",
-        "allowedTargetList" : ["allAlignedOrganic"],
+        "allowedTargetList" : ["allOrganicAligned"],
         "abilities"         :
         [
             {
@@ -1128,6 +1266,46 @@
             }
         ]
     },
+    "sc34":
+    {
+        "name"              : "Pointe répulsive",
+        "race"              : "cra",
+        "cost"              : 4,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/cra/pointeRepulsive.png",
+        "descSpritePath"    : "img/spells/desc/cra/pointeRepulsive.png",
+        "allowedTargetList" : ["allOrganic", "firstTargetAdjacentTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -32
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "push",
+                "feature"       : "",
+                "value"         : 2
+            }
+        ]
+    },
     "sc35":
     {
         "name"              : "Pointe étoilée",
@@ -1279,6 +1457,55 @@
             }
         ]
     },
+    "sc39":
+    {
+        "name"              : "Pointe des cieux divins",
+        "race"              : "cra",
+        "cost"              : 7,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/cra/pointeDesCieuxDivins.png",
+        "descSpritePath"    : "img/spells/desc/cra/pointeDesCieuxDivins.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -42
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myHero",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "auraNb",
+                "feature"       : "pm",
+                "value"         : 1
+            }
+        ]
+    },
     "sc40":
     {
         "name"              : "Archerie",
@@ -1307,6 +1534,90 @@
                 "conditionList" : [],
                 "feature"       : "ac0",
                 "value"         : 2
+            }
+        ]
+    },
+    "sc41":
+    {
+        "name"              : "Acrobatie",
+        "race"              : "cra",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/cra/acrobatie.png",
+        "descSpritePath"    : "img/spells/desc/cra/acrobatie.png",
+        "allowedTargetList" : ["allOrganicAligned"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -18
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "pushBack",
+                "feature"       : "",
+                "value"         : 2
+            }
+        ]
+    },
+    "sc44":
+    {
+        "name"              : "Mires soignantes",
+        "race"              : "cra",
+        "cost"              : 4,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/cra/miresSoignantes.png",
+        "descSpritePath"    : "img/spells/desc/cra/miresSoignantes.png",
+        "allowedTargetList" : ["myHero"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac1",
+                "value"         : 3
+            }
+        ]
+    },
+    "sc45":
+    {
+        "name"              : "Mires puissantes",
+        "race"              : "cra",
+        "cost"              : 4,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/cra/miresPuissantes.png",
+        "descSpritePath"    : "img/spells/desc/cra/miresPuissantes.png",
+        "allowedTargetList" : ["myHero"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac2",
+                "value"         : 3
             }
         ]
     },

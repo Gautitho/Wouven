@@ -327,24 +327,24 @@ class Board:
         nextY = ye
         if (x == xe and y == ye):
             pass
-        elif (x == xe and ((y == ye + 1 and distance >= 0) or (y == ye - 1 and distance <= 0))):
+        elif (x == xe and ((y > ye and distance >= 0) or (y < ye and distance <= 0))):
             while (0 <= nextY + 1 < BOARD_ROWS and self.entityIdOnTile(nextX, nextY + 1) == None and remainingDistance > 0):
                 remainingDistance -= 1
                 nextY += 1
-        elif (x == xe and ((y == ye - 1 and distance >= 0) or (y == ye + 1 and distance <= 0))):
+        elif (x == xe and ((y < ye and distance >= 0) or (y > ye and distance <= 0))):
             while (0 <= nextY - 1 < BOARD_ROWS and self.entityIdOnTile(nextX, nextY - 1) == None and remainingDistance > 0):
                 remainingDistance -= 1
                 nextY -= 1
-        elif (((x == xe + 1 and distance >= 0) or (x == xe - 1 and distance <= 0)) and y == ye):
+        elif (((x > xe and distance >= 0) or (x < xe and distance <= 0)) and y == ye):
             while (0 <= nextX + 1 < BOARD_COLS and self.entityIdOnTile(nextX + 1, nextY) == None and remainingDistance > 0):
                 remainingDistance -= 1
                 nextX += 1
-        elif (((x == xe - 1 and distance >= 0) or (x == xe + 1 and distance <= 0)) and y == ye):
+        elif (((x < xe and distance >= 0) or (x > xe and distance <= 0)) and y == ye):
             while (0 <= nextX - 1 < BOARD_COLS and self.entityIdOnTile(nextX - 1, nextY) == None and remainingDistance > 0):
                 remainingDistance -= 1
                 nextX -= 1
         else:
-            raise GameException("To push, the second target tile must adjacent to the first target !")
+            raise GameException("You can't push if you are not aligned with target !")
         self._entitiesDict[entityId].tp(nextX, nextY)
 
     def spellCast(self, playerId, spellIdx, targetPositionList):
@@ -454,21 +454,21 @@ class Board:
                             else:
                                 raise GameException("Target must be opponent hero !")
 
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "allAlignedOrganic"):
+                        elif (spell.allowedTargetList[allowedTargetIdx] == "allOrganicAligned"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] in self.entityIdAligned(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"], None, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
                                 pass
                             else:
                                 raise GameException("Target is not the first, not mechanism, aligned entity !")
 
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "allFirstAlignedEntity"):
+                        elif (spell.allowedTargetList[allowedTargetIdx] == "allFirstEntityAligned"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, "all")):
                                 pass
                             else:
                                 raise GameException("Target is not the first aligned entity !")
 
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "allFirstAlignedOrganic"):
+                        elif (spell.allowedTargetList[allowedTargetIdx] == "allFirstOrganicAligned"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
                                 pass
@@ -480,6 +480,13 @@ class Board:
                                 targetEntityIdList[-1] = self.appendTileEntity(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             else:
                                 raise GameException("Target must be adjacent to your hero !")
+                    
+                        elif (spell.allowedTargetList[allowedTargetIdx] == "allOrganicAdjacent"):
+                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
+                            if (targetEntityIdList[-1] in self.entityIdAligned(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"], 1, "all")):
+                                pass
+                            else:
+                                raise GameException("Target must be an entity, not mechanism, adjacent to your hero !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "firstTargetAdjacentTile"):
                             if (self.isAdjacentToTile(targetPositionList[0]["x"], targetPositionList[0]["y"], targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"]) or (targetPositionList[0]["x"] == targetPositionList[allowedTargetIdx]["x"] and targetPositionList[0]["y"] == targetPositionList[allowedTargetIdx]["y"])):
@@ -727,7 +734,7 @@ class Board:
                         else:
                             conditionsValid = False
 
-                    elif (condition["feature"] == "targetPv"):
+                    elif (condition["feature"] == "pv"):
                         if (operator == "<=" and self._entitiesDict[conditionTargetId].pv <= condition["value"]):
                             pass
                         else:
@@ -878,6 +885,13 @@ class Board:
                             for entityId in abilityTargetIdList:
                                 self._entitiesDict[entityId].modifyPv(mult*value)
                                 executed = True
+                        elif (ability["feature"] == "pm"):
+                            for entityId in abilityTargetIdList:
+                                self._entitiesDict[entityId].modifyPm(mult*value)
+                                executed = True
+                        elif (ability["feature"] == "paStock"):
+                            self._playersDict[playerId].modifyPaStock(mult*value)
+                            executed = True
 
                     elif (ability["behavior"] == "opAffected"):
                         mult = len(abilityTargetIdList) if not(force) else mult # Handle the stopTrigger case
