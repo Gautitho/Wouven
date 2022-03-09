@@ -5,6 +5,7 @@ import os
 import sys
 from Game import *
 from GameException import *
+from KnownPlayerList import *
 
 class GameManager :
 
@@ -14,7 +15,9 @@ class GameManager :
         self._nextGameList              = []
         self._nextGameId                = 0
         self._gameIdList                = []
-        self._knownPlayerList           = [] # [{clientId / playerId / gameId}]
+        self._knownPlayerList            = KnownPlayerList()
+        #print(self._knownPlayerList.knownPlayerList)
+        #self._knownPlayerList           = [] # [{clientId / playerId / gameId}]
         self._gameIdx                   = None
         self._waitingPlayer             = {} # {playerId / deck}
         self._waitingCreatedGameList    = [] # [{gameName / clientId / playerId / deck}]
@@ -24,12 +27,24 @@ class GameManager :
             if not(key in cmdDict):
                 raise GameException(f"No {key} field in command")
 
+
+
+    # def getClientGame(self, clientId):
+    #     playerId = None
+    #     for player in self._knownPlayerList.knownPlayerList:
+    #         if (player["clientId"] == clientId):
+    #             playerId = player["playerId"]
+    #             break
+    #     if (playerId == None):
+    #         return None
+    #     for i in range(0, len(self._currGameList)):
+    #         for playerIdB in self._currGameList[i].playerIdList:
+    #             if (playerId == playerIdB):
+    #                 return i
+    #     return None
+
     def getClientGame(self, clientId):
-        playerId = None
-        for player in self._knownPlayerList:
-            if (player["clientId"] == clientId):
-                playerId = player["playerId"]
-                break
+        playerId = self._knownPlayerList.getPlayerId(clientId)
         if (playerId == None):
             return None
         for i in range(0, len(self._currGameList)):
@@ -38,49 +53,8 @@ class GameManager :
                     return i
         return None
 
-    def isKnownPlayer(self, playerId):
-        for player in self._knownPlayerList:
-            if player["playerId"] == playerId:
-                return True
-        return False
-
-    def getKnownPlayer(self, playerId):
-        for player in self._knownPlayerList:
-            if player["playerId"] == playerId:
-                return player
-        raise GameException(f"Player {playerId} does not exist !")
-
-    # Append if playerId doesn't exist, update if he already exist
-    def appendKnownPlayer(self, playerId, clientId, gameId):
-        for player in self._knownPlayerList:
-            if player["playerId"] == playerId:
-                player["clientId"]  = clientId
-                player["gameId"]    = gameId
-                return
-        self._knownPlayerList.append({"playerId" : playerId, "clientId" : clientId, "gameId" : gameId})
-
-    def removeKnownPlayer(self, playerId):
-        idxToRemove = None
-        for playerIdx in range(len(self._knownPlayerList)):
-            if self._knownPlayerList[playerIdx]["playerId"] == playerId:
-                idxToRemove = playerIdx
-                break
-        if (idxToRemove != None):
-            del self._knownPlayerList[idxToRemove]
-        else:
-            raise GameException(f"Player {playerId} does not exist !")
-
-    def removeKnownPlayerInGame(self, gameId):
-        idxToRemoveList = []
-        for playerIdx in range(len(self._knownPlayerList)):
-            if self._knownPlayerList[playerIdx]["gameId"] == gameId:
-                idxToRemoveList.append(playerIdx)
-        idxToRemoveList.reverse()
-        for idx in idxToRemoveList:
-            del self._knownPlayerList[idx]
-
     def clientDisconnect(self, clientId):
-        for player in self._knownPlayerList:
+        for player in self._knownPlayerList.knownPlayerList:
             if (player["clientId"] == clientId):
                 playerDisconnected = player["playerId"]
                 player["clientId"] == None
@@ -90,6 +64,7 @@ class GameManager :
             for playerId in game.playerIdList:
                 if (playerId == playerDisconnected):
                     game.clientDisconnect()
+
 
     def run(self, cmdDict, clientId):
         self._serverCmdList = []
@@ -124,7 +99,7 @@ class GameManager :
             if (self._gameIdx != None):
                 gameCmdList = self._nextGameList[self._gameIdx].run(cmdDict)
                 for gameCmd in gameCmdList:
-                    self._serverCmdList.append({"clientId" : self.getKnownPlayer(gameCmd["playerId"])["clientId"], "content" : gameCmd["content"]})
+                    self._serverCmdList.append({"clientId" : self._knownPlayerList.getKnownPlayer(gameCmd["playerId"])["clientId"], "content" : gameCmd["content"]})
                 self._currGameList[self._gameIdx] = copy.deepcopy(self._nextGameList[self._gameIdx])
 
         except GameException as ge:
@@ -163,7 +138,7 @@ class GameManager :
                 printLog(gameCmdList, filePath="game_" + game.name + "/server.log", writeMode="a")
 
         s = ""
-        for player in self._knownPlayerList:
+        for player in self._knownPlayerList.knownPlayerList:
             s += "Player Id : " + str(player["playerId"]) + " / Client Id : " + str(player["clientId"]) + " / Game Id : " + str(player["gameId"]) + "\n"
         s = s[:-1]
         printLog(s, filePath="knownPlayerList.log", writeMode="w")
@@ -189,7 +164,7 @@ class GameManager :
                 gameToEraseIdList.append(gameIdx)
         gameToEraseIdList.reverse()
         for gameIdx in gameToEraseIdList:
-            self.removeKnownPlayerInGame(gameIdx)
+            self._knownPlayerList.removeKnownPlayerInGame(gameIdx)
             del self._currGameList[gameIdx]
             del self._nextGameList[gameIdx]
 
@@ -210,13 +185,13 @@ class GameManager :
 
         self._nextGameList[self._gameIdx].appendPlayer(playerId, deck)
         self._nextGameList[self._gameIdx].clientConnect()
-        self.getKnownPlayer(playerId)["gameId"] = self._gameIdx
+        self._knownPlayerList.getKnownPlayer(playerId)["gameId"] = self._gameIdx
         self._currGameList[self._gameIdx] = copy.deepcopy(self._nextGameList[self._gameIdx])
         serverCmd = {"cmd" : "WAIT_GAME_START"}
         self._serverCmdList.append({"clientId" : clientId, "content" : json.dumps(serverCmd)})
 
     def CreateGame(self, clientId, gameName, playerId, deck):
-        if self.isKnownPlayer(playerId):
+        if self._knownPlayerList.isKnownPlayer(playerId):
             raise GameException(f"Player {playerId} is already in a game")
         checkDeck(deck)
         for game in self._waitingCreatedGameList:
@@ -228,13 +203,13 @@ class GameManager :
             if (gameName == game.name):
                 raise GameException(f"Game {gameName} already exists")
 
-        self.appendKnownPlayer(playerId, clientId, None)
+        self._knownPlayerList.appendKnownPlayer(playerId, clientId, None)
         self._waitingCreatedGameList.append({"gameName" : gameName, "clientId" : clientId, "playerId" : playerId, "deck" : deck})
         serverCmd = {"cmd" : "WAIT_GAME_START"}
         self._serverCmdList.append({"clientId" : clientId, "content" : json.dumps(serverCmd)})
 
     def CancelCreateGame(self, clientId, playerId):
-        self.removeKnownPlayer(playerId) 
+        self._knownPlayerList.removeKnownPlayer(playerId) 
         for gameIdx in range(len(self._waitingCreatedGameList)):
             if (playerId == self._waitingCreatedGameList[gameIdx]["playerId"]):
                 del self._waitingCreatedGameList[gameIdx]
@@ -244,11 +219,11 @@ class GameManager :
         raise GameException(f"No game created")
 
     def JoinGame(self, clientId, gameName, playerId, deck):
-        if self.isKnownPlayer(playerId):
+        if self._knownPlayerList.isKnownPlayer(playerId):
             raise GameException(f"Player {playerId} is already in a game")
         checkDeck(deck)
 
-        self.appendKnownPlayer(playerId, clientId, None)
+        self._knownPlayerList.appendKnownPlayer(playerId, clientId, None)
         for gameIdx in range(len(self._waitingCreatedGameList)):
             if (gameName == self._waitingCreatedGameList[gameIdx]["gameName"]):
                 self.create(gameName)
@@ -259,17 +234,17 @@ class GameManager :
         raise GameException(f"Game {gameName} doesn't exist")
 
     def Reconnect(self, clientId, playerId):
-        if not(self.isKnownPlayer(playerId)):
+        if not(self._knownPlayerList.isKnownPlayer(playerId)):
             raise GameException(f"Player {playerId} is not in a game")
         
-        self.appendKnownPlayer(playerId, clientId, None)
+        self._knownPlayerList.appendKnownPlayer(playerId, clientId, None)
 
     def FindGame(self, clientId, playerId, deck):
-        if self.isKnownPlayer(playerId):
+        if self._knownPlayerList.isKnownPlayer(playerId):
             raise GameException(f"Player {playerId} is already in a game")
         checkDeck(deck)
 
-        self.appendKnownPlayer(playerId, clientId, None)
+        self._knownPlayerList.appendKnownPlayer(playerId, clientId, None)
         if (self._waitingPlayer == {}):
             self._waitingPlayer = {"clientId" : clientId, "playerId" : playerId, "deck" : deck}
             serverCmd = {"cmd" : "WAIT_GAME_START"}
@@ -282,7 +257,7 @@ class GameManager :
             self._waitingPlayer = {}
 
     def CancelFindGame(self, clientId, playerId):
-        self.removeKnownPlayer(playerId) 
+        self._knownPlayerList.removeKnownPlayer(playerId) 
         self._waitingPlayer = {}
         serverCmd = {"cmd" : "CANCEL_GAME_START"}
         self._serverCmdList.append({"clientId" : clientId, "content" : json.dumps(serverCmd)})
