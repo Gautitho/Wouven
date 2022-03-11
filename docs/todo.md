@@ -7,8 +7,8 @@
 - Bug reconnexion avec le même pseudo
 - Gérer les sorts qui cible le compagnon
 - Les joueurs ayant fini leur game sont toujours dans knowPlayerList
+- Si un joueur a poing de glace dans sa main à sa mort, la partie plante
 - GameId ne se met pas à jour dans knowPlayerList
-- Assomé
 - Mécaniques à dev : 
   - Respawn de compagnon
   - Inciblable

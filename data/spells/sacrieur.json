@@ -1136,6 +1136,15 @@
                 "behavior"      : "",
                 "feature"       : "pm",
                 "value"         : 2
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
             }
         ]
     },
