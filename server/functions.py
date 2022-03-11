@@ -60,7 +60,9 @@ def printLog(msg, type="MISC", filePath=None, writeMode="a", format="LIGHT"):
         else:
             if LOCAL_ENABLE:
                 #print(filePath + " : " + s)
-                pass
+                #pass
+                if (filePath == "server.log" or filePath == "client.log"):
+                    print(s)
             else:
                 fd = open(logDir + "/" + filePath, writeMode)
                 fd.write(s + "\n")
