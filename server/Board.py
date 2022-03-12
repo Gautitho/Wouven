@@ -262,9 +262,10 @@ class Board:
             self.executeAbilities(self._entitiesDict[entityId].abilities, "alwaysAfterEnd", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [])
             self._entitiesDict[entityId].endAction()
         for playerId in list(self._playersDict.keys()):
-            for spellIdx in range(0, len(list(self._playersDict[playerId].handSpellDict.keys()))):
-                spellId = list(self._playersDict[playerId].handSpellDict.keys())[spellIdx]
-                self.executeAbilities(self._playersDict[playerId].handSpellDict[spellId].abilities, "always", playerId, self._playersDict[playerId].heroEntityId, [], spellId=spellId)
+            if (self._playersDict[playerId].heroEntityId in self._entitiesDict):
+                for spellIdx in range(0, len(list(self._playersDict[playerId].handSpellDict.keys()))):
+                    spellId = list(self._playersDict[playerId].handSpellDict.keys())[spellIdx]
+                    self.executeAbilities(self._playersDict[playerId].handSpellDict[spellId].abilities, "always", playerId, self._playersDict[playerId].heroEntityId, [], spellId=spellId)
         self.garbageCollector()
 
     def moveEntity(self, playerId, entityId, path):
