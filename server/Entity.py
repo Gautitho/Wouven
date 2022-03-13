@@ -208,6 +208,10 @@ class Entity:
         self._y         = y
         self._canMove   = False
         self._canAttack = False
+    
+    def attack(self, player):
+        if (self.isInStates("agonyMaster")):
+            player.draw(1)
 
     def tp(self, x, y):
         self._x = x

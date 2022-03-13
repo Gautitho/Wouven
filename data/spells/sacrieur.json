@@ -328,6 +328,64 @@
             }
         ]
     },
+    "ss8":
+    {
+        "name"              : "Du sang dans la bouche",
+        "race"              : "sacrieur",
+        "cost"              : 7,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/sacrieur/duSangDansLaBouche.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/duSangDansLaBouche.png",
+        "allowedTargetList" : ["emptyAlignedTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "allOrganicAligned:2",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -35
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "opOrganicAligned:2",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "opAffected",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [{"feature" :"rangeFromHero", "value" : 3, "operator" : "=", "target" : "spellTarget"}],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "position",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 2}
+            }
+        ]
+    },
     "ss9":
     {
         "name"              : "Du sang sur les mains",
@@ -655,6 +713,46 @@
                 "stopTrigger"   : "always",
                 "feature"       : "cost",
                 "value"         : -2
+            }
+        ]
+    },
+    "ss17":
+    {
+        "name"              : "Deferlante",
+        "race"              : "sacrieur",
+        "cost"              : 6,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/sacrieur/deferlante.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/deferlante.png",
+        "allowedTargetList" : ["emptyAlignedTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "allOrganicAligned:2",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -35
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [{"feature" :"rangeFromHero", "value" : 3, "operator" : "=", "target" : "spellTarget"}],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "position",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 2}
             }
         ]
     },
@@ -1036,17 +1134,17 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/sacrieur/sautAudacieux.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/sautAudacieux.png",
-        "allowedTargetList" : ["myHero", "emptyTile"],
+        "allowedTargetList" : ["emptyTile"],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" : "rangeFromFirstTarget", "target" : "spellTarget:1", "value" : 3, "operator" : "<="}],
+                "target"        : "self",
+                "conditionList" : [{"feature" : "rangeFromHero", "target" : "spellTarget", "value" : 3, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
-                "value"         : 1
+                "value"         : 0
             },
             {
                 "trigger"       : "spellCast",
@@ -1363,6 +1461,117 @@
                 "behavior"      : "push",
                 "feature"       : "",
                 "value"         : 2
+            }
+        ]
+    },
+    "ss39":
+    {
+        "name"              : "Fulgurance",
+        "race"              : "sacrieur",
+        "cost"              : 7,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/fulgurance.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/fulgurance.png",
+        "allowedTargetList" : ["emptyAlignedTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "allOrganicAligned:4",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -40
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [{"feature" :"rangeFromHero", "value" : 5, "operator" : "=", "target" : "spellTarget"}],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "position",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 2}
+            }
+        ]
+    },
+    "ss40":
+    {
+        "name"              : "Maitre de l'agonie",
+        "race"              : "sacrieur",
+        "cost"              : 0,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/sacrieur/maitreDeLAgonie.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/maitreDeLAgonie.png",
+        "allowedTargetList" : ["myHero"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -5
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addState",
+                "feature"       : "agonyMaster:0",
+                "value"         : 0
+            }
+        ]
+    },
+    "ss43":
+    {
+        "name"              : "Depassement",
+        "race"              : "sacrieur",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/sacrieur/depassement.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/depassement.png",
+        "allowedTargetList" : ["emptyAlignedTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -5
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [{"feature" :"rangeFromHero", "value" : 3, "operator" : "=", "target" : "spellTarget"}],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "position",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
             }
         ]
     },

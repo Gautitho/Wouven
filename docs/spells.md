@@ -37,3 +37,4 @@
 | allFirstAlignedOrganic | All entity, not mechanism, aligned with the caster and with no entity between the caster and the target |
 | heroAdjacentTile | All adjacent tiles of the hero |
 | firstTargetAdjacentTile | All adjacent tiles of the first target or first target |
+| emptyAlignedTile |  |

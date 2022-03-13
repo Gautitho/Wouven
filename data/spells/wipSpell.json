@@ -354,37 +354,6 @@
             }
         ]
     },
-    "ss39":
-    {
-        "name"              : "Fulgurance",
-        "race"              : "sacrieur",
-        "cost"              : 7,
-        "elem"              : "air",
-        "spritePath"        : "img/spells/icon/sacrieur/fulgurance.png",
-        "descSpritePath"    : "img/spells/desc/sacrieur/fulgurance.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromSelf", "value" : 1, "operator" : "=="}],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -20
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "paStock",
-                "value"         : 1
-            }
-        ]
-    },
     "ss44":
     {
         "name"              : "Dernier souffle",

@@ -1081,17 +1081,17 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/iop/bondFracassant.png",
         "descSpritePath"    : "img/spells/desc/iop/bondFracassant.png",
-        "allowedTargetList" : ["myHero", "emptyTile"],
+        "allowedTargetList" : ["emptyTile"],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" : "rangeFromFirstTarget", "target" : "spellTarget:1", "value" : 3, "operator" : "<="}],
+                "target"        : "self",
+                "conditionList" : [{"feature" : "rangeFromHero", "target" : "spellTarget", "value" : 3, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
-                "value"         : 1
+                "value"         : 0
             },
             {
                 "trigger"       : "spellCast",

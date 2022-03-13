@@ -236,6 +236,9 @@ class Board:
     def isAdjacentToTile(self, xSelf, ySelf, xTarget, yTarget):
         return ((xTarget == xSelf and (yTarget == ySelf + 1 or yTarget == ySelf - 1)) or (yTarget == ySelf and (xTarget == xSelf + 1 or xTarget == xSelf - 1)))
 
+    def isAlignedToTile(self, xSelf, ySelf, xTarget, yTarget):
+        return ((xTarget == xSelf) ^ (yTarget == ySelf))
+
     def startTurn(self, playerId):
         self._playersDict[playerId].startTurn()
         for entityId in self._playersDict[playerId].boardEntityIds:
@@ -272,7 +275,7 @@ class Board:
         x               = self._entitiesDict[entityId].x
         y               = self._entitiesDict[entityId].y
         pm              = self._entitiesDict[entityId].pm
-        attackedEntity  = -1
+        attackedEntityId= None
         if (path[0]["x"] == x and path[0]["y"] == y): # The path is given with the inital position of the entity
             path.pop(0)
             for tile in path:
@@ -318,6 +321,8 @@ class Board:
             raise GameException("First tile of the path must be the current entity position !")
 
         self._entitiesDict[entityId].move(x, y)
+        if (attackedEntityId != None):
+            self._entitiesDict[entityId].attack(self._playersDict[playerId]) # Only used for agonyMaster / Awfull
         self.executeAbilities(self._entitiesDict[entityId].abilities, "move", playerId, entityId, [])
 
     def pushEntity(self, entityId, x, y, distance):
@@ -494,6 +499,12 @@ class Board:
                                 targetEntityIdList[-1] = self.appendTileEntity(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             else:
                                 raise GameException("Second target must be adjacent to first target !")
+
+                        elif (spell.allowedTargetList[allowedTargetIdx] == "emptyAlignedTile"):
+                            if (self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"]) == None and self.isAlignedToTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])):
+                                targetEntityIdList[-1] = self.appendTileEntity(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
+                            else:
+                                raise GameException("The targeted tile must be empty and aligned !")
 
                         else:
                             raise GameException("Wrong target type !")
