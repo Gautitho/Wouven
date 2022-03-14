@@ -42,6 +42,7 @@ function getEntitiesDataBase()
     $.getJSON(PROJECT_ROOT_PATH + "data/entities/water.json", function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
     $.getJSON(PROJECT_ROOT_PATH + "data/entities/fire.json", function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
     $.getJSON(PROJECT_ROOT_PATH + "data/entities/earth.json", function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
+    $.getJSON(PROJECT_ROOT_PATH + "data/entities/multi.json", function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
     $.getJSON(PROJECT_ROOT_PATH + "data/entities/iop.json", function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
     $.getJSON(PROJECT_ROOT_PATH + "data/entities/xelor.json", function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
     $.getJSON(PROJECT_ROOT_PATH + "data/entities/cra.json", function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});

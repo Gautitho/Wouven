@@ -1326,6 +1326,46 @@
             }
         ]
     },
+    "ss33":
+    {
+        "name"              : "Assaut",
+        "race"              : "sacrieur",
+        "cost"              : 3,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/assaut.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/assaut.png",
+        "allowedTargetList" : ["allOrganicAdjacent"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "break"         : "False",
+                "conditionList" : [],
+                "behavior"      : "swap",
+                "feature"       : "position",
+                "value"         : 0
+            }
+        ]
+    },
     "ss34":
     {
         "name"              : "Chinook",
@@ -1372,6 +1412,46 @@
                 "conditionList" : [],
                 "feature"       : "elemState",
                 "value"         : "windy"
+            }
+        ]
+    },
+    "ss35":
+    {
+        "name"              : "Assaut lointain",
+        "race"              : "sacrieur",
+        "cost"              : 4,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/assautLointain.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/assautLointain.png",
+        "allowedTargetList" : ["allOrganicAligned"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" :"rangeFromHero", "value" : 4, "operator" : "<="}],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -31
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "elemState", "value" : "windy"}],
+                "break"         : "False",
+                "behavior"      : "swap",
+                "feature"       : "position",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
             }
         ]
     },
@@ -1532,6 +1612,37 @@
                 "behavior"      : "addState",
                 "feature"       : "agonyMaster:0",
                 "value"         : 0
+            }
+        ]
+    },
+    "ss42":
+    {
+        "name"              : "Transposition",
+        "race"              : "sacrieur",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/sacrieur/transposition.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/transposition.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "swap",
+                "feature"       : "position",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
             }
         ]
     },

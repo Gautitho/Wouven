@@ -1,0 +1,86 @@
+{
+    "ecm2" :
+    {
+        "name"              : "Epinette",
+        "spritePath"        : "img/entities/icon/multi/epinette.png",
+        "descSpritePath"    : "img/entities/desc/multi/epinette.png",
+        "pv"                : 76,
+        "armor"             : 0,
+        "atk"               : 14,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "myHero",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "swap",
+                "feature"       : "position",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "",
+                "value"         : 1
+            }
+        ]
+    },
+    "ecm3" :
+    {
+        "name"              : "Klaus",
+        "spritePath"        : "img/entities/icon/multi/klaus.png",
+        "descSpritePath"    : "img/entities/desc/multi/klaus.png",
+        "pv"                : 81,
+        "armor"             : 0,
+        "atk"               : 17,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "myHero",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "swap",
+                "feature"       : "position",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "self",
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "attackAgain",
+                "feature"       : "",
+                "value"         : 0
+            }
+        ]
+    }
+}

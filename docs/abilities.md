@@ -82,7 +82,7 @@ This is an example : [{"feature" : "elemState", "value" : "oiled", "operator" : 
 | atk | |
 | gauges | Value must be a dict |
 | paStock | |
-| position | Value is targetIdx of the destination among the spellTargetList |
+| position | Value is targetIdx of the destination among the spellTargetList / -1 is self entity |
 | elemState | |
 | cost | Target must be spell |
 | "auraName" | Behavior must be addAura |

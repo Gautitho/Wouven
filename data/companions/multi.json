@@ -1,3 +1,28 @@
 {
-
+    "cm2" :
+    {
+        "cost"          : {"water" : 2, "air" : 2},
+        "entityDescId"  : "ecm2",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "cm3" :
+    {
+        "cost"          : {"fire" : 2, "earth" : 2},
+        "entityDescId"  : "ecm3",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    }
 }

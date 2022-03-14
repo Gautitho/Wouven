@@ -76,5 +76,18 @@
                 "range" : 2
             }
         ]
+    },
+    "cw16" :
+    {
+        "cost"          : {"water" : 8},
+        "entityDescId"  : "ecw16",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
     }
 }

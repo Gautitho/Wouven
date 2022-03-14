@@ -196,5 +196,38 @@
                 "value"         : 1
             }
         ]
+    },
+    "ecw16" :
+    {
+        "name"              : "Phaeris",
+        "spritePath"        : "img/entities/icon/water/phaeris.png",
+        "descSpritePath"    : "img/entities/desc/water/phaeris.png",
+        "pv"                : 157,
+        "armor"             : 0,
+        "atk"               : 42,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "myHero",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "swap",
+                "feature"       : "position",
+                "value"         : 0
+            }
+        ]
     }
 }

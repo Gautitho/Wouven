@@ -261,68 +261,6 @@
             }
         ]
     },
-    "ss33":
-    {
-        "name"              : "Assaut",
-        "race"              : "sacrieur",
-        "cost"              : 3,
-        "elem"              : "air",
-        "spritePath"        : "img/spells/icon/sacrieur/assautLointain.png",
-        "descSpritePath"    : "img/spells/desc/sacrieur/assautLointain.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromSelf", "value" : 1, "operator" : "=="}],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -20
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "paStock",
-                "value"         : 1
-            }
-        ]
-    },
-    "ss35":
-    {
-        "name"              : "Assaut lointain",
-        "race"              : "sacrieur",
-        "cost"              : 5,
-        "elem"              : "air",
-        "spritePath"        : "img/spells/icon/sacrieur/assautLointain.png",
-        "descSpritePath"    : "img/spells/desc/sacrieur/assautLointain.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromSelf", "value" : 1, "operator" : "=="}],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -20
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "paStock",
-                "value"         : 1
-            }
-        ]
-    },
     "ss37":
     {
         "name"              : "Attirance",
@@ -385,5 +323,5 @@
                 "value"         : 2
             }
         ]
-    },
+    }
 }

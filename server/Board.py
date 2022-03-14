@@ -287,8 +287,6 @@ class Board:
                             if (self._entitiesDict[entityId].canAttack and self.entityIdOnTile(nextX, nextY) != None): # Attack after full pm move
                                 attackedEntityId  = self.entityIdOnTile(nextX, nextY)
                                 if (not(self._entitiesDict[attackedEntityId].isInStates("elusive"))):
-                                    self.executeAbilities(self._entitiesDict[entityId].abilities, "attack", playerId, entityId, [attackedEntityId])
-                                    self.executeAbilities(self._entitiesDict[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, [])
                                     pm              = -1
                                 else:
                                     raise GameException("You can't attack the target because it is elusive !")
@@ -306,8 +304,6 @@ class Board:
                                 if (self._entitiesDict[entityId].canAttack):
                                     attackedEntityId  = self.entityIdOnTile(nextX, nextY)
                                     if (not(self._entitiesDict[attackedEntityId].isInStates("elusive"))):
-                                        self.executeAbilities(self._entitiesDict[entityId].abilities, "attack", playerId, entityId, [attackedEntityId])
-                                        self.executeAbilities(self._entitiesDict[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, [])
                                         pm              = -1
                                     else:
                                         raise GameException("You can't attack the target because it is elusive !")
@@ -321,9 +317,11 @@ class Board:
             raise GameException("First tile of the path must be the current entity position !")
 
         self._entitiesDict[entityId].move(x, y)
-        if (attackedEntityId != None):
-            self._entitiesDict[entityId].attack(self._playersDict[playerId]) # Only used for agonyMaster / Awfull
         self.executeAbilities(self._entitiesDict[entityId].abilities, "move", playerId, entityId, [])
+        if (attackedEntityId != None):
+            self.executeAbilities(self._entitiesDict[entityId].abilities, "attack", playerId, entityId, [attackedEntityId])
+            self.executeAbilities(self._entitiesDict[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, [])
+            self._entitiesDict[entityId].attack(self._playersDict[playerId]) # Only used for agonyMaster / Awfull
 
     def pushEntity(self, entityId, x, y, distance):
         xe  = self._entitiesDict[entityId].x
@@ -846,6 +844,13 @@ class Board:
                             for spellId in abilityTargetIdList:
                                 self._playersDict[playerId].modifySpellCost(spellId, value)
                                 executed = True
+
+                    elif (ability["behavior"] == "swap"):
+                        x = self._entitiesDict[selfId].x
+                        y = self._entitiesDict[selfId].y
+                        self._entitiesDict[selfId].tp(self._entitiesDict[abilityTargetIdList[value]].x, self._entitiesDict[abilityTargetIdList[value]].y)
+                        self._entitiesDict[abilityTargetIdList[value]].tp(x, y)
+                        executed = True
 
                     elif (ability["behavior"] == "melee"):
                         mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team)) if not(force) else mult # Handle the stopTrigger case

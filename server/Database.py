@@ -3,7 +3,7 @@ from GameException import *
 
 HEROES_FILE_PATH_LIST       = ["data/heroes/iop.json", "data/heroes/xelor.json", "data/heroes/cra.json", "data/heroes/sacrieur.json"]
 COMPANIONS_FILE_PATH_LIST   = ["data/companions/air.json", "data/companions/water.json", "data/companions/fire.json", "data/companions/earth.json", "data/companions/multi.json"]
-ENTITIES_FILE_PATH_LIST     = ["data/entities/air.json", "data/entities/water.json", "data/entities/fire.json", "data/entities/earth.json", "data/entities/iop.json", "data/entities/xelor.json", "data/entities/cra.json", "data/entities/sacrieur.json"]
+ENTITIES_FILE_PATH_LIST     = ["data/entities/air.json", "data/entities/water.json", "data/entities/fire.json", "data/entities/earth.json", "data/entities/multi.json", "data/entities/iop.json", "data/entities/xelor.json", "data/entities/cra.json", "data/entities/sacrieur.json"]
 SPELLS_FILE_PATH_LIST       = ["data/spells/air.json", "data/spells/water.json", "data/spells/fire.json", "data/spells/earth.json", "data/spells/iop.json", "data/spells/xelor.json", "data/spells/cra.json", "data/spells/sacrieur.json", "data/spells/misc.json"]
 AURAS_FILE_PATH_LIST        = ["data/auras/iop.json", "data/auras/cra.json"]
 

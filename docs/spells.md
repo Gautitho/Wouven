@@ -32,9 +32,9 @@
 | self | Entity specified in 'race' field |
 | myHero | Hero entity of the current player |
 | opHero | Hero entity of the opponent of the current player |
-| allAlignedOrganic | All entity, not mechanism, aligned with the caster |
-| allFirstAlignedEntity | All entity aligned with the caster and with no entity between the caster and the target |
-| allFirstAlignedOrganic | All entity, not mechanism, aligned with the caster and with no entity between the caster and the target |
+| allOrganicAligned | All entity, not mechanism, aligned with the caster |
+| allFirstEntityAligned | All entity aligned with the caster and with no entity between the caster and the target |
+| allFirstOrganicAligned | All entity, not mechanism, aligned with the caster and with no entity between the caster and the target |
 | heroAdjacentTile | All adjacent tiles of the hero |
 | firstTargetAdjacentTile | All adjacent tiles of the first target or first target |
 | emptyAlignedTile |  |
