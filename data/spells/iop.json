@@ -312,7 +312,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "opOrganicAroundTarget",
-                "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
+                "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",

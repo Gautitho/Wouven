@@ -167,8 +167,8 @@
     "ecw15" :
     {
         "name"              : "Nox",
-        "spritePath"        : "img/entities/icon/water/Nox.png",
-        "descSpritePath"    : "img/entities/desc/water/Nox.png",
+        "spritePath"        : "img/entities/icon/water/nox.png",
+        "descSpritePath"    : "img/entities/desc/water/nox.png",
         "pv"                : 141,
         "armor"             : 0,
         "atk"               : 30,

@@ -1,14 +1,17 @@
 # TODO List
 
 - Gérer les deconnexions (Inactive start time ne se déclenche pas)
-- Update comportement de lance de glace et poing de glace
-- Si 2 joueurs sont matchés mais que l'un d'entre eux a un mauvais deck, l'autre rentre dans la game tout seul et est coincé, le premier n'est plus en matchmaking non plus
 - Gérer organic / mecanic correctement
-- Bug reconnexion avec le même pseudo
 - Gérer les sorts qui cible le compagnon
-- Les joueurs ayant fini leur game sont toujours dans knowPlayerList
-- Si un joueur a poing de glace dans sa main à sa mort, la partie plante
-- GameId ne se met pas à jour dans knowPlayerList
+- Joueur avec le deck le plus lourd commence
+- Bug Punition
+- Reconnexion buggué
+- Deconnexion non détectée
+File "/home/gautitho/workspace/Wouven/server/GameManager.py", line 68, in run
+  gameCmdList = self._nextGameList[self._gameIdx].run(cmdDict)
+IndexError: list index out of range
+- Choquer ne donne pas d'armure
+- Bodyguard disparait sur la mort d'un compa 
 - Mécaniques à dev : 
   - Respawn de compagnon
   - Inciblable
