@@ -794,6 +794,7 @@ class Board:
                 executed = False
                 mult = 1 if not("mult" in ability) else ability["mult"] # Usefull to handle stopTrigger case
                 if (conditionsValid or force):
+                    #self.executeAbilities(abilityList, trigger, playerId, selfId, targetEntityIdList, spellElem=None, spellId=None, force=False)
                     if (ability["behavior"] in ["", "aura"]):
                         if (ability["feature"] == "pv" or ability["feature"] == "stealLife"):
                             for abilityEntityId in abilityTargetIdList:

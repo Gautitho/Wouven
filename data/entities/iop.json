@@ -1,6 +1,39 @@
 {
     "ehi0" :
     {
+        "name"              : "Bouvaloir",
+        "spritePath"        : "img/entities/icon/iop/bouvaloir.png",
+        "descSpritePath"    : "img/entities/desc/iop/bouvaloir.png",
+        "pv"                : 390,
+        "armor"             : 0,
+        "atk"               : 37,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "ability",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "behavior", "value" : "charge"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ehi1" :
+    {
         "name"              : "Kasaï",
         "spritePath"        : "img/entities/icon/iop/kasai.png",
         "descSpritePath"    : "img/entities/desc/iop/kasai.png",

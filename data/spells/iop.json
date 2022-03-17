@@ -1619,10 +1619,50 @@
             }
         ]
     },
-   "shi0":
+    "shi0":
+    {
+        "name"              : "Charge",
+        "race"              : "hi0",
+        "cost"              : 3,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/iop/charge.png",
+        "descSpritePath"    : "img/spells/desc/iop/charge.png",
+        "allowedTargetList" : ["allFirstOrganicAligned"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -29
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "charge",
+                "feature"       : "position",
+                "value"         : 0
+            }
+        ]
+    },
+    "shi1":
     {
         "name"              : "Tournoiement",
-        "race"              : "hi0",
+        "race"              : "hi1",
         "cost"              : 6,
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iop/tournoiement.png",
@@ -1633,11 +1673,20 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" : "rangeFromFirstTarget", "value" : 1, "operator" : "<=", "target" : "spellTarget:1"}, {"feature" : "elemState", "value" : "oiled"}],
-                "break"         : "True",
+                "conditionList" : [],
+                "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : -29
+                "value"         : -8
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "distance",
+                "feature"       : "pv",
+                "value"         : -4
             },
             {
                 "trigger"       : "spellCast",
