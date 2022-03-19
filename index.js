@@ -40,7 +40,7 @@ socket.onmessage = function(handler)
     {
         errorLog("");
     }
-    else if (cmdObj.cmd == "GAME_START")
+    else if (cmdObj.cmd == "GAME_START" || cmdObj.cmd == "GAME_RECONNECT")
     {
         window.location = "pages/board/board.html?" + cmdObj.name + "&" + playerId;
     }

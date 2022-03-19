@@ -55,6 +55,9 @@ class GameManager :
             elif (clientCmd == "RECONNECT"):
                 self.checkCmdArgs(cmdDict, [])
                 self.Reconnect(clientId, playerId)
+            elif (clientCmd == "GET_INIT"):
+                self.checkCmdArgs(cmdDict, [])
+                self.GetInit(clientId, playerId)
             elif (clientCmd == "FIND_GAME"):
                 self.checkCmdArgs(cmdDict, ["deck"])
                 self.FindGame(clientId, playerId, cmdDict["deck"])
@@ -201,11 +204,23 @@ class GameManager :
                 return
         raise GameException(f"Game {gameName} doesn't exist")
 
-    def Reconnect(self, clientId, playerId):
+    def GetInit(self, clientId, playerId):
         if not(self._knownPlayerList.isKnownPlayer(playerId)):
             raise GameException(f"Player {playerId} is not in a game")
         
         self._knownPlayerList.appendKnownPlayer(playerId, clientId)
+
+    def Reconnect(self, clientId, playerId):
+        if not(self._knownPlayerList.isKnownPlayer(playerId)):
+            raise GameException(f"Player {playerId} is not in a game")
+        if (self._knownPlayerList.getClientId(playerId) != None):
+            raise GameException(f"Player {playerId} is already connected to his game")
+        
+        self._knownPlayerList.appendKnownPlayer(playerId, clientId)
+        serverCmd           = {}
+        serverCmd["cmd"]    = "GAME_RECONNECT"
+        serverCmd["name"]   = self._knownPlayerList.getGameId(clientId)
+        self._serverCmdList.append({"clientId" : clientId, "content" : json.dumps(serverCmd)})
 
     def FindGame(self, clientId, playerId, deck):
         if self._knownPlayerList.isKnownPlayer(playerId):

@@ -92,9 +92,8 @@ class Game:
                 self.launchGame()
 
         else:
-            if (cmd == "RECONNECT"):
-                #self.reconnectGame(playerId)
-                self.joinGame(playerId)
+            if (cmd == "GET_INIT"):
+                self.initGame(playerId)
                 self.sendStatus()
 
             elif (cmd in ["ENDTURN", "MOVE", "SPELL", "SUMMON", "USE_RESERVE"]):
@@ -144,13 +143,7 @@ class Game:
                 self._board.playersDict[playerId].draw(6)
             self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
 
-    def reconnectGame(self, playerId):
-        serverCmd           = {}
-        serverCmd["cmd"]    = "GAME_RECONNECT"
-        serverCmd["name"]   = self._name
-        self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
-
-    def joinGame(self, playerId):
+    def initGame(self, playerId):
         serverCmd           = {}
         serverCmd["cmd"]    = "INIT"
         serverCmd["team"]   = self._board.playersDict[playerId].team

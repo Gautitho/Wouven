@@ -32,6 +32,22 @@ When two clients have sent AUTH command, the game is launched
 
 <br>
 
+### **RECONNECT**
+Reconnect a disconnected player
+| Argument | Type | Description |
+|----------|------|-------------|
+||||
+
+<br>
+
+### **GET_INIT**
+Ask for board informations at the start of the game or on a reconnexion
+| Argument | Type | Description |
+|----------|------|-------------|
+||||
+
+<br>
+
 ### **ENDTURN**
 | Argument | Type | Description |
 |----------|------|-------------|

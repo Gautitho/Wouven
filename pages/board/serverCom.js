@@ -5,7 +5,7 @@ var playerId = decodeURI(location.search.substring(1).split("&")[1]);
 
 socket.onopen = function()
 {
-    clientCmd = {"cmd" : "RECONNECT", "playerId" : playerId, "gameName" : gameName};
+    clientCmd = {"cmd" : "GET_INIT", "playerId" : playerId};
     socket.send(JSON.stringify(clientCmd));
 };
 
