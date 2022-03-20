@@ -1301,7 +1301,7 @@
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "push",
-                "feature"       : "",
+                "feature"       : "position",
                 "value"         : 2
             }
         ]
@@ -1572,7 +1572,7 @@
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "pushBack",
-                "feature"       : "",
+                "feature"       : "position",
                 "value"         : 2
             }
         ]

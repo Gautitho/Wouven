@@ -4,5 +4,17 @@
         "race"          : "sacrieur",
         "spellDescId"   : "shs1",
         "entityDescId"  : "ehs1"
+    },
+    "hs2" :
+    {
+        "race"          : "sacrieur",
+        "spellDescId"   : "shs2",
+        "entityDescId"  : "ehs2"
+    },
+    "hs3" :
+    {
+        "race"          : "sacrieur",
+        "spellDescId"   : "shs3",
+        "entityDescId"  : "ehs3"
     }
 }

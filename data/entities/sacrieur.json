@@ -31,5 +31,71 @@
                 "value"         : 1
             }
         ]
-    }   
+    },
+    "ehs2" :
+    {
+        "name"              : "Gantares",
+        "spritePath"        : "img/entities/icon/sacrieur/gantares.png",
+        "descSpritePath"    : "img/entities/desc/sacrieur/gantares.png",
+        "pv"                : 425,
+        "armor"             : 0,
+        "atk"               : 25,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "ability",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "behavior", "value" : "explosion"}],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "",
+                "value"         : 1
+            }
+        ]
+    },
+    "ehs3" :
+    {
+        "name"              : "Ombraden",
+        "spritePath"        : "img/entities/icon/sacrieur/ombraden.png",
+        "descSpritePath"    : "img/entities/desc/sacrieur/ombraden.png",
+        "pv"                : 420,
+        "armor"             : 0,
+        "atk"               : 26,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "ability",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "position", "value" : "self"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    }
 }

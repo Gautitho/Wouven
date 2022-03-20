@@ -1270,7 +1270,7 @@
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "push",
-                "feature"       : "",
+                "feature"       : "position",
                 "value"         : 1
             }
         ]

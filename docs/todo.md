@@ -4,6 +4,7 @@
 - Gérer organic / mecanic correctement
 - Gérer les sorts qui cible le compagnon
 - Joueur avec le deck le plus lourd commence
+- Ombraden : le passif doit proc aussi pendant le tour de l'adversaire mais pas sur une invocation de compagnon
 - Mécaniques à dev : 
   - Respawn de compagnon
   - Inciblable

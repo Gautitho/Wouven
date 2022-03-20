@@ -194,7 +194,7 @@
                 "target"        : "opOrganicAroundSelf",
                 "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
                 "break"         : "False",
-                "behavior"      : "",
+                "behavior"      : "explosion",
                 "feature"       : "pv",
                 "value"         : -11
             }
@@ -323,7 +323,7 @@
                 "target"        : "opOrganicAroundSelf",
                 "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
                 "break"         : "False",
-                "behavior"      : "",
+                "behavior"      : "explosion",
                 "feature"       : "pv",
                 "value"         : -11
             }
@@ -1540,7 +1540,7 @@
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "push",
-                "feature"       : "",
+                "feature"       : "position",
                 "value"         : 2
             }
         ]
@@ -1733,6 +1733,86 @@
                 "break"         : "False",
                 "feature"       : "gauges",
                 "value"         : {"water" : 1}
+            }
+        ]
+    },
+    "shs2":
+    {
+        "name"              : "Immolation",
+        "race"              : "hs2",
+        "cost"              : 2,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/sacrieur/immolation.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/immolation.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "opOrganicAroundSelf",
+                "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
+                "break"         : "False",
+                "behavior"      : "explosion",
+                "feature"       : "pv",
+                "value"         : -11
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -8
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            }
+        ]
+    },
+    "shs3":
+    {
+        "name"              : "Sillage",
+        "race"              : "hs3",
+        "cost"              : 4,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/sillage.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/sillage.png",
+        "allowedTargetList" : ["emptyAlignedTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "allOrganicAligned:1",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -37
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [{"feature" :"rangeFromHero", "value" : 2, "operator" : "=", "target" : "spellTarget"}],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "position",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
             }
         ]
     }

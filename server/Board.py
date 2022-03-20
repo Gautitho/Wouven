@@ -562,7 +562,7 @@ class Board:
         else:
             raise GameException("Only one summon position is allowed !")
 
-    def executeAbilities(self, abilityList, trigger, playerId, selfId, targetEntityIdList, spellElem=None, spellId=None, triggingAbility=None, force=False):
+    def executeAbilities(self, abilityList, trigger, playerId, selfId, targetEntityIdList, spellElem=None, spellId=None, triggingAbility=None, triggingAbilityTargetIdList=None, force=False):
         auraUsed    = False
         opPlayerId  = self.getOpPlayerId(playerId) if playerId else ""
         for ability in abilityList:
@@ -771,6 +771,13 @@ class Board:
                         else:
                             conditionsValid = False
 
+                    # Only for Ombraden, ugly implementation
+                    elif (condition["feature"] == "position"):
+                        if (condition["value"] == "self" and ((triggingAbility["feature"] == "position" and selfId in triggingAbilityTargetIdList) or triggingAbility["behavior"] == "swap")):
+                            pass
+                        else:
+                            conditionsValid = False
+
                     else:
                         raise GameException("Wrong ability condition !")
 
@@ -803,8 +810,8 @@ class Board:
                 if (conditionsValid or force):
                     if (trigger != "ability"):
                         for entityId in self._playersDict[playerId].boardEntityIds:
-                            self.executeAbilities(self._entitiesDict[entityId].abilities, "ability", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), selfId, targetEntityIdList, triggingAbility=ability)
-                    if (ability["behavior"] in ["", "aura"]):
+                            self.executeAbilities(self._entitiesDict[entityId].abilities, "ability", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, targetEntityIdList, triggingAbility=ability, triggingAbilityTargetIdList=abilityTargetIdList)
+                    if (ability["behavior"] in ["", "explosion", "aura"]):
                         if (ability["feature"] == "pv" or ability["feature"] == "stealLife"):
                             for abilityEntityId in abilityTargetIdList:
                                 guarded = False
