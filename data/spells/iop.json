@@ -1639,7 +1639,16 @@
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : -29
+                "value"         : -8
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "distance",
+                "feature"       : "pv",
+                "value"         : -4
             },
             {
                 "trigger"       : "spellCast",
@@ -1707,6 +1716,46 @@
                 "break"         : "False",
                 "feature"       : "gauges",
                 "value"         : {"fire" : 2}
+            }
+        ]
+    },
+    "shi3":
+    {
+        "name"              : "Trancher",
+        "race"              : "hi3",
+        "cost"              : 4,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/iop/trancher.png",
+        "descSpritePath"    : "img/spells/desc/iop/trancher.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -21
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 2
             }
         ]
     }

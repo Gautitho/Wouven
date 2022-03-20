@@ -4,9 +4,9 @@
         "name"              : "Bouvaloir",
         "spritePath"        : "img/entities/icon/iop/bouvaloir.png",
         "descSpritePath"    : "img/entities/desc/iop/bouvaloir.png",
-        "pv"                : 390,
+        "pv"                : 400,
         "armor"             : 0,
-        "atk"               : 37,
+        "atk"               : 24,
         "pm"                : 3,
         "aura"              : {},
         "states"            : [],
@@ -62,6 +62,39 @@
                 "behavior"      : "",
                 "feature"       : "pm",
                 "value"         : 1
+            }
+        ]
+    },
+    "ehi3" :
+    {
+        "name"              : "Justelame",
+        "spritePath"        : "img/entities/icon/iop/justelame.png",
+        "descSpritePath"    : "img/entities/desc/iop/justelame.png",
+        "pv"                : 400,
+        "armor"             : 0,
+        "atk"               : 35,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 2
             }
         ]
     }

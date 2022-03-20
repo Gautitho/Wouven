@@ -562,7 +562,7 @@ class Board:
         else:
             raise GameException("Only one summon position is allowed !")
 
-    def executeAbilities(self, abilityList, trigger, playerId, selfId, targetEntityIdList, spellElem=None, spellId=None, force=False):
+    def executeAbilities(self, abilityList, trigger, playerId, selfId, targetEntityIdList, spellElem=None, spellId=None, triggingAbility=None, force=False):
         auraUsed    = False
         opPlayerId  = self.getOpPlayerId(playerId) if playerId else ""
         for ability in abilityList:
@@ -765,6 +765,12 @@ class Board:
                         else:
                             pass
 
+                    elif (condition["feature"] == "behavior"):
+                        if (condition["value"] == triggingAbility["behavior"]):
+                            pass
+                        else:
+                            conditionsValid = False
+
                     else:
                         raise GameException("Wrong ability condition !")
 
@@ -795,7 +801,9 @@ class Board:
                 executed = False
                 mult = 1 if not("mult" in ability) else ability["mult"] # Usefull to handle stopTrigger case
                 if (conditionsValid or force):
-                    #self.executeAbilities(abilityList, trigger, playerId, selfId, targetEntityIdList, spellElem=None, spellId=None, force=False)
+                    if (trigger != "ability"):
+                        for entityId in self._playersDict[playerId].boardEntityIds:
+                            self.executeAbilities(self._entitiesDict[entityId].abilities, "ability", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), selfId, targetEntityIdList, triggingAbility=ability)
                     if (ability["behavior"] in ["", "aura"]):
                         if (ability["feature"] == "pv" or ability["feature"] == "stealLife"):
                             for abilityEntityId in abilityTargetIdList:
