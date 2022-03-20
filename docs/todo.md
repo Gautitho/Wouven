@@ -4,14 +4,6 @@
 - Gérer organic / mecanic correctement
 - Gérer les sorts qui cible le compagnon
 - Joueur avec le deck le plus lourd commence
-- Bug Punition
-- Reconnexion buggué
-- Deconnexion non détectée
-File "/home/gautitho/workspace/Wouven/server/GameManager.py", line 68, in run
-  gameCmdList = self._nextGameList[self._gameIdx].run(cmdDict)
-IndexError: list index out of range
-- Choquer ne donne pas d'armure
-- Bodyguard disparait sur la mort d'un compa 
 - Mécaniques à dev : 
   - Respawn de compagnon
   - Inciblable
@@ -25,3 +17,9 @@ IndexError: list index out of range
   - Transformation de mécanisme
   - Destruction de mechanisme quand on reconstruit le même 
   - Dépahasage
+
+Bugs non reproduits : 
+- Deconnexion non détectée
+File "/home/gautitho/workspace/Wouven/server/GameManager.py", line 68, in run
+  gameCmdList = self._nextGameList[self._gameIdx].run(cmdDict)
+IndexError: list index out of range

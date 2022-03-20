@@ -30,6 +30,7 @@
             },
             {
                 "trigger"       : "spellCast",
+                "stopTrigger"   : "endTurn",
                 "target"        : "myHero",
                 "behavior"      : "",
                 "break"         : "False",

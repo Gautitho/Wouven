@@ -46,20 +46,20 @@ class Board:
 
     def removeEntity(self, entityId):
         found = False
-        self.removeOngoingAbilities("death")
+        self.removeOngoingAbilities("death", selfId=entityId)
         self.executeAbilities(self._entitiesDict[entityId].abilities, "death", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [])
         for playerId in list(self._playersDict.keys()):
             if entityId in self._playersDict[playerId].boardEntityIds:
                 self._playersDict[playerId].removeEntity(entityId)
                 found = True
                 break
-        for state in self._entitiesDict[entityId].states:
-            if (state["feature"] == "bodyguard"):
-                rmState = {}
-                rmState["feature"]  = "bodyguarded"
-                rmState["value"]    = entityId
-                self._entitiesDict[state["value"]].removeState(rmState)
-                break
+        #for state in self._entitiesDict[entityId].states:
+        #    if (state["feature"] == "bodyguard"):
+        #        rmState = {}
+        #        rmState["feature"]  = "bodyguarded"
+        #        rmState["value"]    = entityId
+        #        self._entitiesDict[state["value"]].removeState(rmState)
+        #        break
         del self._entitiesDict[entityId]
         if not(found):
             raise GameException("Entity to remove not found in playersDict entitiesDict list !")
@@ -247,6 +247,7 @@ class Board:
 
     def endTurn(self, playerId):
         self._playersDict[playerId].endTurn()
+        self.removeOngoingAbilities("endTurn")
         for entityId in self._playersDict[playerId].boardEntityIds:
             self._entitiesDict[entityId].endTurn()
             self.executeAbilities(self._entitiesDict[entityId].abilities, "endTurn", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [])
@@ -861,6 +862,9 @@ class Board:
                         elif (ability["feature"] == "atk"): 
                             self._entitiesDict[abilityTargetIdList[targetIdx]].modifyAtk(mult*value)
                             executed = True
+                        elif (ability["feature"] == "armor"): 
+                            self._entitiesDict[abilityTargetIdList[targetIdx]].modifyArmor(mult*value)
+                            executed = True
                         elif (ability["feature"] == "cost"):
                             for spellId in abilityTargetIdList:
                                 self._playersDict[playerId].modifySpellCost(spellId, mult*value)
@@ -1044,11 +1048,11 @@ class Board:
         if auraUsed:
             self._entitiesDict[selfId].consumeAura(1)
 
-    def removeOngoingAbilities(self, stopTrigger):
+    def removeOngoingAbilities(self, stopTrigger, selfId=None):
         copyOngoingAbilityList = list(self._ongoingAbilityList)
         for ongoingAbility in copyOngoingAbilityList:
             if (stopTrigger == ongoingAbility["stopTrigger"]):
-                if (ongoingAbility["ability"]["feature"] == "bodyguard"):
+                if (ongoingAbility["ability"]["feature"] == "bodyguard" and selfId == ongoingAbility["selfId"]):
                     for state in self._entitiesDict[ongoingAbility["selfId"]].states:
                         if (state["feature"] == "bodyguard"):
                             bodyguardedId = state["value"]

@@ -61,6 +61,7 @@
             },
             {
                 "trigger"       : "spellCast",
+                "stopTrigger"   : "endTurn",
                 "target"        : "myHero",
                 "conditionList" : [],
                 "break"         : "False",
@@ -182,6 +183,7 @@
             },
             {
                 "trigger"       : "spellCast",
+                "stopTrigger"   : "endTurn",
                 "target"        : "myHero",
                 "conditionList" : [],
                 "break"         : "False",
