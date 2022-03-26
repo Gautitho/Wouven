@@ -1032,6 +1032,15 @@
                 "break"         : "False",
                 "feature"       : "gauges",
                 "value"         : {"earth" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
+                "break"         : "False",
+                "behavior"      : "addState",
+                "feature"       : "locked",
+                "value"         : 0
             }
         ]
     },
@@ -1195,12 +1204,30 @@
             },
             {
                 "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "charge",
+                "feature"       : "position",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
                 "target"        : "myPlayer",
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
                 "feature"       : "paStock",
                 "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
+                "break"         : "False",
+                "behavior"      : "addState",
+                "feature"       : "stunned",
+                "value"         : 0
             }
         ]
     },
@@ -1520,7 +1547,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromFirstTarget", "target" : "spellTarget:1", "value" : 2, "operator" : "<="}],
+                "conditionList" : [{"feature" :"rangeFromFirstTarget", "target" : "spellTarget:1", "value" : 3, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
@@ -1572,20 +1599,29 @@
     {
         "name"              : "Algarade",
         "race"              : "iop",
-        "cost"              : 3,
+        "cost"              : 4,
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/iop/algarade.png",
         "descSpritePath"    : "img/spells/desc/iop/algarade.png",
-        "allowedTargetList" : ["myHero"],
+        "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -14
+            },
             {
                 "trigger"       : "spellCast",
                 "target"        : "myPlayer",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "melee",
-                "feature"       : "draw",
+                "behavior"      : "melee+draw",
+                "feature"       : "",
                 "value"         : 1
             },
             {
@@ -1684,20 +1720,11 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
+                "conditionList" : [{"feature" : "rangeFromFirstTarget", "value" : 1, "operator" : "<=", "target" : "spellTarget:1"}, {"feature" : "elemState", "value" : "oiled"}],
+                "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : -8
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "distance",
-                "feature"       : "pv",
-                "value"         : -4
+                "value"         : -29
             },
             {
                 "trigger"       : "spellCast",

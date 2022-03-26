@@ -885,6 +885,10 @@ class Board:
                                 self._playersDict[playerId].modifySpellCost(spellId, mult*value)
                                 executed = True
 
+                    elif (ability["behavior"] == "melee+draw"):
+                        mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team)) if not(force) else mult # Handle the stopTrigger case
+                        self._playersDict[abilityTargetIdList[0]].draw(mult*value, ability["feature"])
+
                     elif (ability["behavior"] == "support"):
                         mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[playerId].team)) if not(force) else mult # Handle the stopTrigger case
                         if (ability["feature"] == "pv"): 

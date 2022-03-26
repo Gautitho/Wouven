@@ -989,7 +989,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : "target",
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -1541,7 +1541,7 @@
                 "break"         : "False",
                 "behavior"      : "push",
                 "feature"       : "position",
-                "value"         : 2
+                "value"         : 1
             }
         ]
     },
