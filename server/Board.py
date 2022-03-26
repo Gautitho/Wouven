@@ -261,15 +261,15 @@ class Board:
         self.removeOngoingAbilities("always")
         self.removeOngoingAbilities("alwaysAfterEnd")
         for entityId in list(self._entitiesDict.keys()):
-            self.executeAbilities(self._entitiesDict[entityId].abilities, "always", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [])
+            self.executeAbilities(self._entitiesDict[entityId].abilities, "always", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [None])
             self._entitiesDict[entityId].endAction()
-            self.executeAbilities(self._entitiesDict[entityId].abilities, "alwaysAfterEnd", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [])
+            self.executeAbilities(self._entitiesDict[entityId].abilities, "alwaysAfterEnd", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [None])
             self._entitiesDict[entityId].endAction()
         for playerId in list(self._playersDict.keys()):
             if (self._playersDict[playerId].heroEntityId in self._entitiesDict):
                 for spellIdx in range(0, len(list(self._playersDict[playerId].handSpellDict.keys()))):
                     spellId = list(self._playersDict[playerId].handSpellDict.keys())[spellIdx]
-                    self.executeAbilities(self._playersDict[playerId].handSpellDict[spellId].abilities, "always", playerId, self._playersDict[playerId].heroEntityId, [], spellId=spellId)
+                    self.executeAbilities(self._playersDict[playerId].handSpellDict[spellId].abilities, "always", playerId, self._playersDict[playerId].heroEntityId, [None], spellId=spellId)
         self.garbageCollector()
 
     def moveEntity(self, playerId, entityId, path):
@@ -1082,10 +1082,10 @@ class Board:
                 else:
                     if (ongoingAbility["selfId"] in list(self._entitiesDict.keys()) and (ongoingAbility["spellId"] == None or ongoingAbility["spellId"] in list(self._playersDict[ongoingAbility["playerId"]].handSpellDict.keys()))):
                         ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]
-                        self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [], spellId=ongoingAbility["spellId"], force=True)
+                        self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [None], spellId=ongoingAbility["spellId"], force=True)
                         self._ongoingAbilityList.remove(ongoingAbility)
             elif (stopTrigger == "always" and ongoingAbility["stopTrigger"] == "noArmor"):
                 if (self._entitiesDict[self._playersDict[ongoingAbility["playerId"]].heroEntityId].armor == 0):
                     ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]
-                    self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [], spellId=ongoingAbility["spellId"], force=True)
+                    self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [None], spellId=ongoingAbility["spellId"], force=True)
                     self._ongoingAbilityList.remove(ongoingAbility)
