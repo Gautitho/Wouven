@@ -94,7 +94,7 @@
     {
         "cost"          : {"air" : 6},
         "entityDescId"  : "eca14",
-        "spellDescId"   : "",
+        "spellDescId"   : "sca14",
         "placementList" :
         [
             {
@@ -107,7 +107,7 @@
     {
         "cost"          : {"air" : 8},
         "entityDescId"  : "eca16",
-        "spellDescId"   : "sca6",
+        "spellDescId"   : "sca16",
         "placementList" :
         [
             {

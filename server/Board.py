@@ -47,7 +47,7 @@ class Board:
     def removeEntity(self, entityId):
         found = False
         self.removeOngoingAbilities("death", selfId=entityId)
-        self.executeAbilities(self._entitiesDict[entityId].abilities, "death", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [])
+        self.executeAbilities(self._entitiesDict[entityId].abilities, "death", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [None])
         for playerId in list(self._playersDict.keys()):
             if entityId in self._playersDict[playerId].boardEntityIds:
                 self._playersDict[playerId].removeEntity(entityId)
@@ -233,6 +233,12 @@ class Board:
                         entityIdList.append(matchId)
         return entityIdList
 
+    def entityIdFromRace(self, race):
+        for eid in list(self._entitiesDict.keys()):
+            if (self._entitiesDict[eid].descId == race):
+                return eid
+        return None
+
     def isAdjacentToTile(self, xSelf, ySelf, xTarget, yTarget):
         return ((xTarget == xSelf and (yTarget == ySelf + 1 or yTarget == ySelf - 1)) or (yTarget == ySelf and (xTarget == xSelf + 1 or xTarget == xSelf - 1)))
 
@@ -243,14 +249,14 @@ class Board:
         self._playersDict[playerId].startTurn()
         for entityId in self._playersDict[playerId].boardEntityIds:
             self._entitiesDict[entityId].startTurn()
-            self.executeAbilities(self._entitiesDict[entityId].abilities, "startTurn", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [])
+            self.executeAbilities(self._entitiesDict[entityId].abilities, "startTurn", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [None])
 
     def endTurn(self, playerId):
         self._playersDict[playerId].endTurn()
         self.removeOngoingAbilities("endTurn")
         for entityId in self._playersDict[playerId].boardEntityIds:
             self._entitiesDict[entityId].endTurn()
-            self.executeAbilities(self._entitiesDict[entityId].abilities, "endTurn", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [])
+            self.executeAbilities(self._entitiesDict[entityId].abilities, "endTurn", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [None])
 
     def useReserve(self, playerId):
         self._playersDict[playerId].useReserve()
@@ -318,10 +324,10 @@ class Board:
             raise GameException("First tile of the path must be the current entity position !")
 
         self._entitiesDict[entityId].move(x, y)
-        self.executeAbilities(self._entitiesDict[entityId].abilities, "move", playerId, entityId, [])
+        self.executeAbilities(self._entitiesDict[entityId].abilities, "move", playerId, entityId, [None])
         if (attackedEntityId != None):
             self.executeAbilities(self._entitiesDict[entityId].abilities, "attack", playerId, entityId, [attackedEntityId])
-            self.executeAbilities(self._entitiesDict[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, [])
+            self.executeAbilities(self._entitiesDict[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, [None])
             self._entitiesDict[entityId].attack(self._playersDict[playerId]) # Only used for agonyMaster / Awfull
 
     def pushEntity(self, entityId, x, y, distance):
@@ -370,7 +376,12 @@ class Board:
                 if (len(spell.allowedTargetList) == len(targetPositionList)):
                     positionList        = targetPositionList
                     targetEntityIdList  = []
-                    selfEntityId        = self._playersDict[playerId].heroEntityId
+                    if (spell.race in [self._entitiesDict[self._playersDict[playerId].heroEntityId].descId, self._playersDict[playerId].race]):
+                        selfEntityId        = self._playersDict[playerId].heroEntityId
+                    else:
+                        selfEntityId        = self.entityIdFromRace(spell.race)
+                    if (selfEntityId == None):
+                        raise GameException("Race of self entity is not known !")
                     for allowedTargetIdx in range(0, len(spell.allowedTargetList)):
                         targetEntityIdList.append(None)
                         if (spell.allowedTargetList[allowedTargetIdx] == "all"):
@@ -505,6 +516,13 @@ class Board:
                             else:
                                 raise GameException("The targeted tile must be empty and aligned !")
 
+                        elif (spell.allowedTargetList[allowedTargetIdx] == "self"):
+                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
+                            if ((targetEntityIdList[-1] == selfEntityId) and (self._entitiesDict[selfEntityId].team == self._playersDict[playerId].team)):
+                                pass
+                            else:
+                                raise GameException("Target must be the associed companion !")
+
                         else:
                             raise GameException("Wrong target type !")
 
@@ -550,7 +568,7 @@ class Board:
                     # Summon
                     if placementValid:
                         entityId = self.appendEntity(playerId, companion["entityDescId"], self._playersDict[playerId].team, summonPositionList[0]["x"], summonPositionList[0]["y"])
-                        self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, [])
+                        self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, [None])
                         self._playersDict[playerId].summonCompanion(companionId, entityId)
 
                     else:
@@ -619,6 +637,8 @@ class Board:
                         abilityTargetIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, None, self.getOpTeam(self._entitiesDict[selfId].team))
                 elif (ability["target"].split(':')[0] == "allOrganicCross"):
                     abilityTargetIdList = self.entityIdInCross(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, int(ability["target"].split(':')[1]), "all")
+                elif (ability["target"].split(':')[0] == "myOrganicCross"):
+                    abilityTargetIdList = self.entityIdInCross(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, int(ability["target"].split(':')[1]), self._entitiesDict[selfId].team)
                 elif (ability["target"] == "currentSpell"):
                     abilityTargetIdList = [] if spellId == None else [spellId]
                 elif (ability["target"] == "hand"):
@@ -1036,7 +1056,7 @@ class Board:
 
                     elif (ability["behavior"] == "summon"):
                         entityId = self.appendEntity(playerId, ability["feature"], self._playersDict[playerId].team, self._entitiesDict[targetEntityIdList[0]].x, self._entitiesDict[targetEntityIdList[0]].y)
-                        self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, [])
+                        self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, [None])
 
                     elif (ability["behavior"] == "attackAgain"):
                         for abilityEntityId in abilityTargetIdList:

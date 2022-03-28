@@ -1660,7 +1660,7 @@
     "shi0":
     {
         "name"              : "Charge",
-        "race"              : "hi0",
+        "race"              : "ehi0",
         "cost"              : 3,
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iop/charge.png",
@@ -1709,7 +1709,7 @@
     "shi1":
     {
         "name"              : "Tournoiement",
-        "race"              : "hi1",
+        "race"              : "ehi1",
         "cost"              : 6,
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iop/tournoiement.png",
@@ -1749,7 +1749,7 @@
     "shi3":
     {
         "name"              : "Trancher",
-        "race"              : "hi3",
+        "race"              : "ehi3",
         "cost"              : 4,
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/iop/trancher.png",

@@ -1,8 +1,39 @@
 {
-    "sca6":
+    "sca14":
+    {
+        "name"              : "Evangelyne",
+        "race"              : "eca14",
+        "cost"              : 4,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/air/traitDEvangelyne.png",
+        "descSpritePath"    : "img/spells/desc/air/traitDEvangelyne.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -30
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            }
+        ]
+    },
+    "sca16":
     {
         "name"              : "Souffle de Grougaloragran",
-        "race"              : "sca16",
+        "race"              : "eca16",
         "cost"              : 5,
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/air/souffleDeGrougaloragran.png",

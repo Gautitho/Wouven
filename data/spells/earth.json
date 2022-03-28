@@ -1,3 +1,42 @@
 {
-
+    "sce13":
+    {
+        "name"              : "Pelle de Ruel",
+        "race"              : "ece13",
+        "cost"              : 5,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/earth/pelleDeRuel.png",
+        "descSpritePath"    : "img/spells/desc/earth/pelleDeRuel.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -13
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myHero",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 13
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
+            }
+        ]
+    }
 }

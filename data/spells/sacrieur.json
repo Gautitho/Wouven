@@ -1690,7 +1690,7 @@
     "shs1":
     {
         "name"              : "Oeil tatoue",
-        "race"              : "hs1",
+        "race"              : "ehs1",
         "cost"              : 3,
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/sacrieur/oeilTatoue.png",
@@ -1739,7 +1739,7 @@
     "shs2":
     {
         "name"              : "Immolation",
-        "race"              : "hs2",
+        "race"              : "ehs2",
         "cost"              : 2,
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/sacrieur/immolation.png",
@@ -1779,7 +1779,7 @@
     "shs3":
     {
         "name"              : "Sillage",
-        "race"              : "hs3",
+        "race"              : "ehs3",
         "cost"              : 4,
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/sacrieur/sillage.png",

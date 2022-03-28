@@ -81,7 +81,7 @@
     {
         "cost"          : {"earth" : 6},
         "entityDescId"  : "ece13",
-        "spellDescId"   : "",
+        "spellDescId"   : "sce13",
         "placementList" :
         [
             {

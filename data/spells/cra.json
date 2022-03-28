@@ -1664,7 +1664,7 @@
     "shc0":
     {
         "name"              : "Trait glace coeur",
-        "race"              : "hc0",
+        "race"              : "ehc0",
         "cost"              : 5,
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/cra/traitGlaceCoeur.png",
@@ -1704,7 +1704,7 @@
     "shc1":
     {
         "name"              : "Bumbond",
-        "race"              : "hc1",
+        "race"              : "ehc1",
         "cost"              : 3,
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/cra/bumbond.png",
@@ -1735,7 +1735,7 @@
     "shc2":
     {
         "name"              : "Décharge pétulante",
-        "race"              : "hc2",
+        "race"              : "ehc2",
         "cost"              : 6,
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/cra/dechargePetulante.png",

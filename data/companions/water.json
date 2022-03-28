@@ -55,7 +55,7 @@
     {
         "cost"          : {"water" : 6},
         "entityDescId"  : "ecw14",
-        "spellDescId"   : "",
+        "spellDescId"   : "scw14",
         "placementList" :
         [
             {
@@ -66,9 +66,9 @@
     },
     "cw15" :
     {
-        "cost"          : {"water" : 8},
+        "cost"          : {"water" : 7},
         "entityDescId"  : "ecw15",
-        "spellDescId"   : "",
+        "spellDescId"   : "scw15",
         "placementList" :
         [
             {

@@ -68,7 +68,7 @@
     {
         "cost"          : {"fire" : 5},
         "entityDescId"  : "ecf9",
-        "spellDescId"   : "",
+        "spellDescId"   : "scf9",
         "placementList" :
         [
             {
@@ -81,7 +81,7 @@
     {
         "cost"          : {"fire" : 5},
         "entityDescId"  : "ecf11",
-        "spellDescId"   : "",
+        "spellDescId"   : "scf11",
         "placementList" :
         [
             {
@@ -94,7 +94,7 @@
     {
         "cost"          : {"fire" : 7},
         "entityDescId"  : "ecf14",
-        "spellDescId"   : "",
+        "spellDescId"   : "scf14",
         "placementList" :
         [
             {
@@ -107,7 +107,7 @@
     {
         "cost"          : {"fire" : 9},
         "entityDescId"  : "ecf16",
-        "spellDescId"   : "",
+        "spellDescId"   : "scf16",
         "placementList" :
         [
             {
