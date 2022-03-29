@@ -320,14 +320,8 @@ function heroChoiceClick(div)
     if ($("#" + div.attr('id')).data("heroDescId"))
     { 
         selectedHero = $("#" + div.attr('id')).data("heroDescId");
-        selectedSpellList = []
-        for (s in spellsDataBase)
-        {
-            if (spellsDataBase[s]["race"] == selectedHero)
-            {
-                selectedSpellList.push(s);
-            }
-        }
+        selectedSpellList = [];
+        selectedSpellList.push(heroesDataBase[selectedHero]["spellDescId"]);
         loadPage();
         $("#" + div.attr('id')).css("background-color", "#6DB3F2");
     }
