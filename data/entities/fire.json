@@ -334,7 +334,7 @@
     },
     "ecf12" :
     {
-        "name"              : "Admai",
+        "name"              : "Adamai",
         "spritePath"        : "img/entities/icon/fire/adamai.png",
         "descSpritePath"    : "img/entities/desc/fire/adamai.png",
         "pv"                : 92,
