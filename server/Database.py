@@ -33,9 +33,9 @@ def checkDeck(deck):
             elif (deck["spellDescIdList"].count(spellDescId) > 1):
                 raise GameException(f"You can't pick a spell ({spellDescId}) more than 1 time !")
             else:
-                if (db.spells[spellDescId]["race"] == deck["heroDescId"]):
+                if (db.spells[spellDescId]["race"] == db.heroes[deck["heroDescId"]]["entityDescId"]):
                     heroSpellFound = True
-                elif (db.spells[spellDescId]["race"] != db.heroes[deck["heroDescId"]]["entityDescId"]):
+                elif (db.spells[spellDescId]["race"] != db.heroes[deck["heroDescId"]]["race"]):
                     raise GameException(f"You have picked a spell ({spellDescId}) with the wrong race !")
         if not(heroSpellFound):
             raise GameException("You haven't picked your hero spell !")
