@@ -3,11 +3,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const PROJECT_ROOT_PATH = "../../"
-const HERO_RACE_LIST = ['iop', 'cra', 'sacrieur', 'xelor']
+const HERO_RACE_LIST = ['iop', 'cra', 'sacrieur']
 const HERO_CLASSES = 5
 const ELEMS = ['fire', 'water', 'earth', 'air', 'neutral']
 const SPELLS_BY_ELEM = 10
-const COMPANIONS_BY_ELEM = 10
+const COMPANION_ROWS_BY_ELEM = 8
+const COMPANION_COLS_BY_ELEM = 2
+const COMPANION_COLS_FOR_NEUTRAL = 1
 const DECK_SPELLS = 9
 const DECK_COMPANIONS = 4
 
@@ -181,14 +183,29 @@ function spellChoice()
 function companionChoice()
 {
     document.getElementById("choiceLayout").insertAdjacentHTML('beforeend',`<div id="choiceGrid" class="h-full"></div>`);
-    $("#choiceGrid").addClass("flex-grow grid grid-cols-" + String(ELEMS.length) + " grid-rows-" + String(COMPANIONS_BY_ELEM))
-    for (y = 0; y < COMPANIONS_BY_ELEM; y++)
+    $("#choiceGrid").addClass("flex-grow grid grid-cols-" + String((ELEMS.length-1)*COMPANION_COLS_BY_ELEM + COMPANION_COLS_FOR_NEUTRAL) + " grid-rows-" + String(COMPANION_ROWS_BY_ELEM))
+    for (y = 0; y < COMPANION_ROWS_BY_ELEM; y++)
     {
-        for (x = 0; x < ELEMS.length; x++)
+        for (x0 = 0; x0 < ELEMS.length; x0++)
         {
-            document.getElementById("choiceGrid").insertAdjacentHTML('beforeend',`<div id="choiceGrid_${x}_${y}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
-            $("#choiceGrid_" + x + "_" + y).click(function() {companionChoiceClick($(this))});
-            $("#choiceGrid_" + x + "_" + y).css("background-color", "#FFFFFF");
+            if (ELEMS[x0] == 'neutral')
+            {
+                for (x1 = 0; x1 < COMPANION_COLS_FOR_NEUTRAL; x1++)
+                {
+                    document.getElementById("choiceGrid").insertAdjacentHTML('beforeend',`<div id="choiceGrid_${x0}_${x1*COMPANION_ROWS_BY_ELEM + y}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
+                    $("#choiceGrid_" + x0 + "_" + (x1*COMPANION_ROWS_BY_ELEM + y)).click(function() {companionChoiceClick($(this))});
+                    $("#choiceGrid_" + x0 + "_" + (x1*COMPANION_ROWS_BY_ELEM + y)).css("background-color", "#FFFFFF");
+                }
+            }
+            else
+            {
+                for (x1 = 0; x1 < COMPANION_COLS_BY_ELEM; x1++)
+                {
+                    document.getElementById("choiceGrid").insertAdjacentHTML('beforeend',`<div id="choiceGrid_${x0}_${x1*COMPANION_ROWS_BY_ELEM + y}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
+                    $("#choiceGrid_" + x0 + "_" + (x1*COMPANION_ROWS_BY_ELEM + y)).click(function() {companionChoiceClick($(this))});
+                    $("#choiceGrid_" + x0 + "_" + (x1*COMPANION_ROWS_BY_ELEM + y)).css("background-color", "#FFFFFF");
+                }
+            }
         } 
     }
 
