@@ -131,6 +131,156 @@
             }
         ]
     },
+    "ecw8" :
+    {
+        "name"              : "Rémus",
+        "spritePath"        : "img/entities/icon/water/remus.png",
+        "descSpritePath"    : "img/entities/desc/water/remus.png",
+        "pv"                : 79,
+        "armor"             : 0,
+        "atk"               : 16,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "paStock", "value" : 1, "target" : "spellTargetPlayer", "operator" : ">="}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "targetPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : -1
+            }
+        ]
+    },
+    "ecw9" :
+    {
+        "name"              : "Alibert",
+        "spritePath"        : "img/entities/icon/water/alibert.png",
+        "descSpritePath"    : "img/entities/desc/water/alibert.png",
+        "pv"                : 102,
+        "armor"             : 0,
+        "atk"               : 23,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 2
+            }
+        ]
+    },
+    "ecw10" :
+    {
+        "name"              : "Flopin",
+        "spritePath"        : "img/entities/icon/water/flopin.png",
+        "descSpritePath"    : "img/entities/desc/water/flopin.png",
+        "pv"                : 96,
+        "armor"             : 0,
+        "atk"               : 12,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac3",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "startTurn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac3",
+                "value"         : 1
+            }
+        ]
+    },
+    "ecw12" :
+    {
+        "name"              : "Bump",
+        "spritePath"        : "img/entities/icon/water/bump.png",
+        "descSpritePath"    : "img/entities/desc/water/bump.png",
+        "pv"                : 102,
+        "armor"             : 0,
+        "atk"               : 23,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "myBoard",
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "armor",
+                "value"         : 10
+            }
+        ]
+    },
     "ecw14" :
     {
         "name"              : "Echo",

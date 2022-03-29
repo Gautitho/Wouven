@@ -90,6 +90,45 @@
             }
         ]
     },
+    "ca10" :
+    {
+        "cost"          : {"air" : 5},
+        "entityDescId"  : "eca10",
+        "spellDescId"   : "sca10",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "ca11" :
+    {
+        "cost"          : {"air" : 5},
+        "entityDescId"  : "eca11",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "ca12" :
+    {
+        "cost"          : {"air" : 5},
+        "entityDescId"  : "eca12",
+        "spellDescId"   : "sca12",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
     "ca14" :
     {
         "cost"          : {"air" : 6},

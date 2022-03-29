@@ -1,7 +1,78 @@
 {
+    "sca10":
+    {
+        "name"              : "Vol du Corbeau Noir",
+        "race"              : "eca10",
+        "cost"              : 4,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/air/volDuCorbeauNoir.png",
+        "descSpritePath"    : "img/spells/desc/air/volDuCorbeauNoir.png",
+        "allowedTargetList" : ["emptyAlignedTile"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "allOrganicAligned:3",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [{"feature" :"rangeFromSelf", "value" : 4, "operator" : "=", "target" : "spellTarget"}],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "position",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            }
+        ]
+    },
+    "sca12":
+    {
+        "name"              : "Ush le tricheur",
+        "race"              : "eca12",
+        "cost"              : 5,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/air/ushLeTricheur.png",
+        "descSpritePath"    : "img/spells/desc/air/ushLeTricheur.png",
+        "allowedTargetList" : ["myHero"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "",
+                "value"         : 2
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 2}
+            }
+        ]
+    },
     "sca14":
     {
-        "name"              : "Evangelyne",
+        "name"              : "Trait d'Evangelyne",
         "race"              : "eca14",
         "cost"              : 4,
         "elem"              : "air",

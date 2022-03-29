@@ -5,7 +5,10 @@
 - Gérer les sorts qui cible le compagnon
 - Joueur avec le deck le plus lourd commence
 - Ombraden : le passif doit proc aussi pendant le tour de l'adversaire mais pas sur une invocation de compagnon
-- Sort de Phaeris
+- Charge de toxine trigger passif Bouvaloir
+- Sorts de : Phaeris, Remington, Julith, Coqueline, Flopin
+- Faire un ou pour le stop trigger : Championne périmée, Julith, ...
+- Empecher de cliquer les sorts qui n'existent pas 
 - Si un joueur fait un mauvais formulaire, il se retrouve quand même en tant que waitingPlayer (peut être uniquement en testMode)
 - Mécaniques à dev : 
   - Respawn de compagnon

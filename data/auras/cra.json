@@ -136,5 +136,75 @@
                 "value"         : {"air" : 1}
             }
         ]
+    },
+    "ac6" :
+    {
+        "name"          : "Mires de pierre",
+        "spritePath"    : "img/states/improvedSight.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -9
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "armor",
+                "value"         : 6
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myHero",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "armor",
+                "value"         : 6
+            }
+        ]
+    },
+    "ac7" :
+    {
+        "name"          : "Mires de protection",
+        "spritePath"    : "img/states/improvedSight.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -9
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "addState",
+                "feature"       : "shield:-1",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myHero",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "addState",
+                "feature"       : "shield:-1",
+                "value"         : 0
+            }
+        ]
     }
 }

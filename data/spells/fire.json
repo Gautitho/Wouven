@@ -72,6 +72,37 @@
             }
         ]
     },
+    "scf12":
+    {
+        "name"              : "Ecailles d'Adamai",
+        "race"              : "ecf12",
+        "cost"              : 5,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/fire/ecaillesDAdamai.png",
+        "descSpritePath"    : "img/spells/desc/fire/ecaillesDAdamai.png",
+        "allowedTargetList" : ["myOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "armor",
+                "value"         : 27
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 2}
+            }
+        ]
+    },
     "scf14":
     {
         "name"              : "Soif d'Oropo",

@@ -20,7 +20,7 @@ class Entity:
         self._elemState     = ""
         self._aura          = {"type" : "", "nb" : 0} if db.entities[descId]["aura"] == {} else copy.deepcopy(db.entities[descId]["aura"])
         self._auraBuffer    = {"type" : "", "nb" : 0, "addingRule" : "WEAK"}
-        self._states        = copy.deepcopy(db.entities[descId]["states"])
+        self._states        = copy.deepcopy(db.entities[descId]["states"]) # [{feature / value / duration}]
         self._abilities     = copy.deepcopy(db.entities[descId]["abilities"])
 
         self._myTurn                = False
@@ -241,6 +241,7 @@ class Entity:
             self._canMove = False
 
     def addState(self, state):
+        print(state)
         cpyState        = dict(state)
         uniqueStateList = ["disarmed", "locked", "frozen", "stunned"]
         if not(cpyState in self._states):

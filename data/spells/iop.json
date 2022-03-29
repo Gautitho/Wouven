@@ -316,7 +316,7 @@
                 "target"        : "opOrganicAroundTarget",
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "",
+                "behavior"      : "explosion",
                 "feature"       : "pv",
                 "value"         : -11
             },
@@ -1181,7 +1181,7 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/iop/chargeLongue.png",
         "descSpritePath"    : "img/spells/desc/iop/chargeLongue.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : ["allFirstOrganicAligned"],
         "abilities"         :
         [
             {

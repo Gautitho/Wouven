@@ -23,30 +23,6 @@
             }
         ]
     },
-    "ecf2" :
-    {
-        "name"              : "Championne périmée",
-        "spritePath"        : "img/entities/icon/fire/championnePerimee.png",
-        "descSpritePath"    : "img/entities/desc/fire/championnePerimee.png",
-        "pv"                : 67,
-        "armor"             : 0,
-        "atk"               : 15,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
     "ecf3" :
     {
         "name"              : "Skhul",
@@ -68,54 +44,15 @@
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : "-atk"
-            }
-        ]
-    },
-    "ecf10" :
-    {
-        "name"              : "Remington",
-        "spritePath"        : "img/entities/icon/fire/remington.png",
-        "descSpritePath"    : "img/entities/desc/fire/remington.png",
-        "pv"                : 94,
-        "armor"             : 0,
-        "atk"               : 14,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
+            },
             {
-                "trigger"       : "attack",
-                "target"        : "target",
+                "trigger"       : "startTurn",
+                "target"        : "opOrganicHighestPv",
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
-    "ecf12" :
-    {
-        "name"              : "Admaï",
-        "spritePath"        : "img/entities/icon/fire/adamai.png",
-        "descSpritePath"    : "img/entities/desc/fire/adamai.png",
-        "pv"                : 92,
-        "armor"             : 0,
-        "atk"               : 30,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
+                "feature"       : "cost",
+                "value"         : -1
             }
         ]
     },
@@ -127,30 +64,6 @@
         "pv"                : 94,
         "armor"             : 0,
         "atk"               : 18,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
-    "ecf15" :
-    {
-        "name"              : "Julith",
-        "spritePath"        : "img/entities/icon/fire/julith.png",
-        "descSpritePath"    : "img/entities/desc/fire/julith.png",
-        "pv"                : 137,
-        "armor"             : 0,
-        "atk"               : 27,
         "pm"                : 3,
         "aura"              : {},
         "states"            : [],
@@ -239,78 +152,6 @@
             }
         ]
     },
-    "eca10" :
-    {
-        "name"              : "Corbeau noir",
-        "spritePath"        : "img/entities/icon/air/corbeauNoir.png",
-        "descSpritePath"    : "img/entities/desc/air/corbeauNoir.png",
-        "pv"                : 95,
-        "armor"             : 0,
-        "atk"               : 27,
-        "pm"                : 4,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
-    "eca11" :
-    {
-        "name"              : "Coqueline",
-        "spritePath"        : "img/entities/icon/air/coqueline.png",
-        "descSpritePath"    : "img/entities/desc/air/coqueline.png",
-        "pv"                : 79,
-        "armor"             : 0,
-        "atk"               : 23,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
-    "eca12" :
-    {
-        "name"              : "Ush",
-        "spritePath"        : "img/entities/icon/air/ush.png",
-        "descSpritePath"    : "img/entities/desc/air/ush.png",
-        "pv"                : 107,
-        "armor"             : 0,
-        "atk"               : 23,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
     "eca13" :
     {
         "name"              : "Atcham",
@@ -359,30 +200,6 @@
             }
         ]
     },
-    "ece0" :
-    {
-        "name"              : "Argolio",
-        "spritePath"        : "img/entities/icon/earth/argolio.png",
-        "descSpritePath"    : "img/entities/desc/earth/argolio.png",
-        "pv"                : 52,
-        "armor"             : 0,
-        "atk"               : 5,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
     "ece2" :
     {
         "name"              : "Kaotika",
@@ -391,30 +208,6 @@
         "pv"                : 58,
         "armor"             : 0,
         "atk"               : 13,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
-    "ece6" :
-    {
-        "name"              : "Eclaireur d'élite",
-        "spritePath"        : "img/entities/icon/earth/eclaireurDElite.png",
-        "descSpritePath"    : "img/entities/desc/earth/eclaireurDElite.png",
-        "pv"                : 52,
-        "armor"             : 0,
-        "atk"               : 5,
         "pm"                : 3,
         "aura"              : {},
         "states"            : [],
@@ -463,30 +256,6 @@
         "pv"                : 79,
         "armor"             : 0,
         "atk"               : 23,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
-    "ece11" :
-    {
-        "name"              : "Toxine",
-        "spritePath"        : "img/entities/icon/earth/toxine.png",
-        "descSpritePath"    : "img/entities/desc/earth/toxine.png",
-        "pv"                : 100,
-        "armor"             : 0,
-        "atk"               : 26,
         "pm"                : 3,
         "aura"              : {},
         "states"            : [],
@@ -559,30 +328,6 @@
         "pv"                : 114,
         "armor"             : 0,
         "atk"               : 30,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
-    "ece16" :
-    {
-        "name"              : "Tristepin",
-        "spritePath"        : "img/entities/icon/earth/kerubim.png",
-        "descSpritePath"    : "img/entities/desc/earth/kerubim.png",
-        "pv"                : 141,
-        "armor"             : 0,
-        "atk"               : 40,
         "pm"                : 3,
         "aura"              : {},
         "states"            : [],
@@ -695,78 +440,9 @@
             }
         ]
     },
-    "ecw8" :
-    {
-        "name"              : "Rémus",
-        "spritePath"        : "img/entities/icon/water/remus.png",
-        "descSpritePath"    : "img/entities/desc/water/remus.png",
-        "pv"                : 79,
-        "armor"             : 0,
-        "atk"               : 16,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
-    "ecw9" :
-    {
-        "name"              : "Alibert",
-        "spritePath"        : "img/entities/icon/water/alibert.png",
-        "descSpritePath"    : "img/entities/desc/water/alibert.png",
-        "pv"                : 102,
-        "armor"             : 0,
-        "atk"               : 23,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
-    "ecw10" :
-    {
-        "name"              : "Flopin",
-        "spritePath"        : "img/entities/icon/water/flopin.png",
-        "descSpritePath"    : "img/entities/desc/water/flopin.png",
-        "pv"                : 96,
-        "armor"             : 0,
-        "atk"               : 12,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
+
+
+
     "ecw11" :
     {
         "name"              : "Comte Harbourg",
@@ -775,30 +451,6 @@
         "pv"                : 78,
         "armor"             : 0,
         "atk"               : 14,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
-    "ecw12" :
-    {
-        "name"              : "Bump",
-        "spritePath"        : "img/entities/icon/water/bump.png",
-        "descSpritePath"    : "img/entities/desc/water/bump.png",
-        "pv"                : 102,
-        "armor"             : 0,
-        "atk"               : 23,
         "pm"                : 3,
         "aura"              : {},
         "states"            : [],

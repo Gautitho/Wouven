@@ -127,7 +127,7 @@ class Board:
                             entityIdList.append(matchId)
         return entityIdList
 
-    def entityIdNextToTile(self, x, y, team):
+    def entityIdAdjacentToTile(self, x, y, team):
         entityIdList = []
         matchId = self.entityIdOnTile(max(x-1, 0), y)
         if (matchId != None):
@@ -238,7 +238,7 @@ class Board:
             if (self._entitiesDict[eid].descId == race):
                 return eid
         return None
-
+    
     def isAdjacentToTile(self, xSelf, ySelf, xTarget, yTarget):
         return ((xTarget == xSelf and (yTarget == ySelf + 1 or yTarget == ySelf - 1)) or (yTarget == ySelf and (xTarget == xSelf + 1 or xTarget == xSelf - 1)))
 
@@ -472,34 +472,34 @@ class Board:
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allOrganicAligned"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] in self.entityIdAligned(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"], None, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
+                            if (targetEntityIdList[-1] in self.entityIdAligned(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"], None, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
                                 pass
                             else:
                                 raise GameException("Target is not the first, not mechanism, aligned entity !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allFirstEntityAligned"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, "all")):
+                            if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, "all")):
                                 pass
                             else:
                                 raise GameException("Target is not the first aligned entity !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allFirstOrganicAligned"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
+                            if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
                                 pass
                             else:
                                 raise GameException("Target is not the first, not mechanism, aligned entity !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "heroAdjacentTile"):
-                            if (self.isAdjacentToTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])):
+                            if (self.isAdjacentToTile(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])):
                                 targetEntityIdList[-1] = self.appendTileEntity(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             else:
                                 raise GameException("Target must be adjacent to your hero !")
                     
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allOrganicAdjacent"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] in self.entityIdAligned(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"], 1, "all")):
+                            if (targetEntityIdList[-1] in self.entityIdAligned(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"], 1, "all")):
                                 pass
                             else:
                                 raise GameException("Target must be an entity, not mechanism, adjacent to your hero !")
@@ -511,7 +511,7 @@ class Board:
                                 raise GameException("Second target must be adjacent to first target !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "emptyAlignedTile"):
-                            if (self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"]) == None and self.isAlignedToTile(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])):
+                            if (self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"]) == None and self.isAlignedToTile(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])):
                                 targetEntityIdList[-1] = self.appendTileEntity(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             else:
                                 raise GameException("The targeted tile must be empty and aligned !")
@@ -625,6 +625,11 @@ class Board:
                     abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, self.getOpTeam(self._entitiesDict[selfId].team))
                 elif (ability["target"] == "myOrganicAroundTarget"):
                     abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, self._entitiesDict[selfId].team)
+                elif (ability["target"] == "allOrganicAdjacentToSelf"):
+                    abilityTargetIdList = self.entityIdAdjacentToTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, "all")
+                elif (ability["target"] == "allOrganicAdjacentToFirstTarget"):
+                    abilityTargetIdList = self.entityIdAdjacentToTile(self._entitiesDict[targetEntityIdList[0]].x, self._entitiesDict[targetEntityIdList[0]].y, "all")
+                    print(abilityTargetIdList)
                 elif (ability["target"].split(':')[0] == "allOrganicAligned"):
                     if (len(ability["target"].split(':')) > 1):
                         abilityTargetIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, int(ability["target"].split(':')[1]), "all")
@@ -639,10 +644,14 @@ class Board:
                     abilityTargetIdList = self.entityIdInCross(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, int(ability["target"].split(':')[1]), "all")
                 elif (ability["target"].split(':')[0] == "myOrganicCross"):
                     abilityTargetIdList = self.entityIdInCross(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, int(ability["target"].split(':')[1]), self._entitiesDict[selfId].team)
+                elif (ability["target"] == "opBoard"):
+                    abilityTargetIdList = self._playersDict[opPlayerId].boardEntityIds
+                elif (ability["target"] == "myBoard"):
+                    abilityTargetIdList = self._playersDict[playerId].boardEntityIds
                 elif (ability["target"] == "currentSpell"):
                     abilityTargetIdList = [] if spellId == None else [spellId]
                 elif (ability["target"] == "hand"):
-                    abilityTargetIdList = range(len(list(self._playersDict[playerId].handSpellDict.keys()))) # WARNING : if a spell is draw, it is not taken
+                    abilityTargetIdList = list(self._playersDict[playerId].handSpellDict.keys()) # WARNING : if a spell is draw, it is not taken
                 else:
                     raise GameException("Wrong ability target !")
 
@@ -667,6 +676,8 @@ class Board:
                             conditionTargetId = abilityTargetIdList[0]
                         elif (condition["target"] == "self"):
                             conditionTargetId = selfId
+                        elif (condition["target"] == "myPlayer"):
+                            conditionTargetId = playerId
                         else:
                             raise GameException("Wrong condition target !")
                     else:
@@ -725,6 +736,14 @@ class Board:
                             rangeCondition = condition["value"]
                         elif (operator == "<=" and calcDist(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y) <= condition["value"]):
                             rangeCondition = condition["value"]
+                        else:
+                            conditionsValid = False
+
+                    elif (condition["feature"] == "rangeFromSelf"):
+                        if (operator == "=" and calcDist(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y) == condition["value"]):
+                            pass
+                        elif (operator == "<=" and calcDist(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y) <= condition["value"]):
+                            pass
                         else:
                             conditionsValid = False
 
@@ -794,6 +813,14 @@ class Board:
                     # Only for Ombraden, ugly implementation
                     elif (condition["feature"] == "position"):
                         if (condition["value"] == "self" and ((triggingAbility["feature"] == "position" and selfId in triggingAbilityTargetIdList) or triggingAbility["behavior"] == "swap")):
+                            pass
+                        else:
+                            conditionsValid = False
+
+                    elif (condition["feature"] == "handSpells"):
+                        if (operator == "=" and len(list(self._playersDict[conditionTargetId].handSpellDict.keys())) == condition["value"]):
+                            pass
+                        elif (operator == ">=" and len(list(self._playersDict[conditionTargetId].handSpellDict.keys())) >= condition["value"]):
                             pass
                         else:
                             conditionsValid = False

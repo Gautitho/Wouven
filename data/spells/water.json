@@ -1,4 +1,75 @@
 {
+    "scw9":
+    {
+        "name"              : "Repit d'Alibert",
+        "race"              : "ecw9",
+        "cost"              : 5,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/water/repitDAlibert.png",
+        "descSpritePath"    : "img/spells/desc/water/repitDAlibert.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 27
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 2}
+            }
+        ]
+    },
+    "scw12":
+    {
+        "name"              : "Bouclier de Bump",
+        "race"              : "ecw12",
+        "cost"              : 4,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/water/bouclierDeBump.png",
+        "descSpritePath"    : "img/spells/desc/water/bouclierDeBump.png",
+        "allowedTargetList" : ["myOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addState",
+                "feature"       : "shield:-1",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            }
+        ]
+    },
     "scw14":
     {
         "name"              : "Espoir d'Echo",

@@ -1,4 +1,17 @@
 {
+    "ce0" :
+    {
+        "cost"          : {"earth" : 3},
+        "entityDescId"  : "ece0",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
     "ce1" :
     {
         "cost"          : {"earth" : 3},
@@ -51,6 +64,19 @@
             }
         ]
     },
+    "ce6" :
+    {
+        "cost"          : {"earth" : 4},
+        "entityDescId"  : "ece6",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
     "ce8" :
     {
         "cost"          : {"earth" : 4},
@@ -77,11 +103,37 @@
             }
         ]
     },
+    "ce11" :
+    {
+        "cost"          : {"earth" : 5},
+        "entityDescId"  : "ece11",
+        "spellDescId"   : "sce11",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
     "ce13" :
     {
         "cost"          : {"earth" : 6},
         "entityDescId"  : "ece13",
         "spellDescId"   : "sce13",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
+    "ce16" :
+    {
+        "cost"          : {"earth" : 7},
+        "entityDescId"  : "ece16",
+        "spellDescId"   : "sce16",
         "placementList" :
         [
             {

@@ -239,6 +239,97 @@
             }
         ]
     },
+    "eca10" :
+    {
+        "name"              : "Corbeau noir",
+        "spritePath"        : "img/entities/icon/air/corbeauNoir.png",
+        "descSpritePath"    : "img/entities/desc/air/corbeauNoir.png",
+        "pv"                : 95,
+        "armor"             : 0,
+        "atk"               : 27,
+        "pm"                : 4,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "",
+                "value"         : 1
+            }
+        ]
+    },
+    "eca11" :
+    {
+        "name"              : "Coqueline",
+        "spritePath"        : "img/entities/icon/air/coqueline.png",
+        "descSpritePath"    : "img/entities/desc/air/coqueline.png",
+        "pv"                : 79,
+        "armor"             : 0,
+        "atk"               : 23,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [{"feature" : "elusive", "value" : 0, "duration" : -1}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "eca12" :
+    {
+        "name"              : "Ush",
+        "spritePath"        : "img/entities/icon/air/ush.png",
+        "descSpritePath"    : "img/entities/desc/air/ush.png",
+        "pv"                : 107,
+        "armor"             : 0,
+        "atk"               : 23,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "startTurn",
+                "stopTrigger"   : "endTurn",
+                "target"        : "self",
+                "conditionList" : [{"feature" : "handSpells", "value" : 5, "operator" : ">=", "target" : "myPlayer"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "atk",
+                "value"         : 8
+            }
+        ]
+    },
     "eca14" :
     {
         "name"              : "Evangelyne",

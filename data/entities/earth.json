@@ -1,4 +1,46 @@
 {
+    "ece0" :
+    {
+        "name"              : "Argolio",
+        "spritePath"        : "img/entities/icon/earth/argolio.png",
+        "descSpritePath"    : "img/entities/desc/earth/argolio.png",
+        "pv"                : 52,
+        "armor"             : 0,
+        "atk"               : 5,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac6",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "startTurn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac6",
+                "value"         : 1
+            }
+        ]
+    },
     "ece1" :
     {
         "name"              : "Ashmal",
@@ -122,6 +164,48 @@
             }
         ]
     },
+    "ece6" :
+    {
+        "name"              : "Eclaireur d'élite",
+        "spritePath"        : "img/entities/icon/earth/eclaireurDElite.png",
+        "descSpritePath"    : "img/entities/desc/earth/eclaireurDElite.png",
+        "pv"                : 52,
+        "armor"             : 0,
+        "atk"               : 5,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac7",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "startTurn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac7",
+                "value"         : 1
+            }
+        ]
+    },
     "ece8" :
     {
         "name"              : "Héros endurci",
@@ -188,6 +272,39 @@
             }
         ]
     },
+    "ece11" :
+    {
+        "name"              : "Toxine",
+        "spritePath"        : "img/entities/icon/earth/toxine.png",
+        "descSpritePath"    : "img/entities/desc/earth/toxine.png",
+        "pv"                : 100,
+        "armor"             : 0,
+        "atk"               : 26,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "pm",
+                "value"         : -1
+            }
+        ]
+    },
     "ece13" :
     {
         "name"              : "Ruel",
@@ -218,6 +335,39 @@
                 "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"earth" : 2}
+            }
+        ]
+    },
+    "ece16" :
+    {
+        "name"              : "Tristepin",
+        "spritePath"        : "img/entities/icon/earth/tristepin.png",
+        "descSpritePath"    : "img/entities/desc/earth/tristepin.png",
+        "pv"                : 141,
+        "armor"             : 0,
+        "atk"               : 40,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "death",
+                "target"        : "opBoard",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addState",
+                "feature"       : "stunned",
+                "value"         : 0
             }
         ]
     }

@@ -32,6 +32,40 @@
             }
         ]
     },
+    "ecf2" :
+    {
+        "name"              : "Championne périmée",
+        "spritePath"        : "img/entities/icon/fire/championnePerimee.png",
+        "descSpritePath"    : "img/entities/desc/fire/championnePerimee.png",
+        "pv"                : 67,
+        "armor"             : 0,
+        "atk"               : 15,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "startTurn",
+                "stopTrigger"   : "spellCast",
+                "target"        : "hand",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "cost",
+                "value"         : -1
+            }
+        ]
+    },
     "ecf4" :
     {
         "name"              : "Sentinelle Affutée",
@@ -223,6 +257,48 @@
             }
         ]
     },
+    "ecf10" :
+    {
+        "name"              : "Remington",
+        "spritePath"        : "img/entities/icon/fire/remington.png",
+        "descSpritePath"    : "img/entities/desc/fire/remington.png",
+        "pv"                : 94,
+        "armor"             : 0,
+        "atk"               : 14,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac2",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "startTurn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac2",
+                "value"         : 1
+            }
+        ]
+    },
     "ecf11" :
     {
         "name"              : "Dark Vlad",
@@ -249,6 +325,30 @@
                 "trigger"       : "attack",
                 "target"        : "target",
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ecf12" :
+    {
+        "name"              : "Admai",
+        "spritePath"        : "img/entities/icon/fire/adamai.png",
+        "descSpritePath"    : "img/entities/desc/fire/adamai.png",
+        "pv"                : 92,
+        "armor"             : 0,
+        "atk"               : 30,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [{"feature" : "elusive", "value" : 0, "duration" : -1}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -286,6 +386,40 @@
                 "behavior"      : "draw",
                 "feature"       : "",
                 "value"         : 1
+            }
+        ]
+    },
+    "ecf15" :
+    {
+        "name"              : "Julith",
+        "spritePath"        : "img/entities/icon/fire/julith.png",
+        "descSpritePath"    : "img/entities/desc/fire/julith.png",
+        "pv"                : 137,
+        "armor"             : 0,
+        "atk"               : 27,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "stopTrigger"   : "spellCast",
+                "target"        : "hand",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "cost",
+                "value"         : -2
             }
         ]
     },
