@@ -8,7 +8,7 @@ SPELLS_FILE_PATH_LIST       = ["data/spells/air.json", "data/spells/water.json",
 AURAS_FILE_PATH_LIST        = ["data/auras/iop.json", "data/auras/cra.json"]
 
 TEST_ENABLE     = True
-LOCAL_ENABLE    = True
+LOCAL_ENABLE    = False
 
 BOARD_ROWS                  = 7
 BOARD_COLS                  = 7
@@ -43,7 +43,7 @@ def checkDeck(deck):
             if not(companionDescId in db.companions):
                 raise GameException(f"The companion ({companionDescId}) you picked does not exist !")
             elif (deck["companionDescIdList"].count(companionDescId) > 1):
-                raise GameException(f"You can't pick a companion ({companionDescId}) more than 1 time !") 
+                raise GameException(f"You can't pick a companion ({companionDescId}) more than 1 time !")
 
 class Database:
 
@@ -76,7 +76,7 @@ class Database:
         for filePath in AURAS_FILE_PATH_LIST:
             aurasFile = open(filePath, "r")
             self._auras.update(json.load(aurasFile))
-            aurasFile.close() 
+            aurasFile.close()
 
     @property
     def heroes(self):
