@@ -764,7 +764,7 @@
                 "break"         : "False",
                 "conditionList" : [],
                 "feature"       : "gauges",
-                "value"         : {"water" : 1}
+                "value"         : {"water" : 3}
             }
         ]
     },
