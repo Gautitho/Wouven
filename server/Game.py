@@ -265,7 +265,7 @@ class Game:
         s += "Player Ids : "
         for playerId in list(self._board.playersDict.keys()):
             s += playerId + " | "
-        s = s[:-3] + " / Inactive time start = " + str(self._inactiveStartTime)
+        s = s[:-3] + " / Inactive time start = " + time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime(self._inactiveStartTime))
         return s
 
     def entityListLog(self):

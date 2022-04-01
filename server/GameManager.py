@@ -13,7 +13,6 @@ class GameManager :
     def __init__(self):
         self._serverCmdList             = []
         self._currGameList              = []
-        self._nextGameList              = []
         self._nextGameId                = 0
         self._gameIdList                = []
         self._knownPlayerList           = KnownPlayerList()
@@ -29,10 +28,12 @@ class GameManager :
     def clientDisconnect(self, clientId):
         disconnectedPlayerId = self._knownPlayerList.clientDisconnect(clientId)
         
-        for game in self._currGameList:
-            for playerId in game.playerIdList:
+        for gameId in range(len(self._currGameList)):
+            for playerId in self._currGameList[gameId].playerIdList:
                 if (playerId == disconnectedPlayerId):
-                    game.clientDisconnect()
+                    nextGame = copy.deepcopy(self._currGameList[gameId])
+                    nextGame.clientDisconnect()
+                    self._currGameList[gameId] = copy.deepcopy(nextGame)
 
     def run(self, cmdDict, clientId):
         self._serverCmdList = []
@@ -68,16 +69,15 @@ class GameManager :
             self._gameIdx = self._knownPlayerList.getGameId(clientId)
 
             if (self._gameIdx != None):
-                gameCmdList = self._nextGameList[self._gameIdx].run(cmdDict)
+                nextGame = copy.deepcopy(self._currGameList[self._gameIdx])
+                gameCmdList = nextGame.run(cmdDict)
+                self._currGameList[self._gameIdx] = copy.deepcopy(nextGame)
                 for gameCmd in gameCmdList:
                     self._serverCmdList.append({"clientId" : self._knownPlayerList.getClientId(gameCmd["playerId"]), "content" : gameCmd["content"]})
-                self._currGameList[self._gameIdx] = copy.deepcopy(self._nextGameList[self._gameIdx])
 
         except GameException as ge:
             serverCmd = {"cmd" : "ERROR", "msg" : ge.errorMsg}
             self._serverCmdList.append({"clientId" : clientId, "content" : json.dumps(serverCmd)})
-            if (self._gameIdx != None and self._currGameList and self._currGameList[self._gameIdx]):
-                self._nextGameList[self._gameIdx] = copy.deepcopy(self._currGameList[self._gameIdx]) # Restore a stable game
 
         except:
             if LOCAL_ENABLE:
@@ -89,8 +89,6 @@ class GameManager :
                 printLog(str(sys.exc_info()[0]), filePath="error.log", writeMode="a")
                 serverCmd = {"cmd" : "ERROR", "msg" : "Fatal error : " + str(sys.exc_info()[0])}
                 self._serverCmdList.append({"clientId" : clientId, "content" : json.dumps(serverCmd)})
-                if (self._gameIdx != None and self._currGameList and self._currGameList[self._gameIdx]):
-                    self._nextGameList[self._gameIdx] = copy.deepcopy(self._currGameList[self._gameIdx]) # Restore a stable game
 
         # Logs
         s = ""
@@ -137,14 +135,13 @@ class GameManager :
         for gameIdx in gameToEraseIdList:
             self._knownPlayerList.removeKnownPlayerInGame(gameIdx)
             del self._currGameList[gameIdx]
-            del self._nextGameList[gameIdx]
 
     def create(self, gameName):
-        self._nextGameList.append(Game(gameName))
+        nextGame = Game(gameName)
         self._gameIdList.append(self._nextGameId)
         self._gameIdx = self._nextGameId
         self._nextGameId += 1
-        self._currGameList.append(copy.deepcopy(self._nextGameList[self._gameIdx]))
+        self._currGameList.append(copy.deepcopy(nextGame))
 
     def join(self, clientId, gameName, playerId, deck):
         self._gameIdx = None
@@ -154,10 +151,11 @@ class GameManager :
         if (self._gameIdx == None):
             raise GameException(f"Game {gameName} does not exist")
 
-        self._nextGameList[self._gameIdx].appendPlayer(playerId, deck)
-        self._nextGameList[self._gameIdx].clientConnect()
+        nextGame = copy.deepcopy(self._currGameList[self._gameIdx])
+        nextGame.appendPlayer(playerId, deck)
+        nextGame.clientConnect()
         self._knownPlayerList.setGameId(playerId, self._gameIdx)
-        self._currGameList[self._gameIdx] = copy.deepcopy(self._nextGameList[self._gameIdx])
+        self._currGameList[self._gameIdx] = copy.deepcopy(nextGame)
         serverCmd = {"cmd" : "WAIT_GAME_START"}
         self._serverCmdList.append({"clientId" : clientId, "content" : json.dumps(serverCmd)})
 
@@ -208,6 +206,9 @@ class GameManager :
         if not(self._knownPlayerList.isKnownPlayer(playerId)):
             raise GameException(f"Player {playerId} is not in a game")
         
+        nextGame = copy.deepcopy(self._currGameList[self._gameIdx])
+        nextGame.clientConnect()
+        self._currGameList[self._gameIdx] = copy.deepcopy(nextGame)
         self._knownPlayerList.appendKnownPlayer(playerId, clientId)
 
     def Reconnect(self, clientId, playerId):
