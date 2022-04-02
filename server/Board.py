@@ -226,8 +226,13 @@ class Board:
     def entityIdInCross(self, x, y, rangeCondition, team):
         entityIdList = []
         for xa in range(max(x-rangeCondition, 0), min(x+rangeCondition+1, BOARD_COLS)):
-            for ya in range(max(y-rangeCondition, 0), min(y+rangeCondition+1, BOARD_ROWS)):
-                matchId = self.entityIdOnTile(xa, ya)
+            matchId = self.entityIdOnTile(xa, y)
+            if (matchId != None):
+                if (team == "all" or team == self._entitiesDict[matchId].team):
+                    entityIdList.append(matchId)
+        for ya in range(max(y-rangeCondition, 0), min(y+rangeCondition+1, BOARD_ROWS)):
+            if (ya != y):
+                matchId = self.entityIdOnTile(x, ya)
                 if (matchId != None):
                     if (team == "all" or team == self._entitiesDict[matchId].team):
                         entityIdList.append(matchId)
