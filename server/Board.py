@@ -629,7 +629,6 @@ class Board:
                     abilityTargetIdList = self.entityIdAdjacentToTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, "all")
                 elif (ability["target"] == "allOrganicAdjacentToFirstTarget"):
                     abilityTargetIdList = self.entityIdAdjacentToTile(self._entitiesDict[targetEntityIdList[0]].x, self._entitiesDict[targetEntityIdList[0]].y, "all")
-                    print(abilityTargetIdList)
                 elif (ability["target"].split(':')[0] == "allOrganicAligned"):
                     if (len(ability["target"].split(':')) > 1):
                         abilityTargetIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, int(ability["target"].split(':')[1]), "all")

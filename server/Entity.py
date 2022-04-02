@@ -187,7 +187,6 @@ class Entity:
         return dic
 
     def startTurn(self):
-        self._pm                = db.entities[self._descId]["pm"]
         self._myTurn            = True
         self._canMove           = True
         self._canAttack         = True
@@ -198,6 +197,7 @@ class Entity:
 
     def endTurn(self):
         self._myTurn            = False
+        self._pm                = db.entities[self._descId]["pm"]
         self._oneByTurnAbilityList = []
 
     def endAction(self):
@@ -241,7 +241,6 @@ class Entity:
             self._canMove = False
 
     def addState(self, state):
-        print(state)
         cpyState        = dict(state)
         uniqueStateList = ["disarmed", "locked", "frozen", "stunned"]
         if not(cpyState in self._states):
