@@ -8,9 +8,7 @@
 - Charge de toxine trigger passif Bouvaloir
 - Sorts de : Phaeris, Remington, Julith, Coqueline, Flopin
 - Faire un ou pour le stop trigger : Championne périmée, Julith, ...
-- Empecher de cliquer les sorts qui n'existent pas
 - Gelé ne fonctionne pas
-- Flèche crucifiante fait des dégats autour
 - Si un joueur fait un mauvais formulaire, il se retrouve quand même en tant que waitingPlayer (peut être uniquement en testMode)
 - Edition de deck à partir du code
 - Mécaniques à dev : 

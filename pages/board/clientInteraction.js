@@ -167,12 +167,14 @@ function updateHandBar()
         $("#spell_" + i).css("background-color", "#FFFFFF");
         $("#spell_" + i + "_cost").css("background-image", "");
         $("#spell_" + i + "_cost").text("");
+        $("#spell_" + i).unbind();
     }
     for (j = 0; j < myPlayer.handSpellList.length; j++)
     {
         $("#spell_" + j).css("background-image", "url(" + PROJECT_ROOT_PATH + myPlayer.handSpellList[j].spritePath + ")");
         $("#spell_" + j + "_cost").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/pa.png)");
         $("#spell_" + j + "_cost").text(myPlayer.handSpellList[j].cost);
+        $("#spell_" + j).click(function() {spellClick($(this))});
         tooltipArray.push(new Tooltip(document.getElementById("spell_" + j), PROJECT_ROOT_PATH + myPlayer.handSpellList[j].descSpritePath, "img"));
     }
 }
