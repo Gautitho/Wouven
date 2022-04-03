@@ -24,6 +24,14 @@ var selectedSpellList       = ["shi0"]
 var selectedCompanionList   = []
 var tooltipArray            = []
 
+var deckBuildingCode        = location.search.substring(1);
+if (deckBuildingCode != "")
+{
+    selectedHero            = deckBuildingCode.split("&")[0];
+    selectedSpellList       = deckBuildingCode.split("&").slice(1, 10)
+    selectedCompanionList   = deckBuildingCode.split("&").slice(10, 14);
+}
+
 $.when(getHeroesDataBase(), getEntitiesDataBase(), getSpellsDataBase(), getCompanionsDataBase()).then(loadPage)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////

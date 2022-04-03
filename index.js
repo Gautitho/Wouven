@@ -76,7 +76,7 @@ function poll()
 
 function createDeck()
 {
-    window.location = "pages/deckBuild/deckBuild.html";
+    window.location = "pages/deckBuild/deckBuild.html?" + deckBuildingCode;
 }
 
 function createGame()

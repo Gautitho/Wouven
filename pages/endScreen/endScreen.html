@@ -11,9 +11,18 @@
     <title>Wouven</title>
 </head>
 <body>
-    La partie est terminée. Et vous avez <b id="gameResult">...</b> !
+    <section class="flex flex-col items-center my-2 w-full h-full">
+        <div class="mx-2 my-2">
+            La partie est terminée. Et vous avez <b id="gameResult">...</b> !
+        </div>
+        <div class="mx-2 my-2">
+            <button id="indexBtn" type="button" class="state-btn" style="background-color:#552fff;" onclick="indexBtnClick()">Accueil</button>
+        </div>
+    </section>
 
     <script>
+        const PROJECT_ROOT_PATH = "../../"
+
         var gameResult = location.search.substring(1).split("&")[0];
         if (gameResult == "WIN")
         {
@@ -30,6 +39,11 @@
         else
         {
             $('#gameResult').text("été vicitme d'un bug");
+        }
+
+        function indexBtnClick()
+        {
+            window.location = PROJECT_ROOT_PATH + "index.html";
         }
     </script>
 </body>
