@@ -515,7 +515,7 @@
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "wet"}],
                 "feature"       : "frozen",
-                "value"         : 0
+                "value"         : -18
             }
         ]
     },
@@ -1697,7 +1697,7 @@
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "wet"}],
                 "feature"       : "frozen",
-                "value"         : 0
+                "value"         : -18
             }
         ]
     },
