@@ -1,4 +1,44 @@
 {
+    "sce10":
+    {
+        "name"              : "Course de Joris",
+        "race"              : "ece10",
+        "cost"              : 3,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/earth/courseDeJoris.png",
+        "descSpritePath"    : "img/spells/desc/earth/courseDeJoris.png",
+        "allowedTargetList" : ["myOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addState",
+                "feature"       : "pm",
+                "value"         : 3
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "behavior"      : "",
+                "break"         : "True",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            }
+        ]
+    },
     "sce11":
     {
         "name"              : "Hypnose de Toxine",

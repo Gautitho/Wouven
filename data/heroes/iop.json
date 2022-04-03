@@ -11,6 +11,12 @@
         "spellDescId"   : "shi1",
         "entityDescId"  : "ehi1"
     },
+    "hi2" :
+    {
+        "race"          : "iop",
+        "spellDescId"   : "shi2",
+        "entityDescId"  : "ehi2"
+    },
     "hi3" :
     {
         "race"          : "iop",

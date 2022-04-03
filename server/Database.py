@@ -7,8 +7,8 @@ ENTITIES_FILE_PATH_LIST     = ["data/entities/air.json", "data/entities/water.js
 SPELLS_FILE_PATH_LIST       = ["data/spells/air.json", "data/spells/water.json", "data/spells/fire.json", "data/spells/earth.json", "data/spells/iop.json", "data/spells/xelor.json", "data/spells/cra.json", "data/spells/sacrieur.json", "data/spells/misc.json"]
 AURAS_FILE_PATH_LIST        = ["data/auras/iop.json", "data/auras/cra.json"]
 
-TEST_ENABLE     = True
-LOCAL_ENABLE    = False
+TEST_ENABLE     = False
+LOCAL_ENABLE    = True
 
 BOARD_ROWS                  = 7
 BOARD_COLS                  = 7

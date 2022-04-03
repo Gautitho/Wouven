@@ -272,6 +272,30 @@
             }
         ]
     },
+    "ece10" :
+    {
+        "name"              : "Joris",
+        "spritePath"        : "img/entities/icon/earth/joris.png",
+        "descSpritePath"    : "img/entities/desc/earth/joris.png",
+        "pv"                : 79,
+        "armor"             : 0,
+        "atk"               : 23,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [{"feature" : "untargetable", "value" : 0, "duration" : -1}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
     "ece11" :
     {
         "name"              : "Toxine",

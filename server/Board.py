@@ -396,70 +396,88 @@ class Board:
                             if (self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"]) == None):
                                 targetEntityIdList[-1] = self.appendTileEntity(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             else:
-                               raise GameException("Target tile must be empty !")
+                                raise GameException("Target tile must be empty !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allEntity"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] != None):
-                               pass
+                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
+                                    raise GameException("Target is untargetable !")
+                                else:
+                                    pass
                             else:
-                               raise GameException("An entity must be targeted !")
+                                raise GameException("An entity must be targeted !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allOrganic"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] != None and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
-                               pass
+                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
+                                    raise GameException("Target is untargetable !")
+                                else:
+                                    pass
                             else:
-                               raise GameException("An entity, not mechanism, must be targeted !")
+                                raise GameException("An entity, not mechanism, must be targeted !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allMechanism"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] != None and "mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList):
-                               pass
+                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
+                                    raise GameException("Target is untargetable !")
+                                else:
+                                    pass
                             else:
-                               raise GameException("An entity, mechanism, must be targeted !")
+                                raise GameException("An entity, mechanism, must be targeted !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "myEntity"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[playerId].team):
-                               pass
+                                pass
                             else:
-                               raise GameException("An entity, owned by you, must be targeted !")
+                                raise GameException("An entity, owned by you, must be targeted !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "myOrganic"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[playerId].team and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
-                               pass
+                                pass
                             else:
-                               raise GameException("An entity, owned by you, not mechanism, must be targeted !")
+                                raise GameException("An entity, owned by you, not mechanism, must be targeted !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "myMechanism"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[playerId].team and "mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList):
-                               pass
+                                pass
                             else:
-                               raise GameException("An entity, owned by you, mechanism, must be targeted !")
+                                raise GameException("An entity, owned by you, mechanism, must be targeted !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "opEntity"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[self.getOpPlayerId(playerId)].team):
-                               pass
+                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
+                                    raise GameException("Target is untargetable !")
+                                else:
+                                    pass
                             else:
-                               raise GameException("An entity, owned by your opponent, must be targeted !")
+                                raise GameException("An entity, owned by your opponent, must be targeted !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "opOrganic"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[self.getOpPlayerId(playerId)].team and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
-                               pass
+                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
+                                    raise GameException("Target is untargetable !")
+                                else:
+                                    pass
                             else:
-                               raise GameException("An entity, owned by your opponent, not mechanism, must be targeted !")
+                                raise GameException("An entity, owned by your opponent, not mechanism, must be targeted !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "opMechanism"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[self.getOpPlayerId(playerId)].team and "mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList):
-                               pass
+                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
+                                    raise GameException("Target is untargetable !")
+                                else:
+                                    pass
                             else:
-                               raise GameException("An entity, owned by your opponent, not mechanism, must be targeted !")
+                                raise GameException("An entity, owned by your opponent, not mechanism, must be targeted !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "myHero"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
@@ -471,28 +489,40 @@ class Board:
                         elif (spell.allowedTargetList[allowedTargetIdx] == "opHero"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] == self._playersDict[self.getOpPlayerId(playerId)].heroEntityId):
-                                pass
+                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
+                                    raise GameException("Target is untargetable !")
+                                else:
+                                    pass
                             else:
                                 raise GameException("Target must be opponent hero !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allOrganicAligned"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] in self.entityIdAligned(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"], None, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
-                                pass
+                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
+                                    raise GameException("Target is untargetable !")
+                                else:
+                                    pass
                             else:
                                 raise GameException("Target is not the first, not mechanism, aligned entity !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allFirstEntityAligned"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, "all")):
-                                pass
+                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
+                                    raise GameException("Target is untargetable !")
+                                else:
+                                    pass
                             else:
                                 raise GameException("Target is not the first aligned entity !")
 
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allFirstOrganicAligned"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
-                                pass
+                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
+                                    raise GameException("Target is untargetable !")
+                                else:
+                                    pass
                             else:
                                 raise GameException("Target is not the first, not mechanism, aligned entity !")
 
@@ -505,7 +535,10 @@ class Board:
                         elif (spell.allowedTargetList[allowedTargetIdx] == "allOrganicAdjacent"):
                             targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
                             if (targetEntityIdList[-1] in self.entityIdAligned(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"], 1, "all")):
-                                pass
+                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
+                                    raise GameException("Target is untargetable !")
+                                else:
+                                    pass
                             else:
                                 raise GameException("Target must be an entity, not mechanism, adjacent to your hero !")
 

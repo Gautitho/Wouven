@@ -103,6 +103,19 @@
             }
         ]
     },
+    "ce10" :
+    {
+        "cost"          : {"earth" : 5},
+        "entityDescId"  : "ece10",
+        "spellDescId"   : "sce10",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
     "ce11" :
     {
         "cost"          : {"earth" : 5},

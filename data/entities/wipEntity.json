@@ -248,30 +248,6 @@
             }
         ]
     },
-    "ece10" :
-    {
-        "name"              : "Joris",
-        "spritePath"        : "img/entities/icon/earth/joris.png",
-        "descSpritePath"    : "img/entities/desc/earth/joris.png",
-        "pv"                : 79,
-        "armor"             : 0,
-        "atk"               : 23,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
     "ece12" :
     {
         "name"              : "Dathura",
@@ -368,30 +344,6 @@
             }
         ]
     },
-    "ecw4" :
-    {
-        "name"              : "Initié funèbre",
-        "spritePath"        : "img/entities/icon/water/initieFunebre.png",
-        "descSpritePath"    : "img/entities/desc/water/initieFunebre.png",
-        "pv"                : 54,
-        "armor"             : 0,
-        "atk"               : 16,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
     "ecw6" :
     {
         "name"              : "chevaucheurAncien",
@@ -440,9 +392,6 @@
             }
         ]
     },
-
-
-
     "ecw11" :
     {
         "name"              : "Comte Harbourg",

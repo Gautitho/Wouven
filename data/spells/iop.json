@@ -1746,6 +1746,46 @@
             }
         ]
     },
+    "shi2":
+    {
+        "name"              : "Stalagmite",
+        "race"              : "ehi2",
+        "cost"              : 4,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/iop/stalagmite.png",
+        "descSpritePath"    : "img/spells/desc/iop/stalagmite.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -21
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myHero",
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "addState",
+                "feature"       : "untargetable:0",
+                "value"         : 0
+            }
+        ]
+    },
     "shi3":
     {
         "name"              : "Trancher",

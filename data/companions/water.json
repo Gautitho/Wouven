@@ -38,6 +38,19 @@
             }
         ]
     },
+    "cw4" :
+    {
+        "cost"          : {"water" : 3},
+        "entityDescId"  : "ecw4",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
     "cw5" :
     {
         "cost"          : {"water" : 4},

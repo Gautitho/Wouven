@@ -1687,6 +1687,47 @@
             }
         ]
     },
+    "ss44":
+    {
+        "name"              : "Dernier souffle",
+        "race"              : "sacrieur",
+        "cost"              : 5,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/sacrieur/dernierSouffle.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/dernierSouffle.png",
+        "allowedTargetList" : ["myHero"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addState",
+                "feature"       : "untargetable:0",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "stopTrigger"   : "endTurn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "atk",
+                "value"         : 15
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            }
+        ]
+    },
     "shs1":
     {
         "name"              : "Oeil tatoue",

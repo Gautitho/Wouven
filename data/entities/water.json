@@ -98,6 +98,30 @@
             }
         ]
     },
+    "ecw4" :
+    {
+        "name"              : "Initié funèbre",
+        "spritePath"        : "img/entities/icon/water/initieFunebre.png",
+        "descSpritePath"    : "img/entities/desc/water/initieFunebre.png",
+        "pv"                : 54,
+        "armor"             : 0,
+        "atk"               : 16,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [{"feature" : "untargetable", "value" : 0, "duration" : -1}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
     "ecw5" :
     {
         "name"              : "Gardienne inflexible",
