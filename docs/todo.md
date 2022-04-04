@@ -9,14 +9,10 @@
 - Sorts de : Phaeris, Remington, Julith, Coqueline, Flopin
 - Faire un ou pour le stop trigger : Championne périmée, Julith, ...
 - Si un joueur fait un mauvais formulaire, il se retrouve quand même en tant que waitingPlayer (peut être uniquement en testMode)
-- Edition de deck à partir du code
+- Placement à côté d'un ennemi
 - Mécaniques à dev : 
   - Respawn de compagnon
-  - Inciblable
-  - Passif Bouvaloir
-  - Effet par personnage trvaersé
   - Attirance
-  - Maitre de l'agonie
   - Rembobinage
   - Déclenchement d'un mécanisme
   - Transformation de mécanisme

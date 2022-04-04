@@ -1,4 +1,37 @@
 {
+    "ehs0" :
+    {
+        "name"              : "Tonfavik",
+        "spritePath"        : "img/entities/icon/sacrieur/tonfavik.png",
+        "descSpritePath"    : "img/entities/desc/sacrieur/tonfavik.png",
+        "pv"                : 430,
+        "armor"             : 0,
+        "atk"               : 26,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "summon",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "armor",
+                "value"         : "atk"
+            }
+        ]
+    },
     "ehs1" :
     {
         "name"              : "Darde Kan",

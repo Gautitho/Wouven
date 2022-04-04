@@ -1728,6 +1728,46 @@
             }
         ]
     },
+    "shs0":
+    {
+        "name"              : "Foulure motivante",
+        "race"              : "ehs0",
+        "cost"              : 4,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/sacrieur/foulureMotivante.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/foulureMotivante.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -33
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myHero",
+                "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pm",
+                "value"         : 2
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            }
+        ]
+    },
     "shs1":
     {
         "name"              : "Oeil tatoue",

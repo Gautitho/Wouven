@@ -1,4 +1,10 @@
 {
+    "hs0" :
+    {
+        "race"          : "sacrieur",
+        "spellDescId"   : "shs0",
+        "entityDescId"  : "ehs0"
+    },
     "hs1" :
     {
         "race"          : "sacrieur",

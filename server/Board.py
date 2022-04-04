@@ -606,8 +606,9 @@ class Board:
                     # Summon
                     if placementValid:
                         entityId = self.appendEntity(playerId, companion["entityDescId"], self._playersDict[playerId].team, summonPositionList[0]["x"], summonPositionList[0]["y"])
-                        self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, [None])
                         self._playersDict[playerId].summonCompanion(companionId, entityId)
+                        self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, [None])
+                        self.executeAbilities(self._entitiesDict[self._playersDict[playerId].heroEntityId].abilities, "summon", playerId, self._playersDict[playerId].heroEntityId, [entityId])
 
                     else:
                         raise GameException("Invalid companion placement !")
