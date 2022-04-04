@@ -1896,5 +1896,36 @@
                 "value"         : {"air" : 1}
             }
         ]
+    },
+    "shs4":
+    {
+        "name"              : "Tornadoulet",
+        "race"              : "ehs4",
+        "cost"              : 3,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/sacrieur/tornadoulet.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/tornadoulet.png",
+        "allowedTargetList" : ["myHero"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "allOrganicAdjacentToSelf",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -18
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            }
+        ]
     }
 }

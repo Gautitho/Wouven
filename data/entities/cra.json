@@ -93,7 +93,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : "self",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "oneByTurn", "value" : "ehc1"}, {"feature" : "turn", "value" : "my"}],
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "oneByTurn", "value" : "ehc2"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "addAuraWeak",
                 "feature"       : "ac0",

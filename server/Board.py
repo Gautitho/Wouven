@@ -243,7 +243,17 @@ class Board:
             if (self._entitiesDict[eid].descId == race):
                 return eid
         return None
-    
+
+    def entityIdWithHighestPv(self, team):
+        entityIdList = []
+        highestPv = 1000
+        for eid in list(self._entitiesDict.keys()):
+            if (team == "all" or team == self._entitiesDict[eid].team):
+                if (self._entitiesDict[eid].pv <= highestPv):
+                    entityIdList.append(eid)
+                    highestPv = self._entitiesDict[eid].pv
+        return entityIdList
+
     def isAdjacentToTile(self, xSelf, ySelf, xTarget, yTarget):
         return ((xTarget == xSelf and (yTarget == ySelf + 1 or yTarget == ySelf - 1)) or (yTarget == ySelf and (xTarget == xSelf + 1 or xTarget == xSelf - 1)))
 
@@ -686,6 +696,8 @@ class Board:
                     abilityTargetIdList = self._playersDict[opPlayerId].boardEntityIds
                 elif (ability["target"] == "myBoard"):
                     abilityTargetIdList = self._playersDict[playerId].boardEntityIds
+                elif (ability["target"] == "opOrganicWithHighestPv"):
+                    abilityTargetIdList = self.entityIdWithHighestPv(self.getOpTeam(self._entitiesDict[selfId].team))
                 elif (ability["target"] == "currentSpell"):
                     abilityTargetIdList = [] if spellId == None else [spellId]
                 elif (ability["target"] == "hand"):
@@ -872,7 +884,7 @@ class Board:
                 if (conditionsValid):
                     for condition in ability["conditionList"]:
                         if (condition["feature"] == "oneByTurn"):
-                            self._entitiesDict[abilityTargetIdList[0]].appendOneByTurnAbility(condition["value"])
+                            self._entitiesDict[selfId].appendOneByTurnAbility(condition["value"])
 
                 # Handle variable value case
                 if isinstance(ability["value"], int):

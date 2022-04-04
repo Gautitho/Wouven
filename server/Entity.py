@@ -187,18 +187,18 @@ class Entity:
         return dic
 
     def startTurn(self):
-        self._myTurn            = True
-        self._canMove           = True
-        self._canAttack         = True
-        self._storedCanMove     = True
-        self._storedCanAttack   = True
+        self._myTurn                = True
+        self._canMove               = True
+        self._canAttack             = True
+        self._storedCanMove         = True
+        self._storedCanAttack       = True
+        self._oneByTurnAbilityList  = []
         self.evalTimeoutStates()
         self.applyStates()
 
     def endTurn(self):
         self._myTurn            = False
         self._pm                = db.entities[self._descId]["pm"]
-        self._oneByTurnAbilityList = []
 
     def endAction(self):
         self.updateAura()

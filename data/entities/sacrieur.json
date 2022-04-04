@@ -130,5 +130,38 @@
                 "value"         : 1
             }
         ]
+    },
+    "ehs4" :
+    {
+        "name"              : "Pilobouli",
+        "spritePath"        : "img/entities/icon/sacrieur/pilobouli.png",
+        "descSpritePath"    : "img/entities/desc/sacrieur/pilobouli.png",
+        "pv"                : 425,
+        "armor"             : 0,
+        "atk"               : 20,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "always",
+                "target"        : "opOrganicWithHighestPv",
+                "conditionList" : [{"feature" : "oneByTurn", "value" : "ehs4"}, {"feature" : "state", "value" : "agony", "target" : "self"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
     }
 }
