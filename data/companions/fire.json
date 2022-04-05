@@ -25,6 +25,19 @@
             }
         ]
     },
+    "cf3" :
+    {
+        "cost"          : {"fire" : 3},
+        "entityDescId"  : "ecf3",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myPlayer",
+                "range" : 2
+            }
+        ]
+    },
     "cf4" :
     {
         "cost"          : {"fire" : 3},

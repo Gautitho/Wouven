@@ -66,6 +66,39 @@
             }
         ]
     },
+    "ecf3" :
+    {
+        "name"              : "Skhul",
+        "spritePath"        : "img/entities/icon/fire/skhul.png",
+        "descSpritePath"    : "img/entities/desc/fire/skhul.png",
+        "pv"                : 65,
+        "armor"             : 0,
+        "atk"               : 15,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "startTurn",
+                "target"        : "opOrganicWithHighestPv",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
     "ecf4" :
     {
         "name"              : "Sentinelle Affutée",
