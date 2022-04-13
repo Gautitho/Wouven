@@ -7,7 +7,6 @@
 - Ombraden : le passif doit proc aussi pendant le tour de l'adversaire mais pas sur une invocation de compagnon
 - Charge de toxine trigger passif Bouvaloir
 - Sorts de : Phaeris, Remington, Julith, Coqueline, Flopin
-- Faire un ou pour le stop trigger : Championne périmée, Julith, ...
 - Si un joueur fait un mauvais formulaire, il se retrouve quand même en tant que waitingPlayer (peut être uniquement en testMode)
 - Placement à côté d'un ennemi
 - Mécaniques à dev : 
