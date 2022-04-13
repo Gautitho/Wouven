@@ -291,37 +291,5 @@
                 "value"         : 1
             }
         ]
-    },
-    "ss44":
-    {
-        "name"              : "Dernier souffle",
-        "race"              : "sacrieur",
-        "cost"              : 5,
-        "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/cra/dernierSouffle.png",
-        "descSpritePath"    : "img/spells/desc/cra/dernierSouffle.png",
-        "allowedTargetList" : ["myHero"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myHero",
-                "stopTrigger"   : "startTurn",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "atk",
-                "value"         : 15
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myHero",
-                "behavior"      : "draw",
-                "break"         : "False",
-                "conditionList" : [{"feature" : "opAroundSelf", "value" : 0}],
-                "feature"       : "",
-                "value"         : 2
-            }
-        ]
     }
 }

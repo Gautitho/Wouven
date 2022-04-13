@@ -261,14 +261,15 @@ class Board:
         return ((xTarget == xSelf) ^ (yTarget == ySelf))
 
     def startTurn(self, playerId):
+        self.removeOngoingAbilities("startTurn")
         self._playersDict[playerId].startTurn()
         for entityId in self._playersDict[playerId].boardEntityIds:
             self._entitiesDict[entityId].startTurn()
             self.executeAbilities(self._entitiesDict[entityId].abilities, "startTurn", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [None])
 
     def endTurn(self, playerId):
-        self._playersDict[playerId].endTurn()
         self.removeOngoingAbilities("endTurn")
+        self._playersDict[playerId].endTurn()
         for entityId in self._playersDict[playerId].boardEntityIds:
             self._entitiesDict[entityId].endTurn()
             self.executeAbilities(self._entitiesDict[entityId].abilities, "endTurn", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [None])
@@ -642,10 +643,10 @@ class Board:
                     targetIdx = 0
 
                 # Set stopTrigger
-                if ("stopTrigger" in ability):
-                    stopTrigger = ability["stopTrigger"]
+                if ("stopTriggerList" in ability):
+                    stopTriggerList = ability["stopTriggerList"]
                 else:
-                    stopTrigger = ""
+                    stopTriggerList = []
 
                 # Choose abilityEntity
                 if (ability["target"] == "target"):
@@ -1145,16 +1146,16 @@ class Board:
                     elif (ability["behavior"] == "draw"):
                         self._playersDict[abilityTargetIdList[0]].draw(value, ability["feature"])
 
-                    # If stopTrigger is defined, the ability must be added to the ongoingAbilityList
-                    if stopTrigger and not(force):
+                    # If stopTriggerList is defined, the ability must be added to the ongoingAbilityList
+                    if stopTriggerList and not(force):
                         ongoingAbilityDict = {}
                         copiedAbility = copy.deepcopy(ability)
-                        copiedAbility["mult"]               = mult
-                        ongoingAbilityDict["ability"]       = copiedAbility
-                        ongoingAbilityDict["playerId"]      = playerId
-                        ongoingAbilityDict["selfId"]        = selfId
-                        ongoingAbilityDict["spellId"]       = spellId
-                        ongoingAbilityDict["stopTrigger"]   = stopTrigger
+                        copiedAbility["mult"]                   = mult
+                        ongoingAbilityDict["ability"]           = copiedAbility
+                        ongoingAbilityDict["playerId"]          = playerId
+                        ongoingAbilityDict["selfId"]            = selfId
+                        ongoingAbilityDict["spellId"]           = spellId
+                        ongoingAbilityDict["stopTriggerList"]   = stopTriggerList
                         self._ongoingAbilityList.append(ongoingAbilityDict)
 
                 # Check if an aura has been used / aura must be specified only once by aura ability
@@ -1167,7 +1168,7 @@ class Board:
     def removeOngoingAbilities(self, stopTrigger, selfId=None):
         copyOngoingAbilityList = list(self._ongoingAbilityList)
         for ongoingAbility in copyOngoingAbilityList:
-            if (stopTrigger == ongoingAbility["stopTrigger"]):
+            if (stopTrigger in ongoingAbility["stopTriggerList"]):
                 if (ongoingAbility["ability"]["feature"] == "bodyguard" and selfId == ongoingAbility["selfId"]):
                     for state in self._entitiesDict[ongoingAbility["selfId"]].states:
                         if (state["feature"] == "bodyguard"):
@@ -1181,7 +1182,7 @@ class Board:
                         ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]
                         self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [None], spellId=ongoingAbility["spellId"], force=True)
                         self._ongoingAbilityList.remove(ongoingAbility)
-            elif (stopTrigger == "always" and ongoingAbility["stopTrigger"] == "noArmor"):
+            elif (stopTrigger == "always" and "noArmor" in ongoingAbility["stopTriggerList"]):
                 if (self._entitiesDict[self._playersDict[ongoingAbility["playerId"]].heroEntityId].armor == 0):
                     ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]
                     self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [None], spellId=ongoingAbility["spellId"], force=True)
