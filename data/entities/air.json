@@ -319,14 +319,14 @@
                 "value"         : "-atk"
             },
             {
-                "trigger"       : "startTurn",
-                "stopTrigger"   : "endTurn",
-                "target"        : "self",
-                "conditionList" : [{"feature" : "handSpells", "value" : 5, "operator" : ">=", "target" : "myPlayer"}],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "atk",
-                "value"         : 8
+                "trigger"           : "startTurn",
+                "stopTriggerList"   : ["endTurn"],
+                "target"            : "self",
+                "conditionList"     : [{"feature" : "handSpells", "value" : 5, "operator" : ">=", "target" : "myPlayer"}],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "atk",
+                "value"             : 8
             }
         ]
     },

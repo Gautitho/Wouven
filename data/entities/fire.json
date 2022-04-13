@@ -55,14 +55,14 @@
                 "value"         : "-atk"
             },
             {
-                "trigger"       : "startTurn",
-                "stopTrigger"   : "spellCast",
-                "target"        : "hand",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "cost",
-                "value"         : -1
+                "trigger"           : "startTurn",
+                "stopTriggerList"   : ["spellCast", "endTurn"],
+                "target"            : "hand",
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "cost",
+                "value"             : -1
             }
         ]
     },
@@ -188,14 +188,14 @@
                 "value"         : "-atk"
             },
             {
-                "trigger"       : "spawn",
-                "stopTrigger"   : "death",
-                "target"        : "myHero",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "addState",
-                "feature"       : "bodyguard",
-                "value"         : 0
+                "trigger"           : "spawn",
+                "stopTriggerList"   : ["death"],
+                "target"            : "myHero",
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "addState",
+                "feature"           : "bodyguard",
+                "value"             : 0
             }
         ]
     },
@@ -279,14 +279,14 @@
                 "value"         : "-atk"
             },
             {
-                "trigger"       : "always",
-                "stopTrigger"   : "always",
-                "target"        : "self",
-                "conditionList" : [{"feature" : "myCompanions", "value" : 1}],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "atk",
-                "value"         : 8
+                "trigger"           : "always",
+                "stopTriggerList"   : ["always"],
+                "target"            : "self",
+                "conditionList"     : [{"feature" : "myCompanions", "value" : 1}],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "atk",
+                "value"             : 8
             }
         ]
     },
@@ -445,14 +445,14 @@
                 "value"         : "-atk"
             },
             {
-                "trigger"       : "attack",
-                "stopTrigger"   : "spellCast",
-                "target"        : "hand",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "cost",
-                "value"         : -2
+                "trigger"           : "attack",
+                "stopTriggerList"   : ["spellCast", "endTurn"],
+                "target"            : "hand",
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "cost",
+                "value"             : -2
             }
         ]
     },

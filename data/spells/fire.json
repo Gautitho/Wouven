@@ -11,24 +11,24 @@
         "abilities"         :
         [
             {
-                "trigger"       : "spellCast",
-                "stopTrigger"   : "endTurn",
-                "target"        : "self",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "atk",
-                "value"         : 12
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["endTurn"],
+                "target"            : "self",
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "atk",
+                "value"             : 12
             },
             {
-                "trigger"       : "spellCast",
-                "stopTrigger"   : "endTurn",
-                "target"        : "self",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pm",
-                "value"         : 3
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["endTurn"],
+                "target"            : "self",
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "pm",
+                "value"             : 3
             },
             {
                 "trigger"       : "spellCast",

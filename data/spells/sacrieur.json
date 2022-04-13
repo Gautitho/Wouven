@@ -29,14 +29,14 @@
                 "value"         : {"fire" : 1}
             },
             {
-                "trigger"       : "spellCast",
-                "stopTrigger"   : "endTurn",
-                "target"        : "myHero",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "atk",
-                "value"         : 5
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["endTurn"],
+                "target"            : "myHero",
+                "behavior"          : "",
+                "break"             : "False",
+                "conditionList"     : [],
+                "feature"           : "atk",
+                "value"             : 5
             }
         ]
     },
@@ -706,14 +706,14 @@
                 "value"         : 1
             },
             {
-                "trigger"       : "always",
-                "target"        : "currentSpell",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
-                "stopTrigger"   : "always",
-                "feature"       : "cost",
-                "value"         : -2
+                "trigger"           : "always",
+                "stopTriggerList"   : ["always"],
+                "target"            : "currentSpell",
+                "conditionList"     : [{"feature" : "state", "value" : "agony", "target" : "self"}],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "cost",
+                "value"             : -2
             }
         ]
     },
@@ -827,14 +827,14 @@
                 "value"         : {"water" : 2}
             },
             {
-                "trigger"       : "always",
-                "target"        : "currentSpell",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
-                "stopTrigger"   : "always",
-                "feature"       : "cost",
-                "value"         : -3
+                "trigger"           : "always",
+                "stopTriggerList"   : ["always"],
+                "target"            : "currentSpell",
+                "conditionList"     : [{"feature" : "state", "value" : "agony", "target" : "self"}],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "cost",
+                "value"             : -3
             }
         ]
     },
@@ -1708,14 +1708,14 @@
                 "value"         : 0
             },
             {
-                "trigger"       : "spellCast",
-                "stopTrigger"   : "endTurn",
-                "target"        : "self",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "atk",
-                "value"         : 15
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : "endTurn",
+                "target"            : "self",
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "atk",
+                "value"             : 15
             },
             {
                 "trigger"       : "spellCast",

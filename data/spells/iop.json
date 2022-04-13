@@ -60,14 +60,14 @@
                 "value"         : -17
             },
             {
-                "trigger"       : "spellCast",
-                "stopTrigger"   : "endTurn",
-                "target"        : "myHero",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "melee",
-                "feature"       : "atk",
-                "value"         : 6
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["endTurn"],
+                "target"            : "myHero",
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "melee",
+                "feature"           : "atk",
+                "value"             : 6
             },
             {
                 "trigger"       : "spellCast",
@@ -182,14 +182,14 @@
                 "value"         : -22
             },
             {
-                "trigger"       : "spellCast",
-                "stopTrigger"   : "endTurn",
-                "target"        : "myHero",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "melee",
-                "feature"       : "atk",
-                "value"         : 6
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["endTurn"],
+                "target"            : "myHero",
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "melee",
+                "feature"           : "atk",
+                "value"             : 6
             },
             {
                 "trigger"       : "spellCast",
@@ -521,14 +521,14 @@
                 "value"         : -14
             },
             {
-                "trigger"       : "always",
-                "stopTrigger"   : "always",
-                "target"        : "currentSpell",
-                "behavior"      : "melee",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "cost",
-                "value"         : -1
+                "trigger"           : "always",
+                "stopTriggerList"   : ["always"],
+                "target"            : "currentSpell",
+                "behavior"          : "melee",
+                "break"             : "False",
+                "conditionList"     : [],
+                "feature"           : "cost",
+                "value"             : -1
             },
             {
                 "trigger"       : "spellCast",
@@ -682,14 +682,14 @@
                 "value"         : {"water" : 1}
             },
             {
-                "trigger"       : "always",
-                "stopTrigger"   : "always",
-                "target"        : "currentSpell",
-                "behavior"      : "melee",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "cost",
-                "value"         : -1
+                "trigger"           : "always",
+                "stopTriggerList"   : ["always"],
+                "target"            : "currentSpell",
+                "behavior"          : "melee",
+                "break"             : "False",
+                "conditionList"     : [],
+                "feature"           : "cost",
+                "value"             : -1
             }
         ]
     },
