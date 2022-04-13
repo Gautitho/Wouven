@@ -199,6 +199,7 @@ class Entity:
     def endTurn(self):
         self._myTurn            = False
         self._pm                = db.entities[self._descId]["pm"]
+        self.evalTimeoutStates()
 
     def endAction(self):
         self.updateAura()
