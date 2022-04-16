@@ -100,5 +100,39 @@
                 "value"         : 1
             }
         ]
+    },
+    "ehc4" :
+    {
+        "name"              : "Voldorak",
+        "spritePath"        : "img/entities/icon/cra/voldorak.png",
+        "descSpritePath"    : "img/entities/desc/cra/voldorak.png",
+        "types"             : [],
+        "pv"                : 392,
+        "armor"             : 0,
+        "atk"               : 17,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "allowedTarget", "value" : "aligned", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "distance+addAuraWeak",
+                "feature"       : "ac0",
+                "value"         : 1
+            }
+        ]
     }
 }

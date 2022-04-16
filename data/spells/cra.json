@@ -1771,5 +1771,36 @@
                 "value"         : {"fire" : 2}
             }
         ]
+    },
+    "shc4":
+    {
+        "name"              : "Poing volant",
+        "race"              : "ehc4",
+        "cost"              : 6,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/cra/poingVolant.png",
+        "descSpritePath"    : "img/spells/desc/cra/poingVolant.png",
+        "allowedTargetList" : ["allOrganicAligned"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -39
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 2
+            }
+        ]
     }
 }

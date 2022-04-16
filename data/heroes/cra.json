@@ -16,5 +16,11 @@
         "race"          : "cra",
         "spellDescId"   : "shc2",
         "entityDescId"  : "ehc2"
+    },
+    "hc4" :
+    {
+        "race"          : "cra",
+        "spellDescId"   : "shc4",
+        "entityDescId"  : "ehc4"
     }
 }

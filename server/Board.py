@@ -580,9 +580,9 @@ class Board:
 
                 # Execute spell
                 self.removeOngoingAbilities("spellCast") # WARNING : This line is here only because, for now, the only spellCast ongoingAbilities affect cost
-                self.executeAbilities(spell.abilities, "spellCast", playerId, selfEntityId, targetEntityIdList, spellElem=spell.elem)
+                self.executeAbilities(spell.abilities, "spellCast", playerId, selfEntityId, targetEntityIdList, spellElem=spell.elem, allowedTargetList=spell.allowedTargetList)
                 for entityId in [e for e in list(self._entitiesDict.keys()) if not("tile" in str(e))]:
-                    self.executeAbilities(self._entitiesDict[entityId].abilities, "spellCast", playerId, entityId, targetEntityIdList, spellElem=spell.elem)
+                    self.executeAbilities(self._entitiesDict[entityId].abilities, "spellCast", playerId, entityId, targetEntityIdList, spellElem=spell.elem, allowedTargetList=spell.allowedTargetList)
                 self.tileGarbageCollector()
 
             else:
@@ -630,7 +630,7 @@ class Board:
         else:
             raise GameException("Only one summon position is allowed !")
 
-    def executeAbilities(self, abilityList, trigger, playerId, selfId, targetEntityIdList, spellElem=None, spellId=None, triggingAbility=None, triggingAbilityTargetIdList=None, force=False):
+    def executeAbilities(self, abilityList, trigger, playerId, selfId, targetEntityIdList, spellElem=None, spellId=None, triggingAbility=None, triggingAbilityTargetIdList=None, allowedTargetList=None, force=False):
         auraUsed    = False
         opPlayerId  = self.getOpPlayerId(playerId) if playerId else ""
         for ability in abilityList:
@@ -809,6 +809,13 @@ class Board:
                     elif (condition["feature"] == "target"):
                         if (condition["value"] == "opOrganic"):
                             if (type(self._entitiesDict[conditionTargetId]).__name__ == "Entity" and not("mechanism" in self._entitiesDict[conditionTargetId].typeList) and self.getOpTeam(self._entitiesDict[conditionTargetId].team) == self._playersDict[playerId].team):
+                                pass
+                            else:
+                                conditionsValid = False
+
+                    elif (condition["feature"] == "allowedTarget"):
+                        if (condition["value"] == "aligned"):
+                            if (allowedTargetList[targetIdx] in ["allOrganicAligned", "allFirstEntityAligned", "allFirstOrganicAligned"]):
                                 pass
                             else:
                                 conditionsValid = False
@@ -1044,6 +1051,11 @@ class Board:
 
                     elif (ability["behavior"] == "addAuraWeak"):
                         self._entitiesDict[selfId].addAuraBuffer(ability["feature"], value, "WEAK")
+                        executed = True
+
+                    elif (ability["behavior"] == "distance+addAuraWeak"):
+                        mult = calcDist(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[abilityTargetIdList[0]].x, self._entitiesDict[abilityTargetIdList[0]].y, offset=-1) if not(force) else mult # Handle the stopTrigger case
+                        self._entitiesDict[selfId].addAuraBuffer(ability["feature"], mult*value, "WEAK")
                         executed = True
                     
                     elif (ability["behavior"] == "addAuraStrong"):

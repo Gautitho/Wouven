@@ -8,7 +8,7 @@ SPELLS_FILE_PATH_LIST       = ["data/spells/air.json", "data/spells/water.json",
 AURAS_FILE_PATH_LIST        = ["data/auras/iop.json", "data/auras/cra.json"]
 
 TEST_ENABLE     = True
-LOCAL_ENABLE    = True
+LOCAL_ENABLE    = False
 
 BOARD_ROWS                  = 7
 BOARD_COLS                  = 7
