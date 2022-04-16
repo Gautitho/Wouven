@@ -7,7 +7,7 @@
         "placementList" :
         [
             {
-                "ref"   : "myPlayer",
+                "ref"   : "myHero",
                 "range" : 2
             }
         ]
@@ -20,7 +20,7 @@
         "placementList" :
         [
             {
-                "ref"   : "myPlayer",
+                "ref"   : "myHero",
                 "range" : 2
             }
         ]
@@ -33,7 +33,7 @@
         "placementList" :
         [
             {
-                "ref"   : "myPlayer",
+                "ref"   : "myHero",
                 "range" : 2
             }
         ]
@@ -46,7 +46,7 @@
         "placementList" :
         [
             {
-                "ref"   : "myPlayer",
+                "ref"   : "myHero",
                 "range" : 2
             }
         ]
@@ -59,7 +59,7 @@
         "placementList" :
         [
             {
-                "ref"   : "myPlayer",
+                "ref"   : "myHero",
                 "range" : 2
             }
         ]
@@ -72,7 +72,7 @@
         "placementList" :
         [
             {
-                "ref"   : "myPlayer",
+                "ref"   : "myHero",
                 "range" : 2
             }
         ]
@@ -85,7 +85,7 @@
         "placementList" :
         [
             {
-                "ref"   : "myPlayer",
+                "ref"   : "myHero",
                 "range" : 2
             }
         ]
@@ -98,7 +98,7 @@
         "placementList" :
         [
             {
-                "ref"   : "myPlayer",
+                "ref"   : "myHero",
                 "range" : 2
             }
         ]
@@ -111,7 +111,7 @@
         "placementList" :
         [
             {
-                "ref"   : "myPlayer",
+                "ref"   : "myHero",
                 "range" : 2
             }
         ]
@@ -124,7 +124,7 @@
         "placementList" :
         [
             {
-                "ref"   : "myPlayer",
+                "ref"   : "myHero",
                 "range" : 2
             }
         ]
@@ -137,7 +137,7 @@
         "placementList" :
         [
             {
-                "ref"   : "myPlayer",
+                "ref"   : "myHero",
                 "range" : 2
             }
         ]
@@ -150,7 +150,7 @@
         "placementList" :
         [
             {
-                "ref"   : "myPlayer",
+                "ref"   : "myHero",
                 "range" : 2
             }
         ]

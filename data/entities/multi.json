@@ -82,5 +82,38 @@
                 "value"         : 0
             }
         ]
+    },
+    "ecm5" :
+    {
+        "name"              : "Plume",
+        "spritePath"        : "img/entities/icon/multi/plume.png",
+        "descSpritePath"    : "img/entities/desc/multi/plume.png",
+        "pv"                : 87,
+        "armor"             : 0,
+        "atk"               : 18,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "startTurn",
+                "target"        : "opOrganicCrossSelf",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
     }
 }

@@ -608,7 +608,7 @@ class Board:
                             for allyEntityId in self._playersDict[playerId].boardEntityIds:
                                 if (calcDist(self._entitiesDict[allyEntityId].x, self._entitiesDict[allyEntityId].y, summonPositionList[0]["x"], summonPositionList[0]["y"]) <= placement["range"]):
                                     placementValid = True
-                        elif (placement["ref"] == "myPlayer"):
+                        elif (placement["ref"] == "myHero"):
                             if (calcDist(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, summonPositionList[0]["x"], summonPositionList[0]["y"]) <= placement["range"]):
                                 placementValid = True
                         else:
@@ -693,6 +693,11 @@ class Board:
                     abilityTargetIdList = self.entityIdInCross(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, int(ability["target"].split(':')[1]), "all")
                 elif (ability["target"].split(':')[0] == "myOrganicCross"):
                     abilityTargetIdList = self.entityIdInCross(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, int(ability["target"].split(':')[1]), self._entitiesDict[selfId].team)
+                elif (ability["target"].split(':')[0] == "opOrganicCrossSelf"):
+                    if (len(ability["target"].split(':')) > 1):
+                        abilityTargetIdList = self.entityIdInCross(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, int(ability["target"].split(':')[1]), self.getOpTeam(self._entitiesDict[selfId].team))
+                    else:
+                        abilityTargetIdList = self.entityIdInCross(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, BOARD_ROWS, self.getOpTeam(self._entitiesDict[selfId].team))
                 elif (ability["target"] == "opBoard"):
                     abilityTargetIdList = self._playersDict[opPlayerId].boardEntityIds
                 elif (ability["target"] == "myBoard"):
