@@ -362,6 +362,30 @@
             }
         ]
     },
+    "ece15" :
+    {
+        "name"              : "Kerubim",
+        "spritePath"        : "img/entities/icon/earth/kerubim.png",
+        "descSpritePath"    : "img/entities/desc/earth/kerubim.png",
+        "pv"                : 114,
+        "armor"             : 0,
+        "atk"               : 30,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
     "ece16" :
     {
         "name"              : "Tristepin",

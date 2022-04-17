@@ -53,13 +53,6 @@ class Board:
                 self._playersDict[playerId].removeEntity(entityId)
                 found = True
                 break
-        #for state in self._entitiesDict[entityId].states:
-        #    if (state["feature"] == "bodyguard"):
-        #        rmState = {}
-        #        rmState["feature"]  = "bodyguarded"
-        #        rmState["value"]    = entityId
-        #        self._entitiesDict[state["value"]].removeState(rmState)
-        #        break
         del self._entitiesDict[entityId]
         if not(found):
             raise GameException("Entity to remove not found in playersDict entitiesDict list !")

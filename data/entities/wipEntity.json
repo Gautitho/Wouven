@@ -263,30 +263,6 @@
             }
         ]
     },
-    "ece15" :
-    {
-        "name"              : "Kerubim",
-        "spritePath"        : "img/entities/icon/earth/kerubim.png",
-        "descSpritePath"    : "img/entities/desc/earth/kerubim.png",
-        "pv"                : 114,
-        "armor"             : 0,
-        "atk"               : 30,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
     "ecw1" :
     {
         "name"              : "Shura",
@@ -319,30 +295,6 @@
         "pv"                : 86,
         "armor"             : 0,
         "atk"               : 16,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : "target",
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
-    "ecw7" :
-    {
-        "name"              : "Baron Sramedi",
-        "spritePath"        : "img/entities/icon/water/baronSramedi.png",
-        "descSpritePath"    : "img/entities/desc/water/baronSramedi.png",
-        "pv"                : 72,
-        "armor"             : 0,
-        "atk"               : 14,
         "pm"                : 3,
         "aura"              : {},
         "states"            : [],

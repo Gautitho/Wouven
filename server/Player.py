@@ -101,8 +101,11 @@ class Player:
                 self._deckSpellDescIdList.append(companionSpellDescId)
 
     def removeCompanion(self, companionId):
-        self._companionList[companionId]["state"]      = "dead"
-        self._companionList[companionId]["entityId"]   = None
+        if ("respawnable" in db.companions[self._companionList[companionId]["descId"]]["propertyList"]):
+            self._companionList[companionId]["state"] = "available"
+        else:
+            self._companionList[companionId]["state"] = "dead"
+        self._companionList[companionId]["entityId"] = None
         if (db.companions[self._companionList[companionId]["descId"]]["spellDescId"]):
             companionSpellDescId = db.companions[self._companionList[companionId]["descId"]]["spellDescId"]
             for handSpellId in list(self._handSpellDict.keys()):
@@ -111,10 +114,6 @@ class Player:
                     break
             if (companionSpellDescId in self._deckSpellDescIdList):
                 self._deckSpellDescIdList.remove(companionSpellDescId)
-
-    def storeCompanion(self, companionId):
-        self._companionList[companionId]["state"]      = "available"
-        self._companionList[companionId]["entityId"]   = None
 
     def startTurn(self):
         self._pa = 6

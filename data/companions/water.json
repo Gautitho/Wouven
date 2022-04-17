@@ -64,6 +64,20 @@
             }
         ]
     },
+    "cw7" :
+    {
+        "cost"          : {"water" : 4},
+        "entityDescId"  : "ecw7",
+        "spellDescId"   : "",
+        "propertyList"  : ["respawnable"],
+        "placementList" :
+        [
+            {
+                "ref"   : "myHero",
+                "range" : 2
+            }
+        ]
+    },
     "cw8" :
     {
         "cost"          : {"water" : 4},

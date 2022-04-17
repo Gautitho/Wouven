@@ -142,6 +142,20 @@
             }
         ]
     },
+    "ce15" :
+    {
+        "cost"          : {"earth" : 7},
+        "entityDescId"  : "ece15",
+        "spellDescId"   : "",
+        "propertyList"  : ["respawnable"],
+        "placementList" :
+        [
+            {
+                "ref"   : "myHero",
+                "range" : 2
+            }
+        ]
+    },
     "ce16" :
     {
         "cost"          : {"earth" : 7},

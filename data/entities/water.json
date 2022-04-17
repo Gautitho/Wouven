@@ -155,6 +155,30 @@
             }
         ]
     },
+    "ecw7" :
+    {
+        "name"              : "Baron Sramedi",
+        "spritePath"        : "img/entities/icon/water/baronSramedi.png",
+        "descSpritePath"    : "img/entities/desc/water/baronSramedi.png",
+        "pv"                : 72,
+        "armor"             : 0,
+        "atk"               : 14,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
     "ecw8" :
     {
         "name"              : "Rémus",
