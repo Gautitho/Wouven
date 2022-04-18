@@ -206,5 +206,31 @@
                 "value"         : 0
             }
         ]
+    },
+    "ac8" :
+    {
+        "name"          : "Mires repoussantes",
+        "spritePath"    : "img/states/improvedSight.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -9
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "opOrganicCrossSelf:1",
+                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "pushAwayFromSelf",
+                "feature"       : "position",
+                "value"         : 2
+            }
+        ]
     }
 }

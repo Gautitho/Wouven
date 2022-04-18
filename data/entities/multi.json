@@ -1,4 +1,37 @@
 {
+    "ecm0" :
+    {
+        "name"              : "Alchimiste armuree",
+        "spritePath"        : "img/entities/icon/multi/alchimisteArmuree.png",
+        "descSpritePath"    : "img/entities/desc/multi/alchimisteArmuree.png",
+        "pv"                : 87,
+        "armor"             : 0,
+        "atk"               : 17,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "allOrganicCrossSelf:1",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "pushAwayFromSelf",
+                "feature"       : "position",
+                "value"         : 1
+            }
+        ]
+    },
     "ecm2" :
     {
         "name"              : "Epinette",

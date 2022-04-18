@@ -1,4 +1,21 @@
 {
+    "cm0" :
+    {
+        "cost"          : {"air" : 2, "fire" : 2},
+        "entityDescId"  : "ecm0",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myHero",
+                "range" : 2
+            },
+            {
+                "ref"   : "ally",
+                "range" : 1
+            }
+        ]
+    },
     "cm2" :
     {
         "cost"          : {"water" : 2, "air" : 2},

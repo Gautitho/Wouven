@@ -691,6 +691,11 @@ class Board:
                         abilityTargetIdList = self.entityIdInCross(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, int(ability["target"].split(':')[1]), self.getOpTeam(self._entitiesDict[selfId].team))
                     else:
                         abilityTargetIdList = self.entityIdInCross(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, BOARD_ROWS, self.getOpTeam(self._entitiesDict[selfId].team))
+                elif (ability["target"].split(':')[0] == "allOrganicCrossSelf"):
+                    if (len(ability["target"].split(':')) > 1):
+                        abilityTargetIdList = self.entityIdInCross(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, int(ability["target"].split(':')[1]), "all")
+                    else:
+                        abilityTargetIdList = self.entityIdInCross(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, BOARD_ROWS, "all")
                 elif (ability["target"] == "opOrganicFirstCrossSelf"):
                     abilityTargetIdList = self.firstEntityIdAlignedToTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, "all")
                 elif (ability["target"] == "opBoard"):
@@ -732,7 +737,7 @@ class Board:
                         else:
                             raise GameException("Wrong condition target !")
                     else:
-                        conditionTargetId = abilityTargetIdList[0]
+                        conditionTargetId = abilityTargetIdList[0] if (len(abilityTargetIdList) > 0) else selfId
 
                     if (condition["feature"] == "elemState"):
                         if (operator == "=" and condition["value"] in ["oiled", "wet", "muddy", "windy"]):
@@ -1120,6 +1125,11 @@ class Board:
                     elif (ability["behavior"] == "pushBack"):
                         for abilityEntityId in abilityTargetIdList:
                             self.pushEntity(abilityEntityId, self._entitiesDict[targetEntityIdList[0]].x, self._entitiesDict[targetEntityIdList[0]].y, -value)
+                            executed = True
+
+                    elif (ability["behavior"] == "pushAwayFromSelf"):
+                        for abilityEntityId in abilityTargetIdList:
+                            self.pushEntity(abilityEntityId, self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, -value)
                             executed = True
 
                     elif (ability["behavior"] == "explosion"):

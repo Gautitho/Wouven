@@ -74,6 +74,39 @@
             }
         ]
     },
+    "eca2" :
+    {
+        "name"              : "Oracle offensée",
+        "spritePath"        : "img/entities/icon/air/oracleOffensee.png",
+        "descSpritePath"    : "img/entities/desc/air/oracleOffensee.png",
+        "pv"                : 63,
+        "armor"             : 0,
+        "atk"               : 16,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "pushAwayFromSelf",
+                "feature"       : "position",
+                "value"         : 2
+            }
+        ]
+    },
     "eca3" :
     {
         "name"              : "Championne du blasphème",
@@ -128,6 +161,48 @@
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : "-atk"
+            }
+        ]
+    },
+    "eca5" :
+    {
+        "name"              : "Empaleur embusqué",
+        "spritePath"        : "img/entities/icon/air/empaleurEmbusque.png",
+        "descSpritePath"    : "img/entities/desc/air/empaleurEmbusque.png",
+        "pv"                : 85,
+        "armor"             : 0,
+        "atk"               : 9,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac8",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "startTurn",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac8",
+                "value"         : 1
             }
         ]
     },

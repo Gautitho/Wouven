@@ -25,6 +25,19 @@
             }
         ]
     },
+    "ca2" :
+    {
+        "cost"          : {"air" : 3},
+        "entityDescId"  : "eca2",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myHero",
+                "range" : 2
+            }
+        ]
+    },
     "ca3" :
     {
         "cost"          : {"air" : 3},
@@ -42,6 +55,19 @@
     {
         "cost"          : {"air" : 3},
         "entityDescId"  : "eca4",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myHero",
+                "range" : 2
+            }
+        ]
+    },
+    "ca5" :
+    {
+        "cost"          : {"air" : 4},
+        "entityDescId"  : "eca5",
         "spellDescId"   : "",
         "placementList" :
         [
