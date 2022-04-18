@@ -83,6 +83,39 @@
             }
         ]
     },
+    "ecm4" :
+    {
+        "name"              : "Larch",
+        "spritePath"        : "img/entities/icon/multi/larch.png",
+        "descSpritePath"    : "img/entities/desc/multi/larch.png",
+        "pv"                : 80,
+        "armor"             : 0,
+        "atk"               : 15,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : "opOrganicFirstCrossSelf",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "pull",
+                "feature"       : "position",
+                "value"         : 0
+            }
+        ]
+    },
     "ecm5" :
     {
         "name"              : "Plume",

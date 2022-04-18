@@ -691,6 +691,8 @@ class Board:
                         abilityTargetIdList = self.entityIdInCross(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, int(ability["target"].split(':')[1]), self.getOpTeam(self._entitiesDict[selfId].team))
                     else:
                         abilityTargetIdList = self.entityIdInCross(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, BOARD_ROWS, self.getOpTeam(self._entitiesDict[selfId].team))
+                elif (ability["target"] == "opOrganicFirstCrossSelf"):
+                    abilityTargetIdList = self.firstEntityIdAlignedToTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, "all")
                 elif (ability["target"] == "opBoard"):
                     abilityTargetIdList = self._playersDict[opPlayerId].boardEntityIds
                 elif (ability["target"] == "myBoard"):
@@ -1081,6 +1083,29 @@ class Board:
                                     executed = True
                                 elif (self._entitiesDict[selfId].x > self._entitiesDict[abilityEntityId].x):
                                     self._entitiesDict[selfId].tp(self._entitiesDict[abilityEntityId].x + 1, self._entitiesDict[abilityEntityId].y)
+                                    executed = True
+                                else:
+                                    raise GameException("Target can't be on the same tile than selfEntity !")
+                            else:
+                                raise GameException("Target not aligned with selfEntity !")
+
+                    elif (ability["behavior"] == "pull"):
+                        for abilityEntityId in abilityTargetIdList:
+                            if (self._entitiesDict[selfId].x == self._entitiesDict[abilityEntityId].x):
+                                if (self._entitiesDict[selfId].y < self._entitiesDict[abilityEntityId].y):
+                                    self._entitiesDict[abilityEntityId].tp(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y + 1)
+                                    executed = True
+                                elif (self._entitiesDict[selfId].y > self._entitiesDict[abilityEntityId].y):
+                                    self._entitiesDict[abilityEntityId].tp(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y - 1)
+                                    executed = True
+                                else:
+                                    raise GameException("Target can't be on the same tile than selfEntity !")
+                            elif (self._entitiesDict[selfId].y == self._entitiesDict[abilityEntityId].y):
+                                if (self._entitiesDict[selfId].x < self._entitiesDict[abilityEntityId].x):
+                                    self._entitiesDict[abilityEntityId].tp(self._entitiesDict[selfId].x + 1, self._entitiesDict[selfId].y)
+                                    executed = True
+                                elif (self._entitiesDict[selfId].x > self._entitiesDict[abilityEntityId].x):
+                                    self._entitiesDict[abilityEntityId].tp(self._entitiesDict[selfId].x - 1, self._entitiesDict[selfId].y)
                                     executed = True
                                 else:
                                     raise GameException("Target can't be on the same tile than selfEntity !")

@@ -25,6 +25,19 @@
             }
         ]
     },
+    "cm4" :
+    {
+        "cost"          : {"earth" : 2, "water" : 2},
+        "entityDescId"  : "ecm4",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myHero",
+                "range" : 3
+            }
+        ]
+    },
     "cm5" :
     {
         "cost"          : {"air" : 2, "earth" : 2},

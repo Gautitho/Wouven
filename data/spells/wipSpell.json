@@ -223,8 +223,8 @@
         "race"              : "sacrieur",
         "cost"              : 7,
         "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/sacrieur/excitation.png",
-        "descSpritePath"    : "img/spells/desc/sacrieur/excitation.png",
+        "spritePath"        : "img/spells/icon/sacrieur/duSangDansLaBouche.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/duSangDansLaBouche.png",
         "allowedTargetList" : ["allOrganic"],
         "abilities"         :
         [
@@ -258,37 +258,6 @@
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -19
-            }
-        ]
-    },
-    "ss37":
-    {
-        "name"              : "Attirance",
-        "race"              : "sacrieur",
-        "cost"              : 6,
-        "elem"              : "air",
-        "spritePath"        : "img/spells/icon/sacrieur/attirance.png",
-        "descSpritePath"    : "img/spells/desc/sacrieur/attirance.png",
-        "allowedTargetList" : ["allOrganic"],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromSelf", "value" : 1, "operator" : "=="}],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -20
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "paStock",
-                "value"         : 1
             }
         ]
     }

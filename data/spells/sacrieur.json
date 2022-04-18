@@ -1545,6 +1545,55 @@
             }
         ]
     },
+    "ss38":
+    {
+        "name"              : "Attirance",
+        "race"              : "sacrieur",
+        "cost"              : 6,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/sacrieur/attirance.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/attirance.png",
+        "allowedTargetList" : ["allFirstOrganicAligned"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" :"rangeFromSelf", "value" : 1, "operator" : "="}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" : "elemState", "value" : "windy"}],
+                "break"         : "False",
+                "behavior"      : "pull",
+                "feature"       : "position",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 2}
+            }
+        ]
+    },
     "ss39":
     {
         "name"              : "Fulgurance",
