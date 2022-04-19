@@ -101,7 +101,11 @@ class Player:
                 self._deckSpellDescIdList.append(companionSpellDescId)
 
     def removeCompanion(self, companionId):
-        if ("respawnable" in db.companions[self._companionList[companionId]["descId"]]["propertyList"]):
+        if ("propertyList" in db.companions[self._companionList[companionId]["descId"]]):
+            propertyList = list(db.companions[self._companionList[companionId]["descId"]]["propertyList"])
+        else:
+            propertyList = []
+        if ("respawnable" in propertyList):
             self._companionList[companionId]["state"] = "available"
         else:
             self._companionList[companionId]["state"] = "dead"
