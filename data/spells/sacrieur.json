@@ -1753,7 +1753,7 @@
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addState",
-                "feature"       : "untargetable:0",
+                "feature"       : "untargetable:1",
                 "value"         : 0
             },
             {

@@ -1800,6 +1800,15 @@
                 "behavior"      : "",
                 "feature"       : "paStock",
                 "value"         : 2
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
             }
         ]
     }
