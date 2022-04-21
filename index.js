@@ -4,13 +4,12 @@
 
 var playerId = "";
 var gameName = "";
-var deckBuildingCode = location.search.substring(1);
-var deckCode = document.getElementById("deckCode").value;
-var deck = {"heroDescId" : deckCode.split("&")[0], "spellDescIdList" : deckCode.split("&").slice(1, 10), "companionDescIdList" : deckCode.split("&").slice(10, 14)};
+var deckCodeUrl = location.search.substring(1);
+var deckCodeForm = document.getElementById("deckCode").value;
 var findState = "IDLE" // IDLE, FINDING
 var createState = "IDLE" // IDLE, FINDING
 
-$("#deckCode").val(deckBuildingCode);
+$("#deckCode").val(deckCodeUrl);
 
 socket          = new WebSocket('ws://localhost:50000/');
 socket.onopen   = function(){};
@@ -75,8 +74,9 @@ function poll()
 }
 
 function createDeck()
-{
-    window.location = "pages/deckBuild/deckBuild.html?" + deckBuildingCode;
+{   
+    deckCodeForm = document.getElementById("deckCode").value;
+    window.location = "pages/deckBuild/deckBuild.html?" + deckCodeForm;
 }
 
 function createGame()
@@ -85,8 +85,8 @@ function createGame()
     {
         playerId = document.getElementById("pseudo").value;
         gameName = document.getElementById("gameNameCreate").value;
-        deckCode = document.getElementById("deckCode").value;
-        deck     = {"heroDescId" : deckCode.split("&")[0], "spellDescIdList" : deckCode.split("&").slice(1, 10), "companionDescIdList" : deckCode.split("&").slice(10, 14)};
+        deckCodeForm = document.getElementById("deckCode").value;
+        deck     = {"heroDescId" : deckCodeForm.split("&")[0], "spellDescIdList" : deckCodeForm.split("&").slice(1, 10), "companionDescIdList" : deckCodeForm.split("&").slice(10, 14)};
         if (findState == "IDLE")
         {
             clientCmd = {"cmd" : "CREATE_GAME", "playerId" : playerId, "gameName" : gameName, "deck" : deck};
@@ -111,8 +111,8 @@ function joinGame()
     {
         playerId = document.getElementById("pseudo").value;
         gameName = document.getElementById("gameNameJoin").value;
-        deckCode = document.getElementById("deckCode").value;
-        deck     = {"heroDescId" : deckCode.split("&")[0], "spellDescIdList" : deckCode.split("&").slice(1, 10), "companionDescIdList" : deckCode.split("&").slice(10, 14)};
+        deckCodeForm = document.getElementById("deckCode").value;
+        deck     = {"heroDescId" : deckCodeForm.split("&")[0], "spellDescIdList" : deckCodeForm.split("&").slice(1, 10), "companionDescIdList" : deckCodeForm.split("&").slice(10, 14)};
         clientCmd = {"cmd" : "JOIN_GAME", "playerId" : playerId, "gameName" : gameName, "deck" : deck};
         socket.send(JSON.stringify(clientCmd));
     }
@@ -133,8 +133,8 @@ function findGame()
     if (checkArgs(["pseudo", "deckCode"]))
     {
         playerId = document.getElementById("pseudo").value;
-        deckCode = document.getElementById("deckCode").value;
-        deck     = {"heroDescId" : deckCode.split("&")[0], "spellDescIdList" : deckCode.split("&").slice(1, 10), "companionDescIdList" : deckCode.split("&").slice(10, 14)};
+        deckCodeForm = document.getElementById("deckCode").value;
+        deck     = {"heroDescId" : deckCodeForm.split("&")[0], "spellDescIdList" : deckCodeForm.split("&").slice(1, 10), "companionDescIdList" : deckCodeForm.split("&").slice(10, 14)};
         if (findState == "IDLE")
         {
             clientCmd = {"cmd" : "FIND_GAME", "playerId" : playerId, "deck" : deck};
