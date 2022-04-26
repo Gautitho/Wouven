@@ -9,6 +9,7 @@
 - Si un joueur fait un mauvais formulaire, il se retrouve quand même en tant que waitingPlayer (peut être uniquement en testMode)
 - Reduction de cout sur sort à 0 => peuvent se retrouver au dessus de leur coût de base
 - Passif pilo
+- Fonctionnement Cross / Aligned self mauvais (Larch, Plume, ...)
 - Mécaniques à dev :
   - Rembobinage
   - Déclenchement d'un mécanisme

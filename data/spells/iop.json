@@ -1511,6 +1511,56 @@
             }
         ]
     },
+    "si38":
+    {
+        "name"              : "Brise",
+        "race"              : "iop",
+        "cost"              : 6,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/iop/brise.png",
+        "descSpritePath"    : "img/spells/desc/iop/brise.png",
+        "allowedTargetList" : ["allOrganic"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -25
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "melee",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["spellCast", "endTurn"],
+                "target"            : "hand",
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "melee",
+                "feature"           : "cost",
+                "value"             : -1
+            }
+        ]
+    },
     "si39":
     {
         "name"              : "Charge tonnerre en série",
@@ -1569,6 +1619,37 @@
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            }
+        ]
+    },
+    "si41":
+    {
+        "name"              : "Rayonnement",
+        "race"              : "iop",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/iop/rayonnement.png",
+        "descSpritePath"    : "img/spells/desc/iop/rayonnement.png",
+        "allowedTargetList" : ["myHero"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" :"auraNb", "value" : 1, "operator" : ">="}],
+                "break"         : "True",
+                "behavior"      : "addAuraWeak",
+                "feature"       : "ai2",
                 "value"         : 1
             },
             {
@@ -1650,6 +1731,59 @@
                 "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"neutral" : 1}
+            }
+        ]
+    },
+    "si44":
+    {
+        "name"              : "Acharnement",
+        "race"              : "iop",
+        "cost"              : 6,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/iop/acharnement.png",
+        "descSpritePath"    : "img/spells/desc/iop/acharnement.png",
+        "allowedTargetList" : ["myHero"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [{"feature" :"auraNb", "value" : 1, "operator" : ">="}],
+                "break"         : "True",
+                "behavior"      : "addAuraWeak",
+                "feature"       : "ai2",
+                "value"         : 2
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 2}
+            }
+        ]
+    },
+    "si47":
+    {
+        "name"              : "Poings volants",
+        "race"              : "iop",
+        "cost"              : 6,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/iop/poingsVolants.png",
+        "descSpritePath"    : "img/spells/desc/iop/poingsVolants.png",
+        "allowedTargetList" : ["myHero"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraReset",
+                "feature"       : "ai1",
+                "value"         : 3
             }
         ]
     },
