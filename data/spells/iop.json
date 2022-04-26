@@ -690,6 +690,15 @@
                 "conditionList"     : [],
                 "feature"           : "cost",
                 "value"             : -1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "myPlayer",
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
             }
         ]
     },
@@ -930,6 +939,15 @@
                 "break"         : "False",
                 "feature"       : "gauges",
                 "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "charge",
+                "feature"       : "position",
+                "value"         : 0
             }
         ]
     },

@@ -1595,7 +1595,7 @@
                 "break"         : "False",
                 "behavior"      : "addAuraStrong",
                 "feature"       : "ac1",
-                "value"         : 3
+                "value"         : 1
             }
         ]
     },
@@ -1617,7 +1617,7 @@
                 "break"         : "False",
                 "behavior"      : "addAuraStrong",
                 "feature"       : "ac2",
-                "value"         : 3
+                "value"         : 1
             }
         ]
     },

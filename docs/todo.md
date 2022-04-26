@@ -7,9 +7,11 @@
 - Charge de toxine trigger passif Bouvaloir
 - Sorts de : Phaeris, Remington, Julith, Coqueline, Flopin, Kerubim
 - Si un joueur fait un mauvais formulaire, il se retrouve quand même en tant que waitingPlayer (peut être uniquement en testMode)
-- Mécaniques à dev : 
+- Reduction de cout sur sort à 0 => peuvent se retrouver au dessus de leur coût de base
+- Passif pilo
+- Mécaniques à dev :
   - Rembobinage
   - Déclenchement d'un mécanisme
   - Transformation de mécanisme
-  - Destruction de mechanisme quand on reconstruit le même 
+  - Destruction de mechanisme quand on reconstruit le même
   - Dépahasage
