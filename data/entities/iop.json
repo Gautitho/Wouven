@@ -37,7 +37,7 @@
         "name"              : "Kasaï",
         "spritePath"        : "img/entities/icon/iop/kasai.png",
         "descSpritePath"    : "img/entities/desc/iop/kasai.png",
-        "pv"                : 390,
+        "pv"                : 398,
         "armor"             : 0,
         "atk"               : 37,
         "pm"                : 3,

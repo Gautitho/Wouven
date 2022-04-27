@@ -10,6 +10,8 @@
 - Reduction de cout sur sort à 0 => peuvent se retrouver au dessus de leur coût de base
 - Passif pilo
 - Fonctionnement Cross / Aligned self mauvais (Larch, Plume, ...)
+- Virer polling
+- Possibilité d'abandonner
 - Mécaniques à dev :
   - Rembobinage
   - Déclenchement d'un mécanisme

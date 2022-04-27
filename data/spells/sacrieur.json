@@ -1202,7 +1202,7 @@
                 "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
                 "behavior"      : "addState",
                 "break"         : "False",
-                "feature"       : "petrified:0",
+                "feature"       : "petrified:1",
                 "value"         : 0
             }
         ]

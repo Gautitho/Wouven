@@ -828,6 +828,15 @@
                 "conditionList" : [],
                 "feature"       : "paStock",
                 "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : "target",
+                "behavior"      : "addState",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "frozen",
+                "value"         : -18
             }
         ]
     },

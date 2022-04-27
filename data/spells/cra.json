@@ -1621,6 +1621,28 @@
             }
         ]
     },
+    "sc46":
+    {
+        "name"              : "Mires motivantes",
+        "race"              : "cra",
+        "cost"              : 4,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/cra/miresMotivantes.png",
+        "descSpritePath"    : "img/spells/desc/cra/miresMotivantes.png",
+        "allowedTargetList" : ["myHero"],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : "self",
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraStrong",
+                "feature"       : "ac3",
+                "value"         : 1
+            }
+        ]
+    },
     "sc47":
     {
         "name"              : "Ataraxie",

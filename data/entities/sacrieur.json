@@ -37,7 +37,7 @@
         "name"              : "Darde Kan",
         "spritePath"        : "img/entities/icon/sacrieur/dardeKan.png",
         "descSpritePath"    : "img/entities/desc/sacrieur/dardeKan.png",
-        "pv"                : 425,
+        "pv"                : 435,
         "armor"             : 0,
         "atk"               : 25,
         "pm"                : 3,
