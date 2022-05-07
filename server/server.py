@@ -1,12 +1,13 @@
 import argparse
 import os
+import shutil
 import pathlib
 from datetime import datetime
 from simple_websocket_server import WebSocketServer, WebSocket
 from GameManager import *
 from functions import *
 
-DEFAULT_REPLAY_FILE_PATH = "logs/client.log" if (LOCAL_ENABLE or len(os.listdir("logs")) < 1) else str(max(pathlib.Path("logs").glob('*/'), key=os.path.getmtime)) + "/client.log"
+DEFAULT_REPLAY_FILE_PATH = "logs/client.log" if (LOCAL_ENABLE or len(os.listdir("logs")) < 1) else "logs/lastLogDir/client.log"
 
 clientList      = []
 clientIdList    = []
@@ -54,18 +55,27 @@ args = parser.parse_args()
 if not(os.path.isdir("logs")):
     os.mkdir("logs")
 if not(LOCAL_ENABLE):
-    if os.path.isdir(logDir):
-        if not(os.path.exists(logDir + "/info.log")): 
-            printLog("File info.log not found in previous logDir, directory removed !", type="WARNING")
-        else:
-            infoFile = open(logDir + "/info.log", "r")
-            date = infoFile.read()
-            infoFile.close()
-            os.rename(logDir, "logs/" + date)
-    os.mkdir(logDir)
-    infoFile = open(logDir + "/info.log", "w")
-    infoFile.write(datetime.now().strftime('%Y_%m_%d_%H_%M_%S'))
-    infoFile.close()
+    if (args.testMode == "NONE"):
+        logDir = "logs/lastLogDir" # Used in functions
+        if os.path.isdir(logDir):
+            if not(os.path.exists(logDir + "/info.log")): 
+                printLog("File info.log not found in previous logDir, directory removed !", type="WARNING")
+            else:
+                infoFile = open(logDir + "/info.log", "r")
+                date = infoFile.read()
+                infoFile.close()
+                os.rename(logDir, "logs/" + date)
+        os.mkdir(logDir)
+        infoFile = open(logDir + "/info.log", "w")
+        infoFile.write(datetime.now().strftime('%Y_%m_%d_%H_%M_%S'))
+        infoFile.close()
+    else:
+        logDir = "logs/debugLogDir" # Used in functions
+        if os.path.exists(logDir):
+            shutil.rmtree(logDir)
+        os.mkdir(logDir)
+    setLogDir(logDir)
+
 
 if args.testMode == "MANUAL":
     while 1:

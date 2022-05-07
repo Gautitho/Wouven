@@ -97,8 +97,6 @@ class GameManager :
         printLog(s, filePath="gameList.log", writeMode="w")
 
         for gameId in list(self._currGameDict.keys()):
-            if not(LOCAL_ENABLE) and not(os.path.isdir(logDir + "/game_" + self._currGameDict[gameId].name)):
-                os.mkdir(logDir + "/game_" + self._currGameDict[gameId].name)
             printLog(self._currGameDict[gameId].entityListLog() + "\n", filePath="game_" + self._currGameDict[gameId].name + "/entityList.log", writeMode="w")
             printLog(self._currGameDict[gameId].playerListLog() + "\n", filePath="game_" + self._currGameDict[gameId].name + "/playerList.log", writeMode="w")
             if (self._gameId != None and self._currGameDict[gameId].name == self._currGameDict[self._gameId].name):

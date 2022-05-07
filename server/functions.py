@@ -1,9 +1,9 @@
 import sys
+import os
 import traceback
 from Database import *
 
 DISPLAYED_INFO_TYPE = ["MISC", "INFOB", "INFOG", "INFO", "DEBUG", "WARNING"] # Not displayed : []
-logDir = "logs/lastLogDir"
 
 def exitOnError(msg):
     traceback.print_stack(file=sys.stdout)
@@ -42,7 +42,12 @@ def toString(obj, separator=" "):
         s = str(obj)
     return s
 
+def setLogDir(path):
+    global logDir
+    logDir = path
+
 def printLog(msg, type="MISC", filePath=None, writeMode="a", format="LIGHT"):
+    global logDir
     if (type in DISPLAYED_INFO_TYPE):
         if (type == "WARNING"):
             s = '\033[36m' + "WARNING: " + str(msg) + '\033[0m'
@@ -64,6 +69,7 @@ def printLog(msg, type="MISC", filePath=None, writeMode="a", format="LIGHT"):
                 if (filePath == "all.log"):
                     print(s)
             else:
+                os.makedirs(os.path.dirname(logDir + "/" + filePath), exist_ok=True)
                 fd = open(logDir + "/" + filePath, writeMode)
                 fd.write(s + "\n")
                 fd.close()
