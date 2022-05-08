@@ -241,12 +241,15 @@ class Board:
 
     def entityIdWithHighestPv(self, team):
         entityIdList = []
-        highestPv = 1000
+        highestPv = 0
         for eid in list(self._entitiesDict.keys()):
             if (team == "all" or team == self._entitiesDict[eid].team):
-                if (self._entitiesDict[eid].pv <= highestPv):
+                if (self._entitiesDict[eid].pv > highestPv):
+                    entityIdList = []
                     entityIdList.append(eid)
                     highestPv = self._entitiesDict[eid].pv
+                elif (self._entitiesDict[eid].pv == highestPv):
+                    entityIdList.append(eid)
         return entityIdList
 
     def isAdjacentToTile(self, xSelf, ySelf, xTarget, yTarget):
@@ -513,6 +516,7 @@ class Board:
                     # Summon
                     if placementValid:
                         entityId = self.appendEntity(playerId, companion["entityDescId"], self._playersDict[playerId].team, summonPositionList[0]["x"], summonPositionList[0]["y"])
+                        self._entitiesDict[entityId].startTurn()
                         self._playersDict[playerId].summonCompanion(companionId, entityId)
                         self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, [None])
                         self.executeAbilities(self._entitiesDict[self._playersDict[playerId].heroEntityId].abilities, "summon", playerId, self._playersDict[playerId].heroEntityId, [entityId])
@@ -1098,6 +1102,7 @@ class Board:
 
                     elif (ability["behavior"] == "summon"):
                         entityId = self.appendEntity(playerId, ability["feature"], self._playersDict[playerId].team, self._entitiesDict[targetEntityIdList[0]].x, self._entitiesDict[targetEntityIdList[0]].y)
+                        self._entitiesDict[entityId].startTurn()
                         self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, [None])
 
                     elif (ability["behavior"] == "attackAgain"):

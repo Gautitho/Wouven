@@ -156,7 +156,7 @@
             {
                 "trigger"       : "always",
                 "target"        : {"main" : "highestPv", "team" : "op", "noTypeList" : ["mechanism"]},
-                "conditionList" : [{"feature" : "oneByTurn", "value" : "ehs4"}, {"feature" : "state", "value" : "agony", "target" : "self"}],
+                "conditionList" : [{"feature" : "oneByTurn", "value" : "ehs4", "target" : "self"}, {"feature" : "state", "value" : "agony", "target" : "self"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
