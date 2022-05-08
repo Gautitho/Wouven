@@ -51,19 +51,6 @@
             }
         ]
     },
-    "cf6" :
-    {
-        "cost"          : {"fire" : 4},
-        "entityDescId"  : "ecf6",
-        "spellDescId"   : "",
-        "placementList" :
-        [
-            {
-                "ref"   : "myHero",
-                "range" : 2
-            }
-        ]
-    },
     "cf7" :
     {
         "cost"          : {"fire" : 4},

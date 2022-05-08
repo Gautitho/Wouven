@@ -23,6 +23,40 @@
             }
         ]
     },
+    "ecf6" :
+    {
+        "name"              : "Championne sanglante",
+        "spritePath"        : "img/entities/icon/fire/championneSanglante.png",
+        "descSpritePath"    : "img/entities/desc/fire/championneSanglante.png",
+        "pv"                : 63,
+        "armor"             : 0,
+        "atk"               : 7,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"           : "spawn",
+                "stopTriggerList"   : ["death"],
+                "target"            : {"main" : "hero", "team" : "my"},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "addState",
+                "feature"           : "bodyguard",
+                "value"             : 0
+            }
+        ]
+    },
     "ecf13" :
     {
         "name"              : "Bakara",
