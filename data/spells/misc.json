@@ -7,12 +7,12 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/placeHolder0.png",
         "descSpritePath"    : "img/spells/desc/placeHolder0.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -29,12 +29,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/placeHolder1.png",
         "descSpritePath"    : "img/spells/desc/placeHolder1.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",

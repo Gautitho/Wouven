@@ -14,7 +14,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -23,7 +23,7 @@
             },
             {
                 "trigger"       : "spawn",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addAuraStrong",
@@ -32,7 +32,7 @@
             },
             {
                 "trigger"       : "startTurn",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addAuraStrong",
@@ -56,7 +56,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -65,7 +65,7 @@
             },
             {
                 "trigger"       : "attack",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -89,7 +89,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -98,7 +98,7 @@
             },
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "pushAwayFromSelf",
@@ -122,7 +122,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -131,7 +131,7 @@
             },
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "windy"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -155,7 +155,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -179,7 +179,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -188,7 +188,7 @@
             },
             {
                 "trigger"       : "spawn",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addAuraStrong",
@@ -197,7 +197,7 @@
             },
             {
                 "trigger"       : "startTurn",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addAuraStrong",
@@ -221,7 +221,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -230,7 +230,7 @@
             },
             {
                 "trigger"       : "spawn",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addAuraStrong",
@@ -239,7 +239,7 @@
             },
             {
                 "trigger"       : "startTurn",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addAuraStrong",
@@ -263,7 +263,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -272,7 +272,7 @@
             },
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -296,7 +296,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -305,7 +305,7 @@
             },
             {
                 "trigger"       : "attack",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -329,7 +329,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -338,7 +338,7 @@
             },
             {
                 "trigger"       : "attack",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "draw",
@@ -362,7 +362,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -386,7 +386,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -396,7 +396,7 @@
             {
                 "trigger"           : "startTurn",
                 "stopTriggerList"   : ["endTurn"],
-                "target"            : "self",
+                "target"            : {"main" : "self"},
                 "conditionList"     : [{"feature" : "handSpells", "value" : 5, "operator" : ">=", "target" : "myPlayer"}],
                 "break"             : "False",
                 "behavior"          : "",
@@ -420,7 +420,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -429,7 +429,7 @@
             },
             {
                 "trigger"       : "spawn",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addAuraStrong",
@@ -438,7 +438,7 @@
             },
             {
                 "trigger"       : "startTurn",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addAuraStrong",
@@ -462,7 +462,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -471,7 +471,7 @@
             },
             {
                 "trigger"       : "spawn",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",

@@ -1,22 +1,21 @@
-## Ability keys
+# Ability keys
 
-| Key | Description |
-|-----|-------------|
-| trigger | Determine on which event the effect occur |
-| target | Target on which the effect is applied |
-| conditionList | All the conditions must be true to trigger the effect |
-| break | If true, prevent the spell to be casted |
-| feature | Feature affected by the effect |
-| value | Value of the effect |
-| behavior | Specific behavior |
-| targetIdx | Optionnal. When several targets, indicates which is targeted |
-| stopTrigger | Optionnal. Indicates when the effect must disapear. If defined the ability is an ongoingAbility |
+| Key | Type | Description |
+|-----|------|-------------|
+| trigger | String | Determine on which event the effect occur |
+| target | Dict | Target on which the effect is applied |
+| conditionList | List of Dict | All the conditions must be true to trigger the effect |
+| break | Boolean | If true, prevent the spell to be casted |
+| feature | Str | Feature affected by the effect |
+| value | Int, Str, Dict | Value of the effect |
+| behavior | Str | Specific behavior |
+| stopTrigger | Str | Optionnal. Indicates when the effect must disapear. If defined the ability is an ongoingAbility |
 
-## Available values
+# Available values
 
-### trigger
+## trigger
 
-| Key | Description |
+| Value | Description |
 |-----|-------------|
 | always | After each action of each player but before endAction |
 | alwaysAfterEnd | After each action of each player but after endAction |
@@ -25,57 +24,172 @@
 | spellCast | |
 | spawn | |
 | move | |
+| death | |
+| startTurn | |
+| endTurn | |
 
-### target
+## target
 
-| Key | Description |
+Dict with the following keys (target must match with all keys : AND) :
+
+### main
+
+String
+
+| Value | Description |
 |-----|-------------|
 | target | Entity or tile on which the effect is applied |
 | self | Entity which apply the effect |
-| allOrganicAround | All entities, not mechanism, around |
-| myOrganicAround | Current player entities, not mechanism, around |
-| opOrganicAround | Opponent entities, not mechanism, around |
-| allOrganicAligned | All entities, not mechanism, on a line |
-| opOrganicAligned | Opponent entities, not mechanism, on a line |
-| allOrganicCross:n | All entities, not mechanism, in a cross with an n-radius |
-| myHero | Hero entity of the current player |
-| opHero | Hero entity of the opponent of the current player |
-| myPlayer | |
-| opPlayer | |
+| player | |
+| hero | |
+| around | |
+| adjacent | |
+| aligned | |
+| firstAligned | |
+| alignedInDirection | |
+| cross | |
+| board | |
+| highestPv | |
 | currentSpell |  |
 | hand | All spells in hand |
 
-### conditionList
+### team
 
-This is an example : [{"feature" : "elemState", "value" : "oiled", "operator" : "="}]
+String
 
-| Key | Description |
+| Value | Description |
 |-----|-------------|
-| elemState | |
-| elem | |
-| targetPv | |
-| opAroundSelf | |
-| turn | op, my |
-| spellsPlayedDuringTurn | |
-| oneByTurn | |
-| auraNb | |
-| targetPv | |
-| myCompanions | |
-| rangeFromHero | |
-| rangeFromFirstTarget | |
-| rangeFromSelf | Not implemented (ex : Bond de Goultard) |
+| my | |
+| op | |
+| all | |
+| target | |
 
-### break
+### targetIdx
 
-| Key | Description |
+Integer determining which target from allowedTargetList (client click) is affected by ability
+
+### ref
+
+String
+
+| Value | Description |
 |-----|-------------|
-| True | |
-| False | |
+| self | |
+| target | |
+| myHero | |
+| opHero | |
+
+### refIdx
+
+Integer determining which target from allowedTargetList (client click) is taken as ref by ability
+
+### range
+
+Integer
+
+### typeList
+
+List of type the targeted Entity must match
+
+### noTypeList
+
+List of type the targeted Entity must not match
+
+## conditionList
+
+Dict with the following keys (target must match with all keys : AND) :
 
 ### feature
 
-| Key | Description |
-|-----|-------------|
+String
+
+| Value | Description |
+|-------|-------------|
+| elemState | |
+| state | |
+| elem | |
+| paStock | |
+| myCompanions | |
+| range | |
+| turn | |
+| team | |
+| type | |
+| allowedTarget | |
+| opsAroundRef | |
+| spellsPlayedDuringTurn | |
+| pv | |
+| auraNb | |
+| oneByturn | |
+| behavior | |
+| handSpells | |
+| position | |
+
+### operator
+
+String
+
+| Value | Description |
+|-------|-------------|
+| == | |
+| != | |
+| > | |
+| < | |
+| >= | |
+| <= | |
+
+### operator
+
+String
+
+| Value | Description |
+|-------|-------------|
+| == | |
+| != | |
+| > | |
+| < | |
+| >= | |
+| <= | |
+
+### target
+
+String
+
+| Value | Description |
+|-------|-------------|
+| abilityTarget | |
+| spellTarget | |
+| spellTargetPlayer | |
+| self | |
+| myPlayer | |
+| opPlayer | |
+
+### targetIdx
+
+Integer determining which target is affected by condition
+
+### ref
+
+String
+
+| Value | Description |
+|-------|-------------|
+| self | |
+| myHero | |
+| opHero | |
+| abilityTarget | |
+
+### refIdx
+
+Integer determining which target is selected to be ref of the condition
+
+### value
+
+Integer or String
+
+## feature
+
+| Value | Description |
+|-------|-------------|
 | pv | |
 | stealLife | Same as pv on the target but heal the caster |
 | pm | |
@@ -88,18 +202,18 @@ This is an example : [{"feature" : "elemState", "value" : "oiled", "operator" : 
 | "auraName" | Behavior must be addAura |
 | "entityDesc" | Behavior must be invocation |
 
-### value
+## value
 
-| Key | Description |
-|-----|-------------|
+| Type | Description |
+|------|-------------|
 | Integer | |
-| String | Could be a feature |
+| String | Could be a feature as atk |
 | Dict | If feature is at gauges |
 
-### behavior
+## behavior
 
-| Key | Description |
-|-----|-------------|
+| Value | Description |
+|-------|-------------|
 | addAuraWeak | Keep the current aura nb, add the new aura nb and keep the current type |
 | addAuraStrong | Keep the current aura nb, add the new aura nb and replace them by the new type |
 | addAuraReset | If current aura type is different than new aura type, remove current aura to replace by the new |
@@ -118,12 +232,10 @@ This is an example : [{"feature" : "elemState", "value" : "oiled", "operator" : 
 | attackAgain |  |
 | distance |  |
 
-### stopTrigger
+## stopTrigger
 
-| Key | Description |
-|-----|-------------|
+| Value | Description |
+|-------|-------------|
 | always | The effect disapears when after each action |
 | spellCast | The effect disapears when a spell is cast (after pa paid but before abilities execution) |
 | noArmor | The effect disapears when the entity have no armor |
-
-

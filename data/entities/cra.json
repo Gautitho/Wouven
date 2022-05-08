@@ -15,7 +15,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -24,8 +24,8 @@
             },
             {
                 "trigger"       : "endTurn",
-                "target"        : "self",
-                "conditionList" : [{"feature" : "opAroundSelf", "value" : 0}],
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" : "opsAroundRef", "value" : 0}],
                 "break"         : "False",
                 "behavior"      : "addAuraWeak",
                 "feature"       : "ac0",
@@ -49,7 +49,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -58,7 +58,7 @@
             },
             {
                 "trigger"       : "alwaysAfterEnd",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [{"feature" : "auraNb", "value" : 3, "operator" : ">="}],
                 "break"         : "False",
                 "behavior"      : "addAuraStrong",
@@ -83,7 +83,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -92,8 +92,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "oneByTurn", "value" : "ehc2"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "oneByTurn", "value" : "ehc2"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "addAuraWeak",
                 "feature"       : "ac0",
@@ -117,7 +117,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -126,7 +126,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "allowedTarget", "value" : "aligned", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "distance+addAuraWeak",

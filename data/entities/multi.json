@@ -14,7 +14,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -23,7 +23,7 @@
             },
             {
                 "trigger"       : "spawn",
-                "target"        : "allOrganicCrossSelf:1",
+                "target"        : {"main" : "adjacent", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "pushAwayFromSelf",
@@ -47,7 +47,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -56,7 +56,7 @@
             },
             {
                 "trigger"       : "spawn",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "swap",
@@ -65,7 +65,7 @@
             },
             {
                 "trigger"       : "spawn",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "draw",
@@ -89,7 +89,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -98,7 +98,7 @@
             },
             {
                 "trigger"       : "spawn",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "swap",
@@ -107,7 +107,7 @@
             },
             {
                 "trigger"       : "attack",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "attackAgain",
@@ -131,7 +131,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -140,7 +140,7 @@
             },
             {
                 "trigger"       : "spawn",
-                "target"        : "opOrganicFirstCrossSelf",
+                "target"        : {"main" : "firstAligned", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "pull",
@@ -164,7 +164,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -173,7 +173,7 @@
             },
             {
                 "trigger"       : "startTurn",
-                "target"        : "opOrganicCrossSelf",
+                "target"        : {"main" : "cross", "team" : "op", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",

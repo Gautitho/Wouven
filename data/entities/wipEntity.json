@@ -14,7 +14,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -38,7 +38,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -62,7 +62,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -86,7 +86,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -110,7 +110,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -134,7 +134,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -158,7 +158,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -182,7 +182,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -206,7 +206,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -230,7 +230,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -254,7 +254,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -278,7 +278,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -302,7 +302,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",

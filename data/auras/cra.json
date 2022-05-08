@@ -7,8 +7,8 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "aura",
                 "feature"       : "pv",
@@ -24,8 +24,8 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "aura",
                 "feature"       : "pv",
@@ -33,8 +33,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "aura",
                 "feature"       : "pv",
@@ -50,8 +50,8 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "aura",
                 "feature"       : "pv",
@@ -67,8 +67,8 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "aura",
                 "feature"       : "pv",
@@ -76,8 +76,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "aura",
                 "feature"       : "paStock",
@@ -93,8 +93,8 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "aura",
                 "feature"       : "pv",
@@ -102,8 +102,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "draw",
                 "feature"       : "",
@@ -119,8 +119,8 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "aura",
                 "feature"       : "pv",
@@ -128,8 +128,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "gauges",
@@ -145,8 +145,8 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "aura",
                 "feature"       : "pv",
@@ -154,8 +154,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "armor",
@@ -163,8 +163,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {"main" : "hero", "team" : "my"},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "armor",
@@ -180,8 +180,8 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "aura",
                 "feature"       : "pv",
@@ -189,8 +189,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "addState",
                 "feature"       : "shield:-1",
@@ -198,8 +198,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {"main" : "hero", "team" : "my"},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "addState",
                 "feature"       : "shield:-1",
@@ -215,8 +215,8 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "aura",
                 "feature"       : "pv",
@@ -224,8 +224,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "opOrganicCrossSelf:1",
-                "conditionList" : [{"feature" : "target", "value" : "opOrganic", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "target"        : {"main" : "cross", "team" : "op", "range" : "1", "noTypeList" : ["mechanism"]},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "pushAwayFromSelf",
                 "feature"       : "position",

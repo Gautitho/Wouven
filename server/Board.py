@@ -156,7 +156,7 @@ class Board:
                         entityIdList.append(matchId)
         return entityIdList
 
-    def firstEntityIdAlignedToTile(self, x, y, team):
+    def entityIdFirstAlignedToTile(self, x, y, team):
         entityIdList = []
         for xa in range(x-1, -1, -1):
             matchId = self.entityIdOnTile(xa, y)
@@ -184,10 +184,10 @@ class Board:
                     break
         return entityIdList
 
-    def entityIdAligned(self, xStart, yStart, xDir, yDir, rangeCondition, team):
+    def entityIdAlignedToTileInDirection(self, xStart, yStart, xDir, yDir, rangeCondition, team):
         entityIdList = []
         if (yStart == yDir):
-            rangeCondition = BOARD_COLS if rangeCondition == None else rangeCondition
+            rangeCondition = BOARD_COLS if rangeCondition == -1 else rangeCondition
             if (xDir > xStart):
                 for x in range(xStart + 1, min(xStart + rangeCondition + 1, BOARD_COLS)):
                     matchId = self.entityIdOnTile(x, yStart)
@@ -201,7 +201,7 @@ class Board:
                         if (team == "all" or team == self._entitiesDict[matchId].team):
                             entityIdList.append(matchId)
         elif (xStart == xDir):
-            rangeCondition = BOARD_ROWS if rangeCondition == None else rangeCondition
+            rangeCondition = BOARD_ROWS if rangeCondition == -1 else rangeCondition
             if (yDir > yStart):
                 for y in range(yStart + 1, min(yStart + rangeCondition + 1, BOARD_ROWS)):
                     matchId = self.entityIdOnTile(xStart, y)
@@ -218,11 +218,13 @@ class Board:
 
     def entityIdInCross(self, x, y, rangeCondition, team):
         entityIdList = []
+        rangeCondition = BOARD_COLS if rangeCondition == -1 else rangeCondition
         for xa in range(max(x-rangeCondition, 0), min(x+rangeCondition+1, BOARD_COLS)):
             matchId = self.entityIdOnTile(xa, y)
             if (matchId != None):
                 if (team == "all" or team == self._entitiesDict[matchId].team):
                     entityIdList.append(matchId)
+        rangeCondition = BOARD_ROWS if rangeCondition == -1 else rangeCondition
         for ya in range(max(y-rangeCondition, 0), min(y+rangeCondition+1, BOARD_ROWS)):
             if (ya != y):
                 matchId = self.entityIdOnTile(x, ya)
@@ -391,183 +393,84 @@ class Board:
                         selfEntityId        = self.entityIdFromRace(spell.race)
                     if (selfEntityId == None):
                         raise GameException("Race of self entity is not known !")
+
                     for allowedTargetIdx in range(0, len(spell.allowedTargetList)):
-                        targetEntityIdList.append(None)
-                        if (spell.allowedTargetList[allowedTargetIdx] == "all"):
-                            targetEntityIdList[-1] = self.appendTileEntity(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
+                        targetDict = {}
+                        targetDict["entity"]        = False         if not("entity" in spell.allowedTargetList[allowedTargetIdx])       else bool(spell.allowedTargetList[allowedTargetIdx]["entity"])
+                        targetDict["empty"]         = False         if not("empty" in spell.allowedTargetList[allowedTargetIdx])        else bool(spell.allowedTargetList[allowedTargetIdx]["empty"])
+                        targetDict["main"]          = "all"         if not("main" in spell.allowedTargetList[allowedTargetIdx])         else spell.allowedTargetList[allowedTargetIdx]["main"]
+                        targetDict["ref"]           = "self"        if not("ref" in spell.allowedTargetList[allowedTargetIdx])          else spell.allowedTargetList[allowedTargetIdx]["ref"]
+                        targetDict["team"]          = "all"         if not("team" in spell.allowedTargetList[allowedTargetIdx])         else spell.allowedTargetList[allowedTargetIdx]["team"]
+                        targetDict["typeList"]      = []            if not("typeList" in spell.allowedTargetList[allowedTargetIdx])     else spell.allowedTargetList[allowedTargetIdx]["typeList"]
+                        targetDict["noTypeType"]    = []            if not("noTypeList" in spell.allowedTargetList[allowedTargetIdx])   else spell.allowedTargetList[allowedTargetIdx]["noTypeList"]
 
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "emptyTile"):
-                            if (self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"]) == None):
-                                targetEntityIdList[-1] = self.appendTileEntity(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
+                        # Set reference tile
+                        if (targetDict["ref"] == "self"):
+                            refX = self._entitiesDict[selfEntityId].x
+                            refY = self._entitiesDict[selfEntityId].y
+                        elif (targetDict["ref"] == "firstTarget"):
+                            if (len(targetEntityIdList) > 0):
+                                refX = self._entitiesDict[targetEntityIdList[0]].x
+                                refY = self._entitiesDict[targetEntityIdList[0]].y
                             else:
-                                raise GameException("Target tile must be empty !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "allEntity"):
-                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] != None):
-                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
-                                    raise GameException("Target is untargetable !")
-                                else:
-                                    pass
-                            else:
-                                raise GameException("An entity must be targeted !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "allOrganic"):
-                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] != None and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
-                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
-                                    raise GameException("Target is untargetable !")
-                                else:
-                                    pass
-                            else:
-                                raise GameException("An entity, not mechanism, must be targeted !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "allMechanism"):
-                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] != None and "mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList):
-                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
-                                    raise GameException("Target is untargetable !")
-                                else:
-                                    pass
-                            else:
-                                raise GameException("An entity, mechanism, must be targeted !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "myEntity"):
-                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[playerId].team):
-                                pass
-                            else:
-                                raise GameException("An entity, owned by you, must be targeted !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "myOrganic"):
-                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[playerId].team and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
-                                pass
-                            else:
-                                raise GameException("An entity, owned by you, not mechanism, must be targeted !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "myMechanism"):
-                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[playerId].team and "mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList):
-                                pass
-                            else:
-                                raise GameException("An entity, owned by you, mechanism, must be targeted !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "opEntity"):
-                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[self.getOpPlayerId(playerId)].team):
-                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
-                                    raise GameException("Target is untargetable !")
-                                else:
-                                    pass
-                            else:
-                                raise GameException("An entity, owned by your opponent, must be targeted !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "opOrganic"):
-                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[self.getOpPlayerId(playerId)].team and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
-                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
-                                    raise GameException("Target is untargetable !")
-                                else:
-                                    pass
-                            else:
-                                raise GameException("An entity, owned by your opponent, not mechanism, must be targeted !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "opMechanism"):
-                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] != None and self._entitiesDict[targetEntityIdList[-1]].team == self._playersDict[self.getOpPlayerId(playerId)].team and "mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList):
-                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
-                                    raise GameException("Target is untargetable !")
-                                else:
-                                    pass
-                            else:
-                                raise GameException("An entity, owned by your opponent, not mechanism, must be targeted !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "myHero"):
-                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] == self._playersDict[playerId].heroEntityId):
-                                pass
-                            else:
-                                raise GameException("Target must be your hero !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "opHero"):
-                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] == self._playersDict[self.getOpPlayerId(playerId)].heroEntityId):
-                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
-                                    raise GameException("Target is untargetable !")
-                                else:
-                                    pass
-                            else:
-                                raise GameException("Target must be opponent hero !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "allOrganicAligned"):
-                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] in self.entityIdAligned(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"], None, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
-                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
-                                    raise GameException("Target is untargetable !")
-                                else:
-                                    pass
-                            else:
-                                raise GameException("Target is not the first, not mechanism, aligned entity !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "allFirstEntityAligned"):
-                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, "all")):
-                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
-                                    raise GameException("Target is untargetable !")
-                                else:
-                                    pass
-                            else:
-                                raise GameException("Target is not the first aligned entity !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "allFirstOrganicAligned"):
-                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] in self.firstEntityIdAlignedToTile(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, "all") and not("mechanism" in self._entitiesDict[targetEntityIdList[-1]].typeList)):
-                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
-                                    raise GameException("Target is untargetable !")
-                                else:
-                                    pass
-                            else:
-                                raise GameException("Target is not the first, not mechanism, aligned entity !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "heroAdjacentTile"):
-                            if (self.isAdjacentToTile(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])):
-                                targetEntityIdList[-1] = self.appendTileEntity(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            else:
-                                raise GameException("Target must be adjacent to your hero !")
-                    
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "allOrganicAdjacent"):
-                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if (targetEntityIdList[-1] in self.entityIdAligned(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"], 1, "all")):
-                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team != self._playersDict[playerId].team):
-                                    raise GameException("Target is untargetable !")
-                                else:
-                                    pass
-                            else:
-                                raise GameException("Target must be an entity, not mechanism, adjacent to your hero !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "firstTargetAdjacentTile"):
-                            if (self.isAdjacentToTile(targetPositionList[0]["x"], targetPositionList[0]["y"], targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"]) or (targetPositionList[0]["x"] == targetPositionList[allowedTargetIdx]["x"] and targetPositionList[0]["y"] == targetPositionList[allowedTargetIdx]["y"])):
-                                targetEntityIdList[-1] = self.appendTileEntity(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            else:
-                                raise GameException("Second target must be adjacent to first target !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "emptyAlignedTile"):
-                            if (self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"]) == None and self.isAlignedToTile(self._entitiesDict[selfEntityId].x, self._entitiesDict[selfEntityId].y, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])):
-                                targetEntityIdList[-1] = self.appendTileEntity(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            else:
-                                raise GameException("The targeted tile must be empty and aligned !")
-
-                        elif (spell.allowedTargetList[allowedTargetIdx] == "self"):
-                            targetEntityIdList[-1] = self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])
-                            if ((targetEntityIdList[-1] == selfEntityId) and (self._entitiesDict[selfEntityId].team == self._playersDict[playerId].team)):
-                                pass
-                            else:
-                                raise GameException("Target must be the associed companion !")
-
+                                raise GameException("Wrong allowedTarget (ref) : No first target !")
                         else:
-                            raise GameException("Wrong target type !")
+                            raise GameException("Wrong allowedTarget (ref) !")
 
+                        # Entity and empty check
+                        if (targetDict["entity"]):
+                            targetEntityIdList.append(self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"]))
+                            if (targetEntityIdList[-1] != None):
+                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable")):
+                                    raise GameException("Target is untargetable !")
+                            else:
+                                raise GameException("Target must be an entity !")
+                        else:
+                            targetEntityIdList.append(self.appendTileEntity(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"]))
+                            if (targetDict["empty"]):
+                                if (self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"]) != None):
+                                    raise GameException("Target tile must be empty !")
+
+                        # Main check
+                        if (targetDict["main"] == "all"):
+                            pass
+                        elif (targetDict["main"] == "adjacent"):
+                            if not(self.isAdjacentToTile(refX, refY, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])):
+                                raise GameException("Target must be adjacent to self !")
+                        elif (targetDict["main"] == "aligned"):
+                            if not(self.isAlignedToTile(refX, refY, targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"])):
+                                raise GameException("Target must be aligned to self !")
+                        elif (targetDict["main"] == "firstAligned"):
+                            if not(targetEntityIdList[-1] in self.entityIdFirstAlignedToTile(refX, refY, "all")):
+                                raise GameException("Target must be fisrt aligned to self !")
+                        elif (targetDict["main"] == "hero"):
+                            if not(targetEntityIdList[-1] in [self._playersDict[playerId].heroEntityId, self._playersDict[self.getOpPlayerId(playerId)].heroEntityId]):
+                                raise GameException("Target must be an hero !")
+                        elif (targetDict["main"] == "self"):
+                            if not(targetEntityIdList[-1] == selfEntityId):
+                                raise GameException("Target must be self (hero or associed companion) !")
+                        else:
+                            raise GameException("Wrong allowedTarget (main) !")
+
+                        # Team check
+                        if (targetDict["team"] == "my"):
+                            if (self._entitiesDict[targetEntityIdList[-1]].team == self.getOpTeam(self._entitiesDict[selfEntityId].team)):
+                                raise GameException("Target must be in your team !")
+                        elif (targetDict["team"] == "op"):
+                            if (self._entitiesDict[targetEntityIdList[-1]].team == self._entitiesDict[selfEntityId].team):
+                                raise GameException("Target must be in your opponent team !")
+
+                        # Type check
+                        if (targetDict["entity"]):
+                            typeFoundList = [False for i in targetDict["typeList"]]
+                            for entityType in self._entitiesDict[targetEntityIdList[-1]].typeList:
+                                if (entityType in targetDict["noTypeList"]):
+                                    raise GameException(f"Target can't be of type ({entityType}) !")
+                                for i in range(len(targetDict["typeList"])):
+                                    if (entityType == targetDict["typeList"][i]):
+                                        typeFoundList[i] = True
+                            if (False in typeFoundList):
+                                raise GameException(f"Target miss some mandatory type !")
                 else:
                     raise GameException("Wrong number of target !")
 
@@ -629,267 +532,283 @@ class Board:
         for ability in abilityList:
             if (trigger == ability["trigger"] or force):
 
-                # Set targetIdx
-                if ("targetIdx" in ability):
-                    targetIdx = ability["targetIdx"]
-                else:
-                    targetIdx = 0
-
                 # Set stopTrigger
-                if ("stopTriggerList" in ability):
-                    stopTriggerList = ability["stopTriggerList"]
-                else:
-                    stopTriggerList = []
+                stopTriggerList = [] if not("stopTriggerList" in ability) else ability["stopTriggerList"]
 
-                # Choose abilityEntity
-                if (ability["target"] == "target"):
-                    abilityTargetIdList = [targetEntityIdList[targetIdx]]
-                elif (ability["target"] == "self"):
-                    abilityTargetIdList = [selfId]
-                elif (ability["target"] == "myPlayer"):
-                    abilityTargetIdList = [playerId]
-                elif (ability["target"] == "opPlayer"):
-                    abilityTargetIdList = [opPlayerId]
-                elif (ability["target"] == "targetPlayer"):
-                    abilityTargetIdList = [self.getPlayerIdFromTeam(self._entitiesDict[targetEntityIdList[targetIdx]].team)]
-                elif (ability["target"] == "myHero"):
-                    abilityTargetIdList = [self._playersDict[playerId].heroEntityId]
-                elif (ability["target"] == "opHero"):
-                    abilityTargetIdList = [self._playersDict[opPlayerId].heroEntityId]
-                elif (ability["target"] == "allOrganicAroundSelf"):
-                    abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, "all")
-                elif (ability["target"] == "opOrganicAroundSelf"):
-                    abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self.getOpTeam(self._entitiesDict[selfId].team))
-                elif (ability["target"] == "myOrganicAroundSelf"):
-                    abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[selfId].team)
-                elif (ability["target"] == "allOrganicAroundTarget"):
-                    abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, "all")
-                elif (ability["target"] == "opOrganicAroundTarget"):
-                    abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, self.getOpTeam(self._entitiesDict[selfId].team))
-                elif (ability["target"] == "myOrganicAroundTarget"):
-                    abilityTargetIdList = self.entityIdAroundTile(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, self._entitiesDict[selfId].team)
-                elif (ability["target"] == "allOrganicAdjacentToSelf"):
-                    abilityTargetIdList = self.entityIdAdjacentToTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, "all")
-                elif (ability["target"] == "allOrganicAdjacentToFirstTarget"):
-                    abilityTargetIdList = self.entityIdAdjacentToTile(self._entitiesDict[targetEntityIdList[0]].x, self._entitiesDict[targetEntityIdList[0]].y, "all")
-                elif (ability["target"].split(':')[0] == "allOrganicAligned"):
-                    if (len(ability["target"].split(':')) > 1):
-                        abilityTargetIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, int(ability["target"].split(':')[1]), "all")
-                    else:
-                        abilityTargetIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, None, "all")
-                elif (ability["target"].split(':')[0] == "opOrganicAligned"):
-                    if (len(ability["target"].split(':')) > 1):
-                        abilityTargetIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, int(ability["target"].split(':')[1]), self.getOpTeam(self._entitiesDict[selfId].team))
-                    else:
-                        abilityTargetIdList = self.entityIdAligned(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, None, self.getOpTeam(self._entitiesDict[selfId].team))
-                elif (ability["target"].split(':')[0] == "allOrganicCross"):
-                    abilityTargetIdList = self.entityIdInCross(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, int(ability["target"].split(':')[1]), "all")
-                elif (ability["target"].split(':')[0] == "myOrganicCross"):
-                    abilityTargetIdList = self.entityIdInCross(self._entitiesDict[targetEntityIdList[targetIdx]].x, self._entitiesDict[targetEntityIdList[targetIdx]].y, int(ability["target"].split(':')[1]), self._entitiesDict[selfId].team)
-                elif (ability["target"].split(':')[0] == "opOrganicCrossSelf"):
-                    if (len(ability["target"].split(':')) > 1):
-                        abilityTargetIdList = self.entityIdInCross(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, int(ability["target"].split(':')[1]), self.getOpTeam(self._entitiesDict[selfId].team))
-                    else:
-                        abilityTargetIdList = self.entityIdInCross(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, BOARD_ROWS, self.getOpTeam(self._entitiesDict[selfId].team))
-                elif (ability["target"].split(':')[0] == "allOrganicCrossSelf"):
-                    if (len(ability["target"].split(':')) > 1):
-                        abilityTargetIdList = self.entityIdInCross(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, int(ability["target"].split(':')[1]), "all")
-                    else:
-                        abilityTargetIdList = self.entityIdInCross(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, BOARD_ROWS, "all")
-                elif (ability["target"] == "opOrganicFirstCrossSelf"):
-                    abilityTargetIdList = self.firstEntityIdAlignedToTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, "all")
-                elif (ability["target"] == "opBoard"):
-                    abilityTargetIdList = self._playersDict[opPlayerId].boardEntityIds
-                elif (ability["target"] == "myBoard"):
-                    abilityTargetIdList = self._playersDict[playerId].boardEntityIds
-                elif (ability["target"] == "opOrganicWithHighestPv"):
-                    abilityTargetIdList = self.entityIdWithHighestPv(self.getOpTeam(self._entitiesDict[selfId].team))
-                elif (ability["target"] == "currentSpell"):
-                    abilityTargetIdList = [] if spellId == None else [spellId]
-                elif (ability["target"] == "hand"):
-                    abilityTargetIdList = list(self._playersDict[playerId].handSpellDict.keys()) # WARNING : if a spell is draw, it is not taken
+                # Set targetDict
+                targetDict = {}
+                targetDict["main"]          = "target"      if not("main" in ability["target"])         else ability["target"]["main"]
+                targetDict["team"]          = "all"         if not("team" in ability["target"])         else ability["target"]["team"]
+                targetDict["targetIdx"]     = 0             if not("targetIdx" in ability["target"])    else int(ability["target"]["targetIdx"])
+                targetDict["ref"]           = "self"        if not("ref" in ability["target"])          else ability["target"]["ref"]
+                targetDict["refIdx"]        = 0             if not("refIdx" in ability["target"])       else int(ability["target"]["refIdx"])
+                targetDict["range"]         = -1            if not("range" in ability["target"])        else int(ability["target"]["range"])
+                targetDict["typeList"]      = []            if not("typeList" in ability["target"])     else ability["target"]["typeList"]
+                targetDict["noTypeList"]    = []            if not("noTypeList" in ability["target"])   else ability["target"]["noTypeList"]
+
+                # Team
+                affectedPlayerIdList = []
+                if (targetDict["team"] == "my"):
+                    team = self._entitiesDict[selfId].team
+                    affectedPlayerIdList.append(playerId)
+                elif (targetDict["team"] == "op"):
+                    team = self.getOpTeam(self._entitiesDict[selfId].team)
+                    affectedPlayerIdList.append(opPlayerId)
+                elif (targetDict["team"] == "all"):
+                    team = "all"
+                    affectedPlayerIdList.append(playerId)
+                    affectedPlayerIdList.append(opPlayerId)
+                elif (targetDict["team"] == "target"):
+                    team = self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].team
+                    affectedPlayerIdList.append(self.getPlayerIdFromTeam(self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].team))
                 else:
-                    raise GameException("Wrong ability target !")
+                    raise GameException("Wrong ability target (team) !")
+
+                # Reference
+                if (targetDict["ref"] == "self"):
+                    refId = selfId
+                elif (targetDict["ref"] == "target"):
+                    refId = targetEntityIdList[targetDict["refIdx"]]
+                elif (targetDict["ref"] == "myHero"):
+                    refId = self._playersDict[playerId].heroEntityId
+                elif (targetDict["ref"] == "opHero"):
+                    refId = self._playersDict[opPlayerId].heroEntityId
+                else:
+                    raise GameException("Wrong ability target (ref) !")
+
+                # Main
+                abilityTargetIdList = []
+                if (targetDict["main"] == "target"):
+                    abilityTargetIdList.append(targetEntityIdList[targetDict["targetIdx"]])
+                elif (targetDict["main"] == "self"):
+                    abilityTargetIdList.append(selfId)
+                elif (targetDict["main"] == "player"):
+                    for afpId in affectedPlayerIdList:
+                        abilityTargetIdList.append(afpId)
+                elif (targetDict["main"] == "hero"):
+                    for afpId in affectedPlayerIdList:
+                        abilityTargetIdList.append(self._playersDict[afpId].heroEntityId)
+                elif (targetDict["main"] == "around"):
+                    abilityTargetIdList.extend(self.entityIdAroundTile(self._entitiesDict[refId].x, self._entitiesDict[refId].y, team))
+                elif (targetDict["main"] == "adjacent"):
+                    abilityTargetIdList.extend(self.entityIdAdjacentToTile(self._entitiesDict[refId].x, self._entitiesDict[refId].y, team))
+                elif (targetDict["main"] == "aligned"):
+                    abilityTargetIdList.extend(self.entityIdAlignedToTile(self._entitiesDict[refId].x, self._entitiesDict[refId].y, team))
+                elif (targetDict["main"] == "firstAligned"):
+                    abilityTargetIdList.extend(self.entityIdFirstAlignedToTile(self._entitiesDict[refId].x, self._entitiesDict[refId].y, team))
+                elif (targetDict["main"] == "alignedInDirection"):
+                    abilityTargetIdList.extend(self.entityIdAlignedToTileInDirection(self._entitiesDict[refId].x, self._entitiesDict[refId].y, self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].x, self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].y, targetDict["range"], team))
+                elif (targetDict["main"] == "cross"):
+                    abilityTargetIdList.extend(self.entityIdInCross(self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].x, self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].y, targetDict["range"], team))
+                elif (targetDict["main"] == "board"):
+                    for afpId in affectedPlayerIdList:
+                        abilityTargetIdList.extend(self._playersDict[afpId].boardEntityIds)
+                elif (targetDict["main"] == "highestPv"):
+                    abilityTargetIdList.extend(self.entityIdWithHighestPv(team))
+                elif (targetDict["main"] == "currentSpell"):
+                    abilityTargetIdList.append(spellId)
+                elif (targetDict["main"] == "hand"):
+                    abilityTargetIdList.extend(list(self._playersDict[playerId].handSpellDict.keys())) # WARNING : if a spell is draw, it is not taken
+                else:
+                    raise GameException("Wrong ability target (main) !")
+
+                # Type
+                if not(targetDict["main"] in ["player", "currentSpell", "hand"]):
+                    typeFoundList = [False for i in targetDict["typeList"]]
+                    for targetId in abilityTargetIdList:
+                        if (targetId != None):
+                            if (type(self._entitiesDict[targetId]).__name__ == "Entity"):
+                                for entityType in self._entitiesDict[targetId].typeList:
+                                    if (entityType in targetDict["noTypeList"]):
+                                        del abilityTargetIdList[targetId]
+                                        break
+                                    for i in range(len(targetDict["typeList"])):
+                                        if (entityType == targetDict["typeList"][i]):
+                                            typeFoundList[i] = True
+                                if (False in typeFoundList):
+                                    del abilityTargetIdList[targetId]
 
                 # Check conditions
                 conditionsValid = True
                 for condition in ability["conditionList"]:
-                    if ("operator" in condition):
-                        operator = condition["operator"]
-                    else:
-                        operator = "="
+                    conditionDict = {}
+                    conditionDict["feature"]    = "none"            if not("feature" in condition)      else condition["feature"]
+                    conditionDict["operator"]   = "=="              if not("operator" in condition)     else condition["operator"]
+                    conditionDict["target"]     = "abilityTarget"   if not("target" in condition)       else condition["target"]
+                    conditionDict["targetIdx"]  = 0                 if not("targetIdx" in condition)    else int(condition["targetIdx"])
+                    conditionDict["ref"]        = "self"            if not("ref" in condition)          else condition["ref"]
+                    conditionDict["refIdx"]     = 0                 if not("refIdx" in condition)       else int(condition["refIdx"])
+                    conditionDict["value"]      = "0"               if not("value" in condition)        else condition["value"]
 
-                    if ("target" in condition):
-                        if ("spellTarget:" in condition["target"]):
-                            conditionTargetId = targetEntityIdList[int(condition["target"].split(':')[1])]
-                        elif (condition["target"] == "spellTarget"):
-                            conditionTargetId = targetEntityIdList[0]
-                        elif (condition["target"] == "spellTargetPlayer"):
-                            conditionTargetId = self.getPlayerIdFromTeam(self._entitiesDict[targetEntityIdList[0]].team)
-                        elif ("abilityTarget:" in condition["target"]):
-                            conditionTargetId = abilityTargetIdList[int(condition["target"].split(':')[1])]
-                        elif (condition["target"] == "abilityTarget"):
-                            conditionTargetId = abilityTargetIdList[0]
-                        elif (condition["target"] == "self"):
-                            conditionTargetId = selfId
-                        elif (condition["target"] == "myPlayer"):
-                            conditionTargetId = playerId
-                        else:
-                            raise GameException("Wrong condition target !")
+                    # Target
+                    if (conditionDict["target"] == "spellTarget"):
+                        conditionTargetId = targetEntityIdList[conditionDict["targetIdx"]]
+                    elif (conditionDict["target"] == "spellTargetPlayer"):
+                        conditionTargetId = self.getPlayerIdFromTeam(self._entitiesDict[conditionDict["targetIdx"]].team)
+                    elif (conditionDict["target"] == "abilityTarget"):
+                        conditionTargetId = abilityTargetIdList[conditionDict["targetIdx"]]
+                    elif (conditionDict["target"] == "self"):
+                        conditionTargetId = selfId
+                    elif (conditionDict["target"] == "myPlayer"):
+                        conditionTargetId = playerId
+                    elif (conditionDict["target"] == "opPlayer"):
+                        conditionTargetId = opPlayerId
                     else:
-                        conditionTargetId = abilityTargetIdList[0] if (len(abilityTargetIdList) > 0) else selfId
+                        raise GameException("Wrong condition (target) !")
+                    
+                    # Operator
+                    if not(conditionDict["operator"] in ["==", "!=", ">", "<", ">=", "<="]):
+                        raise GameException("Wrong condition (operator) !")
 
-                    if (condition["feature"] == "elemState"):
-                        if (operator == "=" and condition["value"] in ["oiled", "wet", "muddy", "windy"]):
-                            if (self._entitiesDict[conditionTargetId].elemState == condition["value"]):
-                                self._entitiesDict[conditionTargetId].setElemState("")
+                    operatorDict = {'==':   lambda x, y: x == y,
+                                    '!=':   lambda x, y: x != y,
+                                    '>':    lambda x, y: x > y,
+                                    '<':    lambda x, y: x < y,
+                                    '>=':   lambda x, y: x >= y,
+                                    '<=':   lambda x, y: x <= y}
+                    
+                    # Reference
+                    if (conditionDict["ref"] == "self"):
+                        conditionRefId = selfId
+                    elif (conditionDict["ref"] == "myHero"):
+                        conditionRefId = self._playersDict[playerId].heroEntityId
+                    elif (conditionDict["ref"] == "opHero"):
+                        conditionRefId = self._playersDict[opPlayerId].heroEntityId
+                    elif (conditionDict["ref"] == "abilityTarget"):
+                        conditionRefId = abilityTargetIdList[conditionDict["refIdx"]]
+
+                    # Feature
+                    if (conditionDict["feature"] in ["elemState", "state", "type", "team", "pv", "auraNb"]):
+                        if not(type(self._entitiesDict[conditionTargetId]).__name__ == "Entity"):
+                            conditionsValid = False
+                            break
+
+                    if (conditionDict["feature"] == "none"):
+                        pass
+                    elif (conditionDict["feature"] == "elemState"):
+                        if (conditionDict["value"] in ["oiled", "wet", "muddy", "windy"]):
+                            if (operatorDict[conditionDict["operator"]](self._entitiesDict[conditionTargetId].elemState, conditionDict["value"])):
+                                if (conditionDict["operator"] == "=="):
+                                    self._entitiesDict[conditionTargetId].setElemState("")
                             else:
                                 conditionsValid = False
-                        elif (operator == "!=" and condition["value"] in ["oiled", "wet", "muddy", "windy"]):
-                            if (self._entitiesDict[conditionTargetId].elemState != condition["value"]):
-                                pass
-                            else:
-                                conditionsValid = False
+                                break
                         else:
                             raise GameException("ElemState to consume does not exist !")
 
-                    elif (condition["feature"] == "state"):
-                        if (operator == "=" and self._entitiesDict[conditionTargetId].isInStates(condition["value"])):
-                            pass
-                        else:
+                    elif (conditionDict["feature"] == "state"):
+                        if not(conditionDict["operator"] == "==" and self._entitiesDict[conditionTargetId].isInStates(conditionDict["value"])):
                             conditionsValid = False
+                            break
 
-                    elif (condition["feature"] == "elem"):
-                        if (operator == "=" and condition["value"] in ["fire", "water", "earth", "air", "neutral"]):
-                            if (spellElem == condition["value"]):
-                                pass
-                            else:
+                    elif (conditionDict["feature"] == "elem"):
+                        if (conditionDict["value"] in ["fire", "water", "earth", "air", "neutral"]):
+                            if not(operatorDict[conditionDict["operator"]](spellElem, conditionDict["value"])):
                                 conditionsValid = False
+                                break
                         else:
                             raise GameException("Elem of the spell does not exist !")
 
-                    elif (condition["feature"] == "paStock"):
-                        if (operator == "=" and self._playersDict[conditionTargetId].paStock == condition["value"]):
-                            pass
-                        elif (operator == ">=" and self._playersDict[conditionTargetId].paStock >= condition["value"]):
-                            pass
-                        else:
+                    elif (conditionDict["feature"] == "paStock"):
+                        if not(operatorDict[conditionDict["operator"]](self._playersDict[conditionTargetId].paStock, int(conditionDict["value"]))):
                             conditionsValid = False
+                            break
 
-                    elif (condition["feature"] == "myCompanions"):
+                    elif (conditionDict["feature"] == "myCompanions"):
                         myCompanions = 0
                         for companion in self._playersDict[playerId].companionList:
                             if (companion["state"] == "alive"):
                                 myCompanions += 1
-
-                        if (operator == "=" and myCompanions == condition["value"]):
-                            pass
-                        else:
+                        if not(operatorDict[conditionDict["operator"]](myCompanions, int(conditionDict["value"]))):
                             conditionsValid = False
+                            break
 
-                    elif (condition["feature"] == "rangeFromHero"):
-                        if (operator == "=" and calcDist(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y) == condition["value"]):
-                            rangeCondition = condition["value"]
-                        elif (operator == "<=" and calcDist(self._entitiesDict[self._playersDict[playerId].heroEntityId].x, self._entitiesDict[self._playersDict[playerId].heroEntityId].y, self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y) <= condition["value"]):
+                    elif (conditionDict["feature"] == "range"):
+                        if (operatorDict[conditionDict["operator"]](calcDist(self._entitiesDict[conditionRefId].x, self._entitiesDict[conditionRefId].y, self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y), int(conditionDict["value"]))):
                             rangeCondition = condition["value"]
                         else:
                             conditionsValid = False
+                            break
 
-                    elif (condition["feature"] == "rangeFromSelf"):
-                        if (operator == "=" and calcDist(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y) == condition["value"]):
+                    elif (conditionDict["feature"] == "turn"):
+                        if (condition["value"] == "my" and self._entitiesDict[selfId].myTurn):
                             pass
-                        elif (operator == "<=" and calcDist(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y) <= condition["value"]):
+                        elif (condition["value"] == "op" and not(self._entitiesDict[selfId].myTurn)):
                             pass
                         else:
                             conditionsValid = False
+                            break
 
-                    elif (condition["feature"] == "rangeFromFirstTarget"):
-                        if (operator == "=" and calcDist(self._entitiesDict[abilityTargetIdList[0]].x, self._entitiesDict[abilityTargetIdList[0]].y, self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y) == condition["value"]):
+                    elif (conditionDict["feature"] == "team"):
+                        if (condition["value"] == "my" and self._entitiesDict[conditionTargetId].team == self._entitiesDict[selfId].team):
                             pass
-                        elif (operator == "<=" and calcDist(self._entitiesDict[abilityTargetIdList[0]].x, self._entitiesDict[abilityTargetIdList[0]].y, self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y) <= condition["value"]):
+                        elif (condition["value"] == "op" and self._entitiesDict[conditionTargetId].team == self.getOpTeam(self._entitiesDict[selfId].team)):
                             pass
                         else:
                             conditionsValid = False
+                            break
 
-                    elif (condition["feature"] == "target"):
-                        if (condition["value"] == "opOrganic"):
-                            if (type(self._entitiesDict[conditionTargetId]).__name__ == "Entity" and not("mechanism" in self._entitiesDict[conditionTargetId].typeList) and self.getOpTeam(self._entitiesDict[conditionTargetId].team) == self._playersDict[playerId].team):
-                                pass
-                            else:
+                    elif (conditionDict["feature"] == "type"):
+                        if (conditionDict["operator"] == "=="):
+                            if not(conditionDict["value"] in self._entitiesDict[conditionTargetId].typeList):
                                 conditionsValid = False
-
-                    elif (condition["feature"] == "allowedTarget"):
-                        if (condition["value"] == "aligned"):
-                            if (allowedTargetList[targetIdx] in ["allOrganicAligned", "allFirstEntityAligned", "allFirstOrganicAligned"]):
-                                pass
-                            else:
+                                break
+                        elif (conditionDict["operator"] == "!="):
+                            if (conditionDict["value"] in self._entitiesDict[conditionTargetId].typeList):
                                 conditionsValid = False
+                                break
 
-                    elif (condition["feature"] == "opAroundSelf"):
-                        if (len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self.getOpTeam(self._entitiesDict[selfId].team))) == condition["value"]):
-                            pass
-                        else:
-                            conditionsValid = False
+                    elif (conditionDict["feature"] == "allowedTarget"):
+                        if (conditionDict["value"] == "aligned"):
+                            if not(allowedTargetList[targetDict["targetIdx"]] in ["allOrganicAligned", "allFirstEntityAligned", "allFirstOrganicAligned"]):
+                                conditionsValid = False
+                                break
 
-                    elif (condition["feature"] == "spellsPlayedDuringTurn"):
-                        if (operator == "=" and self._playersDict[playerId].spellsPlayedDuringTurn == condition["value"]):
-                            pass
-                        elif (operator == ">" and self._playersDict[playerId].spellsPlayedDuringTurn > condition["value"]):
-                            pass
-                        else:
+                    elif (conditionDict["feature"] == "opsAroundRef"):
+                        if not(operatorDict[conditionDict["operator"]](len(self.entityIdAroundTile(self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y, self.getOpTeam(self._entitiesDict[conditionTargetId].team))), int(conditionDict["value"]))):
                             conditionsValid = False
+                            break
 
-                    elif (condition["feature"] == "turn"):
-                        if (condition["value"] == "my" and self._entitiesDict[selfId].team == self._playersDict[playerId].team):
-                            pass
-                        elif (condition["value"] == "op" and self._entitiesDict[selfId].team == self.getOpTeam(self._playersDict[playerId].team)):
-                            pass
-                        else:
+                    elif (conditionDict["feature"] == "spellsPlayedDuringTurn"):
+                        if not(operatorDict[conditionDict["operator"]](self._playersDict[playerId].spellsPlayedDuringTurn, int(conditionDict["value"]))):
                             conditionsValid = False
+                            break
 
-                    elif (condition["feature"] == "pv"):
-                        if (operator == "<=" and self._entitiesDict[conditionTargetId].pv <= condition["value"]):
-                            pass
-                        else:
+                    elif (conditionDict["feature"] == "pv"):
+                        if not(operatorDict[conditionDict["operator"]](self._entitiesDict[conditionTargetId].pv, int(conditionDict["value"]))):
                             conditionsValid = False
+                            break
 
-                    elif (condition["feature"] == "auraNb"):
-                        if (operator == "=" and self._entitiesDict[selfId].aura["nb"] == condition["value"]):
-                            pass
-                        elif (operator == ">=" and self._entitiesDict[selfId].aura["nb"] >= condition["value"]):
-                            pass
-                        else:
+                    elif (conditionDict["feature"] == "auraNb"):
+                        if not(operatorDict[conditionDict["operator"]](self._entitiesDict[conditionTargetId].aura["nb"], int(conditionDict["value"]))):
                             conditionsValid = False
+                            break
 
-                    elif (condition["feature"] == "oneByTurn"):
-                        if (condition["value"] in self._entitiesDict[selfId].oneByTurnAbilityList):
+                    elif (conditionDict["feature"] == "oneByTurn"):
+                        if (conditionDict["value"] in self._entitiesDict[conditionTargetId].oneByTurnAbilityList):
                             conditionsValid = False
-                        else:
-                            pass
+                            break
 
-                    elif (condition["feature"] == "behavior"):
-                        if (condition["value"] == triggingAbility["behavior"]):
-                            pass
-                        else:
+                    elif (conditionDict["feature"] == "behavior"):
+                        if not(conditionDict["value"] == triggingAbility["behavior"]):
                             conditionsValid = False
+                            break
+
+                    elif (conditionDict["feature"] == "handSpells"):
+                        if not(operatorDict[conditionDict["operator"]](len(list(self._playersDict[conditionTargetId].handSpellDict.keys())), int(conditionDict["value"]))):
+                            conditionsValid = False
+                            break
 
                     # Only for Ombraden, ugly implementation
-                    elif (condition["feature"] == "position"):
-                        if (condition["value"] == "self" and ((triggingAbility["feature"] == "position" and selfId in triggingAbilityTargetIdList) or triggingAbility["behavior"] == "swap")):
+                    elif (conditionDict["feature"] == "position"):
+                        if (conditionDict["value"] == "self" and ((triggingAbility["feature"] == "position" and selfId in triggingAbilityTargetIdList) or triggingAbility["behavior"] == "swap")):
                             pass
                         else:
                             conditionsValid = False
-
-                    elif (condition["feature"] == "handSpells"):
-                        if (operator == "=" and len(list(self._playersDict[conditionTargetId].handSpellDict.keys())) == condition["value"]):
-                            pass
-                        elif (operator == ">=" and len(list(self._playersDict[conditionTargetId].handSpellDict.keys())) >= condition["value"]):
-                            pass
-                        else:
-                            conditionsValid = False
+                            break
 
                     else:
-                        raise GameException("Wrong ability condition !")
+                        raise GameException("Wrong condition (feature) !")
 
                 if (not(conditionsValid) and ability["break"] == "True"):
                     raise GameException("The conditions to launch this spell are not respected !")
@@ -958,7 +877,7 @@ class Board:
                                 self._entitiesDict[abilityEntityId].modifyAtk(value)
                                 executed = True
                         elif (ability["feature"] == "position"):
-                            self._entitiesDict[abilityTargetIdList[targetIdx]].tp(self._entitiesDict[targetEntityIdList[value]].x, self._entitiesDict[targetEntityIdList[value]].y)
+                            self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].tp(self._entitiesDict[targetEntityIdList[value]].x, self._entitiesDict[targetEntityIdList[value]].y)
                             executed = True
                         elif (ability["feature"] == "paStock"):
                             self._playersDict[abilityTargetIdList[0]].modifyPaStock(value)
@@ -982,13 +901,13 @@ class Board:
                     elif (ability["behavior"] == "melee"):
                         mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team)) if not(force) else mult # Handle the stopTrigger case
                         if (ability["feature"] == "pv"): 
-                            self._entitiesDict[abilityTargetIdList[targetIdx]].modifyPv(mult*value)
+                            self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyPv(mult*value)
                             executed = True
                         elif (ability["feature"] == "atk"): 
-                            self._entitiesDict[abilityTargetIdList[targetIdx]].modifyAtk(mult*value)
+                            self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyAtk(mult*value)
                             executed = True
                         elif (ability["feature"] == "armor"): 
-                            self._entitiesDict[abilityTargetIdList[targetIdx]].modifyArmor(mult*value)
+                            self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyArmor(mult*value)
                             executed = True
                         elif (ability["feature"] == "cost"):
                             for spellId in abilityTargetIdList:
@@ -1002,10 +921,10 @@ class Board:
                     elif (ability["behavior"] == "support"):
                         mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[playerId].team)) if not(force) else mult # Handle the stopTrigger case
                         if (ability["feature"] == "pv"): 
-                            self._entitiesDict[abilityTargetIdList[targetIdx]].modifyPv(mult*value)
+                            self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyPv(mult*value)
                             executed = True
                         elif (ability["feature"] == "atk"): 
-                            self._entitiesDict[abilityTargetIdList[targetIdx]].modifyAtk(mult*value)
+                            self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyAtk(mult*value)
                             executed = True
                         elif (ability["feature"] == "cost"):
                             for spellId in abilityTargetIdList:

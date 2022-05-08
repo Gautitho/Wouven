@@ -14,7 +14,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -23,7 +23,7 @@
             },
             {
                 "trigger"       : "summon",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -47,7 +47,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -56,7 +56,7 @@
             },
             {
                 "trigger"       : "attack",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -80,7 +80,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -89,7 +89,7 @@
             },
             {
                 "trigger"       : "ability",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [{"feature" : "behavior", "value" : "explosion"}],
                 "break"         : "False",
                 "behavior"      : "draw",
@@ -113,7 +113,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -122,7 +122,7 @@
             },
             {
                 "trigger"       : "ability",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [{"feature" : "position", "value" : "self"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -146,7 +146,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -155,7 +155,7 @@
             },
             {
                 "trigger"       : "always",
-                "target"        : "opOrganicWithHighestPv",
+                "target"        : {"main" : "highestPv", "team" : "op", "noTypeList" : ["mechanism"]},
                 "conditionList" : [{"feature" : "oneByTurn", "value" : "ehs4"}, {"feature" : "state", "value" : "agony", "target" : "self"}],
                 "break"         : "False",
                 "behavior"      : "",

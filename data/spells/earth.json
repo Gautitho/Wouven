@@ -7,12 +7,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/earth/courseDeJoris.png",
         "descSpritePath"    : "img/spells/desc/earth/courseDeJoris.png",
-        "allowedTargetList" : ["myOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addState",
@@ -21,7 +21,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "draw",
@@ -30,7 +30,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "behavior"      : "",
                 "break"         : "True",
@@ -47,13 +47,13 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/earth/hypnoseDeToxine.png",
         "descSpritePath"    : "img/spells/desc/earth/hypnoseDeToxine.png",
-        "allowedTargetList" : ["allFirstOrganicAligned"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "firstAligned", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromSelf", "value" : 4, "operator" : "<="}],
+                "target"        : {},
+                "conditionList" : [{"feature" :"range", "value" : 4, "operator" : "<="}],
                 "break"         : "False",
                 "behavior"      : "charge",
                 "feature"       : "position",
@@ -61,7 +61,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "behavior"      : "",
                 "break"         : "True",
@@ -70,7 +70,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addState",
@@ -87,12 +87,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/earth/pelleDeRuel.png",
         "descSpritePath"    : "img/spells/desc/earth/pelleDeRuel.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -101,7 +101,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -110,7 +110,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -127,13 +127,13 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/earth/fureurDeTristepin.png",
         "descSpritePath"    : "img/spells/desc/earth/fureurDeTristepin.png",
-        "allowedTargetList" : ["myOrganic", "emptyTile"],
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "noTypeList" : ["mechanism"]}, {"empty" : "True"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromFirstTarget", "target" : "spellTarget:1", "value" : 2, "operator" : "<="}],
+                "target"        : {},
+                "conditionList" : [{"feature" :"range", "ref" : "abilityTarget", "target" : "spellTarget", "targetIdx" : 1, "value" : 2, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
@@ -141,7 +141,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "allOrganicAdjacentToFirstTarget",
+                "target"        : {"main" : "adjacent", "ref" : "target", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -150,7 +150,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -159,7 +159,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],

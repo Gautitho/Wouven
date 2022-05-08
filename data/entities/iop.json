@@ -14,7 +14,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -23,7 +23,7 @@
             },
             {
                 "trigger"       : "ability",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "behavior", "value" : "charge"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -47,7 +47,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -56,7 +56,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [{"feature" : "elem", "value" : "fire"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -80,7 +80,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -89,7 +89,7 @@
             },
             {
                 "trigger"       : "attack",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "addState",
@@ -113,7 +113,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -122,7 +122,7 @@
             },
             {
                 "trigger"       : "attack",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "",

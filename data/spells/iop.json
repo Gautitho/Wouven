@@ -7,12 +7,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iop/bruler.png",
         "descSpritePath"    : "img/spells/desc/iop/bruler.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -21,7 +21,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -30,10 +30,10 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
+                "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"fire" : 1}
             }
@@ -47,12 +47,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iop/fulgur.png",
         "descSpritePath"    : "img/spells/desc/iop/fulgur.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -62,7 +62,7 @@
             {
                 "trigger"           : "spellCast",
                 "stopTriggerList"   : ["endTurn"],
-                "target"            : "myHero",
+                "target"            : {"main" : "hero", "team" : "my"},
                 "conditionList"     : [],
                 "break"             : "False",
                 "behavior"          : "melee",
@@ -71,7 +71,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -88,12 +88,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iop/fondreLaVie.png",
         "descSpritePath"    : "img/spells/desc/iop/fondreLaVie.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -102,7 +102,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -111,7 +111,7 @@
             },
                         {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -128,13 +128,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iop/masser.png",
         "descSpritePath"    : "img/spells/desc/iop/masser.png",
-        "allowedTargetList" : ["allOrganic"],
-        "conditionList"     : [],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "behavior"      : "",
                 "break"         : "False",
@@ -143,7 +142,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "behavior"      : "",
                 "break"         : "False",
@@ -152,7 +151,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -169,12 +168,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iop/corriger.png",
         "descSpritePath"    : "img/spells/desc/iop/corriger.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -184,7 +183,7 @@
             {
                 "trigger"           : "spellCast",
                 "stopTriggerList"   : ["endTurn"],
-                "target"            : "myHero",
+                "target"            : {"main" : "hero", "team" : "my"},
                 "conditionList"     : [],
                 "break"             : "False",
                 "behavior"          : "melee",
@@ -193,7 +192,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -202,7 +201,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -219,12 +218,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iop/inspiration.png",
         "descSpritePath"    : "img/spells/desc/iop/inspiration.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -233,7 +232,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -242,7 +241,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -259,12 +258,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iop/blamer.png",
         "descSpritePath"    : "img/spells/desc/iop/blamer.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -273,7 +272,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -282,7 +281,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -299,12 +298,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iop/chargeExplosive.png",
         "descSpritePath"    : "img/spells/desc/iop/chargeExplosive.png",
-        "allowedTargetList" : ["allFirstOrganicAligned"], 
+        "allowedTargetList" : [{"entity" : "True", "main" : "firstAligned", "noTypeList" : ["mechanism"]}], 
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" :"rangeFromHero", "value" : 5, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
@@ -313,7 +312,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "opOrganicAroundTarget",
+                "target"        : {"main" : "around", "team" : "op", "ref" : "target", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "explosion",
@@ -322,7 +321,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "charge",
@@ -331,7 +330,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -348,12 +347,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iop/fondreLAme.png",
         "descSpritePath"    : "img/spells/desc/iop/fondreLAme.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -362,7 +361,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -371,7 +370,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -388,12 +387,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iop/fondreLeSol.png",
         "descSpritePath"    : "img/spells/desc/iop/fondreLeSol.png",
-        "allowedTargetList" : ["heroAdjacentTile"],
+        "allowedTargetList" : [{"main" : "adjacent"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "allOrganicAligned:3",
+                "target"        : {"main" : "aligned", "range" : "3", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -402,7 +401,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -411,7 +410,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "opOrganicAligned:3",
+                "target"        : {"main" : "aligned", "team" : "op", "range" : "3", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "opAffected",
@@ -428,12 +427,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/iop/picGlacial.png",
         "descSpritePath"    : "img/spells/desc/iop/picGlacial.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -442,7 +441,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "wet"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -451,7 +450,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -468,12 +467,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/iop/siber.png",
         "descSpritePath"    : "img/spells/desc/iop/siber.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -482,7 +481,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -491,7 +490,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -508,12 +507,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/iop/poingDeGlace.png",
         "descSpritePath"    : "img/spells/desc/iop/poingDeGlace.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -523,7 +522,7 @@
             {
                 "trigger"           : "always",
                 "stopTriggerList"   : ["always"],
-                "target"            : "currentSpell",
+                "target"            : {"main" : "currentSpell"},
                 "behavior"          : "melee",
                 "break"             : "False",
                 "conditionList"     : [],
@@ -532,7 +531,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -549,12 +548,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/iop/tsunami.png",
         "descSpritePath"    : "img/spells/desc/iop/tsunami.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -563,7 +562,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -572,7 +571,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -589,12 +588,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/iop/morsureGlaciale.png",
         "descSpritePath"    : "img/spells/desc/iop/morsureGlaciale.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -603,7 +602,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -612,7 +611,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -629,12 +628,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/iop/ondeDeChoc.png",
         "descSpritePath"    : "img/spells/desc/iop/ondeDeChoc.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -643,7 +642,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -660,12 +659,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/iop/lanceDeGlace.png",
         "descSpritePath"    : "img/spells/desc/iop/lanceDeGlace.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -674,7 +673,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -684,7 +683,7 @@
             {
                 "trigger"           : "always",
                 "stopTriggerList"   : ["always"],
-                "target"            : "currentSpell",
+                "target"            : {"main" : "currentSpell"},
                 "behavior"          : "melee",
                 "break"             : "False",
                 "conditionList"     : [],
@@ -693,7 +692,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -710,12 +709,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/iop/dag.png",
         "descSpritePath"    : "img/spells/desc/iop/dag.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -724,7 +723,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -733,7 +732,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -750,12 +749,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/iop/nouvelleVague.png",
         "descSpritePath"    : "img/spells/desc/iop/nouvelleVague.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -764,7 +763,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -773,7 +772,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "wet"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -790,13 +789,13 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/iop/chargeGlaciale.png",
         "descSpritePath"    : "img/spells/desc/iop/chargeGlaciale.png",
-        "allowedTargetList" : ["allFirstOrganicAligned"], 
+        "allowedTargetList" : [{"entity" : "True", "main" : "firstAligned", "noTypeList" : ["mechanism"]}], 
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromHero", "value" : 5, "operator" : "<="}],
+                "target"        : {},
+                "conditionList" : [{"feature" :"range", "value" : 5, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -804,7 +803,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "charge",
@@ -813,28 +812,28 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
+                "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"water" : 2}
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
+                "target"        : {"main" : "player", "team" : "my"},
                 "break"         : "False",
                 "conditionList" : [],
+                "behavior"      : "",
                 "feature"       : "paStock",
                 "value"         : 1
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "behavior"      : "addState",
+                "target"        : {},
                 "break"         : "False",
                 "conditionList" : [],
+                "behavior"      : "addState",
                 "feature"       : "frozen",
                 "value"         : -18
             }
@@ -848,12 +847,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/iop/ebranler.png",
         "descSpritePath"    : "img/spells/desc/iop/ebranler.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -862,7 +861,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -871,7 +870,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -888,12 +887,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/iop/heurtDeGloire.png",
         "descSpritePath"    : "img/spells/desc/iop/heurtDeGloire.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -902,7 +901,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "behavior"      : "melee",
                 "break"         : "False",
                 "conditionList" : [],
@@ -911,7 +910,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -928,13 +927,13 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/iop/chargeCourte.png",
         "descSpritePath"    : "img/spells/desc/iop/chargeCourte.png",
-        "allowedTargetList" : ["allFirstOrganicAligned"], 
+        "allowedTargetList" : [{"entity" : "True", "main" : "firstAligned", "noTypeList" : ["mechanism"]}], 
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromHero", "value" : 3, "operator" : "<="}],
+                "target"        : {},
+                "conditionList" : [{"feature" :"range", "value" : 3, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -942,16 +941,16 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
+                "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"earth" : 1}
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "charge",
@@ -968,12 +967,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/iop/fracasser.png",
         "descSpritePath"    : "img/spells/desc/iop/fracasser.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -982,7 +981,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -991,10 +990,10 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
+                "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"earth" : 1}
             }
@@ -1008,12 +1007,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/iop/butoir.png",
         "descSpritePath"    : "img/spells/desc/iop/butoir.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1022,9 +1021,9 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
+                "behavior"      : "",
                 "break"         : "False",
                 "feature"       : "gauges",
                 "value"         : {"earth" : 2}
@@ -1039,12 +1038,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/iop/frappeImmobilisante.png",
         "descSpritePath"    : "img/spells/desc/iop/frappeImmobilisante.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1053,7 +1052,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1062,7 +1061,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
                 "break"         : "False",
                 "behavior"      : "addState",
@@ -1079,12 +1078,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/iop/frappeDuDragon.png",
         "descSpritePath"    : "img/spells/desc/iop/frappeDuDragon.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1093,7 +1092,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1102,9 +1101,9 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
+                "behavior"      : "",
                 "break"         : "False",
                 "feature"       : "gauges",
                 "value"         : {"earth" : 2}
@@ -1119,13 +1118,13 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/iop/bondFracassant.png",
         "descSpritePath"    : "img/spells/desc/iop/bondFracassant.png",
-        "allowedTargetList" : ["emptyTile"],
+        "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [{"feature" : "rangeFromHero", "target" : "spellTarget", "value" : 3, "operator" : "<="}],
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" : "range", "target" : "spellTarget", "value" : 3, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
@@ -1133,7 +1132,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "opOrganicAroundSelf",
+                "target"        : {"main" : "around", "team" : "op", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1142,7 +1141,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1159,12 +1158,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/iop/choquer.png",
         "descSpritePath"    : "img/spells/desc/iop/choquer.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1173,7 +1172,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "behavior"      : "melee",
                 "break"         : "False",
                 "conditionList" : [],
@@ -1182,7 +1181,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1191,7 +1190,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -1208,13 +1207,13 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/iop/chargeLongue.png",
         "descSpritePath"    : "img/spells/desc/iop/chargeLongue.png",
-        "allowedTargetList" : ["allFirstOrganicAligned"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "firstAligned", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromHero", "value" : 5, "operator" : "<="}],
+                "target"        : {},
+                "conditionList" : [{"feature" :"range", "value" : 5, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -1222,16 +1221,16 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
+                "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"earth" : 2}
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "charge",
@@ -1240,7 +1239,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -1249,7 +1248,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
                 "break"         : "False",
                 "behavior"      : "addState",
@@ -1266,12 +1265,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/iop/jabs.png",
         "descSpritePath"    : "img/spells/desc/iop/jabs.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "windy"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1280,7 +1279,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -1297,12 +1296,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/iop/crochet.png",
         "descSpritePath"    : "img/spells/desc/iop/crochet.png",
-        "allowedTargetList" : ["allOrganic", "firstTargetAdjacentTile"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}, {"main" : "adjacent", "ref" : "firstTarget"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1311,16 +1310,16 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
+                "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"air" : 1}
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "push",
@@ -1337,12 +1336,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/iop/uppercut.png",
         "descSpritePath"    : "img/spells/desc/iop/uppercut.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1351,7 +1350,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1360,7 +1359,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1377,12 +1376,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/iop/rafale.png",
         "descSpritePath"    : "img/spells/desc/iop/rafale.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1391,7 +1390,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1400,10 +1399,10 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
-                "break"         : "False",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
                 "feature"       : "paStock",
                 "value"         : 1
             }
@@ -1417,12 +1416,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/iop/fendreLAir.png",
         "descSpritePath"    : "img/spells/desc/iop/fendreLAir.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1431,7 +1430,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "windy"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1440,10 +1439,10 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
+                "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"air" : 1}
             }
@@ -1457,12 +1456,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/iop/tonnerreEnSerie.png",
         "descSpritePath"    : "img/spells/desc/iop/tonnerreEnSerie.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1471,7 +1470,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1488,12 +1487,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/iop/foudroyer.png",
         "descSpritePath"    : "img/spells/desc/iop/foudroyer.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1502,7 +1501,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1511,7 +1510,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1528,12 +1527,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/iop/brise.png",
         "descSpritePath"    : "img/spells/desc/iop/brise.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1542,26 +1541,26 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "melee",
+                "target"        : {"main" : "player", "team" : "my"},
                 "break"         : "False",
                 "conditionList" : [],
+                "behavior"      : "",
                 "feature"       : "paStock",
                 "value"         : 1
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
+                "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"air" : 1}
             },
             {
                 "trigger"           : "spellCast",
                 "stopTriggerList"   : ["spellCast", "endTurn"],
-                "target"            : "hand",
+                "target"            : {"main" : "hand"},
                 "conditionList"     : [],
                 "break"             : "False",
                 "behavior"          : "melee",
@@ -1578,13 +1577,13 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/iop/chargeTonnerreEnSerie.png",
         "descSpritePath"    : "img/spells/desc/iop/chargeTonnerreEnSerie.png",
-        "allowedTargetList" : ["allFirstOrganicAligned"], 
+        "allowedTargetList" : [{"entity" : "True", "main" : "firstAligned", "noTypeList" : ["mechanism"]}], 
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromHero", "value" : 5, "operator" : "<="}],
+                "target"        : {},
+                "conditionList" : [{"feature" :"range", "value" : 5, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "bounce",
                 "feature"       : "pv",
@@ -1592,7 +1591,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "charge",
@@ -1601,7 +1600,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1618,13 +1617,13 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/iop/bond.png",
         "descSpritePath"    : "img/spells/desc/iop/bond.png",
-        "allowedTargetList" : ["myOrganic", "emptyTile"],
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "noTypeList" : ["mechanism"]}, {"empty" : "True"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromFirstTarget", "target" : "spellTarget:1", "value" : 3, "operator" : "<="}],
+                "target"        : {},
+                "conditionList" : [{"feature" :"range", "ref" : "abilityTarget", "target" : "spellTarget", "targetIdx" : 1, "value" : 3, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
@@ -1632,7 +1631,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1649,12 +1648,12 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/iop/rayonnement.png",
         "descSpritePath"    : "img/spells/desc/iop/rayonnement.png",
-        "allowedTargetList" : ["myHero"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" :"auraNb", "value" : 1, "operator" : ">="}],
                 "break"         : "True",
                 "behavior"      : "addAuraWeak",
@@ -1663,7 +1662,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1680,12 +1679,12 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/iop/bouclier.png",
         "descSpritePath"    : "img/spells/desc/iop/bouclier.png",
-        "allowedTargetList" : ["myOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addState",
@@ -1694,7 +1693,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1711,12 +1710,12 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/iop/algarade.png",
         "descSpritePath"    : "img/spells/desc/iop/algarade.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1725,7 +1724,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "melee+draw",
@@ -1734,7 +1733,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1751,12 +1750,12 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/iop/acharnement.png",
         "descSpritePath"    : "img/spells/desc/iop/acharnement.png",
-        "allowedTargetList" : ["myHero"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" :"auraNb", "value" : 1, "operator" : ">="}],
                 "break"         : "True",
                 "behavior"      : "addAuraWeak",
@@ -1765,7 +1764,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1782,12 +1781,12 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/iop/poingsVolants.png",
         "descSpritePath"    : "img/spells/desc/iop/poingsVolants.png",
-        "allowedTargetList" : ["myHero"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addAuraReset",
@@ -1804,12 +1803,12 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/iop/epeesSanglantes.png",
         "descSpritePath"    : "img/spells/desc/iop/epeesSanglantes.png",
-        "allowedTargetList" : ["myHero"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addAuraReset",
@@ -1826,12 +1825,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iop/charge.png",
         "descSpritePath"    : "img/spells/desc/iop/charge.png",
-        "allowedTargetList" : ["allFirstOrganicAligned"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "firstAligned", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "True",
                 "behavior"      : "",
@@ -1840,7 +1839,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "distance",
@@ -1849,16 +1848,16 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
+                "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"earth" : 1}
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "charge",
@@ -1875,13 +1874,13 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/iop/tournoiement.png",
         "descSpritePath"    : "img/spells/desc/iop/tournoiement.png",
-        "allowedTargetList" : ["allOrganic", "emptyTile"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}, {"empty" : "True"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" : "rangeFromFirstTarget", "value" : 1, "operator" : "<=", "target" : "spellTarget:1"}, {"feature" : "elemState", "value" : "oiled"}],
+                "target"        : {},
+                "conditionList" : [{"feature" : "range", "ref" : "abilityTarget", "value" : 1, "operator" : "<=", "target" : "spellTarget", "targetIdx" : 1}, {"feature" : "elemState", "value" : "oiled"}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -1889,7 +1888,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1898,7 +1897,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1915,12 +1914,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/iop/stalagmite.png",
         "descSpritePath"    : "img/spells/desc/iop/stalagmite.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1929,7 +1928,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1938,7 +1937,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "addState",
@@ -1955,12 +1954,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/iop/trancher.png",
         "descSpritePath"    : "img/spells/desc/iop/trancher.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1969,7 +1968,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1978,7 +1977,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "",

@@ -7,13 +7,13 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/placeHolder0.png",
         "descSpritePath"    : "img/spells/desc/placeHolder0.png",
-        "allowedTargetList" : ["emptyTile"],
+        "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
                 "target"        : "tile",
-                "conditionList" : [{"feature" :"rangeFromFirstTarget", "value" : 3, "operator" : "<="}],
+                "conditionList" : [{"feature" :"range", "value" : 3, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "summon",
                 "feature"       : "emx0",
@@ -29,13 +29,13 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/placeHolder0.png",
         "descSpritePath"    : "img/spells/desc/placeHolder0.png",
-        "allowedTargetList" : ["emptyTile"],
+        "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
                 "target"        : "tile",
-                "conditionList" : [{"feature" :"rangeFromFirstTarget", "value" : 3, "operator" : "<="}],
+                "conditionList" : [{"feature" :"range", "value" : 3, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "summon",
                 "feature"       : "emx0",

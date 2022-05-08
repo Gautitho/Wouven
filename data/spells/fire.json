@@ -7,13 +7,13 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/fire/essenceDuDieuIop.png",
         "descSpritePath"    : "img/spells/desc/fire/essenceDuDieuIop.png",
-        "allowedTargetList" : ["self"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "self"}],
         "abilities"         :
         [
             {
                 "trigger"           : "spellCast",
                 "stopTriggerList"   : ["endTurn"],
-                "target"            : "self",
+                "target"            : {"main" : "self"},
                 "conditionList"     : [],
                 "break"             : "False",
                 "behavior"          : "",
@@ -23,7 +23,7 @@
             {
                 "trigger"           : "spellCast",
                 "stopTriggerList"   : ["endTurn"],
-                "target"            : "self",
+                "target"            : {"main" : "self"},
                 "conditionList"     : [],
                 "break"             : "False",
                 "behavior"          : "",
@@ -32,7 +32,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -49,12 +49,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/fire/folieDuDarkVlad.png",
         "descSpritePath"    : "img/spells/desc/fire/folieDuDarkVlad.png",
-        "allowedTargetList" : ["self"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "self"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "opOrganicAroundSelf",
+                "target"        : {"main" : "around", "team" : "op", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -63,7 +63,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -80,12 +80,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/fire/ecaillesDAdamai.png",
         "descSpritePath"    : "img/spells/desc/fire/ecaillesDAdamai.png",
-        "allowedTargetList" : ["myOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -94,7 +94,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -111,12 +111,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/fire/soifDOropo.png",
         "descSpritePath"    : "img/spells/desc/fire/soifDOropo.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -125,7 +125,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -134,7 +134,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -143,7 +143,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -160,13 +160,13 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/fire/bondDeGoultard.png",
         "descSpritePath"    : "img/spells/desc/fire/bondDeGoultard.png",
-        "allowedTargetList" : ["self", "emptyTile"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "self"}, {"empty" : "True"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromFirstTarget", "target" : "spellTarget:1", "value" : 3, "operator" : "<="}],
+                "target"        : {},
+                "conditionList" : [{"feature" :"range", "ref" : "abilityTarget", "target" : "spellTarget", "targetIdx" : 1, "value" : 3, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
@@ -174,7 +174,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -183,7 +183,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "opOrganicAroundSelf",
+                "target"        : {"main" : "around", "team" : "op", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",

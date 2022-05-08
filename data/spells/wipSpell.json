@@ -7,12 +7,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/iop/intimidation.png",
         "descSpritePath"    : "img/spells/desc/iop/intimidation.png",
-        "allowedTargetList" : ["myHero"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -21,7 +21,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -31,7 +31,7 @@
             {
                 "trigger"           : "spellCast",
                 "stopTriggerList"   : ["spellCast", "endTurn"],
-                "target"            : "hand",
+                "target"            : {"main" : "hand"},
                 "conditionList"     : [],
                 "break"             : "False",
                 "behavior"          : "melee",
@@ -40,7 +40,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "allOrganicCrossSelf:1",
+                "target"        : {"main" : "cross", "range" : "1", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "pushAwayFromSelf",
@@ -57,12 +57,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/cra/traitVenuDAilleurs.png",
         "descSpritePath"    : "img/spells/desc/cra/traitVenuDAilleurs.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -71,7 +71,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -80,7 +80,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -97,12 +97,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/cra/tirImmobilisant.png",
         "descSpritePath"    : "img/spells/desc/cra/tirImmobilisant.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -111,7 +111,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -120,7 +120,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -129,7 +129,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "behavior"      : "addState",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
@@ -155,12 +155,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/cra/pointeHarcelante.png",
         "descSpritePath"    : "img/spells/desc/cra/pointeHarcelante.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -169,7 +169,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -186,12 +186,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/sacrieur/duSangDansLaBouche.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/duSangDansLaBouche.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -208,12 +208,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/sacrieur/scarifications.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/scarifications.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",

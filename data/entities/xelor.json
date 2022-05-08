@@ -14,7 +14,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -39,7 +39,7 @@
         [
             {
                 "trigger"       : "spawn",
-                "target"        : "opOrganicAroundSelf",
+                "target"        : {"main" : "around", "team" : "op", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",

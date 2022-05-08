@@ -7,7 +7,7 @@
         [
             {
                 "trigger"       : "move",
-                "target"        : "opOrganicAroundSelf",
+                "target"        : {"main" : "around", "team" : "op", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "aura",
@@ -24,7 +24,7 @@
         [
             {
                 "trigger"       : "attack",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "aura",
@@ -33,7 +33,7 @@
             },
             {
                 "trigger"       : "attack",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",

@@ -7,12 +7,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/sacrieur/punition.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/punition.png",
-        "allowedTargetList" : ["myHero"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -21,7 +21,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -31,7 +31,7 @@
             {
                 "trigger"           : "spellCast",
                 "stopTriggerList"   : ["endTurn"],
-                "target"            : "myHero",
+                "target"            : {"main" : "hero", "team" : "my"},
                 "behavior"          : "",
                 "break"             : "False",
                 "conditionList"     : [],
@@ -48,12 +48,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/sacrieur/douleur.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/douleur.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget", "operator" : "!="}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -62,7 +62,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -71,7 +71,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -88,12 +88,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/sacrieur/sanction.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/sanction.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -102,7 +102,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -111,7 +111,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -128,12 +128,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/sacrieur/entailles.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/entailles.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -142,7 +142,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -159,12 +159,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/sacrieur/exaltation.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/exaltation.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -173,7 +173,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -182,7 +182,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -191,7 +191,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "opOrganicAroundSelf",
+                "target"        : {"main" : "around", "team" : "op", "noTypeList" : ["mechanism"]},
                 "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
                 "break"         : "False",
                 "behavior"      : "explosion",
@@ -208,12 +208,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/sacrieur/represailles.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/represailles.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget", "operator" : "!="}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -222,7 +222,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -231,7 +231,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -248,12 +248,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/sacrieur/execution.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/execution.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -262,7 +262,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -271,7 +271,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -288,12 +288,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/sacrieur/excitation.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/excitation.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -302,7 +302,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -311,7 +311,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -320,7 +320,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "opOrganicAroundSelf",
+                "target"        : {"main" : "around", "team" : "op", "noTypeList" : ["mechanism"]},
                 "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
                 "break"         : "False",
                 "behavior"      : "explosion",
@@ -337,12 +337,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/sacrieur/duSangDansLaBouche.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/duSangDansLaBouche.png",
-        "allowedTargetList" : ["emptyAlignedTile"],
+        "allowedTargetList" : [{"empty" : "True", "main" : "aligned"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "allOrganicAligned:2",
+                "target"        : {"main" : "aligned", "range" : "2", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -351,7 +351,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "opOrganicAligned:2",
+                "target"        : {"main" : "aligned", "team" : "op", "range" : "2", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "opAffected",
@@ -360,8 +360,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [{"feature" :"rangeFromHero", "value" : 3, "operator" : "=", "target" : "spellTarget"}],
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" :"range", "value" : 3, "target" : "spellTarget"}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
@@ -369,7 +369,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -378,7 +378,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -395,12 +395,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/sacrieur/duSangSurLesMains.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/duSangSurLesMains.png",
-        "allowedTargetList" : ["allOrganicAdjacent"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "adjacent"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -409,7 +409,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -418,7 +418,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -435,12 +435,12 @@
         "elem"              : "ice",
         "spritePath"        : "img/spells/icon/sacrieur/griffure.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/griffure.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -449,7 +449,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -466,12 +466,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/sacrieur/affliction.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/affliction.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -480,7 +480,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -489,7 +489,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -506,12 +506,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/sacrieur/creveCoeur.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/creveCoeur.png",
-        "allowedTargetList" : ["myHero"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -520,7 +520,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -529,7 +529,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -546,12 +546,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/sacrieur/commotion.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/commotion.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -560,7 +560,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -569,7 +569,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "wet", "target" : "spellTarget"}],
@@ -586,12 +586,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/sacrieur/suppliceGlace.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/suppliceGlace.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -600,7 +600,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -609,7 +609,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "behavior"      : "addState",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "wet", "target" : "spellTarget"}],
@@ -626,12 +626,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/sacrieur/chagrin.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/chagrin.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -640,7 +640,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -649,7 +649,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -658,7 +658,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -675,12 +675,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/sacrieur/bonneDouleur.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/bonneDouleur.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -689,7 +689,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -698,7 +698,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -708,7 +708,7 @@
             {
                 "trigger"           : "always",
                 "stopTriggerList"   : ["always"],
-                "target"            : "currentSpell",
+                "target"            : {"main" : "currentSpell"},
                 "conditionList"     : [{"feature" : "state", "value" : "agony", "target" : "self"}],
                 "break"             : "False",
                 "behavior"          : "",
@@ -725,12 +725,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/sacrieur/deferlante.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/deferlante.png",
-        "allowedTargetList" : ["emptyAlignedTile"],
+        "allowedTargetList" : [{"empty" : "True", "main" : "aligned"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "allOrganicAligned:2",
+                "target"        : {"main" : "aligned", "range" : "2", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -739,8 +739,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [{"feature" :"rangeFromHero", "value" : 3, "operator" : "=", "target" : "spellTarget"}],
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" :"range", "value" : 3, "target" : "spellTarget"}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
@@ -748,7 +748,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -765,12 +765,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/sacrieur/cEstPourTonBien.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/cEstPourTonBien.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -779,7 +779,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -788,7 +788,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "wet", "target" : "spellTarget"}],
@@ -805,12 +805,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/sacrieur/caMeFaitPlusMalQuAToi.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/caMeFaitPlusMalQuAToi.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -819,7 +819,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -829,7 +829,7 @@
             {
                 "trigger"           : "always",
                 "stopTriggerList"   : ["always"],
-                "target"            : "currentSpell",
+                "target"            : {"main" : "currentSpell"},
                 "conditionList"     : [{"feature" : "state", "value" : "agony", "target" : "self"}],
                 "break"             : "False",
                 "behavior"          : "",
@@ -846,12 +846,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/sacrieur/pichenette.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/pichenette.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -860,7 +860,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -869,7 +869,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -886,12 +886,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/sacrieur/rempart.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/rempart.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -900,7 +900,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -909,7 +909,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
@@ -926,12 +926,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/sacrieur/casseGuiboles.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/casseGuiboles.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -940,7 +940,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -949,7 +949,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
                 "behavior"      : "addState",
                 "break"         : "False",
@@ -966,12 +966,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/sacrieur/bequille.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/bequille.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -980,7 +980,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -989,7 +989,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -1006,12 +1006,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/sacrieur/casseCrane.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/casseCrane.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1020,7 +1020,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -1029,7 +1029,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
                 "behavior"      : "addState",
                 "break"         : "False",
@@ -1046,12 +1046,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/sacrieur/ravage.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/ravage.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1060,7 +1060,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1069,7 +1069,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -1086,12 +1086,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/sacrieur/grandRempart.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/grandRempart.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1100,7 +1100,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1109,7 +1109,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -1118,7 +1118,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
@@ -1135,13 +1135,13 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/sacrieur/sautAudacieux.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/sautAudacieux.png",
-        "allowedTargetList" : ["emptyTile"],
+        "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [{"feature" : "rangeFromHero", "target" : "spellTarget", "value" : 3, "operator" : "<="}],
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" : "range", "target" : "spellTarget", "value" : 3, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
@@ -1149,7 +1149,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "opOrganicAroundSelf",
+                "target"        : {"main" : "around", "team" : "op", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1158,7 +1158,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1175,12 +1175,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/sacrieur/durAuMal.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/durAuMal.png",
-        "allowedTargetList" : ["myHero"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1189,7 +1189,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1198,7 +1198,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
                 "behavior"      : "addState",
                 "break"         : "False",
@@ -1215,12 +1215,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/sacrieur/peine.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/peine.png",
-        "allowedTargetList" : ["myHero"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1229,7 +1229,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1238,7 +1238,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1255,12 +1255,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/sacrieur/mousson.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/mousson.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1269,7 +1269,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1278,7 +1278,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -1295,12 +1295,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/sacrieur/persecution.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/persecution.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1309,7 +1309,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1318,7 +1318,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
                 "behavior"      : "draw",
                 "break"         : "False",
@@ -1335,12 +1335,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/sacrieur/assaut.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/assaut.png",
-        "allowedTargetList" : ["allOrganicAdjacent"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "adjacent"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1349,7 +1349,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -1358,7 +1358,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "break"         : "False",
                 "conditionList" : [],
                 "behavior"      : "swap",
@@ -1375,12 +1375,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/sacrieur/chinook.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/chinook.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1389,7 +1389,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1398,7 +1398,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -1407,7 +1407,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -1424,13 +1424,13 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/sacrieur/assautLointain.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/assautLointain.png",
-        "allowedTargetList" : ["allOrganicAligned"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "aligned", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromHero", "value" : 4, "operator" : "<="}],
+                "target"        : {},
+                "conditionList" : [{"feature" :"range", "value" : 4, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -1438,7 +1438,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "windy"}],
                 "break"         : "False",
                 "behavior"      : "swap",
@@ -1447,7 +1447,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1464,12 +1464,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/sacrieur/tourment.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/tourment.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1478,7 +1478,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1487,7 +1487,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1496,7 +1496,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
                 "behavior"      : "draw",
                 "break"         : "False",
@@ -1513,12 +1513,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/sacrieur/frappeCyclone.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/frappeCyclone.png",
-        "allowedTargetList" : ["allOrganic", "firstTargetAdjacentTile"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}, {"main" : "adjacent", "ref" : "firstTarget"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1527,7 +1527,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1536,7 +1536,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "push",
@@ -1553,13 +1553,13 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/sacrieur/attirance.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/attirance.png",
-        "allowedTargetList" : ["allFirstOrganicAligned"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "firstAligned", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
-                "conditionList" : [{"feature" :"rangeFromSelf", "value" : 1, "operator" : "="}],
+                "target"        : {},
+                "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -1567,7 +1567,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -1576,7 +1576,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [{"feature" : "elemState", "value" : "windy"}],
                 "break"         : "False",
                 "behavior"      : "pull",
@@ -1585,7 +1585,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1602,12 +1602,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/sacrieur/fulgurance.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/fulgurance.png",
-        "allowedTargetList" : ["emptyAlignedTile"],
+        "allowedTargetList" : [{"empty" : "True", "main" : "aligned"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "allOrganicAligned:4",
+                "target"        : {"main" : "aligned", "range" : "4", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1616,8 +1616,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [{"feature" :"rangeFromHero", "value" : 5, "operator" : "=", "target" : "spellTarget"}],
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" :"range", "value" : 5, "target" : "spellTarget"}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
@@ -1625,7 +1625,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1642,12 +1642,12 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/sacrieur/maitreDeLAgonie.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/maitreDeLAgonie.png",
-        "allowedTargetList" : ["myHero"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1656,7 +1656,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addState",
@@ -1673,12 +1673,12 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/sacrieur/transposition.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/transposition.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "swap",
@@ -1687,7 +1687,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1704,12 +1704,12 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/sacrieur/depassement.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/depassement.png",
-        "allowedTargetList" : ["emptyAlignedTile"],
+        "allowedTargetList" : [{"empty" : "True", "main" : "aligned"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1718,8 +1718,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [{"feature" :"rangeFromHero", "value" : 3, "operator" : "=", "target" : "spellTarget"}],
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" :"range", "value" : 3, "target" : "spellTarget"}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
@@ -1727,7 +1727,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1744,12 +1744,12 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/sacrieur/dernierSouffle.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/dernierSouffle.png",
-        "allowedTargetList" : ["myHero"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
+                "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addState",
@@ -1759,7 +1759,7 @@
             {
                 "trigger"           : "spellCast",
                 "stopTriggerList"   : "endTurn",
-                "target"            : "self",
+                "target"            : {"main" : "self"},
                 "conditionList"     : [],
                 "break"             : "False",
                 "behavior"          : "",
@@ -1768,10 +1768,10 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
-                "behavior"      : "",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
+                "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"neutral" : 1}
             }
@@ -1785,12 +1785,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/sacrieur/foulureMotivante.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/foulureMotivante.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1799,7 +1799,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myHero",
+                "target"        : {"main" : "hero", "team" : "my"},
                 "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1808,7 +1808,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1825,12 +1825,12 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/sacrieur/oeilTatoue.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/oeilTatoue.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1839,7 +1839,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [{"feature" : "paStock", "value" : 1, "target" : "spellTargetPlayer", "operator" : ">="}, {"feature" : "state", "value" : "agony", "target" : "self"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1848,7 +1848,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "targetPlayer",
+                "target"        : {"main" : "player", "team" : "target"},
                 "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1857,7 +1857,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1874,12 +1874,12 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/sacrieur/immolation.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/immolation.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "opOrganicAroundSelf",
+                "target"        : {"main" : "around", "team" : "op", "noTypeList" : ["mechanism"]},
                 "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
                 "break"         : "False",
                 "behavior"      : "explosion",
@@ -1888,7 +1888,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1897,7 +1897,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1914,12 +1914,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/sacrieur/sillage.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/sillage.png",
-        "allowedTargetList" : ["emptyAlignedTile"],
+        "allowedTargetList" : [{"empty" : "True", "main" : "aligned"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "allOrganicAligned:1",
+                "target"        : {"main" : "aligned", "range" : "1", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1928,8 +1928,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [{"feature" :"rangeFromHero", "value" : 2, "operator" : "=", "target" : "spellTarget"}],
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" :"range", "value" : 2, "target" : "spellTarget"}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
@@ -1937,7 +1937,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",
@@ -1954,12 +1954,12 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/sacrieur/tornadoulet.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/tornadoulet.png",
-        "allowedTargetList" : ["myHero"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "allOrganicAdjacentToSelf",
+                "target"        : {"main" : "adjacent", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1968,7 +1968,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],
                 "break"         : "False",

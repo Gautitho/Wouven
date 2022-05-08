@@ -7,12 +7,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/air/volDuCorbeauNoir.png",
         "descSpritePath"    : "img/spells/desc/air/volDuCorbeauNoir.png",
-        "allowedTargetList" : ["emptyAlignedTile"],
+        "allowedTargetList" : [{"empty" : "True", "main" : "aligned"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "allOrganicAligned:3",
+                "target"        : {"main" : "aligned", "range" : "3", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -21,8 +21,8 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "self",
-                "conditionList" : [{"feature" :"rangeFromSelf", "value" : 4, "operator" : "=", "target" : "spellTarget"}],
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" :"range", "value" : 4, "target" : "spellTarget"}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
@@ -30,7 +30,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -47,12 +47,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/air/ushLeTricheur.png",
         "descSpritePath"    : "img/spells/desc/air/ushLeTricheur.png",
-        "allowedTargetList" : ["myHero"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "draw",
@@ -61,7 +61,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -78,12 +78,12 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/air/traitDEvangelyne.png",
         "descSpritePath"    : "img/spells/desc/air/traitDEvangelyne.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -92,7 +92,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],
@@ -109,12 +109,12 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/air/souffleDeGrougaloragran.png",
         "descSpritePath"    : "img/spells/desc/air/souffleDeGrougaloragran.png",
-        "allowedTargetList" : ["allOrganic"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : "target",
+                "target"        : {},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -123,7 +123,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : "myPlayer",
+                "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "break"         : "False",
                 "conditionList" : [],

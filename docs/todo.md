@@ -9,9 +9,14 @@
 - Si un joueur fait un mauvais formulaire, il se retrouve quand même en tant que waitingPlayer (peut être uniquement en testMode)
 - Reduction de cout sur sort à 0 => peuvent se retrouver au dessus de leur coût de base
 - Passif pilo
+- Mort de Championne sanglante
 - Fonctionnement Cross / Aligned self mauvais (Larch, Plume, ...)
 - Virer polling
 - Possibilité d'abandonner
+- Flèche explosive
+- Dag
+- Farnix 4 jauges ?
+- Maitre d'agonie, nécessite agonie
 - Mécaniques à dev :
   - Rembobinage
   - Déclenchement d'un mécanisme
