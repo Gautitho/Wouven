@@ -79,7 +79,7 @@
     },
     "ca6" :
     {
-        "cost"          : {"air" : 3},
+        "cost"          : {"air" : 4},
         "entityDescId"  : "eca6",
         "spellDescId"   : "",
         "placementList" :

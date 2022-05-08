@@ -723,6 +723,15 @@
             },
             {
                 "trigger"       : "spellCast",
+                "target"        : {},
+                "break"         : "False",
+                "conditionList" : [{"feature" : "elemState", "value" : "wet"}],
+                "behavior"      : "addState",
+                "feature"       : "disarmed",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
                 "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "",
                 "conditionList" : [],

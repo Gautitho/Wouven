@@ -350,7 +350,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : {},
+                "target"        : {"main" : "around", "team" : "op", "noTypeList" : ["mechanism"]},
                 "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">"}],
                 "break"         : "False",
                 "behavior"      : "explosion",
