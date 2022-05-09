@@ -32,6 +32,13 @@ class KnownPlayerList :
                 return player["gameId"] 
         return None
 
+    def getClientIdFromGameId(self, gameId):
+        clientIdList = []
+        for player in self._knownPlayerList:
+            if (player["gameId"] == gameId):
+                clientIdList.append(player["clientId"])
+        return clientIdList
+
     # Append if playerId doesn't exist, update if he already exist
     def appendKnownPlayer(self, playerId, clientId):
         for playerIdx in range(len(self._knownPlayerList)):

@@ -13,7 +13,7 @@
 <body>
     <section class="flex flex-col items-center my-2 w-full h-full">
         <div class="mx-2 my-2">
-            La partie est terminée. Et vous avez <b id="gameResult">...</b> !
+            La partie est terminée. <b id="gameResult"></b>
         </div>
         <div class="mx-2 my-2">
             <button id="indexBtn" type="button" class="state-btn" style="background-color:#552fff;" onclick="indexBtnClick()">Accueil</button>
@@ -23,22 +23,42 @@
     <script>
         const PROJECT_ROOT_PATH = "../../"
 
-        var gameResult = location.search.substring(1).split("&")[0];
-        if (gameResult == "WIN")
+        var endCase = location.search.substring(1).split("&")[0];
+        if (endCase == "finished")
         {
-            $('#gameResult').text("gagné");
+            var gameResult = location.search.substring(1).split("&")[1];
+            if (gameResult == "WIN")
+            {
+                $('#gameResult').text("Et vous avez gagné !");
+            }
+            else if (gameResult == "LOSS")
+            {
+                $('#gameResult').text("Et vous avez perdu !");
+            }
+            else if (gameResult == "WIN_SURRENDER")
+            {
+                $('#gameResult').text("Et vous avez gagné car votre adversaire a abandonné, le lâche !");
+            }
+            else if (gameResult == "LOSS_SURRENDER")
+            {
+                $('#gameResult').text("Et vous avez perdu car vous avez abandonné !");
+            }
+            else if (gameResult == "DRAW")
+            {
+                $('#gameResult').text("Et vous avez égalisé !");
+            }
+            else
+            {
+                $('#gameResult').text("Et vous avez été vicitme d'un bug !");
+            }
         }
-        else if (gameResult == "LOSS")
+        else if (endCase == "deleted")
         {
-            $('#gameResult').text("perdu");
-        }
-        else if (gameResult == "DRAW")
-        {
-            $('#gameResult').text("égalisé");
+            $('#gameResult').text("Elle a été supprimée (probablement à cause d'une déconnexion trop longue de votre adversaire) !");
         }
         else
         {
-            $('#gameResult').text("été vicitme d'un bug");
+            $('#gameResult').text("Et vous avez été vicitme d'un bug !");
         }
 
         function indexBtnClick()

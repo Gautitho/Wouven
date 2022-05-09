@@ -298,6 +298,11 @@ function cancelBtnClick()
     }
 }
 
+function surrendBtnClick()
+{
+    surrend();
+}
+
 function paStockClick()
 {
     usePaStock();

@@ -130,6 +130,9 @@ class GameManager :
                 gameToEraseIdList.append(gameId)
         gameToEraseIdList.reverse()
         for gameId in gameToEraseIdList:
+            serverCmd = {"cmd" : "DELETED_GAME", "gameId" : gameId}
+            for clientId in self._knownPlayerList.getClientIdFromGameId(gameId):
+                self._serverCmdList.append({"clientId" : clientId, "content" : json.dumps(serverCmd)})           
             self._knownPlayerList.removeKnownPlayerInGame(gameId)
             del self._currGameDict[gameId]
 

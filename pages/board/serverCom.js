@@ -50,7 +50,11 @@ socket.onmessage = function(handler)
     }
     else if (cmdObj.cmd == "END_GAME")
     {
-        window.location = PROJECT_ROOT_PATH + "pages/endScreen/endScreen.html?" + cmdObj.result;
+        window.location = PROJECT_ROOT_PATH + "pages/endScreen/endScreen.html?" + "finished&" + cmdObj.result;
+    }
+    else if (cmdObj.cmd == "DELETED_GAME")
+    {
+        window.location = PROJECT_ROOT_PATH + "pages/endScreen/endScreen.html?" + "deleted&" + cmdObj.gameId;
     }
 
     if (state != "INIT")
@@ -99,5 +103,11 @@ function summon()
 function usePaStock()
 {
     clientCmd = {"cmd" : "USE_RESERVE", "playerId" : playerId};
+    socket.send(JSON.stringify(clientCmd));
+}
+
+function surrend()
+{
+    clientCmd = {"cmd" : "SURREND", "playerId" : playerId};
     socket.send(JSON.stringify(clientCmd));
 }

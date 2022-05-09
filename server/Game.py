@@ -96,6 +96,9 @@ class Game:
                 self.initGame(playerId)
                 self.sendStatus()
 
+            elif (cmd == "SURREND"):
+                self.Surrend(playerId)
+
             elif (cmd in ["ENDTURN", "MOVE", "SPELL", "SUMMON", "USE_RESERVE"]):
                 self.checkTurn(playerId)
                 if (cmd == "ENDTURN"):
@@ -119,6 +122,7 @@ class Game:
                 elif (cmd == "USE_RESERVE"):
                     self.addActionToList("useReserve", self._board.playersDict[playerId].team, None, [])
                     self.UseReserve(playerId)
+
 
                 self._board.always()
                 self.sendStatus()
@@ -177,8 +181,8 @@ class Game:
             if not(self._board.playersDict[playerId].heroEntityId in self._board.entitiesDict):
                deadPlayerIdList.append(playerId)
         if deadPlayerIdList:
+            self._gameState     = "DONE"
             for playerId in list(self._board.playersDict.keys()):
-                self._gameState     = "DONE"
                 serverCmd = {}
                 serverCmd["cmd"]    = "END_GAME"
                 if (len(deadPlayerIdList) == 1):
@@ -261,6 +265,17 @@ class Game:
     
     def UseReserve(self, playerId):
         self._board.useReserve(playerId)
+
+    def Surrend(self, playerId):
+        self._gameState     = "DONE"
+        for playerIdIt in list(self._board.playersDict.keys()):
+            serverCmd = {}
+            serverCmd["cmd"]    = "END_GAME"
+            if (playerIdIt == playerId):
+                serverCmd["result"] = "LOSS_SURRENDER"
+            else:
+                serverCmd["result"] = "WIN_SURRENDER"
+            self._serverCmdList.append({"playerId" : playerIdIt, "content" : json.dumps(serverCmd)})       
 
     def generalLog(self):
         s = ""
