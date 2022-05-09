@@ -131,7 +131,13 @@ class Game:
         serverCmd           = {}
         serverCmd["cmd"]    = "GAME_START"
         serverCmd["name"]   = self._name
-        firstPlayerId       = random.choice(list(self._board.playersDict.keys()))
+        
+        firstPlayerId       = None
+        firstPlayerWeight   = 1000
+        for playerId in list(self._board.playersDict.keys()): # TODO : If egal it is not random
+            if (self._board.playersDict[playerId].deckWeight < firstPlayerWeight):
+                firstPlayerId       = playerId
+                firstPlayerWeight   = self._board.playersDict[playerId].deckWeight
 
         for playerId in list(self._board.playersDict.keys()):
             if (playerId == firstPlayerId):

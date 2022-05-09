@@ -9,7 +9,7 @@ from Spell import *
 class Player:
 
     def __init__(self, deck, team, pseudo):
-        checkDeck(deck)
+        self._deckWeight                = checkDeck(deck)
         self._heroDescId                = deck["heroDescId"]
         self._race                      = db.heroes[self._heroDescId]["race"]
         self._team                      = team
@@ -33,6 +33,10 @@ class Player:
         self._boardEntityIds            = []
         self._heroEntityId              = None
         self._spellsPlayedDuringTurn    = 0
+
+    @property
+    def deckWeight(self):
+        return self._deckWeight
 
     @property
     def heroDescId(self):

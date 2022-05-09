@@ -1,14 +1,10 @@
 # TODO List
 
-- Gérer les deconnexions (Inactive start time ne se déclenche pas)
-- Gérer organic / mecanic correctement
-- Joueur avec le deck le plus lourd commence
 - Ombraden : le passif doit proc aussi pendant le tour de l'adversaire mais pas sur une invocation de compagnon
 - Charge de toxine trigger passif Bouvaloir
 - Sorts de : Phaeris, Remington, Julith, Coqueline, Flopin, Kerubim
 - Si un joueur fait un mauvais formulaire, il se retrouve quand même en tant que waitingPlayer (peut être uniquement en testMode)
 - Reduction de cout sur sort à 0 => peuvent se retrouver au dessus de leur coût de base
-- Passif pilo
 - Mort de Championne sanglante
 - Virer polling
 - Possibilité d'abandonner

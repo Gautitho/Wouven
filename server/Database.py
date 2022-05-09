@@ -7,7 +7,7 @@ ENTITIES_FILE_PATH_LIST     = ["data/entities/air.json", "data/entities/water.js
 SPELLS_FILE_PATH_LIST       = ["data/spells/air.json", "data/spells/water.json", "data/spells/fire.json", "data/spells/earth.json", "data/spells/iop.json", "data/spells/xelor.json", "data/spells/cra.json", "data/spells/sacrieur.json", "data/spells/misc.json"]
 AURAS_FILE_PATH_LIST        = ["data/auras/iop.json", "data/auras/cra.json"]
 
-TEST_ENABLE     = True
+TEST_ENABLE     = False
 LOCAL_ENABLE    = False
 
 BOARD_ROWS                  = 7
@@ -19,6 +19,7 @@ ACTION_LIST_LEN             = 5
 INACTIVE_GAME_ERASE_TIME    = 600
 
 def checkDeck(deck):
+    deckWeight = 0
     if not(TEST_ENABLE):
         if not(deck["heroDescId"] in db.heroes):
             raise GameException(f"The hero ({deck['heroDescId']}) you picked does not exist !")
@@ -37,6 +38,7 @@ def checkDeck(deck):
                     heroSpellFound = True
                 elif (db.spells[spellDescId]["race"] != db.heroes[deck["heroDescId"]]["race"]):
                     raise GameException(f"You have picked a spell ({spellDescId}) with the wrong race !")
+            deckWeight += db.spells[spellDescId]["cost"]
         if not(heroSpellFound):
             raise GameException("You haven't picked your hero spell !")
         for companionDescId in deck["companionDescIdList"]:
@@ -44,6 +46,7 @@ def checkDeck(deck):
                 raise GameException(f"The companion ({companionDescId}) you picked does not exist !")
             elif (deck["companionDescIdList"].count(companionDescId) > 1):
                 raise GameException(f"You can't pick a companion ({companionDescId}) more than 1 time !")
+    return deckWeight
 
 class Database:
 
