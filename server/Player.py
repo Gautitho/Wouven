@@ -173,7 +173,7 @@ class Player:
         spell = self._handSpellDict[spellId]
         del self._handSpellDict[spellId]
         self._deckSpellDescIdList.append(spell.descId)
-        self._pa -= spell.cost
+        self._pa -= max(spell.cost, 0)
         self._spellsPlayedDuringTurn += 1
 
     def modifySpellCost(self, spellId, value):

@@ -16,7 +16,6 @@ class Spell:
         self._allowedTargetList     = copy.deepcopy(db.spells[self._descId]["allowedTargetList"])
         self._abilities             = copy.deepcopy(db.spells[self._descId]["abilities"])
         self._typeList              = [] if not("typeList" in db.spells[self._descId]) else copy.deepcopy(db.spells[self._descId]["typeList"])
-        self._costModifierList      = []
 
     @property
     def descId(self):
@@ -54,12 +53,8 @@ class Spell:
     def abilities(self):
         return copy.deepcopy(self._abilities)
 
-    @property
-    def costModifierList(self):
-        return copy.deepcopy(self._costModifierList)
-
     def modifyCost(self, value):
-        self._cost = max(self._cost + value, 0)
+        self._cost = self._cost + value
 
     def getDict(self):
         dic = {}
