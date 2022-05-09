@@ -173,7 +173,7 @@
             },
             {
                 "trigger"       : "startTurn",
-                "target"        : {"main" : "cross", "team" : "op", "noTypeList" : ["mechanism"]},
+                "target"        : {"main" : "aligned", "team" : "op", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",

@@ -12,7 +12,7 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : {"main" : "aligned", "range" : "3", "noTypeList" : ["mechanism"]},
+                "target"        : {"main" : "alignedInDirection", "range" : "3", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",

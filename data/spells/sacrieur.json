@@ -342,7 +342,7 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : {"main" : "aligned", "range" : "2", "noTypeList" : ["mechanism"]},
+                "target"        : {"main" : "alignedInDirection", "range" : "2", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -351,7 +351,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : {"main" : "aligned", "team" : "op", "range" : "2", "noTypeList" : ["mechanism"]},
+                "target"        : {"main" : "alignedInDirection", "team" : "op", "range" : "2", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "opAffected",
@@ -730,7 +730,7 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : {"main" : "aligned", "range" : "2", "noTypeList" : ["mechanism"]},
+                "target"        : {"main" : "alignedInDirection", "range" : "2", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1607,7 +1607,7 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : {"main" : "aligned", "range" : "4", "noTypeList" : ["mechanism"]},
+                "target"        : {"main" : "alignedInDirection", "range" : "4", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1919,7 +1919,7 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : {"main" : "aligned", "range" : "1", "noTypeList" : ["mechanism"]},
+                "target"        : {"main" : "alignedInDirection", "range" : "1", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",

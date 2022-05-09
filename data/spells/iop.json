@@ -304,7 +304,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {},
-                "conditionList" : [{"feature" :"rangeFromHero", "value" : 5, "operator" : "<="}],
+                "conditionList" : [{"feature" :"range", "value" : 5, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -392,7 +392,7 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : {"main" : "aligned", "range" : "3", "noTypeList" : ["mechanism"]},
+                "target"        : {"main" : "alignedInDirection", "range" : "3", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -410,7 +410,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : {"main" : "aligned", "team" : "op", "range" : "3", "noTypeList" : ["mechanism"]},
+                "target"        : {"main" : "alignedInDirection", "team" : "op", "range" : "3", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "opAffected",
