@@ -7,6 +7,7 @@
 - Mort de Championne sanglante
 - Virer polling
 - Possibilité d'abandonner
+- Interaction gelé, éclaireur d'élite
 - Mécaniques à dev :
   - Rembobinage
   - Déclenchement d'un mécanisme

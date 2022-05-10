@@ -473,7 +473,7 @@
                 "target"        : {"main" : "self"},
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
-                "conditionList" : [{"feature" : "opsAroundRef", "value" : 0}],
+                "conditionList" : [{"feature" : "opsAround", "target" : "self", "value" : 0}],
                 "feature"       : "ac0",
                 "value"         : 1
             }
@@ -642,7 +642,7 @@
                 "target"        : {"main" : "self"},
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
-                "conditionList" : [{"feature" : "opsAroundRef", "value" : 0}],
+                "conditionList" : [{"feature" : "opsAround", "target" : "self", "value" : 0}],
                 "feature"       : "ac0",
                 "value"         : 2
             }
@@ -1066,7 +1066,7 @@
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : -23
+                "value"         : -34
             },
             {
                 "trigger"       : "spellCast",
@@ -1596,6 +1596,15 @@
                 "behavior"      : "addState",
                 "feature"       : "elusive:1",
                 "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
             }
         ]
     },
@@ -1719,18 +1728,18 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "player", "team" : "my"},
-                "behavior"      : "",
-                "break"         : "False",
                 "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"neutral" : 1}
             },
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "player", "team" : "my"},
-                "behavior"      : "draw",
+                "conditionList" : [{"feature" : "opsAround", "target" : "self", "value" : 0}],
                 "break"         : "False",
-                "conditionList" : [{"feature" : "opAroundSelf", "value" : 0}],
+                "behavior"      : "draw",
                 "feature"       : "",
                 "value"         : 2
             }

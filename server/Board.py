@@ -737,18 +737,18 @@ class Board:
                             break
 
                     elif (conditionDict["feature"] == "turn"):
-                        if (condition["value"] == "my" and self._entitiesDict[selfId].myTurn):
+                        if (conditionDict["value"] == "my" and self._entitiesDict[selfId].myTurn):
                             pass
-                        elif (condition["value"] == "op" and not(self._entitiesDict[selfId].myTurn)):
+                        elif (conditionDict["value"] == "op" and not(self._entitiesDict[selfId].myTurn)):
                             pass
                         else:
                             conditionsValid = False
                             break
 
                     elif (conditionDict["feature"] == "team"):
-                        if (condition["value"] == "my" and self._entitiesDict[conditionTargetId].team == self._entitiesDict[selfId].team):
+                        if (conditionDict["value"] == "my" and self._entitiesDict[conditionTargetId].team == self._entitiesDict[selfId].team):
                             pass
-                        elif (condition["value"] == "op" and self._entitiesDict[conditionTargetId].team == self.getOpTeam(self._entitiesDict[selfId].team)):
+                        elif (conditionDict["value"] == "op" and self._entitiesDict[conditionTargetId].team == self.getOpTeam(self._entitiesDict[selfId].team)):
                             pass
                         else:
                             conditionsValid = False
@@ -766,11 +766,15 @@ class Board:
 
                     elif (conditionDict["feature"] == "allowedTarget"):
                         if (conditionDict["value"] == "aligned"):
-                            if not(allowedTargetList[targetDict["targetIdx"]] in ["allOrganicAligned", "allFirstEntityAligned", "allFirstOrganicAligned"]):
+                            if not("main" in allowedTargetList[targetDict["targetIdx"]]):
                                 conditionsValid = False
                                 break
+                            else:
+                                if not(allowedTargetList[targetDict["targetIdx"]]["main"] in ["aligned", "firstAligned"]):
+                                    conditionsValid = False
+                                    break
 
-                    elif (conditionDict["feature"] == "opsAroundRef"):
+                    elif (conditionDict["feature"] == "opsAround"):
                         if not(operatorDict[conditionDict["operator"]](len(self.entityIdAroundTile(self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y, self.getOpTeam(self._entitiesDict[conditionTargetId].team))), int(conditionDict["value"]))):
                             conditionsValid = False
                             break
@@ -1101,21 +1105,26 @@ class Board:
                                 state["value"]      = value
                                 state["duration"]   = duration
                                 self._entitiesDict[abilityEntityId].addState(state)
+                            executed = True
 
                     elif (ability["behavior"] == "summon"):
                         entityId = self.appendEntity(playerId, ability["feature"], self._playersDict[playerId].team, self._entitiesDict[targetEntityIdList[0]].x, self._entitiesDict[targetEntityIdList[0]].y)
                         self._entitiesDict[entityId].startTurn()
                         self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, [None])
+                        executed = True
 
                     elif (ability["behavior"] == "attackAgain"):
                         for abilityEntityId in abilityTargetIdList:
                             self._entitiesDict[abilityEntityId].attackAgain()
+                            executed = True
 
                     elif (ability["behavior"] == "freeAura"):
                         self._entitiesDict[selfId].freeAura()
+                        executed = True
 
                     elif (ability["behavior"] == "draw"):
                         self._playersDict[abilityTargetIdList[0]].draw(value, ability["feature"])
+                        executed = True
 
                     # If stopTriggerList is defined, the ability must be added to the ongoingAbilityList
                     if stopTriggerList and not(force):
