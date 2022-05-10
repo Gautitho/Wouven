@@ -680,6 +680,8 @@ class Board:
                         conditionRefId = self._playersDict[opPlayerId].heroEntityId
                     elif (conditionDict["ref"] == "abilityTarget"):
                         conditionRefId = abilityTargetIdList[conditionDict["refIdx"]]
+                    elif (conditionDict["ref"] == "spellTarget"):
+                        conditionRefId = targetEntityIdList[conditionDict["refIdx"]]
 
                     # Feature
                     if (conditionDict["feature"] in ["elemState", "state", "type", "team", "pv", "auraNb"]):

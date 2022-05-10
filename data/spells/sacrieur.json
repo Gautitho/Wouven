@@ -432,7 +432,7 @@
         "name"              : "Griffure",
         "race"              : "sacrieur",
         "cost"              : 2,
-        "elem"              : "ice",
+        "elem"              : "water",
         "spritePath"        : "img/spells/icon/sacrieur/griffure.png",
         "descSpritePath"    : "img/spells/desc/sacrieur/griffure.png",
         "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
@@ -541,7 +541,7 @@
     "ss13":
     {
         "name"              : "Commotion",
-        "race"              : "4",
+        "race"              : "sacrieur",
         "cost"              : 4,
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/sacrieur/commotion.png",

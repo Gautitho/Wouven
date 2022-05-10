@@ -1337,6 +1337,56 @@
             }
         ]
     },
+    "si32":
+    {
+        "name"              : "Intimidation",
+        "race"              : "iop",
+        "cost"              : 3,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/iop/intimidation.png",
+        "descSpritePath"    : "img/spells/desc/iop/intimidation.png",
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "adjacent", "noTypeList" : ["mechanism"]},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -13
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["spellCast", "endTurn"],
+                "target"            : {"main" : "hand"},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "melee",
+                "feature"           : "cost",
+                "value"             : -1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "adjacent", "noTypeList" : ["mechanism"]},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "pushAwayFromSelf",
+                "feature"       : "position",
+                "value"         : 1
+            }
+        ]
+    },
     "si33":
     {
         "name"              : "Uppercut",
@@ -1889,7 +1939,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {},
-                "conditionList" : [{"feature" : "range", "ref" : "abilityTarget", "value" : 1, "operator" : "<=", "target" : "spellTarget", "targetIdx" : 1}, {"feature" : "elemState", "value" : "oiled"}],
+                "conditionList" : [{"feature" : "range", "ref" : "spellTarget", "value" : 1, "operator" : "<=", "target" : "spellTarget", "targetIdx" : 1}, {"feature" : "elemState", "value" : "oiled"}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "pv",

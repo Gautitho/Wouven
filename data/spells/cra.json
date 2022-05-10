@@ -351,7 +351,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "around", "team" : "op", "noTypeList" : ["mechanism"]},
-                "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">"}],
+                "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">", "target" : "myPlayer"}],
                 "break"         : "False",
                 "behavior"      : "explosion",
                 "feature"       : "pv",
@@ -1574,6 +1574,59 @@
                 "behavior"      : "pushBack",
                 "feature"       : "position",
                 "value"         : 2
+            }
+        ]
+    },
+    "sc42":
+    {
+        "name"              : "Insaisissable",
+        "race"              : "cra",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/cra/insaisissable.png",
+        "descSpritePath"    : "img/spells/desc/cra/insaisissable.png",
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "hero", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addState",
+                "feature"       : "elusive:1",
+                "value"         : 0
+            }
+        ]
+    },
+    "sc43":
+    {
+        "name"              : "Derobade",
+        "race"              : "cra",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/cra/derobade.png",
+        "descSpritePath"    : "img/spells/desc/cra/derobade.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my"}, {"empty" : "True"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "hero", "team" : "my"},
+                "conditionList" : [{"feature" : "range", "ref" : "spellTarget", "value" : 1, "operator" : "<=", "target" : "spellTarget", "targetIdx" : 1}],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "position",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
             }
         ]
     },
