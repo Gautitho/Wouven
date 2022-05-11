@@ -1,0 +1,1592 @@
+{
+    "se0":
+    {
+        "name"              : "Radiance",
+        "race"              : "eniripsa",
+        "cost"              : 2,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/eniripsa/radiance.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/radiance.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -14
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+
+    "se1":
+    {
+        "name"              : "Enflammer",
+        "race"              : "eniripsa",
+        "cost"              : 3,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/eniripsa/enflammer.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/enflammer.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -14
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            }
+        ]
+    },
+    "se2":
+        {
+            "name"              : "Braise",
+            "race"              : "eniripsa",
+            "cost"              : 3,
+            "elem"              : "fire",
+            "spritePath"        : "img/spells/icon/eniripsa/braise.png",
+            "descSpritePath"    : "img/spells/desc/eniripsa/braise.png",
+            "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+            "abilities"         :
+            [
+                {
+                    "trigger"       : "spellCast",
+                    "target"        : {},
+                    "conditionList" : [],
+                    "break"         : "False",
+                    "behavior"      : "",
+                    "feature"       : "pv",
+                    "value"         : -12
+                },
+                {
+                    "trigger"       : "spellCast",
+                    "target"        : {"main" : "player", "team" : "my"},
+                    "behavior"      : "",
+                    "conditionList" : [],
+                    "break"         : "False",
+                    "feature"       : "gauges",
+                    "value"         : {"fire" : 1}
+                },
+                {
+                    "trigger"       : "spellCast",
+                    "target"        : {},
+                    "behavior"      : "",
+                    "break"         : "False",
+                    "conditionList" : [],
+                    "feature"       : "elemState",
+                    "value"         : "oiled"
+                }
+            ]
+        },
+    "se3":
+    {
+        "name"              : "Combustion",
+        "race"              : "eniripsa",
+        "cost"              : 4,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/eniripsa/combustion.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/combustion.png",
+        "allowedTargetList" : [{"main" : "adjacent"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "alignedInDirection", "range" : "3", "noTypeList" : ["mechanism"]},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -17
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "alignedInDirection", "team" : "op", "range" : "3", "noTypeList" : ["mechanism"]},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "opAffected",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            }
+        ]
+    },
+
+    "se4":
+    {
+        "name"              : "Voler la vie",
+        "race"              : "enirispa",
+        "cost"              : 4,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/eniripsa/volerLaVie.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/volerLaVie.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -15
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "hero", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 15
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            }
+        ]
+    },
+    "se5":
+    {
+        "name"              : "Brasier",
+        "race"              : "eniripsa",
+        "cost"              : 5,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/eniripsa/brasier.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/brasier.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "elemState",
+                "value"         : "oiled"
+            }
+        ]
+    },
+    "se6":
+    {
+        "name"              : "Laboratoire de flammes",
+        "race"              : "eniripsa",
+        "cost"              : 5,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/eniripsa/laboratoireDeFlammes.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/laboratoireDeFlammes.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 2}
+            }
+        ]
+    },
+    "se7":
+    {
+        "name"              : "Devorer la vie",
+        "race"              : "eniripsa",
+        "cost"              : 6,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/eniripsa/devorerLaVie.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/devorerLaVie.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -14
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "hero", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 14
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "hero", "team" : "my"},
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 2}
+            }
+        ]
+    },
+    "se8":
+    {
+        "name"              : "Engloutir la vie",
+        "race"              : "eniripsa",
+        "cost"              : 6,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/eniripsa/engloutirLaVie.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/engloutirLaVie.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "hero", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "se9":
+    {
+        "name"              : "Flamme dephasante",
+        "race"              : "eniripsa",
+        "cost"              : 8,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/eniripsa/flammeDephasante.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/flammeDephasante.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 3}
+            }
+        ]
+    },
+    "se10":
+    {
+        "name"              : "infection",
+        "race"              : "eniripsa",
+        "cost"              : 2,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/eniripsa/infection.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/infection.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -3
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "elemState",
+                "value"         : "wet"
+            }
+        ]
+    },
+    "se11":
+    {
+        "name"              : "compassion",
+        "race"              : "eniripsa",
+        "cost"              : 3,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/eniripsa/compassion.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/compassion.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -11
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            }
+        ]
+    },
+    "se12":
+    {
+        "name"              : "Soin apaisant",
+        "race"              : "eniripsa",
+        "cost"              : 3,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/eniripsa/soinApaisant.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/soinApaisant.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 19
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            }
+        ]
+    },
+    "se13":
+    {
+        "name"              : "Resonance des corps",
+        "race"              : "eniripsa",
+        "cost"              : 4,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/eniripsa/resonanceDesCorps.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/resonanceDesCorps.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 25
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "se14":
+    {
+        "name"              : "Propagation",
+        "race"              : "eniripsa",
+        "cost"              : 4,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/eniripsa/propagation.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/propagation.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -23
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "elemState",
+                "value"         : "wet"
+            }
+        ]
+    },
+
+    "se15":
+    {
+        "name"              : "Caresse gelante",
+        "race"              : "eniripsa",
+        "cost"              : 5,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/eniripsa/caresseGelante.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/caresseGelante.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -23
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "behavior"      : "addState",
+                "break"         : "False",
+                "conditionList" : [{"feature" : "elemState", "value" : "wet"}],
+                "feature"       : "frozen",
+                "value"         : -18
+            }
+        ]
+    },
+
+    "se16":
+    {
+        "name"              : "Laboratoire de soin",
+        "race"              : "eniripsa",
+        "cost"              : 5,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/eniripsa/laboratoireDeSoin.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/laboratoireDeSoin.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 2}
+            }
+        ]
+    },
+    "se17":
+    {
+        "name"              : "Restauration",
+        "race"              : "eniripsa",
+        "cost"              : 6,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/eniripsa/restauration.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/restauration.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 2}
+            }
+        ]
+    },
+    "se18":
+    {
+        "name"              : "Pacification",
+        "race"              : "eniripsa",
+        "cost"              : 6,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/eniripsa/pacification.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/pacification.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -23
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 2}
+            }
+        ]
+    },
+    "se19":
+    {
+        "name"              : "Soin dephasant",
+        "race"              : "eniripsa",
+        "cost"              : 7,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/eniripsa/soiDephasant.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/soiDephasant.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "hero", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 30
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "se20":
+    {
+        "name"              : "Doigte",
+        "race"              : "eniripsa",
+        "cost"              : 2,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/eniripsa/doigte.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/doigte.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -9
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            }
+        ]
+    },
+    "se21":
+    {
+        "name"              : "Doigt boueux",
+        "race"              : "eniripsa",
+        "cost"              : 3,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/eniripsa/doigtBoueux.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/doigtBoueux.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -12
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "elemState",
+                "value"         : "muddy"
+            }
+        ]
+    },
+    "se22":
+    {
+        "name"              : "Armure nocturne",
+        "race"              : "eniripsa",
+        "cost"              : 3,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/eniripsa/armureNocturne.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/armureNocturne.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -14
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            }
+        ]
+    },
+    "se23":
+    {
+        "name"              : "A l'ecoute des ames",
+        "race"              : "eniripsa",
+        "cost"              : 4,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/eniripsa/aLEcouteDesAmes.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/aLEcouteDesAmes.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -25
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            }
+        ]
+    },
+    "se24":
+    {
+        "name"              : "Equilibre",
+        "race"              : "eniripsa",
+        "cost"              : 4,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/eniripsa/equilibre.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/equilibre.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -21
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "se25":
+    {
+        "name"              : "Main boueuse",
+        "race"              : "eniripsa",
+        "cost"              : 5,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/eniripsa/mainBoueuse.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/mainBoueuse.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "elemState",
+                "value"         : "muddy"
+            }
+        ]
+    },
+    "se26":
+    {
+        "name"              : "Laboratoire nocturancie",
+        "race"              : "eniripsa",
+        "cost"              : 5,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/eniripsa/laboratoireNocturancie.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/laboratoireNocturancie.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
+            }
+        ]
+    },
+    "se27":
+    {
+        "name"              : "A l'ecoute du monde",
+        "race"              : "eniripsa",
+        "cost"              : 6,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/eniripsa/aLEcouteDuMonde.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/aLEcouteDuMonde.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -26
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            }
+        ]
+    },
+    "se28":
+    {
+        "name"              : "A la vie a la mort",
+        "race"              : "eniripsa",
+        "cost"              : 6,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/eniripsa/aLaVieALaMort.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/aLaVieALaMort.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -35
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "se29":
+    {
+        "name"              : "Nocturancie",
+        "race"              : "eniripsa",
+        "cost"              : 6,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/eniripsa/nocturancie.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/nocturancie.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -35
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "se30":
+    {
+        "name"              : "Petite fiole de frayeur",
+        "race"              : "eniripsa",
+        "cost"              : 1,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/eniripsa/petiteFioleDeFrayeur.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/petiteFioleDeFrayeur.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}, {"main" : "adjacent", "ref" : "firstTarget"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -10
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "push",
+                "feature"       : "position",
+                "value"         : 1
+            }
+        ]
+    },
+    "se31":
+    {
+        "name"              : "Petite fiole des vents",
+        "race"              : "eniripsa",
+        "cost"              : 2,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/eniripsa/petiteFioleDesVents.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/petiteFioleDesVents.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -3
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "elemState",
+                "value"         : "windy"
+            }
+        ]
+    },
+    "se32":
+    {
+        "name"              : "Fiole de frayeur",
+        "race"              : "eniripsa",
+        "cost"              : 3,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/eniripsa/FioleDeFrayeur.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/FioleDeFrayeur.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -24
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "se33":
+    {
+        "name"              : "Echapee",
+        "race"              : "eniripsa",
+        "cost"              : 3,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/eniripsa/echapee.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/echapee.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            }
+        ]
+    },
+    "se34":
+    {
+        "name"              : "Fiole des vents",
+        "race"              : "eniripsa",
+        "cost"              : 4,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/eniripsa/fioleDesVents.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/fioleDesVents.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -14
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "elemState",
+                "value"         : "windy"
+            }
+        ]
+    },
+    "se35":
+    {
+        "name"              : "Fiole de douleur",
+        "race"              : "eniripsa",
+        "cost"              : 4,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/eniripsa/fioleDeDouleur.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/fioleDeDouleur.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -24
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            }
+        ]
+    },
+    "se36":
+    {
+        "name"              : "Laboratoire de phase",
+        "race"              : "eniripsa",
+        "cost"              : 5,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/eniripsa/laboratoireDePhase.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/laboratoireDePhase.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 2}
+            }
+        ]
+    },
+    "se37":
+    {
+        "name"              : "Scalper",
+        "race"              : "eniripsa",
+        "cost"              : 5,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/eniripsa/scalper.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/scalper.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -24
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 2}
+            }
+        ]
+    },
+    "se38":
+    {
+        "name"              : "Grande fiole de frayeur",
+        "race"              : "eniripsa",
+        "cost"              : 6,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/eniripsa/grandeFioleDeFrayeur.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/grandeFioleDeFrayeur.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}, {"main" : "adjacent", "ref" : "firstTarget"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "push",
+                "feature"       : "position",
+                "value"         : 4
+            }
+        ]
+    },
+    "se39":
+    {
+        "name"              : "Fiole de dephasage",
+        "race"              : "eniripsa",
+        "cost"              : 7,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/eniripsa/fioleDeDephasage.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/fioleDeDephasage.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -30
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 2}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+        ]
+    },
+    "si40":
+    {
+        "name"              : "Double regime",
+        "race"              : "eniripsa",
+        "cost"              : 4,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/eniripsa/doubleRegime.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/doubleRegime.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "si41":
+    {
+        "name"              : "Meme pas mort <3",
+        "race"              : "eniripsa",
+        "cost"              : 2,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/eniripsa/memePasMort.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/memePasMort.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            }
+        ]
+    },
+    "si42":
+    {
+        "name"              : "Sacrifice honteux",
+        "race"              : "eniripsa",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/eniripsa/SacrificeHonteux.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/SacrificeHonteux.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            }
+        ]
+    },
+    "si43":
+    {
+        "name"              : "Recyclage",
+        "race"              : "eniripsa",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/eniripsa/recyclage.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/recyclage.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            }
+        ]
+    },
+    "si44":
+    {
+        "name"              : "Soins d'urgence",
+        "race"              : "eniripsa",
+        "cost"              : 4,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/eniripsa/soinsDUrgence.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/soinsDUrgence.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            }
+        ]
+    },
+    "si45":
+    {
+        "name"              : "Lien d'amitie",
+        "race"              : "eniripsa",
+        "cost"              : 4,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/eniripsa/lienDAmitie.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/lienDAmitie.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            }
+        ]
+    },
+    "si46":
+    {
+        "name"              : "Maitre de la regeneration",
+        "race"              : "eniripsa",
+        "cost"              : 5,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/eniripsa/maitreDeLaRegeneration.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/maitreDeLaRegeneration.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "si47":
+    {
+        "name"              : "Maitre des compagnons",
+        "race"              : "eniripsa",
+        "cost"              : 5,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/eniripsa/maitreDesCompagnons.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/maitreDesCompagnons.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "si48":
+    {
+        "name"              : "Rufus le sexuel",
+        "race"              : "eniripsa",
+        "cost"              : 6,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/eniripsa/RufusLeSexuel.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/RufusLeSexuel.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "si49":
+    {
+        "name"              : "Arcone mortis",
+        "race"              : "eniripsa",
+        "cost"              : 6,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/eniripsa/ArconeMortis.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/ArconeMortis.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+        ]
+    }
+}
