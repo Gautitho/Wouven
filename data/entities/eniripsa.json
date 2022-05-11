@@ -1,0 +1,103 @@
+{
+    "ehe2" :
+    {
+        "name"              : "Voracius",
+        "spritePath"        : "img/entities/icon/eniripsa/voracius.png",
+        "descSpritePath"    : "img/entities/desc/eniripsa/voracius.png",
+        "pv"                : 400,
+        "armor"             : 0,
+        "atk"               : 25,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "ability",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [{"feature" : "feature", "value" : "stealLife"}, {"feature" : "turn", "value" : "my"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "ee0" : 
+    {
+        "name"              : "Laboratoire de flammes",
+        "spritePath"        : "img/spells/icon/eniripsa/laboratoireDeFlammes.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/laboratoireDeFlammes.png",
+        "pv"                : 40,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "aura"              : {},
+        "states"            : [],
+        "typeList"          : ["unique", "mechanism", "lab"],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "startTurn",
+                "target"        : {"main" : "self"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -10
+            },
+            {
+                "trigger"       : "startTurn",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "generateSpell",
+                "feature"       : "se50",
+                "value"         : 1
+            }
+        ]
+    },
+    "ee1" : 
+    {
+        "name"              : "Laboratoire de soin",
+        "spritePath"        : "img/spells/icon/eniripsa/laboratoireDeSoin.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/laboratoireDeSoin.png",
+        "pv"                : 40,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "aura"              : {},
+        "states"            : [],
+        "typeList"          : ["unique", "mechanism", "lab"],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "startTurn",
+                "target"        : {"main" : "self"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -10
+            },
+            {
+                "trigger"       : "startTurn",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "generateSpell",
+                "feature"       : "se51",
+                "value"         : 1
+            }
+        ]
+    }
+}

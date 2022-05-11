@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const PROJECT_ROOT_PATH = "../../"
-const HERO_RACE_LIST = ['iop', 'cra', 'sacrieur']
+const HERO_RACE_LIST = ['iop', 'cra', 'sacrieur', 'eniripsa']
 const HERO_CLASSES = 5
 const ELEMS = ['fire', 'water', 'earth', 'air', 'neutral']
 const SPELLS_BY_ELEM = 10
@@ -43,6 +43,7 @@ function getHeroesDataBase()
     $.getJSON(PROJECT_ROOT_PATH + "data/heroes/iop.json", function(data) {heroesDataBase = {...heroesDataBase, ...data}});
     $.getJSON(PROJECT_ROOT_PATH + "data/heroes/xelor.json", function(data) {heroesDataBase = {...heroesDataBase, ...data}});
     $.getJSON(PROJECT_ROOT_PATH + "data/heroes/cra.json", function(data) {heroesDataBase = {...heroesDataBase, ...data}});
+    $.getJSON(PROJECT_ROOT_PATH + "data/heroes/eniripsa.json", function(data) {heroesDataBase = {...heroesDataBase, ...data}});
     return $.getJSON(PROJECT_ROOT_PATH + "data/heroes/sacrieur.json", function(data) {heroesDataBase = {...heroesDataBase, ...data}});
 }
 
@@ -56,6 +57,7 @@ function getEntitiesDataBase()
     $.getJSON(PROJECT_ROOT_PATH + "data/entities/iop.json", function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
     $.getJSON(PROJECT_ROOT_PATH + "data/entities/xelor.json", function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
     $.getJSON(PROJECT_ROOT_PATH + "data/entities/cra.json", function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
+    $.getJSON(PROJECT_ROOT_PATH + "data/entities/eniripsa.json", function(data) {entitiesDataBase = {...entitiesDataBase, ...data}});
     return $.getJSON(PROJECT_ROOT_PATH + "data/entities/sacrieur.json", function(data) {entitiesDataBase = {...entitiesDataBase, ...data}})
 }
 
@@ -69,6 +71,7 @@ function getSpellsDataBase()
     $.getJSON(PROJECT_ROOT_PATH + "data/spells/xelor.json", function(data) {spellsDataBase = {...spellsDataBase, ...data}});
     $.getJSON(PROJECT_ROOT_PATH + "data/spells/cra.json", function(data) {spellsDataBase = {...spellsDataBase, ...data}});
     $.getJSON(PROJECT_ROOT_PATH + "data/spells/sacrieur.json", function(data) {spellsDataBase = {...spellsDataBase, ...data}});
+    $.getJSON(PROJECT_ROOT_PATH + "data/spells/eniripsa.json", function(data) {spellsDataBase = {...spellsDataBase, ...data}});
     return $.getJSON(PROJECT_ROOT_PATH + "data/spells/misc.json", function(data) {spellsDataBase = {...spellsDataBase, ...data}})
 }
 
@@ -180,9 +183,12 @@ function spellChoice()
         {
             if (spellsDataBase[s]["race"] === eval("heroesDataBase." + selectedHero + ".race") && spellsDataBase[s]["elem"] === ELEMS[x])
             {
-                $("#choiceGrid_" + x + "_" + y).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("spellsDataBase." + s + ".descSpritePath") + ")");
-                $("#choiceGrid_" + x + "_" + y).data("spellDescId", s);
-                y = y + 1;
+                if (!(spellsDataBase[s].hasOwnProperty('typeList') && (spellsDataBase[s]["typeList"].includes("destructible"))))
+                {
+                    $("#choiceGrid_" + x + "_" + y).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("spellsDataBase." + s + ".descSpritePath") + ")");
+                    $("#choiceGrid_" + x + "_" + y).data("spellDescId", s);
+                    y = y + 1;
+                }
             }
         }
     }
