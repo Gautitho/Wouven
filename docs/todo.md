@@ -2,7 +2,7 @@
 
 - Ombraden : le passif doit proc aussi pendant le tour de l'adversaire mais pas sur une invocation de compagnon
 - Charge de toxine trigger passif Bouvaloir (probablement aussi voldorak) => régler ça avec une condtion de race
-- Sorts de : Phaeris, Remington, Julith, Coqueline, Flopin, Kerubim
+- Sorts de : Remington, Julith, Coqueline, Flopin, Kerubim
 - Si un joueur fait un mauvais formulaire, il se retrouve quand même en tant que waitingPlayer (peut être uniquement en testMode)
 - Mort de Championne sanglante
 - Virer polling

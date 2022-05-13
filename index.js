@@ -74,7 +74,18 @@ function poll()
 }
 
 function createDeck()
-{   
+{
+    if (findState == "FINDING")
+    {
+        clientCmd = {"cmd" : "CANCEL_FIND_GAME", "playerId" : playerId};
+        findState = "IDLE";
+        $("#findGame").css("background-color", "#552fff");
+        $("#findGame").text("Chercher");
+        $("#createGame").css("background-color", "#552fff");
+        $("#createGame").text("Créer");
+        socket.send(JSON.stringify(clientCmd));
+    }
+
     deckCodeForm = document.getElementById("deckCode").value;
     window.location = "pages/deckBuild/deckBuild.html?" + deckCodeForm;
 }
@@ -100,6 +111,8 @@ function createGame()
             createState = "IDLE";
             $("#createGame").css("background-color", "#552fff");
             $("#createGame").text("Créer");
+            $("#findGame").css("background-color", "#552fff");
+            $("#findGame").text("Chercher");
         }
         socket.send(JSON.stringify(clientCmd));
     }
@@ -107,6 +120,17 @@ function createGame()
 
 function joinGame()
 {
+    if (findState == "FINDING")
+    {
+        clientCmd = {"cmd" : "CANCEL_FIND_GAME", "playerId" : playerId};
+        findState = "IDLE";
+        socket.send(JSON.stringify(clientCmd));
+        $("#findGame").css("background-color", "#552fff");
+        $("#findGame").text("Chercher");
+        $("#createGame").css("background-color", "#552fff");
+        $("#createGame").text("Créer");
+    }
+
     if (checkArgs(["pseudo", "deckCode", "gameNameJoin"]))
     {
         playerId = document.getElementById("pseudo").value;
@@ -120,6 +144,17 @@ function joinGame()
 
 function reconnectGame()
 {
+    if (findState == "FINDING")
+    {
+        clientCmd = {"cmd" : "CANCEL_FIND_GAME", "playerId" : playerId};
+        findState = "IDLE";
+        socket.send(JSON.stringify(clientCmd));
+        $("#findGame").css("background-color", "#552fff");
+        $("#findGame").text("Chercher");
+        $("#createGame").css("background-color", "#552fff");
+        $("#createGame").text("Créer");
+    }
+
     if (checkArgs(["pseudo"]))
     {
         playerId = document.getElementById("pseudo").value;
@@ -148,6 +183,8 @@ function findGame()
             findState = "IDLE";
             $("#findGame").css("background-color", "#552fff");
             $("#findGame").text("Chercher");
+            $("#createGame").css("background-color", "#552fff");
+            $("#createGame").text("Créer");
         }
         socket.send(JSON.stringify(clientCmd));
     }
