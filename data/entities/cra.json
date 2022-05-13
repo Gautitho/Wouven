@@ -93,7 +93,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "self"},
-                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "oneByTurn", "value" : "ehc2", "target" : "spellTarget"}],
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "oneByTurn", "value" : "ehc2", "target" : "self"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "addAuraWeak",
                 "feature"       : "ac0",
@@ -127,7 +127,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {},
-                "conditionList" : [{"feature" : "allowedTarget", "value" : "aligned", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my", "target" : "spellTarget"}],
+                "conditionList" : [{"feature" : "allowedTarget", "value" : "aligned", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
                 "break"         : "False",
                 "behavior"      : "distance+addAuraWeak",
                 "feature"       : "ac0",

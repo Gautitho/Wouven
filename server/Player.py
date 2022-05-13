@@ -16,7 +16,7 @@ class Player:
         self._pseudo                    = pseudo
         self._pa                        = 6
         if (TEST_ENABLE):
-            self._paStock                   = 8
+            self._paStock                   = 6
             self._gauges                    = {"fire" : 5, "water" : 5, "earth" : 5, "air" : 5, "neutral" : 5}
         else:
             self._paStock                   = 0

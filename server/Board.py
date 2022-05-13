@@ -218,24 +218,18 @@ class Board:
 
     def entityIdInCross(self, x, y, rangeCondition, team):
         entityIdList = []
-        rangeCondition = BOARD_COLS if rangeCondition == -1 else rangeCondition
+        rangeCondition = rangeCondition if rangeCondition > -1 else 100
         for xa in range(max(x-rangeCondition, 0), min(x+rangeCondition+1, BOARD_COLS)):
-            matchId = self.entityIdOnTile(xa, y)
-            if (matchId != None):
-                if (team == "all" or team == self._entitiesDict[matchId].team):
-                    entityIdList.append(matchId)
-        rangeCondition = BOARD_ROWS if rangeCondition == -1 else rangeCondition
-        for ya in range(max(y-rangeCondition, 0), min(y+rangeCondition+1, BOARD_ROWS)):
-            if (ya != y):
-                matchId = self.entityIdOnTile(x, ya)
+            for ya in range(max(y-(rangeCondition - (x-xa)), 0), min(y+(rangeCondition - (xa-x))+1, BOARD_ROWS)):
+                matchId = self.entityIdOnTile(xa, ya)
                 if (matchId != None):
                     if (team == "all" or team == self._entitiesDict[matchId].team):
                         entityIdList.append(matchId)
         return entityIdList
 
-    def entityIdFromRace(self, race):
+    def entityIdFromRace(self, race, team):
         for eid in list(self._entitiesDict.keys()):
-            if (self._entitiesDict[eid].descId == race):
+            if (self._entitiesDict[eid].descId == race and team == self._entitiesDict[eid].team):
                 return eid
         return None
 
@@ -393,7 +387,7 @@ class Board:
                     if (spell.race in [self._entitiesDict[self._playersDict[playerId].heroEntityId].descId, self._playersDict[playerId].race]):
                         selfEntityId        = self._playersDict[playerId].heroEntityId
                     else:
-                        selfEntityId        = self.entityIdFromRace(spell.race)
+                        selfEntityId        = self.entityIdFromRace(spell.race, self._playersDict[playerId].team)
                     if (selfEntityId == None):
                         raise GameException("Race of self entity is not known !")
 
@@ -424,7 +418,7 @@ class Board:
                         if (targetDict["entity"]):
                             targetEntityIdList.append(self.entityIdOnTile(targetPositionList[allowedTargetIdx]["x"], targetPositionList[allowedTargetIdx]["y"]))
                             if (targetEntityIdList[-1] != None):
-                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable")):
+                                if (self._entitiesDict[targetEntityIdList[-1]].isInStates("untargetable") and self._entitiesDict[targetEntityIdList[-1]].team == self.getOpTeam(self._entitiesDict[selfEntityId].team)):
                                     raise GameException("Target is untargetable !")
                             else:
                                 raise GameException("Target must be an entity !")
@@ -897,8 +891,8 @@ class Board:
                                 self._entitiesDict[abilityEntityId].modifyArmor(value)
                                 executed = True
                         elif (ability["feature"] == "cost"):
-                            for spellId in abilityTargetIdList:
-                                self._playersDict[playerId].modifySpellCost(spellId, value)
+                            for spellIdIt in abilityTargetIdList:
+                                self._playersDict[playerId].modifySpellCost(spellIdIt, value)
                                 executed = True
 
                     elif (ability["behavior"] == "swap"):
@@ -920,8 +914,8 @@ class Board:
                             self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyArmor(mult*value)
                             executed = True
                         elif (ability["feature"] == "cost"):
-                            for spellId in abilityTargetIdList:
-                                self._playersDict[playerId].modifySpellCost(spellId, mult*value)
+                            for spellIdIt in abilityTargetIdList:
+                                self._playersDict[playerId].modifySpellCost(spellIdIt, mult*value)
                                 executed = True
 
                     elif (ability["behavior"] == "melee+draw"):
@@ -937,8 +931,8 @@ class Board:
                             self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyAtk(mult*value)
                             executed = True
                         elif (ability["feature"] == "cost"):
-                            for spellId in abilityTargetIdList:
-                                self._playersDict[playerId].modifySpellCost(spellId, mult*value)
+                            for spellIdIt in abilityTargetIdList:
+                                self._playersDict[playerId].modifySpellCost(spellIdIt, mult*value)
                                 executed = True
 
                     elif (ability["behavior"] == "distance"):
@@ -947,8 +941,8 @@ class Board:
                             self._entitiesDict[selfId].modifyAtk(mult*value)
                             executed = True
                         elif (ability["feature"] == "cost"):
-                            for spellId in abilityTargetIdList:
-                                self._playersDict[playerId].modifySpellCost(spellId, mult*value)
+                            for spellIdIt in abilityTargetIdList:
+                                self._playersDict[playerId].modifySpellCost(spellIdIt, mult*value)
                                 executed = True
                         elif (ability["feature"] == "pv"):
                             for abilityEntityId in abilityTargetIdList:
@@ -958,8 +952,8 @@ class Board:
                     elif (ability["behavior"] == "auraNb"):
                         mult = self._entitiesDict[selfId].aura["nb"] if not(force) else mult # Handle the stopTrigger case
                         if (ability["feature"] == "cost"):
-                            for spellId in abilityTargetIdList:
-                                self._playersDict[playerId].modifySpellCost(spellId, mult*value)
+                            for spellIdIt in abilityTargetIdList:
+                                self._playersDict[playerId].modifySpellCost(spellIdIt, mult*value)
                                 executed = True
                         elif (ability["feature"] == "pv"):
                             for entityId in abilityTargetIdList:

@@ -26,8 +26,8 @@ class Entity:
         self._myTurn                = False
         self._canMove               = True
         self._canAttack             = True
-        self._storedCanMove         = True
-        self._storedCanAttack       = True
+        self._hasMove               = False
+        self._hasAttack             = False
         self._oneByTurnAbilityList  = []
 
     def check(self, descId, team, x, y):
@@ -190,8 +190,8 @@ class Entity:
         self._myTurn                = True
         self._canMove               = True
         self._canAttack             = True
-        self._storedCanMove         = True
-        self._storedCanAttack       = True
+        self._hasMove               = False
+        self._hasAttack             = False
         self._oneByTurnAbilityList  = []
         self.evalTimeoutStates()
         self.applyStates()
@@ -207,6 +207,8 @@ class Entity:
     def move(self, x, y):
         self._x         = x
         self._y         = y
+        self._hasMove   = True
+        self._hasAttack = True
         self._canMove   = False
         self._canAttack = False
     
@@ -228,8 +230,6 @@ class Entity:
         self._armor = max(self._armor + value, 0)
 
     def applyStates(self):
-        self._storedCanMove     = self._canMove
-        self._storedCanAttack   = self._canAttack
         if (self.isInStates("disarmed")):
             self._canAttack = False
         if (self.isInStates("locked")):
@@ -257,12 +257,13 @@ class Entity:
         for state in self._states:
             if (state["feature"] == stateFeature):
                 self._states.remove(state)
-                self._canAttack = self._storedCanAttack
-                self._canMove = self._storedCanMove
+                self._canAttack = not(self._hasAttack)
+                self._canMove   = not(self._hasMove)
                 stateFound = True
                 break
         if not(stateFound):
             raise GameException(f"This state {state} is not applied, it can't be removed !")
+        self.applyStates()
 
     def modifyPv(self, value):
         removedPv = 0
@@ -295,6 +296,8 @@ class Entity:
         return removedPv
 
     def attackAgain(self):
+        self._hasMove   = False
+        self._hasAttack = False
         self._canMove   = True
         self._canAttack = True
 

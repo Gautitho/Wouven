@@ -800,9 +800,9 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {},
-                "behavior"      : "",
-                "break"         : "False",
                 "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
+                "break"         : "False",
+                "behavior"      : "",
                 "feature"       : "pm",
                 "value"         : -1
             }
