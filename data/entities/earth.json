@@ -280,7 +280,7 @@
         "pv"                : 79,
         "armor"             : 0,
         "atk"               : 23,
-        "pm"                : 3,
+        "pm"                : 4,
         "aura"              : {},
         "states"            : [{"feature" : "untargetable", "value" : 0, "duration" : -1}],
         "abilities"         :

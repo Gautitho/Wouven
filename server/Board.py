@@ -642,7 +642,7 @@ class Board:
                     if (conditionDict["target"] == "spellTarget"):
                         conditionTargetId = targetEntityIdList[conditionDict["targetIdx"]]
                     elif (conditionDict["target"] == "spellTargetPlayer"):
-                        conditionTargetId = self.getPlayerIdFromTeam(self._entitiesDict[conditionDict["targetIdx"]].team)
+                        conditionTargetId = self.getPlayerIdFromTeam(self._entitiesDict[targetEntityIdList[conditionDict["targetIdx"]]].team)
                     elif (conditionDict["target"] == "abilityTarget"):
                         conditionTargetId = abilityTargetIdList[conditionDict["targetIdx"]]
                     elif (conditionDict["target"] == "self"):
