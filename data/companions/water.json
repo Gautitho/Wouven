@@ -160,7 +160,7 @@
     {
         "cost"          : {"water" : 8},
         "entityDescId"  : "ecw16",
-        "spellDescId"   : "",
+        "spellDescId"   : "scw16",
         "placementList" :
         [
             {

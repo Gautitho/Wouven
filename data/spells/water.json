@@ -140,5 +140,45 @@
                 "value"         : {"water" : 1}
             }
         ]
+    },
+    "scw16":
+    {
+        "name"              : "Souffle de Phaeris",
+        "race"              : "ecw16",
+        "cost"              : 5,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/water/souffleDePhaeris.png",
+        "descSpritePath"    : "img/spells/desc/water/souffleDePhaeris.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -18
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "break"         : "False",
+                "conditionList" : [],
+                "behavior"      : "swap",
+                "feature"       : "position",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 2}
+            }
+        ]
     }
 }
