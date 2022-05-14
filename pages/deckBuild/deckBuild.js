@@ -24,8 +24,8 @@ var selectedSpellList       = ["shi0"]
 var selectedCompanionList   = []
 var tooltipArray            = []
 
-var deckBuildingCode        = location.search.substring(1);
-if (deckBuildingCode != "")
+var deckBuildingCode        = localStorage.getItem('deckCode');
+if (!!deckBuildingCode && deckBuildingCode.split("&").length === 14)
 {
     selectedHero            = deckBuildingCode.split("&")[0];
     selectedSpellList       = deckBuildingCode.split("&").slice(1, 10)
@@ -94,21 +94,21 @@ function loadPage()
 {
     cleanPage();
     removeTooltips();
-    if (choiceDisplayed == "HERO")
+    if (choiceDisplayed === "HERO")
     {
         $("#heroBtn").css("background-color", "#FF0000");
         $("#spellBtn").css("background-color", "#0000FF");
         $("#companionBtn").css("background-color", "#0000FF");
         heroChoice();
     }
-    else if (choiceDisplayed == "SPELL")
+    else if (choiceDisplayed === "SPELL")
     {
         $("#heroBtn").css("background-color", "#0000FF");
         $("#spellBtn").css("background-color", "#FF0000");
         $("#companionBtn").css("background-color", "#0000FF");
         spellChoice();
     }
-    else if (choiceDisplayed == "COMPANION")
+    else if (choiceDisplayed === "COMPANION")
     {
         $("#heroBtn").css("background-color", "#0000FF");
         $("#spellBtn").css("background-color", "#0000FF");
@@ -148,7 +148,7 @@ function heroChoice()
         var y = 0;
         for (h in heroesDataBase)
         {
-            if (heroesDataBase[h]["race"] == HERO_RACE_LIST[x])
+            if (heroesDataBase[h]["race"] === HERO_RACE_LIST[x])
             {
                 $("#choiceGrid_" + x + "_" + y).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + eval("heroesDataBase." + h + ".entityDescId") + ".descSpritePath") + ")");
                 $("#choiceGrid_" + x + "_" + y).data("heroDescId", h);
@@ -178,7 +178,7 @@ function spellChoice()
         var y = 0;
         for (s in spellsDataBase)
         {
-            if (spellsDataBase[s]["race"] == eval("heroesDataBase." + selectedHero + ".race") && spellsDataBase[s]["elem"] == ELEMS[x])
+            if (spellsDataBase[s]["race"] === eval("heroesDataBase." + selectedHero + ".race") && spellsDataBase[s]["elem"] === ELEMS[x])
             {
                 $("#choiceGrid_" + x + "_" + y).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("spellsDataBase." + s + ".descSpritePath") + ")");
                 $("#choiceGrid_" + x + "_" + y).data("spellDescId", s);
@@ -196,7 +196,7 @@ function companionChoice()
     {
         for (x0 = 0; x0 < ELEMS.length; x0++)
         {
-            if (ELEMS[x0] == 'neutral')
+            if (ELEMS[x0] === 'neutral')
             {
                 for (x1 = 0; x1 < COMPANION_COLS_FOR_NEUTRAL; x1++)
                 {
@@ -222,7 +222,7 @@ function companionChoice()
         var y = 0;
         for (c in companionsDataBase)
         {
-            if (Object.keys(companionsDataBase[c]["cost"]).length == 1 && Object.keys(companionsDataBase[c]["cost"]) == ELEMS[x])
+            if (Object.keys(companionsDataBase[c]["cost"]).length === 1 && Object.keys(companionsDataBase[c]["cost"])[0] === ELEMS[x])
             {
                 $("#choiceGrid_" + x + "_" + y).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + eval("companionsDataBase." + c + ".entityDescId") + ".descSpritePath") + ")");
                 $("#choiceGrid_" + x + "_" + y).data("companionDescId", c);
@@ -232,7 +232,7 @@ function companionChoice()
                 }
                 y = y + 1;
             }
-            else if (Object.keys(companionsDataBase[c]["cost"]).length > 1 && ELEMS[x] == 'neutral')
+            else if (Object.keys(companionsDataBase[c]["cost"]).length > 1 && ELEMS[x] === 'neutral')
             {
                 $("#choiceGrid_" + x + "_" + y).css("background-image", "url(" + PROJECT_ROOT_PATH + eval("entitiesDataBase." + eval("companionsDataBase." + c + ".entityDescId") + ".descSpritePath") + ")");
                 $("#choiceGrid_" + x + "_" + y).data("companionDescId", c);
@@ -285,7 +285,7 @@ function companionBarDisplay()
 
 function validateBtnDisplay()
 {
-    if (selectedSpellList.length == DECK_SPELLS && selectedCompanionList.length == DECK_COMPANIONS)
+    if (selectedSpellList.length === DECK_SPELLS && selectedCompanionList.length === DECK_COMPANIONS)
     {
         $("#validateBtn").css("background-color", "#00FF00");
         $("#validateBtn").text("Valider");
@@ -317,9 +317,11 @@ function companionChoiceBtnClick()
 
 function validateBtnClick()
 {
-    if (selectedSpellList.length == DECK_SPELLS && selectedCompanionList.length == DECK_COMPANIONS)
+    if (selectedSpellList.length === DECK_SPELLS && selectedCompanionList.length === DECK_COMPANIONS)
     {
-        window.location = PROJECT_ROOT_PATH + "index.html?" + selectedHero + "&" + selectedSpellList.join("&") + "&" + selectedCompanionList.join("&");
+        var newDeckCode = selectedHero + "&" + selectedSpellList.join("&") + "&" + selectedCompanionList.join("&");
+        localStorage.setItem('deckCode', newDeckCode);
+        window.location = PROJECT_ROOT_PATH + "index.html";
     }
 }
 
