@@ -10,7 +10,7 @@ var createState = "IDLE" // IDLE, FINDING
 var pseudoInput = document.getElementById("pseudo");
 var deckCodeInput = document.getElementById("deckCode");
 
-socket          = new WebSocket('ws://localhost:50000/');
+socket          = new WebSocket('ws://93.19.92.161:3725/');
 socket.onopen   = function(){};
 
 setInterval(poll, 5000);
