@@ -1777,6 +1777,28 @@
             }
         ]
     },
+    "ss49":
+    {
+        "name"              : "Martyricone",
+        "race"              : "sacrieur",
+        "cost"              : 7,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/sacrieur/martyricone.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/martyricone.png",
+        "allowedTargetList" : [{"empty" : "True", "main" : "adjacent"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "summon",
+                "feature"       : "es1",
+                "value"         : 0
+            }
+        ]
+    },
     "shs0":
     {
         "name"              : "Foulure motivante",

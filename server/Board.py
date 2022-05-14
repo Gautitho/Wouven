@@ -227,10 +227,11 @@ class Board:
                         entityIdList.append(matchId)
         return entityIdList
 
-    def entityIdFromRace(self, race, team):
+    def entityIdFromDescId(self, descId, team):
         for eid in list(self._entitiesDict.keys()):
-            if (self._entitiesDict[eid].descId == race and team == self._entitiesDict[eid].team):
-                return eid
+            if (type(self._entitiesDict[eid]).__name__ == "Entity"):
+                if (self._entitiesDict[eid].descId == descId and team == self._entitiesDict[eid].team):
+                    return eid
         return None
 
     def entityIdWithHighestPv(self, team):
@@ -387,7 +388,7 @@ class Board:
                     if (spell.race in [self._entitiesDict[self._playersDict[playerId].heroEntityId].descId, self._playersDict[playerId].race]):
                         selfEntityId        = self._playersDict[playerId].heroEntityId
                     else:
-                        selfEntityId        = self.entityIdFromRace(spell.race, self._playersDict[playerId].team)
+                        selfEntityId        = self.entityIdFromDescId(spell.race, self._playersDict[playerId].team)
                     if (selfEntityId == None):
                         raise GameException("Race of self entity is not known !")
 
@@ -1102,7 +1103,11 @@ class Board:
                             executed = True
 
                     elif (ability["behavior"] == "summon"):
-                        entityId = self.appendEntity(playerId, ability["feature"], self._playersDict[playerId].team, self._entitiesDict[targetEntityIdList[0]].x, self._entitiesDict[targetEntityIdList[0]].y)
+                        if ("unique" in db.entities[ability["feature"]]["typeList"]):
+                            eid = self.entityIdFromDescId(ability["feature"], self._playersDict[playerId].team)
+                            if (eid != None):
+                                self.removeEntity(eid)
+                        entityId = self.appendEntity(playerId, ability["feature"], self._playersDict[playerId].team, self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].x, self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].y)
                         self._entitiesDict[entityId].startTurn()
                         self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, [None])
                         executed = True

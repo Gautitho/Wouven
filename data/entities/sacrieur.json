@@ -163,5 +163,39 @@
                 "value"         : "-atk"
             }
         ]
+    },
+    "es1" : 
+    {
+        "name"              : "Martyricone",
+        "spritePath"        : "img/spells/icon/sacrieur/martyricone.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/martyricone.png",
+        "pv"                : 92,
+        "armor"             : 0,
+        "atk"               : 32,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "typeList"          : ["unique"],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "startTurn",
+                "target"        : {"main" : "hero", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            }
+        ]
     }
 }
