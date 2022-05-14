@@ -55,12 +55,12 @@ class Tooltip
     if (this.tooltip === null) 
     {
       let tooltip = document.createElement('div')
-      if (this.contentType == "img")
+      if (this.contentType === "img")
       {
         tooltip.classList.add('tooltipImg')
         tooltip.style.backgroundImage = "url('" + this.content + "')"
       }
-      else if (this.contentType == "txt")
+      else if (this.contentType === "txt")
       {
         tooltip.innerHTML = this.content
         tooltip.classList.add('tooltipTxt')

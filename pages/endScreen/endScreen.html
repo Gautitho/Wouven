@@ -24,26 +24,26 @@
         const PROJECT_ROOT_PATH = "../../"
 
         var endCase = location.search.substring(1).split("&")[0];
-        if (endCase == "finished")
+        if (endCase === "finished")
         {
             var gameResult = location.search.substring(1).split("&")[1];
-            if (gameResult == "WIN")
+            if (gameResult === "WIN")
             {
                 $('#gameResult').text("Et vous avez gagné !");
             }
-            else if (gameResult == "LOSS")
+            else if (gameResult === "LOSS")
             {
                 $('#gameResult').text("Et vous avez perdu !");
             }
-            else if (gameResult == "WIN_SURRENDER")
+            else if (gameResult === "WIN_SURRENDER")
             {
                 $('#gameResult').text("Et vous avez gagné car votre adversaire a abandonné, le lâche !");
             }
-            else if (gameResult == "LOSS_SURRENDER")
+            else if (gameResult === "LOSS_SURRENDER")
             {
                 $('#gameResult').text("Et vous avez perdu car vous avez abandonné !");
             }
-            else if (gameResult == "DRAW")
+            else if (gameResult === "DRAW")
             {
                 $('#gameResult').text("Et vous avez égalisé !");
             }
@@ -52,7 +52,7 @@
                 $('#gameResult').text("Et vous avez été vicitme d'un bug !");
             }
         }
-        else if (endCase == "deleted")
+        else if (endCase === "deleted")
         {
             $('#gameResult').text("Elle a été supprimée (probablement à cause d'une déconnexion trop longue de votre adversaire) !");
         }

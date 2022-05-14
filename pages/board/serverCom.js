@@ -17,19 +17,19 @@ socket.onmessage = function(handler)
     console.log(handler.data)
     cmdObj = JSON.parse(handler.data)
 
-    if (cmdObj.cmd == "INIT")
+    if (cmdObj.cmd === "INIT")
     {
         team = cmdObj.team;
         errorLog("");
     }
-    else if (cmdObj.cmd == "STATUS")
+    else if (cmdObj.cmd === "STATUS")
     {
         turn            = cmdObj.turn;
         myPlayer        = cmdObj.myPlayer;
         opPlayer        = cmdObj.opPlayer;
         entities        = cmdObj.entitiesDict;
 
-        if (turn == team)
+        if (turn === team)
         {
             updateState("IDLE");
         }
@@ -39,20 +39,20 @@ socket.onmessage = function(handler)
         }
         errorLog("");
     }
-    else if (cmdObj.cmd == "HISTORIC")
+    else if (cmdObj.cmd === "HISTORIC")
     {
         actionList = cmdObj.actionList;
         updateHistoric();
     }
-    else if (cmdObj.cmd == "ERROR")
+    else if (cmdObj.cmd === "ERROR")
     {
         errorLog(cmdObj.msg);
     }
-    else if (cmdObj.cmd == "END_GAME")
+    else if (cmdObj.cmd === "END_GAME")
     {
         window.location = PROJECT_ROOT_PATH + "pages/endScreen/endScreen.html?" + "finished&" + cmdObj.result;
     }
-    else if (cmdObj.cmd == "DELETED_GAME")
+    else if (cmdObj.cmd === "DELETED_GAME")
     {
         window.location = PROJECT_ROOT_PATH + "pages/endScreen/endScreen.html?" + "deleted&" + cmdObj.gameId;
     }

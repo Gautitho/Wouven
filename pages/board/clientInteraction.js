@@ -23,22 +23,22 @@ function removeTooltips()
 
 function updateState(newState)
 {
-    if (newState == "IDLE")
+    if (newState === "IDLE")
     {
         $("#stateBtn").css("background-color", "#00FF00");
         $("#stateBtn").text("Fin de tour");
     }
-    else if (newState == "MOVE")
+    else if (newState === "MOVE")
     {
         $("#stateBtn").css("background-color", "#0000FF");
         $("#stateBtn").text("Déplacement");
     }
-    else if (newState == "SPELL")
+    else if (newState === "SPELL")
     {
         $("#stateBtn").css("background-color", "#0000FF");
         $("#stateBtn").text("Lancement du sort");
     }
-    else if (newState == "SUMMON")
+    else if (newState === "SUMMON")
     {
         $("#stateBtn").css("background-color", "#0000FF");
         $("#stateBtn").text("Invocation");
@@ -125,11 +125,11 @@ function updateMyStatus()
 
 function updateMyCompanion(companionIdx)
 {
-    if (myPlayer.companionList[companionIdx].state == "alive")
+    if (myPlayer.companionList[companionIdx].state === "alive")
     {
         $("#myCompanion_" + companionIdx).css("background-color", "#a155d4");
     }
-    else if (myPlayer.companionList[companionIdx].state == "dead")
+    else if (myPlayer.companionList[companionIdx].state === "dead")
     {
         $("#myCompanion_" + companionIdx).css("background-color", "#FF0000");
     }
@@ -192,7 +192,7 @@ function updateHistoric()
     }
     for (i = 0; i < actionList.length; i++)
     {
-        if (actionList[i].type == "move")
+        if (actionList[i].type === "move")
         {
             $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].source.spritePath + ")");
             $("#historic0_" + i).css("border-color", actionList[i].source.team);
@@ -205,7 +205,7 @@ function updateHistoric()
                 tooltipArray.push(new Tooltip(document.getElementById("historic2_" + i), PROJECT_ROOT_PATH + actionList[i].targetList[0].descSpritePath, "img"));
             }
         }
-        else if (actionList[i].type == "spellCast")
+        else if (actionList[i].type === "spellCast")
         {
             $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].source.spritePath + ")"); // TODO : Normaliser ce comportement (ne plus utiliser les data bases dans le client et passer les spritePath par commandes)
             $("#historic0_" + i).css("border-color", actionList[i].source.team);
@@ -223,13 +223,13 @@ function updateHistoric()
                 tooltipArray.push(new Tooltip(document.getElementById("historic2_" + i), PROJECT_ROOT_PATH + actionList[i].targetList[1].descSpritePath, "img"));
             }
         }
-        else if (actionList[i].type == "summon")
+        else if (actionList[i].type === "summon")
         {
             $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + actionList[i].source.spritePath + ")");
             $("#historic0_" + i).css("border-color", actionList[i].source.team);
             tooltipArray.push(new Tooltip(document.getElementById("historic0_" + i), PROJECT_ROOT_PATH + actionList[i].source.descSpritePath, "img"));
         }
-        else if (actionList[i].type == "useReserve")
+        else if (actionList[i].type === "useReserve")
         {
             $("#historic0_" + i).css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/paStock.png)");
             $("#historic0_" + i).css("border-color", actionList[i].source.team);
@@ -244,25 +244,25 @@ function errorLog(message)
 
 function stateBtnClick()
 {
-    if (state == "IDLE")
+    if (state === "IDLE")
     {
         endTurn();
     }
-    else if (state == "MOVE")
+    else if (state === "MOVE")
     {
         move();
         boardTileList = [];
         selectedEntity = -1;
         updateState("IDLE");
     }
-    else if (state == "SPELL")
+    else if (state === "SPELL")
     {
         spell();
         boardTileList = [];
         selectedSpell = -1
         updateState("IDLE");
     }
-    else if (state == "SUMMON")
+    else if (state === "SUMMON")
     {
         summon();
         boardTileList = [];
@@ -273,14 +273,14 @@ function stateBtnClick()
 
 function cancelBtnClick()
 {
-    if (state == "MOVE")
+    if (state === "MOVE")
     {
         boardTileList = [];
         selectedEntity = -1;
         updateState("IDLE");
         updateBoard();
     }
-    else if (state == "SPELL")
+    else if (state === "SPELL")
     {
         boardTileList = [];
         selectedEntity = -1;
@@ -288,7 +288,7 @@ function cancelBtnClick()
         updateBoard();
         updateHandBar();
     }
-    else if (state == "SUMMON")
+    else if (state === "SUMMON")
     {
         updateMyCompanion(selectedMyCompanion);
         boardTileList = [];
@@ -317,11 +317,11 @@ function boardTileClick(tile)
     {
         errorLog("Not your turn, bro !");
     }
-    else if (state == "IDLE")
+    else if (state === "IDLE")
     {
         for (entityId in entities)
         {
-            if (entities[entityId].x == x && entities[entityId].y == y && entities[entityId].team == team)
+            if (entities[entityId].x === x && entities[entityId].y === y && entities[entityId].team === team)
             {
                 updateState("MOVE");
                 selectedEntity = entityId;
@@ -330,7 +330,7 @@ function boardTileClick(tile)
             } 
         }
     }
-    else if (state == "MOVE")
+    else if (state === "MOVE")
     {
         if (boardTileList[boardTileList.length-1].x != x || boardTileList[boardTileList.length-1].y != y)
         {
@@ -338,12 +338,12 @@ function boardTileClick(tile)
             $("#board_" + x + "_" + y).css("background-color", "#6DB3F2");
         }
     }
-    else if (state == "SPELL")
+    else if (state === "SPELL")
     {
         boardTileList.push({"x" : x, "y" : y});
         $("#board_" + x + "_" + y).css("background-color", "#6DB3F2");
     }
-    else if (state == "SUMMON")
+    else if (state === "SUMMON")
     {
         boardTileList.push({"x" : x, "y" : y});
         $("#board_" + x + "_" + y).css("background-color", "#6DB3F2");
@@ -358,7 +358,7 @@ function spellClick(spell)
     {
         errorLog("Not your turn, bro !");
     }
-    else if (state == "IDLE")
+    else if (state === "IDLE")
     {
         updateState("SPELL");
         selectedSpell = spellIdx;
@@ -374,7 +374,7 @@ function myCompanionClick(myCompanion)
     {
         errorLog("Not your turn, bro !");
     }
-    else if (state == "IDLE")
+    else if (state === "IDLE")
     {
         updateState("SUMMON");
         selectedMyCompanion = myCompanionId;
