@@ -8,10 +8,14 @@ Mettre en place une redirection entre les ports Web et python interne et externe
 
 Adresse IP externe de la box : 93.19.92.161
 Adresse IP interne de la raspberry : 192.168.1.95  
-Web server port internal : 80  
-Web server port external : 3074  
-Python server port internal : 50000  
-Python server port external : 3724  
+Web server port internal : 80
+Web server port external : 3074
+Python server port internal : 50000
+Python server port external : 3724
+Web test server port internal : 81
+Web test server port external : 3075
+Python test server port internal : 50001
+Python test server port external : 3725
 
 # Modifications locales à apporter sur le serveur
 

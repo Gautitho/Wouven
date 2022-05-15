@@ -400,7 +400,7 @@ class Board:
                         targetDict["ref"]           = "self"        if not("ref" in spell.allowedTargetList[allowedTargetIdx])          else spell.allowedTargetList[allowedTargetIdx]["ref"]
                         targetDict["team"]          = "all"         if not("team" in spell.allowedTargetList[allowedTargetIdx])         else spell.allowedTargetList[allowedTargetIdx]["team"]
                         targetDict["typeList"]      = []            if not("typeList" in spell.allowedTargetList[allowedTargetIdx])     else spell.allowedTargetList[allowedTargetIdx]["typeList"]
-                        targetDict["noTypeType"]    = []            if not("noTypeList" in spell.allowedTargetList[allowedTargetIdx])   else spell.allowedTargetList[allowedTargetIdx]["noTypeList"]
+                        targetDict["noTypeList"]    = []            if not("noTypeList" in spell.allowedTargetList[allowedTargetIdx])   else spell.allowedTargetList[allowedTargetIdx]["noTypeList"]
 
                         # Set reference tile
                         if (targetDict["ref"] == "self"):

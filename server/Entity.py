@@ -276,6 +276,8 @@ class Entity:
                 apply = False
 
             if apply:
+                if (self._myTurn):
+                    self.addState({"feature" : "agony", "value" : 0, "duration" : 0})
                 if (self.isInStates("stunned")):
                     self.removeState("stunned")
                 if (self._armor + value > 0):
@@ -289,9 +291,6 @@ class Entity:
                 self._pv = db.entities[self._descId]["pv"]
             else:
                 self._pv += value
-
-        if (self._myTurn and removedPv < 0):
-            self.addState({"feature" : "agony", "value" : 0, "duration" : 0})
 
         return removedPv
 
