@@ -6,11 +6,8 @@
 - Si un joueur fait un mauvais formulaire, il se retrouve quand même en tant que waitingPlayer (peut être uniquement en testMode)
 - Mort de Championne sanglante
 - Virer polling
-- Possibilité d'abandonner
 - Interaction gelé, éclaireur d'élite
-- Oeil tatoué, vol de PA
-- Assomé
-- Julith
+- Couper la file quand il y a deconnexion du joueur
 - Mécaniques à dev :
   - Rembobinage
   - Déclenchement d'un mécanisme

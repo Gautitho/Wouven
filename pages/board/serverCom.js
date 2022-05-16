@@ -3,6 +3,8 @@ socket      = new WebSocket('ws://localhost:50000/');
 var gameName = decodeURI(location.search.substring(1).split("&")[0]);
 var playerId = decodeURI(location.search.substring(1).split("&")[1]);
 
+var startGameAudio = new Audio(PROJECT_ROOT_PATH + "pages/board/startGame.mp3");
+
 socket.onopen = function()
 {
     clientCmd = {"cmd" : "GET_INIT", "playerId" : playerId};
@@ -21,6 +23,7 @@ socket.onmessage = function(handler)
     {
         team = cmdObj.team;
         errorLog("");
+        startGameAudio.play();
     }
     else if (cmdObj.cmd === "STATUS")
     {
