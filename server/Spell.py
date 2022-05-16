@@ -53,6 +53,10 @@ class Spell:
     def abilities(self):
         return copy.deepcopy(self._abilities)
 
+    @property
+    def typeList(self):
+        return copy.deepcopy(self._typeList)
+
     def modifyCost(self, value):
         self._cost = self._cost + value
 

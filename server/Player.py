@@ -156,6 +156,14 @@ class Player:
                 spellDescId = self._deckSpellDescIdList.pop(0)
                 self._deckSpellDescIdList.append(spellDescId)
 
+    def getSpell(self, descId, nb):
+        for i in range(nb):
+            if (len(list(self._handSpellDict.keys())) < HAND_SPELLS):
+                self._handSpellDict[self._nextHandSpellId] = Spell(descId)
+                self._nextHandSpellId += 1
+            else:
+                self._deckSpellDescIdList.append(descId)
+
     def modifyGauge(self, gaugeType, value):
         if (gaugeType in ["fire", "water", "earth", "air", "neutral"]):
             if (self._gauges[gaugeType] + value < 0):
@@ -172,7 +180,8 @@ class Player:
     def playSpell(self, spellId):
         spell = self._handSpellDict[spellId]
         del self._handSpellDict[spellId]
-        self._deckSpellDescIdList.append(spell.descId)
+        if not("destructible" in spell.typeList):
+            self._deckSpellDescIdList.append(spell.descId)
         self._pa -= max(spell.cost, 0)
         self._spellsPlayedDuringTurn += 1
 

@@ -799,6 +799,11 @@ class Board:
                             conditionsValid = False
                             break
 
+                    elif (conditionDict["feature"] == "feature"):
+                        if not(conditionDict["value"] == triggingAbility["feature"]):
+                            conditionsValid = False
+                            break
+
                     elif (conditionDict["feature"] == "handSpells"):
                         if not(operatorDict[conditionDict["operator"]](len(list(self._playersDict[conditionTargetId].handSpellDict.keys())), int(conditionDict["value"]))):
                             conditionsValid = False
@@ -1122,7 +1127,11 @@ class Board:
                         executed = True
 
                     elif (ability["behavior"] == "draw"):
-                        self._playersDict[abilityTargetIdList[0]].draw(value, ability["feature"])
+                        self._playersDict[abilityTargetIdList[targetDict["targetIdx"]]].draw(value, ability["feature"])
+                        executed = True
+
+                    elif (ability["behavior"] == "generateSpell"):
+                        self._playersDict[abilityTargetIdList[targetDict["targetIdx"]]].getSpell(ability["feature"], value)
                         executed = True
 
                     # If stopTriggerList is defined, the ability must be added to the ongoingAbilityList
