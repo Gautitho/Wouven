@@ -160,17 +160,17 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/fire/bondDeGoultard.png",
         "descSpritePath"    : "img/spells/desc/fire/bondDeGoultard.png",
-        "allowedTargetList" : [{"entity" : "True", "main" : "self"}, {"empty" : "True"}],
+        "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : {},
-                "conditionList" : [{"feature" :"range", "ref" : "abilityTarget", "target" : "spellTarget", "targetIdx" : 1, "value" : 3, "operator" : "<="}],
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" :"range", "target" : "spellTarget", "value" : 3, "operator" : "<="}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
-                "value"         : 1
+                "value"         : 0
             },
             {
                 "trigger"       : "spellCast",

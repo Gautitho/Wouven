@@ -556,7 +556,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "board", "team" : "my", "noTypeList" : ["mechanism"]},
-                "conditionList" : [{"feature" : "elemState", "value" : "wet"}],
+                "conditionList" : [{"feature" : "elemState", "value" : "wet", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -986,7 +986,7 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/eniripsa/echappee.png",
         "descSpritePath"    : "img/spells/desc/eniripsa/echappee.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
             {
