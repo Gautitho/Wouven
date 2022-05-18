@@ -1201,5 +1201,45 @@
                 "value"         : {"fire" : 1}
             }
         ]
+    },
+    "she4":
+    {
+        "name"              : "Explosion de soins",
+        "race"              : "ehe4",
+        "cost"              : 5,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/eniripsa/explosionDeSoins.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/explosionDeSoins.png",
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "around", "team" : "op", "noTypeList" : ["mechanism"]},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -15
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "board", "team" : "my", "noTypeList" : ["mechanism"]},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 10
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 2}
+            }
+        ]
     }
 }

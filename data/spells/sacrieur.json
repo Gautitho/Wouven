@@ -1123,7 +1123,7 @@
                 "break"         : "False",
                 "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
                 "feature"       : "armor",
-                "value"         : 13
+                "value"         : 17
             }
         ]
     },

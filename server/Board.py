@@ -809,6 +809,12 @@ class Board:
                             conditionsValid = False
                             break
 
+                    # Only for Scalpel, ugly implementation
+                    elif (conditionDict["feature"] == "heal"):
+                        if not(triggingAbility["feature"] == "pv" and triggingAbility["value"] > 0 and (selfId in triggingAbilityTargetIdList)):
+                            conditionsValid = False
+                            break
+
                     # Only for Ombraden, ugly implementation
                     elif (conditionDict["feature"] == "position"):
                         if (conditionDict["value"] == "self" and ((triggingAbility["feature"] == "position" and selfId in triggingAbilityTargetIdList) or triggingAbility["behavior"] == "swap")):

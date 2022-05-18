@@ -8,6 +8,10 @@
 - Virer polling
 - Interaction gelé, éclaireur d'élite
 - Couper la file quand il y a deconnexion du joueur
+- Restauration (Index error)
+- Echappee
+- Repousse sur meca
+- Bond de Goultard mauvais clicks
 - Mécaniques à dev :
   - Rembobinage
   - Déclenchement d'un mécanisme
