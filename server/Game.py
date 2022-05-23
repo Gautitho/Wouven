@@ -6,8 +6,8 @@ from functions import *
 from Board import *
 from GameException import *
 
-deck1       = {"heroDescId" : "he2", "spellDescIdList" : ["she2", "se7", "se33", "se14", "se4", "se23", "se17", "sc10", "ss49"], "companionDescIdList" : ["ce10", "cw8", "cm0", "cf16"]}
-deck2       = {"heroDescId" : "hi1", "spellDescIdList" : ["shi1", "si48", "ss0", "ss24", "ss35", "si1", "si1", "sc10", "ss44"], "companionDescIdList" : ["cf2", "cw14", "cm0", "cm4"]}
+deck1       = {"heroDescId" : "he4", "spellDescIdList" : ["she4", "se7", "se6", "se5", "se4", "se23", "se21", "sc10", "ss49"], "companionDescIdList" : ["ce10", "cw8", "cm0", "cm4"]}
+deck2       = {"heroDescId" : "hs3", "spellDescIdList" : ["shs3", "ss42", "ss43", "ss24", "ss35", "si1", "si1", "sc10", "ss44"], "companionDescIdList" : ["cf2", "cw14", "cm0", "cm4"]}
 
 class Game:
 
@@ -15,7 +15,6 @@ class Game:
         self._name              = name
         # List of game states : MATCHMAKING, RUNNING, DONE
         self._gameState         = "MATCHMAKING"
-        self._turn              = "blue"
         self._board             = Board()
         self._serverCmdList     = []
         self._actionList        = []
@@ -32,7 +31,7 @@ class Game:
 
     @property
     def turn(self):
-        return self._turn
+        return self._board.turn
 
     @property
     def board(self):
@@ -145,7 +144,6 @@ class Game:
 
         for playerId in list(self._board.playersDict.keys()):
             if (playerId == firstPlayerId):
-                self._turn = self._board.playersDict[playerId].team
                 self._board.playersDict[playerId].draw(5)
                 self._board.startTurn(playerId)
             else:
@@ -163,7 +161,7 @@ class Game:
         for playerId in list(self._board.playersDict.keys()):
             serverCmd = {}
             serverCmd["cmd"]    = "STATUS"
-            serverCmd["turn"]   = self._turn
+            serverCmd["turn"]   = self._board.turn
             for playerIdA in list(self._board.playersDict.keys()):
                 if playerId == playerIdA:
                     serverCmd["myPlayer"]   = self._board.playersDict[playerIdA].getMyStatusDict()
@@ -227,7 +225,7 @@ class Game:
     def checkTurn(self, playerId):
         if not(playerId in list(self._board.playersDict.keys())):
             raise GameException(f"PlayerId ({playerId}) not recognized !")
-        elif (self._board.playersDict[playerId].team != self._turn):
+        elif (self._board.playersDict[playerId].team != self._board.turn):
             raise GameException("Not your turn !")
 
     def getOpPlayerId(self, playerId):
@@ -250,7 +248,6 @@ class Game:
             raise GameException(f"2 players already in the game {self._name} !")
 
     def EndTurn(self, playerId):
-        self._turn = "blue" if self._turn == "red" else "red"
         self._board.endTurn(playerId)
         self._board.startTurn(self.getOpPlayerId(playerId))
 
@@ -282,7 +279,7 @@ class Game:
         s += self._name + " : "
         s += "Game state = " + self._gameState + " / "
         s += "Connected players = " + str(self._connectedPlayers) + " / "
-        s += "Turn = " + self._turn + " / "
+        s += "Turn = " + self._board.turn + " / "
         s += "Player Ids : "
         for playerId in list(self._board.playersDict.keys()):
             s += playerId + " | "

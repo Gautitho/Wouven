@@ -15,6 +15,7 @@ class Board:
         self._entitiesDict      = {}
         self._playersDict       = {}
         self._ongoingAbilityList = []
+        self._turn              = "blue"
 
     @property
     def entitiesDict(self):
@@ -23,6 +24,10 @@ class Board:
     @property
     def playersDict(self):
         return dict(self._playersDict)
+
+    @property
+    def turn(self):
+        return self._turn
 
     def appendPlayer(self, playerId, deck, team, pseudo):
         if (team == "blue"):
@@ -238,13 +243,14 @@ class Board:
         entityIdList = []
         highestPv = 0
         for eid in list(self._entitiesDict.keys()):
-            if (team == "all" or team == self._entitiesDict[eid].team):
-                if (self._entitiesDict[eid].pv > highestPv):
-                    entityIdList = []
-                    entityIdList.append(eid)
-                    highestPv = self._entitiesDict[eid].pv
-                elif (self._entitiesDict[eid].pv == highestPv):
-                    entityIdList.append(eid)
+            if (type(self._entitiesDict[eid]).__name__ == "Entity"):
+                if (team == "all" or team == self._entitiesDict[eid].team):
+                    if (self._entitiesDict[eid].pv > highestPv):
+                        entityIdList = []
+                        entityIdList.append(eid)
+                        highestPv = self._entitiesDict[eid].pv
+                    elif (self._entitiesDict[eid].pv == highestPv):
+                        entityIdList.append(eid)
         return entityIdList
 
     def isAdjacentToTile(self, xSelf, ySelf, xTarget, yTarget):
@@ -255,6 +261,7 @@ class Board:
 
     def startTurn(self, playerId):
         self.removeOngoingAbilities("startTurn")
+        self._turn = self._playersDict[playerId].team
         self._playersDict[playerId].startTurn()
         for entityId in self._playersDict[playerId].boardEntityIds:
             self._entitiesDict[entityId].startTurn()
@@ -525,11 +532,13 @@ class Board:
         else:
             raise GameException("Only one summon position is allowed !")
 
-    def executeAbilities(self, abilityList, trigger, playerId, selfId, targetEntityIdList, spellElem=None, spellId=None, triggingAbility=None, triggingAbilityTargetIdList=None, allowedTargetList=None, force=False):
-        auraUsed    = False
-        opPlayerId  = self.getOpPlayerId(playerId) if playerId else ""
+    def executeAbilities(self, abilityList, trigger, playerId, selfId, targetEntityIdList, spellElem=None, spellId=None, triggingAbility=None, allowedTargetList=None, passiveTriggedList=None, force=False):
+        auraUsed            = False
+        opPlayerId          = self.getOpPlayerId(playerId) if playerId else ""
         for ability in abilityList:
             if (trigger == ability["trigger"] or force):
+
+                passiveTriggerList  = [] # [{actor / trigger / targetId}] # Behavior to handle very specific cases, avoid it
 
                 # Set stopTrigger
                 stopTriggerList = [] if not("stopTriggerList" in ability) else ability["stopTriggerList"]
@@ -638,6 +647,7 @@ class Board:
                     conditionDict["ref"]        = "self"            if not("ref" in condition)          else condition["ref"]
                     conditionDict["refIdx"]     = 0                 if not("refIdx" in condition)       else int(condition["refIdx"])
                     conditionDict["value"]      = "0"               if not("value" in condition)        else condition["value"]
+                    conditionDict["trigger"]    = "all"             if not("trigger" in condition)      else condition["trigger"]
 
                     # Target
                     if (conditionDict["target"] == "spellTarget"):
@@ -809,11 +819,14 @@ class Board:
                             conditionsValid = False
                             break
 
-                    # Only for Ombraden, ugly implementation
-                    elif (conditionDict["feature"] == "position"):
-                        if (conditionDict["value"] == "self" and ((triggingAbility["feature"] == "position" and selfId in triggingAbilityTargetIdList) or triggingAbility["behavior"] == "swap")):
-                            pass
-                        else:
+                    # Custom case
+                    elif (conditionDict["feature"] == "passive"):
+                        found = False
+                        for passive in passiveTriggedList:
+                            if (conditionDict["value"] == passive["action"] and conditionTargetId == passive["actorId"] and conditionDict["trigger"] in ["all", passive["trigger"]]):
+                                found = True
+
+                        if not(found):
                             conditionsValid = False
                             break
 
@@ -847,9 +860,6 @@ class Board:
                 executed = False
                 mult = 1 if not("mult" in ability) else ability["mult"] # Usefull to handle stopTrigger case
                 if (conditionsValid or force):
-                    if (trigger != "ability"):
-                        for entityId in self._playersDict[playerId].boardEntityIds:
-                            self.executeAbilities(self._entitiesDict[entityId].abilities, "ability", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, targetEntityIdList, triggingAbility=ability, triggingAbilityTargetIdList=abilityTargetIdList)
                     if (ability["behavior"] in ["", "explosion", "aura"]):
                         if (ability["feature"] == "pv" or ability["feature"] == "stealLife"):
                             for abilityEntityId in abilityTargetIdList:
@@ -864,8 +874,12 @@ class Board:
                                     removedPv = self._entitiesDict[guardId].modifyPv(value)
                                 else:
                                     removedPv = self._entitiesDict[abilityEntityId].modifyPv(value)
+                                if (value > 0 and self._entitiesDict[abilityEntityId].pv < db.entities[self._entitiesDict[abilityEntityId].descId]["pv"]):
+                                    passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : abilityEntityId})
                                 if (ability["feature"] == "stealLife"):
                                     self._entitiesDict[selfId].modifyPv(-removedPv)
+                                    if (-removedPv > 0 and self._entitiesDict[selfId].pv < db.entities[self._entitiesDict[abilityEntityId].descId]["pv"]):
+                                        passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : selfId})
                                 executed = True
                         elif (ability["feature"] == "elemState"):
                             for abilityEntityId in abilityTargetIdList:
@@ -888,6 +902,7 @@ class Board:
                                 executed = True
                         elif (ability["feature"] == "position"):
                             self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].tp(self._entitiesDict[targetEntityIdList[value]].x, self._entitiesDict[targetEntityIdList[value]].y)
+                            passiveTriggerList.append({"action" : "tp", "trigger" : trigger, "actorId" : abilityTargetIdList[targetDict["targetIdx"]]})
                             executed = True
                         elif (ability["feature"] == "paStock"):
                             self._playersDict[abilityTargetIdList[0]].modifyPaStock(value)
@@ -905,13 +920,17 @@ class Board:
                         x = self._entitiesDict[selfId].x
                         y = self._entitiesDict[selfId].y
                         self._entitiesDict[selfId].tp(self._entitiesDict[abilityTargetIdList[value]].x, self._entitiesDict[abilityTargetIdList[value]].y)
+                        passiveTriggerList.append({"action" : "tp", "trigger" : trigger, "actorId" : selfId})
                         self._entitiesDict[abilityTargetIdList[value]].tp(x, y)
+                        passiveTriggerList.append({"action" : "tp", "trigger" : trigger, "actorId" : abilityTargetIdList[value]})
                         executed = True
 
                     elif (ability["behavior"] == "melee"):
                         mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team)) if not(force) else mult # Handle the stopTrigger case
                         if (ability["feature"] == "pv"): 
                             self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyPv(mult*value)
+                            if (value > 0 and self._entitiesDict[abilityEntityId].pv < db.entities[self._entitiesDict[abilityEntityId].descId]["pv"]):
+                                passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : abilityTargetIdList[targetDict["targetIdx"]]})
                             executed = True
                         elif (ability["feature"] == "atk"): 
                             self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyAtk(mult*value)
@@ -932,6 +951,8 @@ class Board:
                         mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[playerId].team)) if not(force) else mult # Handle the stopTrigger case
                         if (ability["feature"] == "pv"): 
                             self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyPv(mult*value)
+                            if (value > 0 and self._entitiesDict[abilityEntityId].pv < db.entities[self._entitiesDict[abilityEntityId].descId]["pv"]):
+                                passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : abilityTargetIdList[targetDict["targetIdx"]]})
                             executed = True
                         elif (ability["feature"] == "atk"): 
                             self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyAtk(mult*value)
@@ -953,6 +974,8 @@ class Board:
                         elif (ability["feature"] == "pv"):
                             for abilityEntityId in abilityTargetIdList:
                                 self._entitiesDict[abilityEntityId].modifyPv(mult*value)
+                                if (value > 0 and self._entitiesDict[abilityEntityId].pv < db.entities[self._entitiesDict[abilityEntityId].descId]["pv"]):
+                                    passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : abilityEntityId})
                                 executed = True
 
                     elif (ability["behavior"] == "auraNb"):
@@ -962,12 +985,14 @@ class Board:
                                 self._playersDict[playerId].modifySpellCost(spellIdIt, mult*value)
                                 executed = True
                         elif (ability["feature"] == "pv"):
-                            for entityId in abilityTargetIdList:
-                                self._entitiesDict[entityId].modifyPv(mult*value)
+                            for abilityEntityId in abilityTargetIdList:
+                                self._entitiesDict[abilityEntityId].modifyPv(mult*value)
+                                if (value > 0 and self._entitiesDict[abilityEntityId].pv < db.entities[self._entitiesDict[abilityEntityId].descId]["pv"]):
+                                    passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : abilityEntityId})
                                 executed = True
                         elif (ability["feature"] == "pm"):
-                            for entityId in abilityTargetIdList:
-                                self._entitiesDict[entityId].modifyPm(mult*value)
+                            for abilityEntityId in abilityTargetIdList:
+                                self._entitiesDict[abilityEntityId].modifyPm(mult*value)
                                 executed = True
                         elif (ability["feature"] == "paStock"):
                             self._playersDict[playerId].modifyPaStock(mult*value)
@@ -1022,6 +1047,8 @@ class Board:
                                     raise GameException("Target can't be on the same tile than selfEntity !")
                             else:
                                 raise GameException("Target not aligned with selfEntity !")
+                        passiveTriggerList.append({"action" : "charge", "trigger" : trigger, "actorId" : selfId})
+                        passiveTriggerList.append({"action" : "tp", "trigger" : trigger, "actorId" : selfId})
 
                     elif (ability["behavior"] == "pull"):
                         for abilityEntityId in abilityTargetIdList:
@@ -1045,27 +1072,25 @@ class Board:
                                     raise GameException("Target can't be on the same tile than selfEntity !")
                             else:
                                 raise GameException("Target not aligned with selfEntity !")
+                            passiveTriggerList.append({"action" : "tp", "trigger" : trigger, "actorId" : abilityEntityId})
 
                     elif (ability["behavior"] == "push"):
                         for abilityEntityId in abilityTargetIdList:
                             self.pushEntity(abilityEntityId, self._entitiesDict[targetEntityIdList[1]].x, self._entitiesDict[targetEntityIdList[1]].y, value)
+                            passiveTriggerList.append({"action" : "tp", "trigger" : trigger, "actorId" : abilityEntityId})
                             executed = True
 
                     elif (ability["behavior"] == "pushBack"):
                         for abilityEntityId in abilityTargetIdList:
                             self.pushEntity(abilityEntityId, self._entitiesDict[targetEntityIdList[0]].x, self._entitiesDict[targetEntityIdList[0]].y, -value)
+                            passiveTriggerList.append({"action" : "tp", "trigger" : trigger, "actorId" : abilityEntityId})
                             executed = True
 
                     elif (ability["behavior"] == "pushAwayFromSelf"):
                         for abilityEntityId in abilityTargetIdList:
                             self.pushEntity(abilityEntityId, self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, -value)
+                            passiveTriggerList.append({"action" : "tp", "trigger" : trigger, "actorId" : abilityEntityId})
                             executed = True
-
-                    elif (ability["behavior"] == "explosion"):
-                        for abilityEntityId in abilityTargetIdList:
-                            for entityId in self.entityIdAroundTile(self._entitiesDict[abilityEntityId].x, self._entitiesDict[abilityEntityId].y, self._playersDict[self.getOpPlayerId(playerId)].team):
-                                self._entitiesDict[entityId].modifyPv(value)
-                                executed = True
 
                     elif (ability["behavior"] == "bounce"):
                         for abilityEntityId in abilityTargetIdList:
@@ -1149,6 +1174,11 @@ class Board:
                 # Check if an aura has been used / aura must be specified only once by aura ability
                 if (executed and ability["behavior"] == "aura"):
                     auraUsed = True
+                
+                if (trigger != "ability"):
+                    for entityId in self._entitiesDict:
+                        if (type(self._entitiesDict[entityId]).__name__ == "Entity"):
+                            self.executeAbilities(self._entitiesDict[entityId].abilities, "ability", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, targetEntityIdList, triggingAbility=ability, passiveTriggedList=passiveTriggerList)
 
         if auraUsed:
             self._entitiesDict[selfId].consumeAura(1)

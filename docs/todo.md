@@ -1,13 +1,15 @@
 # TODO List
 
-- Ombraden : le passif doit proc aussi pendant le tour de l'adversaire mais pas sur une invocation de compagnon
-- Charge de toxine trigger passif Bouvaloir (probablement aussi voldorak) => régler ça avec une condtion de race
 - Sorts de : Remington, Julith, Coqueline, Flopin, Kerubim
 - Si un joueur fait un mauvais formulaire, il se retrouve quand même en tant que waitingPlayer (peut être uniquement en testMode)
 - Mort de Championne sanglante
 - Virer polling
 - Interaction gelé, éclaireur d'élite
 - Couper la file quand il y a deconnexion du joueur
+- Restauration (Index error)
+- Echappee
+- Repousse sur meca
+- Bond de Goultard mauvais clicks
 - Mécaniques à dev :
   - Rembobinage
   - Déclenchement d'un mécanisme

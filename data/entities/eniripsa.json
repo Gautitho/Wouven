@@ -32,6 +32,39 @@
             }
         ]
     },
+    "ehe4" :
+    {
+        "name"              : "Scalpel",
+        "spritePath"        : "img/entities/icon/eniripsa/scalpel.png",
+        "descSpritePath"    : "img/entities/desc/eniripsa/scalpel.png",
+        "pv"                : 375,
+        "armor"             : 0,
+        "atk"               : 18,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "ability",
+                "target"        : {"main" : "highestPv", "team" : "op", "noTypeList" : ["mechanism"]},
+                "conditionList" : [{"feature" : "turn", "value" : "my"}, {"feature" : "passive", "value" : "heal", "target" : "self"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
     "ee0" : 
     {
         "name"              : "Laboratoire de flammes",

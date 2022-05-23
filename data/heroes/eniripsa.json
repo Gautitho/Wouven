@@ -4,5 +4,11 @@
         "race"          : "eniripsa",
         "spellDescId"   : "she2",
         "entityDescId"  : "ehe2"
+    },
+    "he4" :
+    {
+        "race"          : "eniripsa",
+        "spellDescId"   : "she4",
+        "entityDescId"  : "ehe4"
     }
 }
