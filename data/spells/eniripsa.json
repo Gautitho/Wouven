@@ -836,6 +836,37 @@
             }
         ]
     },
+    "se26":
+    {
+        "name"              : "Laboratoire de nocturancie",
+        "race"              : "eniripsa",
+        "cost"              : 5,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/eniripsa/laboratoireDeNocturancie.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/laboratoireDeNocturancie.png",
+        "allowedTargetList" : [{"empty" : "True"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [{"feature" : "range", "target" : "spellTarget", "value" : 2, "operator" : "<="}],
+                "break"         : "True",
+                "behavior"      : "summon",
+                "feature"       : "ee2",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
+            }
+        ]
+    },
     "se27":
     {
         "name"              : "A l'ecoute du monde",
@@ -873,6 +904,55 @@
                 "break"         : "False",
                 "feature"       : "gauges",
                 "value"         : {"earth" : 1}
+            }
+        ]
+    },
+    "se28":
+    {
+        "name"              : "A la vie a la mort",
+        "race"              : "eniripsa",
+        "cost"              : 6,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/eniripsa/aLaVieALaMort.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/aLaVieALaMort.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -35
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "generateSpell",
+                "feature"       : "se52",
+                "value"         : 1
             }
         ]
     },
@@ -1168,6 +1248,38 @@
                 "conditionList" : [],
                 "feature"       : "gauges",
                 "value"         : {"water" : 1}
+            }
+        ]
+    },
+    "se52":
+    {
+        "name"              : "Nocturien",
+        "race"              : "eniripsa",
+        "cost"              : 2,
+        "elem"              : "earth",
+        "typeList"          : ["destructible"],
+        "spritePath"        : "img/spells/icon/eniripsa/nocturien.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/nocturien.png",
+        "allowedTargetList" : [{"empty" : "True", "main" : "adjacent"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "summon",
+                "feature"       : "ee4",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
             }
         ]
     },

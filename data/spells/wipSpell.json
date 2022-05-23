@@ -305,46 +305,6 @@
             }
         ]
     },
-    "se28":
-    {
-        "name"              : "A la vie a la mort",
-        "race"              : "eniripsa",
-        "cost"              : 6,
-        "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/eniripsa/aLaVieALaMort.png",
-        "descSpritePath"    : "img/spells/desc/eniripsa/aLaVieALaMort.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : {},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -35
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "player", "team" : "my"},
-                "behavior"      : "",
-                "conditionList" : [],
-                "break"         : "False",
-                "feature"       : "gauges",
-                "value"         : {"earth" : 1}
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "player", "team" : "my"},
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "paStock",
-                "value"         : 1
-            }
-        ]
-    },
     "se29":
     {
         "name"              : "Nocturancie",

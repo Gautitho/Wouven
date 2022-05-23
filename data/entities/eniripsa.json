@@ -165,5 +165,73 @@
                 "value"         : 1
             }
         ]
+    },
+    "ee2" : 
+    {
+        "name"              : "Laboratoire de nocturancie",
+        "spritePath"        : "img/spells/icon/eniripsa/laboratoireDeNocturancie.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/laboratoireDeNocturancie.png",
+        "pv"                : 40,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "aura"              : {},
+        "states"            : [],
+        "typeList"          : ["unique", "mechanism", "lab"],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "startTurn",
+                "target"        : {"main" : "self"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -10
+            },
+            {
+                "trigger"       : "startTurn",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "generateSpell",
+                "feature"       : "se52",
+                "value"         : 1
+            }
+        ]
+    },
+    "ee4" : 
+    {
+        "name"              : "Nocturien",
+        "spritePath"        : "img/spells/icon/eniripsa/nocturien.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/nocturien.png",
+        "pv"                : 20,
+        "armor"             : 0,
+        "atk"               : 5,
+        "pm"                : 4,
+        "aura"              : {},
+        "states"            : [],
+        "typeList"          : ["nocturien"],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "endTurn",
+                "target"        : {"main" : "self"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -10
+            }
+        ]
     }
 }
