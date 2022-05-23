@@ -628,13 +628,13 @@ class Board:
                             if (type(self._entitiesDict[targetId]).__name__ == "Entity"):
                                 for entityType in self._entitiesDict[targetId].typeList:
                                     if (entityType in targetDict["noTypeList"]):
-                                        del abilityTargetIdList[targetId]
+                                        abilityTargetIdList.remove(targetId)
                                         break
                                     for i in range(len(targetDict["typeList"])):
                                         if (entityType == targetDict["typeList"][i]):
                                             typeFoundList[i] = True
                                 if (False in typeFoundList):
-                                    del abilityTargetIdList[targetId]
+                                    abilityTargetIdList.remove(targetId)
 
                 # Check conditions
                 conditionsValid = True
