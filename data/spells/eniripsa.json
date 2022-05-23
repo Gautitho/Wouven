@@ -1202,6 +1202,47 @@
             }
         ]
     },
+    "she3":
+    {
+        "name"              : "Soins massifs",
+        "race"              : "ehe3",
+        "cost"              : 6,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/eniripsa/soinsMassifs.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/soinsMassifs.png",
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "board", "team" : "my", "noTypeList" : ["mechanism"]},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 16
+            },
+            {
+                "trigger"           : "always",
+                "stopTriggerList"   : ["always"],
+                "target"            : {"main" : "currentSpell"},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "support",
+                "feature"           : "cost",
+                "value"             : -1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 2}
+            }
+        ]
+    },
     "she4":
     {
         "name"              : "Explosion de soins",

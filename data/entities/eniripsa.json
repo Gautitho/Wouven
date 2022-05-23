@@ -32,6 +32,39 @@
             }
         ]
     },
+    "ehe3" :
+    {
+        "name"              : "Kokoro",
+        "spritePath"        : "img/entities/icon/eniripsa/kokoro.png",
+        "descSpritePath"    : "img/entities/desc/eniripsa/kokoro.png",
+        "pv"                : 400,
+        "armor"             : 0,
+        "atk"               : 25,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "ability",
+                "target"        : {"main" : "self"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "kokoroPassiveValue"
+            }
+        ]
+    },
     "ehe4" :
     {
         "name"              : "Scalpel",
@@ -57,7 +90,7 @@
             {
                 "trigger"       : "ability",
                 "target"        : {"main" : "highestPv", "team" : "op", "noTypeList" : ["mechanism"]},
-                "conditionList" : [{"feature" : "turn", "value" : "my"}, {"feature" : "passive", "value" : "heal", "target" : "self"}],
+                "conditionList" : [{"feature" : "passive", "value" : "heal", "target" : "self"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",

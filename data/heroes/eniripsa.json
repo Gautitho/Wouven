@@ -5,6 +5,12 @@
         "spellDescId"   : "she2",
         "entityDescId"  : "ehe2"
     },
+    "he3" :
+    {
+        "race"          : "eniripsa",
+        "spellDescId"   : "she3",
+        "entityDescId"  : "ehe3"
+    },
     "he4" :
     {
         "race"          : "eniripsa",

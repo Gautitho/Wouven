@@ -266,7 +266,7 @@ class Entity:
         self.applyStates()
 
     def modifyPv(self, value):
-        removedPv = 0
+        effectivePvVariation = 0
         if (value < 0):
             apply = True
             if (self.isInStates("shield")):
@@ -285,14 +285,16 @@ class Entity:
                 else:
                     self._pv    += self._armor + value
                     self._armor = 0
-                    removedPv = self._armor + value
+                    effectivePvVariation = self._armor + value
         else:
             if (self._pv + value > db.entities[self._descId]["pv"]):
+                effectivePvVariation = db.entities[self._descId]["pv"] - self._pv
                 self._pv = db.entities[self._descId]["pv"]
             else:
+                effectivePvVariation = value
                 self._pv += value
 
-        return removedPv
+        return effectivePvVariation
 
     def attackAgain(self):
         self._hasMove   = False

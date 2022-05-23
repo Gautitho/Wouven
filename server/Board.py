@@ -538,7 +538,7 @@ class Board:
         for ability in abilityList:
             if (trigger == ability["trigger"] or force):
 
-                passiveTriggerList  = [] # [{actor / trigger / targetId}] # Behavior to handle very specific cases, avoid it
+                passiveTriggerList  = [] # [{actor / trigger / targetId / value}] # Behavior to handle very specific cases, avoid it
 
                 # Set stopTrigger
                 stopTriggerList = [] if not("stopTriggerList" in ability) else ability["stopTriggerList"]
@@ -825,6 +825,7 @@ class Board:
                         for passive in passiveTriggedList:
                             if (conditionDict["value"] == passive["action"] and conditionTargetId == passive["actorId"] and conditionDict["trigger"] in ["all", passive["trigger"]]):
                                 found = True
+                                break
 
                         if not(found):
                             conditionsValid = False
@@ -851,6 +852,11 @@ class Board:
                         value = -self._entitiesDict[selfId].atk
                     elif (ability["value"] == "atk"):
                         value = self._entitiesDict[selfId].atk
+                    elif (ability["value"] == "kokoroPassiveValue"):
+                        value = 0
+                        for passive in passiveTriggedList:
+                            if (passive["action"] == "heal" and passive["actorId"] != selfId and self._entitiesDict[passive["actorId"]].team == self._entitiesDict[selfId].team):
+                                value += passive["value"] 
                     else:
                         value = ability["value"]
                 else:
@@ -871,15 +877,15 @@ class Board:
                                             guarded = True
                                             break
                                 if guarded:
-                                    removedPv = self._entitiesDict[guardId].modifyPv(value)
+                                    pvVar = self._entitiesDict[guardId].modifyPv(value)
                                 else:
-                                    removedPv = self._entitiesDict[abilityEntityId].modifyPv(value)
-                                if (value > 0 and self._entitiesDict[abilityEntityId].pv < db.entities[self._entitiesDict[abilityEntityId].descId]["pv"]):
-                                    passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : abilityEntityId})
+                                    pvVar = self._entitiesDict[abilityEntityId].modifyPv(value)
+                                if (pvVar > 0):
+                                    passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : abilityEntityId, "value" : pvVar})
                                 if (ability["feature"] == "stealLife"):
-                                    self._entitiesDict[selfId].modifyPv(-removedPv)
-                                    if (-removedPv > 0 and self._entitiesDict[selfId].pv < db.entities[self._entitiesDict[abilityEntityId].descId]["pv"]):
-                                        passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : selfId})
+                                    self._entitiesDict[selfId].modifyPv(-pvVar)
+                                    if (-pvVar > 0):
+                                        passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : selfId, "value" : -pvVar})
                                 executed = True
                         elif (ability["feature"] == "elemState"):
                             for abilityEntityId in abilityTargetIdList:
@@ -928,9 +934,9 @@ class Board:
                     elif (ability["behavior"] == "melee"):
                         mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team)) if not(force) else mult # Handle the stopTrigger case
                         if (ability["feature"] == "pv"): 
-                            self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyPv(mult*value)
-                            if (value > 0 and self._entitiesDict[abilityEntityId].pv < db.entities[self._entitiesDict[abilityEntityId].descId]["pv"]):
-                                passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : abilityTargetIdList[targetDict["targetIdx"]]})
+                            pvVar = self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyPv(mult*value)
+                            if (pvVar > 0):
+                                passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : abilityTargetIdList[targetDict["targetIdx"]], "value" : pvVar})
                             executed = True
                         elif (ability["feature"] == "atk"): 
                             self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyAtk(mult*value)
@@ -950,9 +956,9 @@ class Board:
                     elif (ability["behavior"] == "support"):
                         mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[playerId].team)) if not(force) else mult # Handle the stopTrigger case
                         if (ability["feature"] == "pv"): 
-                            self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyPv(mult*value)
-                            if (value > 0 and self._entitiesDict[abilityEntityId].pv < db.entities[self._entitiesDict[abilityEntityId].descId]["pv"]):
-                                passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : abilityTargetIdList[targetDict["targetIdx"]]})
+                            pvVar = self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyPv(mult*value)
+                            if (pvVar > 0):
+                                passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : abilityTargetIdList[targetDict["targetIdx"]], "value" : pvVar})
                             executed = True
                         elif (ability["feature"] == "atk"): 
                             self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyAtk(mult*value)
@@ -973,9 +979,9 @@ class Board:
                                 executed = True
                         elif (ability["feature"] == "pv"):
                             for abilityEntityId in abilityTargetIdList:
-                                self._entitiesDict[abilityEntityId].modifyPv(mult*value)
-                                if (value > 0 and self._entitiesDict[abilityEntityId].pv < db.entities[self._entitiesDict[abilityEntityId].descId]["pv"]):
-                                    passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : abilityEntityId})
+                                pvVar = self._entitiesDict[abilityEntityId].modifyPv(mult*value)
+                                if (pvVar > 0):
+                                    passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : abilityEntityId, "value" : pvVar})
                                 executed = True
 
                     elif (ability["behavior"] == "auraNb"):
@@ -986,9 +992,9 @@ class Board:
                                 executed = True
                         elif (ability["feature"] == "pv"):
                             for abilityEntityId in abilityTargetIdList:
-                                self._entitiesDict[abilityEntityId].modifyPv(mult*value)
-                                if (value > 0 and self._entitiesDict[abilityEntityId].pv < db.entities[self._entitiesDict[abilityEntityId].descId]["pv"]):
-                                    passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : abilityEntityId})
+                                pvVar = self._entitiesDict[abilityEntityId].modifyPv(mult*value)
+                                if (pvVar > 0):
+                                    passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : abilityEntityId, "value" : pvVar})
                                 executed = True
                         elif (ability["feature"] == "pm"):
                             for abilityEntityId in abilityTargetIdList:
@@ -1174,6 +1180,17 @@ class Board:
                 # Check if an aura has been used / aura must be specified only once by aura ability
                 if (executed and ability["behavior"] == "aura"):
                     auraUsed = True
+
+                # Adding default to passiveTriggerList
+                for passiveTrigger in passiveTriggerList:
+                    if (not "action" in passiveTrigger):
+                        passiveTrigger["action"] = "none"
+                    if (not "trigger" in passiveTrigger):
+                        passiveTrigger["trigger"] = trigger
+                    if (not "actorId" in passiveTrigger):
+                        passiveTrigger["actorId"] = "self"
+                    if (not "value" in passiveTrigger):
+                        passiveTrigger["value"] = 0
                 
                 if (trigger != "ability"):
                     for entityId in self._entitiesDict:
