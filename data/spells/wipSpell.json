@@ -484,7 +484,7 @@
     },
     "se41":
     {
-        "name"              : "Meme pas mort <3",
+        "name"              : "Meme pas mort",
         "race"              : "eniripsa",
         "cost"              : 2,
         "elem"              : "neutral",
@@ -524,85 +524,6 @@
                 "feature"       : "gauges",
                 "value"         : {"neutral" : 1}
             }
-        ]
-    },
-    "se43":
-    {
-        "name"              : "Recyclage",
-        "race"              : "eniripsa",
-        "cost"              : 3,
-        "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/eniripsa/recyclage.png",
-        "descSpritePath"    : "img/spells/desc/eniripsa/recyclage.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "player", "team" : "my"},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "gauges",
-                "value"         : {"neutral" : 1}
-            }
-        ]
-    },
-    "se44":
-    {
-        "name"              : "Soins d'urgence",
-        "race"              : "eniripsa",
-        "cost"              : 4,
-        "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/eniripsa/soinsDUrgence.png",
-        "descSpritePath"    : "img/spells/desc/eniripsa/soinsDUrgence.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "player", "team" : "my"},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "gauges",
-                "value"         : {"neutral" : 1}
-            }
-        ]
-    },
-    "se45":
-    {
-        "name"              : "Lien d'amitie",
-        "race"              : "eniripsa",
-        "cost"              : 4,
-        "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/eniripsa/lienDAmitie.png",
-        "descSpritePath"    : "img/spells/desc/eniripsa/lienDAmitie.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "player", "team" : "my"},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "gauges",
-                "value"         : {"neutral" : 1}
-            }
-        ]
-    },
-    "se46":
-    {
-        "name"              : "Maitre de la regeneration",
-        "race"              : "eniripsa",
-        "cost"              : 5,
-        "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/eniripsa/maitreDeLaRegeneration.png",
-        "descSpritePath"    : "img/spells/desc/eniripsa/maitreDeLaRegeneration.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
         ]
     },
     "se47":

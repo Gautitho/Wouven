@@ -229,6 +229,7 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/eniripsa/laboratoireDeFlammes.png",
         "descSpritePath"    : "img/spells/desc/eniripsa/laboratoireDeFlammes.png",
+        "typeList"          : ["mechanism"],
         "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
@@ -501,6 +502,7 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/eniripsa/laboratoireDeSoin.png",
         "descSpritePath"    : "img/spells/desc/eniripsa/laboratoireDeSoin.png",
+        "typeList"          : ["mechanism"],
         "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
@@ -844,6 +846,7 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/eniripsa/laboratoireDeNocturancie.png",
         "descSpritePath"    : "img/spells/desc/eniripsa/laboratoireDeNocturancie.png",
+        "typeList"          : ["mechanism"],
         "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
@@ -1184,6 +1187,139 @@
                 "behavior"      : "push",
                 "feature"       : "position",
                 "value"         : 4
+            }
+        ]
+    },
+    "se43":
+    {
+        "name"              : "Recyclage",
+        "race"              : "eniripsa",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/eniripsa/recyclage.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/recyclage.png",
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "mechanism",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            }
+        ]
+    },
+    "se44":
+    {
+        "name"              : "Soins d'urgence",
+        "race"              : "eniripsa",
+        "cost"              : 4,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/eniripsa/soinsDUrgence.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/soinsDUrgence.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my"}, {"empty" : "True"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "hero", "team" : "my"},
+                "conditionList" : [{"feature" : "range", "ref" : "spellTarget", "value" : 1, "operator" : "<=", "target" : "spellTarget", "targetIdx" : 1}],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "position",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "adjacent", "team" : "my", "noTypeList" : ["mechanism"]},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 13
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            }
+        ]
+    },
+    "se45":
+    {
+        "name"              : "Lien d'amitie",
+        "race"              : "eniripsa",
+        "cost"              : 4,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/eniripsa/lienDAmitie.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/lienDAmitie.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "support+draw",
+                "feature"       : "",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "board", "team" : "my", "noTypeList" : ["mechanism"]},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 10
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            }
+        ]
+    },
+    "se46":
+    {
+        "name"              : "Maitre de la regeneration",
+        "race"              : "eniripsa",
+        "cost"              : 5,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/eniripsa/maitreDeLaRegeneration.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/maitreDeLaRegeneration.png",
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "self"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraReset",
+                "feature"       : "ae0",
+                "value"         : 3
             }
         ]
     },

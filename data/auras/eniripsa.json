@@ -1,0 +1,19 @@
+{
+    "ae0" :
+    {
+        "name"          : "Coeurs regenerants",
+        "spritePath"    : "img/states/aura.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {"main" : "self"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : 23
+            }
+        ]
+    }
+}
