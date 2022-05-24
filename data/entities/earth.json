@@ -8,6 +8,7 @@
         "armor"             : 0,
         "atk"               : 5,
         "pm"                : 3,
+        "typeList"          : ["companion"],
         "aura"              : {},
         "states"            : [],
         "abilities"         :
@@ -50,6 +51,7 @@
         "armor"             : 0,
         "atk"               : 10,
         "pm"                : 3,
+        "typeList"          : ["companion"],
         "aura"              : {},
         "states"            : [],
         "abilities"         :
@@ -83,6 +85,7 @@
         "armor"             : 0,
         "atk"               : 9,
         "pm"                : 3,
+        "typeList"          : ["companion"],
         "aura"              : {},
         "states"            : [],
         "abilities"         :
@@ -116,6 +119,7 @@
         "armor"             : 0,
         "atk"               : 18,
         "pm"                : 3,
+        "typeList"          : ["companion"],
         "aura"              : {},
         "states"            : [],
         "abilities"         :
@@ -140,6 +144,7 @@
         "armor"             : 0,
         "atk"               : 13,
         "pm"                : 3,
+        "typeList"          : ["companion"],
         "aura"              : {},
         "states"            : [],
         "abilities"         :
@@ -173,6 +178,7 @@
         "armor"             : 0,
         "atk"               : 5,
         "pm"                : 3,
+        "typeList"          : ["companion"],
         "aura"              : {},
         "states"            : [],
         "abilities"         :
@@ -215,6 +221,7 @@
         "armor"             : 0,
         "atk"               : 14,
         "pm"                : 3,
+        "typeList"          : ["companion"],
         "aura"              : {},
         "states"            : [],
         "abilities"         :
@@ -248,6 +255,7 @@
         "armor"             : 0,
         "atk"               : 16,
         "pm"                : 3,
+        "typeList"          : ["companion"],
         "aura"              : {},
         "states"            : [],
         "abilities"         :
@@ -281,6 +289,7 @@
         "armor"             : 0,
         "atk"               : 23,
         "pm"                : 4,
+        "typeList"          : ["companion"],
         "aura"              : {},
         "states"            : [{"feature" : "untargetable", "value" : 0, "duration" : -1}],
         "abilities"         :
@@ -305,6 +314,7 @@
         "armor"             : 0,
         "atk"               : 26,
         "pm"                : 3,
+        "typeList"          : ["companion"],
         "aura"              : {},
         "states"            : [],
         "abilities"         :
@@ -338,6 +348,7 @@
         "armor"             : 0,
         "atk"               : 29,
         "pm"                : 3,
+        "typeList"          : ["companion"],
         "aura"              : {},
         "states"            : [],
         "abilities"         :
@@ -371,6 +382,7 @@
         "armor"             : 0,
         "atk"               : 30,
         "pm"                : 3,
+        "typeList"          : ["companion"],
         "aura"              : {},
         "states"            : [],
         "abilities"         :
@@ -395,6 +407,7 @@
         "armor"             : 0,
         "atk"               : 40,
         "pm"                : 3,
+        "typeList"          : ["companion"],
         "aura"              : {},
         "states"            : [],
         "abilities"         :

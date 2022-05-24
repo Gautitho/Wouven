@@ -49,13 +49,13 @@ class Board:
         else:
             raise GameException("Tile is not empty !")
 
-    def removeEntity(self, entityId):
+    def removeEntity(self, entityId, sendBack=False):
         found = False
         self.removeOngoingAbilities("death", selfId=entityId)
         self.executeAbilities(self._entitiesDict[entityId].abilities, "death", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [None])
         for playerId in list(self._playersDict.keys()):
             if entityId in self._playersDict[playerId].boardEntityIds:
-                self._playersDict[playerId].removeEntity(entityId)
+                self._playersDict[playerId].removeEntity(entityId, sendBack)
                 found = True
                 break
         del self._entitiesDict[entityId]
@@ -1167,6 +1167,10 @@ class Board:
 
                     elif (ability["behavior"] == "generateSpell"):
                         self._playersDict[abilityTargetIdList[targetDict["targetIdx"]]].getSpell(ability["feature"], value)
+                        executed = True
+
+                    elif (ability["behavior"] == "sendBack"):
+                        self.removeEntity(abilityTargetIdList[targetDict["targetIdx"]], sendBack=True)
                         executed = True
 
                     # If stopTriggerList is defined, the ability must be added to the ongoingAbilityList

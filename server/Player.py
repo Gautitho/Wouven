@@ -104,12 +104,12 @@ class Player:
             else:
                 self._deckSpellDescIdList.append(companionSpellDescId)
 
-    def removeCompanion(self, companionId):
+    def removeCompanion(self, companionId, sendBack=False):
         if ("propertyList" in db.companions[self._companionList[companionId]["descId"]]):
             propertyList = list(db.companions[self._companionList[companionId]["descId"]]["propertyList"])
         else:
             propertyList = []
-        if ("respawnable" in propertyList):
+        if (sendBack or "respawnable" in propertyList):
             self._companionList[companionId]["state"] = "available"
         else:
             self._companionList[companionId]["state"] = "dead"
@@ -191,11 +191,12 @@ class Player:
     def addEntity(self, entityId):
         self._boardEntityIds.append(entityId)
 
-    def removeEntity(self, entityId):
+    def removeEntity(self, entityId, sendBack=False):
         self._boardEntityIds.remove(entityId)
         for companionId in range(0, len(self._companionList)):
             if (self._companionList[companionId]["entityId"] == entityId):
-                self.removeCompanion(companionId)
+                self.removeCompanion(companionId, sendBack)
+                break
 
     def toString(self):
         s = ""

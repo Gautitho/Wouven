@@ -482,28 +482,6 @@
         [
         ]
     },
-    "se41":
-    {
-        "name"              : "Meme pas mort",
-        "race"              : "eniripsa",
-        "cost"              : 2,
-        "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/eniripsa/memePasMort.png",
-        "descSpritePath"    : "img/spells/desc/eniripsa/memePasMort.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "player", "team" : "my"},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "gauges",
-                "value"         : {"neutral" : 1}
-            }
-        ]
-    },
     "se42":
     {
         "name"              : "Sacrifice honteux",

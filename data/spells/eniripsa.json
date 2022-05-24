@@ -1190,6 +1190,37 @@
             }
         ]
     },
+    "se41":
+    {
+        "name"              : "Meme pas mort",
+        "race"              : "eniripsa",
+        "cost"              : 2,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/eniripsa/memePasMort.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/memePasMort.png",
+        "allowedTargetList" : [{"entity" : "True", "typeList" : ["companion"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "sendBack",
+                "feature"       : "",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            }
+        ]
+    },
     "se43":
     {
         "name"              : "Recyclage",
