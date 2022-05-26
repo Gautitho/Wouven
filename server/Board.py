@@ -932,7 +932,13 @@ class Board:
                         executed = True
 
                     elif (ability["behavior"] == "melee"):
-                        mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team)) if not(force) else mult # Handle the stopTrigger case
+                        multIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team)
+                        for eid in multIdList:
+                            for entityType in self._entitiesDict[eid].typeList:
+                                if (entityType in ["mechanism"]):
+                                    multIdList.remove(eid)
+                                    break
+                        mult = len(multIdList) if not(force) else mult # Handle the stopTrigger case
                         if (ability["feature"] == "pv"): 
                             pvVar = self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyPv(mult*value)
                             if (pvVar > 0):
@@ -950,11 +956,23 @@ class Board:
                                 executed = True
 
                     elif (ability["behavior"] == "melee+draw"):
-                        mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team)) if not(force) else mult # Handle the stopTrigger case
+                        multIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team)
+                        for eid in multIdList:
+                            for entityType in self._entitiesDict[eid].typeList:
+                                if (entityType in ["mechanism"]):
+                                    multIdList.remove(eid)
+                                    break
+                        mult = len(multIdList) if not(force) else mult # Handle the stopTrigger case
                         self._playersDict[abilityTargetIdList[targetDict["targetIdx"]]].draw(mult*value, ability["feature"])
 
                     elif (ability["behavior"] == "support"):
-                        mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[playerId].team)) if not(force) else mult # Handle the stopTrigger case
+                        multIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[playerId].team)
+                        for eid in multIdList:
+                            for entityType in self._entitiesDict[eid].typeList:
+                                if (entityType in ["mechanism"]):
+                                    multIdList.remove(eid)
+                                    break
+                        mult = len(multIdList) if not(force) else mult # Handle the stopTrigger case
                         if (ability["feature"] == "pv"): 
                             pvVar = self._entitiesDict[abilityTargetIdList[targetDict["targetIdx"]]].modifyPv(mult*value)
                             if (pvVar > 0):
@@ -969,7 +987,13 @@ class Board:
                                 executed = True
 
                     elif (ability["behavior"] == "support+draw"):
-                        mult = len(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[playerId].team)) if not(force) else mult # Handle the stopTrigger case
+                        multIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[playerId].team)
+                        for eid in multIdList:
+                            for entityType in self._entitiesDict[eid].typeList:
+                                if (entityType in ["mechanism"]):
+                                    multIdList.remove(eid)
+                                    break
+                        mult = len(multIdList) if not(force) else mult # Handle the stopTrigger case
                         self._playersDict[abilityTargetIdList[targetDict["targetIdx"]]].draw(mult*value, ability["feature"])
 
                     elif (ability["behavior"] == "distance"):
@@ -1190,20 +1214,21 @@ class Board:
                     auraUsed = True
 
                 # Adding default to passiveTriggerList
-                for passiveTrigger in passiveTriggerList:
-                    if (not "action" in passiveTrigger):
-                        passiveTrigger["action"] = "none"
-                    if (not "trigger" in passiveTrigger):
-                        passiveTrigger["trigger"] = trigger
-                    if (not "actorId" in passiveTrigger):
-                        passiveTrigger["actorId"] = "self"
-                    if (not "value" in passiveTrigger):
-                        passiveTrigger["value"] = 0
+                if (executed):
+                    for passiveTrigger in passiveTriggerList:
+                        if (not "action" in passiveTrigger):
+                            passiveTrigger["action"] = "none"
+                        if (not "trigger" in passiveTrigger):
+                            passiveTrigger["trigger"] = trigger
+                        if (not "actorId" in passiveTrigger):
+                            passiveTrigger["actorId"] = "self"
+                        if (not "value" in passiveTrigger):
+                            passiveTrigger["value"] = 0
                 
-                if (trigger != "ability"):
-                    for entityId in self._entitiesDict:
-                        if (type(self._entitiesDict[entityId]).__name__ == "Entity"):
-                            self.executeAbilities(self._entitiesDict[entityId].abilities, "ability", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, targetEntityIdList, triggingAbility=ability, passiveTriggedList=passiveTriggerList)
+                    if (trigger != "ability"):
+                        for entityId in self._entitiesDict:
+                            if (type(self._entitiesDict[entityId]).__name__ == "Entity"):
+                                self.executeAbilities(self._entitiesDict[entityId].abilities, "ability", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, targetEntityIdList, triggingAbility=ability, passiveTriggedList=passiveTriggerList)
 
         if auraUsed:
             self._entitiesDict[selfId].consumeAura(1)
