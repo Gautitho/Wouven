@@ -119,6 +119,46 @@
             }
         ]
     },
+    "sce14":
+    {
+        "name"              : "Ronces d'Amalia",
+        "race"              : "ece14",
+        "cost"              : 5,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/earth/roncesDAmalia.png",
+        "descSpritePath"    : "img/spells/desc/earth/roncesDAmalia.png",
+        "allowedTargetList" : [{"entity" : "True", "main" : "self"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "around", "team" : "op"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -17
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "board", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 10
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
+            }
+        ]
+    },
     "sce16":
     {
         "name"              : "Fureur de Tristepin",

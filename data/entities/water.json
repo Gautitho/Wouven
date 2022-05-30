@@ -304,6 +304,40 @@
             }
         ]
     },
+    "ecw11" :
+    {
+        "name"              : "Comte Harbourg",
+        "spritePath"        : "img/entities/icon/water/comteHarebourg.png",
+        "descSpritePath"    : "img/entities/desc/water/comteHarebourg.png",
+        "pv"                : 78,
+        "armor"             : 0,
+        "atk"               : 14,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"           : "always",
+                "stopTriggerList"   : ["always", "death"],
+                "target"            : {"main" : "hand"},
+                "conditionList"     : [{"feature" : "elem", "value" : "water"}],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "cost",
+                "value"             : -1
+            }
+        ]
+    },
     "ecw12" :
     {
         "name"              : "Bump",

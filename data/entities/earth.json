@@ -373,6 +373,40 @@
             }
         ]
     },
+    "ece14" :
+    {
+        "name"              : "Amalia",
+        "spritePath"        : "img/entities/icon/earth/amalia.png",
+        "descSpritePath"    : "img/entities/desc/earth/amalia.png",
+        "pv"                : 94,
+        "armor"             : 0,
+        "atk"               : 18,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"           : "always",
+                "stopTriggerList"   : ["always", "death"],
+                "target"            : {"main" : "hand"},
+                "conditionList"     : [{"feature" : "elem", "value" : "earth"}],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "cost",
+                "value"             : -1
+            }
+        ]
+    },
     "ece15" :
     {
         "name"              : "Kerubim",

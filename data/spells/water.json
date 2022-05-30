@@ -30,6 +30,37 @@
             }
         ]
     },
+    "scw11":
+    {
+        "name"              : "Gel instantane",
+        "race"              : "ecw11",
+        "cost"              : 4,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/water/gelInstantane.png",
+        "descSpritePath"    : "img/spells/desc/water/gelInstantane.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "break"         : "False",
+                "conditionList" : [],
+                "behavior"      : "addState",
+                "feature"       : "frozen",
+                "value"         : -18
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"water" : 1}
+            }
+        ]
+    },
     "scw12":
     {
         "name"              : "Bouclier de Bump",

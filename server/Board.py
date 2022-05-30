@@ -714,7 +714,11 @@ class Board:
 
                     elif (conditionDict["feature"] == "elem"):
                         if (conditionDict["value"] in ["fire", "water", "earth", "air", "neutral"]):
-                            if not(operatorDict[conditionDict["operator"]](spellElem, conditionDict["value"])):
+                            if (targetDict["main"] == "hand"):
+                                for spellIdIt in list(abilityTargetIdList):
+                                    if not(operatorDict[conditionDict["operator"]](self._playersDict[playerId].handSpellDict[spellIdIt].elem, conditionDict["value"])):
+                                        abilityTargetIdList.remove(spellIdIt)
+                            elif not(operatorDict[conditionDict["operator"]](spellElem, conditionDict["value"])):
                                 conditionsValid = False
                                 break
                         else:
@@ -1237,6 +1241,7 @@ class Board:
         copyOngoingAbilityList = list(self._ongoingAbilityList)
         for ongoingAbility in copyOngoingAbilityList:
             if (stopTrigger in ongoingAbility["stopTriggerList"]):
+                print(copyOngoingAbilityList)
                 if (ongoingAbility["ability"]["feature"] == "bodyguard" and selfId == ongoingAbility["selfId"]):
                     for state in self._entitiesDict[ongoingAbility["selfId"]].states:
                         if (state["feature"] == "bodyguard"):
@@ -1247,6 +1252,7 @@ class Board:
                     self._ongoingAbilityList.remove(ongoingAbility)
                 else:
                     if (ongoingAbility["selfId"] in list(self._entitiesDict.keys()) and (ongoingAbility["spellId"] == None or ongoingAbility["spellId"] in list(self._playersDict[ongoingAbility["playerId"]].handSpellDict.keys()))):
+                        print("REMOVE")
                         ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]
                         self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [None], spellId=ongoingAbility["spellId"], force=True)
                         self._ongoingAbilityList.remove(ongoingAbility)

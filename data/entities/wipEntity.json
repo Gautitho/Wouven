@@ -57,30 +57,6 @@
             }
         ]
     },
-    "ecf13" :
-    {
-        "name"              : "Bakara",
-        "spritePath"        : "img/entities/icon/fire/bakara.png",
-        "descSpritePath"    : "img/entities/desc/fire/bakara.png",
-        "pv"                : 94,
-        "armor"             : 0,
-        "atk"               : 18,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : {},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
     "eca9" :
     {
         "name"              : "Angèle",
@@ -225,30 +201,6 @@
             }
         ]
     },
-    "ece14" :
-    {
-        "name"              : "Amalia",
-        "spritePath"        : "img/entities/icon/earth/amalia.png",
-        "descSpritePath"    : "img/entities/desc/earth/amalia.png",
-        "pv"                : 94,
-        "armor"             : 0,
-        "atk"               : 18,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : {},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
     "ecw1" :
     {
         "name"              : "Shura",
@@ -281,30 +233,6 @@
         "pv"                : 86,
         "armor"             : 0,
         "atk"               : 16,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : {},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
-    "ecw11" :
-    {
-        "name"              : "Comte Harbourg",
-        "spritePath"        : "img/entities/icon/water/comteHarebourg.png",
-        "descSpritePath"    : "img/entities/desc/water/comteHarebourg.png",
-        "pv"                : 78,
-        "armor"             : 0,
-        "atk"               : 14,
         "pm"                : 3,
         "aura"              : {},
         "states"            : [],

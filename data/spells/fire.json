@@ -103,6 +103,37 @@
             }
         ]
     },
+    "scf13":
+    {
+        "name"              : "Surcharge de Bakara",
+        "race"              : "ecf13",
+        "cost"              : 4,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/fire/surchargeDeBakara.png",
+        "descSpritePath"    : "img/spells/desc/fire/surchargeDeBakara.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -30
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            }
+        ]
+    },
     "scf14":
     {
         "name"              : "Soif d'Oropo",

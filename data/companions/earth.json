@@ -142,6 +142,19 @@
             }
         ]
     },
+    "ce14" :
+    {
+        "cost"          : {"earth" : 6},
+        "entityDescId"  : "ece14",
+        "spellDescId"   : "sce14",
+        "placementList" :
+        [
+            {
+                "ref"   : "myHero",
+                "range" : 2
+            }
+        ]
+    },
     "ce15" :
     {
         "cost"          : {"earth" : 7},

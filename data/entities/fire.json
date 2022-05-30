@@ -366,6 +366,40 @@
             }
         ]
     },
+    "ecf13" :
+    {
+        "name"              : "Bakara",
+        "spritePath"        : "img/entities/icon/fire/bakara.png",
+        "descSpritePath"    : "img/entities/desc/fire/bakara.png",
+        "pv"                : 94,
+        "armor"             : 0,
+        "atk"               : 18,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"           : "always",
+                "stopTriggerList"   : ["always", "death"],
+                "target"            : {"main" : "hand"},
+                "conditionList"     : [{"feature" : "elem", "value" : "fire"}],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "cost",
+                "value"             : -1
+            }
+        ]
+    },
     "ecf14" :
     {
         "name"              : "Oropo",

@@ -142,6 +142,19 @@
             }
         ]
     },
+    "cf13" :
+    {
+        "cost"          : {"fire" : 6},
+        "entityDescId"  : "ecf13",
+        "spellDescId"   : "scf13",
+        "placementList" :
+        [
+            {
+                "ref"   : "myHero",
+                "range" : 2
+            }
+        ]
+    },
     "cf14" :
     {
         "cost"          : {"fire" : 7},
