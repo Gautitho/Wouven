@@ -225,7 +225,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "adjacent", "team" : "op", "noTypeList" : ["mechanism"]},
-                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my"}],
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}, {"feature" : "team", "value" : "op", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "pushAwayFromSelf",
                 "feature"       : "position",
