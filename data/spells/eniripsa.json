@@ -1190,6 +1190,37 @@
             }
         ]
     },
+    "se40":
+    {
+        "name"              : "Double regime",
+        "race"              : "eniripsa",
+        "cost"              : 0,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/eniripsa/doubleRegime.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/doubleRegime.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["lab"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "executeAbilities",
+                "feature"       : "",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "",
+                "value"         : 1
+            }
+        ]
+    },
     "se41":
     {
         "name"              : "Meme pas mort",
@@ -1260,7 +1291,7 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/eniripsa/soinsDUrgence.png",
         "descSpritePath"    : "img/spells/desc/eniripsa/soinsDUrgence.png",
-        "allowedTargetList" : [{"entity" : "True", "team" : "my"}, {"empty" : "True"}],
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "noTypeList" : ["mechanism"]}, {"empty" : "True"}],
         "abilities"         :
         [
             {

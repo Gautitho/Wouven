@@ -1218,6 +1218,13 @@ class Board:
                         self.removeEntity(abilityTargetIdList[targetDict["targetIdx"]], sendBack=True)
                         executed = True
 
+                    elif (ability["behavior"] == "executeAbilities"):
+                        # WARNING : force mult is used, this is wrong but mult is never used in this case (I hope ...)
+                        print(abilityTargetIdList)
+                        for abilityEntityId in abilityTargetIdList:
+                            print(self._entitiesDict[abilityEntityId].abilities)
+                            self.executeAbilities(self._entitiesDict[abilityEntityId].abilities, "", self.getPlayerIdFromTeam(self._entitiesDict[abilityEntityId].team), abilityEntityId, [None], force=True)
+
                     # If stopTriggerList is defined, the ability must be added to the ongoingAbilityList
                     if stopTriggerList and not(force):
                         ongoingAbilityDict = {}
