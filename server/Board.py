@@ -620,8 +620,14 @@ class Board:
                 else:
                     raise GameException("Wrong ability target (main) !")
 
-                # Type
                 if not(targetDict["main"] in ["player", "currentSpell", "hand"]):
+                    # Check if targetList still exist : Removed entity during a previous ability in the same action
+                    for targetId in abilityTargetIdList:
+                        if (targetId != None):
+                            if not(targetId in list(self._entitiesDict.keys())):
+                                abilityTargetIdList.remove(targetId)
+
+                    # Type
                     typeFoundList = [False for i in targetDict["typeList"]]
                     for targetId in abilityTargetIdList:
                         if (targetId != None):
@@ -652,18 +658,29 @@ class Board:
                     # Target
                     if (conditionDict["target"] == "spellTarget"):
                         conditionTargetId = targetEntityIdList[conditionDict["targetIdx"]]
+                        if not(conditionTargetId in list(self._entitiesDict.keys())): # Removed entity during a previous ability in the same action
+                            conditionsValid = False
+                            break
                     elif (conditionDict["target"] == "spellTargetPlayer"):
                         conditionTargetId = self.getPlayerIdFromTeam(self._entitiesDict[targetEntityIdList[conditionDict["targetIdx"]]].team)
                     elif (conditionDict["target"] == "abilityTarget"):
                         conditionTargetId = abilityTargetIdList[conditionDict["targetIdx"]]
+                        if not(conditionTargetId in list(self._entitiesDict.keys())): # Removed entity during a previous ability in the same action
+                            conditionsValid = False
+                            break
                     elif (conditionDict["target"] == "self"):
                         conditionTargetId = selfId
+                        if not(conditionTargetId in list(self._entitiesDict.keys())): # Removed entity during a previous ability in the same action
+                            conditionsValid = False
+                            break
                     elif (conditionDict["target"] == "myPlayer"):
                         conditionTargetId = playerId
                     elif (conditionDict["target"] == "opPlayer"):
                         conditionTargetId = opPlayerId
                     else:
                         raise GameException("Wrong condition (target) !")
+
+
                     
                     # Operator
                     if not(conditionDict["operator"] in ["==", "!=", ">", "<", ">=", "<="]):
@@ -1241,7 +1258,6 @@ class Board:
         copyOngoingAbilityList = list(self._ongoingAbilityList)
         for ongoingAbility in copyOngoingAbilityList:
             if (stopTrigger in ongoingAbility["stopTriggerList"]):
-                print(copyOngoingAbilityList)
                 if (ongoingAbility["ability"]["feature"] == "bodyguard" and selfId == ongoingAbility["selfId"]):
                     for state in self._entitiesDict[ongoingAbility["selfId"]].states:
                         if (state["feature"] == "bodyguard"):
@@ -1252,7 +1268,6 @@ class Board:
                     self._ongoingAbilityList.remove(ongoingAbility)
                 else:
                     if (ongoingAbility["selfId"] in list(self._entitiesDict.keys()) and (ongoingAbility["spellId"] == None or ongoingAbility["spellId"] in list(self._playersDict[ongoingAbility["playerId"]].handSpellDict.keys()))):
-                        print("REMOVE")
                         ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]
                         self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [None], spellId=ongoingAbility["spellId"], force=True)
                         self._ongoingAbilityList.remove(ongoingAbility)
