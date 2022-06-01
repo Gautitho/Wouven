@@ -24,7 +24,7 @@
             {
                 "trigger"       : "ability",
                 "target"        : {},
-                "conditionList" : [{"feature" : "turn", "value" : "my"}, {"feature" : "passive", "value" : "charge", "target" : "self"}],
+                "conditionList" : [{"feature" : "turn", "value" : "my", "target" : "myPlayer"}, {"feature" : "passive", "value" : "charge", "target" : "self"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -57,7 +57,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "self"},
-                "conditionList" : [{"feature" : "elem", "value" : "fire"}, {"feature" : "turn", "value" : "my"}],
+                "conditionList" : [{"feature" : "elem", "value" : "fire"}, {"feature" : "turn", "value" : "my", "target" : "myPlayer"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pm",

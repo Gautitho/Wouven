@@ -90,7 +90,7 @@
             {
                 "trigger"       : "ability",
                 "target"        : {"main" : "player", "team" : "my"},
-                "conditionList" : [{"feature" : "behavior", "value" : "explosion"}, {"feature" : "turn", "value" : "my"}],
+                "conditionList" : [{"feature" : "behavior", "value" : "explosion", "target" : "myPlayer"}, {"feature" : "turn", "value" : "my", "target" : "myPlayer"}],
                 "break"         : "False",
                 "behavior"      : "draw",
                 "feature"       : "",

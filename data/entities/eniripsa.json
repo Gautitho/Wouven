@@ -24,7 +24,7 @@
             {
                 "trigger"       : "ability",
                 "target"        : {"main" : "player", "team" : "my"},
-                "conditionList" : [{"feature" : "feature", "value" : "stealLife"}, {"feature" : "turn", "value" : "my"}],
+                "conditionList" : [{"feature" : "feature", "value" : "stealLife", "target" : "myPlayer"}, {"feature" : "turn", "value" : "my", "target" : "myPlayer"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "paStock",
