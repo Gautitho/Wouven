@@ -532,7 +532,7 @@ class Board:
         else:
             raise GameException("Only one summon position is allowed !")
 
-    def executeAbilities(self, abilityList, trigger, playerId, selfId, targetEntityIdList, spellElem=None, spellId=None, triggingAbility=None, allowedTargetList=None, passiveTriggedList=None, force=False):
+    def executeAbilities(self, abilityList, trigger, playerId, selfId, targetEntityIdList, spellElem=None, spellId=None, triggingAbility=None, allowedTargetList=None, passiveTriggedList=None, inAffectedIdList=None, force=False):
         auraUsed            = False
         opPlayerId          = self.getOpPlayerId(playerId) if playerId else ""
         for ability in abilityList:
@@ -616,7 +616,10 @@ class Board:
                 elif (targetDict["main"] == "currentSpell"):
                     abilityTargetIdList.append(spellId)
                 elif (targetDict["main"] == "hand"):
-                    abilityTargetIdList.extend(list(self._playersDict[playerId].handSpellDict.keys())) # WARNING : if a spell is draw, it is not taken
+                    if (force):
+                        abilityTargetIdList.extend(list(set(inAffectedIdList).intersection(self._playersDict[playerId].handSpellDict.keys())))
+                    else:
+                        abilityTargetIdList.extend(list(self._playersDict[playerId].handSpellDict.keys())) # WARNING : if a spell is draw, it is not taken
                 else:
                     raise GameException("Wrong ability target (main) !")
 
@@ -677,11 +680,11 @@ class Board:
                         conditionTargetId = playerId
                     elif (conditionDict["target"] == "opPlayer"):
                         conditionTargetId = opPlayerId
+                    elif (conditionDict["target"] == "none"):
+                        pass
                     else:
                         raise GameException("Wrong condition (target) !")
 
-
-                    
                     # Operator
                     if not(conditionDict["operator"] in ["==", "!=", ">", "<", ">=", "<="]):
                         raise GameException("Wrong condition (operator) !")
@@ -887,6 +890,7 @@ class Board:
                 executed = False
                 mult = 1 if not("mult" in ability) else ability["mult"] # Usefull to handle stopTrigger case
                 if (conditionsValid or force):
+                    affectedIdList = list(abilityTargetIdList)
                     if (ability["behavior"] in ["", "explosion", "aura"]):
                         if (ability["feature"] == "pv" or ability["feature"] == "stealLife"):
                             for abilityEntityId in abilityTargetIdList:
@@ -953,7 +957,7 @@ class Board:
                         executed = True
 
                     elif (ability["behavior"] == "melee"):
-                        multIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team)
+                        multIdList = list(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team))
                         for eid in multIdList:
                             for entityType in self._entitiesDict[eid].typeList:
                                 if (entityType in ["mechanism"]):
@@ -977,7 +981,7 @@ class Board:
                                 executed = True
 
                     elif (ability["behavior"] == "melee+draw"):
-                        multIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team)
+                        multIdList = list(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[opPlayerId].team))
                         for eid in multIdList:
                             for entityType in self._entitiesDict[eid].typeList:
                                 if (entityType in ["mechanism"]):
@@ -987,7 +991,7 @@ class Board:
                         self._playersDict[abilityTargetIdList[targetDict["targetIdx"]]].draw(mult*value, ability["feature"])
 
                     elif (ability["behavior"] == "support"):
-                        multIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[playerId].team)
+                        multIdList = list(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[playerId].team))
                         for eid in multIdList:
                             for entityType in self._entitiesDict[eid].typeList:
                                 if (entityType in ["mechanism"]):
@@ -1008,7 +1012,7 @@ class Board:
                                 executed = True
 
                     elif (ability["behavior"] == "support+draw"):
-                        multIdList = self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[playerId].team)
+                        multIdList = list(self.entityIdAroundTile(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._playersDict[playerId].team))
                         for eid in multIdList:
                             for entityType in self._entitiesDict[eid].typeList:
                                 if (entityType in ["mechanism"]):
@@ -1054,7 +1058,13 @@ class Board:
                             executed = True
 
                     elif (ability["behavior"] == "opAffected"):
-                        mult = len(abilityTargetIdList) if not(force) else mult # Handle the stopTrigger case
+                        multIdList = list(abilityTargetIdList)
+                        for eid in multIdList:
+                            for entityType in self._entitiesDict[eid].typeList:
+                                if (entityType in ["mechanism"]):
+                                    multIdList.remove(eid)
+                                    break
+                        mult = len(multIdList) if not(force) else mult # Handle the stopTrigger case
                         if (ability["feature"] == "gauges"):
                             if isinstance(value, dict):
                                 for gaugeType in list(value.keys()):
@@ -1148,7 +1158,13 @@ class Board:
                             executed = True
 
                     elif (ability["behavior"] == "bounce"):
-                        for abilityEntityId in abilityTargetIdList:
+                        affectableIdList = abilityTargetIdList
+                        for eid in affectableIdList:
+                            for entityType in self._entitiesDict[eid].typeList:
+                                if (entityType in ["mechanism"]):
+                                    affectableIdList.remove(eid)
+                                    break
+                        for abilityEntityId in affectableIdList:
                             self._entitiesDict[abilityEntityId].modifyPv(value)
                             executed = True
                             affectedEntityList = [abilityEntityId]
@@ -1232,6 +1248,7 @@ class Board:
                         ongoingAbilityDict["playerId"]          = playerId
                         ongoingAbilityDict["selfId"]            = selfId
                         ongoingAbilityDict["spellId"]           = spellId
+                        ongoingAbilityDict["affectedIdList"]    = affectedIdList
                         ongoingAbilityDict["stopTriggerList"]   = stopTriggerList
                         self._ongoingAbilityList.append(ongoingAbilityDict)
 
@@ -1274,7 +1291,7 @@ class Board:
                 else:
                     if (ongoingAbility["selfId"] in list(self._entitiesDict.keys()) and (ongoingAbility["spellId"] == None or ongoingAbility["spellId"] in list(self._playersDict[ongoingAbility["playerId"]].handSpellDict.keys()))):
                         ongoingAbility["ability"]["value"] = -ongoingAbility["ability"]["value"]
-                        self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [None], spellId=ongoingAbility["spellId"], force=True)
+                        self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], [None], spellId=ongoingAbility["spellId"], inAffectedIdList=ongoingAbility["affectedIdList"], force=True)
                         self._ongoingAbilityList.remove(ongoingAbility)
             elif (stopTrigger == "always" and "noArmor" in ongoingAbility["stopTriggerList"]):
                 if (self._entitiesDict[self._playersDict[ongoingAbility["playerId"]].heroEntityId].armor == 0):

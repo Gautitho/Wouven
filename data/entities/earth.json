@@ -399,7 +399,7 @@
                 "trigger"           : "always",
                 "stopTriggerList"   : ["always", "death"],
                 "target"            : {"main" : "hand"},
-                "conditionList"     : [{"feature" : "elem", "value" : "earth"}],
+                "conditionList"     : [{"feature" : "elem", "value" : "earth", "target" : "none"}],
                 "break"             : "False",
                 "behavior"          : "",
                 "feature"           : "cost",
