@@ -6,9 +6,6 @@ from functions import *
 from Board import *
 from GameException import *
 
-deck1       = {"heroDescId" : "he4", "spellDescIdList" : ["she2", "se3", "se5", "se6", "se4", "se0", "se21", "sc10", "ss49"], "companionDescIdList" : ["ca5", "cf13", "cm0", "cm4"]}
-deck2       = {"heroDescId" : "hs3", "spellDescIdList" : ["shs3", "ss42", "ss43", "ss24", "ss35", "si1", "si1", "sc10", "ss44"], "companionDescIdList" : ["cf13", "cw11", "ce14", "cm4"]}
-
 class Game:
 
     def __init__(self, name):
@@ -235,15 +232,9 @@ class Game:
 
     def appendPlayer(self, playerId, deck):
         if (len(self._board.playersDict) == 0):
-            if TEST_ENABLE:
-                self._board.appendPlayer(playerId, deck1, "blue", playerId)
-            else:
-                self._board.appendPlayer(playerId, deck, "blue", playerId)
+            self._board.appendPlayer(playerId, deck, "blue", playerId)
         elif (len(self._board.playersDict) == 1):
-            if TEST_ENABLE:
-                self._board.appendPlayer(playerId, deck2, "red", playerId)
-            else:
-                self._board.appendPlayer(playerId, deck, "red", playerId)
+            self._board.appendPlayer(playerId, deck, "red", playerId)
         else:
             raise GameException(f"2 players already in the game {self._name} !")
 
