@@ -2,11 +2,11 @@
     "ehx0" :
     {
         "name"              : "Pramium",
-        "spritePath"        : "img/entities/icon/placeHolder0.png",
-        "descSpritePath"    : "img/entities/desc/placeHolder0.png",
-        "pv"                : 290,
+        "spritePath"        : "img/entities/icon/xelor/pramium.png",
+        "descSpritePath"    : "img/entities/desc/xelor/pramium.png",
+        "pv"                : 393,
         "armor"             : 0,
-        "atk"               : 10,
+        "atk"               : 23,
         "pm"                : 3,
         "aura"              : {},
         "states"            : [],
@@ -20,14 +20,23 @@
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "sinistro",
+                "value"         : 1
             }
         ]
     },
-    "emx0" :
+    "ex0" :
     {
         "name"              : "Sinistro feu",
-        "spritePath"        : "img/entities/icon/placeHolder1.png",
-        "descSpritePath"    : "img/entities/desc/placeHolder1.png",
+        "spritePath"        : "img/entities/icon/xelor/sinistroFeu.png",
+        "descSpritePath"    : "img/entities/desc/xelor/sinistroFeu.png",
         "typeList"          : ["mechanism", "sinistro"],
         "pv"                : 10,
         "armor"             : 0,
@@ -44,8 +53,163 @@
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
-                "value"         : -10
+                "value"         : -11
             }
+        ]
+    },
+    "ex1" :
+    {
+        "name"              : "Sinistro eau",
+        "spritePath"        : "img/entities/icon/xelor/sinistroEau.png",
+        "descSpritePath"    : "img/entities/desc/xelor/sinistroEau.png",
+        "typeList"          : ["mechanism", "sinistro"],
+        "pv"                : 10,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spawn",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "ex2" :
+    {
+        "name"              : "Sinistro terre",
+        "spritePath"        : "img/entities/icon/xelor/sinistroTerre.png",
+        "descSpritePath"    : "img/entities/desc/xelor/sinistroTerre.png",
+        "typeList"          : ["mechanism", "sinistro"],
+        "pv"                : 10,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spawn",
+                "target"        : {"main" : "hero", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addState",
+                "feature"       : "shield",
+                "value"         : 0
+            }
+        ]
+    },
+    "ex3" :
+    {
+        "name"              : "Sinistro air",
+        "spritePath"        : "img/entities/icon/xelor/sinistroTerre.png",
+        "descSpritePath"    : "img/entities/desc/xelor/sinistroTerre.png",
+        "typeList"          : ["mechanism", "sinistro"],
+        "pv"                : 10,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spawn",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "",
+                "value"         : 1
+            }
+        ]
+    },
+    "ex4" :
+    {
+        "name"              : "Sinistro neutre",
+        "spritePath"        : "img/entities/icon/xelor/sinistroNeutre.png",
+        "descSpritePath"    : "img/entities/desc/xelor/sinistroNeutre.png",
+        "typeList"          : ["mechanism", "sinistro"],
+        "pv"                : 10,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+        ]
+    },
+    "ex5" :
+    {
+        "name"              : "Hydruille",
+        "spritePath"        : "img/entities/icon/xelor/hydruille.png",
+        "descSpritePath"    : "img/entities/desc/xelor/hydruille.png",
+        "typeList"          : ["mechanism"],
+        "pv"                : 40,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+        ]
+    },
+    "ex6" :
+    {
+        "name"              : "Coucou",
+        "spritePath"        : "img/entities/icon/xelor/Coucou.png",
+        "descSpritePath"    : "img/entities/desc/xelor/Coucou.png",
+        "typeList"          : ["mechanism"],
+        "pv"                : 40,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+        ]
+    },
+    "ex7" :
+    {
+        "name"              : "Cadran du Xelor",
+        "spritePath"        : "img/entities/icon/xelor/cadranDuXelor.png",
+        "descSpritePath"    : "img/entities/desc/xelor/cadranDuXelor.png",
+        "typeList"          : ["mechanism"],
+        "pv"                : 40,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+        ]
+    },
+    "ex8" :
+    {
+        "name"              : "Catalyseur temporel",
+        "spritePath"        : "img/entities/icon/xelor/catalyseurTemporel.png",
+        "descSpritePath"    : "img/entities/desc/xelor/catalyseurTemporel.png",
+        "typeList"          : ["mechanism"],
+        "pv"                : 40,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
         ]
     }
 }

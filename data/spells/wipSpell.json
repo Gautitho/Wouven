@@ -519,12 +519,12 @@
     },
     "se48":
     {
-        "name"              : "Rufus le sexuel",
+        "name"              : "Rufus le sensuel",
         "race"              : "eniripsa",
         "cost"              : 6,
         "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/eniripsa/RufusLeSexuel.png",
-        "descSpritePath"    : "img/spells/desc/eniripsa/RufusLeSexuel.png",
+        "spritePath"        : "img/spells/icon/eniripsa/rufusLeSensuel.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/rufusLeSensuel.png",
         "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
@@ -536,9 +536,295 @@
         "race"              : "eniripsa",
         "cost"              : 6,
         "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/eniripsa/ArconeMortis.png",
-        "descSpritePath"    : "img/spells/desc/eniripsa/ArconeMortis.png",
+        "spritePath"        : "img/spells/icon/eniripsa/arconeMortis.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/arconeMortis.png",
         "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx2":
+    {
+        "name"              : "Flamme huilee",
+        "race"              : "xelor",
+        "cost"              : 3,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/xelor/flammeHuilee.png",
+        "descSpritePath"    : "img/spells/desc/xelor/flammeHuilee.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx3":
+    {
+        "name"              : "Brulure ardente",
+        "race"              : "xelor",
+        "cost"              : 4,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/xelor/brulureArdente.png",
+        "descSpritePath"    : "img/spells/desc/xelor/brulureArdente.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx5":
+    {
+        "name"              : "Hydruille",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/xelor/hydruille.png",
+        "descSpritePath"    : "img/spells/desc/xelor/hydruille.png",
+        "allowedTargetList" : [{"entity" : "True", "typeList" : ["sinistro"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx8":
+    {
+        "name"              : "Brulure temporelle",
+        "race"              : "xelor",
+        "cost"              : 6,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/xelor/brulureTemporelle.png",
+        "descSpritePath"    : "img/spells/desc/xelor/brulureTemporelle.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx13":
+    {
+        "name"              : "Ralentissement",
+        "race"              : "xelor",
+        "cost"              : 3,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/xelor/ralentissement.png",
+        "descSpritePath"    : "img/spells/desc/xelor/ralentissement.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx16":
+    {
+        "name"              : "Vol du temps",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/xelor/volDeTemps.png",
+        "descSpritePath"    : "img/spells/desc/xelor/volDeTemps.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx17":
+    {
+        "name"              : "Coucou",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/xelor/coucou.png",
+        "descSpritePath"    : "img/spells/desc/xelor/coucou.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx18":
+    {
+        "name"              : "Gelure",
+        "race"              : "xelor",
+        "cost"              : 6,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/xelor/gelure.png",
+        "descSpritePath"    : "img/spells/desc/xelor/gelure.png",
+        "allowedTargetList" : [{"entity" : "True", "typeList" : ["sinistro"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx19":
+    {
+        "name"              : "Horloge",
+        "race"              : "xelor",
+        "cost"              : 6,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/xelor/horloge.png",
+        "descSpritePath"    : "img/spells/desc/xelor/horloge.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx23":
+    {
+        "name"              : "Science des mecanismes",
+        "race"              : "xelor",
+        "cost"              : 4,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/xelor/scienceDesMecanismes.png",
+        "descSpritePath"    : "img/spells/desc/xelor/scienceDesMecanismes.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx26":
+    {
+        "name"              : "Cadran du Xelor",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/xelor/cadranDuXelor.png",
+        "descSpritePath"    : "img/spells/desc/xelor/cadranDuXelor.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["sinistro"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx27":
+    {
+        "name"              : "Ajustement temporel",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/xelor/ajustementTemporel.png",
+        "descSpritePath"    : "img/spells/desc/xelor/ajustementTemporel.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx32":
+    {
+        "name"              : "Alignement",
+        "race"              : "xelor",
+        "cost"              : 3,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/xelor/alignement.png",
+        "descSpritePath"    : "img/spells/desc/xelor/alignement.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx36":
+    {
+        "name"              : "Souffle",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/xelor/souffle.png",
+        "descSpritePath"    : "img/spells/desc/xelor/souffle.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["sinistro"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx37":
+    {
+        "name"              : "Catalyseur temporel",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/xelor/catalyseurTemporel.png",
+        "descSpritePath"    : "img/spells/desc/xelor/catalyseurTemporel.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["sinistro"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx42":
+    {
+        "name"              : "Reparation",
+        "race"              : "xelor",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/xelor/reparation.png",
+        "descSpritePath"    : "img/spells/desc/xelor/reparation.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["sinistro"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx43":
+    {
+        "name"              : "Eternite",
+        "race"              : "xelor",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/xelor/eternite.png",
+        "descSpritePath"    : "img/spells/desc/xelor/eternite.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["mechanism"]}, {"empty" : "True"}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx44":
+    {
+        "name"              : "Destructuration",
+        "race"              : "xelor",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/xelor/reparation.png",
+        "descSpritePath"    : "img/spells/desc/xelor/reparation.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["sinistro"]}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx45":
+    {
+        "name"              : "Sabliers vengeurs",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/xelor/sabliersVengeurs.png",
+        "descSpritePath"    : "img/spells/desc/xelor/sabliersVengeurs.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "main" : "hero"}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx46":
+    {
+        "name"              : "Chibi cadrans",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/xelor/chibiCadrans.png",
+        "descSpritePath"    : "img/spells/desc/xelor/chibiCadrans.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "main" : "hero"}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx48":
+    {
+        "name"              : "Momificatus",
+        "race"              : "xelor",
+        "cost"              : 6,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/xelor/momificatus.png",
+        "descSpritePath"    : "img/spells/desc/xelor/momificatus.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "main" : "hero"}],
+        "abilities"         :
+        [
+        ]
+    },
+    "sx49":
+    {
+        "name"              : "Sarcophagus",
+        "race"              : "xelor",
+        "cost"              : 0,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/xelor/sarcophagus.png",
+        "descSpritePath"    : "img/spells/desc/xelor/sarcophagus.png",
+        "allowedTargetList" : [{"empty" : "True", "main" : "adjacent"}],
         "abilities"         :
         [
         ]

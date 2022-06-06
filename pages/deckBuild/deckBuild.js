@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const PROJECT_ROOT_PATH = "../../"
-const HERO_RACE_LIST = ['iop', 'cra', 'sacrieur', 'eniripsa']
+const HERO_RACE_LIST = ['iop', 'cra', 'sacrieur', 'eniripsa', 'xelor']
 const HERO_CLASSES = 5
 const ELEMS = ['fire', 'water', 'earth', 'air', 'neutral']
 const SPELLS_BY_ELEM = 10

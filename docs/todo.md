@@ -8,6 +8,7 @@
 - Couper la file quand il y a deconnexion du joueur
 - Repousse sur meca
 - Mécaniques à dev :
+  - Ou sur condition
   - Rembobinage
   - Déclenchement d'un mécanisme
   - Transformation de mécanisme
