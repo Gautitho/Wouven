@@ -23,7 +23,7 @@
             },
             {
                 "trigger"       : "attack",
-                "target"        : {},
+                "target"        : {"main" : "player", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "draw",
@@ -35,9 +35,9 @@
     "ex0" :
     {
         "name"              : "Sinistro feu",
-        "spritePath"        : "img/entities/icon/xelor/sinistroFeu.png",
-        "descSpritePath"    : "img/entities/desc/xelor/sinistroFeu.png",
-        "typeList"          : ["mechanism", "sinistro"],
+        "spritePath"        : "img/spells/icon/xelor/sinistroFeu.png",
+        "descSpritePath"    : "img/spells/desc/xelor/sinistroFeu.png",
+        "typeList"          : ["unique", "mechanism", "sinistro"],
         "pv"                : 10,
         "armor"             : 0,
         "atk"               : 0,
@@ -60,9 +60,9 @@
     "ex1" :
     {
         "name"              : "Sinistro eau",
-        "spritePath"        : "img/entities/icon/xelor/sinistroEau.png",
-        "descSpritePath"    : "img/entities/desc/xelor/sinistroEau.png",
-        "typeList"          : ["mechanism", "sinistro"],
+        "spritePath"        : "img/spells/icon/xelor/sinistroEau.png",
+        "descSpritePath"    : "img/spells/desc/xelor/sinistroEau.png",
+        "typeList"          : ["unique", "mechanism", "sinistro"],
         "pv"                : 10,
         "armor"             : 0,
         "atk"               : 0,
@@ -85,9 +85,9 @@
     "ex2" :
     {
         "name"              : "Sinistro terre",
-        "spritePath"        : "img/entities/icon/xelor/sinistroTerre.png",
-        "descSpritePath"    : "img/entities/desc/xelor/sinistroTerre.png",
-        "typeList"          : ["mechanism", "sinistro"],
+        "spritePath"        : "img/spells/icon/xelor/sinistroTerre.png",
+        "descSpritePath"    : "img/spells/desc/xelor/sinistroTerre.png",
+        "typeList"          : ["unique", "mechanism", "sinistro"],
         "pv"                : 10,
         "armor"             : 0,
         "atk"               : 0,
@@ -110,9 +110,9 @@
     "ex3" :
     {
         "name"              : "Sinistro air",
-        "spritePath"        : "img/entities/icon/xelor/sinistroTerre.png",
-        "descSpritePath"    : "img/entities/desc/xelor/sinistroTerre.png",
-        "typeList"          : ["mechanism", "sinistro"],
+        "spritePath"        : "img/spells/icon/xelor/sinistroTerre.png",
+        "descSpritePath"    : "img/spells/desc/xelor/sinistroTerre.png",
+        "typeList"          : ["unique", "mechanism", "sinistro"],
         "pv"                : 10,
         "armor"             : 0,
         "atk"               : 0,
@@ -135,9 +135,9 @@
     "ex4" :
     {
         "name"              : "Sinistro neutre",
-        "spritePath"        : "img/entities/icon/xelor/sinistroNeutre.png",
-        "descSpritePath"    : "img/entities/desc/xelor/sinistroNeutre.png",
-        "typeList"          : ["mechanism", "sinistro"],
+        "spritePath"        : "img/spells/icon/xelor/sinistroNeutre.png",
+        "descSpritePath"    : "img/spells/desc/xelor/sinistroNeutre.png",
+        "typeList"          : ["unique", "mechanism", "sinistro"],
         "pv"                : 10,
         "armor"             : 0,
         "atk"               : 0,
@@ -151,9 +151,9 @@
     "ex5" :
     {
         "name"              : "Hydruille",
-        "spritePath"        : "img/entities/icon/xelor/hydruille.png",
-        "descSpritePath"    : "img/entities/desc/xelor/hydruille.png",
-        "typeList"          : ["mechanism"],
+        "spritePath"        : "img/spells/icon/xelor/hydruille.png",
+        "descSpritePath"    : "img/spells/desc/xelor/hydruille.png",
+        "typeList"          : ["unique", "mechanism"],
         "pv"                : 40,
         "armor"             : 0,
         "atk"               : 0,
@@ -167,9 +167,9 @@
     "ex6" :
     {
         "name"              : "Coucou",
-        "spritePath"        : "img/entities/icon/xelor/Coucou.png",
-        "descSpritePath"    : "img/entities/desc/xelor/Coucou.png",
-        "typeList"          : ["mechanism"],
+        "spritePath"        : "img/spells/icon/xelor/Coucou.png",
+        "descSpritePath"    : "img/spells/desc/xelor/Coucou.png",
+        "typeList"          : ["unique", "mechanism"],
         "pv"                : 40,
         "armor"             : 0,
         "atk"               : 0,
@@ -183,9 +183,9 @@
     "ex7" :
     {
         "name"              : "Cadran du Xelor",
-        "spritePath"        : "img/entities/icon/xelor/cadranDuXelor.png",
-        "descSpritePath"    : "img/entities/desc/xelor/cadranDuXelor.png",
-        "typeList"          : ["mechanism"],
+        "spritePath"        : "img/spells/icon/xelor/cadranDuXelor.png",
+        "descSpritePath"    : "img/spells/desc/xelor/cadranDuXelor.png",
+        "typeList"          : ["unique", "mechanism"],
         "pv"                : 40,
         "armor"             : 0,
         "atk"               : 0,
@@ -199,9 +199,9 @@
     "ex8" :
     {
         "name"              : "Catalyseur temporel",
-        "spritePath"        : "img/entities/icon/xelor/catalyseurTemporel.png",
-        "descSpritePath"    : "img/entities/desc/xelor/catalyseurTemporel.png",
-        "typeList"          : ["mechanism"],
+        "spritePath"        : "img/spells/icon/xelor/catalyseurTemporel.png",
+        "descSpritePath"    : "img/spells/desc/xelor/catalyseurTemporel.png",
+        "typeList"          : ["unique", "mechanism"],
         "pv"                : 40,
         "armor"             : 0,
         "atk"               : 0,

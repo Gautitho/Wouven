@@ -533,8 +533,9 @@ class Board:
             raise GameException("Only one summon position is allowed !")
 
     def executeAbilities(self, abilityList, trigger, playerId, selfId, targetEntityIdList, spellElem=None, spellId=None, triggingAbility=None, allowedTargetList=None, passiveTriggedList=None, inAffectedIdList=None, force=False):
-        auraUsed            = False
-        opPlayerId          = self.getOpPlayerId(playerId) if playerId else ""
+        auraUsed                        = False
+        opPlayerId                      = self.getOpPlayerId(playerId) if playerId else ""
+        elemStateToRemoveEntityIdList   = []
         for ability in abilityList:
             if (trigger == ability["trigger"] or force):
 
@@ -545,14 +546,16 @@ class Board:
 
                 # Set targetDict
                 targetDict = {}
-                targetDict["main"]          = "target"      if not("main" in ability["target"])         else ability["target"]["main"]
-                targetDict["team"]          = "all"         if not("team" in ability["target"])         else ability["target"]["team"]
-                targetDict["targetIdx"]     = 0             if not("targetIdx" in ability["target"])    else int(ability["target"]["targetIdx"])
-                targetDict["ref"]           = "self"        if not("ref" in ability["target"])          else ability["target"]["ref"]
-                targetDict["refIdx"]        = 0             if not("refIdx" in ability["target"])       else int(ability["target"]["refIdx"])
-                targetDict["range"]         = -1            if not("range" in ability["target"])        else int(ability["target"]["range"])
-                targetDict["typeList"]      = []            if not("typeList" in ability["target"])     else ability["target"]["typeList"]
-                targetDict["noTypeList"]    = []            if not("noTypeList" in ability["target"])   else ability["target"]["noTypeList"]
+                targetDict["main"]              = "target"      if not("main" in ability["target"])             else ability["target"]["main"]
+                targetDict["team"]              = "all"         if not("team" in ability["target"])             else ability["target"]["team"]
+                targetDict["targetIdx"]         = 0             if not("targetIdx" in ability["target"])        else int(ability["target"]["targetIdx"])
+                targetDict["range"]             = -1            if not("range" in ability["target"])            else int(ability["target"]["range"])
+                targetDict["typeList"]          = []            if not("typeList" in ability["target"])         else ability["target"]["typeList"]
+                targetDict["noTypeList"]        = []            if not("noTypeList" in ability["target"])       else ability["target"]["noTypeList"]
+                targetDict["ref"]               = "self"        if not("ref" in ability["target"])              else ability["target"]["ref"]
+                targetDict["refIdx"]            = 0             if not("refIdx" in ability["target"])           else int(ability["target"]["refIdx"])
+                targetDict["refTypeList"]       = []            if not("refTypeList" in ability["target"])      else ability["target"]["refTypeList"]
+                targetDict["refNoTypeList"]     = []            if not("refNoTypeList" in ability["target"])    else ability["target"]["refNoTypeList"]
 
                 # Team
                 affectedPlayerIdList = []
@@ -574,15 +577,31 @@ class Board:
 
                 # Reference
                 if (targetDict["ref"] == "self"):
-                    refId = selfId
+                    refIdList = [selfId]
                 elif (targetDict["ref"] == "target"):
-                    refId = targetEntityIdList[targetDict["refIdx"]]
+                    refIdList = [targetEntityIdList[targetDict["refIdx"]]]
                 elif (targetDict["ref"] == "myHero"):
-                    refId = self._playersDict[playerId].heroEntityId
+                    refIdList = [self._playersDict[playerId].heroEntityId]
                 elif (targetDict["ref"] == "opHero"):
-                    refId = self._playersDict[opPlayerId].heroEntityId
+                    refIdList = [self._playersDict[opPlayerId].heroEntityId]
+                elif (targetDict["ref"] == "myBoard"):
+                    refIdList = self._playersDict[playerId].boardEntityIds
                 else:
                     raise GameException("Wrong ability target (ref) !")
+
+                for refId in list(refIdList):
+                    typeFoundList = [False for i in targetDict["refTypeList"]]
+                    if (refId != None):
+                        if (type(self._entitiesDict[refId]).__name__ == "Entity"):
+                            for entityType in self._entitiesDict[refId].typeList:
+                                if (entityType in targetDict["refNoTypeList"]):
+                                    refIdList.remove(refId)
+                                    break
+                                for i in range(len(targetDict["refTypeList"])):
+                                    if (entityType == targetDict["refTypeList"][i]):
+                                        typeFoundList[i] = True
+                            if (False in typeFoundList):
+                                refIdList.remove(refId)
 
                 # Main
                 abilityTargetIdList = []
@@ -597,15 +616,20 @@ class Board:
                     for afpId in affectedPlayerIdList:
                         abilityTargetIdList.append(self._playersDict[afpId].heroEntityId)
                 elif (targetDict["main"] == "around"):
-                    abilityTargetIdList.extend(self.entityIdAroundTile(self._entitiesDict[refId].x, self._entitiesDict[refId].y, team))
+                    for refId in refIdList:
+                        abilityTargetIdList.extend(self.entityIdAroundTile(self._entitiesDict[refId].x, self._entitiesDict[refId].y, team))
                 elif (targetDict["main"] == "adjacent"):
-                    abilityTargetIdList.extend(self.entityIdAdjacentToTile(self._entitiesDict[refId].x, self._entitiesDict[refId].y, team))
+                    for refId in refIdList:
+                        abilityTargetIdList.extend(self.entityIdAdjacentToTile(self._entitiesDict[refId].x, self._entitiesDict[refId].y, team))
                 elif (targetDict["main"] == "aligned"):
-                    abilityTargetIdList.extend(self.entityIdAlignedToTile(self._entitiesDict[refId].x, self._entitiesDict[refId].y, team))
+                    for refId in refIdList:
+                        abilityTargetIdList.extend(self.entityIdAlignedToTile(self._entitiesDict[refId].x, self._entitiesDict[refId].y, team))
                 elif (targetDict["main"] == "firstAligned"):
-                    abilityTargetIdList.extend(self.entityIdFirstAlignedToTile(self._entitiesDict[refId].x, self._entitiesDict[refId].y, team))
+                    for refId in refIdList:
+                        abilityTargetIdList.extend(self.entityIdFirstAlignedToTile(self._entitiesDict[refId].x, self._entitiesDict[refId].y, team))
                 elif (targetDict["main"] == "alignedInDirection"):
-                    abilityTargetIdList.extend(self.entityIdAlignedToTileInDirection(self._entitiesDict[refId].x, self._entitiesDict[refId].y, self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].x, self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].y, targetDict["range"], team))
+                    for refId in refIdList:
+                        abilityTargetIdList.extend(self.entityIdAlignedToTileInDirection(self._entitiesDict[refId].x, self._entitiesDict[refId].y, self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].x, self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].y, targetDict["range"], team))
                 elif (targetDict["main"] == "cross"):
                     abilityTargetIdList.extend(self.entityIdInCross(self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].x, self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].y, targetDict["range"], team))
                 elif (targetDict["main"] == "board"):
@@ -631,8 +655,8 @@ class Board:
                                 abilityTargetIdList.remove(targetId)
 
                     # Type
-                    typeFoundList = [False for i in targetDict["typeList"]]
-                    for targetId in abilityTargetIdList:
+                    for targetId in list(abilityTargetIdList):
+                        typeFoundList = [False for i in targetDict["typeList"]]
                         if (targetId != None):
                             if (type(self._entitiesDict[targetId]).__name__ == "Entity"):
                                 for entityType in self._entitiesDict[targetId].typeList:
@@ -720,7 +744,7 @@ class Board:
                         if (conditionDict["value"] in ["oiled", "wet", "muddy", "windy"]):
                             if (operatorDict[conditionDict["operator"]](self._entitiesDict[conditionTargetId].elemState, conditionDict["value"])):
                                 if (conditionDict["operator"] == "=="):
-                                    self._entitiesDict[conditionTargetId].setElemState("")
+                                    elemStateToRemoveEntityIdList.append(conditionTargetId)
                             else:
                                 conditionsValid = False
                                 break
@@ -1275,6 +1299,9 @@ class Board:
 
         if auraUsed:
             self._entitiesDict[selfId].consumeAura(1)
+
+        for eid in elemStateToRemoveEntityIdList:
+            self._entitiesDict[eid].setElemState("")
 
     def removeOngoingAbilities(self, stopTrigger, selfId=None):
         copyOngoingAbilityList = list(self._ongoingAbilityList)

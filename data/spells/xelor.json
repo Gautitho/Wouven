@@ -61,6 +61,46 @@
             }
         ]
     },
+    "sx2":
+    {
+        "name"              : "Flamme huilee",
+        "race"              : "xelor",
+        "cost"              : 3,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/xelor/flammeHuilee.png",
+        "descSpritePath"    : "img/spells/desc/xelor/flammeHuilee.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -11
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "board", "team" : "my", "typeList" : ["mechanism"]},
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "break"         : "",
+                "behavior"      : "executeAbilities",
+                "feature"       : "",
+                "value"         : 0
+            }
+        ]
+    },
     "sx4":
     {
         "name"              : "Petite aiguille",
@@ -92,7 +132,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : {"main" : "alignedInDirection", "team" : "op", "range" : "3", "noTypeList" : ["mechanism"]},
+                "target"        : {"main" : "alignedInDirection", "team" : "op", "range" : "2", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "opAffected",
@@ -190,6 +230,55 @@
             }
         ]
     },
+    "sx8":
+    {
+        "name"              : "Brulure temporelle",
+        "race"              : "xelor",
+        "cost"              : 6,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/xelor/brulureTemporelle.png",
+        "descSpritePath"    : "img/spells/desc/xelor/brulureTemporelle.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -28
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "board", "team" : "my", "typeList" : ["mechanism"]},
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "break"         : "",
+                "behavior"      : "executeAbilities",
+                "feature"       : "",
+                "value"         : 0
+            }
+        ]
+    },
     "sx9":
     {
         "name"              : "Poussiere temporelle",
@@ -226,9 +315,9 @@
         "name"              : "Sinistro eau",
         "race"              : "xelor",
         "cost"              : 2,
-        "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/xelor/sinistroEau",
-        "descSpritePath"    : "img/spells/desc/xelor/sinistroEau",
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/xelor/sinistroEau.png",
+        "descSpritePath"    : "img/spells/desc/xelor/sinistroEau.png",
         "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
@@ -386,7 +475,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "player", "team" : "my"},
-                "conditionList" : [{"feature" : "elemState", "value" : "wet"}, {"feature" : "paStock", "value" : 1, "target" : "spellTargetPlayer", "operator" : ">="}],
+                "conditionList" : [{"feature" : "elemState", "value" : "wet", "target" : "spellTarget"}, {"feature" : "paStock", "value" : 1, "target" : "spellTargetPlayer", "operator" : ">="}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "paStock",
@@ -395,7 +484,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "player", "team" : "target"},
-                "conditionList" : [{"feature" : "elemState", "value" : "wet"}],
+                "conditionList" : [{"feature" : "elemState", "value" : "wet", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "paStock",
@@ -408,9 +497,9 @@
         "name"              : "Sinistro terre",
         "race"              : "xelor",
         "cost"              : 2,
-        "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/xelor/sinistroTerre",
-        "descSpritePath"    : "img/spells/desc/xelor/sinistroTerre",
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/xelor/sinistroTerre.png",
+        "descSpritePath"    : "img/spells/desc/xelor/sinistroTerre.png",
         "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
@@ -448,7 +537,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "hero", "team" : "my"},
-                "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
+                "conditionList" : [{"feature" : "elemState", "value" : "muddy", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "armor",
@@ -457,7 +546,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "board", "team" : "my", "typeList" : ["mechanism"]},
-                "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
+                "conditionList" : [{"feature" : "elemState", "value" : "muddy", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "pv",
@@ -697,9 +786,9 @@
         "name"              : "Sinistro air",
         "race"              : "xelor",
         "cost"              : 2,
-        "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/xelor/sinistroAir",
-        "descSpritePath"    : "img/spells/desc/xelor/sinistroAir",
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/xelor/sinistroAir.png",
+        "descSpritePath"    : "img/spells/desc/xelor/sinistroAir.png",
         "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
@@ -1060,12 +1149,12 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : {"main" : "board", "team" : "my", "typeList" : ["mechanism"]},
+                "target"        : {"main" : "around", "team" : "op", "noTypeList" : ["mechanism"], "ref" : "myBoard", "refTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "",
-                "behavior"      : "executeAbilities",
-                "feature"       : "",
-                "value"         : 0
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -11
             },
             {
                 "trigger"       : "spellCast",

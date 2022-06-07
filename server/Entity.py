@@ -287,7 +287,7 @@ class Entity:
                     self._armor = 0
                     effectivePvVariation = self._armor + value
         else:
-            if ((self._pv + value > db.entities[self._descId]["pv"]) and not("mechanism" in typeList)):
+            if ((self._pv + value > db.entities[self._descId]["pv"]) and not("mechanism" in self._typeList)):
                 effectivePvVariation = db.entities[self._descId]["pv"] - self._pv
                 self._pv = db.entities[self._descId]["pv"]
             else:

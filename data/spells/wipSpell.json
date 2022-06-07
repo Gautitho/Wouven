@@ -543,19 +543,6 @@
         [
         ]
     },
-    "sx2":
-    {
-        "name"              : "Flamme huilee",
-        "race"              : "xelor",
-        "cost"              : 3,
-        "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/xelor/flammeHuilee.png",
-        "descSpritePath"    : "img/spells/desc/xelor/flammeHuilee.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-        ]
-    },
     "sx3":
     {
         "name"              : "Brulure ardente",
