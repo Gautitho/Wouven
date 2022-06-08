@@ -110,8 +110,8 @@
     "ex3" :
     {
         "name"              : "Sinistro air",
-        "spritePath"        : "img/spells/icon/xelor/sinistroTerre.png",
-        "descSpritePath"    : "img/spells/desc/xelor/sinistroTerre.png",
+        "spritePath"        : "img/spells/icon/xelor/sinistroAir.png",
+        "descSpritePath"    : "img/spells/desc/xelor/sinistroAir.png",
         "typeList"          : ["unique", "mechanism", "sinistro"],
         "pv"                : 10,
         "armor"             : 0,

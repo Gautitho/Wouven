@@ -7,6 +7,7 @@
         "elem"              : "fire",
         "spritePath"        : "img/spells/icon/xelor/sinistroFeu.png",
         "descSpritePath"    : "img/spells/desc/xelor/sinistroFeu.png",
+        "typeList"          : ["sinistro"],
         "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
@@ -93,7 +94,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "board", "team" : "my", "typeList" : ["mechanism"]},
-                "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
                 "break"         : "",
                 "behavior"      : "executeAbilities",
                 "feature"       : "",
@@ -271,7 +272,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "board", "team" : "my", "typeList" : ["mechanism"]},
-                "conditionList" : [{"feature" : "elemState", "value" : "oiled"}],
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
                 "break"         : "",
                 "behavior"      : "executeAbilities",
                 "feature"       : "",
@@ -318,6 +319,7 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/xelor/sinistroEau.png",
         "descSpritePath"    : "img/spells/desc/xelor/sinistroEau.png",
+        "typeList"          : ["sinistro"],
         "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
@@ -500,6 +502,7 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/xelor/sinistroTerre.png",
         "descSpritePath"    : "img/spells/desc/xelor/sinistroTerre.png",
+        "typeList"          : ["sinistro"],
         "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
@@ -789,6 +792,7 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/xelor/sinistroAir.png",
         "descSpritePath"    : "img/spells/desc/xelor/sinistroAir.png",
+        "typeList"          : ["sinistro"],
         "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
@@ -1091,6 +1095,7 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/xelor/sinistroNeutre.png",
         "descSpritePath"    : "img/spells/desc/xelor/sinistroNeutre.png",
+        "typeList"          : ["sinistro"],
         "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
