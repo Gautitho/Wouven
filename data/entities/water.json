@@ -313,6 +313,7 @@
         "armor"             : 0,
         "atk"               : 14,
         "pm"                : 3,
+        "typeList"          : ["companion"],
         "aura"              : {},
         "states"            : [],
         "abilities"         :
