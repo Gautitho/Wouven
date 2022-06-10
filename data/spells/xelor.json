@@ -102,6 +102,47 @@
             }
         ]
     },
+    "sx3":
+    {
+        "name"              : "Brulure ardente",
+        "race"              : "xelor",
+        "cost"              : 4,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/xelor/brulureArdente.png",
+        "descSpritePath"    : "img/spells/desc/xelor/brulureArdente.png",
+        "typeList"          : ["sx3"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -25
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">", "target" : "myPlayer"}, {"feature" : "oneByTurn", "value" : "sx3", "target" : "myPlayer"}],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "sx3",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
     "sx4":
     {
         "name"              : "Petite aiguille",
@@ -494,6 +535,46 @@
             }
         ]
     },
+    "sx18":
+    {
+        "name"              : "Gelure",
+        "race"              : "xelor",
+        "cost"              : 6,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/xelor/gelure.png",
+        "descSpritePath"    : "img/spells/desc/xelor/gelure.png",
+        "allowedTargetList" : [{"entity" : "True", "typeList" : ["sinistro"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -32
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">", "target" : "myPlayer"}, {"feature" : "oneByTurn", "value" : "sx18", "target" : "myPlayer"}],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "sx18",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 2
+            }
+        ]
+    },
     "sx20":
     {
         "name"              : "Sinistro terre",
@@ -686,6 +767,46 @@
             }
         ]
     },
+    "sx27":
+    {
+        "name"              : "Ajustement temporel",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/xelor/ajustementTemporel.png",
+        "descSpritePath"    : "img/spells/desc/xelor/ajustementTemporel.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -27
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">", "target" : "myPlayer"}, {"feature" : "oneByTurn", "value" : "sx27", "target" : "myPlayer"}],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "sx27",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 2
+            }
+        ]
+    },
     "sx28":
     {
         "name"              : "Ajustement elementaire",
@@ -844,6 +965,46 @@
                 "conditionList" : [],
                 "feature"       : "elemState",
                 "value"         : "windy"
+            }
+        ]
+    },
+    "sx32":
+    {
+        "name"              : "Alignement",
+        "race"              : "xelor",
+        "cost"              : 3,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/xelor/alignement.png",
+        "descSpritePath"    : "img/spells/desc/xelor/alignement.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -14
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">", "target" : "myPlayer"}, {"feature" : "oneByTurn", "value" : "sx32", "target" : "myPlayer"}],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "sx32",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
             }
         ]
     },

@@ -28,7 +28,6 @@ class Entity:
         self._canAttack             = True
         self._hasMove               = False
         self._hasAttack             = False
-        self._oneByTurnAbilityList  = []
 
     def check(self, descId, team, x, y):
         checkCondition(True, descId in db.entities, f"Entity descId ({descId}) does not exist !")
@@ -117,10 +116,6 @@ class Entity:
         return list(self._states)
 
     @property
-    def oneByTurnAbilityList(self):
-        return list(self._oneByTurnAbilityList)
-
-    @property
     def abilities(self):
         if (self._aura["type"] != ""):
             outList = list(self._abilities)
@@ -192,7 +187,6 @@ class Entity:
         self._canAttack             = True
         self._hasMove               = False
         self._hasAttack             = False
-        self._oneByTurnAbilityList  = []
         self.evalTimeoutStates()
         self.applyStates()
 
@@ -368,6 +362,3 @@ class Entity:
                 stateToRemoveList.append(self._states[stateIdx]["feature"])
         for stateFeature in stateToRemoveList:
             self.removeState(stateFeature)
-
-    def appendOneByTurnAbility(self, ability):
-        self._oneByTurnAbilityList.append(ability)

@@ -10,12 +10,13 @@ from Spell import *
 class Board:
 
     def __init__(self):
-        self._nextEntityId      = 0
-        self._nextTileEntityId  = 0
-        self._entitiesDict      = {}
-        self._playersDict       = {}
-        self._ongoingAbilityList = []
-        self._turn              = "blue"
+        self._nextEntityId          = 0
+        self._nextTileEntityId      = 0
+        self._entitiesDict          = {}
+        self._playersDict           = {}
+        self._ongoingAbilityList    = []
+        self._oneByTurnAbilityList  = []
+        self._turn                  = "blue"
 
     @property
     def entitiesDict(self):
@@ -260,6 +261,7 @@ class Board:
         return ((xTarget == xSelf) ^ (yTarget == ySelf))
 
     def startTurn(self, playerId):
+        self._oneByTurnAbilityList = []
         self.removeOngoingAbilities("startTurn")
         self._turn = self._playersDict[playerId].team
         self._playersDict[playerId].startTurn()
@@ -848,7 +850,7 @@ class Board:
                             break
 
                     elif (conditionDict["feature"] == "oneByTurn"):
-                        if (conditionDict["value"] in self._entitiesDict[conditionTargetId].oneByTurnAbilityList):
+                        if (conditionDict["value"] in self._oneByTurnAbilityList):
                             conditionsValid = False
                             break
 
@@ -888,7 +890,7 @@ class Board:
                 if (conditionsValid):
                     for condition in ability["conditionList"]:
                         if (condition["feature"] == "oneByTurn"):
-                            self._entitiesDict[selfId].appendOneByTurnAbility(condition["value"])
+                            self._oneByTurnAbilityList.append(condition["value"])
 
                 # Handle variable value case
                 if isinstance(ability["value"], int):

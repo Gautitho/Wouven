@@ -543,19 +543,6 @@
         [
         ]
     },
-    "sx3":
-    {
-        "name"              : "Brulure ardente",
-        "race"              : "xelor",
-        "cost"              : 4,
-        "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/xelor/brulureArdente.png",
-        "descSpritePath"    : "img/spells/desc/xelor/brulureArdente.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-        ]
-    },
     "sx5":
     {
         "name"              : "Hydruille",
@@ -565,19 +552,6 @@
         "spritePath"        : "img/spells/icon/xelor/hydruille.png",
         "descSpritePath"    : "img/spells/desc/xelor/hydruille.png",
         "allowedTargetList" : [{"entity" : "True", "typeList" : ["sinistro"]}],
-        "abilities"         :
-        [
-        ]
-    },
-    "sx8":
-    {
-        "name"              : "Brulure temporelle",
-        "race"              : "xelor",
-        "cost"              : 6,
-        "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/xelor/brulureTemporelle.png",
-        "descSpritePath"    : "img/spells/desc/xelor/brulureTemporelle.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
         ]
@@ -621,24 +595,11 @@
         [
         ]
     },
-    "sx18":
-    {
-        "name"              : "Gelure",
-        "race"              : "xelor",
-        "cost"              : 6,
-        "elem"              : "water",
-        "spritePath"        : "img/spells/icon/xelor/gelure.png",
-        "descSpritePath"    : "img/spells/desc/xelor/gelure.png",
-        "allowedTargetList" : [{"entity" : "True", "typeList" : ["sinistro"]}],
-        "abilities"         :
-        [
-        ]
-    },
     "sx19":
     {
         "name"              : "Horloge",
         "race"              : "xelor",
-        "cost"              : 6,
+        "cost"              : 9,
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/xelor/horloge.png",
         "descSpritePath"    : "img/spells/desc/xelor/horloge.png",
@@ -669,32 +630,6 @@
         "spritePath"        : "img/spells/icon/xelor/cadranDuXelor.png",
         "descSpritePath"    : "img/spells/desc/xelor/cadranDuXelor.png",
         "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["sinistro"]}],
-        "abilities"         :
-        [
-        ]
-    },
-    "sx27":
-    {
-        "name"              : "Ajustement temporel",
-        "race"              : "xelor",
-        "cost"              : 5,
-        "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/xelor/ajustementTemporel.png",
-        "descSpritePath"    : "img/spells/desc/xelor/ajustementTemporel.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-        ]
-    },
-    "sx32":
-    {
-        "name"              : "Alignement",
-        "race"              : "xelor",
-        "cost"              : 3,
-        "elem"              : "air",
-        "spritePath"        : "img/spells/icon/xelor/alignement.png",
-        "descSpritePath"    : "img/spells/desc/xelor/alignement.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
         ]

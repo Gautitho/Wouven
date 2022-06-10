@@ -882,7 +882,7 @@
                 "target"        : {"main" : "self"},
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
-                "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">"}],
+                "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">", "target" : "myPlayer"}],
                 "feature"       : "ac0",
                 "value"         : 1
             }
@@ -1340,7 +1340,7 @@
                 "target"        : {"main" : "player", "team" : "my"},
                 "behavior"      : "draw",
                 "break"         : "False",
-                "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">"}],
+                "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">", "target" : "myPlayer"}],
                 "feature"       : "",
                 "value"         : 1
             }
@@ -1853,6 +1853,47 @@
                 "conditionList" : [],
                 "feature"       : "gauges",
                 "value"         : {"fire" : 2}
+            }
+        ]
+    },
+    "shc3":
+    {
+        "name"              : "Shuriken",
+        "race"              : "ehc3",
+        "cost"              : 4,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/cra/shuriken.png",
+        "descSpritePath"    : "img/spells/desc/cra/shuriken.png",
+        "typeList"          : ["shc3"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -26
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [{"feature" : "spellsPlayedDuringTurn", "value" : 1, "operator" : ">", "target" : "myPlayer"}],
+                "break"         : "False",
+                "behavior"      : "draw",
+                "feature"       : "shc3",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
             }
         ]
     },
