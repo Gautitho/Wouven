@@ -183,6 +183,37 @@
             }
         ]
     },
+    "sx5":
+    {
+        "name"              : "Hydruille",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/xelor/hydruille.png",
+        "descSpritePath"    : "img/spells/desc/xelor/hydruille.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["sinistro"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "transform",
+                "feature"       : "ex5",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 2}
+            }
+        ]
+    },
     "sx6":
     {
         "name"              : "Xelorium",
@@ -535,6 +566,37 @@
             }
         ]
     },
+    "sx17":
+    {
+        "name"              : "Coucou",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/xelor/coucou.png",
+        "descSpritePath"    : "img/spells/desc/xelor/coucou.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["sinistro"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "transform",
+                "feature"       : "ex6",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 2}
+            }
+        ]
+    },
     "sx18":
     {
         "name"              : "Gelure",
@@ -543,7 +605,8 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/xelor/gelure.png",
         "descSpritePath"    : "img/spells/desc/xelor/gelure.png",
-        "allowedTargetList" : [{"entity" : "True", "typeList" : ["sinistro"]}],
+        "typeList"          : ["sx18"],
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
             {
@@ -767,6 +830,37 @@
             }
         ]
     },
+    "sx26":
+    {
+        "name"              : "Cadran du Xelor",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/xelor/cadranDuXelor.png",
+        "descSpritePath"    : "img/spells/desc/xelor/cadranDuXelor.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["sinistro"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "transform",
+                "feature"       : "ex7",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 2}
+            }
+        ]
+    },
     "sx27":
     {
         "name"              : "Ajustement temporel",
@@ -775,6 +869,7 @@
         "elem"              : "earth",
         "spritePath"        : "img/spells/icon/xelor/ajustementTemporel.png",
         "descSpritePath"    : "img/spells/desc/xelor/ajustementTemporel.png",
+        "typeList"          : ["sx27"],
         "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
@@ -976,6 +1071,7 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/xelor/alignement.png",
         "descSpritePath"    : "img/spells/desc/xelor/alignement.png",
+        "typeList"          : ["sx32"],
         "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
@@ -1014,8 +1110,8 @@
         "race"              : "xelor",
         "cost"              : 3,
         "elem"              : "air",
-        "spritePath"        : "img/spells/icon/xelor/alignement.png",
-        "descSpritePath"    : "img/spells/desc/xelor/alignement.png",
+        "spritePath"        : "img/spells/icon/xelor/teleportationCourte.png",
+        "descSpritePath"    : "img/spells/desc/xelor/teleportationCourte.png",
         "allowedTargetList" : [{"empty" : "True"}],
         "abilities"         :
         [
@@ -1134,6 +1230,37 @@
                 "behavior"      : "draw",
                 "feature"       : "",
                 "value"         : 1
+            }
+        ]
+    },
+    "sx37":
+    {
+        "name"              : "Catalyseur temporel",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/xelor/catalyseurTemporel.png",
+        "descSpritePath"    : "img/spells/desc/xelor/catalyseurTemporel.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["sinistro"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "transform",
+                "feature"       : "ex8",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 2}
             }
         ]
     },
@@ -1268,6 +1395,50 @@
                 "behavior"      : "summon",
                 "feature"       : "ex4",
                 "value"         : 0
+            }
+        ]
+    },
+    "sx45":
+    {
+        "name"              : "Sabliers vengeurs",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/xelor/sabliersVengeurs.png",
+        "descSpritePath"    : "img/spells/desc/xelor/sabliersVengeurs.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "main" : "hero"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "hero", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraReset",
+                "feature"       : "ax0",
+                "value"         : 3
+            }
+        ]
+    },
+    "sx46":
+    {
+        "name"              : "Chibi cadrans",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/xelor/chibiCadrans.png",
+        "descSpritePath"    : "img/spells/desc/xelor/chibiCadrans.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "main" : "hero"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "hero", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraReset",
+                "feature"       : "ax1",
+                "value"         : 3
             }
         ]
     },

@@ -1,0 +1,54 @@
+{
+    "ax0" :
+    {
+        "name"          : "Sablier vengeur",
+        "spritePath"    : "img/states/aura.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -14
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "ax1" :
+    {
+        "name"          : "Chibi cadran",
+        "spritePath"    : "img/states/aura.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "attacked",
+                "target"        : {"main" : "self"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : 14
+            },
+            {
+                "trigger"       : "attacked",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    }
+}

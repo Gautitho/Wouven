@@ -154,7 +154,7 @@
         "spritePath"        : "img/spells/icon/xelor/hydruille.png",
         "descSpritePath"    : "img/spells/desc/xelor/hydruille.png",
         "typeList"          : ["unique", "mechanism"],
-        "pv"                : 40,
+        "pv"                : 30,
         "armor"             : 0,
         "atk"               : 0,
         "pm"                : 0,
@@ -162,15 +162,24 @@
         "states"            : [],
         "abilities"         :
         [
+            {
+                "trigger"       : "endTurn",
+                "target"        : {"main" : "aligned", "noTypeList" : ["mechanism"]},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -15
+            }
         ]
     },
     "ex6" :
     {
         "name"              : "Coucou",
-        "spritePath"        : "img/spells/icon/xelor/Coucou.png",
-        "descSpritePath"    : "img/spells/desc/xelor/Coucou.png",
+        "spritePath"        : "img/spells/icon/xelor/coucou.png",
+        "descSpritePath"    : "img/spells/desc/xelor/coucou.png",
         "typeList"          : ["unique", "mechanism"],
-        "pv"                : 40,
+        "pv"                : 30,
         "armor"             : 0,
         "atk"               : 0,
         "pm"                : 0,
@@ -178,6 +187,15 @@
         "states"            : [],
         "abilities"         :
         [
+            {
+                "trigger"       : "startTurn",
+                "target"        : {"main" : "hero", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraReset",
+                "feature"       : "ax1",
+                "value"         : 1
+            }
         ]
     },
     "ex7" :
@@ -186,7 +204,7 @@
         "spritePath"        : "img/spells/icon/xelor/cadranDuXelor.png",
         "descSpritePath"    : "img/spells/desc/xelor/cadranDuXelor.png",
         "typeList"          : ["unique", "mechanism"],
-        "pv"                : 40,
+        "pv"                : 30,
         "armor"             : 0,
         "atk"               : 0,
         "pm"                : 0,
@@ -194,6 +212,15 @@
         "states"            : [],
         "abilities"         :
         [
+            {
+                "trigger"       : "endTurn",
+                "target"        : {"main" : "around", "team" : "op", "noTypeList" : ["mechanism"]},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -15
+            }
         ]
     },
     "ex8" :
@@ -202,7 +229,7 @@
         "spritePath"        : "img/spells/icon/xelor/catalyseurTemporel.png",
         "descSpritePath"    : "img/spells/desc/xelor/catalyseurTemporel.png",
         "typeList"          : ["unique", "mechanism"],
-        "pv"                : 40,
+        "pv"                : 30,
         "armor"             : 0,
         "atk"               : 0,
         "pm"                : 0,
@@ -210,6 +237,16 @@
         "states"            : [],
         "abilities"         :
         [
+            {
+                "trigger"           : "startTurn",
+                "stopTriggerList"   : ["spellCast", "endTurn"],
+                "target"            : {"main" : "hand"},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "cost",
+                "value"             : -2
+            }
         ]
     }
 }

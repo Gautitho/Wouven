@@ -283,68 +283,6 @@
             }
         ]
     },
-    "se26":
-    {
-        "name"              : "Laboratoire nocturancie",
-        "race"              : "eniripsa",
-        "cost"              : 5,
-        "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/eniripsa/laboratoireNocturancie.png",
-        "descSpritePath"    : "img/spells/desc/eniripsa/laboratoireNocturancie.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "player", "team" : "my"},
-                "behavior"      : "",
-                "conditionList" : [],
-                "break"         : "False",
-                "feature"       : "gauges",
-                "value"         : {"earth" : 2}
-            }
-        ]
-    },
-    "se29":
-    {
-        "name"              : "Nocturancie",
-        "race"              : "eniripsa",
-        "cost"              : 6,
-        "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/eniripsa/nocturancie.png",
-        "descSpritePath"    : "img/spells/desc/eniripsa/nocturancie.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : {},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -35
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "player", "team" : "my"},
-                "behavior"      : "",
-                "conditionList" : [],
-                "break"         : "False",
-                "feature"       : "gauges",
-                "value"         : {"earth" : 2}
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "player", "team" : "my"},
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "paStock",
-                "value"         : 1
-            }
-        ]
-    },
     "se35":
     {
         "name"              : "Fiole de douleur",
@@ -469,19 +407,6 @@
             }
         ]
     },
-    "se40":
-    {
-        "name"              : "Double regime",
-        "race"              : "eniripsa",
-        "cost"              : 4,
-        "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/eniripsa/doubleRegime.png",
-        "descSpritePath"    : "img/spells/desc/eniripsa/doubleRegime.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-        ]
-    },
     "se42":
     {
         "name"              : "Sacrifice honteux",
@@ -543,19 +468,6 @@
         [
         ]
     },
-    "sx5":
-    {
-        "name"              : "Hydruille",
-        "race"              : "xelor",
-        "cost"              : 5,
-        "elem"              : "fire",
-        "spritePath"        : "img/spells/icon/xelor/hydruille.png",
-        "descSpritePath"    : "img/spells/desc/xelor/hydruille.png",
-        "allowedTargetList" : [{"entity" : "True", "typeList" : ["sinistro"]}],
-        "abilities"         :
-        [
-        ]
-    },
     "sx13":
     {
         "name"              : "Ralentissement",
@@ -577,19 +489,6 @@
         "elem"              : "water",
         "spritePath"        : "img/spells/icon/xelor/volDeTemps.png",
         "descSpritePath"    : "img/spells/desc/xelor/volDeTemps.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-        ]
-    },
-    "sx17":
-    {
-        "name"              : "Coucou",
-        "race"              : "xelor",
-        "cost"              : 5,
-        "elem"              : "water",
-        "spritePath"        : "img/spells/icon/xelor/coucou.png",
-        "descSpritePath"    : "img/spells/desc/xelor/coucou.png",
         "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
@@ -621,19 +520,6 @@
         [
         ]
     },
-    "sx26":
-    {
-        "name"              : "Cadran du Xelor",
-        "race"              : "xelor",
-        "cost"              : 5,
-        "elem"              : "earth",
-        "spritePath"        : "img/spells/icon/xelor/cadranDuXelor.png",
-        "descSpritePath"    : "img/spells/desc/xelor/cadranDuXelor.png",
-        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["sinistro"]}],
-        "abilities"         :
-        [
-        ]
-    },
     "sx36":
     {
         "name"              : "Souffle",
@@ -642,19 +528,6 @@
         "elem"              : "air",
         "spritePath"        : "img/spells/icon/xelor/souffle.png",
         "descSpritePath"    : "img/spells/desc/xelor/souffle.png",
-        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["sinistro"]}],
-        "abilities"         :
-        [
-        ]
-    },
-    "sx37":
-    {
-        "name"              : "Catalyseur temporel",
-        "race"              : "xelor",
-        "cost"              : 5,
-        "elem"              : "air",
-        "spritePath"        : "img/spells/icon/xelor/catalyseurTemporel.png",
-        "descSpritePath"    : "img/spells/desc/xelor/catalyseurTemporel.png",
         "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["sinistro"]}],
         "abilities"         :
         [
@@ -695,32 +568,6 @@
         "spritePath"        : "img/spells/icon/xelor/reparation.png",
         "descSpritePath"    : "img/spells/desc/xelor/reparation.png",
         "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["sinistro"]}],
-        "abilities"         :
-        [
-        ]
-    },
-    "sx45":
-    {
-        "name"              : "Sabliers vengeurs",
-        "race"              : "xelor",
-        "cost"              : 5,
-        "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/xelor/sabliersVengeurs.png",
-        "descSpritePath"    : "img/spells/desc/xelor/sabliersVengeurs.png",
-        "allowedTargetList" : [{"entity" : "True", "team" : "my", "main" : "hero"}],
-        "abilities"         :
-        [
-        ]
-    },
-    "sx46":
-    {
-        "name"              : "Chibi cadrans",
-        "race"              : "xelor",
-        "cost"              : 5,
-        "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/xelor/chibiCadrans.png",
-        "descSpritePath"    : "img/spells/desc/xelor/chibiCadrans.png",
-        "allowedTargetList" : [{"entity" : "True", "team" : "my", "main" : "hero"}],
         "abilities"         :
         [
         ]

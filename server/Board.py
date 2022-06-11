@@ -563,10 +563,10 @@ class Board:
                 affectedPlayerIdList = []
                 if (targetDict["team"] == "my"):
                     team = self._entitiesDict[selfId].team
-                    affectedPlayerIdList.append(playerId)
+                    affectedPlayerIdList.append(self.getPlayerIdFromTeam(team))
                 elif (targetDict["team"] == "op"):
                     team = self.getOpTeam(self._entitiesDict[selfId].team)
-                    affectedPlayerIdList.append(opPlayerId)
+                    affectedPlayerIdList.append(self.getPlayerIdFromTeam(team))
                 elif (targetDict["team"] == "all"):
                     team = "all"
                     affectedPlayerIdList.append(playerId)
@@ -703,9 +703,9 @@ class Board:
                             conditionsValid = False
                             break
                     elif (conditionDict["target"] == "myPlayer"):
-                        conditionTargetId = playerId
+                        conditionTargetId = self.getPlayerIdFromTeam(self._entitiesDict[selfId].team)
                     elif (conditionDict["target"] == "opPlayer"):
-                        conditionTargetId = opPlayerId
+                        conditionTargetId = self.getPlayerIdFromTeam(self.getOpTeam(self._entitiesDict[selfId].team))
                     elif (conditionDict["target"] == "none"):
                         pass
                     else:
@@ -1099,22 +1099,25 @@ class Board:
                             else:
                                 raise GameException("Ability value for gauges must be a dict !")
 
-                    elif (ability["behavior"] == "addAuraWeak"):
-                        self._entitiesDict[selfId].addAuraBuffer(ability["feature"], value, "WEAK")
-                        executed = True
-
                     elif (ability["behavior"] == "distance+addAuraWeak"):
                         mult = calcDist(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[abilityTargetIdList[0]].x, self._entitiesDict[abilityTargetIdList[0]].y, offset=-1) if not(force) else mult # Handle the stopTrigger case
                         self._entitiesDict[selfId].addAuraBuffer(ability["feature"], mult*value, "WEAK")
                         executed = True
+
+                    elif (ability["behavior"] == "addAuraWeak"):
+                        for abilityEntityId in abilityTargetIdList:
+                            self._entitiesDict[abilityEntityId].addAuraBuffer(ability["feature"], value, "WEAK")
+                            executed = True
                     
                     elif (ability["behavior"] == "addAuraStrong"):
-                        self._entitiesDict[selfId].addAuraBuffer(ability["feature"], value, "STRONG")
-                        executed = True
+                        for abilityEntityId in abilityTargetIdList:
+                            self._entitiesDict[abilityEntityId].addAuraBuffer(ability["feature"], value, "STRONG")
+                            executed = True
 
                     elif (ability["behavior"] == "addAuraReset"):
-                        self._entitiesDict[selfId].addAuraBuffer(ability["feature"], value, "RESET")
-                        executed = True
+                        for abilityEntityId in abilityTargetIdList:
+                            self._entitiesDict[abilityEntityId].addAuraBuffer(ability["feature"], value, "RESET")
+                            executed = True
 
                     elif (ability["behavior"] == "charge"):
                         for abilityEntityId in abilityTargetIdList:
@@ -1235,6 +1238,19 @@ class Board:
                             if (eid != None):
                                 self.removeEntity(eid)
                         entityId = self.appendEntity(playerId, ability["feature"], self._playersDict[playerId].team, self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].x, self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].y)
+                        self._entitiesDict[entityId].startTurn()
+                        self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, [None])
+                        executed = True
+
+                    elif (ability["behavior"] == "transform"):
+                        x = self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].x
+                        y = self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].y
+                        self.removeEntity(abilityTargetIdList[targetDict["targetIdx"]])
+                        if ("unique" in db.entities[ability["feature"]]["typeList"]):
+                            eid = self.entityIdFromDescId(ability["feature"], self._playersDict[playerId].team)
+                            if (eid != None):
+                                self.removeEntity(eid)
+                        entityId = self.appendEntity(playerId, ability["feature"], self._playersDict[playerId].team, x, y)
                         self._entitiesDict[entityId].startTurn()
                         self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, [None])
                         executed = True
