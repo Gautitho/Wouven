@@ -1,6 +1,39 @@
 {
     "ehx0" :
     {
+        "name"              : "Pikuxala",
+        "spritePath"        : "img/entities/icon/xelor/pikuxala.png",
+        "descSpritePath"    : "img/entities/desc/xelor/pikuxala.png",
+        "pv"                : 380,
+        "armor"             : 0,
+        "atk"               : 22,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "ability",
+                "target"        : {"main" : "highestPv", "team" : "op", "noTypeList" : ["mechanism"]},
+                "conditionList" : [{"feature" : "passive", "value" : "tp", "target" : "self"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
+    "ehx1" :
+    {
         "name"              : "Pramium",
         "spritePath"        : "img/entities/icon/xelor/pramium.png",
         "descSpritePath"    : "img/entities/desc/xelor/pramium.png",
@@ -29,6 +62,105 @@
                 "behavior"      : "draw",
                 "feature"       : "sinistro",
                 "value"         : 1
+            }
+        ]
+    },
+    "ehx2" :
+    {
+        "name"              : "Gurpapa",
+        "spritePath"        : "img/entities/icon/xelor/gurpapa.png",
+        "descSpritePath"    : "img/entities/desc/xelor/gurpapa.png",
+        "pv"                : 391,
+        "armor"             : 0,
+        "atk"               : 17,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "ability",
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" : "passive", "value" : "armorWin", "target" : "self", "trigger" : "spellCast"}],
+                "break"         : "False",
+                "behavior"      : "addAuraReset",
+                "feature"       : "ax0",
+                "value"         : 1
+            }
+        ]
+    },
+    "ehx3" :
+    {
+        "name"              : "Jikan",
+        "spritePath"        : "img/entities/icon/xelor/jikan.png",
+        "descSpritePath"    : "img/entities/desc/xelor/jikan.png",
+        "pv"                : 390,
+        "armor"             : 0,
+        "atk"               : 22,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "summon",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [{"feature" : "type", "value" : "sinistro", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
+    "ehx4" :
+    {
+        "name"              : "Tako",
+        "spritePath"        : "img/entities/icon/xelor/tako.png",
+        "descSpritePath"    : "img/entities/desc/xelor/tako.png",
+        "pv"                : 390,
+        "armor"             : 0,
+        "atk"               : 20,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "endTurn",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : "pa"
             }
         ]
     },

@@ -4,5 +4,29 @@
         "race"          : "xelor",
         "spellDescId"   : "shx0",
         "entityDescId"  : "ehx0"
+    },
+    "hx1" :
+    {
+        "race"          : "xelor",
+        "spellDescId"   : "shx1",
+        "entityDescId"  : "ehx1"
+    },
+    "hx2" :
+    {
+        "race"          : "xelor",
+        "spellDescId"   : "shx2",
+        "entityDescId"  : "ehx2"
+    },
+    "hx3" :
+    {
+        "race"          : "xelor",
+        "spellDescId"   : "shx3",
+        "entityDescId"  : "ehx3"
+    },
+    "hx4" :
+    {
+        "race"          : "xelor",
+        "spellDescId"   : "shx4",
+        "entityDescId"  : "ehx4"
     }
 }

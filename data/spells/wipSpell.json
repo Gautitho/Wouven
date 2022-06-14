@@ -468,32 +468,6 @@
         [
         ]
     },
-    "sx13":
-    {
-        "name"              : "Ralentissement",
-        "race"              : "xelor",
-        "cost"              : 3,
-        "elem"              : "water",
-        "spritePath"        : "img/spells/icon/xelor/ralentissement.png",
-        "descSpritePath"    : "img/spells/desc/xelor/ralentissement.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-        ]
-    },
-    "sx16":
-    {
-        "name"              : "Vol du temps",
-        "race"              : "xelor",
-        "cost"              : 5,
-        "elem"              : "water",
-        "spritePath"        : "img/spells/icon/xelor/volDeTemps.png",
-        "descSpritePath"    : "img/spells/desc/xelor/volDeTemps.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-        ]
-    },
     "sx19":
     {
         "name"              : "Horloge",
