@@ -1229,7 +1229,7 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/eniripsa/memePasMort.png",
         "descSpritePath"    : "img/spells/desc/eniripsa/memePasMort.png",
-        "allowedTargetList" : [{"entity" : "True", "typeList" : ["companion"]}],
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["companion"]}],
         "abilities"         :
         [
             {

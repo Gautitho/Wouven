@@ -290,7 +290,7 @@
                 "trigger"           : "always",
                 "stopTriggerList"   : ["always"],
                 "target"            : {"main" : "self"},
-                "conditionList"     : [{"feature" : "myCompanions", "value" : 1}],
+                "conditionList"     : [{"feature" : "myCompanions", "value" : 1, "target" : "none"}],
                 "break"             : "False",
                 "behavior"          : "",
                 "feature"           : "atk",

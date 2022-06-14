@@ -1100,6 +1100,7 @@ class Board:
                             self._playersDict[playerId].modifyPaStock(mult*value)
                             executed = True
 
+                    # TODO : Awfull and not coherent behavior
                     elif (ability["behavior"] == "opAffected"):
                         multIdList = list(abilityTargetIdList)
                         for eid in multIdList:
@@ -1115,6 +1116,9 @@ class Board:
                                     executed = True
                             else:
                                 raise GameException("Ability value for gauges must be a dict !")
+                        elif (ability["feature"] == "paStock"):
+                            self._playersDict[playerId].modifyPaStock(mult*value)
+                            executed = True
 
                     elif (ability["behavior"] == "distance+addAuraWeak"):
                         mult = calcDist(self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, self._entitiesDict[abilityTargetIdList[0]].x, self._entitiesDict[abilityTargetIdList[0]].y, offset=-1) if not(force) else mult # Handle the stopTrigger case

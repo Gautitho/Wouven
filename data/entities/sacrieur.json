@@ -123,7 +123,7 @@
             {
                 "trigger"       : "ability",
                 "target"        : {"main" : "player", "team" : "my"},
-                "conditionList" : [{"feature" : "passive", "value" : "tp", "target" : "self", "trigger" : "spellCast"}],
+                "conditionList" : [{"feature" : "passive", "value" : "deplace", "target" : "self", "trigger" : "spellCast"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "paStock",
