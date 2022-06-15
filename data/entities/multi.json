@@ -111,7 +111,7 @@
             {
                 "trigger"       : "attack",
                 "target"        : {"main" : "self"},
-                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}, {"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "attackAgain",
                 "feature"       : "",

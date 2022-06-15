@@ -8,7 +8,7 @@
             {
                 "trigger"       : "attack",
                 "target"        : {},
-                "conditionList" : [],
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "aura",
                 "feature"       : "pv",

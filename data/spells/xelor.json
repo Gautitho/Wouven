@@ -365,7 +365,7 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : {"main" : "around", "noTypeList" : ["mechanism"]},
+                "target"        : {"main" : "around", "team" : "op", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -871,7 +871,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "player", "team" : "my"},
-                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}, {"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "paStock",
@@ -1032,7 +1032,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "player", "team" : "my"},
-                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}, {"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "paStock",

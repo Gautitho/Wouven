@@ -253,7 +253,7 @@
             {
                 "trigger"       : "attack",
                 "target"        : {"main" : "player", "team" : "my"},
-                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}, {"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "paStock",
@@ -365,7 +365,7 @@
             {
                 "trigger"       : "attack",
                 "target"        : {"main" : "board", "team" : "my", "noTypeList" : ["mechanism"]},
-                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}, {"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "armor",

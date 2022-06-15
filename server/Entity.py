@@ -241,7 +241,7 @@ class Entity:
         if not(cpyState in self._states):
             for presentState in self._states:
                 if (cpyState["feature"] in uniqueStateList):
-                    if (presentState["feature"] in uniqueStateList):
+                    if (presentState["feature"] in uniqueStateList or presentState["feature"] == cpyState["feature"]):
                         self.removeState(presentState["feature"])
             self._states.append(cpyState)
             self.applyStates()

@@ -234,7 +234,7 @@
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "addState",
-                "feature"       : "shield",
+                "feature"       : "shield:-1",
                 "value"         : 0
             }
         ]

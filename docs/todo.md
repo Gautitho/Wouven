@@ -9,8 +9,4 @@
 - Repousse sur meca
 - Mécaniques à dev :
   - Ou sur condition
-  - Rembobinage
-  - Déclenchement d'un mécanisme
-  - Transformation de mécanisme
-  - Destruction de mechanisme quand on reconstruit le même
   - Dépahasage

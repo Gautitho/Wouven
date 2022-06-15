@@ -931,7 +931,7 @@
                 "target"        : {"main" : "self"},
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
-                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}, {"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}],
                 "feature"       : "ac0",
                 "value"         : 1
             }
@@ -1091,7 +1091,7 @@
                 "target"        : {"main" : "self"},
                 "behavior"      : "addAuraWeak",
                 "break"         : "False",
-                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}, {"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}],
                 "feature"       : "ac0",
                 "value"         : 2
             }
@@ -1920,7 +1920,7 @@
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "player", "team" : "my"},
-                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}, {"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}],
                 "break"         : "False",
                 "behavior"      : "",
                 "feature"       : "paStock",
