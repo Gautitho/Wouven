@@ -191,30 +191,6 @@
             }
         ]
     },
-    "ecw6" :
-    {
-        "name"              : "chevaucheurAncien",
-        "spritePath"        : "img/entities/icon/water/chevaucheurAncien.png",
-        "descSpritePath"    : "img/entities/desc/water/chevaucheurAncien.png",
-        "pv"                : 86,
-        "armor"             : 0,
-        "atk"               : 16,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : {},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
-    },
     "ecw13" :
     {
         "name"              : "Justice",

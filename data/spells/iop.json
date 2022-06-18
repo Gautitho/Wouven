@@ -1876,6 +1876,29 @@
             }
         ]
     },
+    "si50":
+    {
+        "name"              : "Ame spectrale",
+        "race"              : "iop",
+        "cost"              : 1,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/iop/ameSpectrale.png",
+        "descSpritePath"    : "img/spells/desc/iop/ameSpectrale.png",
+        "typeList"          : ["destructible"],
+        "allowedTargetList" : [{"empty" : "True", "main" : "adjacent"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "summon",
+                "feature"       : "ei0",
+                "value"         : 0
+            }
+        ]
+    },
     "shi0":
     {
         "name"              : "Charge",
@@ -2042,6 +2065,46 @@
                 "behavior"      : "",
                 "feature"       : "paStock",
                 "value"         : 2
+            }
+        ]
+    },
+    "shi4":
+    {
+        "name"              : "Attaque spectrale",
+        "race"              : "ehi4",
+        "cost"              : 4,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/iop/attaqueSpectrale.png",
+        "descSpritePath"    : "img/spells/desc/iop/attaqueSpectrale.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -21
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}, {"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "generateSpell",
+                "feature"       : "si50",
+                "value"         : 1
             }
         ]
     }

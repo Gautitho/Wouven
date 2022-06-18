@@ -1,4 +1,10 @@
 {
+    "he0" :
+    {
+        "race"          : "eniripsa",
+        "spellDescId"   : "she0",
+        "entityDescId"  : "ehe0"
+    },
     "he2" :
     {
         "race"          : "eniripsa",

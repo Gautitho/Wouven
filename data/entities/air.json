@@ -313,7 +313,7 @@
                 "value"         : "-atk"
             },
             {
-                "trigger"       : "attack",
+                "trigger"       : "startTurn",
                 "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",

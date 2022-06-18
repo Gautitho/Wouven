@@ -727,6 +727,73 @@
             }
         ]
     },
+    "sx19":
+    {
+        "name"              : "Horloge",
+        "race"              : "xelor",
+        "cost"              : 9,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/xelor/horloge.png",
+        "descSpritePath"    : "img/spells/desc/xelor/horloge.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -50
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"water" : 3}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [{"feature" : "elemState", "value" : "wet", "target" : "spellTarget"}, {"feature" : "paStock", "value" : 1, "target" : "spellTargetPlayer", "operator" : "=="}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [{"feature" : "elemState", "value" : "wet", "target" : "spellTarget"}, {"feature" : "paStock", "value" : 2, "target" : "spellTargetPlayer", "operator" : ">="}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 2
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "target"},
+                "conditionList" : [{"feature" : "elemState", "value" : "wet", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : -2
+            }
+        ]
+    },
     "sx20":
     {
         "name"              : "Sinistro terre",
@@ -836,6 +903,55 @@
                 "conditionList" : [],
                 "feature"       : "elemState",
                 "value"         : "muddy"
+            }
+        ]
+    },
+    "sx23":
+    {
+        "name"              : "Science des mecanismes",
+        "race"              : "xelor",
+        "cost"              : 4,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/xelor/scienceDesMecanismes.png",
+        "descSpritePath"    : "img/spells/desc/xelor/scienceDesMecanismes.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["mechanism"]}, {"empty" : "True"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [{"feature" :"range", "ref" : "abilityTarget", "target" : "spellTarget", "targetIdx" : 1, "value" : 3, "operator" : "<="}],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "position",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "executeAbilities",
+                "feature"       : "",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
             }
         ]
     },
@@ -1322,6 +1438,55 @@
             }
         ]
     },
+    "sx36":
+    {
+        "name"              : "Souffle",
+        "race"              : "xelor",
+        "cost"              : 5,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/xelor/souffle.png",
+        "descSpritePath"    : "img/spells/desc/xelor/souffle.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "adjacent"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -32
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "adjacent", "noTypeList" : ["mechanism"]},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "pushAwayFromSelf",
+                "feature"       : "position",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
     "sx37":
     {
         "name"              : "Catalyseur temporel",
@@ -1484,6 +1649,126 @@
                 "behavior"      : "summon",
                 "feature"       : "ex4",
                 "value"         : 0
+            }
+        ]
+    },
+    "sx42":
+    {
+        "name"              : "Reparation",
+        "race"              : "xelor",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/xelor/reparation.png",
+        "descSpritePath"    : "img/spells/desc/xelor/reparation.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "around", "ref" : "target", "team" : "my", "noTypeList" : ["mechanism"]},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "pv"
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "kill",
+                "feature"       : "",
+                "value"         : ""
+            }
+        ]
+    },
+    "sx43":
+    {
+        "name"              : "Eternite",
+        "race"              : "xelor",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/xelor/eternite.png",
+        "descSpritePath"    : "img/spells/desc/xelor/eternite.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "noTypeList" : ["mechanism"]}, {"entity" : "True", "team" : "my", "typeList" : ["mechanism"]}, {"empty" : "True"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [{"feature" :"range", "ref" : "spellTarget", "refIdx" : 1, "target" : "spellTarget", "targetIdx" : 2, "value" : 1, "operator" : "<="}],
+                "break"         : "True",
+                "behavior"      : "",
+                "feature"       : "position",
+                "value"         : 2
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "board", "team" : "my", "typeList" : ["mechanism"]},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 10
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            }
+        ]
+    },
+    "sx44":
+    {
+        "name"              : "Destructuration",
+        "race"              : "xelor",
+        "cost"              : 3,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/xelor/destructuration.png",
+        "descSpritePath"    : "img/spells/desc/xelor/destructuration.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "typeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "around", "ref" : "target", "team" : "op", "noTypeList" : ["mechanism"]},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-pv"
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "conditionList" : [],
+                "break"         : "False",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "kill",
+                "feature"       : "",
+                "value"         : ""
             }
         ]
     },

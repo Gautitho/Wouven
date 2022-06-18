@@ -64,6 +64,19 @@
             }
         ]
     },
+    "cw6" :
+    {
+        "cost"          : {"water" : 4},
+        "entityDescId"  : "ecw6",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myHero",
+                "range" : 2
+            }
+        ]
+    },
     "cw7" :
     {
         "cost"          : {"water" : 4},

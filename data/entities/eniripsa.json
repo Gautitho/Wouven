@@ -1,4 +1,47 @@
 {
+    "ehe0" :
+    {
+        "name"              : "Tamashi",
+        "spritePath"        : "img/entities/icon/eniripsa/tamashi.png",
+        "descSpritePath"    : "img/entities/desc/eniripsa/tamashi.png",
+        "pv"                : 408,
+        "armor"             : 0,
+        "atk"               : 24,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "typeList"          : ["hero"],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"           : "summon",
+                "target"            : {"typeList" : ["nocturien"]},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "atk",
+                "value"             : 5
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "myTargetAdjacentNocturiens",
+                "feature"       : "pv",
+                "value"         : -10
+            }
+        ]
+    },
     "ehe2" :
     {
         "name"              : "Voracius",
@@ -234,6 +277,49 @@
                 "behavior"      : "",
                 "feature"       : "pv",
                 "value"         : -10
+            }
+        ]
+    },
+    "ee5" : 
+    {
+        "name"              : "Rufus le sensuel",
+        "spritePath"        : "img/spells/icon/eniripsa/rufusLeSensuel.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/rufusLeSensuel.png",
+        "pv"                : 130,
+        "armor"             : 0,
+        "atk"               : 10,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "typeList"          : ["unique"],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "startTurn",
+                "target"        : {"main" : "self"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "startTurn",
+                "target"        : {"main" : "self"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "atk",
+                "value"         : 10
             }
         ]
     }

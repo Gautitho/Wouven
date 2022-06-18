@@ -908,12 +908,18 @@ class Board:
                 elif isinstance(ability["value"], dict):
                     value = ability["value"]
                 elif isinstance(ability["value"], str):
+                    refId = refIdList[0]
+                    refPlayerId = self.getPlayerIdFromTeam(self._entitiesDict[refId].team)
                     if (ability["value"] == "-atk"):
-                        value = -self._entitiesDict[selfId].atk
+                        value = -self._entitiesDict[refId].atk
                     elif (ability["value"] == "atk"):
-                        value = self._entitiesDict[selfId].atk
+                        value = self._entitiesDict[refId].atk
                     elif (ability["value"] == "pa"):
-                        value = self._playersDict[playerId].pa
+                        value = self._playersDict[refPlayerId].pa
+                    elif (ability["value"] == "pv"):
+                        value = self._entitiesDict[refId].pv
+                    elif (ability["value"] == "-pv"):
+                        value = -self._entitiesDict[refId].pv
                     elif (ability["value"] == "kokoroPassiveValue"):
                         value = 0
                         for passive in passiveTriggedList:
@@ -1125,6 +1131,14 @@ class Board:
                         self._entitiesDict[selfId].addAuraBuffer(ability["feature"], mult*value, "WEAK")
                         executed = True
 
+                    elif (ability["behavior"] == "myTargetAdjacentNocturiens"): # TODO : Generalise this behavior to all types
+                        mult = 0
+                        for abilityEntityId in abilityTargetIdList:
+                            for eid in self.entityIdAdjacentToTile(self._entitiesDict[abilityEntityId].x, self._entitiesDict[abilityEntityId].y, self._entitiesDict[refId].team):
+                                if ("nocturien" in self._entitiesDict[eid].typeList):
+                                    mult += 1
+                            pvVar = self._entitiesDict[abilityEntityId].modifyPv(mult*value)
+
                     elif (ability["behavior"] == "addAuraWeak"):
                         for abilityEntityId in abilityTargetIdList:
                             self._entitiesDict[abilityEntityId].addAuraBuffer(ability["feature"], value, "WEAK")
@@ -1296,8 +1310,14 @@ class Board:
                         executed = True
 
                     elif (ability["behavior"] == "sendBack"):
-                        self.removeEntity(abilityTargetIdList[targetDict["targetIdx"]], sendBack=True)
-                        executed = True
+                        for abilityEntityId in abilityTargetIdList:
+                            self.removeEntity(abilityEntityId, sendBack=True)
+                            executed = True
+
+                    elif (ability["behavior"] == "kill"):
+                        for abilityEntityId in abilityTargetIdList:
+                            self.removeEntity(abilityEntityId)
+                            executed = True
 
                     elif (ability["behavior"] == "executeAbilities"):
                         # WARNING : force mult is used, this is wrong but mult is never used in this case (I hope ...)

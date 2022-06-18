@@ -134,5 +134,74 @@
                 "value"         : 2
             }
         ]
+    },
+    "ehi4" :
+    {
+        "name"              : "Larmaguedon",
+        "spritePath"        : "img/entities/icon/iop/larmaguedon.png",
+        "descSpritePath"    : "img/entities/desc/iop/larmaguedon.png",
+        "pv"                : 405,
+        "armor"             : 0,
+        "atk"               : 29,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "typeList"          : ["hero"],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}, {"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "generateSpell",
+                "feature"       : "si50",
+                "value"         : 1
+            }
+        ]
+    },
+    "ei0" : 
+    {
+        "name"              : "Ame spectrale",
+        "spritePath"        : "img/spells/icon/iop/ameSpectrale.png",
+        "descSpritePath"    : "img/spells/desc/iop/ameSpectrale.png",
+        "pv"                : 30,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 2,
+        "aura"              : {},
+        "states"            : [],
+        "typeList"          : ["nocturien"],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"           : "always",
+                "stopTriggerList"   : ["always", "death"],
+                "target"            : {"main" : "hand"},
+                "conditionList"     : [{"feature" : "elem", "value" : "air", "target" : "none"}],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "cost",
+                "value"             : -1
+            }
+        ]
     }
 }

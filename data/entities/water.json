@@ -159,6 +159,40 @@
             }
         ]
     },
+    "ecw6" :
+    {
+        "name"              : "Chevaucheur ancien",
+        "spritePath"        : "img/entities/icon/water/chevaucheurAncien.png",
+        "descSpritePath"    : "img/entities/desc/water/chevaucheurAncien.png",
+        "pv"                : 86,
+        "armor"             : 0,
+        "atk"               : 16,
+        "pm"                : 3,
+        "typeList"          : ["companion"],
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : {"main" : "around"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "elemState",
+                "value"         : ""
+            }
+        ]
+    },
     "ecw7" :
     {
         "name"              : "Baron Sramedi",
