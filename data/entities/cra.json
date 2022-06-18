@@ -11,6 +11,7 @@
         "pm"                : 3,
         "aura"              : {},
         "states"            : [],
+        "typeList"          : ["hero"],
         "abilities"         : 
         [
             {
@@ -45,6 +46,7 @@
         "pm"                : 3,
         "aura"              : {},
         "states"            : [],
+        "typeList"          : ["hero"],
         "abilities"         : 
         [
             {
@@ -79,6 +81,7 @@
         "pm"                : 3,
         "aura"              : {},
         "states"            : [],
+        "typeList"          : ["hero"],
         "abilities"         : 
         [
             {
@@ -101,6 +104,50 @@
             }
         ]
     },
+    "ehc3" :
+    {
+        "name"              : "Shiru shaden",
+        "spritePath"        : "img/entities/icon/cra/shiruShaden.png",
+        "descSpritePath"    : "img/entities/desc/cra/shiruShaden.png",
+        "types"             : [],
+        "pv"                : 385,
+        "armor"             : 0,
+        "atk"               : 15,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "typeList"          : ["hero"],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attacked",
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" : "oneByTurn", "value" : "ehc3a", "target" : "self"}],
+                "break"         : "False",
+                "behavior"      : "addAuraWeak",
+                "feature"       : "ac0",
+                "value"         : 1
+            },
+            {
+                "trigger"       : "attacked",
+                "target"        : {"main" : "self"},
+                "conditionList" : [{"feature" : "oneByTurn", "value" : "ehc3b", "target" : "self"}],
+                "break"         : "False",
+                "behavior"      : "pushBack",
+                "feature"       : "position",
+                "value"         : 2
+            }
+        ]
+    },
     "ehc4" :
     {
         "name"              : "Voldorak",
@@ -113,6 +160,7 @@
         "pm"                : 3,
         "aura"              : {},
         "states"            : [],
+        "typeList"          : ["hero"],
         "abilities"         : 
         [
             {
@@ -130,6 +178,31 @@
                 "conditionList" : [{"feature" : "allowedTarget", "value" : "aligned", "target" : "spellTarget"}, {"feature" : "turn", "value" : "my", "target" : "myPlayer"}],
                 "break"         : "False",
                 "behavior"      : "distance+addAuraWeak",
+                "feature"       : "ac0",
+                "value"         : 1
+            }
+        ]
+    },
+    "ec0" :
+    {
+        "name"              : "Meurtriere",
+        "spritePath"        : "img/spells/icon/cra/meurtriere.png",
+        "descSpritePath"    : "img/spells/desc/cra/meurtriere.png",
+        "typeList"          : ["unique", "mechanism"],
+        "pv"                : 30,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "startTurn",
+                "target"        : {"main" : "hero", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraWeak",
                 "feature"       : "ac0",
                 "value"         : 1
             }

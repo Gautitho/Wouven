@@ -10,6 +10,7 @@
         "pm"                : 3,
         "aura"              : {},
         "states"            : [],
+        "typeList"          : ["hero"],
         "abilities"         : 
         [
             {
@@ -43,6 +44,7 @@
         "pm"                : 3,
         "aura"              : {},
         "states"            : [],
+        "typeList"          : ["hero"],
         "abilities"         : 
         [
             {
@@ -76,6 +78,7 @@
         "pm"                : 3,
         "aura"              : {},
         "states"            : [],
+        "typeList"          : ["hero"],
         "abilities"         : 
         [
             {

@@ -293,6 +293,55 @@
             }
         ]
     },
+    "se8":
+    {
+        "name"              : "Engloutir la vie",
+        "race"              : "eniripsa",
+        "cost"              : 6,
+        "elem"              : "fire",
+        "spritePath"        : "img/spells/icon/eniripsa/engloutirLaVie.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/engloutirLaVie.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "stealLife",
+                "value"         : -20
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "board", "team" : "my", "typeList" : ["mechanism"]},
+                "conditionList" : [{"feature" : "elemState", "value" : "oiled", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "executeAbilities",
+                "feature"       : "",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"fire" : 1}
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
     "se10":
     {
         "name"              : "Infection",
@@ -402,6 +451,46 @@
                 "behavior"      : "",
                 "feature"       : "gauges",
                 "value"         : {"water" : 1}
+            }
+        ]
+    },
+    "se13":
+    {
+        "name"              : "Resonance des corps",
+        "race"              : "eniripsa",
+        "cost"              : 4,
+        "elem"              : "water",
+        "spritePath"        : "img/spells/icon/eniripsa/resonanceDesCorps.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/resonanceDesCorps.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : 25
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "elemState",
+                "value"         : ""
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "paStock",
+                "value"         : 1
             }
         ]
     },

@@ -345,7 +345,7 @@ class Board:
         self.executeAbilities(self._entitiesDict[entityId].abilities, "move", playerId, entityId, [None])
         if (attackedEntityId != None):
             self.executeAbilities(self._entitiesDict[entityId].abilities, "attack", playerId, entityId, [attackedEntityId])
-            self.executeAbilities(self._entitiesDict[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, [None])
+            self.executeAbilities(self._entitiesDict[attackedEntityId].abilities, "attacked", playerId, attackedEntityId, [entityId])
             self._entitiesDict[entityId].attack(self._playersDict[playerId]) # Only used for agonyMaster / Awfull
 
     def pushEntity(self, entityId, x, y, distance):
