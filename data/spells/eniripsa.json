@@ -1239,6 +1239,88 @@
             }
         ]
     },
+    "se35":
+    {
+        "name"              : "Fiole de douleur",
+        "race"              : "eniripsa",
+        "cost"              : 4,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/eniripsa/fioleDeDouleur.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/fioleDeDouleur.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -24
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["spellCast", "endTurn"],
+                "target"            : {"main" : "hand"},
+                "conditionList"     : [{"feature" : "elemState", "value" : "windy", "target" : "spellTarget"}, {"feature" : "elem", "value" : "air", "target" : "none"}],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "cost",
+                "value"             : -2
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            }
+        ]
+    },
+    "se37":
+    {
+        "name"              : "Scalper",
+        "race"              : "eniripsa",
+        "cost"              : 5,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/eniripsa/scalper.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/scalper.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -14
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["spellCast", "endTurn"],
+                "target"            : {"main" : "hand"},
+                "conditionList"     : [{"feature" : "elemState", "value" : "windy", "target" : "spellTarget"}, {"feature" : "elem", "value" : "air", "target" : "none"}],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "cost",
+                "value"             : -3
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 2}
+            }
+        ]
+    },
     "se38":
     {
         "name"              : "Grande fiole de frayeur",

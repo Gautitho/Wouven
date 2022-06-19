@@ -128,19 +128,19 @@ class Board:
 
     def entityIdAdjacentToTile(self, x, y, team):
         entityIdList = []
-        matchId = self.entityIdOnTile(max(x-1, 0), y)
+        matchId = self.entityIdOnTile(x-1, y)
         if (matchId != None):
             if (team == "all" or team == self._entitiesDict[matchId].team):
                 entityIdList.append(matchId)
-        matchId = self.entityIdOnTile(min(x+1, BOARD_COLS), y)
+        matchId = self.entityIdOnTile(x+1, y)
         if (matchId != None):
             if (team == "all" or team == self._entitiesDict[matchId].team):
                 entityIdList.append(matchId)
-        matchId = self.entityIdOnTile(x, max(y-1, 0))
+        matchId = self.entityIdOnTile(x, y-1)
         if (matchId != None):
             if (team == "all" or team == self._entitiesDict[matchId].team):
                 entityIdList.append(matchId)
-        matchId = self.entityIdOnTile(x, min(y+1, BOARD_ROWS))
+        matchId = self.entityIdOnTile(x, y+1)
         if (matchId != None):
             if (team == "all" or team == self._entitiesDict[matchId].team):
                 entityIdList.append(matchId)

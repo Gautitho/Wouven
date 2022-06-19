@@ -181,7 +181,7 @@
         "pm"                : 2,
         "aura"              : {},
         "states"            : [],
-        "typeList"          : ["nocturien"],
+        "typeList"          : [],
         "abilities"         : 
         [
             {
@@ -202,6 +202,40 @@
                 "behavior"          : "",
                 "feature"           : "cost",
                 "value"             : -1
+            }
+        ]
+    },
+    "ei1" : 
+    {
+        "name"              : "Legendarus",
+        "spritePath"        : "img/spells/icon/iop/legendarus.png",
+        "descSpritePath"    : "img/spells/desc/iop/legendarus.png",
+        "pv"                : 130,
+        "armor"             : 0,
+        "atk"               : 40,
+        "pm"                : 1,
+        "aura"              : {},
+        "states"            : [],
+        "typeList"          : ["unique"],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "behavior"      : "addState",
+                "break"         : "False",
+                "feature"       : "stunned",
+                "value"         : 0
             }
         ]
     }

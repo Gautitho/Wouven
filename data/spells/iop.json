@@ -1928,6 +1928,47 @@
             }
         ]
     },
+    "si49":
+    {
+        "name"              : "Legendarus",
+        "race"              : "iop",
+        "cost"              : 11,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/iop/legendarus.png",
+        "descSpritePath"    : "img/spells/desc/iop/legendarus.png",
+        "allowedTargetList" : [{"empty" : "True", "main" : "adjacent"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "summon",
+                "feature"       : "ei1",
+                "value"         : 0
+            },
+            {
+                "trigger"           : "always",
+                "stopTriggerList"   : ["always"],
+                "target"            : {"main" : "currentSpell"},
+                "behavior"          : "auraNb",
+                "break"             : "False",
+                "conditionList"     : [],
+                "feature"           : "cost",
+                "value"             : -1
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "freeAura",
+                "feature"       : "",
+                "value"         : 0
+            }
+        ]
+    },
     "si50":
     {
         "name"              : "Ame spectrale",

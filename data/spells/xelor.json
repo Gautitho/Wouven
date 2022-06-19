@@ -2074,7 +2074,7 @@
                 "trigger"           : "spellCast",
                 "stopTriggerList"   : ["spellCast", "endTurn"],
                 "target"            : {"main" : "hand"},
-                "conditionList"     : [],
+                "conditionList"     : [{"feature" : "elem", "value" : "water", "target" : "none"}],
                 "break"             : "False",
                 "behavior"          : "",
                 "feature"           : "cost",

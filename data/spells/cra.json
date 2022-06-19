@@ -1277,6 +1277,47 @@
             }
         ]
     },
+    "sc31":
+    {
+        "name"              : "Pointe harcelante",
+        "race"              : "cra",
+        "cost"              : 3,
+        "elem"              : "air",
+        "spritePath"        : "img/spells/icon/cra/pointeHarcelante.png",
+        "descSpritePath"    : "img/spells/desc/cra/pointeHarcelante.png",
+        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -15
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "behavior"      : "",
+                "break"         : "False",
+                "conditionList" : [],
+                "feature"       : "gauges",
+                "value"         : {"air" : 1}
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["spellCast", "endTurn"],
+                "target"            : {"main" : "hand"},
+                "conditionList"     : [{"feature" : "elem", "value" : "air", "target" : "none"}],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "cost",
+                "value"             : -1
+            }
+        ]
+    },
     "sc32":
     {
         "name"              : "Pointe chuchotante",
