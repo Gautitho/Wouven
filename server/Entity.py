@@ -117,12 +117,12 @@ class Entity:
 
     @property
     def abilities(self):
+        outList = list(self._abilities)
         if (self._aura["type"] != ""):
-            outList = list(self._abilities)
             outList.extend(list(db.auras[self._aura["type"]]["abilities"]))
-            return outList
-        else:
-            return list(self._abilities)
+        if (self.isInStates("momificatus")):
+            outList.append({"trigger" : "spellCast", "target" : {"main" : "player", "team" : "my"}, "conditionList" : [{"feature" : "turn", "value" : "my", "target" : "myPlayer"}], "break" : "False", "behavior" : "", "feature" : "paStock", "value" : 1})
+        return outList
 
     @property
     def myTurn(self):
@@ -192,7 +192,6 @@ class Entity:
 
     def endTurn(self):
         self._myTurn            = False
-        self._pm                = db.entities[self._descId]["pm"]
         self.evalTimeoutStates()
 
     def endAction(self):
@@ -256,7 +255,7 @@ class Entity:
                 stateFound = True
                 break
         if not(stateFound):
-            raise GameException(f"This state {state} is not applied, it can't be removed !")
+            raise GameException(f"This state {stateFeature} is not applied, it can't be removed !")
         self.applyStates()
 
     def modifyPv(self, value):

@@ -839,13 +839,14 @@
                 "value"         : {"earth" : 1}
             },
             {
-                "trigger"       : "spellCast",
-                "target"        : {},
-                "conditionList" : [{"feature" : "elemState", "value" : "muddy"}],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pm",
-                "value"         : -1
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["startTurn"],
+                "target"            : {},
+                "conditionList"     : [{"feature" : "elemState", "value" : "muddy"}],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "pm",
+                "value"             : -1
             }
         ]
     },
@@ -1595,13 +1596,14 @@
                 "value"         : {"air" : 2}
             },
             {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "hero", "team" : "my"},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "auraNb",
-                "feature"       : "pm",
-                "value"         : 1
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["endTurn"],
+                "target"            : {"main" : "hero", "team" : "my"},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "auraNb",
+                "feature"           : "pm",
+                "value"             : 1
             }
         ]
     },

@@ -11,13 +11,14 @@
         "abilities"         :
         [
             {
-                "trigger"       : "spellCast",
-                "target"        : {},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pm",
-                "value"         : 3
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["endTurn"],
+                "target"            : {},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "pm",
+                "value"             : 3
             },
             {
                 "trigger"       : "spellCast",

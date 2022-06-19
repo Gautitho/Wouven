@@ -1,0 +1,28 @@
+{
+    "as0" :
+    {
+        "name"          : "Poings tatoues",
+        "spritePath"    : "img/states/aura.png",
+        "abilities"     :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [{"feature" : "type", "operator" : "!=", "value" : "mechanism", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "aura",
+                "feature"       : "pv",
+                "value"         : -12
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : {"main" : "self"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "armor",
+                "value"         : 12
+            }
+        ]
+    }
+}

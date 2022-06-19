@@ -1847,6 +1847,58 @@
             }
         ]
     },
+    "sx48":
+    {
+        "name"              : "Momificatus",
+        "race"              : "xelor",
+        "cost"              : 6,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/xelor/momificatus.png",
+        "descSpritePath"    : "img/spells/desc/xelor/momificatus.png",
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "main" : "hero"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "armor",
+                "value"         : 33
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["noArmor"],
+                "target"            : {},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "atk",
+                "value"             : 8
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["noArmor"],
+                "target"            : {},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "addState",
+                "feature"           : "momificatus",
+                "value"             : 0
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["noArmor"],
+                "target"            : {},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "addState",
+                "feature"           : "transformation:-1",
+                "value"             : 0
+            }
+        ]
+    },
     "shx0":
     {
         "name"              : "Teleportation acceleree",

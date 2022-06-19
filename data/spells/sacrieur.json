@@ -1268,13 +1268,14 @@
                 "value"         : -5
             },
             {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "hero", "team" : "my"},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pm",
-                "value"         : 2
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["endTurn"],
+                "target"            : {"main" : "hero", "team" : "my"},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "pm",
+                "value"             : 2
             },
             {
                 "trigger"       : "spellCast",
@@ -1817,6 +1818,111 @@
             }
         ]
     },
+    "ss45":
+    {
+        "name"              : "Vierge de fer",
+        "race"              : "sacrieur",
+        "cost"              : 6,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/sacrieur/viergeDeFer.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/viergeDeFer.png",
+        "allowedTargetList" : [{"empty" : "True"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [{"feature" : "range", "target" : "spellTarget", "value" : 2, "operator" : "<="}],
+                "break"         : "True",
+                "behavior"      : "summon",
+                "feature"       : "es0",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"neutral" : 2}
+            }
+        ]
+    },
+    "ss46":
+    {
+        "name"              : "Poings tatoues",
+        "race"              : "sacrieur",
+        "cost"              : 6,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/sacrieur/poingsTatoues.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/poingsTatoues.png",
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "self"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addAuraReset",
+                "feature"       : "as0",
+                "value"         : 3
+            }
+        ]
+    },
+    "ss47":
+    {
+        "name"              : "Ecorchorus pelis",
+        "race"              : "sacrieur",
+        "cost"              : 6,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/sacrieur/ecorchorusPelis.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/ecorchorusPelis.png",
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "armor",
+                "value"         : 41
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["noArmor"],
+                "target"            : {},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "atk",
+                "value"             : 10
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["noArmor"],
+                "target"            : {},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "pm",
+                "value"             : "paStock"
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["noArmor"],
+                "target"            : {},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "addState",
+                "feature"           : "transformation:-1",
+                "value"             : 0
+            }
+        ]
+    },
     "ss49":
     {
         "name"              : "Martyricone",
@@ -1834,7 +1940,7 @@
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "summon",
-                "feature"       : "es1",
+                "feature"       : "es2",
                 "value"         : 0
             }
         ]
@@ -1860,13 +1966,14 @@
                 "value"         : -33
             },
             {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "hero", "team" : "my"},
-                "conditionList" : [{"feature" : "state", "value" : "agony", "target" : "self"}],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pm",
-                "value"         : 2
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["endTurn"],
+                "target"            : {"main" : "hero", "team" : "my"},
+                "conditionList"     : [{"feature" : "state", "value" : "agony", "target" : "self"}],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "pm",
+                "value"             : 2
             },
             {
                 "trigger"       : "spellCast",

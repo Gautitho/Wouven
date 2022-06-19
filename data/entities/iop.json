@@ -57,13 +57,14 @@
                 "value"         : "-atk"
             },
             {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "self"},
-                "conditionList" : [{"feature" : "elem", "value" : "fire"}, {"feature" : "turn", "value" : "my", "target" : "myPlayer"}],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pm",
-                "value"         : 1
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["endTurn"],
+                "target"            : {"main" : "self"},
+                "conditionList"     : [{"feature" : "elem", "value" : "fire"}, {"feature" : "turn", "value" : "my", "target" : "myPlayer"}],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "pm",
+                "value"             : 1
             }
         ]
     },

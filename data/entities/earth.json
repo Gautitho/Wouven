@@ -329,13 +329,14 @@
                 "value"         : "-atk"
             },
             {
-                "trigger"       : "attack",
-                "target"        : {},
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "pm",
-                "value"         : -1
+                "trigger"           : "attack",
+                "stopTriggerList"   : ["startTurn"],
+                "target"            : {},
+                "behavior"          : "",
+                "break"             : "False",
+                "conditionList"     : [],
+                "feature"           : "pm",
+                "value"             : -1
             }
         ]
     },

@@ -169,7 +169,32 @@
             }
         ]
     },
-    "es1" : 
+    "es0" : 
+    {
+        "name"              : "Vierge de fer",
+        "spritePath"        : "img/spells/icon/sacrieur/viergeDeFer.png",
+        "descSpritePath"    : "img/spells/desc/sacrieur/viergeDeFer.png",
+        "pv"                : 50,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "aura"              : {},
+        "states"            : [],
+        "typeList"          : ["unique", "mechanism"],
+        "abilities"         : 
+        [
+            {
+                "trigger"       : "startTurn",
+                "target"        : {"main" : "around"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : -15
+            }
+        ]
+    },
+    "es2" : 
     {
         "name"              : "Martyricone",
         "spritePath"        : "img/spells/icon/sacrieur/martyricone.png",

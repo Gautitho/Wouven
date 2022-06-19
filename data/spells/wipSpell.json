@@ -229,32 +229,6 @@
         [
         ]
     },
-    "se49":
-    {
-        "name"              : "Arcone mortis",
-        "race"              : "eniripsa",
-        "cost"              : 6,
-        "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/eniripsa/arconeMortis.png",
-        "descSpritePath"    : "img/spells/desc/eniripsa/arconeMortis.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-        ]
-    },
-    "sx48":
-    {
-        "name"              : "Momificatus",
-        "race"              : "xelor",
-        "cost"              : 6,
-        "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/xelor/momificatus.png",
-        "descSpritePath"    : "img/spells/desc/xelor/momificatus.png",
-        "allowedTargetList" : [{"entity" : "True", "team" : "my", "main" : "hero"}],
-        "abilities"         :
-        [
-        ]
-    },
     "sx49":
     {
         "name"              : "Sarcophagus",

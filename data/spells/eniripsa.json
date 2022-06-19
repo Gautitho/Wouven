@@ -1536,6 +1536,58 @@
             }
         ]
     },
+    "se49":
+    {
+        "name"              : "Arcone mortis",
+        "race"              : "eniripsa",
+        "cost"              : 6,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/iop/arconeMortis.png",
+        "descSpritePath"    : "img/spells/desc/iop/arconeMortis.png",
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "armor",
+                "value"         : 33
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["noArmor"],
+                "target"            : {},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "atk",
+                "value"             : 8
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["noArmor"],
+                "target"            : {},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "pm",
+                "value"             : 2
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["noArmor"],
+                "target"            : {},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "addState",
+                "feature"           : "transformation:-1",
+                "value"             : 0
+            }
+        ]
+    },
     "se50":
     {
         "name"              : "Flamiche",
