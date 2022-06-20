@@ -121,7 +121,7 @@ class Entity:
         if (self._aura["type"] != ""):
             outList.extend(list(db.auras[self._aura["type"]]["abilities"]))
         if (self.isInStates("momificatus")):
-            outList.append({"trigger" : "spellCast", "target" : {"main" : "player", "team" : "my"}, "conditionList" : [{"feature" : "turn", "value" : "my", "target" : "myPlayer"}], "break" : "False", "behavior" : "", "feature" : "paStock", "value" : 1})
+            outList.append({"trigger" : "beforeSpellCast", "target" : {"main" : "player", "team" : "my"}, "conditionList" : [{"feature" : "turn", "value" : "my", "target" : "myPlayer"}], "break" : "False", "behavior" : "", "feature" : "paStock", "value" : 1})
         return outList
 
     @property

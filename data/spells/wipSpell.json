@@ -1,35 +1,4 @@
 {
-    "sc31":
-    {
-        "name"              : "Pointe harcelante",
-        "race"              : "cra",
-        "cost"              : 3,
-        "elem"              : "air",
-        "spritePath"        : "img/spells/icon/cra/pointeHarcelante.png",
-        "descSpritePath"    : "img/spells/desc/cra/pointeHarcelante.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : {},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -23
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "player", "team" : "my"},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "paStock",
-                "value"         : 1
-            }
-        ]
-    },
     "se9":
     {
         "name"              : "Flamme dephasante",
@@ -92,37 +61,6 @@
             }
         ]
     },
-    "se35":
-    {
-        "name"              : "Fiole de douleur",
-        "race"              : "eniripsa",
-        "cost"              : 4,
-        "elem"              : "air",
-        "spritePath"        : "img/spells/icon/eniripsa/fioleDeDouleur.png",
-        "descSpritePath"    : "img/spells/desc/eniripsa/fioleDeDouleur.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : {},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -24
-            },
-            {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "player", "team" : "my"},
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "gauges",
-                "value"         : {"air" : 1}
-            }
-        ]
-    },
     "se36":
     {
         "name"              : "Laboratoire de phase",
@@ -134,37 +72,6 @@
         "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
         "abilities"         :
         [
-            {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "player", "team" : "my"},
-                "behavior"      : "",
-                "break"         : "False",
-                "conditionList" : [],
-                "feature"       : "gauges",
-                "value"         : {"air" : 2}
-            }
-        ]
-    },
-    "se37":
-    {
-        "name"              : "Scalper",
-        "race"              : "eniripsa",
-        "cost"              : 5,
-        "elem"              : "air",
-        "spritePath"        : "img/spells/icon/eniripsa/scalper.png",
-        "descSpritePath"    : "img/spells/desc/eniripsa/scalper.png",
-        "allowedTargetList" : [{"entity" : "True", "noTypeList" : ["mechanism"]}],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "spellCast",
-                "target"        : {},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : -24
-            },
             {
                 "trigger"       : "spellCast",
                 "target"        : {"main" : "player", "team" : "my"},

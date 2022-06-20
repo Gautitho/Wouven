@@ -1530,13 +1530,14 @@
         "abilities"         :
         [
             {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "hero", "team" : "my"},
-                "conditionList" : [{"feature" :"range", "ref" : "myHero", "target" : "spellTarget", "value" : 3, "operator" : "<="}],
-                "break"         : "True",
-                "behavior"      : "",
-                "feature"       : "position",
-                "value"         : 0
+                "trigger"           : "spellCast",
+                "target"            : {"main" : "hero", "team" : "my"},
+                "orConditionList"   : [{"feature" :"range", "ref" : "myHero", "target" : "spellTarget", "value" : 3, "operator" : "<="}, {"feature" :"aroundAllyMechanism", "target" : "spellTarget", "targetIdx" : 0}],
+                "conditionList"     : [],
+                "break"             : "True",
+                "behavior"          : "",
+                "feature"           : "position",
+                "value"             : 0
             },
             {
                 "trigger"       : "spellCast",
@@ -1700,17 +1701,17 @@
         "elem"              : "neutral",
         "spritePath"        : "img/spells/icon/xelor/eternite.png",
         "descSpritePath"    : "img/spells/desc/xelor/eternite.png",
-        "allowedTargetList" : [{"entity" : "True", "team" : "my", "noTypeList" : ["mechanism"]}, {"entity" : "True", "team" : "my", "typeList" : ["mechanism"]}, {"empty" : "True"}],
+        "allowedTargetList" : [{"entity" : "True", "team" : "my", "noTypeList" : ["mechanism"]}, {"empty" : "True"}],
         "abilities"         :
         [
             {
                 "trigger"       : "spellCast",
                 "target"        : {},
-                "conditionList" : [{"feature" :"range", "ref" : "spellTarget", "refIdx" : 1, "target" : "spellTarget", "targetIdx" : 2, "value" : 1, "operator" : "<="}],
+                "conditionList" : [{"feature" :"adjacentAllyMechanism", "target" : "spellTarget", "targetIdx" : 1}],
                 "break"         : "True",
                 "behavior"      : "",
                 "feature"       : "position",
-                "value"         : 2
+                "value"         : 1
             },
             {
                 "trigger"       : "spellCast",
@@ -1884,7 +1885,7 @@
                 "conditionList"     : [],
                 "break"             : "False",
                 "behavior"          : "addState",
-                "feature"           : "momificatus",
+                "feature"           : "momificatus:-1",
                 "value"             : 0
             },
             {
@@ -1911,13 +1912,14 @@
         "abilities"         :
         [
             {
-                "trigger"       : "spellCast",
-                "target"        : {"main" : "hero", "team" : "my"},
-                "conditionList" : [{"feature" :"range", "ref" : "myHero", "target" : "spellTarget", "value" : 1, "operator" : "<="}],
-                "break"         : "True",
-                "behavior"      : "",
-                "feature"       : "position",
-                "value"         : 0
+                "trigger"           : "spellCast",
+                "target"            : {"main" : "hero", "team" : "my"},
+                "orConditionList"   : [{"feature" :"range", "ref" : "myHero", "target" : "spellTarget", "value" : 1, "operator" : "<="}, {"feature" :"aroundAllyMechanism", "target" : "spellTarget", "targetIdx" : 0}],
+                "conditionList"     : [],
+                "break"             : "True",
+                "behavior"          : "",
+                "feature"           : "position",
+                "value"             : 0
             },
             {
                 "trigger"       : "spellCast",

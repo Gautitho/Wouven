@@ -483,6 +483,8 @@ class Board:
 
                 # Execute spell
                 self.removeOngoingAbilities("spellCast") # WARNING : This line is here only because, for now, the only spellCast ongoingAbilities affect cost
+                for entityId in [e for e in list(self._entitiesDict.keys()) if not("tile" in str(e))]:
+                    self.executeAbilities(self._entitiesDict[entityId].abilities, "beforeSpellCast", playerId, entityId, targetEntityIdList, spellElem=spell.elem, allowedTargetList=spell.allowedTargetList) # USED only for Momificatus
                 self.executeAbilities(spell.abilities, "spellCast", playerId, selfEntityId, targetEntityIdList, spellElem=spell.elem, allowedTargetList=spell.allowedTargetList)
                 for entityId in [e for e in list(self._entitiesDict.keys()) if not("tile" in str(e))]:
                     self.executeAbilities(self._entitiesDict[entityId].abilities, "spellCast", playerId, entityId, targetEntityIdList, spellElem=spell.elem, allowedTargetList=spell.allowedTargetList)
@@ -674,225 +676,339 @@ class Board:
 
                 # Check conditions
                 conditionsValid = True
-                for condition in ability["conditionList"]:
-                    conditionDict = {}
-                    conditionDict["feature"]    = "none"            if not("feature" in condition)      else condition["feature"]
-                    conditionDict["operator"]   = "=="              if not("operator" in condition)     else condition["operator"]
-                    conditionDict["target"]     = "abilityTarget"   if not("target" in condition)       else condition["target"]
-                    conditionDict["targetIdx"]  = 0                 if not("targetIdx" in condition)    else int(condition["targetIdx"])
-                    conditionDict["ref"]        = "self"            if not("ref" in condition)          else condition["ref"]
-                    conditionDict["refIdx"]     = 0                 if not("refIdx" in condition)       else int(condition["refIdx"])
-                    conditionDict["value"]      = "0"               if not("value" in condition)        else condition["value"]
-                    conditionDict["trigger"]    = "all"             if not("trigger" in condition)      else condition["trigger"]
+                if ("orConditionList" in ability):
+                    orConditionsValid = False
+                    for condition in ability["orConditionList"]:
+                        conditionDict = {}
+                        conditionDict["feature"]    = "none"            if not("feature" in condition)      else condition["feature"]
+                        conditionDict["operator"]   = "=="              if not("operator" in condition)     else condition["operator"]
+                        conditionDict["target"]     = "abilityTarget"   if not("target" in condition)       else condition["target"]
+                        conditionDict["targetIdx"]  = 0                 if not("targetIdx" in condition)    else int(condition["targetIdx"])
+                        conditionDict["ref"]        = "self"            if not("ref" in condition)          else condition["ref"]
+                        conditionDict["refIdx"]     = 0                 if not("refIdx" in condition)       else int(condition["refIdx"])
+                        conditionDict["value"]      = "0"               if not("value" in condition)        else condition["value"]
+                        conditionDict["trigger"]    = "all"             if not("trigger" in condition)      else condition["trigger"]
 
-                    # Target
-                    if (conditionDict["target"] == "spellTarget"):
-                        conditionTargetId = targetEntityIdList[conditionDict["targetIdx"]]
-                        if not(conditionTargetId in list(self._entitiesDict.keys())): # Removed entity during a previous ability in the same action
-                            conditionsValid = False
-                            break
-                    elif (conditionDict["target"] == "spellTargetPlayer"):
-                        conditionTargetId = self.getPlayerIdFromTeam(self._entitiesDict[targetEntityIdList[conditionDict["targetIdx"]]].team)
-                    elif (conditionDict["target"] == "abilityTarget"):
-                        conditionTargetId = abilityTargetIdList[conditionDict["targetIdx"]]
-                        if not(conditionTargetId in list(self._entitiesDict.keys())): # Removed entity during a previous ability in the same action
-                            conditionsValid = False
-                            break
-                    elif (conditionDict["target"] == "self"):
-                        conditionTargetId = selfId
-                        if not(conditionTargetId in list(self._entitiesDict.keys())): # Removed entity during a previous ability in the same action
-                            conditionsValid = False
-                            break
-                    elif (conditionDict["target"] == "myPlayer"):
-                        conditionTargetId = self.getPlayerIdFromTeam(self._entitiesDict[selfId].team)
-                    elif (conditionDict["target"] == "opPlayer"):
-                        conditionTargetId = self.getPlayerIdFromTeam(self.getOpTeam(self._entitiesDict[selfId].team))
-                    elif (conditionDict["target"] == "none"):
-                        pass
-                    else:
-                        raise GameException("Wrong condition (target) !")
+                        # Target
+                        if (conditionDict["target"] == "spellTarget"):
+                            conditionTargetId = targetEntityIdList[conditionDict["targetIdx"]]
+                            if not(conditionTargetId in list(self._entitiesDict.keys())): # Removed entity during a previous ability in the same action
+                                orConditionsValid = False
+                                continue
+                        elif (conditionDict["target"] == "spellTargetPlayer"):
+                            conditionTargetId = self.getPlayerIdFromTeam(self._entitiesDict[targetEntityIdList[conditionDict["targetIdx"]]].team)
+                        elif (conditionDict["target"] == "abilityTarget"):
+                            conditionTargetId = abilityTargetIdList[conditionDict["targetIdx"]]
+                            if not(conditionTargetId in list(self._entitiesDict.keys())): # Removed entity during a previous ability in the same action
+                                orConditionsValid = False
+                                continue
+                        elif (conditionDict["target"] == "self"):
+                            conditionTargetId = selfId
+                            if not(conditionTargetId in list(self._entitiesDict.keys())): # Removed entity during a previous ability in the same action
+                                orConditionsValid = False
+                                continue
+                        elif (conditionDict["target"] == "myPlayer"):
+                            conditionTargetId = self.getPlayerIdFromTeam(self._entitiesDict[selfId].team)
+                        elif (conditionDict["target"] == "opPlayer"):
+                            conditionTargetId = self.getPlayerIdFromTeam(self.getOpTeam(self._entitiesDict[selfId].team))
+                        elif (conditionDict["target"] == "none"):
+                            pass
+                        else:
+                            raise GameException("Wrong condition (target) !")
 
-                    # Operator
-                    if not(conditionDict["operator"] in ["==", "!=", ">", "<", ">=", "<="]):
-                        raise GameException("Wrong condition (operator) !")
+                        # Operator
+                        if not(conditionDict["operator"] in ["==", "!=", ">", "<", ">=", "<="]):
+                            raise GameException("Wrong condition (operator) !")
 
-                    operatorDict = {'==':   lambda x, y: x == y,
-                                    '!=':   lambda x, y: x != y,
-                                    '>':    lambda x, y: x > y,
-                                    '<':    lambda x, y: x < y,
-                                    '>=':   lambda x, y: x >= y,
-                                    '<=':   lambda x, y: x <= y}
+                        operatorDict = {'==':   lambda x, y: x == y,
+                                        '!=':   lambda x, y: x != y,
+                                        '>':    lambda x, y: x > y,
+                                        '<':    lambda x, y: x < y,
+                                        '>=':   lambda x, y: x >= y,
+                                        '<=':   lambda x, y: x <= y}
                     
-                    # Reference
-                    if (conditionDict["ref"] == "self"):
-                        conditionRefId = selfId
-                    elif (conditionDict["ref"] == "myHero"):
-                        conditionRefId = self._playersDict[playerId].heroEntityId
-                    elif (conditionDict["ref"] == "opHero"):
-                        conditionRefId = self._playersDict[opPlayerId].heroEntityId
-                    elif (conditionDict["ref"] == "abilityTarget"):
-                        conditionRefId = abilityTargetIdList[conditionDict["refIdx"]]
-                    elif (conditionDict["ref"] == "spellTarget"):
-                        conditionRefId = targetEntityIdList[conditionDict["refIdx"]]
+                        # Reference
+                        if (conditionDict["ref"] == "self"):
+                            conditionRefId = selfId
+                        elif (conditionDict["ref"] == "myHero"):
+                            conditionRefId = self._playersDict[playerId].heroEntityId
+                        elif (conditionDict["ref"] == "opHero"):
+                            conditionRefId = self._playersDict[opPlayerId].heroEntityId
+                        elif (conditionDict["ref"] == "abilityTarget"):
+                            conditionRefId = abilityTargetIdList[conditionDict["refIdx"]]
+                        elif (conditionDict["ref"] == "spellTarget"):
+                            conditionRefId = targetEntityIdList[conditionDict["refIdx"]]
+                    
+                        # Feature
+                        if (conditionDict["feature"] == "none"):
+                            orConditionsValid = True
 
-                    # Feature
-                    if (conditionDict["feature"] in ["elemState", "state", "type", "team", "pv", "auraNb"]):
-                        if not(type(self._entitiesDict[conditionTargetId]).__name__ == "Entity"):
-                            conditionsValid = False
-                            break
+                        elif (conditionDict["feature"] == "range"):
+                            if (operatorDict[conditionDict["operator"]](calcDist(self._entitiesDict[conditionRefId].x, self._entitiesDict[conditionRefId].y, self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y), int(conditionDict["value"]))):
+                                rangeCondition = condition["value"]
+                                orConditionsValid = True
 
-                    if (conditionDict["feature"] == "none"):
-                        pass
-                    elif (conditionDict["feature"] == "elemState"):
-                        if (conditionDict["value"] in ["oiled", "wet", "muddy", "windy"]):
-                            if (operatorDict[conditionDict["operator"]](self._entitiesDict[conditionTargetId].elemState, conditionDict["value"])):
-                                if (conditionDict["operator"] == "=="):
-                                    elemStateToRemoveEntityIdList.append(conditionTargetId)
+                        elif (conditionDict["feature"] == "adjacentAllyMechanism"):
+                            found = False
+                            for eid in self.entityIdAdjacentToTile(self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y, self._entitiesDict[selfId].team):
+                                if ("mechanism" in self._entitiesDict[eid].typeList):
+                                    found = True
+
+                            if (found):
+                                orConditionsValid = True
+
+                        elif (conditionDict["feature"] == "aroundAllyMechanism"):
+                            found = False
+                            for eid in self.entityIdAroundTile(self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y, self._entitiesDict[selfId].team):
+                                if ("mechanism" in self._entitiesDict[eid].typeList):
+                                    found = True
+
+                            if (found):
+                                orConditionsValid = True
+
+                    conditionsValid = orConditionsValid
+
+                if (conditionsValid):
+                    for condition in ability["conditionList"]:
+                        conditionDict = {}
+                        conditionDict["feature"]    = "none"            if not("feature" in condition)      else condition["feature"]
+                        conditionDict["operator"]   = "=="              if not("operator" in condition)     else condition["operator"]
+                        conditionDict["target"]     = "abilityTarget"   if not("target" in condition)       else condition["target"]
+                        conditionDict["targetIdx"]  = 0                 if not("targetIdx" in condition)    else int(condition["targetIdx"])
+                        conditionDict["ref"]        = "self"            if not("ref" in condition)          else condition["ref"]
+                        conditionDict["refIdx"]     = 0                 if not("refIdx" in condition)       else int(condition["refIdx"])
+                        conditionDict["value"]      = "0"               if not("value" in condition)        else condition["value"]
+                        conditionDict["trigger"]    = "all"             if not("trigger" in condition)      else condition["trigger"]
+
+                        # Target
+                        if (conditionDict["target"] == "spellTarget"):
+                            conditionTargetId = targetEntityIdList[conditionDict["targetIdx"]]
+                            if not(conditionTargetId in list(self._entitiesDict.keys())): # Removed entity during a previous ability in the same action
+                                conditionsValid = False
+                                break
+                        elif (conditionDict["target"] == "spellTargetPlayer"):
+                            conditionTargetId = self.getPlayerIdFromTeam(self._entitiesDict[targetEntityIdList[conditionDict["targetIdx"]]].team)
+                        elif (conditionDict["target"] == "abilityTarget"):
+                            conditionTargetId = abilityTargetIdList[conditionDict["targetIdx"]]
+                            if not(conditionTargetId in list(self._entitiesDict.keys())): # Removed entity during a previous ability in the same action
+                                conditionsValid = False
+                                break
+                        elif (conditionDict["target"] == "self"):
+                            conditionTargetId = selfId
+                            if not(conditionTargetId in list(self._entitiesDict.keys())): # Removed entity during a previous ability in the same action
+                                conditionsValid = False
+                                break
+                        elif (conditionDict["target"] == "myPlayer"):
+                            conditionTargetId = self.getPlayerIdFromTeam(self._entitiesDict[selfId].team)
+                        elif (conditionDict["target"] == "opPlayer"):
+                            conditionTargetId = self.getPlayerIdFromTeam(self.getOpTeam(self._entitiesDict[selfId].team))
+                        elif (conditionDict["target"] == "none"):
+                            pass
+                        else:
+                            raise GameException("Wrong condition (target) !")
+
+                        # Operator
+                        if not(conditionDict["operator"] in ["==", "!=", ">", "<", ">=", "<="]):
+                            raise GameException("Wrong condition (operator) !")
+
+                        operatorDict = {'==':   lambda x, y: x == y,
+                                        '!=':   lambda x, y: x != y,
+                                        '>':    lambda x, y: x > y,
+                                        '<':    lambda x, y: x < y,
+                                        '>=':   lambda x, y: x >= y,
+                                        '<=':   lambda x, y: x <= y}
+
+                        # Reference
+                        if (conditionDict["ref"] == "self"):
+                            conditionRefId = selfId
+                        elif (conditionDict["ref"] == "myHero"):
+                            conditionRefId = self._playersDict[playerId].heroEntityId
+                        elif (conditionDict["ref"] == "opHero"):
+                            conditionRefId = self._playersDict[opPlayerId].heroEntityId
+                        elif (conditionDict["ref"] == "abilityTarget"):
+                            conditionRefId = abilityTargetIdList[conditionDict["refIdx"]]
+                        elif (conditionDict["ref"] == "spellTarget"):
+                            conditionRefId = targetEntityIdList[conditionDict["refIdx"]]
+
+                        # Feature
+                        if (conditionDict["feature"] == "none"):
+                            pass
+
+                        elif (conditionDict["feature"] in ["elemState", "state", "type", "team", "pv", "auraNb"]):
+                            if not(type(self._entitiesDict[conditionTargetId]).__name__ == "Entity"):
+                                conditionsValid = False
+                                break
+
+                        elif (conditionDict["feature"] == "elemState"):
+                            if (conditionDict["value"] in ["oiled", "wet", "muddy", "windy"]):
+                                if (operatorDict[conditionDict["operator"]](self._entitiesDict[conditionTargetId].elemState, conditionDict["value"])):
+                                    if (conditionDict["operator"] == "=="):
+                                        elemStateToRemoveEntityIdList.append(conditionTargetId)
+                                else:
+                                    conditionsValid = False
+                                    break
+                            else:
+                                raise GameException("ElemState to consume does not exist !")
+
+                        elif (conditionDict["feature"] == "state"):
+                            if not(conditionDict["operator"] == "==" and self._entitiesDict[conditionTargetId].isInStates(conditionDict["value"])):
+                                conditionsValid = False
+                                break
+
+                        elif (conditionDict["feature"] == "elem"):
+                            if (conditionDict["value"] in ["fire", "water", "earth", "air", "neutral"]):
+                                if (targetDict["main"] == "hand"):
+                                    for spellIdIt in list(abilityTargetIdList):
+                                        if not(operatorDict[conditionDict["operator"]](self._playersDict[playerId].handSpellDict[spellIdIt].elem, conditionDict["value"])):
+                                            abilityTargetIdList.remove(spellIdIt)
+                                elif not(operatorDict[conditionDict["operator"]](spellElem, conditionDict["value"])):
+                                    conditionsValid = False
+                                    break
+                            else:
+                                raise GameException("Elem of the spell does not exist !")
+
+                        elif (conditionDict["feature"] == "paStock"):
+                            if not(operatorDict[conditionDict["operator"]](self._playersDict[conditionTargetId].paStock, int(conditionDict["value"]))):
+                                conditionsValid = False
+                                break
+
+                        elif (conditionDict["feature"] == "myCompanions"):
+                            myCompanions = 0
+                            for companion in self._playersDict[playerId].companionList:
+                                if (companion["state"] == "alive"):
+                                    myCompanions += 1
+                            if not(operatorDict[conditionDict["operator"]](myCompanions, int(conditionDict["value"]))):
+                                conditionsValid = False
+                                break
+
+                        elif (conditionDict["feature"] == "myMechanisms"):
+                            myMechanisms = 0
+                            for eid in self._playersDict[playerId].boardEntityIds:
+                                if ("mechanism" in self._entitiesDict[eid].typeList):
+                                    myMechanisms += 1
+                            if not(operatorDict[conditionDict["operator"]](myMechanisms, int(conditionDict["value"]))):
+                                conditionsValid = False
+                                break
+
+                        elif (conditionDict["feature"] == "range"):
+                            if (operatorDict[conditionDict["operator"]](calcDist(self._entitiesDict[conditionRefId].x, self._entitiesDict[conditionRefId].y, self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y), int(conditionDict["value"]))):
+                                rangeCondition = condition["value"]
                             else:
                                 conditionsValid = False
                                 break
-                        else:
-                            raise GameException("ElemState to consume does not exist !")
 
-                    elif (conditionDict["feature"] == "state"):
-                        if not(conditionDict["operator"] == "==" and self._entitiesDict[conditionTargetId].isInStates(conditionDict["value"])):
-                            conditionsValid = False
-                            break
-
-                    elif (conditionDict["feature"] == "elem"):
-                        if (conditionDict["value"] in ["fire", "water", "earth", "air", "neutral"]):
-                            if (targetDict["main"] == "hand"):
-                                for spellIdIt in list(abilityTargetIdList):
-                                    if not(operatorDict[conditionDict["operator"]](self._playersDict[playerId].handSpellDict[spellIdIt].elem, conditionDict["value"])):
-                                        abilityTargetIdList.remove(spellIdIt)
-                            elif not(operatorDict[conditionDict["operator"]](spellElem, conditionDict["value"])):
-                                conditionsValid = False
-                                break
-                        else:
-                            raise GameException("Elem of the spell does not exist !")
-
-                    elif (conditionDict["feature"] == "paStock"):
-                        if not(operatorDict[conditionDict["operator"]](self._playersDict[conditionTargetId].paStock, int(conditionDict["value"]))):
-                            conditionsValid = False
-                            break
-
-                    elif (conditionDict["feature"] == "myCompanions"):
-                        myCompanions = 0
-                        for companion in self._playersDict[playerId].companionList:
-                            if (companion["state"] == "alive"):
-                                myCompanions += 1
-                        if not(operatorDict[conditionDict["operator"]](myCompanions, int(conditionDict["value"]))):
-                            conditionsValid = False
-                            break
-
-                    elif (conditionDict["feature"] == "myMechanisms"):
-                        myMechanisms = 0
-                        for eid in self._playersDict[playerId].boardEntityIds:
-                            if ("mechanism" in self._entitiesDict[eid].typeList):
-                                myMechanisms += 1
-                        if not(operatorDict[conditionDict["operator"]](myMechanisms, int(conditionDict["value"]))):
-                            conditionsValid = False
-                            break
-
-                    elif (conditionDict["feature"] == "range"):
-                        if (operatorDict[conditionDict["operator"]](calcDist(self._entitiesDict[conditionRefId].x, self._entitiesDict[conditionRefId].y, self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y), int(conditionDict["value"]))):
-                            rangeCondition = condition["value"]
-                        else:
-                            conditionsValid = False
-                            break
-
-                    elif (conditionDict["feature"] == "turn"):
-                        if (conditionDict["value"] == "my" and self._entitiesDict[selfId].myTurn):
-                            pass
-                        elif (conditionDict["value"] == "op" and not(self._entitiesDict[selfId].myTurn)):
-                            pass
-                        else:
-                            conditionsValid = False
-                            break
-
-                    elif (conditionDict["feature"] == "team"):
-                        if (conditionDict["value"] == "my" and self._entitiesDict[conditionTargetId].team == self._entitiesDict[selfId].team):
-                            pass
-                        elif (conditionDict["value"] == "op" and self._entitiesDict[conditionTargetId].team == self.getOpTeam(self._entitiesDict[selfId].team)):
-                            pass
-                        else:
-                            conditionsValid = False
-                            break
-
-                    elif (conditionDict["feature"] == "type"):
-                        if (conditionDict["operator"] == "=="):
-                            if not(conditionDict["value"] in self._entitiesDict[conditionTargetId].typeList):
-                                conditionsValid = False
-                                break
-                        elif (conditionDict["operator"] == "!="):
-                            if (conditionDict["value"] in self._entitiesDict[conditionTargetId].typeList):
-                                conditionsValid = False
-                                break
-
-                    elif (conditionDict["feature"] == "allowedTarget"):
-                        if (conditionDict["value"] == "aligned"):
-                            if not("main" in allowedTargetList[targetDict["targetIdx"]]):
-                                conditionsValid = False
-                                break
+                        elif (conditionDict["feature"] == "turn"):
+                            if (conditionDict["value"] == "my" and self._entitiesDict[selfId].myTurn):
+                                pass
+                            elif (conditionDict["value"] == "op" and not(self._entitiesDict[selfId].myTurn)):
+                                pass
                             else:
-                                if not(allowedTargetList[targetDict["targetIdx"]]["main"] in ["aligned", "firstAligned"]):
+                                conditionsValid = False
+                                break
+
+                        elif (conditionDict["feature"] == "team"):
+                            if (conditionDict["value"] == "my" and self._entitiesDict[conditionTargetId].team == self._entitiesDict[selfId].team):
+                                pass
+                            elif (conditionDict["value"] == "op" and self._entitiesDict[conditionTargetId].team == self.getOpTeam(self._entitiesDict[selfId].team)):
+                                pass
+                            else:
+                                conditionsValid = False
+                                break
+
+                        elif (conditionDict["feature"] == "type"):
+                            if (conditionDict["operator"] == "=="):
+                                if not(conditionDict["value"] in self._entitiesDict[conditionTargetId].typeList):
+                                    conditionsValid = False
+                                    break
+                            elif (conditionDict["operator"] == "!="):
+                                if (conditionDict["value"] in self._entitiesDict[conditionTargetId].typeList):
                                     conditionsValid = False
                                     break
 
-                    elif (conditionDict["feature"] == "opsAround"):
-                        if not(operatorDict[conditionDict["operator"]](len(self.entityIdAroundTile(self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y, self.getOpTeam(self._entitiesDict[conditionTargetId].team))), int(conditionDict["value"]))):
-                            conditionsValid = False
-                            break
+                        elif (conditionDict["feature"] == "allowedTarget"):
+                            if (conditionDict["value"] == "aligned"):
+                                if not("main" in allowedTargetList[targetDict["targetIdx"]]):
+                                    conditionsValid = False
+                                    break
+                                else:
+                                    if not(allowedTargetList[targetDict["targetIdx"]]["main"] in ["aligned", "firstAligned"]):
+                                        conditionsValid = False
+                                        break
 
-                    elif (conditionDict["feature"] == "spellsPlayedDuringTurn"):
-                        if not(operatorDict[conditionDict["operator"]](self._playersDict[playerId].spellsPlayedDuringTurn, int(conditionDict["value"]))):
-                            conditionsValid = False
-                            break
-
-                    elif (conditionDict["feature"] == "pv"):
-                        if not(operatorDict[conditionDict["operator"]](self._entitiesDict[conditionTargetId].pv, int(conditionDict["value"]))):
-                            conditionsValid = False
-                            break
-
-                    elif (conditionDict["feature"] == "auraNb"):
-                        if not(operatorDict[conditionDict["operator"]](self._entitiesDict[conditionTargetId].aura["nb"], int(conditionDict["value"]))):
-                            conditionsValid = False
-                            break
-
-                    elif (conditionDict["feature"] == "oneByTurn"):
-                        if (conditionDict["value"] in self._oneByTurnAbilityList):
-                            conditionsValid = False
-                            break
-
-                    elif (conditionDict["feature"] == "behavior"):
-                        if not(conditionDict["value"] == triggingAbility["behavior"]):
-                            conditionsValid = False
-                            break
-
-                    elif (conditionDict["feature"] == "feature"):
-                        if not(conditionDict["value"] == triggingAbility["feature"]):
-                            conditionsValid = False
-                            break
-
-                    elif (conditionDict["feature"] == "handSpells"):
-                        if not(operatorDict[conditionDict["operator"]](len(list(self._playersDict[conditionTargetId].handSpellDict.keys())), int(conditionDict["value"]))):
-                            conditionsValid = False
-                            break
-
-                    # Custom case
-                    elif (conditionDict["feature"] == "passive"):
-                        found = False
-                        for passive in passiveTriggedList:
-                            if (conditionDict["value"] == passive["action"] and conditionTargetId == passive["actorId"] and conditionDict["trigger"] in ["all", passive["trigger"]]):
-                                found = True
+                        elif (conditionDict["feature"] == "opsAround"):
+                            if not(operatorDict[conditionDict["operator"]](len(self.entityIdAroundTile(self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y, self.getOpTeam(self._entitiesDict[conditionTargetId].team))), int(conditionDict["value"]))):
+                                conditionsValid = False
                                 break
 
-                        if not(found):
-                            conditionsValid = False
-                            break
+                        elif (conditionDict["feature"] == "spellsPlayedDuringTurn"):
+                            if not(operatorDict[conditionDict["operator"]](self._playersDict[playerId].spellsPlayedDuringTurn, int(conditionDict["value"]))):
+                                conditionsValid = False
+                                break
 
-                    else:
-                        raise GameException("Wrong condition (feature) !")
+                        elif (conditionDict["feature"] == "pv"):
+                            if not(operatorDict[conditionDict["operator"]](self._entitiesDict[conditionTargetId].pv, int(conditionDict["value"]))):
+                                conditionsValid = False
+                                break
+
+                        elif (conditionDict["feature"] == "auraNb"):
+                            if not(operatorDict[conditionDict["operator"]](self._entitiesDict[conditionTargetId].aura["nb"], int(conditionDict["value"]))):
+                                conditionsValid = False
+                                break
+
+                        elif (conditionDict["feature"] == "oneByTurn"):
+                            if (conditionDict["value"] in self._oneByTurnAbilityList):
+                                conditionsValid = False
+                                break
+
+                        elif (conditionDict["feature"] == "behavior"):
+                            if not(conditionDict["value"] == triggingAbility["behavior"]):
+                                conditionsValid = False
+                                break
+
+                        elif (conditionDict["feature"] == "feature"):
+                            if not(conditionDict["value"] == triggingAbility["feature"]):
+                                conditionsValid = False
+                                break
+
+                        elif (conditionDict["feature"] == "handSpells"):
+                            if not(operatorDict[conditionDict["operator"]](len(list(self._playersDict[conditionTargetId].handSpellDict.keys())), int(conditionDict["value"]))):
+                                conditionsValid = False
+                                break
+
+                        # Custom case
+                        elif (conditionDict["feature"] == "passive"):
+                            found = False
+                            for passive in passiveTriggedList:
+                                if (conditionDict["value"] == passive["action"] and conditionTargetId == passive["actorId"] and conditionDict["trigger"] in ["all", passive["trigger"]]):
+                                    found = True
+                                    break
+
+                            if not(found):
+                                conditionsValid = False
+                                break
+
+                        elif (conditionDict["feature"] == "adjacentAllyMechanism"):
+                            found = False
+                            for eid in self.entityIdAdjacentToTile(self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y, self._entitiesDict[selfId].team):
+                                if ("mechanism" in self._entitiesDict[eid].typeList):
+                                    found = True
+
+                            if not(found):
+                                conditionsValid = False
+                                break
+
+                        elif (conditionDict["feature"] == "aroundAllyMechanism"):
+                            found = False
+                            for eid in self.entityIdAroundTile(self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y, self._entitiesDict[selfId].team):
+                                if ("mechanism" in self._entitiesDict[eid].typeList):
+                                    found = True
+
+                            if not(found):
+                                conditionsValid = False
+                                break
+
+                        else:
+                            raise GameException("Wrong condition (feature) !")
 
                 if (not(conditionsValid) and ability["break"] == "True"):
                     raise GameException("The conditions to launch this spell are not respected !")
@@ -1378,14 +1494,15 @@ class Board:
         copyOngoingAbilityList = list(self._ongoingAbilityList)
         for ongoingAbility in copyOngoingAbilityList:
             if (stopTrigger in ongoingAbility["stopTriggerList"] and (not(stopTrigger in ["startTurn", "endTurn"]) or playerId == ongoingAbility["playerId"])):
-                if (ongoingAbility["ability"]["feature"] == "bodyguard" and selfId == ongoingAbility["selfId"]):
-                    for state in self._entitiesDict[ongoingAbility["selfId"]].states:
-                        if (state["feature"] == "bodyguard"):
-                            bodyguardedId = state["value"]
-                            break
-                    self._entitiesDict[ongoingAbility["selfId"]].removeState("bodyguard")
-                    self._entitiesDict[bodyguardedId].removeState("bodyguarded")
-                    self._ongoingAbilityList.remove(ongoingAbility)
+                if (ongoingAbility["ability"]["feature"] == "bodyguard"): 
+                    if (selfId == ongoingAbility["selfId"]):
+                        for state in self._entitiesDict[ongoingAbility["selfId"]].states:
+                            if (state["feature"] == "bodyguard"):
+                                bodyguardedId = state["value"]
+                                break
+                        self._entitiesDict[ongoingAbility["selfId"]].removeState("bodyguard")
+                        self._entitiesDict[bodyguardedId].removeState("bodyguarded")
+                        self._ongoingAbilityList.remove(ongoingAbility)
                 else:
                     if (ongoingAbility["selfId"] in list(self._entitiesDict.keys())):
                         if (ongoingAbility["spellId"] == None or ongoingAbility["spellId"] in list(self._playersDict[ongoingAbility["playerId"]].handSpellDict.keys())):
