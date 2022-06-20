@@ -156,6 +156,19 @@
             }
         ]
     },
+    "cw13" :
+    {
+        "cost"          : {"water" : 6},
+        "entityDescId"  : "ecw13",
+        "spellDescId"   : "scw13",
+        "placementList" :
+        [
+            {
+                "ref"   : "myHero",
+                "range" : 2
+            }
+        ]
+    },
     "cw14" :
     {
         "cost"          : {"water" : 6},

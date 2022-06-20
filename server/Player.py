@@ -128,6 +128,9 @@ class Player:
         self._spellsPlayedDuringTurn = 0
      
     def endTurn(self):
+        for spellId in list(self._handSpellDict.keys()):
+            if ("ephemere" in self._handSpellDict[spellId].typeList):
+                self._handSpellDict.pop(spellId)
         self.draw(1)
 
     def modifyPaStock(self, value):
@@ -135,6 +138,9 @@ class Player:
 
     def useReserve(self):
         self._pa += self._paStock
+        self._paStock = 0
+
+    def freeReserve(self):
         self._paStock = 0
 
     def draw(self, nb, type=""):

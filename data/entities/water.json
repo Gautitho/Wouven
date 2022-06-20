@@ -407,6 +407,40 @@
             }
         ]
     },
+    "ecw13" :
+    {
+        "name"              : "Justice",
+        "spritePath"        : "img/entities/icon/water/justice.png",
+        "descSpritePath"    : "img/entities/desc/water/justice.png",
+        "pv"                : 105,
+        "armor"             : 0,
+        "atk"               : 21,
+        "pm"                : 3,
+        "typeList"          : ["companion"],
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : {"main" : "board"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "freeAura",
+                "feature"       : "",
+                "value"         : 0
+            }
+        ]
+    },
     "ecw14" :
     {
         "name"              : "Echo",
@@ -506,6 +540,32 @@
                 "behavior"      : "swap",
                 "feature"       : "position",
                 "value"         : 0
+            }
+        ]
+    },
+    "ew0" :
+    {
+        "name"              : "Orbe d'inhibition",
+        "spritePath"        : "img/spells/icon/water/orbeDInhibition.png",
+        "descSpritePath"    : "img/spells/desc/water/orbeDInhibition.png",
+        "pv"                : 15,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "typeList"          : ["unique", "mechanism"],
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"           : "spawn",
+                "stopTriggerList"   : ["death"],
+                "target"            : {},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "preventStockUse",
+                "feature"           : "",
+                "value"             : 0
             }
         ]
     }

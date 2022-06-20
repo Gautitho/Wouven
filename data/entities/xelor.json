@@ -385,5 +385,40 @@
                 "value"             : -2
             }
         ]
+    },
+    "ex9" :
+    {
+        "name"              : "Sarcophagus",
+        "spritePath"        : "img/spells/icon/xelor/sarcophagus.png",
+        "descSpritePath"    : "img/spells/desc/xelor/sarcophagus.png",
+        "typeList"          : ["unique"],
+        "pv"                : 130,
+        "armor"             : 0,
+        "atk"               : 27,
+        "pm"                : 2,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"           : "startTurn",
+                "stopTriggerList"   : [],
+                "target"            : {"main" : "player", "team" : "my"},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "generateSpell",
+                "feature"           : "sx50",
+                "value"             : 1
+            }
+        ]
     }
 }

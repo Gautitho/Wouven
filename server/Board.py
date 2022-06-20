@@ -277,7 +277,15 @@ class Board:
             self.executeAbilities(self._entitiesDict[entityId].abilities, "endTurn", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, [None])
 
     def useReserve(self, playerId):
-        self._playersDict[playerId].useReserve()
+        preventStockUse = False
+        for ongoingAbility in self._ongoingAbilityList:
+            if (ongoingAbility["ability"]["behavior"] == "preventStockUse"):
+                preventStockUse = True
+
+        if preventStockUse:
+            raise GameException("Pa stock use is forbidden !")
+        else:
+            self._playersDict[playerId].useReserve()
 
     # This function is called after each action
     def always(self):
@@ -831,13 +839,13 @@ class Board:
                             conditionRefId = targetEntityIdList[conditionDict["refIdx"]]
 
                         # Feature
-                        if (conditionDict["feature"] == "none"):
-                            pass
-
-                        elif (conditionDict["feature"] in ["elemState", "state", "type", "team", "pv", "auraNb"]):
+                        if (conditionDict["feature"] in ["elemState", "state", "type", "team", "pv", "auraNb"]):
                             if not(type(self._entitiesDict[conditionTargetId]).__name__ == "Entity"):
                                 conditionsValid = False
                                 break
+
+                        if (conditionDict["feature"] == "none"):
+                            pass
 
                         elif (conditionDict["feature"] == "elemState"):
                             if (conditionDict["value"] in ["oiled", "wet", "muddy", "windy"]):
@@ -984,6 +992,11 @@ class Board:
                                     break
 
                             if not(found):
+                                conditionsValid = False
+                                break
+
+                        elif (conditionDict["feature"] == "adjacentAlly"):
+                            if (len(self.entityIdAdjacentToTile(self._entitiesDict[conditionTargetId].x, self._entitiesDict[conditionTargetId].y, self._entitiesDict[selfId].team)) == 0):
                                 conditionsValid = False
                                 break
 
@@ -1424,8 +1437,9 @@ class Board:
                             executed = True
 
                     elif (ability["behavior"] == "freeAura"):
-                        self._entitiesDict[selfId].freeAura()
-                        executed = True
+                        for abilityEntityId in abilityTargetIdList:
+                            self._entitiesDict[abilityEntityId].freeAura()
+                            executed = True
 
                     elif (ability["behavior"] == "draw"):
                         self._playersDict[abilityTargetIdList[targetDict["targetIdx"]]].draw(value, ability["feature"])
@@ -1433,6 +1447,10 @@ class Board:
 
                     elif (ability["behavior"] == "generateSpell"):
                         self._playersDict[abilityTargetIdList[targetDict["targetIdx"]]].getSpell(ability["feature"], value)
+                        executed = True
+
+                    elif (ability["behavior"] == "freePaStock"):
+                        self._playersDict[abilityTargetIdList[targetDict["targetIdx"]]].freeReserve()
                         executed = True
 
                     elif (ability["behavior"] == "sendBack"):
@@ -1449,6 +1467,11 @@ class Board:
                         # WARNING : force mult is used, this is wrong but mult is never used in this case (I hope ...)
                         for abilityEntityId in abilityTargetIdList:
                             self.executeAbilities(self._entitiesDict[abilityEntityId].abilities, "", self.getPlayerIdFromTeam(self._entitiesDict[abilityEntityId].team), abilityEntityId, [None], force=True)
+                            executed = True
+
+                    elif (ability["behavior"] == "preventStockUse"):
+                        # Used as a flag
+                        executed = True
 
                     # If stopTriggerList is defined, the ability must be added to the ongoingAbilityList
                     if stopTriggerList and not(force):
@@ -1493,16 +1516,15 @@ class Board:
     def removeOngoingAbilities(self, stopTrigger, playerId=None, selfId=None):
         copyOngoingAbilityList = list(self._ongoingAbilityList)
         for ongoingAbility in copyOngoingAbilityList:
-            if (stopTrigger in ongoingAbility["stopTriggerList"] and (not(stopTrigger in ["startTurn", "endTurn"]) or playerId == ongoingAbility["playerId"])):
+            if (stopTrigger in ongoingAbility["stopTriggerList"] and (not(stopTrigger in ["startTurn", "endTurn"]) or playerId == ongoingAbility["playerId"]) and (not(stopTrigger in ["death"]) or selfId == ongoingAbility["selfId"])):
                 if (ongoingAbility["ability"]["feature"] == "bodyguard"): 
-                    if (selfId == ongoingAbility["selfId"]):
-                        for state in self._entitiesDict[ongoingAbility["selfId"]].states:
-                            if (state["feature"] == "bodyguard"):
-                                bodyguardedId = state["value"]
-                                break
-                        self._entitiesDict[ongoingAbility["selfId"]].removeState("bodyguard")
-                        self._entitiesDict[bodyguardedId].removeState("bodyguarded")
-                        self._ongoingAbilityList.remove(ongoingAbility)
+                    for state in self._entitiesDict[ongoingAbility["selfId"]].states:
+                        if (state["feature"] == "bodyguard"):
+                            bodyguardedId = state["value"]
+                            break
+                    self._entitiesDict[ongoingAbility["selfId"]].removeState("bodyguard")
+                    self._entitiesDict[bodyguardedId].removeState("bodyguarded")
+                    self._ongoingAbilityList.remove(ongoingAbility)
                 else:
                     if (ongoingAbility["selfId"] in list(self._entitiesDict.keys())):
                         if (ongoingAbility["spellId"] == None or ongoingAbility["spellId"] in list(self._playersDict[ongoingAbility["playerId"]].handSpellDict.keys())):

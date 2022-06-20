@@ -1900,6 +1900,61 @@
             }
         ]
     },
+    "sx49":
+    {
+        "name"              : "Sarcophagus",
+        "race"              : "xelor",
+        "cost"              : 0,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/xelor/sarcophagus.png",
+        "descSpritePath"    : "img/spells/desc/xelor/sarcophagus.png",
+        "typeList"          : [],
+        "allowedTargetList" : [{"empty" : "True", "main" : "adjacent"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [{"feature" :"paStock", "target" : "myPlayer", "value" : 9, "operator" : "=="}],
+                "break"         : "True",
+                "behavior"      : "freePaStock",
+                "feature"       : "",
+                "value"         : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "summon",
+                "feature"       : "ex9",
+                "value"         : 0
+            }
+        ]
+    },
+    "sx50":
+    {
+        "name"              : "Accelerateur de Sarcophagus",
+        "race"              : "xelor",
+        "cost"              : 0,
+        "elem"              : "neutral",
+        "spritePath"        : "img/spells/icon/xelor/accelerateur.png",
+        "descSpritePath"    : "img/spells/desc/xelor/accelerateurDeSarcophagus.png",
+        "typeList"          : ["destructible", "ephemere"],
+        "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "paStock",
+                "value"         : 1
+            }
+        ]
+    },
     "shx0":
     {
         "name"              : "Teleportation acceleree",

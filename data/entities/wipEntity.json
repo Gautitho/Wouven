@@ -190,29 +190,5 @@
                 "value"         : "-atk"
             }
         ]
-    },
-    "ecw13" :
-    {
-        "name"              : "Justice",
-        "spritePath"        : "img/entities/icon/water/justice.png",
-        "descSpritePath"    : "img/entities/desc/water/justice.png",
-        "pv"                : 105,
-        "armor"             : 0,
-        "atk"               : 21,
-        "pm"                : 3,
-        "aura"              : {},
-        "states"            : [],
-        "abilities"         :
-        [
-            {
-                "trigger"       : "attack",
-                "target"        : {},
-                "conditionList" : [],
-                "break"         : "False",
-                "behavior"      : "",
-                "feature"       : "pv",
-                "value"         : "-atk"
-            }
-        ]
     }
 }
