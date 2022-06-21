@@ -1348,7 +1348,7 @@ class Board:
 
                     elif (ability["behavior"] == "pushAwayFromSelf"):
                         for abilityEntityId in abilityTargetIdList:
-                            self.pushEntity(abilityEntityId, self._entitiesDict[selfId].x, self._entitiesDict[selfId].y, -value)
+                            self.pushEntity(abilityEntityId, self._entitiesDict[refIdList[0]].x, self._entitiesDict[refIdList[0]].y, -value)
                             passiveTriggerList.append({"action" : "deplace", "trigger" : trigger, "actorId" : abilityEntityId})
                             executed = True
 
@@ -1411,6 +1411,10 @@ class Board:
                             eid = self.entityIdFromDescId(ability["feature"], self._playersDict[playerId].team)
                             if (eid != None):
                                 self.removeEntity(eid)
+                        if ("sinistro" in db.entities[ability["feature"]]["typeList"]):
+                            for eid in self._playersDict[playerId].boardEntityIds:
+                                if ("sinistro" in self._entitiesDict[eid].typeList):
+                                    self.removeEntity(eid)
                         entityId = self.appendEntity(playerId, ability["feature"], self._playersDict[playerId].team, self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].x, self._entitiesDict[targetEntityIdList[targetDict["targetIdx"]]].y)
                         self._entitiesDict[entityId].startTurn()
                         self.executeAbilities(self._entitiesDict[entityId].abilities, "spawn", playerId, entityId, [None])
@@ -1534,9 +1538,10 @@ class Board:
                             self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], ongoingAbility["affectedIdList"], spellId=ongoingAbility["spellId"], inAffectedIdList=ongoingAbility["affectedIdList"], force=True)
                             self._ongoingAbilityList.remove(ongoingAbility)
             elif (stopTrigger == "always" and "noArmor" in ongoingAbility["stopTriggerList"]):
-                if (self._entitiesDict[self._playersDict[ongoingAbility["playerId"]].heroEntityId].armor == 0):
-                    if (ongoingAbility["ability"]["behavior"] == "addState"):
-                        ongoingAbility["ability"]["behavior"] = "removeState"
-                    ongoingAbility["ability"]["value"] = -ongoingAbility["value"]
-                    self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], ongoingAbility["affectedIdList"], spellId=ongoingAbility["spellId"], force=True)
-                    self._ongoingAbilityList.remove(ongoingAbility)
+                if (ongoingAbility["selfId"] in list(self._entitiesDict.keys())):
+                    if (self._entitiesDict[ongoingAbility["selfId"]].armor == 0):
+                        if (ongoingAbility["ability"]["behavior"] == "addState"):
+                            ongoingAbility["ability"]["behavior"] = "removeState"
+                        ongoingAbility["ability"]["value"] = -ongoingAbility["value"]
+                        self.executeAbilities([ongoingAbility["ability"]], "", ongoingAbility["playerId"], ongoingAbility["selfId"], ongoingAbility["affectedIdList"], spellId=ongoingAbility["spellId"], force=True)
+                        self._ongoingAbilityList.remove(ongoingAbility)

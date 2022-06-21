@@ -1960,7 +1960,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : {},
+                "target"        : {"main" : "hero", "team" : "my"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "freeAura",

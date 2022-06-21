@@ -1451,7 +1451,7 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : {"main" : "adjacent"},
+                "target"        : {"main" : "adjacent", "noTypeList" : ["mechanism"], "ref" : "target"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",
@@ -1460,7 +1460,7 @@
             },
             {
                 "trigger"       : "spellCast",
-                "target"        : {"main" : "adjacent", "noTypeList" : ["mechanism"]},
+                "target"        : {"main" : "adjacent", "noTypeList" : ["mechanism"], "ref" : "target"},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "pushAwayFromSelf",

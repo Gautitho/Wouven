@@ -1624,8 +1624,8 @@
         "race"              : "eniripsa",
         "cost"              : 6,
         "elem"              : "neutral",
-        "spritePath"        : "img/spells/icon/iop/arconeMortis.png",
-        "descSpritePath"    : "img/spells/desc/iop/arconeMortis.png",
+        "spritePath"        : "img/spells/icon/eniripsa/arconeMortis.png",
+        "descSpritePath"    : "img/spells/desc/eniripsa/arconeMortis.png",
         "allowedTargetList" : [{"entity" : "True", "main" : "hero", "team" : "my"}],
         "abilities"         :
         [
