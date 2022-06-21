@@ -155,11 +155,37 @@
             }
         ]
     },
+    "ca13" :
+    {
+        "cost"          : {"air" : 6},
+        "entityDescId"  : "eca13",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myHero",
+                "range" : 2
+            }
+        ]
+    },
     "ca14" :
     {
         "cost"          : {"air" : 6},
         "entityDescId"  : "eca14",
         "spellDescId"   : "sca14",
+        "placementList" :
+        [
+            {
+                "ref"   : "myHero",
+                "range" : 2
+            }
+        ]
+    },
+    "ca15" :
+    {
+        "cost"          : {"air" : 7},
+        "entityDescId"  : "eca15",
+        "spellDescId"   : "sca15",
         "placementList" :
         [
             {

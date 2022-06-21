@@ -25,6 +25,19 @@
             }
         ]
     },
+    "ce2" :
+    {
+        "cost"          : {"earth" : 3},
+        "entityDescId"  : "ece2",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myHero",
+                "range" : 2
+            }
+        ]
+    },
     "ce3" :
     {
         "cost"          : {"earth" : 3},
@@ -68,6 +81,19 @@
     {
         "cost"          : {"earth" : 4},
         "entityDescId"  : "ece6",
+        "spellDescId"   : "",
+        "placementList" :
+        [
+            {
+                "ref"   : "myHero",
+                "range" : 2
+            }
+        ]
+    },
+    "ce7" :
+    {
+        "cost"          : {"earth" : 4},
+        "entityDescId"  : "ece7",
         "spellDescId"   : "",
         "placementList" :
         [
@@ -159,7 +185,7 @@
     {
         "cost"          : {"earth" : 7},
         "entityDescId"  : "ece15",
-        "spellDescId"   : "",
+        "spellDescId"   : "sce15",
         "propertyList"  : ["respawnable"],
         "placementList" :
         [

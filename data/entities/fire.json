@@ -529,5 +529,30 @@
                 "value"         : "-atk"
             }
         ]
+    },
+    "ef0" :
+    {
+        "name"              : "Bombe",
+        "spritePath"        : "img/spells/icon/fire/bombe.png",
+        "descSpritePath"    : "img/spells/desc/fire/bombe.png",
+        "pv"                : 15,
+        "armor"             : 0,
+        "atk"               : 0,
+        "pm"                : 0,
+        "typeList"          : ["unique", "mechanism"],
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"           : "endTurn",
+                "target"            : {"main" : "around", "team" : "op", "noTypeList" : ["mechanism"]},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "explosion",
+                "feature"           : "pv",
+                "value"             : -11
+            }
+        ]
     }
 }

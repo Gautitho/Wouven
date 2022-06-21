@@ -33,6 +33,40 @@
             }
         ]
     },
+    "ecm1" :
+    {
+        "name"              : "Shani",
+        "spritePath"        : "img/entities/icon/multi/shani.png",
+        "descSpritePath"    : "img/entities/desc/multi/shani.png",
+        "pv"                : 87,
+        "armor"             : 0,
+        "atk"               : 18,
+        "pm"                : 3,
+        "typeList"          : ["companion"],
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : {"main" : "self", "ref" : "target"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "jumpOver",
+                "feature"       : "position",
+                "value"         : 0
+            }
+        ]
+    },
     "ecm2" :
     {
         "name"              : "Epinette",

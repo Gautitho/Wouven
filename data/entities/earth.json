@@ -76,6 +76,39 @@
             }
         ]
     },
+    "ece2" :
+    {
+        "name"              : "Kaotika",
+        "spritePath"        : "img/entities/icon/earth/kaotika.png",
+        "descSpritePath"    : "img/entities/desc/earth/kaotika.png",
+        "pv"                : 58,
+        "armor"             : 0,
+        "atk"               : 13,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "spawn",
+                "target"        : {"main" : "around", "typeList" : ["mechanism"]},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "kill",
+                "feature"       : "",
+                "value"         : 0
+            }
+        ]
+    },
     "ece3" :
     {
         "name"              : "Achméa",
@@ -209,6 +242,39 @@
                 "behavior"      : "addAuraStrong",
                 "feature"       : "ac7",
                 "value"         : 1
+            }
+        ]
+    },
+    "ece7" :
+    {
+        "name"              : "Marcus",
+        "spritePath"        : "img/entities/icon/earth/marcus.png",
+        "descSpritePath"    : "img/entities/desc/earth/marcus.png",
+        "pv"                : 76,
+        "armor"             : 0,
+        "atk"               : 18,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : {"main" : "board", "team" : "op"},
+                "conditionList" : [{"feature" : "pv", "value" : 0, "operator" : "<=", "target" : "spellTarget"}],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
             }
         ]
     },

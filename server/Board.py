@@ -384,6 +384,22 @@ class Board:
             raise GameException("You can't push if you are not aligned with target !")
         self._entitiesDict[entityId].tp(nextX, nextY)
 
+    def jumpOver(self, entityId, x, y):
+        xe  = self._entitiesDict[entityId].x
+        ye  = self._entitiesDict[entityId].y
+        if (x == xe and ye < y < BOARD_ROWS):
+            if (self.entityIdOnTile(x, y + 1) == None):
+                self._entitiesDict[entityId].tp(x, y + 1)
+        elif (x == xe and 0 <= y < ye):
+            if (self.entityIdOnTile(x, y - 1) == None):
+                self._entitiesDict[entityId].tp(x, y - 1)
+        elif (xe < x < BOARD_COLS and y == ye):
+            if (self.entityIdOnTile(x + 1, y) == None):
+                self._entitiesDict[entityId].tp(x + 1, y)
+        elif (0 <= x < xe and y == ye):
+            if (self.entityIdOnTile(x - 1, y) == None):
+                self._entitiesDict[entityId].tp(x - 1, y)
+
     def spellCast(self, playerId, spellIdx, targetPositionList):
         # Check if spell in hand
         if (0 <= spellIdx < len(list(self._playersDict[playerId].handSpellDict.keys()))):
@@ -1125,14 +1141,14 @@ class Board:
                                 executed = True
 
                     elif (ability["behavior"] == "swap"):
-                        x = self._entitiesDict[selfId].x
-                        y = self._entitiesDict[selfId].y
-                        self._entitiesDict[selfId].tp(self._entitiesDict[abilityTargetIdList[value]].x, self._entitiesDict[abilityTargetIdList[value]].y)
+                        x = self._entitiesDict[refIdList[0]].x
+                        y = self._entitiesDict[refIdList[0]].y
+                        self._entitiesDict[refIdList[0]].tp(self._entitiesDict[abilityTargetIdList[0]].x, self._entitiesDict[abilityTargetIdList[0]].y)
                         passiveTriggerList.append({"action" : "deplace", "trigger" : trigger, "actorId" : selfId})
                         passiveTriggerList.append({"action" : "tp", "trigger" : trigger, "actorId" : selfId})
-                        self._entitiesDict[abilityTargetIdList[value]].tp(x, y)
-                        passiveTriggerList.append({"action" : "deplace", "trigger" : trigger, "actorId" : abilityTargetIdList[value]})
-                        passiveTriggerList.append({"action" : "tp", "trigger" : trigger, "actorId" : abilityTargetIdList[value]})
+                        self._entitiesDict[abilityTargetIdList[0]].tp(x, y)
+                        passiveTriggerList.append({"action" : "deplace", "trigger" : trigger, "actorId" : abilityTargetIdList[0]})
+                        passiveTriggerList.append({"action" : "tp", "trigger" : trigger, "actorId" : abilityTargetIdList[0]})
                         executed = True
 
                     elif (ability["behavior"] == "melee"):
@@ -1349,6 +1365,12 @@ class Board:
                     elif (ability["behavior"] == "pushAwayFromSelf"):
                         for abilityEntityId in abilityTargetIdList:
                             self.pushEntity(abilityEntityId, self._entitiesDict[refIdList[0]].x, self._entitiesDict[refIdList[0]].y, -value)
+                            passiveTriggerList.append({"action" : "deplace", "trigger" : trigger, "actorId" : abilityEntityId})
+                            executed = True
+
+                    elif (ability["behavior"] == "jumpOver"):
+                        for abilityEntityId in abilityTargetIdList:
+                            self.jumpOver(abilityEntityId, self._entitiesDict[refIdList[0]].x, self._entitiesDict[refIdList[0]].y)
                             passiveTriggerList.append({"action" : "deplace", "trigger" : trigger, "actorId" : abilityEntityId})
                             executed = True
 

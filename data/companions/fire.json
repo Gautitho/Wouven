@@ -120,7 +120,7 @@
     {
         "cost"          : {"fire" : 5},
         "entityDescId"  : "ecf10",
-        "spellDescId"   : "",
+        "spellDescId"   : "scf10",
         "placementList" :
         [
             {

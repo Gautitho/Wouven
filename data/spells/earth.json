@@ -160,6 +160,76 @@
             }
         ]
     },
+    "sce15":
+    {
+        "name"              : "Armure de 1001 griffes",
+        "race"              : "ece15",
+        "cost"              : 6,
+        "elem"              : "earth",
+        "spritePath"        : "img/spells/icon/earth/armureDes1001Griffes.png",
+        "descSpritePath"    : "img/spells/desc/earth/armureDes1001Griffes.png",
+        "allowedTargetList" : [{"entity" : "True", "main" : "self"}],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "armor",
+                "value"         : 21
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "addState",
+                "feature"       : "shield:-1",
+                "value"         : 0
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["noArmor"],
+                "target"            : {},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "atk",
+                "value"             : 10
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["noArmor"],
+                "target"            : {},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "",
+                "feature"           : "pm",
+                "value"             : 1
+            },
+            {
+                "trigger"           : "spellCast",
+                "stopTriggerList"   : ["noArmor"],
+                "target"            : {},
+                "conditionList"     : [],
+                "break"             : "False",
+                "behavior"          : "addState",
+                "feature"           : "transformation:-1",
+                "value"             : 0
+            },
+            {
+                "trigger"       : "spellCast",
+                "target"        : {"main" : "player", "team" : "my"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "gauges",
+                "value"         : {"earth" : 1}
+            }
+        ]
+    },
     "sce16":
     {
         "name"              : "Fureur de Tristepin",

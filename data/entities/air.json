@@ -417,6 +417,30 @@
             }
         ]
     },
+    "eca13" :
+    {
+        "name"              : "Atcham",
+        "spritePath"        : "img/entities/icon/air/atcham.png",
+        "descSpritePath"    : "img/entities/desc/air/atcham.png",
+        "pv"                : 95,
+        "armor"             : 0,
+        "atk"               : 27,
+        "pm"                : 3,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            }
+        ]
+    },
     "eca14" :
     {
         "name"              : "Evangelyne",
@@ -457,6 +481,39 @@
                 "behavior"      : "addAuraStrong",
                 "feature"       : "ac4",
                 "value"         : 1
+            }
+        ]
+    },
+    "eca15" :
+    {
+        "name"              : "Yugo",
+        "spritePath"        : "img/entities/icon/air/yugo.png",
+        "descSpritePath"    : "img/entities/desc/air/yugo.png",
+        "pv"                : 132,
+        "armor"             : 0,
+        "atk"               : 36,
+        "pm"                : 4,
+        "aura"              : {},
+        "states"            : [],
+        "abilities"         :
+        [
+            {
+                "trigger"       : "attack",
+                "target"        : {},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "",
+                "feature"       : "pv",
+                "value"         : "-atk"
+            },
+            {
+                "trigger"       : "attack",
+                "target"        : {"main" : "self", "ref" : "target"},
+                "conditionList" : [],
+                "break"         : "False",
+                "behavior"      : "jumpOver",
+                "feature"       : "position",
+                "value"         : 0
             }
         ]
     },
