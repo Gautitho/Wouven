@@ -85,6 +85,7 @@
         "armor"             : 0,
         "atk"               : 13,
         "pm"                : 3,
+        "typeList"          : ["companion"],
         "aura"              : {},
         "states"            : [],
         "abilities"         :
@@ -254,6 +255,7 @@
         "armor"             : 0,
         "atk"               : 18,
         "pm"                : 3,
+        "typeList"          : ["companion"],
         "aura"              : {},
         "states"            : [],
         "abilities"         :

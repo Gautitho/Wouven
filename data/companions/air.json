@@ -160,6 +160,7 @@
         "cost"          : {"air" : 6},
         "entityDescId"  : "eca13",
         "spellDescId"   : "",
+        "propertyList"  : ["respawnable"],
         "placementList" :
         [
             {

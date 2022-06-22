@@ -1103,6 +1103,9 @@ class Board:
                                     if (-pvVar > 0):
                                         passiveTriggerList.append({"action" : "heal", "trigger" : trigger, "actorId" : selfId, "value" : -pvVar})
                                 executed = True
+                            # Special case for Gantares passive, awfull
+                            if (ability["behavior"] == "explosion"):
+                                executed = True
                         elif (ability["feature"] == "elemState"):
                             for abilityEntityId in abilityTargetIdList:
                                 self._entitiesDict[abilityEntityId].setElemState(value)
@@ -1518,20 +1521,21 @@ class Board:
                     auraUsed = True
 
                 # Adding default to passiveTriggerList
-                for passiveTrigger in passiveTriggerList:
-                    if (not "action" in passiveTrigger):
-                        passiveTrigger["action"] = "none"
-                    if (not "trigger" in passiveTrigger):
-                        passiveTrigger["trigger"] = trigger
-                    if (not "actorId" in passiveTrigger):
-                        passiveTrigger["actorId"] = "self"
-                    if (not "value" in passiveTrigger):
-                        passiveTrigger["value"] = 0
+                if (executed):
+                    for passiveTrigger in passiveTriggerList:
+                        if (not "action" in passiveTrigger):
+                            passiveTrigger["action"] = "none"
+                        if (not "trigger" in passiveTrigger):
+                            passiveTrigger["trigger"] = trigger
+                        if (not "actorId" in passiveTrigger):
+                            passiveTrigger["actorId"] = "self"
+                        if (not "value" in passiveTrigger):
+                            passiveTrigger["value"] = 0
                 
-                if (trigger != "ability"):
-                    for entityId in self._entitiesDict:
-                        if (type(self._entitiesDict[entityId]).__name__ == "Entity"):
-                            self.executeAbilities(self._entitiesDict[entityId].abilities, "ability", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, targetEntityIdList, triggingAbility=ability, passiveTriggedList=passiveTriggerList)
+                    if (trigger != "ability"):
+                        for entityId in self._entitiesDict:
+                            if (type(self._entitiesDict[entityId]).__name__ == "Entity"):
+                                self.executeAbilities(self._entitiesDict[entityId].abilities, "ability", self.getPlayerIdFromTeam(self._entitiesDict[entityId].team), entityId, targetEntityIdList, triggingAbility=ability, passiveTriggedList=passiveTriggerList)
 
         if auraUsed:
             self._entitiesDict[selfId].consumeAura(1)
