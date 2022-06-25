@@ -36,7 +36,7 @@
                 "target"        : {"main" : "self"},
                 "conditionList" : [],
                 "break"         : "False",
-                "behavior"      : "",
+                "behavior"      : "aura",
                 "feature"       : "pv",
                 "value"         : 12
             }

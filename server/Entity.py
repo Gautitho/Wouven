@@ -237,13 +237,11 @@ class Entity:
     def addState(self, state):
         cpyState        = dict(state)
         uniqueStateList = ["disarmed", "locked", "frozen", "stunned"]
-        if not(cpyState in self._states):
-            for presentState in self._states:
-                if (cpyState["feature"] in uniqueStateList):
-                    if (presentState["feature"] in uniqueStateList or presentState["feature"] == cpyState["feature"]):
-                        self.removeState(presentState["feature"])
-            self._states.append(cpyState)
-            self.applyStates()
+        for presentState in copy.deepcopy(self._states):
+            if ((cpyState["feature"] in uniqueStateList and presentState["feature"] in uniqueStateList) or presentState["feature"] == cpyState["feature"]):
+                self.removeState(presentState["feature"])
+        self._states.append(cpyState)
+        self.applyStates()
 
     def removeState(self, stateFeature):
         stateFound = False

@@ -560,7 +560,7 @@ class Board:
         else:
             raise GameException("Only one summon position is allowed !")
 
-    def executeAbilities(self, abilityList, trigger, playerId, selfId, targetEntityIdList, spellElem=None, spellId=None, triggingAbility=None, allowedTargetList=None, passiveTriggedList=None, inAffectedIdList=None, force=False):
+    def executeAbilities(self, abilityList, trigger, playerId, selfId, targetEntityIdList, spellElem=None, spellId=None, triggingAbility=None, allowedTargetList=[], passiveTriggedList=[], inAffectedIdList=[], force=False):
         auraUsed                        = False
         opPlayerId                      = self.getOpPlayerId(playerId) if playerId else ""
         elemStateToRemoveEntityIdList   = []
@@ -1503,18 +1503,25 @@ class Board:
                         executed = True
 
                     # If stopTriggerList is defined, the ability must be added to the ongoingAbilityList
+                    uniqueOngoingBehaviorList = ["addState"]
                     if stopTriggerList and not(force):
-                        ongoingAbilityDict = {}
-                        copiedAbility = copy.deepcopy(ability)
-                        copiedAbility["mult"]                   = mult
-                        ongoingAbilityDict["ability"]           = copiedAbility
-                        ongoingAbilityDict["value"]             = value
-                        ongoingAbilityDict["playerId"]          = playerId
-                        ongoingAbilityDict["selfId"]            = selfId
-                        ongoingAbilityDict["spellId"]           = spellId
-                        ongoingAbilityDict["affectedIdList"]    = affectedIdList
-                        ongoingAbilityDict["stopTriggerList"]   = stopTriggerList
-                        self._ongoingAbilityList.append(ongoingAbilityDict)
+                        applyOngoingAbility = True
+                        for ongoingAbility in self._ongoingAbilityList:
+                            if (ability["behavior"] == ongoingAbility["ability"]["behavior"] and ability["behavior"] in uniqueOngoingBehaviorList):
+                                applyOngoingAbility = False
+                                break
+                        if applyOngoingAbility:
+                            ongoingAbilityDict = {}
+                            copiedAbility = copy.deepcopy(ability)
+                            copiedAbility["mult"]                   = mult
+                            ongoingAbilityDict["ability"]           = copiedAbility
+                            ongoingAbilityDict["value"]             = value
+                            ongoingAbilityDict["playerId"]          = playerId
+                            ongoingAbilityDict["selfId"]            = selfId
+                            ongoingAbilityDict["spellId"]           = spellId
+                            ongoingAbilityDict["affectedIdList"]    = affectedIdList
+                            ongoingAbilityDict["stopTriggerList"]   = stopTriggerList
+                            self._ongoingAbilityList.append(ongoingAbilityDict)
 
                 # Check if an aura has been used / aura must be specified only once by aura ability
                 if (executed and ability["behavior"] == "aura"):
