@@ -67,7 +67,7 @@
                 "behavior"      : "",
                 "break"         : "True",
                 "feature"       : "gauges",
-                "value"         : {"earth" : 2}
+                "value"         : {"earth" : 1}
             },
             {
                 "trigger"       : "spellCast",

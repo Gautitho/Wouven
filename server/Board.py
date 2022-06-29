@@ -566,7 +566,7 @@ class Board:
         elemStateToRemoveEntityIdList   = []
         for ability in abilityList:
 
-            if (trigger == ability["trigger"] or force):
+            if (trigger == ability["trigger"] or force or trigger == ""):
 
                 passiveTriggerList  = [] # [{actor / trigger / targetId / value}] # Behavior to handle very specific cases, avoid it
 
@@ -1495,7 +1495,7 @@ class Board:
                     elif (ability["behavior"] == "executeAbilities"):
                         # WARNING : force mult is used, this is wrong but mult is never used in this case (I hope ...)
                         for abilityEntityId in abilityTargetIdList:
-                            self.executeAbilities(self._entitiesDict[abilityEntityId].abilities, "", self.getPlayerIdFromTeam(self._entitiesDict[abilityEntityId].team), abilityEntityId, [None], force=True)
+                            self.executeAbilities(self._entitiesDict[abilityEntityId].abilities, "", self.getPlayerIdFromTeam(self._entitiesDict[abilityEntityId].team), abilityEntityId, [None])
                             executed = True
 
                     elif (ability["behavior"] == "preventStockUse"):
