@@ -509,7 +509,7 @@
                 "value"         : "-atk"
             },
             {
-                "trigger"       : "attack",
+                "trigger"       : "attacked",
                 "target"        : {"main" : "self", "ref" : "target"},
                 "conditionList" : [],
                 "break"         : "False",

@@ -1746,7 +1746,7 @@
         [
             {
                 "trigger"       : "spellCast",
-                "target"        : {"main" : "around", "ref" : "target", "team" : "op", "noTypeList" : ["mechanism"]},
+                "target"        : {"main" : "board", "ref" : "target", "team" : "op", "noTypeList" : ["mechanism"]},
                 "conditionList" : [],
                 "break"         : "False",
                 "behavior"      : "",

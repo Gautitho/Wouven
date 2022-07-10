@@ -387,16 +387,16 @@ class Board:
     def jumpOver(self, entityId, x, y):
         xe  = self._entitiesDict[entityId].x
         ye  = self._entitiesDict[entityId].y
-        if (x == xe and ye < y < BOARD_ROWS):
+        if (x == xe and ye < y < BOARD_ROWS - 1):
             if (self.entityIdOnTile(x, y + 1) == None):
                 self._entitiesDict[entityId].tp(x, y + 1)
-        elif (x == xe and 0 <= y < ye):
+        elif (x == xe and 1 <= y < ye):
             if (self.entityIdOnTile(x, y - 1) == None):
                 self._entitiesDict[entityId].tp(x, y - 1)
-        elif (xe < x < BOARD_COLS and y == ye):
+        elif (xe < x < BOARD_COLS - 1 and y == ye):
             if (self.entityIdOnTile(x + 1, y) == None):
                 self._entitiesDict[entityId].tp(x + 1, y)
-        elif (0 <= x < xe and y == ye):
+        elif (1 <= x < xe and y == ye):
             if (self.entityIdOnTile(x - 1, y) == None):
                 self._entitiesDict[entityId].tp(x - 1, y)
 
