@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+    <link rel="stylesheet" href="../../css/style.css">
+    <title>Wouven</title>
+</head>
+<body class="h-screen w-screen">
+
+    <section class="w-full">
+        <div class="flex flex-col items-center">
+            <p class="text-4xl font-bold">Wouven</p>
+        </div>
+
+        <div id="head" class="flex flex-col items-center player0-2">
+            Ce site web est une reproduction non officielle de Waven, prplayer1riété intellectuelle du studio Ankama.
+        </div>
+    </section>
+
+    <section class="flex items-center justify-between my-2 h-5/6 w-full">
+        <div class="flex flex-col h-full w-1/4 mx-2">
+            <div id="player0Status" class="flex flex-col h-1/4 w-full border-2">
+                <div class="flex">
+                    <div id="player0StatusSprite" class="flex h-20 w-20 bg-center bg-contain bg-no-repeat"></div>
+                    <div id="player0StatusFeature" class="flex flex-col mx-2">
+                        <div id="player0StatusPseudo" class="flex font-bold">Pseudo</div>
+                        <div id="player0StatusPv" class="flex">PV : 0 / 0</div>
+                        <div id="player0StatusIcons" class="flex flex-row">
+                            <div id="player0StatusGaugesFire" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="player0StatusGaugesWater" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="player0StatusGaugesEarth" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="player0StatusGaugesAir" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="player0StatusGaugesNeutral" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="player0StatusDescSprite" class="w-5/6 h-1/2 self-center bg-center bg-contain bg-no-repeat"></div>
+            </div>
+            <div id="player0Companions" class="grid flex-grow grid-cols-2 grid-rows-2 h-1/3 mx-4 w-full"></div>
+
+            <div id="player1Status" class="flex flex-col h-1/4 w-full border-2">
+                <div class="flex">
+                    <div id="player1StatusSprite" class="flex h-20 w-20 bg-center bg-contain bg-no-repeat"></div>
+                    <div id="player1StatusFeature" class="flex flex-col mx-2">
+                        <div id="player1StatusPseudo" class="font-bold">Pseudo</div>
+                        <div id="player1StatusPv">PV : 0 / 0</div>
+                        <div id="player1StatusIcons" class="flex flex-row">
+                            <div id="player1StatusGaugesFire" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="player1StatusGaugesWater" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="player1StatusGaugesEarth" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="player1StatusGaugesAir" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                            <div id="player1StatusGaugesNeutral" class="h-10 w-10 bg-center bg-contain bg-no-repeat icon-class">0</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="player1StatusDescSprite" class="w-5/6 h-1/2 self-center bg-center bg-contain bg-no-repeat"></div>
+            </div>
+            <div id="player1Companions" class="grid flex-grow grid-cols-2 grid-rows-2 h-1/3 mx-4 w-full"></div>
+        </div>
+
+        <div class="flex flex-col h-full w-1/2 mx-2">
+            <div id="player0HandBar" class="flex flex-row">
+                <div id="player0Pa" class="h-20 w-20 bg-center bg-contain bg-no-repeat mx-2 pa-class"></div>
+                <div id="player0PaStock" class="h-20 w-20 bg-center bg-contain bg-no-repeat mx-2 pa-class"></div>
+                <div id="player0Hand" class="flex-grow grid grid-cols-7 grid-rows-1 w-max mx-2"></div>
+            </div>
+            <div id="board" class="flex-grow grid grid-cols-7 grid-rows-7"></div>
+            <div id="player1HandBar" class="flex flex-row">
+                <div id="player1Pa" class="h-20 w-20 bg-center bg-contain bg-no-repeat mx-2 pa-class"></div>
+                <div id="player1PaStock" class="h-20 w-20 bg-center bg-contain bg-no-repeat mx-2 pa-class"></div>
+                <div id="player1Hand" class="flex-grow grid grid-cols-7 grid-rows-1 w-max mx-2"></div>
+            </div>
+        </div>
+
+        <div class="flex flex-col h-full w-1/4 mx-2">
+            <div id="historicContainer" class="flex flex-col">
+                <div id="historicLogo" class="h-20 w-20 place-self-center bg-center bg-contain bg-no-repeat"></div>
+                <div id="historic" class="flex flex-col grid grid-rows-5 grid-cols-3 place-self-center border-2"></div>
+            </div>
+            <div class="h-1/6 mx-2 my-2">
+                <div id="errorLog" class="rounded-lg bg-black text-white font-semibold h-full p-2"></div>
+            </div>
+            <div class="h-1/6 mx-2 my-2 self-center">
+                <button id="stateBtn" type="button" class="state-btn">Tour adverse</button>
+                <div id="version">v1.8</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../../js/Tooltip.js"></script>
+    <script>
+        const PROJECT_ROOT_PATH = "../../"
+        const BOARD_ROWS = 7;
+        const BOARD_COLS = 7;
+        const HAND_SPELLS = 7;
+        const COMPANIONS = 4;
+        const ACTION_LIST_LEN = 8;
+
+        $("#player0Pa").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/pa.png)");
+        $("#player1Pa").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/pa.png)");
+        $("#player0PaStock").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/paStock.png)");
+        $("#player1PaStock").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/paStock.png)");
+        $("#player0StatusGaugesFire").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/fire.png)");
+        $("#player0StatusGaugesWater").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/water.png)");
+        $("#player0StatusGaugesEarth").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/earth.png)");
+        $("#player0StatusGaugesAir").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/air.png)");
+        $("#player0StatusGaugesNeutral").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/neutral.png)");
+        $("#player1StatusGaugesFire").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/fire.png)");
+        $("#player1StatusGaugesWater").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/water.png)");
+        $("#player1StatusGaugesEarth").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/earth.png)");
+        $("#player1StatusGaugesAir").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/air.png)");
+        $("#player1StatusGaugesNeutral").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/neutral.png)");
+        $("#historicLogo").css("background-image", "url(" + PROJECT_ROOT_PATH + "img/utils/historic.png)");
+
+        $("#stateBtn").css("background-color", "#FF0000");
+        $("#stateBtn").text("Tour bleu");
+
+        for (i = 0; i < COMPANIONS; i++)
+        {
+            document.getElementById("player0Companions").insertAdjacentHTML('beforeend', `<div id="player0Companion_${i}" class="flex"></div>`);
+            document.getElementById("player0Companion_" + i).insertAdjacentHTML('beforeend', `<div id="player0Companion_${i}_sprite" class="w-5/6 h-5/6 self-center bg-center bg-contain bg-no-repeat"></div>`);
+            $("#player0Companion_" + i).click(function() {player0CompanionClick($(this))});
+            document.getElementById("player1Companions").insertAdjacentHTML('beforeend', `<div id="player1Companion_${i}" class="flex"></div>`);
+            document.getElementById("player1Companion_" + i).insertAdjacentHTML('beforeend', `<div id="player1Companion_${i}_sprite" class="w-5/6 h-5/6 self-center bg-center bg-contain bg-no-repeat"></div>`);
+            $("#player1Companion_" + i).click(function() {player1CompanionClick($(this))});
+        }
+        for (y = 0; y < BOARD_ROWS; y++)
+        {
+            for (x = 0; x < BOARD_COLS; x++)
+            {
+                document.getElementById("board").insertAdjacentHTML('beforeend',`<div id="board_${x}_${y}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
+                $("#board_" + x + "_" + y).click(function() {boardTileClick($(this))});
+            } 
+        }
+        for (i = 0; i < HAND_SPELLS; i++)
+        {
+            document.getElementById("player0Hand").insertAdjacentHTML('beforeend',`<div id="spell_player0_${i}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"><div id="spell_player0_${i}_cost" class="h-5 w-5 bg-center bg-contain bg-no-repeat cost-class"></div></div>`);
+            document.getElementById("player1Hand").insertAdjacentHTML('beforeend',`<div id="spell_player1_${i}" class="border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"><div id="spell_player1_${i}_cost" class="h-5 w-5 bg-center bg-contain bg-no-repeat cost-class"></div></div>`);
+        }
+        for (i = 0; i < ACTION_LIST_LEN; i++)
+        {
+            document.getElementById("historic").insertAdjacentHTML('beforeend',`<div id="historic0_${i}" class="h-16 w-16 border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
+            document.getElementById("historic").insertAdjacentHTML('beforeend',`<div id="historic1_${i}" class="h-16 w-16 border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
+            document.getElementById("historic").insertAdjacentHTML('beforeend',`<div id="historic2_${i}" class="h-16 w-16 border-2 border-light-blue-500 border-opacity-25 relative bg-center bg-contain bg-no-repeat"></div>`);
+        }
+
+    </script>
+
+    <script src="spectator.js"></script>
+
+</body>
+</html>

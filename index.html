@@ -48,6 +48,14 @@
             </div>
 
             <div class="block">
+                <label class="font-bold" for="gameNameSpectate">Observer une partie</label>
+                <div class="flex justify-between">
+                    <input class="w-96 p-1 my-auto" type="text" id="gameNameSpectate" name="gameNameSpectate" placeholder="Entre le nom de la partie à observer"/>
+                    <button id="spectateGame" type="button" class="classic-btn w-48" onclick=spectateGame()>Observer</button>
+                </div>
+            </div>
+
+            <div class="block">
                 <label class="font-bold" for="gameNameReconnect">Reconnexion à une partie</label>
                 <div class="flex justify-end">
                     <button id="reconnectGame" type="button" class="classic-btn w-48" onclick=reconnectGame()>Reconnexion</button>

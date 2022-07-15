@@ -42,6 +42,10 @@ socket.onmessage = function(handler)
     {
         window.location = "pages/board/board.html?" + cmdObj.name + "&" + playerId;
     }
+    else if (cmdObj.cmd === "SPECTATE_START")
+    {
+        window.location = "pages/spectator/spectator.html?" + cmdObj.name  + "&" + playerId;
+    }
 }
 
 pseudoInput.value = localStorage.getItem('playerId');
@@ -190,6 +194,18 @@ function findGame()
             $("#createGame").css("background-color", "#552fff");
             $("#createGame").text("Créer");
         }
+        socket.send(JSON.stringify(clientCmd));
+    }
+}
+
+function spectateGame()
+{
+    if (checkArgs(["pseudo", "gameNameSpectate"]))
+    {
+        playerId = pseudoInput.value;
+        console.log(playerId)
+        gameName = document.getElementById("gameNameSpectate").value;
+        clientCmd = {"cmd" : "SPECTATE_GAME", "playerId" : playerId, "gameName" : gameName};
         socket.send(JSON.stringify(clientCmd));
     }
 }

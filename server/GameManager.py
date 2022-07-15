@@ -15,7 +15,7 @@ class GameManager :
         self._currGameDict              = {}
         self._nextGameId                = 0
         self._knownPlayerList           = KnownPlayerList()
-        self._gameId                   = None
+        self._gameId                    = None
         self._waitingPlayer             = {} # {playerId / deck}
         self._waitingCreatedGameList    = [] # [{gameName / clientId / playerId / deck}]
 
@@ -58,12 +58,18 @@ class GameManager :
             elif (clientCmd == "GET_INIT"):
                 self.checkCmdArgs(cmdDict, [])
                 self.GetInit(clientId, playerId)
+            elif (clientCmd == "GET_SPECTATOR_INIT"):
+                self.checkCmdArgs(cmdDict, [])
+                self.GetSpectatorInit(clientId, playerId)
             elif (clientCmd == "FIND_GAME"):
                 self.checkCmdArgs(cmdDict, ["deck"])
                 self.FindGame(clientId, playerId, cmdDict["deck"])
             elif (clientCmd == "CANCEL_FIND_GAME"):
                 self.checkCmdArgs(cmdDict, [])
                 self.CancelFindGame(clientId, playerId)
+            elif (clientCmd == "SPECTATE_GAME"):
+                self.checkCmdArgs(cmdDict, ["gameName"])
+                self.SpectateGame(clientId, cmdDict["gameName"], playerId)
 
             self._gameId = self._knownPlayerList.getGameId(clientId)
 
@@ -88,7 +94,7 @@ class GameManager :
                 printLog(str(sys.exc_info()[0]), filePath="error.log", writeMode="a")
                 serverCmd = {"cmd" : "ERROR", "msg" : "Fatal error : " + str(sys.exc_info()[0])}
                 self._serverCmdList.append({"clientId" : clientId, "content" : json.dumps(serverCmd)})
-
+        
         # Logs
         s = ""
         for gameId in list(self._currGameDict.keys()):
@@ -190,9 +196,9 @@ class GameManager :
             raise GameException(f"Player {playerId} is already in a game")
         checkDeck(deck)
 
-        self._knownPlayerList.appendKnownPlayer(playerId, clientId)
         for gameId in range(len(self._waitingCreatedGameList)):
             if (gameName == self._waitingCreatedGameList[gameId]["gameName"]):
+                self._knownPlayerList.appendKnownPlayer(playerId, clientId)
                 self.create(gameName)
                 self.join(self._waitingCreatedGameList[gameId]["clientId"], self._waitingCreatedGameList[gameId]["gameName"], self._waitingCreatedGameList[gameId]["playerId"], self._waitingCreatedGameList[gameId]["deck"])
                 self.join(clientId, gameName, playerId, deck)
@@ -212,6 +218,20 @@ class GameManager :
         
         nextGame = copy.deepcopy(self._currGameDict[self._gameId])
         nextGame.clientConnect()
+        self._currGameDict[self._gameId] = copy.deepcopy(nextGame)
+
+    def GetSpectatorInit(self, clientId, playerId):
+        if not(self._knownPlayerList.isKnownPlayer(playerId)):
+            raise GameException(f"Player {playerId} is not in a game")
+    
+        self._knownPlayerList.appendKnownPlayer(playerId, clientId) # Update clientId
+        self._gameId = self._knownPlayerList.getGameId(clientId)
+
+        if (self._gameId == None):
+            raise GameException(f"This game could not be initiated !")
+        
+        nextGame = copy.deepcopy(self._currGameDict[self._gameId])
+        nextGame.appendSpectator(playerId)
         self._currGameDict[self._gameId] = copy.deepcopy(nextGame)
 
     def Reconnect(self, clientId, playerId):
@@ -247,4 +267,20 @@ class GameManager :
         self._knownPlayerList.removeKnownPlayer(playerId) 
         self._waitingPlayer = {}
         serverCmd = {"cmd" : "CANCEL_GAME_START"}
+        self._serverCmdList.append({"clientId" : clientId, "content" : json.dumps(serverCmd)})
+
+    def SpectateGame(self, clientId, gameName, playerId):
+        if self._knownPlayerList.isKnownPlayer(playerId):
+            raise GameException(f"Player {playerId} is already in a game")
+
+        self._gameId = None
+        for gameId in list(self._currGameDict.keys()):
+            if (self._currGameDict[gameId].name == gameName):
+                self._gameId = gameId
+        if (self._gameId == None):
+            raise GameException(f"Game {gameName} does not exist")
+
+        self._knownPlayerList.appendKnownPlayer(playerId, clientId)
+        self._knownPlayerList.setGameId(playerId, self._gameId)
+        serverCmd = {"cmd" : "SPECTATE_START", "name" : gameName}
         self._serverCmdList.append({"clientId" : clientId, "content" : json.dumps(serverCmd)})

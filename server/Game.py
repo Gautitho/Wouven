@@ -15,6 +15,7 @@ class Game:
         self._board             = Board()
         self._serverCmdList     = []
         self._actionList        = []
+        self._spectatorList     = []
         self._connectedPlayers  = 0
         self._inactiveStartTime = 0
 
@@ -78,6 +79,12 @@ class Game:
     def clientDisconnect(self):
         self._connectedPlayers -= 1
 
+    def appendSpectator(self, spectatorId):
+        self._spectatorList.append(spectatorId)
+
+    def removeSpectator(self, spectatorId):
+        self._spectatorList.remove(spectatorId)
+
     def run(self, cmdDict):
         cmd         = cmdDict["cmd"]
         playerId    = cmdDict["playerId"]
@@ -90,6 +97,9 @@ class Game:
         else:
             if (cmd == "GET_INIT"):
                 self.initGame(playerId)
+                self.sendStatus()
+
+            elif (cmd == "GET_SPECTATOR_INIT"):
                 self.sendStatus()
 
             elif (cmd == "SURREND"):
@@ -155,6 +165,7 @@ class Game:
         self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
 
     def sendStatus(self):
+        # Destination : Players
         for playerId in list(self._board.playersDict.keys()):
             serverCmd = {}
             serverCmd["cmd"]    = "STATUS"
@@ -169,6 +180,19 @@ class Game:
                 entitiesDict[entityId] = self._board.entitiesDict[entityId].getStatusDict()
             serverCmd["entitiesDict"] = entitiesDict
             self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
+
+        # Destination : Spectators
+        for spectatorId in self._spectatorList:
+            serverCmd = {}
+            serverCmd["cmd"]    = "STATUS"
+            serverCmd["turn"]   = self._board.turn
+            for playerIdx in range(len(list(self._board.playersDict.keys()))):
+                serverCmd["player" + str(playerIdx)]   = self._board.playersDict[list(self._board.playersDict.keys())[playerIdx]].getMyStatusDict()
+            entitiesDict    = {}
+            for entityId in list(self._board.entitiesDict.keys()):
+                entitiesDict[entityId] = self._board.entitiesDict[entityId].getStatusDict()
+            serverCmd["entitiesDict"] = entitiesDict
+            self._serverCmdList.append({"playerId" : spectatorId, "content" : json.dumps(serverCmd)})
 
         # Check for end of the game
         deadPlayerIdList = []
@@ -188,6 +212,16 @@ class Game:
                 else:
                     serverCmd["result"] = "DRAW"
                 self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
+            for spectatorId in self._spectatorList:
+                serverCmd = {}
+                serverCmd["cmd"]    = "END_GAME"
+                if (len(deadPlayerIdList) == 1):
+                    serverCmd["result"] = "WIN"
+                    serverCmd["winner"] = deadPlayerIdList[0]
+                else:
+                    serverCmd["result"] = "DRAW"
+                    serverCmd["winner"] = ""
+                self._serverCmdList.append({"playerId" : spectatorId, "content" : json.dumps(serverCmd)})
 
     def addActionToList(self, actionType, sourceTeam, sourceDescId, targetPositionList):
         action              = {}
@@ -218,6 +252,11 @@ class Game:
             serverCmd["cmd"]        = "HISTORIC"
             serverCmd["actionList"] = self._actionList
             self._serverCmdList.append({"playerId" : playerId, "content" : json.dumps(serverCmd)})
+        for spectatorId in self._spectatorList:
+            serverCmd = {}
+            serverCmd["cmd"]        = "HISTORIC"
+            serverCmd["actionList"] = self._actionList
+            self._serverCmdList.append({"playerId" : spectatorId, "content" : json.dumps(serverCmd)})
 
     def checkTurn(self, playerId):
         if not(playerId in list(self._board.playersDict.keys())):
@@ -256,6 +295,7 @@ class Game:
 
     def Surrend(self, playerId):
         self._gameState     = "DONE"
+        winnerId            = ""
         for playerIdIt in list(self._board.playersDict.keys()):
             serverCmd = {}
             serverCmd["cmd"]    = "END_GAME"
@@ -263,7 +303,14 @@ class Game:
                 serverCmd["result"] = "LOSS_SURRENDER"
             else:
                 serverCmd["result"] = "WIN_SURRENDER"
+                winnerId            = playerIdIt
             self._serverCmdList.append({"playerId" : playerIdIt, "content" : json.dumps(serverCmd)})       
+        for spectatorId in self._spectatorList:
+            serverCmd = {}
+            serverCmd["cmd"]    = "END_GAME"
+            serverCmd["result"] = "SURRENDER"
+            serverCmd["winner"] = winnerId
+            self._serverCmdList.append({"playerId" : spectatorId, "content" : json.dumps(serverCmd)})
 
     def generalLog(self):
         s = ""
