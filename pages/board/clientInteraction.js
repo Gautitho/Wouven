@@ -190,7 +190,7 @@ function updateHistoric()
         $("#historic2_" + i).css("background-image", "");
         $("#historic2_" + i).css("border-color", "");
     }
-    for (i = 0; i < actionList.length; i++)
+    for (i = 0; i < ACTION_LIST_LEN; i++)
     {
         if (actionList[i].type === "move")
         {
